@@ -1,0 +1,373 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Working with Terrain Data &mdash; QGIS Tutorials and Tips</title>
+    
+    <link rel="stylesheet" href="../_static/greencloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
+    <link rel="next" title="Working with WMS Data" href="working_with_wms.html" />
+    <link rel="prev" title="Raster Mosaicing and Clipping" href="raster_mosaicing_and_clipping.html" />
+ 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-690672-13']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="working_with_wms.html" title="Working with WMS Data"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="raster_mosaicing_and_clipping.html" title="Raster Mosaicing and Clipping"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">QGIS Tutorials and Tips</a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="working-with-terrain-data">
+<h1>Working with Terrain Data<a class="headerlink" href="#working-with-terrain-data" title="Permalink to this headline">¶</a></h1>
+<p>[ Download PDF <a class="reference external" href="../pdf/working_with_terrain_a4.pdf">A4</a> <a class="reference external" href="../pdf/working_with_terrain_letter.pdf">Letter</a> ]</p>
+<p>Terrain or elevation data is useful for many GIS Analysis and it is often used
+in maps. QGIS has good terrain processing capabilities built-in. In this
+tutorial, we will work through the steps to generate various products from
+elevation data such as contours, hillshade etc.</p>
+<div class="section" id="overview-of-the-task">
+<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>The task is to create contours and hillshade map for area around Mt. Everest.</p>
+<div class="section" id="other-skills-you-will-learn">
+<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Searching and downloading freely available terrain data.</li>
+<li>Exporting a vector layer as KML and viewing it in Google Earth.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="get-the-data">
+<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>We will be working with GMTED2010 dataset from USGS. This data can be
+downloaded from the <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> site. <a class="reference external" href="http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/GMTED2010">GMTED (Global Multi-resolution
+Terrain Elevation Data)</a> is a global terrain dataset that is the newer version
+of GTOPO30 dataset.</p>
+<p>Here is how to search and download the revelant data from USGS Earthexplorer.</p>
+<ol class="arabic simple">
+<li>Go to the <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> . In the
+<em class="guilabel">Search Criteria</em> tab, search for the place name <cite>Mt. Everest</cite>.
+Click on the result to select the location.</li>
+</ol>
+<img alt="../_images/160.png" class="align-center" src="../_images/160.png" style="width: 700px;" />
+<ol class="arabic simple" start="2">
+<li>In the <em class="guilabel">Data Sets</em> tab, expand the <em class="guilabel">Digital Elevation</em>
+group, and check <em class="guilabel">GMTED2010</em>.</li>
+</ol>
+<img alt="../_images/219.png" class="align-center" src="../_images/219.png" style="width: 700px;" />
+<ol class="arabic simple" start="3">
+<li>You can now skip to the <em class="guilabel">Results</em> tab and see the part of the
+dataset intersecting your search criteria. Click the <em class="guilabel">Download
+Options</em> button. You will have to log in to the site at this point. You can
+create a free account if you do not have one.</li>
+</ol>
+<img alt="../_images/314.png" class="align-center" src="../_images/314.png" style="width: 700px;" />
+<ol class="arabic simple" start="4">
+<li>Select the <em class="guilabel">30 ARC SEC</em> option and click <em class="guilabel">Select
+Download Option</em>.</li>
+</ol>
+<img alt="../_images/414.png" class="align-center" src="../_images/414.png" style="width: 700px;" />
+<p>You will now have a file named <cite>GMTED2010N10E060_300.zip</cite>. Elevation data is
+distributed in various raster formats such as ASC, BIL, GeoTiff etc.
+QGIS supports a wide <a class="reference external" href="http://www.gdal.org/formats_list.html">variety of raster formats</a> via the GDAL library. The GMTED
+data comes as GeoTiff files which are contained in this zip archive.</p>
+<p>For convenience, you can <a class="reference download internal" href="../_downloads/GMTED2010N10E060_300.zip"><tt class="xref download docutils literal"><span class="pre">download</span> <span class="pre">a</span> <span class="pre">copy</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">data</span> <span class="pre">from</span> <span class="pre">here.</span></tt></a>.</p>
+</div>
+<div class="section" id="procedure">
+<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple" start="5">
+<li>Open <em class="menuselection">Layer ‣ Add Raster Layer</em> and browse to the
+downloaded zip file.</li>
+</ol>
+<img alt="../_images/514.png" class="align-center" src="../_images/514.png" style="width: 700px;" />
+<ol class="arabic simple" start="6">
+<li>There are many different files generated from different algorithms.
+For this tutorial, we will use the file named <cite>10n060e_20101117_gmted_mea300.tif</cite>.</li>
+</ol>
+<img alt="../_images/613.png" class="align-center" src="../_images/613.png" style="width: 600px;" />
+<ol class="arabic simple" start="7">
+<li>You will see the terrain data rendered in the QGIS Canvas. Each pixel in the
+terrain raster represents the average elevation in meters at that location.
+The dark pixels represent areas with low altitude and lighter pixels
+represent areas with high altitude.</li>
+</ol>
+<img alt="../_images/713.png" class="align-center" src="../_images/713.png" style="width: 700px;" />
+<ol class="arabic simple" start="8">
+<li>Let&#8217;s find our area of interest. From <a class="reference external" href="http://en.wikipedia.org/wiki/Mount_Everest">Wikipedia</a>,
+we find that the coordinates for our area of interest - Mt. Everest - is located
+at the coordinates 27.9881° N, 86.9253° E. Note that QGIS
+uses the coordinates in (X,Y) format , so you must use the coordinates as
+(Longitude, Latitude). Paste <cite>86.9253,27.9881</cite> these at the bottom of QGIS
+window where it says <em class="guilabel">Coordinate</em> and press Enter. The viewport will be
+centered at this coordinate. To zoom in, Enter <cite>1:1000000</cite> in the <em class="guilabel">Scale</em> field
+and press Enter. You will see the viewport zoom to the area around the
+Himalayas.</li>
+</ol>
+<img alt="../_images/813.png" class="align-center" src="../_images/813.png" style="width: 700px;" />
+<ol class="arabic simple" start="9">
+<li>We will now crop the raster to this area of interest. Select the Clipper
+tool from <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <em class="guilabel">Raster</em> menu in QGIS comes from a core plugin called
+<em class="guilabel">GdalTools</em>. If you do not see the <em class="guilabel">Raster</em> menu, enable
+the <em class="guilabel">GdalTools</em> plugin from <em class="menuselection">Plugins ‣
+Manage and install plugins ‣ Installed</em>. See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> for more details.</p>
+</div>
+<img alt="../_images/913.png" class="align-center" src="../_images/913.png" style="width: 700px;" />
+<ol class="arabic simple" start="10">
+<li>In the <em class="guilabel">Clipper</em> window, name your output file as
+<cite>everest_gmted30.tif</cite>. Select the <em class="guilabel">Clipping mode</em> as
+<em class="guilabel">Extent</em>.</li>
+</ol>
+<img alt="../_images/1013.png" class="align-center" src="../_images/1013.png" style="width: 400px;" />
+<ol class="arabic simple" start="11">
+<li>Keep the <em class="guilabel">Clipper</em> window open and switch to the main QGIS
+window. Hold your left mouse button and draw a rectangle covering the full
+canvas.</li>
+</ol>
+<img alt="../_images/1118.png" class="align-center" src="../_images/1118.png" style="width: 700px;" />
+<ol class="arabic simple" start="12">
+<li>Now back in the <em class="guilabel">Clipper</em> window, you will see the coordinates
+auto-populated from your selection. Make sure the <em class="guilabel">Load into
+canvas when finished</em> option is checked, and click <em class="guilabel">OK.</em></li>
+</ol>
+<img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" style="width: 400px;" />
+<ol class="arabic simple" start="13">
+<li>Once the process finishes, you will see a new layer loaded in QGIS. This
+layer covers only the area around Mt. Everest.Now we are ready to generate
+contours. Select the contour tool from <em class="menuselection">Raster ‣ Extraction
+‣ Contour</em>.</li>
+</ol>
+<img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" style="width: 700px;" />
+<ol class="arabic simple" start="14">
+<li>In the <em class="guilabel">Contour</em> dialog, select <cite>everest_gmted30</cite> as the
+<em class="guilabel">Input file</em>. Name the <em class="guilabel">Output file for contour lines</em>
+as <cite>everest_countours.shp</cite>. We will generate contour lines for 100m
+intervals, so put 100 as the <em class="guilabel">Interval between contour lines.</em>
+Also check the <em class="guilabel">Attribute name</em> option so elevation value will be
+recorded as attribute of each contour line. Click <em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" style="width: 600px;" />
+<ol class="arabic simple" start="15">
+<li>Once the processing is complete, you will see contour lines loaded into the
+canvas. Each line in this layer represents a particular elevation. All
+points along a countour line in the underlying raster would be at the same
+elevation. The closer the lines, the steeper the slope. Let’s inspect the
+contours a bit more. Right click on the contours layer and choose
+<em class="guilabel">Open Attribute Table</em>.</li>
+</ol>
+<img alt="../_images/1511.png" class="align-center" src="../_images/1511.png" style="width: 700px;" />
+<ol class="arabic simple" start="16">
+<li>You will see that each line feature as an attribute named <em class="guilabel">ELEV</em>.
+This is the height in metres that each line represents. Click on the column header
+a couple of times to sort the values in descending order. Here you will
+find the line representing the highest elevation in our data, i.e. Mt.
+Everest.</li>
+</ol>
+<img alt="../_images/1611.png" class="align-center" src="../_images/1611.png" style="width: 700px;" />
+<ol class="arabic simple" start="17">
+<li>Select the top row, and click on the <em class="guilabel">Zoom to selection</em>
+button.</li>
+</ol>
+<img alt="../_images/1710.png" class="align-center" src="../_images/1710.png" style="width: 700px;" />
+<ol class="arabic simple" start="18">
+<li>Switch to the main QGIS window. You will see the selected contour line
+highlighted in yellow. This is the area of the highest elevation in our dataset.</li>
+</ol>
+<img alt="../_images/189.png" class="align-center" src="../_images/189.png" style="width: 700px;" />
+<ol class="arabic simple" start="19">
+<li>Now let us create a hillshade map from the raster. Select
+<em class="menuselection">Raster ‣ Analysis ‣ DEM (Terrain Models)</em>.</li>
+</ol>
+<img alt="../_images/197.png" class="align-center" src="../_images/197.png" style="width: 700px;" />
+<ol class="arabic simple" start="20">
+<li>In the <em class="guilabel">DEM (Terrain Models)</em> dialog, choose <cite>everest_gmted30</cite> as
+the <em class="guilabel">Input file</em>. Name the <em class="guilabel">Output file</em> as
+<cite>everest_hillshade.tif</cite>. Choose <em class="guilabel">Hillshade</em> as the
+<em class="guilabel">Mode</em>. Leave all other options as is. Make sure the <em class="guilabel">Load into
+canvas when finished</em> option is checked, and click <em class="guilabel">OK.</em></li>
+</ol>
+<img alt="../_images/206.png" class="align-center" src="../_images/206.png" style="width: 400px;" />
+<ol class="arabic simple" start="21">
+<li>Once the process finishes, you will see yet another raster loaded into QGIS
+canvas. Since you maybe zoomed-in near the Mt.Everest region, right click
+on the <cite>everest_hillshade</cite> layer and choose <em class="guilabel">Zoom to Layer
+Extent</em>.</li>
+</ol>
+<img alt="../_images/2110.png" class="align-center" src="../_images/2110.png" style="width: 700px;" />
+<ol class="arabic simple" start="22">
+<li>Now you will see the full extent of the hillshade raster.</li>
+</ol>
+<img alt="../_images/225.png" class="align-center" src="../_images/225.png" style="width: 700px;" />
+<ol class="arabic simple" start="23">
+<li>You can visualize also visualize your contour layer and verify your analysis
+by exporting the contours layer as KML and viewing it in Google Earth.
+Right click on the contours layer, select <em class="guilabel">Save as..</em>.</li>
+</ol>
+<img alt="../_images/234.png" class="align-center" src="../_images/234.png" style="width: 700px;" />
+<ol class="arabic simple" start="24">
+<li>Select <em class="guilabel">Keyhole Markup Language [KML]</em> as the
+<em class="guilabel">Format</em>. Name your output as <cite>contours.kml</cite> and click
+<em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/244.png" class="align-center" src="../_images/244.png" style="width: 400px;" />
+<ol class="arabic simple" start="25">
+<li>Browse to the output file on your diesk and double-click on it to open Google Earth.</li>
+</ol>
+<img alt="../_images/253.png" class="align-center" src="../_images/253.png" style="width: 700px;" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Questions/Comments?</h3>
+<p>Send me a message via my Google+ profile.</p>
+<br>
+<div class="g-person" data-width="200" data-href="//plus.google.com/116912222767108657277" data-theme="dark" data-showcoverphoto="false" data-rel="author"></div>
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Making a Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Working with Terrain Data</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/docs/working_with_terrain.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="working_with_wms.html" title="Working with WMS Data"
+             >next</a></li>
+        <li class="right" >
+          <a href="raster_mosaicing_and_clipping.html" title="Raster Mosaicing and Clipping"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">QGIS Tutorials and Tips</a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2013, Ujaval Gandhi.
+      Last updated on Jan 30, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

@@ -1,0 +1,258 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Working with Attributes &mdash; QGIS Tutorials and Tips</title>
+    
+    <link rel="stylesheet" href="../_static/greencloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
+    <link rel="next" title="Importing Spreadsheets or CSV files" href="importing_spreadsheets_csv.html" />
+    <link rel="prev" title="Making a Map" href="making_a_map.html" />
+ 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-690672-13']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="importing_spreadsheets_csv.html" title="Importing Spreadsheets or CSV files"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="making_a_map.html" title="Making a Map"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">QGIS Tutorials and Tips</a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="working-with-attributes">
+<h1>Working with Attributes<a class="headerlink" href="#working-with-attributes" title="Permalink to this headline">¶</a></h1>
+<p>[ Download PDF <a class="reference external" href="../pdf/working_with_attributes_a4.pdf">A4</a> <a class="reference external" href="../pdf/working_with_attributes_letter.pdf">Letter</a> ]</p>
+<p>GIS data has two parts - features and attributes. Attributes are structured data about each feature. This tutorial shows how to view the attributes and do basic queries on them QGIS.</p>
+<div class="section" id="overview-of-the-task">
+<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>The dataset for this tutorial contains information about populated places of the world. The task is to query and find all the capital cities in the world that have a population greater than 10,00,000.</p>
+</div>
+<div class="section" id="get-the-data">
+<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>We will use the <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places dataset</a> from Natural Earth.</p>
+<p>Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">Natural Earth Populated Places shapefile.</a>.</p>
+</div>
+<div class="section" id="procedure">
+<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Once you have downloaded the data, open QGIS. Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+</ol>
+<img alt="../_images/150.png" class="align-center" src="../_images/150.png" style="width: 700px;" />
+<ol class="arabic simple" start="2">
+<li>Click on <em class="guilabel">Browse</em> and navigate to the folder where you downloaded the data.</li>
+</ol>
+<img alt="../_images/218.png" class="align-center" src="../_images/218.png" style="width: 500px;" />
+<ol class="arabic simple" start="3">
+<li>Locate the downloaded zip file <cite>ne_10m_populated_places_simple.zip</cite>. You do not need to unzip the file. QGIS has the ability to read zip files directly. Select the file and click <em class="guilabel">Open</em>.</li>
+</ol>
+<img alt="../_images/313.png" class="align-center" src="../_images/313.png" style="width: 700px;" />
+<ol class="arabic simple" start="4">
+<li>You will get a dialog asking you to select the layer to open. Select <cite>ne_10m_populated_places_simple.shp</cite> and click <em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/413.png" class="align-center" src="../_images/413.png" style="width: 700px;" />
+<ol class="arabic simple" start="5">
+<li>The selected layer will now be loaded in QGIS and you will see many points representing the populated places of the world.</li>
+</ol>
+<img alt="../_images/513.png" class="align-center" src="../_images/513.png" style="width: 700px;" />
+<ol class="arabic simple" start="6">
+<li>To see the attributes of right-click the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
+</ol>
+<img alt="../_images/612.png" class="align-center" src="../_images/612.png" style="width: 700px;" />
+<ol class="arabic simple" start="7">
+<li>Explore the various attributes and their values.</li>
+</ol>
+<img alt="../_images/712.png" class="align-center" src="../_images/712.png" style="width: 700px;" />
+<ol class="arabic simple" start="8">
+<li>We are interested in the population of each feature, so <cite>pop_max</cite> is the field we are looking for. You can click twice on the field header to sort the column in descending order.</li>
+</ol>
+<img alt="../_images/812.png" class="align-center" src="../_images/812.png" style="width: 700px;" />
+<ol class="arabic simple" start="9">
+<li>Now we are ready to perform our query on these attributes. <em class="guilabel">Select features using an expression</em>.</li>
+</ol>
+<img alt="../_images/912.png" class="align-center" src="../_images/912.png" style="width: 700px;" />
+<ol class="arabic simple" start="10">
+<li>In the <em class="guilabel">Select By Expression</em> window, expand the <em class="guilabel">Fields and Values</em> section and double-click the <cite>pop_max</cite> label. You will notice that it is added to the expression section at the bottom. If you aren&#8217;t sure about the field values, you can click the <em class="guilabel">Load all unique values</em> to see what the attribute values are present in the dataset. For this exercise, we are looking to find all features that have a population greater than 10,00,000. So complete the expression as <cite>&#8220;pop_max&#8221; &gt; 1000000</cite> and click <em class="guilabel">Select</em>.</li>
+</ol>
+<img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" style="width: 600px;" />
+<ol class="arabic simple" start="11">
+<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. You will notice that a subset of points is now rendered in yellow. This is the result of our query and you are seeing all places from the dataset that have the <cite>pop_max</cite> attribute value greater than 10,00,000.</li>
+</ol>
+<img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" style="width: 700px;" />
+<ol class="arabic simple" start="12">
+<li>The goal for this exercise is to find the places that are country capitals. Let’s refine our query to select only those places which are capitals. Click on the <em class="guilabel">Select feature using an expression</em> button in the attribute table.</li>
+</ol>
+<img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" style="width: 700px;" />
+<ol class="arabic simple" start="13">
+<li>The field containing this data is <cite>adm0cap</cite>. The value <cite>1</cite> indicates that the place is a capital. Enter the expression as <cite>&#8220;adm0cap&#8221; = 1</cite>. Since we want to  search only within our previous query results, select <em class="guilabel">Select within selection</em>.</li>
+</ol>
+<img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" style="width: 600px;" />
+<ol class="arabic simple" start="14">
+<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. Now you will see a smaller subset of the points selected. This is the result of the second query and shows all places from the dataset that are country capitals as well as have population greater than 10,00,000.</li>
+</ol>
+<img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" style="width: 700px;" />
+<ol class="arabic simple" start="15">
+<li>Let&#8217;s save these results to a separate layer. Right-click on the layer and select <em class="guilabel">Save Selection As</em>.</li>
+</ol>
+<img alt="../_images/1510.png" class="align-center" src="../_images/1510.png" style="width: 700px;" />
+<ol class="arabic simple" start="16">
+<li>Keep the format selection as <cite>ESRI Shapefile</cite> and enter the output name as <cite>large_capital_cities.shp</cite>. Check the box next to <em class="guilabel">Add saved file to map</em> and click <em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/1610.png" class="align-center" src="../_images/1610.png" style="width: 400px;" />
+<ol class="arabic simple" start="17">
+<li>The newly created shapefile will be automaticlally loaded into QGIS. Turn off the populated places layer by un-checking the box next to it. Now, you will see only the features from the newly created layer containing capital cities of the world that have population greater than 10,00,000.</li>
+</ol>
+<img alt="../_images/179.png" class="align-center" src="../_images/179.png" style="width: 700px;" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Questions/Comments?</h3>
+<p>Send me a message via my Google+ profile.</p>
+<br>
+<div class="g-person" data-width="200" data-href="//plus.google.com/116912222767108657277" data-theme="dark" data-showcoverphoto="false" data-rel="author"></div>
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Making a Map</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Working with Attributes</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/docs/working_with_attributes.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="importing_spreadsheets_csv.html" title="Importing Spreadsheets or CSV files"
+             >next</a></li>
+        <li class="right" >
+          <a href="making_a_map.html" title="Making a Map"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">QGIS Tutorials and Tips</a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2013, Ujaval Gandhi.
+      Last updated on Jan 30, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

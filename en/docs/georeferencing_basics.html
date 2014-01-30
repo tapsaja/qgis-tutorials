@@ -1,0 +1,305 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Georeferencing Topo Sheets and Scanned Maps &mdash; QGIS Tutorials and Tips</title>
+    
+    <link rel="stylesheet" href="../_static/greencloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
+    <link rel="next" title="Georeferencing Aerial Imagery" href="advanced_georeferencing.html" />
+    <link rel="prev" title="Working with WMS Data" href="working_with_wms.html" />
+ 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-690672-13']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="advanced_georeferencing.html" title="Georeferencing Aerial Imagery"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="working_with_wms.html" title="Working with WMS Data"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">QGIS Tutorials and Tips</a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="georeferencing-topo-sheets-and-scanned-maps">
+<h1>Georeferencing Topo Sheets and Scanned Maps<a class="headerlink" href="#georeferencing-topo-sheets-and-scanned-maps" title="Permalink to this headline">¶</a></h1>
+<p>[ Download PDF <a class="reference external" href="../pdf/georeferencing_basics_a4.pdf">A4</a> <a class="reference external" href="../pdf/georeferencing_basics_letter.pdf">Letter</a> ]</p>
+<p>Most GIS projects require georeferencing some raster data. <em>Georeferencing</em> is
+the process of assigning real-world coordinates to each pixel of the raster.
+Many times these coordinates are obtained by doing field surveys - collecting
+coordinates with a GPS device for few easily identifiable features in the image
+or map. In some cases, where you are looking to digitize scanned maps, you can
+obtain the coordinates from the markings on the map image itself. Using these
+sample coordinates or GCPs ( Ground Control Points ), the image is warped and
+made to fit within the chosen coordinate system. In this tutorial I
+will discuss the concepts, strategies and tools within QGIS to achieve a high
+accuracy georeferencing.</p>
+<div class="section" id="overview-of-the-task">
+<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>We will use a scanned map of southen India from 1870 and geo-reference it using QGIS.</p>
+<div class="section" id="other-skills-you-will-learn">
+<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>How to determine datum and coordinate system for old maps.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="get-the-data">
+<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.hipkiss.org/data/maps.html">Hipkiss’s Scanned Old Maps</a> website has an excellent collection out-of-copyright
+scanned maps that one can use for research.</p>
+<p>Download the <a class="reference external" href="http://www.hipkiss.org/data/maps/william-mackenzie_gallery-of-geography_1870_southern-india_3975_3071_600.jpg">1870 map of southern India</a> and save it as a JPG image on your hard drive.</p>
+</div>
+<div class="section" id="procedure">
+<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<p>1.Georeferencing in QGIS is done via the ‘Georeferencer GDAL’ plugin. This is a
+core plugin - meaning it is already part of your QGIS installation. You just
+need to enable it. Go to <em class="menuselection">Plugins ‣ Manage and Install
+Plugins</em> and enable the <em class="guilabel">Georeferencer GDAL</em> plugin in the
+<em class="guilabel">Installed</em> tab. See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> for more details on how to work
+with plugins.</p>
+<img alt="../_images/114.png" class="align-center" src="../_images/114.png" style="width: 700px;" />
+<ol class="arabic simple" start="2">
+<li>The plugin is installed in the Raster menu. Click on <em class="menuselection">Raster
+‣ Georeferencer ‣ Georeferencer</em> to open the plugin.</li>
+</ol>
+<img alt="../_images/23.png" class="align-center" src="../_images/23.png" style="width: 700px;" />
+<ol class="arabic simple" start="3">
+<li>The plugin window is divided into 2 sections. The top section where the
+raster will be displayed and the bottom section where a table showing your
+GCPs will appear.</li>
+</ol>
+<img alt="../_images/33.png" class="align-center" src="../_images/33.png" style="width: 700px;" />
+<ol class="arabic simple" start="4">
+<li>Now we will open our JPG image. Go to <em class="menuselection">File ‣ Open Raster</em>.
+Browse to the downloaded image of the scanned map and click
+<em class="guilabel">Open</em>.</li>
+</ol>
+<img alt="../_images/43.png" class="align-center" src="../_images/43.png" style="width: 700px;" />
+<ol class="arabic simple" start="5">
+<li>In the next screen, you will asked to choose the raster’s coordinate
+reference system (CRS). This is to specify the projection and datum of your
+control points. If you have collected the ground control points using a GPS device, you would have the WGS84
+CRS. If you are geo-referencing a scanned map like this, you can obtain the
+CRS information from the map itself. Looking at our map image, the
+coordinates are in Lat/Long. There is no datum information given, so we
+have to assume an appropriate one. Since it is India and the map is quite
+old, we can bet the Everest 1830 datum would give us good results.</li>
+</ol>
+<img alt="../_images/53.png" class="align-center" src="../_images/53.png" style="width: 500px;" />
+<ol class="arabic simple" start="6">
+<li>You will see the image will be loaded on the top section.</li>
+</ol>
+<img alt="../_images/63.png" class="align-center" src="../_images/63.png" style="width: 700px;" />
+<ol class="arabic simple" start="7">
+<li>You can use the zoom/pan controls in the toolbar to learn more about the map.</li>
+</ol>
+<img alt="../_images/73.png" class="align-center" src="../_images/73.png" style="width: 700px;" />
+<ol class="arabic simple" start="8">
+<li>Now we need to assign coordinates to some points on this map. If you look
+closely, you will see coordinate grid with markings. Using this grid, you
+can determine the X and Y coordinates of the points where the grids
+intersect. Click on <em class="guilabel">Add Point</em> in the toolbar.</li>
+</ol>
+<img alt="../_images/83.png" class="align-center" src="../_images/83.png" style="width: 700px;" />
+<ol class="arabic simple" start="9">
+<li>In the pop-up window, enter the coordinates. Remember that X=longitude and Y=latitude.
+Click <em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/93.png" class="align-center" src="../_images/93.png" style="width: 500px;" />
+<ol class="arabic simple" start="10">
+<li>You will notice the GCP table now has a row with details of your first GCP.</li>
+</ol>
+<img alt="../_images/103.png" class="align-center" src="../_images/103.png" style="width: 700px;" />
+<ol class="arabic simple" start="11">
+<li>Similarly, add at least 4 GCPs covering the entire image. The more points
+you have, the more accurate your image is registered to the target
+coordinates.</li>
+</ol>
+<img alt="../_images/115.png" class="align-center" src="../_images/115.png" style="width: 700px;" />
+<ol class="arabic simple" start="12">
+<li>Once you have enough points, go to <em class="menuselection">Settings -&gt;
+Transformation settings</em>.</li>
+</ol>
+<img alt="../_images/123.png" class="align-center" src="../_images/123.png" style="width: 700px;" />
+<ol class="arabic simple" start="13">
+<li>In the <em class="guilabel">Transformation settings</em> dialog, choose the
+<em class="guilabel">Transformation type</em> as <em class="guilabel">Thin Plate Spline</em>. Name your
+output raster as  <em class="guilabel">1870_southern_india_modified.tif</em>. Choose
+<em class="guilabel">EPSG:4326</em> as the target SRS so the resulting image is in a
+widely compatible datum. Make sure the <em class="guilabel">Load in QGIS when done</em>
+option is checked. CLick <em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/133.png" class="align-center" src="../_images/133.png" style="width: 450px;" />
+<ol class="arabic simple" start="14">
+<li>Back in the <em class="guilabel">Georeferencer</em> window, go to <em class="menuselection">File
+‣ Start georeferencing</em>. This will start the process of warping the image
+using the GCPs and creating the target raster.</li>
+</ol>
+<img alt="../_images/143.png" class="align-center" src="../_images/143.png" style="width: 700px;" />
+<ol class="arabic simple" start="15">
+<li>Once the process finishes, you will see the georeferenced layer loaded in QGIS.</li>
+</ol>
+<img alt="../_images/153.png" class="align-center" src="../_images/153.png" style="width: 700px;" />
+<ol class="arabic simple" start="16">
+<li>The georeferencing is now complete. But as always, it&#8217;s a good practice to
+always verify your work. How do we check if our georeferencing is accurate?
+In this case, load the country boundaries shapefile from a trusted source
+like the Natural Earth dataset and compare them. You will notice they match
+up pretty nicely. There is some error and it can be further improved by
+taking more control points, changing transformation parameters and trying a
+different datum.</li>
+</ol>
+<img alt="../_images/163.png" class="align-center" src="../_images/163.png" style="width: 700px;" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Questions/Comments?</h3>
+<p>Send me a message via my Google+ profile.</p>
+<br>
+<div class="g-person" data-width="200" data-href="//plus.google.com/116912222767108657277" data-theme="dark" data-showcoverphoto="false" data-rel="author"></div>
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Making a Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Georeferencing Topo Sheets and Scanned Maps</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/docs/georeferencing_basics.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="advanced_georeferencing.html" title="Georeferencing Aerial Imagery"
+             >next</a></li>
+        <li class="right" >
+          <a href="working_with_wms.html" title="Working with WMS Data"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">QGIS Tutorials and Tips</a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2013, Ujaval Gandhi.
+      Last updated on Jan 30, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>

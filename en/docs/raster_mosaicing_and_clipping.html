@@ -1,0 +1,336 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Raster Mosaicing and Clipping &mdash; QGIS Tutorials and Tips</title>
+    
+    <link rel="stylesheet" href="../_static/greencloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
+    <link rel="next" title="Working with Terrain Data" href="working_with_terrain.html" />
+    <link rel="prev" title="Basic Raster Styling and Analysis" href="raster_styling_and_analysis.html" />
+ 
+        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
+var ga_enabled = !$.cookie('disable-ga');
+if(ga_enabled){
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-690672-13']);
+  _gaq.push(['_setCookiePath', '/']);
+  _gaq.push(['_setDetectFlash', false]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+}
+</script>
+<!-- Place this tag after the last widget tag. -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+  </head>
+  <body>
+    <div class="relbar-top">
+        
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="working_with_terrain.html" title="Working with Terrain Data"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="raster_styling_and_analysis.html" title="Basic Raster Styling and Analysis"
+             accesskey="P">previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">QGIS Tutorials and Tips</a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    </div>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="raster-mosaicing-and-clipping">
+<h1>Raster Mosaicing and Clipping<a class="headerlink" href="#raster-mosaicing-and-clipping" title="Permalink to this headline">¶</a></h1>
+<p>[ Download PDF <a class="reference external" href="../pdf/raster_mosaicing_and_clipping_a4.pdf">A4</a> <a class="reference external" href="../pdf/raster_mosaicing_and_clipping_letter.pdf">Letter</a> ]</p>
+<p>This tutorial explores some basic raster operations in QGIS such as viewing, mosaicing
+and subsetting.</p>
+<div class="section" id="overview-of-the-task">
+<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>We will download some public domain raster data for Brazil and view it in QGIS. Next, we
+will merge these into a single mosaic and clip it using a country boundary to
+get a single seamless dataset for the country.</p>
+<div class="section" id="other-skills-you-will-learn">
+<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Searcing and downloading near real-time public domain satellite imagery.</li>
+<li>Selecting a single feature from a vector layer and saving it to a new
+shapefile.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="get-the-data">
+<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>We need Brazil country boundary to clip our raster. You can get the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - Countries</a> shapefile
+from Natural Earth.</p>
+<p><a class="reference external" href="https://earthdata.nasa.gov/data/near-real-time-data/rapid-response/modis-subsets">NASA/GSFC, Rapid Response site</a>
+has a good collection of near real-time satellite imagery. A good regional product is <a class="reference external" href="http://lance-modis.eosdis.nasa.gov/imagery/subsets/?project=fas">USDA Foreign Agricultural Service (FAS) subsets.</a>. We will
+use 2km resolution FAS subsets for Brazil for this tutorial.</p>
+<p>Here is how to search and download the revelant data.</p>
+<ol class="arabic simple">
+<li>Open the <a class="reference external" href="http://lance-modis.eosdis.nasa.gov/imagery/subsets/?area=sa">South America region subsets</a>. Find the
+Brazil subsets shown in the <em class="guilabel">FAS Subsets</em> section. Click on any
+one of them.</li>
+</ol>
+<img alt="../_images/130.png" class="align-center" src="../_images/130.png" style="width: 700px;" />
+<ol class="arabic simple" start="2">
+<li>In the details page, click the <em class="guilabel">2km</em> link under the product of
+your choice. Here we will download the <em class="guilabel">NDVI</em> product. <a class="reference external" href="http://en.wikipedia.org/wiki/Normalized_Difference_Vegetation_Index">Learn more
+about NDVI</a>.</li>
+</ol>
+<img alt="../_images/214.png" class="align-center" src="../_images/214.png" style="width: 700px;" />
+<ol class="arabic simple" start="3">
+<li>Click the <em class="guilabel">Download GeoTIFF file</em> link to download the raster
+image.</li>
+</ol>
+<img alt="../_images/310.png" class="align-center" src="../_images/310.png" style="width: 700px;" />
+<p>Repeat the process for all 7 FAS subsets for Brazil.</p>
+<p>For convenience, you can directly download sample data used in this tutorial from links below.</p>
+<p><a class="reference download internal" href="../_downloads/ne_10m_admin_0_countries1.zip"><tt class="xref download docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt></a>
+<a class="reference download internal" href="../_downloads/FAS_Brazil1.2013363.aqua.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil1.2013363.aqua.ndvi.2km.tif</span></tt></a>
+<a class="reference download internal" href="../_downloads/FAS_Brazil2.2013363.terra.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil2.2013363.terra.ndvi.2km.tif</span></tt></a>
+<a class="reference download internal" href="../_downloads/FAS_Brazil3.2013363.aqua.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil3.2013363.aqua.ndvi.2km.tif</span></tt></a>
+<a class="reference download internal" href="../_downloads/FAS_Brazil4.2013363.aqua.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil4.2013363.aqua.ndvi.2km.tif</span></tt></a>
+<a class="reference download internal" href="../_downloads/FAS_Brazil5.2013363.aqua.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil5.2013363.aqua.ndvi.2km.tif</span></tt></a>
+<a class="reference download internal" href="../_downloads/FAS_Brazil6.2013363.terra.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil6.2013363.terra.ndvi.2km.tif</span></tt></a>
+<a class="reference download internal" href="../_downloads/FAS_Brazil7.2013363.aqua.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil7.2013363.aqua.ndvi.2km.tif</span></tt></a></p>
+</div>
+<div class="section" id="procedure">
+<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple" start="4">
+<li>Open QGIS and go to <em class="menuselection">Layer ‣ Add Raster Layer..</em>.</li>
+</ol>
+<img alt="../_images/410.png" class="align-center" src="../_images/410.png" style="width: 700px;" />
+<ol class="arabic simple" start="5">
+<li>Browse to the directory with the individual images. Hold down the <cite>Ctrl</cite>
+key and click on the image files to make a multiple selection. Click
+<em class="guilabel">Open</em>.</li>
+</ol>
+<img alt="../_images/510.png" class="align-center" src="../_images/510.png" style="width: 650px;" />
+<ol class="arabic simple" start="6">
+<li>You will see the images load up in the Table of Content on the left panel.
+Now let us create a single <cite>Mosaic</cite> image from all these individual images.
+Click on <em class="menuselection">Raster ‣ Miscellaneous ‣ Merge</em>.</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <em class="guilabel">Raster</em> menu in QGIS comes from a core plugin called
+<em class="guilabel">GdalTools</em>. If you do not see the <em class="guilabel">Raster</em> menu,
+enable the <em class="guilabel">GdalTools</em> plugin from <em class="menuselection">Plugins ‣
+Manage and install plugins ‣ Installed</em>. See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> for more details.</p>
+</div>
+<img alt="../_images/69.png" class="align-center" src="../_images/69.png" style="width: 700px;" />
+<ol class="arabic simple" start="7">
+<li>In the <em class="guilabel">Merge</em> dialog, click <em class="guilabel">Select...</em> next to
+<em class="guilabel">Input files</em> and browse to the directory containing all
+the individual geotiffs. Keep holding <cite>Ctrl</cite> key and select all the.
+subsets. Now click <em class="guilabel">Select...</em> next to <em class="guilabel">Output file</em>
+and name the output as <tt class="docutils literal"><span class="pre">Brazil_mosaic.tif</span></tt>. At the bottom, check the box next to
+<em class="guilabel">Load into canvas when finished</em>. Click <em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/79.png" class="align-center" src="../_images/79.png" style="width: 400px;" />
+<ol class="arabic simple" start="8">
+<li>You will get a pop-up message saying <cite>Processing complete</cite>, once the mosaic is
+created and loaded to the QGIS Canvas. You will see that the individual
+images and now combined and mosaiced into a single layer. You can now turn
+off individual layers by un-checking the box next to them.</li>
+</ol>
+<img alt="../_images/89.png" class="align-center" src="../_images/89.png" style="width: 700px;" />
+<ol class="arabic simple" start="9">
+<li>Another Raster operation you can do is to subset or <cite>crop</cite> an image. We can
+use a polygon from a vector layer to crop the raster to the exact shape.
+Let&#8217;s load the country polygons shapefile we downloaded from Natural Earth.
+Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+</ol>
+<img alt="../_images/99.png" class="align-center" src="../_images/99.png" style="width: 700px;" />
+<ol class="arabic simple" start="10">
+<li>Select the <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt> file and click
+<em class="guilabel">Open</em>. When prompted to select the layer within the zip file,
+select <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt>.</li>
+</ol>
+<img alt="../_images/109.png" class="align-center" src="../_images/109.png" style="width: 600px;" />
+<ol class="arabic simple" start="11">
+<li>Once the vector layer is loaded, we want to select and extract the polygon
+for Brazil. Select the <em class="guilabel">Select Single Feature</em> tool from the
+toolbar.</li>
+</ol>
+<img alt="../_images/1114.png" class="align-center" src="../_images/1114.png" style="width: 700px;" />
+<ol class="arabic simple" start="12">
+<li>Click anywhere on the Brazil polygon and it will be selected.</li>
+</ol>
+<img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" style="width: 700px;" />
+<ol class="arabic simple" start="13">
+<li>Right-click the <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> layer and select
+<em class="guilabel">Save Selection As...</em>.</li>
+</ol>
+<img alt="../_images/138.png" class="align-center" src="../_images/138.png" style="width: 700px;" />
+<ol class="arabic simple" start="14">
+<li>Name your output as <tt class="docutils literal"><span class="pre">brazil_boundary.shp</span></tt> and make sure <em class="guilabel">Add
+saved file to map</em> box is checked. click <em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/148.png" class="align-center" src="../_images/148.png" style="width: 400px;" />
+<ol class="arabic simple" start="15">
+<li>You will see the Brazil boundary polygon now loaded in QGIS.</li>
+</ol>
+<img alt="../_images/158.png" class="align-center" src="../_images/158.png" style="width: 700px;" />
+<ol class="arabic simple" start="16">
+<li>Now go to <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</li>
+</ol>
+<img alt="../_images/168.png" class="align-center" src="../_images/168.png" style="width: 700px;" />
+<ol class="arabic simple" start="17">
+<li>Select the <em class="guilabel">input file (raster)</em> as <tt class="docutils literal"><span class="pre">Brazil_mosaic</span></tt>. Name the
+<em class="guilabel">Output file</em> as <tt class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></tt>. In the
+<em class="guilabel">Clipping mode</em> section, choose <em class="guilabel">Mask layer</em>. Select
+the newly created <tt class="docutils literal"><span class="pre">brazil_boundary</span></tt> as the mask layer. Check the box next
+to <em class="guilabel">Load into canvas when finished</em>. Click <em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/177.png" class="align-center" src="../_images/177.png" style="width: 500px;" />
+<ol class="arabic simple" start="18">
+<li>The new cropped layer will be loaded into QGIS. You will notice the black
+pixels surrounding the actual mosaic. Let&#8217;s remove that. Right-click on the
+<tt class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></tt> layer and select <em class="guilabel">Properties</em>.</li>
+</ol>
+<img alt="../_images/187.png" class="align-center" src="../_images/187.png" style="width: 700px;" />
+<ol class="arabic simple" start="19">
+<li>Go to the <em class="guilabel">Transparency</em> tab, and add <cite>0</cite> as an
+<em class="guilabel">Additional no data value</em>.</li>
+</ol>
+<img alt="../_images/195.png" class="align-center" src="../_images/195.png" style="width: 700px;" />
+<ol class="arabic simple" start="20">
+<li>Now you have a nice mosaic cropped to a country boundary that you can use
+in your project as a background layer or do further analysis on.</li>
+</ol>
+<img alt="../_images/204.png" class="align-center" src="../_images/204.png" style="width: 700px;" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper"><h3>Questions/Comments?</h3>
+<p>Send me a message via my Google+ profile.</p>
+<br>
+<div class="g-person" data-width="200" data-href="//plus.google.com/116912222767108657277" data-theme="dark" data-showcoverphoto="false" data-rel="author"></div>
+<h3><a href="../index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Making a Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Raster Mosaicing and Clipping</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/docs/raster_mosaicing_and_clipping.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="relbar-bottom">
+        
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="working_with_terrain.html" title="Working with Terrain Data"
+             >next</a></li>
+        <li class="right" >
+          <a href="raster_styling_and_analysis.html" title="Basic Raster Styling and Analysis"
+             >previous</a> &nbsp; &nbsp;</li>
+    <li><a href="../index.html">QGIS Tutorials and Tips</a> &raquo;</li>
+ 
+      </ul>
+    </div>
+    </div>
+
+    <div class="footer">
+        &copy; Copyright 2013, Ujaval Gandhi.
+      Last updated on Jan 30, 2014.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div><script type="text/javascript">
+    if(ga_enabled){
+        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
+        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
+        document.write("</div>");
+    }else{
+        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
+        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
+    };
+</script>
+    <!-- cloud_sptheme 1.4 -->
+  </body>
+</html>
