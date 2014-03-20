@@ -1,8 +1,4 @@
-
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -11,9 +7,10 @@
     
     <title>Performing Spatial Queries &mdash; QGIS Tutorials and Tips</title>
     
-    <link rel="stylesheet" href="../_static/greencloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -27,27 +24,19 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Nearest Neighbor Analysis" href="nearest_neighbor_analysis.html" />
     <link rel="prev" title="Creating Heatmaps" href="creating_heatmaps.html" />
- 
-        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
-var ga_enabled = !$.cookie('disable-ga');
-if(ga_enabled){
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-690672-13']);
-  _gaq.push(['_setCookiePath', '/']);
-  _gaq.push(['_setDetectFlash', false]);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-}
-</script>
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
 <!-- Place this tag after the last widget tag. -->
 <script type="text/javascript">
   (function() {
@@ -57,31 +46,180 @@ if(ga_enabled){
   })();
 </script>
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-690672-13', 'qgistutorials.com');
+  ga('send', 'pageview');
+
+</script>
+
   </head>
   <body>
-    <div class="relbar-top">
-        
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="nearest_neighbor_analysis.html" title="Nearest Neighbor Analysis"
-             accesskey="N">next</a></li>
-        <li class="right" >
-          <a href="creating_heatmaps.html" title="Creating Heatmaps"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">QGIS Tutorials and Tips</a> &raquo;</li>
- 
-      </ul>
-    </div>
-    </div>
-  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          QGIS Tutorials and Tips</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
             
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="preamble.html">Preamble</a></li>
+<li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Making a Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Performing Spatial Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Performing Spatial Queries</a><ul>
+<li><a class="reference internal" href="#overview-of-the-task">Overview of the task</a><ul>
+<li><a class="reference internal" href="#other-skills-you-will-learn">Other skills you will learn</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#get-the-data">Get the data</a></li>
+<li><a class="reference internal" href="#procedure">Procedure</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="creating_heatmaps.html" title="Previous Chapter: Creating Heatmaps"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Creating Heatmap...</span>
+    </a>
+  </li>
+  <li>
+    <a href="nearest_neighbor_analysis.html" title="Next Chapter: Nearest Neighbor Analysis"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Nearest Neighbor... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/docs/performing_spatial_queries.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><h3>Questions/Comments?</h3>
+<p>Send me a message via my Google+ profile.</p>
+<br>
+<div class="g-person" data-width="200" data-href="//plus.google.com/116912222767108657277" data-theme="dark" data-showcoverphoto="false" data-rel="author"></div>
+
+
+<h3>Table Of Contents</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="preamble.html">Preamble</a></li>
+<li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Making a Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Performing Spatial Queries</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
+</ul>
+
+
+<div id="sourcelink">
+  <a href="../_sources/docs/performing_spatial_queries.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="col-md-9">
+      
   <div class="section" id="performing-spatial-queries">
 <h1>Performing Spatial Queries<a class="headerlink" href="#performing-spatial-queries" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/performing_spatial_queries_a4.pdf">A4</a> <a class="reference external" href="../pdf/performing_spatial_queries_letter.pdf">Letter</a> ]</p>
@@ -117,31 +255,31 @@ cities that are within 10 kms of a river.</p>
 <li>Once you have downloaded the data, open QGIS. Go to
 <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
 </ol>
-<img alt="../_images/120.png" class="align-center" src="../_images/120.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/120.png"><img alt="../_images/120.png" class="align-center" src="../_images/120.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="2">
 <li>Click <em class="guilabel">Browse</em> and navigate to the folder where you downloaded the
 zip files.</li>
 </ol>
-<img alt="../_images/27.png" class="align-center" src="../_images/27.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="../_images/27.png"><img alt="../_images/27.png" class="align-center" src="../_images/27.png" style="width: 400px;" /></a>
 <ol class="arabic simple" start="3">
 <li>Hold the <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> key and click on both the zip files to select them.
 Click <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/37.png" class="align-center" src="../_images/37.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../_images/37.png"><img alt="../_images/37.png" class="align-center" src="../_images/37.png" style="width: 500px;" /></a>
 <ol class="arabic simple" start="4">
 <li>You will be asked to choose a layer from the zip archive.
 Select <tt class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines.shp</span></tt> and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/47.png" class="align-center" src="../_images/47.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../_images/47.png"><img alt="../_images/47.png" class="align-center" src="../_images/47.png" style="width: 500px;" /></a>
 <ol class="arabic simple" start="5">
 <li>Since you have selected multiple files, repeat the process for the next file.
 Select 10m_populated_places_simple.shp and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/57.png" class="align-center" src="../_images/57.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../_images/57.png"><img alt="../_images/57.png" class="align-center" src="../_images/57.png" style="width: 500px;" /></a>
 <ol class="arabic simple" start="6">
 <li>You will see both the shapefiles now loaded in QGIS.</li>
 </ol>
-<img alt="../_images/67.png" class="align-center" src="../_images/67.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/67.png"><img alt="../_images/67.png" class="align-center" src="../_images/67.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="7">
 <li>We will be created buffers around the point and line layers. The <cite>Buffer</cite>
 geoprocessing tool in QGIS uses <cite>layer units</cite> to calculate buffer distances.
@@ -151,14 +289,14 @@ the unit of <cite>degrees</cite>. This is not appropriate as we want our analysi
 <cite>Projected Coordinate Reference System (CRS)</cite>. Right-click on the
 <tt class="docutils literal"><span class="pre">10m_populated_places_simple</span> <span class="pre">layer</span></tt> and choose <em class="guilabel">Save As</em>.</li>
 </ol>
-<img alt="../_images/76.png" class="align-center" src="../_images/76.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/76.png"><img alt="../_images/76.png" class="align-center" src="../_images/76.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="8">
 <li>In the <em class="guilabel">Save vector layer as...</em> dialog, click <em class="guilabel">Browse</em>
 next to <em class="guilabel">Save as</em> and select the output file location. Name the
 output file as <tt class="docutils literal"><span class="pre">populated_places_reprojected.shp</span></tt>. Next, click the
 <em class="guilabel">Browse</em> button next to <em class="guilabel">CRS</em>.</li>
 </ol>
-<img alt="../_images/86.png" class="align-center" src="../_images/86.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="../_images/86.png"><img alt="../_images/86.png" class="align-center" src="../_images/86.png" style="width: 400px;" /></a>
 <ol class="arabic simple" start="9">
 <li>Now we must choose an appropriate CRS for our purpose. For creating buffers,
 a Azimuthal Equidistant projection would be best suited as radial distances
@@ -174,17 +312,17 @@ dataset is global, we will choose a world projection. In the
 origin. Here the origin being 0 degrees longitude, the only data contained
 within +/- 90 degrees longitude will be converted.</p>
 </div>
-<img alt="../_images/96.png" class="align-center" src="../_images/96.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../_images/96.png"><img alt="../_images/96.png" class="align-center" src="../_images/96.png" style="width: 500px;" /></a>
 <ol class="arabic simple" start="10">
 <li>Back in <em class="guilabel">Save vector layer as ...</em> dialog, check the box next to
 <em class="guilabel">Add saved file to map</em> and click <cite>OK</cite>.</li>
 </ol>
-<img alt="../_images/106.png" class="align-center" src="../_images/106.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="../_images/106.png"><img alt="../_images/106.png" class="align-center" src="../_images/106.png" style="width: 400px;" /></a>
 <ol class="arabic simple" start="11">
 <li>Repeat the re-projection process for the <tt class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines</span></tt>
 layer and save the new layer as <tt class="docutils literal"><span class="pre">rivers_lake_reprojected.shp</span></tt>.</li>
 </ol>
-<img alt="../_images/1111.png" class="align-center" src="../_images/1111.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/1111.png"><img alt="../_images/1111.png" class="align-center" src="../_images/1111.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="12">
 <li>Now you will have 4 layers in your <em class="guilabel">Layers Panel</em>. Un-check the
 boxes next to the original layers to display only the re-projected layers.
@@ -193,24 +331,24 @@ because of a setting. Let&#8217;s turn that off. Click on the
 <em class="guilabel">Project Properties</em> button. This setting can also be accessed
 from <em class="menuselection">Project ‣ Project Properties</em>.</li>
 </ol>
-<img alt="../_images/126.png" class="align-center" src="../_images/126.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/126.png"><img alt="../_images/126.png" class="align-center" src="../_images/126.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="13">
 <li>In the <em class="guilabel">CRS</em> tab of the <em class="guilabel">Project Properties</em> dialog,
 un-check the box next to <em class="guilabel">Enable on-the-fly CRS transformation</em>.
 Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/136.png" class="align-center" src="../_images/136.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/136.png"><img alt="../_images/136.png" class="align-center" src="../_images/136.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="14">
 <li>Back in the main QGIS window, right-click on any one of the re-projected
 layers and select <em class="guilabel">Zoom to Layer Extent</em>.</li>
 </ol>
-<img alt="../_images/146.png" class="align-center" src="../_images/146.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/146.png"><img alt="../_images/146.png" class="align-center" src="../_images/146.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="15">
 <li>Now you will see the data in the layer&#8217;s CRS. We will now create buffers for
 both the datasets. Click <em class="menuselection">Vector ‣ Geoprocessing Tools ‣
 Buffer</em>.</li>
 </ol>
-<img alt="../_images/156.png" class="align-center" src="../_images/156.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/156.png"><img alt="../_images/156.png" class="align-center" src="../_images/156.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="16">
 <li>In the <em class="guilabel">Buffer</em> tool, select <tt class="docutils literal"><span class="pre">populated_places_reprojected</span></tt>
 layer as Input. Enter the buffer distance as <cite>10000</cite>. Note that we want a
@@ -218,167 +356,99 @@ buffer of 10kms and since the CRS units are metres, we need to enter 10,000.
 Enter the output file name as <tt class="docutils literal"><span class="pre">populated_places_buffer.shp</span></tt>. Click
 <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/166.png" class="align-center" src="../_images/166.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="../_images/166.png"><img alt="../_images/166.png" class="align-center" src="../_images/166.png" style="width: 400px;" /></a>
 <ol class="arabic simple" start="17">
 <li>Once the buffer processing is over, click the <em class="guilabel">Yes</em> to add the
 newly created layer to the TOC.</li>
 </ol>
-<img alt="../_images/175.png" class="align-center" src="../_images/175.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="../_images/175.png"><img alt="../_images/175.png" class="align-center" src="../_images/175.png" style="width: 400px;" /></a>
 <ol class="arabic simple" start="18">
 <li>Repeat the same buffer process for the <tt class="docutils literal"><span class="pre">rivers_lake_reprojected</span></tt> layer and
 create an output file named <tt class="docutils literal"><span class="pre">rivers_lake_buffer.shp</span></tt>.</li>
 </ol>
-<img alt="../_images/185.png" class="align-center" src="../_images/185.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/185.png"><img alt="../_images/185.png" class="align-center" src="../_images/185.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="19">
 <li>The <tt class="docutils literal"><span class="pre">rivers_lake_buffer</span></tt> contains features that are both rivers as well as
 lakes. Our analysis calls for using only river features, so we will run a
 query to select only river features. Right-click on the
 <tt class="docutils literal"><span class="pre">rivers_lake_buffer</span></tt> layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/193.png" class="align-center" src="../_images/193.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/193.png"><img alt="../_images/193.png" class="align-center" src="../_images/193.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="20">
 <li>You will see that the <cite>featurecla</cite> attribute contains the information we can
 use to select the river features. Click on <cite>Select features using an
 expression</cite> button.</li>
 </ol>
-<img alt="../_images/202.png" class="align-center" src="../_images/202.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/202.png"><img alt="../_images/202.png" class="align-center" src="../_images/202.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="21">
 <li>Enter the expression <cite>&#8220;featurecla&#8221; = &#8220;River&#8221;</cite> and click <em class="guilabel">Select</em>
 and then click <em class="guilabel">Close</em> to back to the main QGIS window.</li>
 </ol>
-<img alt="../_images/213.png" class="align-center" src="../_images/213.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../_images/213.png"><img alt="../_images/213.png" class="align-center" src="../_images/213.png" style="width: 500px;" /></a>
 <ol class="arabic simple" start="22">
 <li>Now we are ready to perform the spatial query. You need to enable the
 <cite>Spatial Query plugin</cite> to use this functionality. See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a>
 for more details. Once enabled, go to <em class="menuselection">Vector ‣ Spatial
 Query ‣ Spatial Query</em>.</li>
 </ol>
-<img alt="../_images/223.png" class="align-center" src="../_images/223.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/223.png"><img alt="../_images/223.png" class="align-center" src="../_images/223.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="23">
 <li>For our query, we want to select features from the buffered places that
 intersect with the buffered river lines. Make sure the checkbox next to
 <cite>selected geometries</cite> is checked. This is to ensure the query uses only
 river features that we selected previously. Click <em class="guilabel">Apply</em>.</li>
 </ol>
-<img alt="../_images/232.png" class="align-center" src="../_images/232.png" style="width: 300px;" />
+<a class="reference internal image-reference" href="../_images/232.png"><img alt="../_images/232.png" class="align-center" src="../_images/232.png" style="width: 300px;" /></a>
 <ol class="arabic simple" start="24">
 <li>Once the query is complete, you will see a new section named
 <em class="guilabel">Selected features</em>. Click on the <em class="guilabel">Create layer with
 selected</em> button. A new layer will be added to the <cite>Layers Panel</cite>. Click
 <em class="guilabel">Close</em>.</li>
 </ol>
-<img alt="../_images/242.png" class="align-center" src="../_images/242.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/242.png"><img alt="../_images/242.png" class="align-center" src="../_images/242.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="25">
 <li>Zoom-in to any area and compare the results. You will notice that only the
 features that intersect with river buffers.</li>
 </ol>
-<img alt="../_images/252.png" class="align-center" src="../_images/252.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/252.png"><img alt="../_images/252.png" class="align-center" src="../_images/252.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="26">
 <li>We should always verify my results to ensure the analysis is not flawed. One
 way to verify the results is to export this layer as a KML file and load it
 up in Google Earth. You can check if the areas you found really are within
 10kms of a river. Right-click the layer and <em class="guilabel">Save As...</em>.</li>
 </ol>
-<img alt="../_images/261.png" class="align-center" src="../_images/261.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/261.png"><img alt="../_images/261.png" class="align-center" src="../_images/261.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="27">
 <li>In the <em class="guilabel">Save vector layer as...</em>, choose <cite>WGS84</cite> as the CRS. This
 because KML format needs the coordinates to be in this CRS. Name your KML as
 <tt class="docutils literal"><span class="pre">cities_near_river.kml</span></tt>.</li>
 </ol>
-<img alt="../_images/271.png" class="align-center" src="../_images/271.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="../_images/271.png"><img alt="../_images/271.png" class="align-center" src="../_images/271.png" style="width: 400px;" /></a>
 <ol class="arabic simple" start="28">
 <li>Open Google Earth and verify that the cities represented by these buffers
 are indeed close to rivers.</li>
 </ol>
-<img alt="../_images/28.png" class="align-center" src="../_images/28.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/28.png"><img alt="../_images/28.png" class="align-center" src="../_images/28.png" style="width: 700px;" /></a>
 </div>
 </div>
 
 
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper"><h3>Questions/Comments?</h3>
-<p>Send me a message via my Google+ profile.</p>
-<br>
-<div class="g-person" data-width="200" data-href="//plus.google.com/116912222767108657277" data-theme="dark" data-showcoverphoto="false" data-rel="author"></div>
-<h3><a href="../index.html">Table Of Contents</a></h3>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Making a Map</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Performing Spatial Queries</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
-</ul>
-
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/docs/performing_spatial_queries.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
     </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="relbar-bottom">
-        
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="nearest_neighbor_analysis.html" title="Nearest Neighbor Analysis"
-             >next</a></li>
-        <li class="right" >
-          <a href="creating_heatmaps.html" title="Creating Heatmaps"
-             >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">QGIS Tutorials and Tips</a> &raquo;</li>
- 
-      </ul>
-    </div>
-    </div>
-
-    <div class="footer">
-        &copy; Copyright 2013, Ujaval Gandhi.
-      Last updated on Mar 12, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
-    </div><script type="text/javascript">
-    if(ga_enabled){
-        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
-        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
-        document.write("</div>");
-    }else{
-        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
-        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
-    };
-</script>
-    <!-- cloud_sptheme 1.4 -->
+    <p>
+        &copy; Copyright 2013, Ujaval Gandhi.<br/>
+      Last updated on Mar 20, 2014.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+    </p>
+  </div>
+</footer>
   </body>
 </html>

@@ -1,8 +1,4 @@
-
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -11,9 +7,10 @@
     
     <title>Performing Table Joins &mdash; QGIS Tutorials and Tips</title>
     
-    <link rel="stylesheet" href="../_static/greencloud.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noticia+Text|Open+Sans|Droid+Sans+Mono" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
@@ -27,27 +24,19 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="../_static/jquery.cookie.js"></script>
-    <script type="text/javascript" src="../_static/cloud.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Points in Polygon Analysis" href="points_in_polygon.html" />
     <link rel="prev" title="Georeferencing Aerial Imagery" href="advanced_georeferencing.html" />
- 
-        <meta name="viewport" content="width=device-width, initial-scale=1"><script type="text/javascript">
-var ga_enabled = !$.cookie('disable-ga');
-if(ga_enabled){
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-690672-13']);
-  _gaq.push(['_setCookiePath', '/']);
-  _gaq.push(['_setDetectFlash', false]);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-}
-</script>
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
 <!-- Place this tag after the last widget tag. -->
 <script type="text/javascript">
   (function() {
@@ -57,31 +46,180 @@ if(ga_enabled){
   })();
 </script>
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-690672-13', 'qgistutorials.com');
+  ga('send', 'pageview');
+
+</script>
+
   </head>
   <body>
-    <div class="relbar-top">
-        
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="points_in_polygon.html" title="Points in Polygon Analysis"
-             accesskey="N">next</a></li>
-        <li class="right" >
-          <a href="advanced_georeferencing.html" title="Georeferencing Aerial Imagery"
-             accesskey="P">previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">QGIS Tutorials and Tips</a> &raquo;</li>
- 
-      </ul>
-    </div>
-    </div>
-  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body">
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          QGIS Tutorials and Tips</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
             
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="preamble.html">Preamble</a></li>
+<li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Making a Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Performing Table Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Performing Table Joins</a><ul>
+<li><a class="reference internal" href="#overview-of-the-task">Overview of the task</a><ul>
+<li><a class="reference internal" href="#other-skills-you-will-learn">Other skills you will learn</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#get-the-data">Get the data</a></li>
+<li><a class="reference internal" href="#procedure">Procedure</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="advanced_georeferencing.html" title="Previous Chapter: Georeferencing Aerial Imagery"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Georeferencing A...</span>
+    </a>
+  </li>
+  <li>
+    <a href="points_in_polygon.html" title="Next Chapter: Points in Polygon Analysis"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Points in Polygo... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../_sources/docs/performing_table_joins.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><h3>Questions/Comments?</h3>
+<p>Send me a message via my Google+ profile.</p>
+<br>
+<div class="g-person" data-width="200" data-href="//plus.google.com/116912222767108657277" data-theme="dark" data-showcoverphoto="false" data-rel="author"></div>
+
+
+<h3>Table Of Contents</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="preamble.html">Preamble</a></li>
+<li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Making a Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Performing Table Joins</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
+</ul>
+
+
+<div id="sourcelink">
+  <a href="../_sources/docs/performing_table_joins.txt"
+     rel="nofollow">Source</a>
+</div>
+<form action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+        </div>
+      </div>
+    <div class="col-md-9">
+      
   <div class="section" id="performing-table-joins">
 <h1>Performing Table Joins<a class="headerlink" href="#performing-table-joins" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/performing_table_joins_a4.pdf">A4</a> <a class="reference external" href="../pdf/performing_table_joins_letter.pdf">Letter</a> ]</p>
@@ -109,171 +247,103 @@ if(ga_enabled){
 <ol class="arabic simple">
 <li>We will first load the census tracts shapefile. Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
 </ol>
-<img alt="../_images/127.png" class="align-center" src="../_images/127.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/127.png"><img alt="../_images/127.png" class="align-center" src="../_images/127.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="2">
 <li>Browse to the downloaded zip file <cite>tl_2013_06_tract.zip</cite> and select it. QGIS can open zip files directly so no need to uncompress it first.</li>
 </ol>
-<img alt="../_images/29.png" class="align-center" src="../_images/29.png" style="width: 400px;" />
+<a class="reference internal image-reference" href="../_images/29.png"><img alt="../_images/29.png" class="align-center" src="../_images/29.png" style="width: 400px;" /></a>
 <ol class="arabic simple" start="3">
 <li>Select the <cite>tl_2013_06_tract.shp</cite> layer and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/38.png" class="align-center" src="../_images/38.png" style="width: 500px;" />
+<a class="reference internal image-reference" href="../_images/38.png"><img alt="../_images/38.png" class="align-center" src="../_images/38.png" style="width: 500px;" /></a>
 <ol class="arabic simple" start="4">
 <li>You will the census tracts loaded into QGIS.</li>
 </ol>
-<img alt="../_images/48.png" class="align-center" src="../_images/48.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/48.png"><img alt="../_images/48.png" class="align-center" src="../_images/48.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="5">
 <li>Right-click on the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/58.png" class="align-center" src="../_images/58.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/58.png"><img alt="../_images/58.png" class="align-center" src="../_images/58.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="6">
 <li>Examine the attributes of the tracts shapefile. To join a table with this shapefile, we need a unique and common attribute for each feature. In this case, the <strong>GEOID</strong> field is a unique identifier for each tract and can be used to <cite>link</cite> this shapefile with any other table containing the same ID.</li>
 </ol>
-<img alt="../_images/68.png" class="align-center" src="../_images/68.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/68.png"><img alt="../_images/68.png" class="align-center" src="../_images/68.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="7">
 <li>Open the CSV file <cite>ca_tracts_pop.csv</cite> in a text editor. You will notice that each row of the file contains information about a tract along with the unique identifier we saw in the previous step. Note that this field is called <strong>GEO.id2</strong> in the CSV. You will also note that the <strong>D001</strong> column has population value for each of the census tract.</li>
 </ol>
-<img alt="../_images/77.png" class="align-center" src="../_images/77.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/77.png"><img alt="../_images/77.png" class="align-center" src="../_images/77.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="8">
 <li>We could import this csv file without any further action and it would be imported. But, the default type of each column would be a <em>String</em> (text). That is ok except for the <cite>D001</cite> field which contains numbers for the population. Having those imported as text would not allow us to run any mathematical operations on this column. To tell QGIS to import the field as a number, we need to create a <cite>sidecar</cite> file with a <cite>.csvt</cite> extension. This file will have only 1 row specifying data types for each column. Save this file as <cite>ca_tracts_pop.csvt</cite> in the same directory as the original <cite>.csv</cite> file. You can also <a class="reference download internal" href="../_downloads/ca_tracts_pop.csvt"><tt class="xref download docutils literal"><span class="pre">download</span> <span class="pre">the</span> <span class="pre">csvt</span> <span class="pre">file</span> <span class="pre">from</span> <span class="pre">here.</span></tt></a></li>
 </ol>
-<img alt="../_images/87.png" class="align-center" src="../_images/87.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/87.png"><img alt="../_images/87.png" class="align-center" src="../_images/87.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="9">
 <li>Now we are ready to import the CSV file to QGIS. Go to <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</li>
 </ol>
-<img alt="../_images/97.png" class="align-center" src="../_images/97.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/97.png"><img alt="../_images/97.png" class="align-center" src="../_images/97.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="10">
 <li>Browse to the folder containing the CSV file and select it. Make sure you have selected <em class="guilabel">File format</em> as <em class="guilabel">CSV (comma separated values)</em>. Since we are importing this as a table, we must specify that our file contains no geometry. Select the <em class="guilabel">No geometry (attribute only table)</em> option. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/107.png" class="align-center" src="../_images/107.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/107.png"><img alt="../_images/107.png" class="align-center" src="../_images/107.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="11">
 <li>The CSV will now be imported as a table to QGIS.</li>
 </ol>
-<img alt="../_images/1112.png" class="align-center" src="../_images/1112.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/1112.png"><img alt="../_images/1112.png" class="align-center" src="../_images/1112.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="12">
 <li>Select the <cite>tl_2013_06_tract</cite> layer. Right-click on it and select <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/128.png" class="align-center" src="../_images/128.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/128.png"><img alt="../_images/128.png" class="align-center" src="../_images/128.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="13">
 <li>In the <em class="guilabel">Layer Properties</em> dialog, select the <em class="guilabel">Joins</em> tab. Click on the <cite>+</cite> button at the bottom to create a new table join.</li>
 </ol>
-<img alt="../_images/137.png" class="align-center" src="../_images/137.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/137.png"><img alt="../_images/137.png" class="align-center" src="../_images/137.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="14">
 <li>In the <em class="guilabel">Add vector join</em> dialog, select <cite>ca_tracts_pop</cite> as the <em class="guilabel">Join layer</em>. Next we have to select the field with unique ids in both the shapefile and the CSV. Select <cite>GEO.id2</cite> and <cite>GEOID</cite> as the <em class="guilabel">Join field</em> and <em class="guilabel">Target field</em> respectively. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/147.png" class="align-center" src="../_images/147.png" style="width: 300px;" />
+<a class="reference internal image-reference" href="../_images/147.png"><img alt="../_images/147.png" class="align-center" src="../_images/147.png" style="width: 300px;" /></a>
 <ol class="arabic simple" start="15">
 <li>Close the <em class="guilabel">Layer Properties</em> dialog and return to the main QGIS window. At this point, the fields from the CSV file are joined with the shapefile. Right-click on the <cite>tl_2013_06_tract</cite> layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/157.png" class="align-center" src="../_images/157.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/157.png"><img alt="../_images/157.png" class="align-center" src="../_images/157.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="16">
 <li>You can now see a new set of fields, including <em class="guilabel">ca_tracts_pop_D001</em> field added to each feature. Now you have access to the population value of each tract from the CSV file. Close the attribute table and return to the main QGIS window.</li>
 </ol>
-<img alt="../_images/167.png" class="align-center" src="../_images/167.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/167.png"><img alt="../_images/167.png" class="align-center" src="../_images/167.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="17">
 <li>Right-click the <cite>tl_2013_06_tract</cite> layer and select <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/176.png" class="align-center" src="../_images/176.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/176.png"><img alt="../_images/176.png" class="align-center" src="../_images/176.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="18">
 <li>Select the <em class="guilabel">Style</em> tab. Select the <em class="guilabel">Graduated</em> from the drop-down menu. As we are looking to create a population map, we want to assign different color to each census tract feature based on the population count. Select <em class="guilabel">ca_tracts_pop_D001</em> as the <em class="guilabel">Column</em>. Select a color ramp of your liking from the <em class="guilabel">Color ramp</em> drop-down. In the <em class="guilabel">Mode</em>, select <em class="guilabel">Quantile (Equal Count)</em>. Next click <em class="guilabel">Classify</em>. You will see a different color assigned to certain population ranges. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/186.png" class="align-center" src="../_images/186.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/186.png"><img alt="../_images/186.png" class="align-center" src="../_images/186.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="19">
 <li>You will now see a nice visualization of the census tracts as styled using population values. Use the <em class="guilabel">Zoom in</em> tool to select a smaller area from the layer.</li>
 </ol>
-<img alt="../_images/194.png" class="align-center" src="../_images/194.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/194.png"><img alt="../_images/194.png" class="align-center" src="../_images/194.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="20">
 <li>You have a detailed and accurate population map of California. You can use the same technique to create maps based on variety of census data.</li>
 </ol>
-<img alt="../_images/203.png" class="align-center" src="../_images/203.png" style="width: 700px;" />
+<a class="reference internal image-reference" href="../_images/203.png"><img alt="../_images/203.png" class="align-center" src="../_images/203.png" style="width: 700px;" /></a>
 </div>
 </div>
 
 
-          </div>
-        </div>
-      </div>
-      <div class="sphinxsidebar">
-        <div class="sphinxsidebarwrapper"><h3>Questions/Comments?</h3>
-<p>Send me a message via my Google+ profile.</p>
-<br>
-<div class="g-person" data-width="200" data-href="//plus.google.com/116912222767108657277" data-theme="dark" data-showcoverphoto="false" data-rel="author"></div>
-<h3><a href="../index.html">Table Of Contents</a></h3>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Making a Map</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Performing Table Joins</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
-</ul>
-
-  <h3>This Page</h3>
-  <ul class="this-page-menu">
-    <li><a href="../_sources/docs/performing_table_joins.txt"
-           rel="nofollow">Show Source</a></li>
-  </ul>
-<div id="searchbox" style="display: none">
-  <h3>Quick search</h3>
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
     </p>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="relbar-bottom">
-        
-    <div class="related">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="points_in_polygon.html" title="Points in Polygon Analysis"
-             >next</a></li>
-        <li class="right" >
-          <a href="advanced_georeferencing.html" title="Georeferencing Aerial Imagery"
-             >previous</a> &nbsp; &nbsp;</li>
-    <li><a href="../index.html">QGIS Tutorials and Tips</a> &raquo;</li>
- 
-      </ul>
-    </div>
-    </div>
-
-    <div class="footer">
-        &copy; Copyright 2013, Ujaval Gandhi.
-      Last updated on Mar 12, 2014.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
-    </div><script type="text/javascript">
-    if(ga_enabled){
-        document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
-        document.write("Click <button title=\"set cookie to disable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', 'true', {expires: 3650, path: '/'}); window.location.reload(); return false; \">here</button> to disable analytics for this site.");
-        document.write("</div>");
-    }else{
-        document.write("<div class=\"footer\">Google Analytics has been disabled. ");
-        document.write("Click <button title=\"set cookie to re-enable analytics for this site\" class=\"link\" onclick=\"$.cookie('disable-ga', null, {path: '/'}); window.location.reload(); return false; \">here</button> to re-enable analytics for this site.");
-    };
-</script>
-    <!-- cloud_sptheme 1.4 -->
+    <p>
+        &copy; Copyright 2013, Ujaval Gandhi.<br/>
+      Last updated on Mar 20, 2014.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+    </p>
+  </div>
+</footer>
   </body>
 </html>
