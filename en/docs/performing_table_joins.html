@@ -92,6 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Making a Map</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
@@ -186,6 +187,7 @@
 <li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Making a Map</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
@@ -247,7 +249,7 @@
 <ol class="arabic simple">
 <li>We will first load the census tracts shapefile. Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/127.png"><img alt="../_images/127.png" class="align-center" src="../_images/127.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/129.png"><img alt="../_images/129.png" class="align-center" src="../_images/129.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="2">
 <li>Browse to the downloaded zip file <cite>tl_2013_06_tract.zip</cite> and select it. QGIS can open zip files directly so no need to uncompress it first.</li>
 </ol>
@@ -255,71 +257,71 @@
 <ol class="arabic simple" start="3">
 <li>Select the <cite>tl_2013_06_tract.shp</cite> layer and click <em class="guilabel">OK</em>.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/38.png"><img alt="../_images/38.png" class="align-center" src="../_images/38.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/39.png"><img alt="../_images/39.png" class="align-center" src="../_images/39.png" style="width: 500px;" /></a>
 <ol class="arabic simple" start="4">
 <li>You will the census tracts loaded into QGIS.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/48.png"><img alt="../_images/48.png" class="align-center" src="../_images/48.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/49.png"><img alt="../_images/49.png" class="align-center" src="../_images/49.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="5">
 <li>Right-click on the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/58.png"><img alt="../_images/58.png" class="align-center" src="../_images/58.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/59.png"><img alt="../_images/59.png" class="align-center" src="../_images/59.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="6">
 <li>Examine the attributes of the tracts shapefile. To join a table with this shapefile, we need a unique and common attribute for each feature. In this case, the <strong>GEOID</strong> field is a unique identifier for each tract and can be used to <cite>link</cite> this shapefile with any other table containing the same ID.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/68.png"><img alt="../_images/68.png" class="align-center" src="../_images/68.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/69.png"><img alt="../_images/69.png" class="align-center" src="../_images/69.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="7">
 <li>Open the CSV file <cite>ca_tracts_pop.csv</cite> in a text editor. You will notice that each row of the file contains information about a tract along with the unique identifier we saw in the previous step. Note that this field is called <strong>GEO.id2</strong> in the CSV. You will also note that the <strong>D001</strong> column has population value for each of the census tract.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/77.png"><img alt="../_images/77.png" class="align-center" src="../_images/77.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/78.png"><img alt="../_images/78.png" class="align-center" src="../_images/78.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="8">
 <li>We could import this csv file without any further action and it would be imported. But, the default type of each column would be a <em>String</em> (text). That is ok except for the <cite>D001</cite> field which contains numbers for the population. Having those imported as text would not allow us to run any mathematical operations on this column. To tell QGIS to import the field as a number, we need to create a <cite>sidecar</cite> file with a <cite>.csvt</cite> extension. This file will have only 1 row specifying data types for each column. Save this file as <cite>ca_tracts_pop.csvt</cite> in the same directory as the original <cite>.csv</cite> file. You can also <a class="reference download internal" href="../_downloads/ca_tracts_pop.csvt"><tt class="xref download docutils literal"><span class="pre">download</span> <span class="pre">the</span> <span class="pre">csvt</span> <span class="pre">file</span> <span class="pre">from</span> <span class="pre">here.</span></tt></a></li>
 </ol>
-<a class="reference internal image-reference" href="../_images/87.png"><img alt="../_images/87.png" class="align-center" src="../_images/87.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/88.png"><img alt="../_images/88.png" class="align-center" src="../_images/88.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="9">
 <li>Now we are ready to import the CSV file to QGIS. Go to <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/97.png"><img alt="../_images/97.png" class="align-center" src="../_images/97.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/98.png"><img alt="../_images/98.png" class="align-center" src="../_images/98.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="10">
 <li>Browse to the folder containing the CSV file and select it. Make sure you have selected <em class="guilabel">File format</em> as <em class="guilabel">CSV (comma separated values)</em>. Since we are importing this as a table, we must specify that our file contains no geometry. Select the <em class="guilabel">No geometry (attribute only table)</em> option. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/107.png"><img alt="../_images/107.png" class="align-center" src="../_images/107.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/108.png"><img alt="../_images/108.png" class="align-center" src="../_images/108.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="11">
 <li>The CSV will now be imported as a table to QGIS.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/1112.png"><img alt="../_images/1112.png" class="align-center" src="../_images/1112.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/1113.png"><img alt="../_images/1113.png" class="align-center" src="../_images/1113.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="12">
 <li>Select the <cite>tl_2013_06_tract</cite> layer. Right-click on it and select <em class="guilabel">Properties</em>.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/128.png"><img alt="../_images/128.png" class="align-center" src="../_images/128.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/1210.png"><img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="13">
 <li>In the <em class="guilabel">Layer Properties</em> dialog, select the <em class="guilabel">Joins</em> tab. Click on the <cite>+</cite> button at the bottom to create a new table join.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/137.png"><img alt="../_images/137.png" class="align-center" src="../_images/137.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/138.png"><img alt="../_images/138.png" class="align-center" src="../_images/138.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="14">
 <li>In the <em class="guilabel">Add vector join</em> dialog, select <cite>ca_tracts_pop</cite> as the <em class="guilabel">Join layer</em>. Next we have to select the field with unique ids in both the shapefile and the CSV. Select <cite>GEO.id2</cite> and <cite>GEOID</cite> as the <em class="guilabel">Join field</em> and <em class="guilabel">Target field</em> respectively. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/147.png"><img alt="../_images/147.png" class="align-center" src="../_images/147.png" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="../_images/148.png"><img alt="../_images/148.png" class="align-center" src="../_images/148.png" style="width: 300px;" /></a>
 <ol class="arabic simple" start="15">
 <li>Close the <em class="guilabel">Layer Properties</em> dialog and return to the main QGIS window. At this point, the fields from the CSV file are joined with the shapefile. Right-click on the <cite>tl_2013_06_tract</cite> layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/157.png"><img alt="../_images/157.png" class="align-center" src="../_images/157.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/158.png"><img alt="../_images/158.png" class="align-center" src="../_images/158.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="16">
 <li>You can now see a new set of fields, including <em class="guilabel">ca_tracts_pop_D001</em> field added to each feature. Now you have access to the population value of each tract from the CSV file. Close the attribute table and return to the main QGIS window.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/167.png"><img alt="../_images/167.png" class="align-center" src="../_images/167.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/168.png"><img alt="../_images/168.png" class="align-center" src="../_images/168.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="17">
 <li>Right-click the <cite>tl_2013_06_tract</cite> layer and select <em class="guilabel">Properties</em>.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/176.png"><img alt="../_images/176.png" class="align-center" src="../_images/176.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/177.png"><img alt="../_images/177.png" class="align-center" src="../_images/177.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="18">
 <li>Select the <em class="guilabel">Style</em> tab. Select the <em class="guilabel">Graduated</em> from the drop-down menu. As we are looking to create a population map, we want to assign different color to each census tract feature based on the population count. Select <em class="guilabel">ca_tracts_pop_D001</em> as the <em class="guilabel">Column</em>. Select a color ramp of your liking from the <em class="guilabel">Color ramp</em> drop-down. In the <em class="guilabel">Mode</em>, select <em class="guilabel">Quantile (Equal Count)</em>. Next click <em class="guilabel">Classify</em>. You will see a different color assigned to certain population ranges. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/186.png"><img alt="../_images/186.png" class="align-center" src="../_images/186.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/187.png"><img alt="../_images/187.png" class="align-center" src="../_images/187.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="19">
 <li>You will now see a nice visualization of the census tracts as styled using population values. Use the <em class="guilabel">Zoom in</em> tool to select a smaller area from the layer.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/194.png"><img alt="../_images/194.png" class="align-center" src="../_images/194.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/195.png"><img alt="../_images/195.png" class="align-center" src="../_images/195.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="20">
 <li>You have a detailed and accurate population map of California. You can use the same technique to create maps based on variety of census data.</li>
 </ol>
@@ -340,7 +342,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Mar 20, 2014.<br/>
+      Last updated on Mar 22, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

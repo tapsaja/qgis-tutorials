@@ -29,7 +29,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Using Plugins" href="using_plugins.html" />
+    <link rel="next" title="Searching and Downloading OpenStreetMap Data" href="downloading_osm_data.html" />
     <link rel="prev" title="Working with Attributes" href="working_with_attributes.html" />
 
 <meta charset='utf-8'>
@@ -92,6 +92,7 @@
 <li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Making a Map</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Importing Spreadsheets or CSV files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
@@ -138,7 +139,7 @@
     </a>
   </li>
   <li>
-    <a href="using_plugins.html" title="Next Chapter: Using Plugins"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Using Plugins &raquo;</span>
+    <a href="downloading_osm_data.html" title="Next Chapter: Searching and Downloading OpenStreetMap Data"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Searching and Do... &raquo;</span>
     </a>
   </li>
               
@@ -185,6 +186,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Importing Spreadsheets or CSV files</a><ul class="simple">
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
@@ -235,11 +237,11 @@
 <ol class="arabic simple">
 <li>Examine your tabular data source. To import this data to QGIS, you will have to save it as a text file and need at least 2 columns which contain the X and Y coordinates. If you have a spreadsheet, use <cite>Save As</cite> function in your program to save it as a <cite>Tab Delimited File</cite> or a <cite>Comma Separated Values (CSV)</cite> file. Once you have the data exported this way, you can open it in a text editor such as Notepad to view the contents. In case of the Significant Earthquake Database, the data already comes as a text file which contains latitude and longitude of the earthquake centers along with other related attributes. You will see that each field is separated by a TAB.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/116.png"><img alt="../_images/116.png" class="align-center" src="../_images/116.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/118.png"><img alt="../_images/118.png" class="align-center" src="../_images/118.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="2">
 <li>Open QGIS. Click on <em class="menuselection">Layers ‣ Add Delimited Text Layer</em>.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/24.png"><img alt="../_images/24.png" class="align-center" src="../_images/24.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/25.png"><img alt="../_images/25.png" class="align-center" src="../_images/25.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="3">
 <li>In the <em class="guilabel">Create a Layer from a Delimited Text File</em> dialog, click on <em class="guilabel">Browse</em> and specify the path to the text file you downloaded. In the <em class="guilabel">File format</em> section, select <em class="guilabel">Custom delimiters</em> and check <em class="guilabel">Tab</em>. The <em class="guilabel">Geometry definition</em> secction will be auto-populated if it finds a suitable X and Y coordinate fields. In our case they are <em>LONGITUDE</em> and <em>LATITUDE</em>. You may change it if the import selects the wrong fields. Click <em class="guilabel">OK</em>.</li>
 </ol>
@@ -247,19 +249,19 @@
 <p class="first admonition-title">Note</p>
 <p class="last">It is easy to confuse X and Y coordinates. Latitude specifies the north-south position of a point and hence it is a <strong>Y</strong> coordinate. Similarly Longitude specifies the east-west position of a point and it is a <strong>X</strong> coordinate.</p>
 </div>
-<a class="reference internal image-reference" href="../_images/34.png"><img alt="../_images/34.png" class="align-center" src="../_images/34.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/35.png"><img alt="../_images/35.png" class="align-center" src="../_images/35.png" style="width: 700px;" /></a>
 <ol class="arabic simple" start="4">
 <li>You may see some errors displayed in the next dialog. The erros in this file are mainly due to missing X or Y fields. You may examine these errors and fix the problems in your source file. For this tutorial, you may ignore these errors.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/44.png"><img alt="../_images/44.png" class="align-center" src="../_images/44.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/45.png"><img alt="../_images/45.png" class="align-center" src="../_images/45.png" style="width: 500px;" /></a>
 <ol class="arabic simple" start="5">
 <li>Next, a <em class="guilabel">Coordinate Reference System Selector</em> will ask you to select a coordinate reference system. Since the earthquake coordinates are in latitudes and longitudes, you should select <cite>WGS 84</cite>. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/54.png"><img alt="../_images/54.png" class="align-center" src="../_images/54.png" style="width: 500px;" /></a>
+<a class="reference internal image-reference" href="../_images/55.png"><img alt="../_images/55.png" class="align-center" src="../_images/55.png" style="width: 500px;" /></a>
 <ol class="arabic simple" start="6">
 <li>You will now see that the data will be imported and displayed in the QGIS canvas.</li>
 </ol>
-<a class="reference internal image-reference" href="../_images/64.png"><img alt="../_images/64.png" class="align-center" src="../_images/64.png" style="width: 700px;" /></a>
+<a class="reference internal image-reference" href="../_images/65.png"><img alt="../_images/65.png" class="align-center" src="../_images/65.png" style="width: 700px;" /></a>
 </div>
 </div>
 
@@ -276,7 +278,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Mar 20, 2014.<br/>
+      Last updated on Mar 22, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
