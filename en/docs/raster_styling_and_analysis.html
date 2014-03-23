@@ -102,6 +102,7 @@
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
@@ -199,6 +200,7 @@
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
@@ -256,7 +258,7 @@ login, or use the <em class="guilabel">Guest Download</em> button at the bottom 
 immediately download the data. Repeat the process for <em class="guilabel">2000 year</em>
 data.</li>
 </ol>
-<img alt="../_images/140.png" class="align-center" src="../_images/140.png" />
+<img alt="../_images/160.png" class="align-center" src="../_images/160.png" />
 <p>You will now have 2 zip files downloaded.</p>
 <p>For convenience, you can also download a copy of this data by clicking on following links:</p>
 <p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_90_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_90_ascii_one.zip</span></tt></a></p>
@@ -267,66 +269,66 @@ data.</li>
 <ol class="arabic simple" start="2">
 <li>Open QGIS and go to <em class="menuselection">Layer ‣ Add Raster Layer..</em>.</li>
 </ol>
-<img alt="../_images/215.png" class="align-center" src="../_images/215.png" />
+<img alt="../_images/216.png" class="align-center" src="../_images/216.png" />
 <ol class="arabic simple" start="3">
 <li>Locate the downloaded zip files. Hold down the <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> key and click on both
 the zip files to select them. This way you are able to load both the files
 in a single step.</li>
 </ol>
-<img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
+<img alt="../_images/313.png" class="align-center" src="../_images/313.png" />
 <ol class="arabic simple" start="4">
 <li>Each zip file contain 2 grid files. The <tt class="docutils literal"><span class="pre">a</span></tt> in the filename
 suggests that the population counts were adjusted to match the UN totals. We
 will use the adjusted grids for this tutorial. Select <tt class="docutils literal"><span class="pre">glds00ag60.asc</span></tt> as
 the layer to add. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/412.png" class="align-center" src="../_images/412.png" />
+<img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
 <ol class="arabic simple" start="5">
 <li>The layer doesn’t have a CRS defined, and since the grids are in lat/long,
 choose <cite>EPSG:4326</cite> as the coordinate reference system.</li>
 </ol>
-<img alt="../_images/512.png" class="align-center" src="../_images/512.png" />
+<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
 <ol class="arabic simple" start="6">
 <li>Since we selected both the zip files, you will see similar dialogs once
 again. Repeat the process and select <tt class="docutils literal"><span class="pre">glds90ag60.asc</span></tt> grid as the layer to
 add.</li>
 </ol>
-<img alt="../_images/611.png" class="align-center" src="../_images/611.png" />
+<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
 <ol class="arabic simple" start="7">
 <li>Once again, choose <cite>EPSG:4326</cite> as the CRS.</li>
 </ol>
-<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
+<img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
 <ol class="arabic simple" start="8">
 <li>Now you will see both the rasters loaded in QGIS. The raster is rendered as
 in grayscale, where darker pixels indicate lower values and lighter pixels
 indicate higher values.</li>
 </ol>
-<img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
+<img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
 <ol class="arabic simple" start="9">
 <li>Each pixel in the raster has a value assigned. This value is the population
 density for that grid. Click on <em class="guilabel">Identify Features</em> button to select the
 tool and click anywhere on the raster to see the value of that pixel.</li>
 </ol>
-<img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
+<img alt="../_images/912.png" class="align-center" src="../_images/912.png" />
 <ol class="arabic simple" start="10">
 <li>To better visualize the pattern of population density, we would need to
 style it. Right-click on the layer name and select <em class="guilabel">Properties</em>. You can also
 double-click on the layer name in the TOC to bring up the Layer
 Properties dialog.</li>
 </ol>
-<img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
+<img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" />
 <ol class="arabic simple" start="11">
 <li>Under the <em class="guilabel">Style</em> tab, change the <em class="guilabel">Render type</em>
 to <em class="guilabel">Singleband pseudocolor</em>. Next, click <em class="guilabel">Classify</em>
 under <em class="guilabel">Generate a new color map</em>. You will see 5 new color
 values created. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
+<img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" />
 <ol class="arabic simple" start="12">
 <li>Back in the QGIS Canvas, you will see a heatmap-like rendering of the
 raster. Repeat the same process for the other raster as well.</li>
 </ol>
-<img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
+<img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
 <ol class="arabic simple" start="13">
 <li>For our analysis, we would like to find areas with largest population
 change between 1990 and 2000. The way to accomplish this is by finding the
@@ -345,7 +347,7 @@ as the formula. Name your output layer as <em class="guilabel">pop_density_chang
 and check the box next to <em class="guilabel">Add result to project</em>. Click
 <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1410.png" class="align-center" src="../_images/1410.png" />
+<img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
 <ol class="arabic simple" start="15">
 <li>Once the operation is complete, you will see the new layer load in QGIS.</li>
 </ol>
@@ -390,7 +392,7 @@ to verify that your styling rules worked as intended.</li>
 <li>Now let’s take this analysis one-step further and find areas with only
 <cite>negative</cite> population density change. Open <em class="menuselection">Raster ‣ Raster calculator</em>.</li>
 </ol>
-<img alt="../_images/216.png" class="align-center" src="../_images/216.png" />
+<img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
 <ol class="arabic simple" start="22">
 <li>Enter the expression <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990&#64;1</span> <span class="pre">&lt;</span> <span class="pre">-10</span></tt>. What this
 expression will do is set the value of the pixel to 1 is if matches the
@@ -428,7 +430,7 @@ pixels.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Mar 22, 2014.<br/>
+      Last updated on Mar 23, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

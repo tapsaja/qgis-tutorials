@@ -29,7 +29,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Points in Polygon Analysis" href="points_in_polygon.html" />
+    <link rel="next" title="Performing Spatial Joins" href="performing_spatial_joins.html" />
     <link rel="prev" title="Georeferencing Aerial Imagery" href="advanced_georeferencing.html" />
 
 <meta charset='utf-8'>
@@ -102,6 +102,7 @@
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Performing Table Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
@@ -142,7 +143,7 @@
     </a>
   </li>
   <li>
-    <a href="points_in_polygon.html" title="Next Chapter: Points in Polygon Analysis"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Points in Polygo... &raquo;</span>
+    <a href="performing_spatial_joins.html" title="Next Chapter: Performing Spatial Joins"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Performing Spati... &raquo;</span>
     </a>
   </li>
               
@@ -199,6 +200,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Performing Table Joins</a><ul class="simple">
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
@@ -249,59 +251,59 @@
 <ol class="arabic simple">
 <li>We will first load the census tracts shapefile. Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
 </ol>
-<img alt="../_images/129.png" class="align-center" src="../_images/129.png" />
+<img alt="../_images/130.png" class="align-center" src="../_images/130.png" />
 <ol class="arabic simple" start="2">
 <li>Browse to the downloaded zip file <cite>tl_2013_06_tract.zip</cite> and select it. QGIS can open zip files directly so no need to uncompress it first.</li>
 </ol>
-<img alt="../_images/29.png" class="align-center" src="../_images/29.png" />
+<img alt="../_images/210.png" class="align-center" src="../_images/210.png" />
 <ol class="arabic simple" start="3">
 <li>Select the <cite>tl_2013_06_tract.shp</cite> layer and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/39.png" class="align-center" src="../_images/39.png" />
+<img alt="../_images/310.png" class="align-center" src="../_images/310.png" />
 <ol class="arabic simple" start="4">
 <li>You will the census tracts loaded into QGIS.</li>
 </ol>
-<img alt="../_images/49.png" class="align-center" src="../_images/49.png" />
+<img alt="../_images/410.png" class="align-center" src="../_images/410.png" />
 <ol class="arabic simple" start="5">
 <li>Right-click on the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/59.png" class="align-center" src="../_images/59.png" />
+<img alt="../_images/510.png" class="align-center" src="../_images/510.png" />
 <ol class="arabic simple" start="6">
 <li>Examine the attributes of the tracts shapefile. To join a table with this shapefile, we need a unique and common attribute for each feature. In this case, the <strong>GEOID</strong> field is a unique identifier for each tract and can be used to <cite>link</cite> this shapefile with any other table containing the same ID.</li>
 </ol>
-<img alt="../_images/69.png" class="align-center" src="../_images/69.png" />
+<img alt="../_images/610.png" class="align-center" src="../_images/610.png" />
 <ol class="arabic simple" start="7">
 <li>Open the CSV file <cite>ca_tracts_pop.csv</cite> in a text editor. You will notice that each row of the file contains information about a tract along with the unique identifier we saw in the previous step. Note that this field is called <strong>GEO.id2</strong> in the CSV. You will also note that the <strong>D001</strong> column has population value for each of the census tract.</li>
 </ol>
-<img alt="../_images/78.png" class="align-center" src="../_images/78.png" />
+<img alt="../_images/79.png" class="align-center" src="../_images/79.png" />
 <ol class="arabic simple" start="8">
 <li>We could import this csv file without any further action and it would be imported. But, the default type of each column would be a <em>String</em> (text). That is ok except for the <cite>D001</cite> field which contains numbers for the population. Having those imported as text would not allow us to run any mathematical operations on this column. To tell QGIS to import the field as a number, we need to create a <cite>sidecar</cite> file with a <cite>.csvt</cite> extension. This file will have only 1 row specifying data types for each column. Save this file as <cite>ca_tracts_pop.csvt</cite> in the same directory as the original <cite>.csv</cite> file. You can also <a class="reference download internal" href="../_downloads/ca_tracts_pop.csvt"><tt class="xref download docutils literal"><span class="pre">download</span> <span class="pre">the</span> <span class="pre">csvt</span> <span class="pre">file</span> <span class="pre">from</span> <span class="pre">here.</span></tt></a></li>
 </ol>
-<img alt="../_images/88.png" class="align-center" src="../_images/88.png" />
+<img alt="../_images/89.png" class="align-center" src="../_images/89.png" />
 <ol class="arabic simple" start="9">
 <li>Now we are ready to import the CSV file to QGIS. Go to <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</li>
 </ol>
-<img alt="../_images/98.png" class="align-center" src="../_images/98.png" />
+<img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
 <ol class="arabic simple" start="10">
 <li>Browse to the folder containing the CSV file and select it. Make sure you have selected <em class="guilabel">File format</em> as <em class="guilabel">CSV (comma separated values)</em>. Since we are importing this as a table, we must specify that our file contains no geometry. Select the <em class="guilabel">No geometry (attribute only table)</em> option. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/108.png" class="align-center" src="../_images/108.png" />
+<img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
 <ol class="arabic simple" start="11">
 <li>The CSV will now be imported as a table to QGIS.</li>
 </ol>
-<img alt="../_images/1113.png" class="align-center" src="../_images/1113.png" />
+<img alt="../_images/1114.png" class="align-center" src="../_images/1114.png" />
 <ol class="arabic simple" start="12">
 <li>Select the <cite>tl_2013_06_tract</cite> layer. Right-click on it and select <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" />
+<img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
 <ol class="arabic simple" start="13">
 <li>In the <em class="guilabel">Layer Properties</em> dialog, select the <em class="guilabel">Joins</em> tab. Click on the <cite>+</cite> button at the bottom to create a new table join.</li>
 </ol>
-<img alt="../_images/138.png" class="align-center" src="../_images/138.png" />
+<img alt="../_images/139.png" class="align-center" src="../_images/139.png" />
 <ol class="arabic simple" start="14">
 <li>In the <em class="guilabel">Add vector join</em> dialog, select <cite>ca_tracts_pop</cite> as the <em class="guilabel">Join layer</em>. Next we have to select the field with unique ids in both the shapefile and the CSV. Select <cite>GEO.id2</cite> and <cite>GEOID</cite> as the <em class="guilabel">Join field</em> and <em class="guilabel">Target field</em> respectively. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
+<img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
 <ol class="arabic simple" start="15">
 <li>Close the <em class="guilabel">Layer Properties</em> dialog and return to the main QGIS window. At this point, the fields from the CSV file are joined with the shapefile. Right-click on the <cite>tl_2013_06_tract</cite> layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
@@ -342,7 +344,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Mar 22, 2014.<br/>
+      Last updated on Mar 23, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
