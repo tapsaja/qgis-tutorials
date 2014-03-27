@@ -107,6 +107,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Creating Heatmaps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
 </ul>
@@ -203,6 +204,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
 </ul>
@@ -242,23 +244,23 @@
 <ol class="arabic simple">
 <li>To start, unzip the data to a folder. The data is in a CSV format. We will import this data into QGIS. (see <a class="reference internal" href="importing_spreadsheets_csv.html"><em>Importing Spreadsheets or CSV files</em></a>. for more details). Click <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</li>
 </ol>
-<img alt="../_images/114.png" class="align-center" src="../_images/114.png" />
+<img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
 <ol class="arabic simple" start="2">
 <li>Browse to the <cite>police-uk-crime-data-surrey.txt</cite> file on your computer and open it. Select <em class="guilabel">CSV (comma separated values)</em> as the file format. You will see the <em>Easting</em> and <em>Northing</em> columns automatically selected as X and Y fields. Make sure you check the <em class="guilabel">Use spatial index</em> option as that will speed up your operations on this layer. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/23.png" class="align-center" src="../_images/23.png" />
+<img alt="../_images/24.png" class="align-center" src="../_images/24.png" />
 <ol class="arabic simple" start="3">
 <li>You may see some errors. You can ignore those for the purpose of this tutorials. Click <em class="guilabel">Close</em>.</li>
 </ol>
-<img alt="../_images/33.png" class="align-center" src="../_images/33.png" />
+<img alt="../_images/34.png" class="align-center" src="../_images/34.png" />
 <ol class="arabic simple" start="4">
 <li>Next, you need to choose a <cite>Coordinate Reference System (CRS)</cite>. If you read the data description, you will notice that the spatial reference for the data is <em>British National Grid</em>. Choose <em class="guilabel">OSGB 1936 / British National Grid</em> as the CRS. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
+<img alt="../_images/44.png" class="align-center" src="../_images/44.png" />
 <ol class="arabic simple" start="5">
 <li>Now you will see the data loaded into QGIS.</li>
 </ol>
-<img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
+<img alt="../_images/54.png" class="align-center" src="../_images/54.png" />
 <ol class="arabic simple" start="6">
 <li>Zoom-in a bit closer to get a better look at the data. You will notice that the data is quite dense and it is hard to get an idea of where there is a high concentration of points. This is where a heatmap will come in handy.</li>
 </ol>
@@ -282,7 +284,7 @@
 <ol class="arabic simple" start="11">
 <li>In the <em class="guilabel">Style</em> tab, select <em class="guilabel">Singleband pseudocolor</em> as the <em class="guilabel">Render type</em>. Next, under the section <em class="guilabel">Load min/max values</em>, select the <em class="guilabel">Actual (slower)</em> as the <em class="guilabel">Accuracy</em> and click <em class="guilabel">Load</em>. This will scan the heatmap and find the minimum and maximum pixel values. These values will be used to generate an appropriate color ramp. In the section <em class="guilabel">Generate new color map</em>, select <em class="guilabel">YlOrRd</em> (Yellow-Orange-Red) as the color ramp, and click <em class="guilabel">Classify</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
+<img alt="../_images/116.png" class="align-center" src="../_images/116.png" />
 <ol class="arabic simple" start="12">
 <li>Now you will see a more appealing heatmap-like rendering of the layer. You can select the <em class="guilabel">Identify</em> tool and click on any pixel of the heatmap. You will see the pixel value in the resulting pop-up. This pixel-value is a measure of how many points from the source layer are contained within the specified radius ( in our case - 1000m) around the pixel.</li>
 </ol>
@@ -350,7 +352,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Mar 27, 2014.<br/>
+      Last updated on Mar 28, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
