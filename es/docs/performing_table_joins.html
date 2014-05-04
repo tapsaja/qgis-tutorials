@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Créditos de los Conjuntos de Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
@@ -216,6 +217,7 @@
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Créditos de los Conjuntos de Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
@@ -271,35 +273,35 @@ data.</p>
 <ol class="arabic simple">
 <li>We will first load the census tracts shapefile. Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
 </ol>
-<img alt="../_images/170.png" class="align-center" src="../_images/170.png" />
+<img alt="../_images/180.png" class="align-center" src="../_images/180.png" />
 <ol class="arabic simple" start="2">
 <li>Browse to the downloaded zip file <cite>tl_2013_06_tract.zip</cite> and select it. QGIS can open zip files directly so no need to uncompress it first.</li>
 </ol>
-<img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
+<img alt="../_images/225.png" class="align-center" src="../_images/225.png" />
 <ol class="arabic simple" start="3">
 <li>Select the <cite>tl_2013_06_tract.shp</cite> layer and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/317.png" class="align-center" src="../_images/317.png" />
+<img alt="../_images/318.png" class="align-center" src="../_images/318.png" />
 <ol class="arabic simple" start="4">
 <li>You will the census tracts loaded into QGIS.</li>
 </ol>
-<img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
+<img alt="../_images/415.png" class="align-center" src="../_images/415.png" />
 <ol class="arabic simple" start="5">
 <li>Right-click on the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/515.png" class="align-center" src="../_images/515.png" />
+<img alt="../_images/516.png" class="align-center" src="../_images/516.png" />
 <ol class="arabic simple" start="6">
 <li>Examine the attributes of the tracts shapefile. To join a table with this shapefile, we need a unique and common attribute for each feature. In this case, the <strong>GEOID</strong> field is a unique identifier for each tract and can be used to <cite>link</cite> this shapefile with any other table containing the same ID.</li>
 </ol>
-<img alt="../_images/614.png" class="align-center" src="../_images/614.png" />
+<img alt="../_images/615.png" class="align-center" src="../_images/615.png" />
 <ol class="arabic simple" start="7">
 <li>Open the CSV file <cite>ca_tracts_pop.csv</cite> in a text editor. You will notice that each row of the file contains information about a tract along with the unique identifier we saw in the previous step. Note that this field is called <strong>GEO.id2</strong> in the CSV. You will also note that the <strong>D001</strong> column has population value for each of the census tract.</li>
 </ol>
-<img alt="../_images/713.png" class="align-center" src="../_images/713.png" />
+<img alt="../_images/714.png" class="align-center" src="../_images/714.png" />
 <ol class="arabic simple" start="8">
 <li>We could import this csv file without any further action and it would be imported. But, the default type of each column would be a <em>String</em> (text). That is ok except for the <cite>D001</cite> field which contains numbers for the population. Having those imported as text would not allow us to run any mathematical operations on this column. To tell QGIS to import the field as a number, we need to create a <cite>sidecar</cite> file with a <cite>.csvt</cite> extension. This file will have only 1 row specifying data types for each column. Save this file as <cite>ca_tracts_pop.csvt</cite> in the same directory as the original <cite>.csv</cite> file. You can also <a class="reference download internal" href="../_downloads/ca_tracts_pop.csvt"><tt class="xref download docutils literal"><span class="pre">download</span> <span class="pre">the</span> <span class="pre">csvt</span> <span class="pre">file</span> <span class="pre">from</span> <span class="pre">here.</span></tt></a></li>
 </ol>
-<img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
+<img alt="../_images/813.png" class="align-center" src="../_images/813.png" />
 <ol class="arabic simple" start="9">
 <li>Now we are ready to import the CSV file to QGIS. Go to <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</li>
 </ol>
@@ -371,7 +373,7 @@ data.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Actualizado por última vez en Apr 28, 2014.<br/>
+      Actualizado por última vez en May 04, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -111,6 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Data Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
@@ -215,6 +216,7 @@
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Data Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
@@ -269,18 +271,18 @@ use 2km resolution FAS subsets for Brazil for this tutorial.</p>
 Brazil subsets shown in the <em class="guilabel">FAS Subsets</em> section. Click on any
 one of them.</li>
 </ol>
-<img alt="../_images/190.png" class="align-center" src="../_images/190.png" />
+<img alt="../_images/198.png" class="align-center" src="../_images/198.png" />
 <ol class="arabic simple" start="2">
 <li>In the details page, click the <em class="guilabel">2km</em> link under the product of
 your choice. Here we will download the <em class="guilabel">NDVI</em> product. <a class="reference external" href="http://en.wikipedia.org/wiki/Normalized_Difference_Vegetation_Index">Learn more
 about NDVI</a>.</li>
 </ol>
-<img alt="../_images/226.png" class="align-center" src="../_images/226.png" />
+<img alt="../_images/227.png" class="align-center" src="../_images/227.png" />
 <ol class="arabic simple" start="3">
 <li>Click the <em class="guilabel">Download GeoTIFF file</em> link to download the raster
 image.</li>
 </ol>
-<img alt="../_images/319.png" class="align-center" src="../_images/319.png" />
+<img alt="../_images/320.png" class="align-center" src="../_images/320.png" />
 <p>Repeat the process for all 7 FAS subsets for Brazil.</p>
 <p>For convenience, you can directly download sample data used in this tutorial from links below.</p>
 <p><a class="reference download internal" href="../_downloads/ne_10m_admin_0_countries1.zip"><tt class="xref download docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt></a>
@@ -298,13 +300,13 @@ image.</li>
 <ol class="arabic simple" start="4">
 <li>Open QGIS and go to <em class="menuselection">Layer ‣ Add Raster Layer..</em>.</li>
 </ol>
-<img alt="../_images/416.png" class="align-center" src="../_images/416.png" />
+<img alt="../_images/417.png" class="align-center" src="../_images/417.png" />
 <ol class="arabic simple" start="5">
 <li>Browse to the directory with the individual images. Hold down the <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>
 key and click on the image files to make a multiple selection. Click
 <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/517.png" class="align-center" src="../_images/517.png" />
+<img alt="../_images/518.png" class="align-center" src="../_images/518.png" />
 <ol class="arabic simple" start="6">
 <li>You will see the images load up in the Table of Content on the left panel.
 Now let us create a single <cite>Mosaic</cite> image from all these individual images.
@@ -317,7 +319,7 @@ Click on <em class="menuselection">Raster ‣ Miscellaneous ‣ Merge</em>.</li>
 enable the <em class="guilabel">GdalTools</em> plugin from <em class="menuselection">Plugins ‣
 Manage and install plugins ‣ Installed</em>. See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> for more details.</p>
 </div>
-<img alt="../_images/615.png" class="align-center" src="../_images/615.png" />
+<img alt="../_images/616.png" class="align-center" src="../_images/616.png" />
 <ol class="arabic simple" start="7">
 <li>In the <em class="guilabel">Merge</em> dialog, click <em class="guilabel">Select...</em> next to
 <em class="guilabel">Input files</em> and browse to the directory containing all
@@ -326,14 +328,14 @@ subsets. Now click <em class="guilabel">Select...</em> next to <em class="guilab
 and name the output as <tt class="docutils literal"><span class="pre">Brazil_mosaic.tif</span></tt>. At the bottom, check the box next to
 <em class="guilabel">Load into canvas when finished</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/715.png" class="align-center" src="../_images/715.png" />
+<img alt="../_images/716.png" class="align-center" src="../_images/716.png" />
 <ol class="arabic simple" start="8">
 <li>You will get a pop-up message saying <cite>Processing complete</cite>, once the mosaic is
 created and loaded to the QGIS Canvas. You will see that the individual
 images and now combined and mosaiced into a single layer. You can now turn
 off individual layers by un-checking the box next to them.</li>
 </ol>
-<img alt="../_images/814.png" class="align-center" src="../_images/814.png" />
+<img alt="../_images/815.png" class="align-center" src="../_images/815.png" />
 <ol class="arabic simple" start="9">
 <li>Another Raster operation you can do is to subset or <cite>crop</cite> an image. We can
 use a polygon from a vector layer to crop the raster to the exact shape.
@@ -393,7 +395,7 @@ pixels surrounding the actual mosaic. Let&#8217;s remove that. Right-click on th
 <li>Go to the <em class="guilabel">Transparency</em> tab, and add <cite>0</cite> as an
 <em class="guilabel">Additional no data value</em>.</li>
 </ol>
-<img alt="../_images/198.png" class="align-center" src="../_images/198.png" />
+<img alt="../_images/199.png" class="align-center" src="../_images/199.png" />
 <ol class="arabic simple" start="20">
 <li>Now you have a nice mosaic cropped to a country boundary that you can use
 in your project as a background layer or do further analysis on.</li>
@@ -422,7 +424,7 @@ in your project as a background layer or do further analysis on.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 28, 2014.<br/>
+      Last updated on May 04, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

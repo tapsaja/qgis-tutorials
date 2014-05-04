@@ -111,6 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Data Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
@@ -215,6 +216,7 @@
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Data Credits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
@@ -277,7 +279,7 @@ below:</p>
 <li>Open <em class="menuselection">Layer ‣ Add Delimited Text Layer</em> and browse to the
 downloaded <tt class="docutils literal"><span class="pre">signif.txt</span></tt> file.</li>
 </ol>
-<img alt="../_images/139.png" class="align-center" src="../_images/139.png" />
+<img alt="../_images/140.png" class="align-center" src="../_images/140.png" />
 <ol class="arabic simple" start="2">
 <li>Since this is a <em>tab-delimited file</em>, choose <em class="guilabel">Tab</em> as the
 <em class="guilabel">File format</em>. The <em class="guilabel">X field</em> and <em class="guilabel">Y field</em>
@@ -289,25 +291,25 @@ would be auto-populated. Click <em class="guilabel">OK</em>.</li>
 valid errors and some rows from the file will not be imported. You can ignore
 the errors for the purpose of this tutorial.</p>
 </div>
-<img alt="../_images/216.png" class="align-center" src="../_images/216.png" />
+<img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
 <ol class="arabic simple" start="3">
 <li>As the earthquake dataset has Latitude/Longitude coordinates, choose
 <em class="guilabel">WGS 84 EPSG:436</em> as the CRS in the <em class="guilabel">Coordinate Reference System Selector</em>
 dialog.</li>
 </ol>
-<img alt="../_images/313.png" class="align-center" src="../_images/313.png" />
+<img alt="../_images/314.png" class="align-center" src="../_images/314.png" />
 <ol class="arabic simple" start="4">
 <li>The earthquake point layer would now be loaded and displayed in QGIS. Let&#8217;s
 also open the Populated Places layer. Go to <em class="menuselection">Layer ‣ Add
 Vector Layer</em>.</li>
 </ol>
-<img alt="../_images/411.png" class="align-center" src="../_images/411.png" />
+<img alt="../_images/412.png" class="align-center" src="../_images/412.png" />
 <ol class="arabic simple" start="5">
 <li>Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt> file and
 click <em class="guilabel">Open</em>. Select the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.shp</span></tt> as
 the layer in the <em class="guilabel">Select layers to add...</em> dialog.</li>
 </ol>
-<img alt="../_images/511.png" class="align-center" src="../_images/511.png" />
+<img alt="../_images/512.png" class="align-center" src="../_images/512.png" />
 <ol class="arabic simple" start="6">
 <li>Zoom around and explore both the datasets. Each purple point represents the
 location of a significant earthquake and each blue point represents the
@@ -315,11 +317,11 @@ location of a populated place. We need a way to find out the nearest point
 from the populated places layer for each of the points in the earthquake
 layer.</li>
 </ol>
-<img alt="../_images/610.png" class="align-center" src="../_images/610.png" />
+<img alt="../_images/611.png" class="align-center" src="../_images/611.png" />
 <ol class="arabic simple" start="7">
 <li>Go to <em class="menuselection">Vector ‣ Analysis Tools ‣ Distance Matrix</em>.</li>
 </ol>
-<img alt="../_images/79.png" class="align-center" src="../_images/79.png" />
+<img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
 <ol class="arabic simple" start="8">
 <li>Here select the earthquake layer <tt class="docutils literal"><span class="pre">signif</span></tt> as the Input point layer and the populated
 places <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> as the target layer. You also need
@@ -335,7 +337,7 @@ layer. Select the same layer as both Input and Target. The result would be a
 nearest neighbor from the same layer instead of a different layer as we have
 used here.</p>
 </div>
-<img alt="../_images/89.png" class="align-center" src="../_images/89.png" />
+<img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
 <ol class="arabic simple" start="9">
 <li>Once your file is generated, you can view it in Notepad or any text editor.
 QGIS can import CSV files as well, so we will add it to QGIS and view it
@@ -424,7 +426,7 @@ the nearest neighbor.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 28, 2014.<br/>
+      Last updated on May 04, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

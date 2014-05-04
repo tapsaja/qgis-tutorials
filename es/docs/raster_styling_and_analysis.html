@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Créditos de los Conjuntos de Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
@@ -216,6 +217,7 @@
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Créditos de los Conjuntos de Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
@@ -272,7 +274,7 @@ login, or use the <em class="guilabel">Guest Download</em> button at the bottom 
 immediately download the data. Repeat the process for <em class="guilabel">2000 year</em>
 data.</li>
 </ol>
-<img alt="../_images/199.png" class="align-center" src="../_images/199.png" />
+<img alt="../_images/1100.png" class="align-center" src="../_images/1100.png" />
 <p>You will now have 2 zip files downloaded.</p>
 <p>For convenience, you can also download a copy of this data by clicking on following links:</p>
 <p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_90_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_90_ascii_one.zip</span></tt></a></p>
@@ -284,41 +286,41 @@ data.</li>
 <ol class="arabic simple" start="2">
 <li>Open QGIS and go to <em class="menuselection">Layer ‣ Add Raster Layer..</em>.</li>
 </ol>
-<img alt="../_images/227.png" class="align-center" src="../_images/227.png" />
+<img alt="../_images/228.png" class="align-center" src="../_images/228.png" />
 <ol class="arabic simple" start="3">
 <li>Locate the downloaded zip files. Hold down the <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> key and click on both
 the zip files to select them. This way you are able to load both the files
 in a single step.</li>
 </ol>
-<img alt="../_images/320.png" class="align-center" src="../_images/320.png" />
+<img alt="../_images/322.png" class="align-center" src="../_images/322.png" />
 <ol class="arabic simple" start="4">
 <li>Each zip file contain 2 grid files. The <tt class="docutils literal"><span class="pre">a</span></tt> in the filename
 suggests that the population counts were adjusted to match the UN totals. We
 will use the adjusted grids for this tutorial. Select <tt class="docutils literal"><span class="pre">glds00ag60.asc</span></tt> as
 the layer to add. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/417.png" class="align-center" src="../_images/417.png" />
+<img alt="../_images/418.png" class="align-center" src="../_images/418.png" />
 <ol class="arabic simple" start="5">
 <li>The layer doesn’t have a CRS defined, and since the grids are in lat/long,
 choose <cite>EPSG:4326</cite> as the coordinate reference system.</li>
 </ol>
-<img alt="../_images/518.png" class="align-center" src="../_images/518.png" />
+<img alt="../_images/519.png" class="align-center" src="../_images/519.png" />
 <ol class="arabic simple" start="6">
 <li>Since we selected both the zip files, you will see similar dialogs once
 again. Repeat the process and select <tt class="docutils literal"><span class="pre">glds90ag60.asc</span></tt> grid as the layer to
 add.</li>
 </ol>
-<img alt="../_images/616.png" class="align-center" src="../_images/616.png" />
+<img alt="../_images/617.png" class="align-center" src="../_images/617.png" />
 <ol class="arabic simple" start="7">
 <li>Once again, choose <cite>EPSG:4326</cite> as the CRS.</li>
 </ol>
-<img alt="../_images/716.png" class="align-center" src="../_images/716.png" />
+<img alt="../_images/717.png" class="align-center" src="../_images/717.png" />
 <ol class="arabic simple" start="8">
 <li>Now you will see both the rasters loaded in QGIS. The raster is rendered as
 in grayscale, where darker pixels indicate lower values and lighter pixels
 indicate higher values.</li>
 </ol>
-<img alt="../_images/815.png" class="align-center" src="../_images/815.png" />
+<img alt="../_images/816.png" class="align-center" src="../_images/816.png" />
 <ol class="arabic simple" start="9">
 <li>Each pixel in the raster has a value assigned. This value is the population
 density for that grid. Click on <em class="guilabel">Identify Features</em> button to select the
@@ -416,7 +418,7 @@ of 1 where there was negative change and 0 where there wasn&#8217;t. Name the
 output layer as <tt class="docutils literal"><span class="pre">negative_pop_change_2000_1990</span></tt> and check the box next to
 <em class="guilabel">Add result to project</em>. Click OK.</li>
 </ol>
-<img alt="../_images/228.png" class="align-center" src="../_images/228.png" />
+<img alt="../_images/229.png" class="align-center" src="../_images/229.png" />
 <ol class="arabic simple" start="23">
 <li>Once the new layer is loaded, right-click on it and select
 <em class="guilabel">Properties</em>. In the <em class="guilabel">Transparency</em> tab, add 0 as the
@@ -452,7 +454,7 @@ pixels.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Actualizado por última vez en Apr 28, 2014.<br/>
+      Actualizado por última vez en May 04, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

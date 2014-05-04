@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Créditos de los Conjuntos de Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
@@ -216,6 +217,7 @@
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Créditos de los Conjuntos de Datos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
@@ -268,24 +270,24 @@ of GTOPO30 dataset.</p>
 <em class="guilabel">Search Criteria</em> tab, search for the place name <cite>Mt. Everest</cite>.
 Click on the result to select the location.</li>
 </ol>
-<img alt="../_images/1102.png" class="align-center" src="../_images/1102.png" />
+<img alt="../_images/1103.png" class="align-center" src="../_images/1103.png" />
 <ol class="arabic simple" start="2">
 <li>In the <em class="guilabel">Data Sets</em> tab, expand the <em class="guilabel">Digital Elevation</em>
 group, and check <em class="guilabel">GMTED2010</em>.</li>
 </ol>
-<img alt="../_images/235.png" class="align-center" src="../_images/235.png" />
+<img alt="../_images/236.png" class="align-center" src="../_images/236.png" />
 <ol class="arabic simple" start="3">
 <li>You can now skip to the <em class="guilabel">Results</em> tab and see the part of the
 dataset intersecting your search criteria. Click the <em class="guilabel">Download
 Options</em> button. You will have to log in to the site at this point. You can
 create a free account if you do not have one.</li>
 </ol>
-<img alt="../_images/324.png" class="align-center" src="../_images/324.png" />
+<img alt="../_images/325.png" class="align-center" src="../_images/325.png" />
 <ol class="arabic simple" start="4">
 <li>Select the <em class="guilabel">30 ARC SEC</em> option and click <em class="guilabel">Select
 Download Option</em>.</li>
 </ol>
-<img alt="../_images/420.png" class="align-center" src="../_images/420.png" />
+<img alt="../_images/421.png" class="align-center" src="../_images/421.png" />
 <p>You will now have a file named <cite>GMTED2010N10E060_300.zip</cite>. Elevation data is
 distributed in various raster formats such as ASC, BIL, GeoTiff etc.
 QGIS supports a wide <a class="reference external" href="http://www.gdal.org/formats_list.html">variety of raster formats</a> via the GDAL library. The GMTED
@@ -299,19 +301,19 @@ data comes as GeoTiff files which are contained in this zip archive.</p>
 <li>Open <em class="menuselection">Layer ‣ Add Raster Layer</em> and browse to the
 downloaded zip file.</li>
 </ol>
-<img alt="../_images/521.png" class="align-center" src="../_images/521.png" />
+<img alt="../_images/522.png" class="align-center" src="../_images/522.png" />
 <ol class="arabic simple" start="6">
 <li>There are many different files generated from different algorithms.
 For this tutorial, we will use the file named <cite>10n060e_20101117_gmted_mea300.tif</cite>.</li>
 </ol>
-<img alt="../_images/619.png" class="align-center" src="../_images/619.png" />
+<img alt="../_images/620.png" class="align-center" src="../_images/620.png" />
 <ol class="arabic simple" start="7">
 <li>You will see the terrain data rendered in the QGIS Canvas. Each pixel in the
 terrain raster represents the average elevation in meters at that location.
 The dark pixels represent areas with low altitude and lighter pixels
 represent areas with high altitude.</li>
 </ol>
-<img alt="../_images/719.png" class="align-center" src="../_images/719.png" />
+<img alt="../_images/720.png" class="align-center" src="../_images/720.png" />
 <ol class="arabic simple" start="8">
 <li>Let&#8217;s find our area of interest. From <a class="reference external" href="http://en.wikipedia.org/wiki/Mount_Everest">Wikipedia</a>,
 we find that the coordinates for our area of interest - Mt. Everest - is located
@@ -323,7 +325,7 @@ centered at this coordinate. To zoom in, Enter <cite>1:1000000</cite> in the <em
 and press Enter. You will see the viewport zoom to the area around the
 Himalayas.</li>
 </ol>
-<img alt="../_images/818.png" class="align-center" src="../_images/818.png" />
+<img alt="../_images/819.png" class="align-center" src="../_images/819.png" />
 <ol class="arabic simple" start="9">
 <li>We will now crop the raster to this area of interest. Select the Clipper
 tool from <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</li>
@@ -426,7 +428,7 @@ Extent</em>.</li>
 by exporting the contours layer as KML and viewing it in Google Earth.
 Right click on the contours layer, select <em class="guilabel">Save as..</em>.</li>
 </ol>
-<img alt="../_images/236.png" class="align-center" src="../_images/236.png" />
+<img alt="../_images/237.png" class="align-center" src="../_images/237.png" />
 <ol class="arabic simple" start="24">
 <li>Select <em class="guilabel">Keyhole Markup Language [KML]</em> as the
 <em class="guilabel">Format</em>. Name your output as <cite>contours.kml</cite> and click
@@ -460,7 +462,7 @@ Right click on the contours layer, select <em class="guilabel">Save as..</em>.</
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Actualizado por última vez en Apr 28, 2014.<br/>
+      Actualizado por última vez en May 04, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
