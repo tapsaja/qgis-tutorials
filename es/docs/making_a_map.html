@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Making a Map &mdash; QGIS Tutorials and Tips</title>
+    <title>Creando un Mapa &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -90,11 +90,11 @@
       role="menu"
       aria-labelledby="dLabelGlobalToc"><ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introducción</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Making a Map</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Creando un Mapa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importación de hojas de cálculo o archivos CSV</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Buscando y descargando datos de OpenStreetMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Estilos vectoriales básicos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calculating Line Lengths and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
@@ -130,10 +130,10 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Making a Map</a><ul>
-<li><a class="reference internal" href="#overview-of-the-task">Overview of the task</a></li>
-<li><a class="reference internal" href="#get-the-data">Get the data</a></li>
-<li><a class="reference internal" href="#procedure">Procedure</a></li>
+<li><a class="reference internal" href="#">Creando un Mapa</a><ul>
+<li><a class="reference internal" href="#overview-of-the-task">Resumen de la Tarea</a></li>
+<li><a class="reference internal" href="#get-the-data">Obtener los Datos</a></li>
+<li><a class="reference internal" href="#procedure">Procedimiento</a></li>
 </ul>
 </li>
 </ul>
@@ -191,13 +191,13 @@
 <h3>Tabla de Contenidos</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introducción</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Making a Map</a><ul class="simple">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Creando un Mapa</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importación de hojas de cálculo o archivos CSV</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Buscando y descargando datos de OpenStreetMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Estilos vectoriales básicos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calculating Line Lengths and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
@@ -240,47 +240,54 @@
       
 
   <div class="section" id="making-a-map">
-<h1>Making a Map<a class="headerlink" href="#making-a-map" title="Enlazar permanentemente con este título">¶</a></h1>
+<h1>Creando un Mapa<a class="headerlink" href="#making-a-map" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/making_a_map_a4.pdf">A4</a> <a class="reference external" href="../pdf/making_a_map_letter.pdf">Letter</a> ]</p>
-<p>Often one needs to create a map that can be printed or published. QGIS has a powerful tool called <em class="guilabel">Print Composer</em> that allows you to take your GIS layers and package them to create maps.</p>
+<p>Con frecuencia se necesita crear un mapa que se pueda ser impreso o publicado. QGIS tiene una poderosa herramienta llamada :guilabel: <cite>Compositor de Impresión</cite> que le permite tomar sus capas de SIG y empaquetarlas para crear mapas.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>The tutorial shows how to create a map of Japan with standard map elements like north arrow, scale bar, legend and label.</p>
+<h2>Resumen de la Tarea<a class="headerlink" href="#overview-of-the-task" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>El tutorial se muestra cómo crear un mapa de Japón con elementos estándares de mapa tales como la flecha de norte, la barra de escala, la leyenda y etiquetas.</p>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>We will use the Natural Earth dataset - specifically the Natural Earth Quick Start Kit that comes with beautifully styled global layers that can be loaded directly to QGIS.</p>
-<p>Download the <a class="reference external" href="http://kelso.it/x/nequickstart">Natural Earth Quickstart Kit</a>.</p>
-<p>Data Source <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
+<h2>Obtener los Datos<a class="headerlink" href="#get-the-data" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Vamos a utilizar el conjunto de datos &#8220;Natural Earth&#8221; específicamente el &#8220;Natural Earth Quick Start Kit&#8221; que se incluye con capas globales bellamente decoradas que se pueden ser cargadas directamente en QGIS.</p>
+<p>Descargue el  <a class="reference external" href="http://kelso.it/x/nequickstart">Natural Earth Quickstart Kit</a>.</p>
+<p>Fuente de Datos <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2>Procedimiento<a class="headerlink" href="#procedure" title="Enlazar permanentemente con este título">¶</a></h2>
 <ol class="arabic simple">
-<li>Download and extract the Natural Earth Quick Start Kit data. Open QGIS. Click on <em class="menuselection">File ‣ Open Project</em>.</li>
+<li><p class="first">Descargue y extraiga los datos del &#8220;Natural Earth Quick Start Kit&#8221;. QGIS Abrir. Haga click en: menuselection: <cite>Archivo -&gt; Abrir proyecto</cite>.</p>
+</li>
 </ol>
 <img alt="../_images/138.png" class="align-center" src="../_images/138.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the directory when you had extracted the natural earth data. You should see a file named <tt class="file docutils literal"><span class="pre">Natural_Earth_quick_start_for_QGIS.qgs</span></tt>. This is the project file that contains styled layers in QGIS Document format. Click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Ubique la carpeta donde extrajo el conjunto de datos de &#8220;Natural Earth&#8221;. Allí usted debería encontrar un archivo llamado  <tt class="file docutils literal"><span class="pre">Natural_Earth_quick_start_for_QGIS.qgs</span></tt>. Este es el archivo del proyecto que contiene las capas con estilos ya creados con el formato de documento de QGIS. Haga click en   <em class="guilabel">Abrir</em>.</p>
+</li>
 </ol>
 <img alt="../_images/215.png" class="align-center" src="../_images/215.png" />
 <ol class="arabic simple" start="3">
-<li>You would see a lot of layers in the table of content and a styled world map in the QGIS canvas. If you see errors displayed at the top of the canvas, click on the cross to close it.</li>
+<li><p class="first">Usted podrá ver una serie de capas en la tabla de contenido y un mapa del mundo con estilos en la pantalla de QGIS. Si ve notificaciones de error desplegadas en la parte superior, haga clic en la cruz para cerrarlas.</p>
+</li>
 </ol>
 <img alt="../_images/313.png" class="align-center" src="../_images/313.png" />
 <ol class="arabic simple" start="4">
-<li>In this tutorial, we will make a map of Japan. Click the <em class="guilabel">Zoom In</em> button and draw a rectangle around Japan to zoom to the area.</li>
+<li><p class="first">En este tutorial vamos a hacer un mapa de Japón. Haga clic en el botón <em class="guilabel">Acercar</em> y dibuje un rectángulo alrededor de Japón para ampliar a la zona.</p>
+</li>
 </ol>
 <img alt="../_images/411.png" class="align-center" src="../_images/411.png" />
 <ol class="arabic simple" start="5">
-<li>Once you are centered around the area of interest, click on the <em class="guilabel">New Print Composer</em> button. It is also accessible by <em class="menuselection">Project ‣ New Print Composer</em>.</li>
+<li><p class="first">Una vez el mapa esté centrado en el área de interés, haga click en el botón <em class="guilabel">Nuevo Diseñador de Impresiones</em>. También es accesible a través de   <em class="menuselection">Proyecto ‣ Nuevo Diseñador de Impresiones</em>.</p>
+</li>
 </ol>
 <img alt="../_images/511.png" class="align-center" src="../_images/511.png" />
 <ol class="arabic simple" start="6">
-<li>You will be prompted to enter a title for the composer. Enter &#8216;Japan map&#8217; and click <em class="guilabel">Ok</em>.</li>
+<li><p class="first">Aparecerá una ventana donde se le preguntará el título para la creación del mapa. Ingrese &#8220;mapa de japón&#8221; y haga click en <em class="guilabel">Ok</em>.</p>
+</li>
 </ol>
 <img alt="../_images/610.png" class="align-center" src="../_images/610.png" />
 <ol class="arabic simple" start="7">
-<li>In the Print Composer window, click on <em class="guilabel">Zoom full</em> to display the full extent of the Layout.</li>
+<li><p class="first">En la ventana del compositor de impresión haga click en  <em class="guilabel">Zoom full</em> para despleguar la extensión completa del mapa.</p>
+</li>
 </ol>
 <img alt="../_images/79.png" class="align-center" src="../_images/79.png" />
 <ol class="arabic simple" start="8">
@@ -352,7 +359,8 @@
 </ol>
 <img alt="../_images/242.png" class="align-center" src="../_images/242.png" />
 <ol class="arabic simple" start="25">
-<li>Save the image in the format of your liking. Below is the exported PNG image.</li>
+<li><p class="first">Guarde la imagen en el formato de su preferencia. A continuación encuentra la imagen PNG exportada</p>
+</li>
 </ol>
 <img alt="../_images/252.png" class="align-center" src="../_images/252.png" />
 </div>
@@ -378,7 +386,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Actualizado por última vez en May 04, 2014.<br/>
+      Actualizado por última vez en May 06, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
