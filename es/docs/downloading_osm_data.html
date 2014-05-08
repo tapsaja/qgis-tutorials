@@ -188,7 +188,7 @@
 <div class="g-person" data-width="200" data-href="//plus.google.com/116912222767108657277" data-theme="dark" data-showcoverphoto="false" data-rel="author"></div>
 
 
-<h3>Tabla de Contenidos</h3>
+<h3>Índice de contenidos</h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introducción</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Creando un Mapa</a></li>
@@ -242,7 +242,7 @@
   <div class="section" id="searching-and-downloading-openstreetmap-data">
 <h1>Buscando y descargando datos de OpenStreetMap<a class="headerlink" href="#searching-and-downloading-openstreetmap-data" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/downloading_osm_data_a4.pdf">A4</a> <a class="reference external" href="../pdf/downloading_osm_data_letter.pdf">Letter</a> ]</p>
-<p>Obtener datos de alta calidad es esencial para cualquier tarea en GIS. Una gran fuente de datos gratis y licenciados abiertamente es <a class="reference external" href="http://www.openstreetmap.org/">OpenStreetMap(OSM)</a> . La base de datos de OSM consiste de calles, datos locales  y polígonos de construcciones. El acceso a la obtención de datos de OSM en un formato GIS está integrada en QGIS. Este tutorial explica el proceso para buscar, descargar y usar datos de OSM en QGIS.</p>
+<p>Obtener datos de alta calidad es esencial para cualquier tarea en SIG. Una gran fuente de datos gratis y licenciados abiertamente es <a class="reference external" href="http://www.openstreetmap.org/">OpenStreetMap(OSM)</a> . La base de datos de OSM consiste de calles, datos locales  y polígonos de construcciones. El acceso a la obtención de datos de OSM en un formato SIG está integrada en QGIS. Este tutorial explica el proceso para buscar, descargar y usar datos de OSM en QGIS.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Resumen de la tarea<a class="headerlink" href="#overview-of-the-task" title="Enlazar permanentemente con este título">¶</a></h2>
 <p>Buscar <em>Londres</em> en la base de datos de OSM, navegar y seleccionar una parte de la ciudad y extraer todas las ubicaciones de pubs como un shapefile.</p>
@@ -299,7 +299,10 @@
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
-<p class="last">Ahora que no necesitamos la funcionalidad de <strong>OSM Place Search</strong>, así que puedes clickear el botón para sacarlo de la ventana principal. Si necesitas usarlo de nuevo, puedes habilitarlo desde  <em class="menuselection">Configuración ‣ Paneles ‣ OSM place search...</em>.</p>
+<p class="last">Now that we do not need the <strong>OSM Place Search</strong> functionality, you can
+click the close button to remove it from the main window. If you need to use
+it again, you can enable it from  <em class="menuselection">View ‣ Panels ‣ OSM
+place search...</em> (Windows) or <em class="menuselection">Settings ‣ Panels ‣ OSM place search...</em> (Linux).</p>
 </div>
 <img alt="../_images/96.png" class="align-center" src="../_images/96.png" />
 <ol class="arabic simple" start="10">
@@ -313,8 +316,20 @@
 </ol>
 <img alt="../_images/1111.png" class="align-center" src="../_images/1111.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">El archivo <tt class="docutils literal"><span class="pre">london.osm.db</span></tt> contiene todos los tipos de características de la base de datos de OSM - puntos, líneas y polígonos. Las capas GIS contienen típicamente solo un tipo de característica, así que necesitas elegir una. Como estamos interesados en las ubicaciones puntuales de pubs, aquí necesitas elegir <em class="guilabel">Puntos (nodos)</em> como el <em class="guilabel">Tipo de exportación</em>. Elegirías <em class="guilabel">Polilíneas (vías abiertas)</em> si quieres obtener la red de caminos. Nombra la <em class="guilabel">Nombre de la capa de salida</em> como <tt class="docutils literal"><span class="pre">london_points</span></tt> Los datos GIS tienen 2 partes: ubicación y atributos. También estamos interesados en el <strong>nombre</strong> del pub - no solo su ubicación, así que necesitamos exportar esa información también. Clickea en <em class="guilabel">Cargar de la base de datos</em> bajo la sección <em class="guilabel">Etiquetas exportadas</em>. Esto obtendrá todos los atributos desde el archivo <tt class="docutils literal"><span class="pre">london.osm.db</span></tt>. Selecciona las etiquetas <em class="guilabel">name</em> y <em class="guilabel">amenity</em>. Mira <cite>OSM Tags &lt;http://wiki.openstreetmap.org/wiki/Tags&gt;`_para aprender más sobre el significado de cada atributo. Asegúrate que :guilabel:`Cargar en la vista del mapa cuando se termine</cite> está seleccionado y clickea <em class="guilabel">Aceptar</em>.</p>
-</li>
+<li>The <tt class="docutils literal"><span class="pre">london.osm.db</span></tt> file contains all feature types in the OSM database -
+Points, Lines and Polygons. GIS layers typically contain only one type of
+feature, so you need to choose one. Since we are interested in point
+locations of pubs, here you need to choose <em class="guilabel">Point (nodes)</em> as the
+<em class="guilabel">Export type</em>. You would choose <em class="guilabel">Polylines (open ways)</em>
+if you wanted to get the road network. Name the <em class="guilabel">Output layer
+name</em> as <tt class="docutils literal"><span class="pre">london_points</span></tt>. GIS data has 2 parts to it - location and
+attributes. We are also interested in the <strong>name</strong> of the pub - not just
+its location, so we need to export that information as well. Click on
+<em class="guilabel">Load from DB</em> under <em class="guilabel">Exported tags</em> section. This will
+fetch all attributes from the <tt class="docutils literal"><span class="pre">london.osm.db</span></tt> file. Check
+<em class="guilabel">name</em> and <em class="guilabel">amenity</em> tags. See <a class="reference external" href="http://wiki.openstreetmap.org/wiki/Tags">OSM Tags</a> to learn more about what
+each attribute means. Make sure the <em class="guilabel">Load into canvas when
+finished</em> is checked, and click <em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/126.png" class="align-center" src="../_images/126.png" />
 <ol class="arabic simple" start="13">
@@ -333,27 +348,25 @@
 </ol>
 <img alt="../_images/156.png" class="align-center" src="../_images/156.png" />
 <ol class="arabic simple" start="16">
-<li>Back in the QGIS Canvas, you will see some points highlighted in yellow.
-These are the result of our query. Right-click the <tt class="docutils literal"><span class="pre">london_points</span></tt> layer
-and choose <em class="guilabel">Save Selection As...</em>.</li>
+<li><p class="first">De vuelta en la ventana de QGIS, verás algunos puntos destacados en amarillo. Estos son el resultado de nuestra solicitud. Click derecho en la capa <tt class="docutils literal"><span class="pre">london_points</span></tt> y elige <em class="guilabel">Guardar selección como...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/166.png" class="align-center" src="../_images/166.png" />
 <ol class="arabic simple" start="17">
-<li>In te <em class="guilabel">Save vector layer as...</em> dialog, enter the name of the
+<li>In the <em class="guilabel">Save vector layer as...</em> dialog, enter the name of the
 output file as <tt class="docutils literal"><span class="pre">london_pubs.shp</span></tt>. Leave all other options as they are and
 make sure the <em class="guilabel">Add saved file to map</em> option is checked. Click
 <em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/176.png" class="align-center" src="../_images/176.png" />
 <ol class="arabic simple" start="18">
-<li>You will see a new layer named <tt class="docutils literal"><span class="pre">london_pubs</span></tt> in the QGIS canvas. uncheck
+<li>You will see a new layer named <tt class="docutils literal"><span class="pre">london_pubs</span></tt> in the QGIS canvas. Uncheck
 the <tt class="docutils literal"><span class="pre">london_points</span></tt> layer as we don&#8217;t need that anymore.</li>
 </ol>
 <img alt="../_images/186.png" class="align-center" src="../_images/186.png" />
 <ol class="arabic simple" start="19">
-<li>The extraction of the pubs shapefile layer is now complete. You can use the
-<em class="guilabel">Identify</em> tool to click on any of the point as see its
-attributes.</li>
+<li><p class="first">Ahora está completa la extracción de la capa del shapefile de los pubs. Puedes usar la herramienta <em class="guilabel">Identificar</em> para clickear en cualquier punto y ver sus atributos.</p>
+</li>
 </ol>
 <img alt="../_images/194.png" class="align-center" src="../_images/194.png" />
 </div>
@@ -379,7 +392,7 @@ attributes.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Actualizado por última vez en May 07, 2014.<br/>
+      Actualizado por última vez en May 08, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
