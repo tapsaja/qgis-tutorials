@@ -113,6 +113,7 @@
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS Learning Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
@@ -219,6 +220,7 @@
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS Learning Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
@@ -279,55 +281,55 @@ data.</p>
 <ol class="arabic simple" start="2">
 <li>Browse to the downloaded zip file <cite>tl_2013_06_tract.zip</cite> and select it. QGIS can open zip files directly so no need to uncompress it first.</li>
 </ol>
-<img alt="../_images/225.png" class="align-center" src="../_images/225.png" />
+<img alt="../_images/226.png" class="align-center" src="../_images/226.png" />
 <ol class="arabic simple" start="3">
 <li>Select the <cite>tl_2013_06_tract.shp</cite> layer and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/318.png" class="align-center" src="../_images/318.png" />
+<img alt="../_images/319.png" class="align-center" src="../_images/319.png" />
 <ol class="arabic simple" start="4">
 <li>You will the census tracts loaded into QGIS.</li>
 </ol>
-<img alt="../_images/415.png" class="align-center" src="../_images/415.png" />
+<img alt="../_images/416.png" class="align-center" src="../_images/416.png" />
 <ol class="arabic simple" start="5">
 <li>Right-click on the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/516.png" class="align-center" src="../_images/516.png" />
+<img alt="../_images/517.png" class="align-center" src="../_images/517.png" />
 <ol class="arabic simple" start="6">
 <li>Examine the attributes of the tracts shapefile. To join a table with this shapefile, we need a unique and common attribute for each feature. In this case, the <strong>GEOID</strong> field is a unique identifier for each tract and can be used to <cite>link</cite> this shapefile with any other table containing the same ID.</li>
 </ol>
-<img alt="../_images/615.png" class="align-center" src="../_images/615.png" />
+<img alt="../_images/616.png" class="align-center" src="../_images/616.png" />
 <ol class="arabic simple" start="7">
 <li>Open the CSV file <cite>ca_tracts_pop.csv</cite> in a text editor. You will notice that each row of the file contains information about a tract along with the unique identifier we saw in the previous step. Note that this field is called <strong>GEO.id2</strong> in the CSV. You will also note that the <strong>D001</strong> column has population value for each of the census tract.</li>
 </ol>
-<img alt="../_images/714.png" class="align-center" src="../_images/714.png" />
+<img alt="../_images/715.png" class="align-center" src="../_images/715.png" />
 <ol class="arabic simple" start="8">
 <li>We could import this csv file without any further action and it would be imported. But, the default type of each column would be a <em>String</em> (text). That is ok except for the <cite>D001</cite> field which contains numbers for the population. Having those imported as text would not allow us to run any mathematical operations on this column. To tell QGIS to import the field as a number, we need to create a <cite>sidecar</cite> file with a <cite>.csvt</cite> extension. This file will have only 1 row specifying data types for each column. Save this file as <cite>ca_tracts_pop.csvt</cite> in the same directory as the original <cite>.csv</cite> file. You can also <a class="reference download internal" href="../_downloads/ca_tracts_pop.csvt"><tt class="xref download docutils literal"><span class="pre">download</span> <span class="pre">the</span> <span class="pre">csvt</span> <span class="pre">file</span> <span class="pre">from</span> <span class="pre">here.</span></tt></a></li>
 </ol>
-<img alt="../_images/813.png" class="align-center" src="../_images/813.png" />
+<img alt="../_images/814.png" class="align-center" src="../_images/814.png" />
 <ol class="arabic simple" start="9">
 <li>Now we are ready to import the CSV file to QGIS. Go to <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</li>
 </ol>
-<img alt="../_images/912.png" class="align-center" src="../_images/912.png" />
+<img alt="../_images/913.png" class="align-center" src="../_images/913.png" />
 <ol class="arabic simple" start="10">
 <li>Browse to the folder containing the CSV file and select it. Make sure you have selected <em class="guilabel">File format</em> as <em class="guilabel">CSV (comma separated values)</em>. Since we are importing this as a table, we must specify that our file contains no geometry. Select the <em class="guilabel">No geometry (attribute only table)</em> option. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" />
+<img alt="../_images/1013.png" class="align-center" src="../_images/1013.png" />
 <ol class="arabic simple" start="11">
 <li>The CSV will now be imported as a table to QGIS.</li>
 </ol>
-<img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" />
+<img alt="../_images/1118.png" class="align-center" src="../_images/1118.png" />
 <ol class="arabic simple" start="12">
 <li>Select the <cite>tl_2013_06_tract</cite> layer. Right-click on it and select <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" />
+<img alt="../_images/1215.png" class="align-center" src="../_images/1215.png" />
 <ol class="arabic simple" start="13">
 <li>In the <em class="guilabel">Layer Properties</em> dialog, select the <em class="guilabel">Joins</em> tab. Click on the <cite>+</cite> button at the bottom to create a new table join.</li>
 </ol>
-<img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" />
+<img alt="../_images/1314.png" class="align-center" src="../_images/1314.png" />
 <ol class="arabic simple" start="14">
 <li>In the <em class="guilabel">Add vector join</em> dialog, select <cite>ca_tracts_pop</cite> as the <em class="guilabel">Join layer</em>. Next we have to select the field with unique ids in both the shapefile and the CSV. Select <cite>GEO.id2</cite> and <cite>GEOID</cite> as the <em class="guilabel">Join field</em> and <em class="guilabel">Target field</em> respectively. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
+<img alt="../_images/1413.png" class="align-center" src="../_images/1413.png" />
 <ol class="arabic simple" start="15">
 <li>Close the <em class="guilabel">Layer Properties</em> dialog and return to the main QGIS window. At this point, the fields from the CSV file are joined with the shapefile. Right-click on the <cite>tl_2013_06_tract</cite> layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>

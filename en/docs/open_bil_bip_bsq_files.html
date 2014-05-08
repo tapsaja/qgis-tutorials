@@ -29,7 +29,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Find Neighbor Polygons in a Layer" href="find_neighbor_polygons.html" />
+    <link rel="next" title="Getting Started With Python Programming" href="getting_started_with_pyqgis.html" />
     <link rel="prev" title="Counting Number of Vertices in a Layer" href="counting_vertices.html" />
 
 <meta charset='utf-8'>
@@ -113,6 +113,7 @@
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS Learning Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
@@ -148,7 +149,7 @@
     </a>
   </li>
   <li>
-    <a href="find_neighbor_polygons.html" title="Next Chapter: Find Neighbor Polygons in a Layer"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Find Neighbor Po... &raquo;</span>
+    <a href="getting_started_with_pyqgis.html" title="Next Chapter: Getting Started With Python Programming"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Getting Started ... &raquo;</span>
     </a>
   </li>
               
@@ -215,6 +216,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Open BIL, BIP or BSQ files in QGIS</a><ul class="simple">
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS Learning Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
@@ -280,7 +282,7 @@ There is no hdr file.</li>
 <li>Note that if you try to open the <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt> file in
 QGIS as it is, you will get an error message.</li>
 </ol>
-<img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
+<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
 <ol class="arabic simple" start="3">
 <li>To overcome this error, we will create a header file with <tt class="docutils literal"><span class="pre">.hdr</span></tt> extension.
 The header file contains information about the dataset and how it is organized.
@@ -290,7 +292,7 @@ clues. Some of the information can be guessed if you do not know it. In case
 of this dataset, the data download page links to the <a class="reference external" href="ftp://ftp.glcf.umd.edu/glcf/Global_Land_Cover/Global/1deg/gl-latlong-1deg-landcover.glcf">metadata</a>.
 Download the metadata and open it.</li>
 </ol>
-<img alt="../_images/315.png" class="align-center" src="../_images/315.png" />
+<img alt="../_images/316.png" class="align-center" src="../_images/316.png" />
 <ol class="arabic simple" start="4">
 <li>The .hdr file needs to be a plain text file in the following format. Some of
 these parameters are given to us and some needs to be worked out. <a class="reference external" href="http://www.gdal.org/frmt_various.html">Learn
@@ -321,20 +323,20 @@ is a safe bet. From metadata again, Pixel Format is Byte, so <strong>nbits</stro
 equal to 8 and pixeltype will be <strong>byte_unsigned</strong>. We do not have
 information about the byteorder, so leave it as msbfirst.</li>
 </ol>
-<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
+<img alt="../_images/514.png" class="align-center" src="../_images/514.png" />
 <ol class="arabic simple" start="6">
 <li>Now that you have the header file, put it in the same directory as
 <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt>. Then in QGIS, go to
 <em class="menuselection">Layer ‣ Add Raster Layer</em>. Select
 <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt> as your input and click <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
+<img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
 <ol class="arabic simple" start="7">
 <li>In the next screen, you may be prompted to choose a CRS. Since the data is
 in Lat/Long, choose <strong>WGS84 EPSG:4326</strong> as your CRS. Now you will see the
 dataset loaded in QGIS.</li>
 </ol>
-<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
+<img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
 </div>
 </div>
 
