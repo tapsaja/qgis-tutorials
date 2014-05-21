@@ -108,6 +108,8 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS Learning Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Créditos de los Conjuntos de Datos</a></li>
@@ -198,12 +200,12 @@ of free data for New York city.</p>
 <li>Download the <a class="reference external" href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm">Borough Boundaries</a>
 zip file using the Export option on the portal.</li>
 </ol>
-<img alt="../_images/160.png" class="align-center" src="../_images/160.png" />
+<img alt="../_images/170.png" class="align-center" src="../_images/170.png" />
 <ol class="arabic simple" start="2">
 <li>Download the <a class="reference external" href="https://data.cityofnewyork.us/Health/Nursing-Homes/9tqc-rnkr">Nursing Homes</a>  zip file
 using the Export option on the portal.</li>
 </ol>
-<img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
+<img alt="../_images/226.png" class="align-center" src="../_images/226.png" />
 <p>For convenience, the version of datasets used in this tutorial can be
 downloaded directly from the links below:</p>
 <p>Download <a class="reference download internal" href="../_downloads/nybb_12c.zip"><tt class="xref download docutils literal"><span class="pre">Borough</span> <span class="pre">Boundaries</span></tt></a></p>
@@ -215,29 +217,29 @@ downloaded directly from the links below:</p>
 <li>Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>. Browse to the downloaded
 zip file <tt class="docutils literal"><span class="pre">nybb_12c.zip</span></tt> and select <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/317.png" class="align-center" src="../_images/317.png" />
+<img alt="../_images/319.png" class="align-center" src="../_images/319.png" />
 <ol class="arabic simple" start="4">
 <li>Select the layer <tt class="docutils literal"><span class="pre">nybb.shp</span></tt> and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
+<img alt="../_images/415.png" class="align-center" src="../_images/415.png" />
 <ol class="arabic simple" start="5">
 <li>Repeat the steps 3 and 4 for the another file <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.zip</span></tt>
 and load the <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.shp</span></tt> layer. Once both the layers are
 loaded, right-click on the <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> layer and select
 <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/515.png" class="align-center" src="../_images/515.png" />
+<img alt="../_images/516.png" class="align-center" src="../_images/516.png" />
 <ol class="arabic simple" start="6">
 <li>Examine the attributes available for each feature. Since our task is to
 calculate the total nursing home capacity for each borough, we can use the
 attribute <strong>Capacity</strong> which can join to the boundaries layer.</li>
 </ol>
-<img alt="../_images/614.png" class="align-center" src="../_images/614.png" />
+<img alt="../_images/615.png" class="align-center" src="../_images/615.png" />
 <ol class="arabic simple" start="7">
 <li>Go to <em class="menuselection">Vector ‣ Data Mangement Tools ‣ Join attributes by
 location</em>.</li>
 </ol>
-<img alt="../_images/713.png" class="align-center" src="../_images/713.png" />
+<img alt="../_images/714.png" class="align-center" src="../_images/714.png" />
 <ol class="arabic simple" start="8">
 <li>The <em class="guilabel">Target vector layer</em> is the one we want to add the attributes
 to. In our case, this will be the burrounds boundary <tt class="docutils literal"><span class="pre">nybb</span></tt> layer. The
@@ -247,7 +249,7 @@ homes, select <em class="guilabel">Take summary of intersecting features</em> an
 <em class="guilabel">Sum</em>. Name the output file as <tt class="docutils literal"><span class="pre">nyc_borough_join.shp</span></tt>. In the
 <em class="guilabel">Output table</em> select <em class="guilabel">Keep all records`</em>.</li>
 </ol>
-<img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
+<img alt="../_images/813.png" class="align-center" src="../_images/813.png" />
 <ol class="arabic simple" start="9">
 <li>Once the process finishes, select <em class="guilabel">Yes</em> when asked if you want to
 add the layer to TOC. The new layer <tt class="docutils literal"><span class="pre">nyc_borough_join</span></tt> would have the
@@ -255,36 +257,36 @@ features from <tt class="docutils literal"><span class="pre">nybb</span></tt> la
 <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> layer. Right-click on the layer and select
 <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
+<img alt="../_images/912.png" class="align-center" src="../_images/912.png" />
 <ol class="arabic simple" start="10">
 <li>You will see a column <strong>SUMCapacit</strong> in the attribute table. This is the
 sum of the <strong>Capacity</strong> attribute for the nursing homes that fall within
 each borough feature.</li>
 </ol>
-<img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
+<img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" />
 <ol class="arabic simple" start="11">
 <li>This is the answer we are looking for. But there are extra columns that we
 do not need in our output. Let&#8217;s clean up our output. Click on the
 <em class="guilabel">Toggle editing</em> button and then the <em class="guilabel">Delete column</em>
 button.</li>
 </ol>
-<img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
+<img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" />
 <ol class="arabic simple" start="12">
 <li>Press <tt class="kbd docutils literal"><span class="pre">Control-A</span></tt> to select all columns in the <em class="guilabel">Delete
 Attributes</em> dialog. Next hold the <tt class="kbd docutils literal"><span class="pre">Control</span></tt> key and de-select the
 columns you want to keep. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
+<img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" />
 <ol class="arabic simple" start="13">
 <li>In the attribute table, click <em class="guilabel">Toggle editing</em> button again to
 save the changes.</li>
 </ol>
-<img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
+<img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" />
 <ol class="arabic simple" start="14">
 <li>Back in the QGIS Canvas, use the <em class="guilabel">Identify</em> tool to verify that
 the output file has the desired attributes for each burough feature.</li>
 </ol>
-<img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
+<img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
 </div>
 </div>
 
@@ -308,7 +310,7 @@ the output file has the desired attributes for each burough feature.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Actualizado por última vez en May 16, 2014.<br/>
+      Actualizado por última vez en May 21, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
