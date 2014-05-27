@@ -101,6 +101,7 @@
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
@@ -191,7 +192,7 @@
 <ol class="arabic simple">
 <li>Once you have downloaded the data, open QGIS. Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
 </ol>
-<img alt="../_images/1105.png" class="align-center" src="../_images/1105.png" />
+<img alt="../_images/1106.png" class="align-center" src="../_images/1106.png" />
 <ol class="arabic simple" start="2">
 <li>Click on <em class="guilabel">Browse</em> and navigate to the folder where you downloaded the data.</li>
 </ol>
@@ -199,63 +200,63 @@
 <ol class="arabic simple" start="3">
 <li>Locate the downloaded zip file <cite>ne_10m_populated_places_simple.zip</cite>. You do not need to unzip the file. QGIS has the ability to read zip files directly. Select the file and click <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/330.png" class="align-center" src="../_images/330.png" />
+<img alt="../_images/333.png" class="align-center" src="../_images/333.png" />
 <ol class="arabic simple" start="4">
 <li>You will get a dialog asking you to select the layer to open. Select <cite>ne_10m_populated_places_simple.shp</cite> and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/424.png" class="align-center" src="../_images/424.png" />
+<img alt="../_images/425.png" class="align-center" src="../_images/425.png" />
 <ol class="arabic simple" start="5">
 <li>The selected layer will now be loaded in QGIS and you will see many points representing the populated places of the world.</li>
 </ol>
-<img alt="../_images/525.png" class="align-center" src="../_images/525.png" />
+<img alt="../_images/526.png" class="align-center" src="../_images/526.png" />
 <ol class="arabic simple" start="6">
 <li>To see the attributes of right-click the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/623.png" class="align-center" src="../_images/623.png" />
+<img alt="../_images/624.png" class="align-center" src="../_images/624.png" />
 <ol class="arabic simple" start="7">
 <li>Explore the various attributes and their values.</li>
 </ol>
-<img alt="../_images/723.png" class="align-center" src="../_images/723.png" />
+<img alt="../_images/724.png" class="align-center" src="../_images/724.png" />
 <ol class="arabic simple" start="8">
 <li>We are interested in the population of each feature, so <cite>pop_max</cite> is the field we are looking for. You can click twice on the field header to sort the column in descending order.</li>
 </ol>
-<img alt="../_images/822.png" class="align-center" src="../_images/822.png" />
+<img alt="../_images/823.png" class="align-center" src="../_images/823.png" />
 <ol class="arabic simple" start="9">
 <li>Now we are ready to perform our query on these attributes. <em class="guilabel">Select features using an expression</em>.</li>
 </ol>
-<img alt="../_images/921.png" class="align-center" src="../_images/921.png" />
+<img alt="../_images/922.png" class="align-center" src="../_images/922.png" />
 <ol class="arabic simple" start="10">
 <li>In the <em class="guilabel">Select By Expression</em> window, expand the <em class="guilabel">Fields and Values</em> section and double-click the <cite>pop_max</cite> label. You will notice that it is added to the expression section at the bottom. If you aren&#8217;t sure about the field values, you can click the <em class="guilabel">Load all unique values</em> to see what the attribute values are present in the dataset. For this exercise, we are looking to find all features that have a population greater than 10,00,000. So complete the expression as <cite>&#8220;pop_max&#8221; &gt; 1000000</cite> and click <em class="guilabel">Select</em>.</li>
 </ol>
-<img alt="../_images/1021.png" class="align-center" src="../_images/1021.png" />
+<img alt="../_images/1022.png" class="align-center" src="../_images/1022.png" />
 <ol class="arabic simple" start="11">
 <li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. You will notice that a subset of points is now rendered in yellow. This is the result of our query and you are seeing all places from the dataset that have the <cite>pop_max</cite> attribute value greater than 10,00,000.</li>
 </ol>
-<img alt="../_images/1125.png" class="align-center" src="../_images/1125.png" />
+<img alt="../_images/1126.png" class="align-center" src="../_images/1126.png" />
 <ol class="arabic simple" start="12">
 <li>The goal for this exercise is to find the places that are country capitals. Let’s refine our query to select only those places which are capitals. Click on the <em class="guilabel">Select feature using an expression</em> button in the attribute table.</li>
 </ol>
-<img alt="../_images/1221.png" class="align-center" src="../_images/1221.png" />
+<img alt="../_images/1222.png" class="align-center" src="../_images/1222.png" />
 <ol class="arabic simple" start="13">
 <li>The field containing this data is <cite>adm0cap</cite>. The value <cite>1</cite> indicates that the place is a capital. Enter the expression as <cite>&#8220;adm0cap&#8221; = 1</cite>. Since we want to  search only within our previous query results, select <em class="guilabel">Select within selection</em>.</li>
 </ol>
-<img alt="../_images/1320.png" class="align-center" src="../_images/1320.png" />
+<img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
 <ol class="arabic simple" start="14">
 <li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. Now you will see a smaller subset of the points selected. This is the result of the second query and shows all places from the dataset that are country capitals as well as have population greater than 10,00,000.</li>
 </ol>
-<img alt="../_images/1419.png" class="align-center" src="../_images/1419.png" />
+<img alt="../_images/1420.png" class="align-center" src="../_images/1420.png" />
 <ol class="arabic simple" start="15">
 <li>Let&#8217;s save these results to a separate layer. Right-click on the layer and select <em class="guilabel">Save Selection As</em>.</li>
 </ol>
-<img alt="../_images/1516.png" class="align-center" src="../_images/1516.png" />
+<img alt="../_images/1517.png" class="align-center" src="../_images/1517.png" />
 <ol class="arabic simple" start="16">
 <li>Keep the format selection as <cite>ESRI Shapefile</cite> and enter the output name as <cite>large_capital_cities.shp</cite>. Check the box next to <em class="guilabel">Add saved file to map</em> and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1616.png" class="align-center" src="../_images/1616.png" />
+<img alt="../_images/1617.png" class="align-center" src="../_images/1617.png" />
 <ol class="arabic simple" start="17">
 <li>The newly created shapefile will be automaticlally loaded into QGIS. Turn off the populated places layer by un-checking the box next to it. Now, you will see only the features from the newly created layer containing capital cities of the world that have population greater than 10,00,000.</li>
 </ol>
-<img alt="../_images/1715.png" class="align-center" src="../_images/1715.png" />
+<img alt="../_images/1716.png" class="align-center" src="../_images/1716.png" />
 </div>
 </div>
 
@@ -279,7 +280,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on May 26, 2014.<br/>
+      Last updated on May 27, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
