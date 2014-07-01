@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Calculating Line Lengths and Statistics &mdash; QGIS Tutorials and Tips</title>
+    <title>Lengten van lijnen en statistieken berekenen &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -31,7 +31,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Basic Raster Styling and Analysis" href="raster_styling_and_analysis.html" />
-    <link rel="prev" title="Basic Vector Styling" href="basic_vector_styling.html" />
+    <link rel="prev" title="Basis opmaken van vectoren" href="basic_vector_styling.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -86,24 +86,24 @@
 <li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Calculating Line Lengths and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Zoeken en downloaden van gegevens van OpenStreetMap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basis opmaken van vectoren</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Lengten van lijnen en statistieken berekenen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Geo-verwijzingen voor satellietbeelden</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitizing Map Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Heatmaps maken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Massa verwerken met behulp van Framework Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
@@ -123,7 +123,7 @@
               
                 
   <li>
-    <a href="basic_vector_styling.html" title="Previous Chapter: Basic Vector Styling"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Basic Vector Sty...</span>
+    <a href="basic_vector_styling.html" title="Previous Chapter: Basis opmaken van vectoren"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Basis opmaken va...</span>
     </a>
   </li>
   <li>
@@ -175,172 +175,135 @@
       
 
   <div class="section" id="calculating-line-lengths-and-statistics">
-<h1>Calculating Line Lengths and Statistics<a class="headerlink" href="#calculating-line-lengths-and-statistics" title="Permalink naar deze titel">¶</a></h1>
+<h1>Lengten van lijnen en statistieken berekenen<a class="headerlink" href="#calculating-line-lengths-and-statistics" title="Permalink naar deze titel">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/calculating_line_lengths_a4.pdf">A4</a> <a class="reference external" href="../pdf/calculating_line_lengths_letter.pdf">Letter</a> ]</p>
-<p>QGIS has built-in functions to calculate various properties based on the
-geometry of the feature - such as length, area, perimeter etc. This tutorial
-will show how to use <strong>Field Calculator</strong> to add a column with a value
-representing length of each feature.</p>
+<p>QGIS heeft ingebouwde functies om verschillende eigenschappen te berekenen, gebaseerd op de geometrie van het object - zoals lengte, gebied, omtrek etc. Deze handleiding zal weergeven hoe <strong>Field Calculator</strong> gebruikt kan worden om een kolom toe te voegen met een waarde die de lengte van elk object vertegenwoordigt.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
-<p>We will use a polyline shapefile of railroads in North America and try to
-determine the total length of railroads in the United States.</p>
+<h2>Overzicht van de taak<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
+<p>We zullen een polyline shapefile gebruiken van spoorwegen in Noord Amerika en proberen de totale lengte te bepalen van spoorwegen in de Verenigde Staten.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
+<h3>Andere vaardigheden die u zult leren<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
 <ul class="simple">
-<li>Using expressions to select features.</li>
-<li>Re-projecting a layer from Geographic to Projected Coordinate Reference
-System(CRS).</li>
-<li>Viewing statistics for values of an attribute in a layer.</li>
+<li><p class="first">Uitdrukkingen gebruiken om objecten te selecteren.</p>
+</li>
+<li><p class="first">Opnieuw projecteren van een laag vanuit geografisch naar geprojecteerd Coordinate Reference System(CRS).</p>
+</li>
+<li><p class="first">Statistieken bekijken voor waarden van een attribuut in een laag.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
-<p><a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/railroads/">Natural Earth</a>
-has a public domain railroads dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads_north_america.zip">North America supplement</a>
-zip file from the portal.</p>
+<h2>De gegevens ophalen<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
+<p><a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/railroads/">Natural Earth</a> heeft een gegevensset voor spoorwegen in het publieke domein. Download het <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads_north_america.zip">North America supplement</a> zip-bestand vanaf het portaal.</p>
 <p>For convenience, the version of railroad dataset used in this tutorial can be
 downloaded directly from the links below:</p>
 <p>Download <a class="reference download internal" href="../_downloads/ne_10m_railroads_north_america.zip"><tt class="xref download docutils literal"><span class="pre">North</span> <span class="pre">America</span> <span class="pre">supplement</span></tt></a></p>
-<p>Data Source <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
+<p>Gegevensbron <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink naar deze titel">¶</a></h2>
 <ol class="arabic simple">
-<li>Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Ga naar <em class="menuselection">Kaartlagen ‣ Vectorlaag toevoegen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/114.png" class="align-center" src="../_images/114.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.zip</span></tt> file and click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Blader naar het bestand <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.zip</span></tt> en klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/23.png" class="align-center" src="../_images/23.png" />
 <ol class="arabic simple" start="3">
-<li>In the <em class="guilabel">Select layers to add...</em> dialog, choose
-<tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.shp</span></tt> layer.</li>
+<li><p class="first">In het dialoogvenster <em class="guilabel">Selecteer lagen om toe te voegen...</em>, kies de laag <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.shp</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/33.png" class="align-center" src="../_images/33.png" />
 <ol class="arabic simple" start="4">
-<li>Once the layer is loaded, you will notice that the layer has lines
-representing railroads for all of North America. Since we want to calculate
-line lengths only for United States railroads, we need to select the lines
-that fall in the United States. Right-click on the layer and select
-<em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Als de laag eenmaal is geladen zult u opmerken dat de laag lijnen bevat die de spoorwegen voor geheel Noord-Amerika vertegenwoordigen. Omdat we de lengte van de lijnen alleen willen berekenen voor de Verenigde Staten, moeten we de lijnen selecteren die in de Verenigde Staten liggen. Klik met rechts op de laag en selecteer <em class="guilabel">Open attributentabel</em>.</p>
+</li>
 </ol>
 <img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
 <ol class="arabic simple" start="5">
-<li>The layer has an attribute called <em class="guilabel">sov_a3</em>. This is the 3 letter
-code for the country that a particular feature falls in. We can use the
-value of this attribute to select features that are in USA.</li>
+<li><p class="first">D laag heeft een attribuut genaamd <em class="guilabel">sov_a3</em>. Dit is de drieletterige code voor het land waar een bepaald object in valt. We kunnen de waarde van dit attribuur gebruiken om objecten te selecteren die in de VS vallen.</p>
+</li>
 </ol>
 <img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
 <ol class="arabic simple" start="6">
-<li>In the <em class="guilabel">Attribute Table</em> window, click the <em class="guilabel">Select
-features using an expression</em> button.</li>
+<li><p class="first">Klik, in het venster <em class="guilabel">Attributentabel</em>, op de knop <em class="guilabel">Selecteer objecten m.b.v. een reguliere expressie</em>.</p>
+</li>
 </ol>
 <img alt="../_images/63.png" class="align-center" src="../_images/63.png" />
 <ol class="arabic simple" start="7">
-<li>A new dialog <em class="guilabel">Select By Expression</em> will open. Find the attribute
-<em class="guilabel">sov_a3</em> under <em class="guilabel">Fields and Values</em> in the
-<em class="guilabel">Functions list</em> section. Double-click on it to add it to the
-<em class="guilabel">Expression</em> text area. Complete the expression by typing in
-<tt class="docutils literal"><span class="pre">&quot;sov_a3&quot;</span> <span class="pre">=</span> <span class="pre">'USA'</span></tt>. Click <em class="guilabel">Select</em> followed by
-<em class="guilabel">Close</em>.</li>
+<li><p class="first">A nieuw dialoogvenster <em class="guilabel">Selecteren met een Expressie</em> zal openen. Zoek naar het attribuut <em class="guilabel">sov_a3</em> onder <em class="guilabel">Velden en waarden</em> in het gedeelte <em class="guilabel">Functielijst</em>. Dubbelklik er op om het toe te voegen aan het tekstgebied <em class="guilabel">Expressie</em>. Voltooi de expressie door in te typen <tt class="docutils literal"><span class="pre">&quot;sov_a3&quot;</span> <span class="pre">=</span> <span class="pre">'USA'</span></tt>. Klik op <em class="guilabel">Selecteren</em> gevolgd door <em class="guilabel">Sluiten</em>.</p>
+</li>
 </ol>
 <img alt="../_images/73.png" class="align-center" src="../_images/73.png" />
 <ol class="arabic simple" start="8">
-<li>Back in the main QGIS window, you will see that all lines that fall in USA
-are selected and appear in yellow.</li>
+<li><p class="first">Terug in het hoofdvenster van QGIS zult u zien dat alle lijnen die in de VS vallen zijn geselecteerd en geel gekleurd zijn.</p>
+</li>
 </ol>
 <img alt="../_images/83.png" class="align-center" src="../_images/83.png" />
 <ol class="arabic simple" start="9">
-<li>Now let&#8217;s save our selection to a new shapefile. Right-click on the
-<tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> layer and select <em class="guilabel">Save
-Selection As...</em>.</li>
+<li><p class="first">Laten we nu onze selectie opslaan als een nieuw shapefile. Klik met rechts op de laag <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> en selecteer <em class="guilabel">Selectie opslaan als...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/93.png" class="align-center" src="../_images/93.png" />
 <ol class="arabic simple" start="10">
-<li>Click <em class="guilabel">Browse</em> and name the output file as <tt class="docutils literal"><span class="pre">usa_railroads.shp</span></tt>.
-We also want to change the CRS of the layer. Click on <em class="guilabel">Browse</em>
-next to <em class="guilabel">CRS</em>.</li>
+<li><p class="first">Klik op <em class="guilabel">Bladeren</em> en noem het uitvoerbestand <tt class="docutils literal"><span class="pre">usa_railroads.shp</span></tt>. We willen ook het CRS van de laag wijzigen. Klik op <em class="guilabel">Bladeren</em> naast <em class="guilabel">CRS</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Notitie</p>
-<p class="last">The built-in functions that use a feature&#8217;s geometry for calculation use the
-units of the layer&#8217;s CRS. Geographic Coordinate Reference System(CRS) such
-as <em>EPSG:4326</em> have <strong>degrees</strong> as units - so the length of the feature
-would be in <strong>degrees</strong> and area in <strong>square degrees</strong> - which is
-meaningless. You need to use a Projected Coordinate Reference System with
-units of <strong>meters</strong> or <strong>feet</strong> to perform such calculations.</p>
+<p class="last">De ingebouwde functies die de geometrie van een object gebruiken voor berekeningen gebruiken de maateenheid van het CRS van de laag. Geografische Coordinate Reference System(CRS) zoals <em>EPSG:4326</em> hebben <strong>graden</strong> als maateenheid - dus zou de lengte van het object in <strong>graden</strong> zijn en het gebied in <strong>vierkante graden</strong> - wat geen betekenis heeft. U moet een geprojecteerd Coordinate Reference System gebruiken met een maateenheid in <strong>meters</strong> of <strong>feet</strong> om dergelijke berekeningen uit te kunnen voeren.</p>
 </div>
 <img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
 <ol class="arabic simple" start="11">
-<li>Since we are interested in calculating length, let’s select an equidistance
-projection. Type <em class="guilabel">north america equ</em> in the <em class="guilabel">Filter</em>
-search box. In the results pane below, select
-<em class="guilabel">North_America_Equidistant_Conic EPSG:102010</em> as the CRS. Click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Omdat we zijn geïnteresseerd in het berekenen van lengte, selecteren we een equidistance-projectie. Typ <em class="guilabel">north america equ</em> in het zoekvak <em class="guilabel">Filter</em> search box. In het resultaatpaneel onderin, selecteer <em class="guilabel">North_America_Equidistant_Conic EPSG:102010</em> als het CRS. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
 <ol class="arabic simple" start="12">
-<li>In the <em class="guilabel">Save vector layer as...</em> dialog, check the <em class="guilabel">Add
-saved file to map</em> and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">In het dialoogvenster <em class="guilabel">Vectorlaag opslaan als...</em>, selecteer <em class="guilabel">Voeg opgeslagen bestand toe aan kaart</em> en klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/123.png" class="align-center" src="../_images/123.png" />
 <ol class="arabic simple" start="13">
-<li>Once the export process finishes, you will see a new layer
-<tt class="docutils literal"><span class="pre">usa_railroads</span></tt> loaded in QGIS. You can uncheck the box next to
-<tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> layer to turn it off as we don&#8217;t need it
-anymore.</li>
+<li><p class="first">Als het exportproces is voltooid zult u een nieuwe laag <tt class="docutils literal"><span class="pre">usa_railroads</span></tt> zien geladen in QGIS. U kunt het vakje naast de laag <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> uitschakelen omdat we die niet meer nodig hebben.</p>
+</li>
 </ol>
 <img alt="../_images/133.png" class="align-center" src="../_images/133.png" />
 <ol class="arabic simple" start="14">
-<li>Right-click on the <tt class="docutils literal"><span class="pre">usa_railroads</span></tt> layer and select <em class="guilabel">Open
-Attribute Table</em>.</li>
+<li><p class="first">Klik met rechts op de laag <tt class="docutils literal"><span class="pre">usa_railroads</span></tt> en selecteer <em class="guilabel">Open attributentabel</em>.</p>
+</li>
 </ol>
 <img alt="../_images/143.png" class="align-center" src="../_images/143.png" />
 <ol class="arabic simple" start="15">
-<li>Now it is time to add a column with length of each feature. Put the layer
-in editing mode by clicking on the <em class="guilabel">Toggle editing</em> button. Once
-in editing mode, click the <em class="guilabel">Open field calculator</em> button.</li>
+<li><p class="first">Nu is het tijd om een kolom met de lengte van elk object toe te voegen Plaats de laag in de modus Bewerken door te klikken op de knop <em class="guilabel">Bewerken aan/uitzetten</em>. Klik, eenmaal in de modus Bewerken, op de knop <em class="guilabel">Open veldberekening</em>.</p>
+</li>
 </ol>
 <img alt="../_images/153.png" class="align-center" src="../_images/153.png" />
 <ol class="arabic simple" start="16">
-<li>In the <em class="guilabel">Field Calculator</em>, check <em class="guilabel">Create a new
-field</em>. Enter <strong>length_km</strong> as the <em class="guilabel">Output field name</em>. Choose
-<strong>Decimal number (real)</strong> as the <em class="guilabel">Output field type</em>. Change the
-output <em class="guilabel">Precision</em> to <strong>2</strong>. In the <em class="guilabel">Function list</em>
-panel, find the <em class="guilabel">$length</em> under <em class="guilabel">Geometry</em>.
-Double-click it to add it to the <em class="guilabel">Expression</em>. Complete the
-expression as <tt class="docutils literal"><span class="pre">$length</span> <span class="pre">/</span> <span class="pre">1000</span></tt> because our layer CRS is in <strong>meters</strong>
-unit and we want the output in <strong>km</strong>. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">In de <em class="guilabel">Veldberekening</em>, selecteer <em class="guilabel">Nieuw veld aanmaken</em>. Voer <strong>length_km</strong> in als <em class="guilabel">Naam voor veld</em>. Kies <strong>Decimaal getal (real)</strong> als het <em class="guilabel">Type voor veld</em>. Wijzig de uitvoer <em class="guilabel">Precisie</em> naar <strong>2</strong>. Zoek, in het paneel <em class="guilabel">Functielijst</em> , naar <em class="guilabel">$length</em> onder <em class="guilabel">Geometrie</em>. Dubbelklik er op om het toe te voegen aan de <em class="guilabel">Expressie</em>. Voltooi de expressie als <tt class="docutils literal"><span class="pre">$length</span> <span class="pre">/</span> <span class="pre">1000</span></tt> omdat onze CRS voor de laag in de eneheid <strong>meters</strong> is en we de uitvoer willen in <strong>km</strong>. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/163.png" class="align-center" src="../_images/163.png" />
 <ol class="arabic simple" start="17">
-<li>Back in <em class="guilabel">Attribute Table</em>, you will see a new column
-<em class="guilabel">length_km</em> appear. Click the <em class="guilabel">Toggle editing</em> button
-to save the changes to the attribute table.</li>
+<li><p class="first">terug in de <em class="guilabel">Attributentabel</em>, zult u een nieuwe kolom zien verschijnen: <em class="guilabel">length_km</em>. Klik op de knop <em class="guilabel">Bewerken aan/uitzetten</em> om de wijzigingen in de attributentabel op te slaan.</p>
+</li>
 </ol>
 <img alt="../_images/173.png" class="align-center" src="../_images/173.png" />
 <ol class="arabic simple" start="18">
-<li>Now that we have length of each individual line in our layer, we can easily
-add it all up and find the <strong>Total</strong> length. Go to <em class="menuselection">Vector
-‣ Analysis Tools ‣ Basic Statistics</em>.</li>
+<li><p class="first">Nu we de lengte van elke individuele lijn in onze laag hebben, kunnen we ze eenvoudig optellen en de <strong>Total</strong>-lengte te vinden. Ga naar <em class="menuselection">Vector ‣ Analyse gereedschappen ‣ Basisstatistieken</em>.</p>
+</li>
 </ol>
 <img alt="../_images/183.png" class="align-center" src="../_images/183.png" />
 <ol class="arabic simple" start="19">
-<li>Select the <em class="guilabel">Input Vector layer</em> as <tt class="docutils literal"><span class="pre">usa_railroads</span></tt>. Choose the
-<em class="guilabel">Target field</em> as <tt class="docutils literal"><span class="pre">length_km</span></tt> and click <em class="guilabel">OK</em>. You
-will see various statistics appear. The <em class="guilabel">Sum</em> value is the total
-length of the railroads that we are looking to find.</li>
+<li><p class="first">Selecteer als <em class="guilabel">Invoer vectorlaag</em>  <tt class="docutils literal"><span class="pre">usa_railroads</span></tt>. Kies <tt class="docutils literal"><span class="pre">length_km</span></tt> als het <em class="guilabel">Doelveld</em>  en klik op <em class="guilabel">OK</em>. U zult verschillende statistieken zien verschijnen. De waarde <em class="guilabel">Som</em> is de totale lengte van de spoorwegen waarnaar we zochten.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Notitie</p>
-<p class="last">This answer will vary slightly if a different projection is chosen.In
-practice, line lengths for roads and other linear features are measured on
-the ground and provided as attributes to the dataset. This method works in
-absence of such attribute and as an approximation of actual line lengths.</p>
+<p class="last">Dit antwoord zal licht afwijken als een andere projectie wordt gekozen. In de praktijk worden lengtes van lijnen voor wegen en andere lineaire objecten op de grond gemeten en als attributen toegevoegd aan de gegevensset. Deze methode werkt bij afwezigheid van een dergelijk attribuut en als een benadering van de echte lengten van de lijnen.</p>
 </div>
 <img alt="../_images/191.png" class="align-center" src="../_images/191.png" />
 </div>
@@ -366,7 +329,7 @@ absence of such attribute and as an approximation of actual line lengths.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Jun 24, 2014.<br/>
+      Laatste aanpassing op Jul 01, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Leaflet Web Maps with qgis2leaf &mdash; QGIS Tutorials and Tips</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
+    <link rel="next" title="Using Google Maps Engine Connector for QGIS" href="using_gme_connector.html" />
+    <link rel="prev" title="Find Neighbor Polygons in a Layer" href="find_neighbor_polygons.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-690672-13', 'qgistutorials.com');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html"><img src="../_static/logo.png">
+          QGIS Tutorials and Tips</a>
+        <span class="navbar-text navbar-version pull-left"><b>v1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Tutorials List <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduzione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Realizzare una mappa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Lavorare con gli attributi.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calculating Line Lengths and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitizing Map Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Leaflet Web Maps with qgis2leaf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Data Credits</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="find_neighbor_polygons.html" title="Previous Chapter: Find Neighbor Polygons in a Layer"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Find Neighbor Po...</span>
+    </a>
+  </li>
+  <li>
+    <a href="using_gme_connector.html" title="Next Chapter: Using Google Maps Engine Connector for QGIS"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Using Google Map... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><h4>Author</h4>
+<div class="g-person" data-width="250" data-href="//plus.google.com/u/0/116912222767108657277" data-showtagline="false" data-showcoverphoto="false" data-rel="author"></div>
+
+<!-- AddThis Button BEGIN -->
+<h4>Share</h4>
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+    <a class="addthis_button_google_plusone_share"></a>
+    <a class="addthis_button_twitter"></a>
+    <a class="addthis_button_facebook"></a>
+    <a class="addthis_button_email"></a>
+    <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<!-- AddThis Button END -->
+        </div>
+      </div>
+    <div class="col-md-9">
+      
+
+  <div class="section" id="leaflet-web-maps-with-qgis2leaf">
+<h1>Leaflet Web Maps with qgis2leaf<a class="headerlink" href="#leaflet-web-maps-with-qgis2leaf" title="link permanente per questa intestazione">¶</a></h1>
+<p>[ Download PDF <a class="reference external" href="../pdf/leaflet_maps_with_qgis2leaf_a4.pdf">A4</a> <a class="reference external" href="../pdf/leaflet_maps_with_qgis2leaf_letter.pdf">Letter</a> ]</p>
+<p>Leaflet is a popular open-source Javascript library for building web mapping
+applications. <strong>qgis2leaf</strong> plugin provides a simple way to export your QGIS
+map to a functioning leaflet-based web map. This plugin is a useful way to get
+started with web mapping and create an interactive web map from your static GIS
+data layers.</p>
+<div class="section" id="overview-of-the-task">
+<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="link permanente per questa intestazione">¶</a></h2>
+<p>We will create a leaflet web map of world&#8217;s airports.</p>
+<div class="section" id="other-skills-you-will-learn">
+<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="link permanente per questa intestazione">¶</a></h3>
+<ul class="simple">
+<li>Using <tt class="docutils literal"><span class="pre">CASE</span></tt> SQL statement in Field Calculator to create new field values
+based on different conditions.</li>
+<li>Locating and using SVG custom icons in QGIS.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="get-the-data">
+<h2>Get the data<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
+<p>We will use the <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/airports/">Airports</a>
+dataset from Natural Earth.</p>
+<p>Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip">Airports shapefile</a>.</p>
+<p>Data Source <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
+</div>
+<div class="section" id="procedure">
+<h2>Procedure<a class="headerlink" href="#procedure" title="link permanente per questa intestazione">¶</a></h2>
+<ol class="arabic simple">
+<li>Install the <tt class="docutils literal"><span class="pre">qgis2leaf</span></tt> plugin by going to <em class="menuselection">Plugins ‣
+Manage and Install Plugin</em>. Note that the plugin is currently marked
+<strong>experimental</strong>, so you will need to check <em class="guilabel">Show also
+experimental plugins</em> in Plugin Settings. (See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> for more details on
+installing plugins in QGIS)</li>
+</ol>
+<img alt="../_images/140.png" class="align-center" src="../_images/140.png" />
+<ol class="arabic simple" start="2">
+<li>Unzip the downloaded <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt> file. Open QGIS and go to
+<em class="menuselection">Layer ‣ Add Vector Layer</em>. Browse to the location when the
+files were extracted and select <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt>. Click
+<em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/216.png" class="align-center" src="../_images/216.png" />
+<ol class="arabic simple" start="3">
+<li>Once the <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> layer is loaded, use the <em class="guilabel">Identify</em>
+tool to click on any feature and look at the attributes. We will create an
+airport map where we classify the airports into 3 categories. The attribute
+<tt class="docutils literal"><span class="pre">type</span></tt> will be useful when classifying the features.</li>
+</ol>
+<img alt="../_images/314.png" class="align-center" src="../_images/314.png" />
+<ol class="arabic simple" start="4">
+<li>Right-click the <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> layer and select <em class="guilabel">Open
+Attribute Table</em>.</li>
+</ol>
+<img alt="../_images/412.png" class="align-center" src="../_images/412.png" />
+<ol class="arabic simple" start="5">
+<li>In the attribute table dialog, click the <em class="guilabel">Toggle Editing</em> button.
+Once the layer is in editing mode, click the <em class="guilabel">Open Field
+Calculator</em> button.</li>
+</ol>
+<img alt="../_images/512.png" class="align-center" src="../_images/512.png" />
+<ol class="arabic simple" start="6">
+<li>We want to create a new attribute called <tt class="docutils literal"><span class="pre">type_code</span></tt> where we give major
+airports a value of 3, mid-sized airports a value of 2 and all others a
+value of 1. We can use the <em>CASE</em> statement and write an expression that
+will look at the value of <tt class="docutils literal"><span class="pre">type</span></tt> attribute and create a <tt class="docutils literal"><span class="pre">type_code</span></tt>
+attribute based on the condition. Check the <em class="guilabel">Create a new field</em>
+box and enter <tt class="docutils literal"><span class="pre">type_code</span></tt> as the <em class="guilabel">Output field name</em>. Select
+<em class="guilabel">Whole number (integer)</em> as the <em class="guilabel">Output field type</em>. In
+the <em class="guilabel">Expression</em> window, enter the following text.</li>
+</ol>
+<div class="highlight-none"><div class="highlight"><pre>CASE  WHEN &quot;type&quot; LIKE &#39;%major%&#39;  THEN 3
+ WHEN &quot;type&quot; LIKE &#39;%mid%&#39; THEN 2
+ ELSE 1
+END
+</pre></div>
+</div>
+<img alt="../_images/611.png" class="align-center" src="../_images/611.png" />
+<ol class="arabic simple" start="7">
+<li>Back in the <em class="guilabel">Attribute Table</em> window, you will see a new column at
+the end. Verify that your expression worked correctly and click the
+<em class="guilabel">Toggle Editing</em> button to save the changes.</li>
+</ol>
+<img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
+<ol class="arabic simple" start="8">
+<li>Now we will style the airports layer using the newly created <tt class="docutils literal"><span class="pre">type_code</span></tt>
+attribute. Right-click the <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> layer and select
+<em class="guilabel">Properties</em>.</li>
+</ol>
+<img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
+<ol class="arabic simple" start="9">
+<li>Select the <em class="guilabel">Style</em> tab in the <em class="guilabel">Layer Properties</em> dialog.
+Select <em class="guilabel">Categorized</em> style from the drop-down menu and choose
+<tt class="docutils literal"><span class="pre">type_code</span></tt> as the <em class="guilabel">Column</em>. Choose a color ramp of your choice
+and click <em class="guilabel">Classify</em>. Click <em class="guilabel">OK</em> to go back to the main
+QGIS window.</li>
+</ol>
+<img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
+<ol class="arabic simple" start="10">
+<li>Here you will see a nicely styled airport map. Let&#8217;s export this to create
+an interactive web map. Go to <em class="menuselection">Web ‣ qgis2leaf ‣ Exports
+a QGIS Project to a working leaflet webmap</em>.</li>
+</ol>
+<img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
+<ol class="arabic simple" start="11">
+<li>In the <em class="guilabel">QGIS 2 Leaflet</em> dialog, click <em class="guilabel">Get Layers</em> to
+get the refreshed layer list. Select the <em class="guilabel">Full screen</em> option to
+have a full screen web map. Choose <em class="guilabel">layer extent</em> as the
+<em class="guilabel">Extent</em> of the exported map. Choose a <em class="guilabel">Output project
+folder</em> on your system where the plugin will write the output files. Click
+<em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/1114.png" class="align-center" src="../_images/1114.png" />
+<ol class="arabic simple" start="12">
+<li>Once the export process finishes, locate the output folder on your disk.
+Open the <tt class="docutils literal"><span class="pre">index.html</span></tt> file in a browser. You will see an interactive web
+map that is a replica of the QGIS map. You can zoom and pan around the map
+and also click on any feature to get an popup window with attribute
+information. You can copy the contents of this folder to a web server to
+have a full featured web map.</li>
+</ol>
+<img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
+<ol class="arabic simple" start="13">
+<li>Now we will explore some advanced features of this plugin that will allow
+you to customize the map further. If you noticed, the popup contained all
+the attributes of the feature. Some attributes are not very useful and
+overall the pop up looks ugly. We can replace the default popup with our
+own custom HTML to make it much better. This is achieved by added the
+custom HTML in a column named <tt class="docutils literal"><span class="pre">html_exp</span></tt>. Right-click the
+<tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> layer and select <em class="guilabel">Open Attribute Table</em>.</li>
+</ol>
+<img alt="../_images/1310.png" class="align-center" src="../_images/1310.png" />
+<ol class="arabic simple" start="14">
+<li>In the attribute table dialog, click the <em class="guilabel">Toggle Editing</em> button.
+Once the layer is in editing mode, click the <em class="guilabel">Open Field
+Calculator</em> button.</li>
+</ol>
+<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
+<ol class="arabic simple" start="15">
+<li>Check the <em class="guilabel">Create a new field</em> box and enter <tt class="docutils literal"><span class="pre">html_exp</span></tt> as the
+<em class="guilabel">Output field name</em>. Choose <em class="guilabel">Text (string)</em> as the
+<em class="guilabel">Output field type</em>. Since we will be creating a long HTML
+string, choose <tt class="docutils literal"><span class="pre">200</span></tt> as the <em class="guilabel">Output field width</em>. Enter the
+following expression in the <em class="guilabel">Expression</em> area. The
+complex-looking expression simply defines a HTML table and substitutes cell
+values from attributes <tt class="docutils literal"><span class="pre">iata_code</span></tt>, <tt class="docutils literal"><span class="pre">name</span></tt> and <tt class="docutils literal"><span class="pre">type</span></tt>. Check the
+<em class="guilabel">Output preview</em> to ensure the expression is correct.</li>
+</ol>
+<div class="highlight-none"><div class="highlight"><pre>concat(&#39;&lt;h3&gt;&#39;, &quot;iata_code&quot;, &#39;&lt;/h3&gt;&lt;table&gt;&#39;, &#39;&lt;tr&gt;&lt;td&gt;Airport Name: &lt;b&gt; &#39;,
+&quot;name&quot;, &#39;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Category: &lt;b&gt; &#39;, &quot;type&quot;,
+&#39;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&#39;)
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">The shapefile format can contain a maximum of 254 characters in a field. If
+you want to store longer text in the field, choose another format.</p>
+</div>
+<img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
+<ol class="arabic simple" start="16">
+<li>Back in the <em class="guilabel">Attribute Table</em> window, you will see a new column at
+the end. Verify that your expression worked correctly and click the
+<em class="guilabel">Toggle Editing</em> button to save the changes.</li>
+</ol>
+<img alt="../_images/168.png" class="align-center" src="../_images/168.png" />
+<ol class="arabic simple" start="17">
+<li>Now export the map again using <em class="menuselection">Web ‣ qgis2leaf ‣
+Exports a QGIS Project to a working leaflet webmap</em>.</li>
+</ol>
+<img alt="../_images/177.png" class="align-center" src="../_images/177.png" />
+<ol class="arabic simple" start="18">
+<li>Choose the options as before.</li>
+</ol>
+<img alt="../_images/187.png" class="align-center" src="../_images/187.png" />
+<ol class="arabic simple" start="19">
+<li>Go to the output folder once the export process finishes. You will have a
+subfolder with the present timestamp. Locate the <tt class="docutils literal"><span class="pre">index.html</span></tt> file inside
+it and open it in a browser. Click on any feature and look at the popup.
+You will notice that it looks a lot cleaner and informative.</li>
+</ol>
+<img alt="../_images/195.png" class="align-center" src="../_images/195.png" />
+<ol class="arabic simple" start="20">
+<li>Another useful feature of the <tt class="docutils literal"><span class="pre">qgis2leaf</span></tt> plugin is the ability to
+specify a custom icon to use with the web map. This is accomplished by
+specifying the path to the custom icon in a field called <tt class="docutils literal"><span class="pre">icon_exp</span></tt>. We
+will create a new layer containing only the major airports and style using
+a custom SVG icon.  Locate the <em class="guilabel">Select features using an
+expression</em> tool from the toolbar.</li>
+</ol>
+<img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
+<ol class="arabic simple" start="21">
+<li>Enter the expression below and press <em class="guilabel">Select</em> to select all major
+airports.</li>
+</ol>
+<div class="highlight-none"><div class="highlight"><pre>&quot;type_code&quot; = 3
+</pre></div>
+</div>
+<img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
+<ol class="arabic simple" start="22">
+<li>Right-click the <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> airports and select <em class="guilabel">Save
+Selection As...</em>.</li>
+</ol>
+<img alt="../_images/223.png" class="align-center" src="../_images/223.png" />
+<ol class="arabic simple" start="23">
+<li>In the <em class="guilabel">Save vector layer as...</em> dialog, name the output file as
+<tt class="docutils literal"><span class="pre">major_airports.shp</span></tt>. Check the <em class="guilabel">Add saved file to map</em> and
+click <em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/232.png" class="align-center" src="../_images/232.png" />
+<ol class="arabic simple" start="24">
+<li>Once the <tt class="docutils literal"><span class="pre">major_airports</span></tt> layer is loaded in QGIS, right-click it and
+select <em class="guilabel">Open Attribute Table</em>.</li>
+</ol>
+<img alt="../_images/242.png" class="align-center" src="../_images/242.png" />
+<ol class="arabic simple" start="25">
+<li>In the attribute table dialog, click the <em class="guilabel">Toggle Editing</em> button.
+Once the layer is in editing mode, click the <em class="guilabel">Open Field
+Calculator</em> button.</li>
+</ol>
+<img alt="../_images/252.png" class="align-center" src="../_images/252.png" />
+<ol class="arabic simple" start="26">
+<li>In <em class="guilabel">Field Calculator</em> dialog, enter <tt class="docutils literal"><span class="pre">icon_exp</span></tt> as the
+<em class="guilabel">Output field name</em>. Make it a <em class="guilabel">Text (string)</em> type. In
+the <em class="guilabel">Expression</em> area, enter the following expression.</li>
+</ol>
+<div class="highlight-none"><div class="highlight"><pre>&#39;airport.svg&#39;
+</pre></div>
+</div>
+<img alt="../_images/262.png" class="align-center" src="../_images/262.png" />
+<ol class="arabic simple" start="27">
+<li>Save your edits by clicking the <em class="guilabel">Toggle Editing</em> button in the
+<em class="guilabel">Attribute Table</em>.</li>
+</ol>
+<img alt="../_images/271.png" class="align-center" src="../_images/271.png" />
+<ol class="arabic simple" start="28">
+<li>Open the <tt class="docutils literal"><span class="pre">qgis2leaf</span></tt> plugin from <em class="menuselection">Web ‣ qgis2leaf ‣ Exports
+a QGIS Project to a working leaflet webmap</em>. Click <em class="guilabel">Get Layers</em>
+button to fetch both the layers from QGIS. There are many different pre-made tile layers
+availalbe for basemaps. In this map, we can try something different and load the <em class="guilabel">Stamen Watercolor</em> as the
+<em class="guilabel">Basemap</em>. Click <em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/281.png" class="align-center" src="../_images/281.png" />
+<ol class="arabic simple" start="29">
+<li>If you remember we specified <tt class="docutils literal"><span class="pre">airport.svg</span></tt> as the icon for the airports.
+We need to add that icon manually to the output directory. QGIS comes with
+a large collection of icons. On Windows, these icons are located at
+<em class="menuselection">C: ‣ OSGEO4W64 ‣ apps ‣ qgis ‣ svg</em>. The path may
+differ depending on your platform and install type. Locate that directory
+and choose an icon you like. For our map, we can try the
+<tt class="docutils literal"><span class="pre">amenity=airport.svg</span></tt> icon located under <tt class="docutils literal"><span class="pre">transport</span></tt> category.</li>
+</ol>
+<img alt="../_images/291.png" class="align-center" src="../_images/291.png" />
+<ol class="arabic simple" start="30">
+<li>Copy and paste this icon in the output directory you had specified when exporting
+the map. Rename it as <tt class="docutils literal"><span class="pre">airport.svg</span></tt>.</li>
+</ol>
+<img alt="../_images/301.png" class="align-center" src="../_images/301.png" />
+<ol class="arabic simple" start="31">
+<li>Now open the <tt class="docutils literal"><span class="pre">index.html</span></tt> file located in the folder. You will see a
+beautiful basemap with our custom icons for the major airports. Also notice
+the layer panel at top-right corner which has layer display control for
+both the layers.</li>
+</ol>
+<img alt="../_images/315.png" class="align-center" src="../_images/315.png" />
+<p>Hope this tutorial gives you a head start in creating web maps. Below is the
+live interactive map created for this tutorial.</p>
+<div>
+<iframe
+src="http://spatialthoughts.github.io/qgis2leaf-maps/airports_with_custom_popup/"
+width="100%" height="600px"></iframe>
+</div></div>
+</div>
+
+
+
+  <div id="disqus_thread"></div>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    </div>
+      
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Ujaval Gandhi.<br/>
+      Ultimo aggiornamento Jul 01, 2014.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+    </p>
+  </div>
+</footer>
+<!-- Google+ Badge -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<!-- Disqus comments widget -->
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'qgistutorials'; // required: replace example with your forum shortname
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>
+
+<script type="text/javascript">
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts"></script>
+
+
+  </body>
+</html>
