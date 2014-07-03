@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Привязка аэрофотоснимков &mdash; QGIS Tutorials and Tips</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
+    <link rel="next" title="Digitizing Map Data" href="digitizing_basics.html" />
+    <link rel="prev" title="Georeferencing Topo Sheets and Scanned Maps" href="georeferencing_basics.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-690672-13', 'qgistutorials.com');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html"><img src="../_static/logo.png">
+          QGIS Tutorials and Tips</a>
+        <span class="navbar-text navbar-version pull-left"><b>v1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Tutorials List <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Making a Map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Основные Вектор Стайлинг</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calculating Line Lengths and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Привязка аэрофотоснимков</a></li>
+<li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitizing Map Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Teaching QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Data Credits</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="georeferencing_basics.html" title="Previous Chapter: Georeferencing Topo Sheets and Scanned Maps"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Georeferencing T...</span>
+    </a>
+  </li>
+  <li>
+    <a href="digitizing_basics.html" title="Next Chapter: Digitizing Map Data"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Digitizing Map D... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><h4>Author</h4>
+<div class="g-person" data-width="250" data-href="//plus.google.com/u/0/116912222767108657277" data-showtagline="false" data-showcoverphoto="false" data-rel="author"></div>
+
+<!-- AddThis Button BEGIN -->
+<h4>Share</h4>
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+    <a class="addthis_button_google_plusone_share"></a>
+    <a class="addthis_button_twitter"></a>
+    <a class="addthis_button_facebook"></a>
+    <a class="addthis_button_email"></a>
+    <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<!-- AddThis Button END -->
+        </div>
+      </div>
+    <div class="col-md-9">
+      
+
+  <div class="section" id="georeferencing-aerial-imagery">
+<h1>Привязка аэрофотоснимков<a class="headerlink" href="#georeferencing-aerial-imagery" title="Ссылка на этот заголовок">¶</a></h1>
+<p>[ Download PDF <a class="reference external" href="../pdf/advanced_georeferencing_a4.pdf">A4</a>
+<a class="reference external" href="../pdf/advanced_georeferencing_letter.pdf">Letter</a> ]</p>
+<p>В учебнике: doc:<cite>Основы Привязка</cite> мы рассмотрели основной процесс географической привязки в QGIS. Этот метод участвует чтения координат из отсканированного карте и ввода его вручную. Много раз, хотя вы не можете иметь координаты, напечатанные на вашей карте, или вы пытаетесь привязку изображения. В этом случае, вы можете использовать другой привязками источник данных в качестве входных данных. В этом уроке вы узнаете, как использовать существующие открытые источники данных в процессе привязка.</p>
+<div class="section" id="overview-of-the-task">
+<h2>Обзор задачи<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Мы будем привязку высокого разрешения баллон-образы с использованием опорных координат из открыто улица Карта.</p>
+<div class="section" id="other-skills-you-will-learn">
+<h3>Другие навыки вы узнаете<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
+<ul class="simple">
+<li><p class="first">Скачивая супер снимки с высоким разрешением общественным достоянием</p>
+</li>
+<li><p class="first">Использование открыто Слои плагин в QGIS.</p>
+</li>
+<li><p class="first">Преобразование координат между различными проекции с использованием <strong>cs2cs</strong> программы командной строки.</p>
+</li>
+<li>Using an existing georeferenced layer to input GCP points in the Georeferencer
+tool.</li>
+<li><p class="first">Установка значения без данных пользовательского для слоем.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="get-the-data">
+<h2>Получить данные<a class="headerlink" href="#get-the-data" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В этом уроке мы будем использовать некоторые великолепные кайт и воздушный шар образы, собранные <a class="reference external" href="http://publiclaboratory.org/archive">Общественной лаборатории</a>. Они делают с географической привязкой версии изображений также доступны, но мы будем скачать без привязками JPG изображение и идти через процесс привязку его в QGIS. Если вам нравится образность, которую они оказывают, вы можете <a class="reference external" href="http://google-latlong.blogspot.in/2012/04/balloon-and-kite-imagery-in-google.html">изучить его</a> в Google Планета Земля, как хорошо.</p>
+<p>Загрузите изображение JPG Парка <a class="reference external" href="http://publiclaboratory.org/map/washington-square-park-new-york-new-york/2012-10-01">Washington Square, Нью-Йорк</a>. Вы можете щелкнуть правой кнопкой мыши на кнопке JPG и выберите: guilabel: <cite>Сохранить ссылку как ...</cite>.</p>
+</div>
+<div class="section" id="procedure">
+<h2>процедура<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
+<ol class="arabic simple">
+<li><p class="first">Для этого урока, мы будем использовать открыто улица Карта слой в качестве опорного слоя. Установите открытом Слои плагин от: menuselection:<cite>Плагины &#8211;&gt; Управление и установка плагинов &#8211;&gt; Получить другие</cite>. См. <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> для получения дополнительной информации об использовании плагинов в QGIS.</p>
+</li>
+</ol>
+<img alt="../_images/1.png" class="align-center" src="../_images/1.png" />
+<ol class="arabic simple" start="2">
+<li><p class="first">После установки, перейдите по ссылке <a href="#id1"><span class="problematic" id="id2">:menuselection:`Плагины &#8211;&gt; Открыть Слои Плагин &#8211;&gt; Добавить Открыть улица
+Карта слой `. Это добавит слой предварительно оказанные плитки, созданный из `Открыть улица Карта данных &lt;http://www.openstreetmap.org/&gt;`_</span></a>.</p>
+</li>
+</ol>
+<img alt="../_images/2.png" class="align-center" src="../_images/2.png" />
+<ol class="arabic simple" start="3">
+<li><p class="first">Теперь у вас есть открыто улица Слой Карта загружалась в QGIS. Примечание справочной системы координат (CRS) для этого слоя. Он расположен как EPSG 3857 Псевдо Mercator. Это важно отметить, поскольку координаты мы заключить из этого слоя будет в этом CRS.</p>
+</li>
+</ol>
+<img alt="../_images/3.png" class="align-center" src="../_images/3.png" />
+<ol class="arabic simple" start="4">
+<li><p class="first">Теперь задача состоит в том, чтобы найти общую близости от области, которую мы пытаемся привязку. Вы можете просто использовать панорамирования и масштабирования инструменты, чтобы найти ту область на открытия улица Карта слой. Но мы можем воспользоваться этой возможностью, чтобы продемонстрировать еще один инструмент, который может помочь вам в будущем. Мы знаем, что образ мы скачали для парка Вашингтон-сквер в Нью-Йорке. Если вы будете искать для этого месте, вы сможете найти на странице Википедии для него. Координаты для парка там указаны.</p>
+</li>
+</ol>
+<img alt="../_images/4.png" class="align-center" src="../_images/4.png" />
+<ol class="arabic simple" start="5">
+<li><p class="first">Вы заметите, что координаты указаны в градусах / минуты / секунды и широта и долгота. Но так как наш слой находится в проекции Меркатора, нам понадобится Меркатор координаты, чтобы найти парк. Вот где это инструмент командной строки называется ** cs2cs ** попадется под руку. Если у вас установлен QGIS от OSGeo4W установки, вы будете уже установлена ​​в вашей системе. В Linux и Mac тоже, это поставляется с предварительно установленной с QGIS. Запустите окно терминала и введите `` cs2cs `` проверить, если он доступен. Окна пользователи могут найти терминал в: меню выбора: <cite>Пуск -&gt; OSGeo4W -&gt; MSYS</cite>.</p>
+</li>
+</ol>
+<img alt="../_images/5.png" class="align-center" src="../_images/5.png" />
+<ol class="arabic simple" start="6">
+<li><p class="first">После того, как вы убедились, что инструмент cs2cs существует в вашей системе, пора конвертировать из широту и долготу в Меркатор координаты. Путь этот инструмент работает, что вам нужно указать: графический интерфейс пользователя этикетка : <cite>источник</cite> и: графический интерфейс пользователя этикетка : <cite>назначения</cite> CRS. Определение CRS может быть <a class="reference external" href="http://trac.osgeo.org/proj/wiki/GenParms">PROJ 4 строка</a> или <a class="reference external" href="http://www.epsg-registry.org/">EPSG код</a> . Так как мы уже знаем, код EPSG для выезда входе и выходе CRS, мы будем использовать этот. Самый простой способ использовать инструмент является поставка ввести координаты на самой командной строке. Обратите внимание, что инструмент принимает координаты в порядке <cite>XY</cite>, поэтому мы должны ввести <cite>Долгота Широта</cite>. Введите следующую команду в терминале и нажмите вводить. Обратите внимание, что мы должны избежать кавычки (&#8221;) с обратной косой черты (). После того, как вы нажмете введите, вы увидите тоже</p>
+</li>
+</ol>
+<div class="highlight-none"><div class="highlight"><pre>echo &quot;-73d59&#39;51\&quot; 40d43&#39;51\&quot;&quot; | cs2cs +init=EPSG:4326 +to +init=EPSG:3857
+
+-8237364.02 4972720.34 0.00
+</pre></div>
+</div>
+<img alt="../_images/6.png" class="align-center" src="../_images/6.png" />
+<ol class="arabic simple" start="7">
+<li><p class="first">Скопируйте эти координаты и переключиться на QGIS. В нижней части окна QGIS, вы увидите текстовое поле с надписью Координаты. Введите координаты там в X, Y форме. Нажмите клавишу Enter. Вы увидите карту сдвинуть немного, но не увеличить. Для увеличения в область, выберите 1:2500 масштаб по шкале раскрывающемся списке рядом с полем координат и нажмите вводить.</p>
+</li>
+</ol>
+<img alt="../_images/7.png" class="align-center" src="../_images/7.png" />
+<ol class="arabic simple" start="8">
+<li><p class="first">Вуаля! Вы сейчас видите парка Вашингтон-сквер область на холсте. Теперь настало время, чтобы начать привязку. Запустите <strong>геопривязки</strong> от: menuselection:<cite>Растр &#8211;&gt; геопривязки &#8211;&gt; привязкой</cite>. Если вы не видите, что пункт меню, вам нужно будет для того, чтобы: графический интерфейс этикетку: <cite>привязкой GDAL</cite> плагин от: menuselection:<cite>Плагины &#8211;&gt; Управление и установить Плагины -&gt; Установленные</cite>.</p>
+</li>
+</ol>
+<img alt="../_images/8.png" class="align-center" src="../_images/8.png" />
+<ol class="arabic simple" start="9">
+<li><p class="first">В: графический интерфейс этикетке:<cite>Геопривязки</cite> окна, перейдите по ссылке: menuselection:<cite>Файл &#8211;&gt; Открыть растр `. Перейдите к загруженному JPG файла и нажмите кнопку: графический интерфейс этикетку: `Открыть</cite>.</p>
+</li>
+</ol>
+<img alt="../_images/9.png" class="align-center" src="../_images/9.png" />
+<ol class="arabic simple" start="10">
+<li><p class="first">В: графический интерфейс этикетке: <cite>координат Ссылка система выбора `, выберите :guilabel:</cite> EPSG: 3857 Псевдо Меркатор `</p>
+</li>
+</ol>
+<img alt="../_images/10.png" class="align-center" src="../_images/10.png" />
+<ol class="arabic simple" start="11">
+<li><p class="first">Теперь нажмите на <em class="guilabel">кнопку Точка</em> Добавить на панели инструментов и выберите легко узнаваемый место на изображении. Уголки, пересечения, столбы и т.д. делают хорошие контрольных точек.</p>
+</li>
+</ol>
+<img alt="../_images/11.png" class="align-center" src="../_images/11.png" />
+<ol class="arabic simple" start="12">
+<li><p class="first">Как только вы нажмете на изображении в точке устройства управления, вы увидите всплывающее просьбой ввести координаты на карте. Нажмите кнопку: графический интерфейс этикетка: <cite>С карте холсте</cite>.</p>
+</li>
+</ol>
+<img alt="../_images/12.png" class="align-center" src="../_images/12.png" />
+<ol class="arabic simple" start="13">
+<li><p class="first">Найти то же место в вашем опорного слоя, в Открыть улица Карта слой и нажмите там. Координаты являются автоматического заполнения с вашего Нажмите на карте холсте. Нажмите Ok. Точно так же, выбрать хотя бы 4 очка на изображении и добавить их координаты от опорного слоя.</p>
+</li>
+</ol>
+<img alt="../_images/13.png" class="align-center" src="../_images/13.png" />
+<ol class="arabic simple" start="14">
+<li><p class="first">Теперь перейдите к: menuselection:<cite>Настройки &#8211;&gt; Настройки преобразования</cite>.</p>
+</li>
+</ol>
+<img alt="../_images/14.png" class="align-center" src="../_images/14.png" />
+<ol class="arabic simple" start="15">
+<li><p class="first">Выберите режим, как показано ниже. Убедитесь, что вы: графический интерфейс
+<em class="guilabel">нагрузки в QGIS когда сделано кнопку</em> проверяется. Нажмите кнопку ОК. Вернуться в <em class="guilabel">геопривязки</em>, перейдите по ссылке :menuselection:
+<cite>Файл -&gt; Начать привязку</cite>. Это позволит начать процесс деформирования изображения с помощью опорных точек и создания целевой растр.</p>
+</li>
+</ol>
+<img alt="../_images/15.png" class="align-center" src="../_images/15.png" />
+<ol class="arabic simple" start="16">
+<li><p class="first">Как только процесс завершится, вы увидите с привязками слой загружалась в QGIS. Если все прошло хорошо, вы увидите, что красиво наложить тха Открыть улица карта слой.</p>
+</li>
+</ol>
+<img alt="../_images/16.png" class="align-center" src="../_images/16.png" />
+<ol class="arabic simple" start="17">
+<li><p class="first">Чтобы наша продукция выглядеть лучше, давайте удалить черные и белые значения не-данных. Щелкните правой кнопкой мыши на слое изображения и выберите: графический интерфейс этикетку: <cite>Свойства</cite>.</p>
+</li>
+</ol>
+<img alt="../_images/17.png" class="align-center" src="../_images/17.png" />
+<ol class="arabic simple" start="18">
+<li><p class="first">Переключитесь на: графический интерфейс этикетке: вкладки <cite>Прозрачность</cite>. Мы хотим, чтобы указать, что любые черные или белые пиксели в изображении <cite>значения без данных</cite> и должны быть прозрачными. Вход 0 как: графический интерфейс этикетке: <cite>Нет значения данных</cite>. Кроме того, в: графический интерфейс этикетке: <cite>Пользовательские прозрачности опций</cite>, нажмите: графический интерфейс этикетку: кнопку <cite>+</cite> и добавить 255 как прозрачных пикселов для каждого диапазона и введите 100 в качестве: графический интерфейс этикетке: <cite>Процент прозрачным</cite>. Нажмите: графический интерфейс этикетку: <cite>OK</cite>.</p>
+</li>
+</ol>
+<img alt="../_images/18.png" class="align-center" src="../_images/18.png" />
+<ol class="arabic simple" start="19">
+<li><p class="first">Теперь вы будет видеть ваше топографические изображения приятно накладывается на базовом уровне.</p>
+</li>
+</ol>
+<img alt="../_images/19.png" class="align-center" src="../_images/19.png" />
+</div>
+</div>
+
+
+
+  <div id="disqus_thread"></div>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    </div>
+      
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, Ujaval Gandhi.<br/>
+      Обновлено: Jul 03, 2014.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+    </p>
+  </div>
+</footer>
+<!-- Google+ Badge -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<!-- Disqus comments widget -->
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'qgistutorials'; // required: replace example with your forum shortname
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>
+
+<script type="text/javascript">
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts"></script>
+
+
+  </body>
+</html>

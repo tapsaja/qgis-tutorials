@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Basic Vector Styling &mdash; QGIS Tutorials and Tips</title>
+    <title>Principali tematizzazioni per dati vettoriali &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -87,7 +87,7 @@
 <li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importare fogli elettronici o file CSV</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Basic Vector Styling</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Principali tematizzazioni per dati vettoriali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calculating Line Lengths and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
@@ -175,184 +175,135 @@
       
 
   <div class="section" id="basic-vector-styling">
-<h1>Basic Vector Styling<a class="headerlink" href="#basic-vector-styling" title="link permanente per questa intestazione">¶</a></h1>
+<h1>Principali tematizzazioni per dati vettoriali<a class="headerlink" href="#basic-vector-styling" title="link permanente per questa intestazione">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/basic_vector_styling_a4.pdf">A4</a> <a class="reference external" href="../pdf/basic_vector_styling_letter.pdf">Letter</a> ]</p>
-<p>To create a map, one has to style the GIS data and present it in a form that is
-visually informative. There are a large number of options available in QGIS to
-apply different types of symbology to the underlying data. In this tutorial, we
-will explore some basics of styling.</p>
+<p>Per creare una mappa è necessario tematizzare i dati GIS e presentarli in una forma che sia significativa sul piano visivo. Sono disponibili un gran numero di opzioni in QGIS per ottenere diverse varietà di simbologie con lo scopo di evidenziare il significato dei dati. In questo tutorial esamineremo alcuni elementi di base della tematizzazione.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="link permanente per questa intestazione">¶</a></h2>
-<p>We will style a vector layer to show life expectancy in different countries of the world.</p>
+<h2>Descrizione del compito<a class="headerlink" href="#overview-of-the-task" title="link permanente per questa intestazione">¶</a></h2>
+<p>Tematizzeremo un layer che ha lo scopo di descrivere l&#8217;aspettativa di vita in diverse zone del pianeta.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="link permanente per questa intestazione">¶</a></h3>
+<h3>Altri aspetti che avremo modo di apprendere nel corso dell&#8217;esercizio<a class="headerlink" href="#other-skills-you-will-learn" title="link permanente per questa intestazione">¶</a></h3>
 <ul class="simple">
-<li>View the attribute table of a vector layer.</li>
+<li><p class="first">Esaminare la tabella degli attributi di un layer vettoriale.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
-<p>The data we will use is from <a class="reference external" href="http://www.sage.wisc.edu/atlas/maps.php">Center for Sustainability and the Global
-Environment (SAGE)</a> at the
-University of Wisconsin-Madison.</p>
-<p>You can download the <a class="reference external" href="http://www.sage.wisc.edu/atlas/data.php?incdataset=Life%20Expectancy">Life Expectancy GIS Grid data</a>
-from the human impact dataset. For convenience, you can also download a copy of this data by clicking on following
-link:</p>
+<h2>Ottenere i dati necessari<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
+<p>I dati che utilizzeremo provengono dal <a class="reference external" href="http://www.sage.wisc.edu/atlas/maps.php">Centro per la Sostenibilità e l&#8217;Ambiente Globale (SAGE)</a> presso l&#8217;università del Wisconsin-Madison.</p>
+<p>Potete scaricare la <a class="reference external" href="http://www.sage.wisc.edu/atlas/data.php?incdataset=Life%20Expectancy">Life Expectancy GIS Grid data</a>  dal dataset sull&#8217;impatto umano. Se preferite, potete anche scaricarne una copia dal seguente link:</p>
 <p><a class="reference download internal" href="../_downloads/lifeexpectancy.zip"><tt class="xref download docutils literal"><span class="pre">lifeexpectancy.zip</span></tt></a></p>
-<p>Data Source <a class="reference internal" href="credits.html#sage" id="id1">[SAGE]</a></p>
+<p>Fonte Dati <a class="reference internal" href="credits.html#sage" id="id1">[SAGE]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="link permanente per questa intestazione">¶</a></h2>
+<h2>Procedimento<a class="headerlink" href="#procedure" title="link permanente per questa intestazione">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS and go to <em class="menuselection">Layer ‣ Add Vector Layer..</em>.</li>
+<li><p class="first">Aprite QGIS e andate su  <em class="menuselection">Layer ‣ Aggiungi vettore..</em>.</p>
+</li>
 </ol>
 <img alt="../_images/110.png" class="align-center" src="../_images/110.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">lifeexpectancy.zip</span></tt> file and click
-<em class="guilabel">Open</em>. When prompted, select <cite>WGS84 EPSG:4326</cite> as the Coordinate
-Reference System (CRS).</li>
+<li><p class="first">Cercate il file appena scaricato che si chiama lifeexpectancy.zip e fate click su <em class="guilabel">Apri</em>. Quando il sistema ve lo chiederà, selezionate WGS84 EPSG:4326 come sistema delle coordinate di riferimento (CRS).</p>
+</li>
 </ol>
 <img alt="../_images/21.png" class="align-center" src="../_images/21.png" />
 <ol class="arabic simple" start="3">
-<li>The shapefile contained within the zip file is now loaded and you can see
-the default style applied to it.</li>
+<li><p class="first">Lo shapefile contenuto all&#8217;interno dello zip file è stato caricato e potete vedere lo stile di default applicato ad esso.</p>
+</li>
 </ol>
 <img alt="../_images/31.png" class="align-center" src="../_images/31.png" />
 <ol class="arabic simple" start="4">
-<li>Right click on the layer name and select <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Fate click con il tasto destro del mouse sul layer e selezionate <em class="guilabel">Apri Tabella degli Attributi</em>.</p>
+</li>
 </ol>
 <img alt="../_images/41.png" class="align-center" src="../_images/41.png" />
 <ol class="arabic simple" start="5">
-<li>Explore the different attributes. To style a layer, we must pick an
-<cite>attribute</cite> or a <cite>column</cite> that would represent the map we are trying to
-create. Since we want to create a layer represting life expectancy, i.e. the
-average age till a person lives in a country, the field <em class="guilabel">LIFEXPCT</em>
-is the attribute we want to use in styling.</li>
+<li><p class="first">Esaminiamo i diversi attributi. Per tematizzare un layer, noi dobbiamo prendere un attributo o una colonna che sia rappresentativa della mappa che intendiamo creare. Dal momento che in questa occasione intendiamo rappresentare l&#8217;aspettativa di vita, cioè la vita media di una persona che vive in un dato paese, il campo <em class="guilabel">LIFEXPCT</em>  sarà l&#8217;attributo che andremo a tematizzare.</p>
+</li>
 </ol>
 <img alt="../_images/51.png" class="align-center" src="../_images/51.png" />
 <ol class="arabic simple" start="6">
-<li>Close the attribute table. Right click on the layer again and choose
-<em class="guilabel">Properties</em>.</li>
+<li><p class="first">Chiudete la tabella degli attributi. Fate click con il tasto destro sul layer ma questa volta scegliete <em class="guilabel">Properties</em>.</p>
+</li>
 </ol>
 <img alt="../_images/61.png" class="align-center" src="../_images/61.png" />
 <ol class="arabic simple" start="7">
-<li>The various styling options are located in the <em class="guilabel">Style</em> tab of the Properties
-dialog. Clicking on the drop-down button inthe Style dialiog, you will see
-there are five options available - <em class="guilabel">Single Symbol</em>, <em class="guilabel">Categorized</em>,
-<em class="guilabel">Graduated</em>, <em class="guilabel">Rule Based</em> and <em class="guilabel">Point
-displacement</em>. We will explore the first three in this tutorial.</li>
+<li><p class="first">Le diverse opzioni di stile si trovano nella scheda <em class="guilabel">Style</em> della finestra di dialogo &#8220;Proprietà&#8221;. Facendo click sul menu a discesa nella scheda Stile, compariranno cinque opzioni possibili - Simbolo Singolo - Categorizzato - Graduato - Tramite Regole - Spostamento Punto - In questo tutorial discuteremo le prime tre opzioni.</p>
+</li>
 </ol>
 <img alt="../_images/71.png" class="align-center" src="../_images/71.png" />
 <ol class="arabic simple" start="8">
-<li>Select <em class="guilabel">Single Symbol</em>. This option allows you to choose a single
-style that will be applied to all the features in the layer. Since this is a
-polygon dataset, you have two basic choices. You can <cite>fill</cite> the polygon, or
-you can style with only <cite>outline</cite>. You can choose the <em class="guilabel">dotted</em>
-pattern fill and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Selezionate <em class="guilabel">Simbolo Singolo</em>. Questa opzione vi permette di scegliere un singolo stile che sarà applicato a tutte le geometrie del layer. Dal momento che si tratta di un vettore di elementi poligonali, avete due scelte: potete riempire il poligono, oppure potete usare soltanto le linee del bordo. Scegliete, ad esempio, il pattern di riempimento che si chiama <em class="guilabel">dotted</em> e fate click su <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/81.png" class="align-center" src="../_images/81.png" />
 <ol class="arabic simple" start="9">
-<li>You will see a new style applied to the layer with the fill pattern you
-chose.</li>
+<li><p class="first">Ora potete vedere il nuovo stile di riempimento che avete scelto applicato al layer.</p>
+</li>
 </ol>
 <img alt="../_images/91.png" class="align-center" src="../_images/91.png" />
 <ol class="arabic simple" start="10">
-<li>You will see that this Single Symbol style isn’t useful in communicating
-the life expectancy data we are trying to map. Let us explore another
-styling option. Right-click the layer again and choose
-<em class="guilabel">Properties</em>. This time choose <em class="guilabel">Categorized</em> from the
-<em class="guilabel">Style</em> tab. Categorized means the features in the layer will be
-shown in different shades of a color based on unique values in an attribute
-field. Choose <em class="guilabel">LIFEXPCT</em> value as the <em class="guilabel">Column</em> and click
-<em class="guilabel">Classify</em> at the bottom. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">E&#8217; piuttosto evidente che lo stile &#8220;Simbolo Singolo&#8221; non è molto efficace per comunicare un dato come quello che intendiamo rappresentare, cioè quello dell&#8217;aspettativa di vita.
+Vediamo allora una seconda opzione di tematizzazione. Click di nuovo con il tasto destro sul layer e selezionate <em class="guilabel">Proprietà</em>.Questa volta scegliete dalla scheda <em class="guilabel">Style</em> l&#8217;opzione <em class="guilabel">Categorizzato</em>. &#8220;Categorizzato&#8221; significa che le geometrie saranno presentate in diverse gradazioni di colore sulla base dei valori unici di un campo di attributi. Scegliete <em class="guilabel">LIFEXPCT</em> come <em class="guilabel">Colonna`e quindi fate click sul tasto in basso :guilabel:`Classify</em>. Click su <em class="guilabel">OK</em></p>
+</li>
 </ol>
 <img alt="../_images/101.png" class="align-center" src="../_images/101.png" />
 <ol class="arabic simple" start="11">
-<li>You will see different countries appearing in shades of blue. Lighter
-shades meaning lower life expectancy and darker shades meaning higher life
-expectancy. This representation of the data is more useful and clearly show
-how life expectancy in developed countries vs. developing countries. This
-would be the type of style we set out to create.</li>
+<li><p class="first">Potrete vedere i differenti paesi apparire in diverse gradazioni del blue. I colori più chiari indicano una bassa aspettativa di vita, mentre quelli più scuri indicano una aspettativa di vita più alta. Questa rappresentazione dei dati è molto utile e chiara per comprendere la differenza tra l&#8217;aspettativa di vita nei paesi sviluppati e quella nei paesi in via di sviluppo. E questo potrebbe essere proprio il tipo di tematizzazione che era necessario ottenere.</p>
+</li>
 </ol>
 <img alt="../_images/111.png" class="align-center" src="../_images/111.png" />
 <ol class="arabic" start="12">
-<li><p class="first">Let us explore the <em class="guilabel">Graduated</em> symbology type in the <em class="guilabel">Style</em>
-dialog now. Graduated symbology type allows you to break down the data in a column in
-unique <cite>classes</cite> and choose a different style for each of the classes. We
-can think of classifying our life expectancy data into 3 classes, <cite>LOW</cite>,
-<cite>MEDIUM</cite> and <cite>HIGH</cite>. Choose <em class="guilabel">LIFEXPCT</em> as the <em class="guilabel">Column</em> and
-choose <em class="guilabel">3</em> as the classes. you will see there are many <em class="guilabel">Mode</em>
-optionsavailable. Let us see the logic behind each of these modes.
-There are 5 modes available. <em class="guilabel">Equal Interval</em>,
-<em class="guilabel">Quantile</em>, <em class="guilabel">Natural Breaks (Jenks)</em>,
-<em class="guilabel">Standard Deviation</em> and <em class="guilabel">Pretty Breaks</em>.
-These modes use different statistical algorithms to break down the data
-into separate classes.</p>
+<li><p class="first">Vediamo adesso di esplorare la simbologia <em class="guilabel">Graduated</em> nella finestra di dialogo <em class="guilabel">Style</em>. La tipologia &#8220;Graduato&#8221; ci permette di suddividere i dati di una data colonna in un certo numero di classi e quindi scegliere uno stile differente per ciascuna classe. Noi possiamo pensare di classificare la nostra aspettativa di vita in tre classi, BASSA, MEDIA e ALTA. Scegliete <em class="guilabel">LIFEXPCT</em> come colonna e scegliete <em class="guilabel">3</em> come numero delle classi. Vedrete che ci sono differenti opzioni riguardo il <em class="guilabel">Modo</em> che vogliamo utilizzare. Vediamo qual è la logica che presiede ciascuno di questi &#8220;modi&#8221;. Ci sono 5 modi che possono essere avviati. <em class="guilabel">Intervallo Uguale</em>, <em class="guilabel">Quantile</em>, <em class="guilabel">Natural Breaks (Jenks)</em>, <em class="guilabel">Deviazione Standard</em> e  <em class="guilabel">Pretty Breaks</em>. . Questi diversi modi usano algoritmi statistici diversi per suddividere i dati in classi distinte.</p>
 <ul class="simple">
-<li>Equal Interval: As the name suggests, this method will will create classes
-which are at the same size. If our data ranges from 0-100 and we want 10
-classes, this method would create a class from 0-10, 10-20, 20-30 and so on
-, keeping each class the same size of 10 units.</li>
-<li>Quantile - This method will decide the classes such that number of values
-in each class are the same. If there are 100 values and we want 4
-classes, quantile method will decide the classes such that each class
-will have 25 values.</li>
-<li>Natural Breaks (Jenks) - This algorithm tries to find natural groupings
-of data to create classes. The resulting classes will be such that there
-will be maximum variance between individual classes and least variance
-within each class.</li>
-<li>Standard Deviation - This method will calculate the mean of the data, and
-create classes based on standard eviation from the mean.</li>
-<li>Pretty Breaks - This is based on the statistical package R’s pretty
-algorithm. It is a bit complex, but the <cite>pretty</cite> in the name means it
-creates class boundaries that are round numbers.</li>
+<li><p class="first">Intervallo uguale: Come suggerisce il nome, questo metodo creerà classi che sono della stessa misura. Se i nostri dati variano da 0 a 100 e vogliamo 10 classi, questo metodo creerà una classe da 0 a 10, una da 10 a 20, una terza da 20 a 30 e così via, mantenendo per ciascuna classe la stessa misura di 10 unità.</p>
+</li>
+<li><p class="first">Quantile: questo metodo stabilisce le classi di intervallo in modo tale  che il numero dei valori in ciascuna classe sia lo stesso. Se ci sono 100 valori e noi vogliamo suddividerli in 4 classi il metodo del quintile stabilirà classi che siano di dimensioni tali che all&#8217;interno di ciascuna di esse cadranno 25 unità.</p>
+</li>
+<li><p class="first">Natural breaks (Jenks): Questo algoritmo si propone di individuare dei raggruppamenti naturali dei dati per creare le classi di intervallo. Le classi risultanti saranno tali che ci sarà una varianza massima tra le singole classi e una minima varianza all&#8217;interno di ciascuna classe.</p>
+</li>
+<li><p class="first">Questo metodo calcolerà la media dei dati e creerà classi basate sulla deviazione standard dalla media.</p>
+</li>
+<li><p class="first">Questo metodo è basato su un pacchetto statistico chiamato R&#8217;s pretty algorithm. E&#8217; piuttosto complesso ma l&#8217;aggettivo inglese &#8220;pretty&#8221; all&#8217;interno del nome sta ad indicare che l&#8217;algoritmo crea delle classi confine intorno ai numeri.</p>
+</li>
 </ul>
-<p>To keep things simple, let’s use the Quantile method. Click <em class="guilabel">Classify</em> at the
-bottom and you will see 3 classes show up with their corresponding values.
-Click <em class="guilabel">OK</em>.</p>
+<p>Per semplificare, usiamo il metodo del Quantile. Facendo click sul tasto in basso <em class="guilabel">Classifica</em>  vedrete 3 classi che mostrano ciascuna i propri intervalli di valore. Fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
-<p class="last">For an attribute to be used in <em class="guilabel">Graduated</em> style, it must be a numeric field. Integer and Real
-values are fine, but if the attribute field type is String, it cannot be
-used with this styling option.</p>
+<p class="last">Un attributo, per essere usato nel modo <em class="guilabel">Graduato</em>, deve essere un dato di tipo numerico. I valori Integer e Real vanno bene, ma se l&#8217;attributo è di tipo Stringa, non può essere usato con questa opzione.</p>
 </div>
 <img alt="../_images/121.png" class="align-center" src="../_images/121.png" />
 <ol class="arabic simple" start="13">
-<li>You will see a map showing countries in either of 3 colors representing
-average life expectancy in the country.</li>
+<li><p class="first">Vedrete una mappa che mostra i diversi paesi in uno dei 3 colori che  rappresentano mediamente l&#8217;aspettativa di vita in ciascuno di essi.</p>
+</li>
 </ol>
 <img alt="../_images/131.png" class="align-center" src="../_images/131.png" />
 <ol class="arabic simple" start="14">
-<li>Now go back to the <em class="guilabel">Style</em> dialog by right clicking the layer and choosing
-<em class="guilabel">Properties</em>. There are some more styling options available.
-You can click on the Symbol for each of the classes and choose a different style.
-We will choose Red, Yellow and Green fill colors to indicate low, medium and high life expectancy.</li>
+<li><p class="first">Ora tornate sulla finestra di dialogo <em class="guilabel">Stile</em> cliccando sul layer e scegliete <em class="guilabel">Proprietà</em>. Ci sono altre opzioni di stile che possono essere utilizzate. Potreste ad esempio fare click su ciascuno dei simboli per ciascuna delle classi e scegliere uno stile differente per ogni classe. Per esempio, possiamo scegliere Rosso, Giallo e Verde come colori di riempimento per indicare rispettivamente &#8220;Bassa&#8221;, &#8220;Media&#8221; e &#8220;Alta&#8221; aspettativa di vita.</p>
+</li>
 </ol>
 <img alt="../_images/141.png" class="align-center" src="../_images/141.png" />
 <ol class="arabic simple" start="15">
-<li>In the <em class="guilabel">Symbol Selector</em> dialog, click on <em class="guilabel">Color</em>
-selector.</li>
+<li><p class="first">Nella finestra di dialogo <em class="guilabel">Selettore Simbolo</em>  click sul selettore <em class="guilabel">Colore</em>.</p>
+</li>
 </ol>
 <img alt="../_images/151.png" class="align-center" src="../_images/151.png" />
 <ol class="arabic simple" start="16">
-<li>Click on a color fom the <em class="guilabel">Select Color</em> dialog.</li>
+<li><p class="first">Click su un colore nella finestra di dialogo <em class="guilabel">Seleziona Colore</em>.</p>
+</li>
 </ol>
 <img alt="../_images/161.png" class="align-center" src="../_images/161.png" />
 <ol class="arabic simple" start="17">
-<li>Back in the <em class="guilabel">Layer Properties</em> dialog, you can click on the
-<em class="guilabel">Label</em> column next to each value and enter the text that you
-want to display. Similarly, you may click on the <em class="guilabel">Range</em> column
-to edit the selected ranges. Click <em class="guilabel">OK</em> once you are satisfied
-with the classes.</li>
+<li><p class="first">Tornate nella finestra <em class="guilabel">Proprietà del Vettore</em>. Potete cliccare due volte sulla colonna  <em class="guilabel">Etichetta</em> accanto a ciascun valore e scrivere al suo interno il testo che preferite. Analogamente potete modificare a vostro piacimento il valore di ciascun intervallo cliccando due volte sulla colonna <em class="guilabel">Valore</em>. Quando siete soddisfatti fate click su <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/171.png" class="align-center" src="../_images/171.png" />
 <ol class="arabic simple" start="18">
-<li>This style definitely conveys a lot more useful map than the previous two
-attempts. There are clearly marked class names and colors to represent our
-interpretation of the life expectancy values.</li>
+<li><p class="first">Questa tematizzazione ci ha condotto a una mappa decisamente più eloquente di quelle realizzate nei due tentativi precedenti. I nomi delle classi sono chiaramente indicati e i colori rappresentano bene la nostra interpretazione dei valori dell&#8217;aspettativa di vita sul pianeta.</p>
+</li>
 </ol>
 <img alt="../_images/181.png" class="align-center" src="../_images/181.png" />
 </div>
@@ -378,7 +329,7 @@ interpretation of the life expectancy values.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Jul 02, 2014.<br/>
+      Ultimo aggiornamento Jul 03, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
