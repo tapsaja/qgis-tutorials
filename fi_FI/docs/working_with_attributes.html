@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Working with Attributes &mdash; QGIS Tutorials and Tips</title>
+    <title>Työskentely attribuuteilla &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -82,7 +82,7 @@
       aria-labelledby="dLabelGlobalToc"><ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Johdanto</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Teemme kartan</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Working with Attributes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Työskentely attribuuteilla</a></li>
 <li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
@@ -174,87 +174,104 @@
       
 
   <div class="section" id="working-with-attributes">
-<h1>Working with Attributes<a class="headerlink" href="#working-with-attributes" title="Permalink to this headline">¶</a></h1>
+<h1>Työskentely attribuuteilla<a class="headerlink" href="#working-with-attributes" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/working_with_attributes_a4.pdf">A4</a> <a class="reference external" href="../pdf/working_with_attributes_letter.pdf">Letter</a> ]</p>
-<p>GIS data has two parts - features and attributes. Attributes are structured data about each feature. This tutorial shows how to view the attributes and do basic queries on them QGIS.</p>
+<p>Paikkatiedon data on kaksi osaista - ominaisuudet ja attribuutit. attribuutit ovat strukturoitua dataa ominaisuuksista. Tässä oppaassa tuodaan esille tavat katsoa attribuutteja ja tehdä peruskyselyjä niistä käyttäen QGIS ohjelmaa,</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>The dataset for this tutorial contains information about populated places of the world. The task is to query and find all the capital cities in the world that have a population greater than 10,00,000.</p>
+<h2>Katsaus tehtävään<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>Tässä oppaassa käytettävä tietojoukko sisältää informaatiota maailman aasutuista paikoista. Tehtävänä on kyselyllä löytää kaikki maailman pääkaupungit joiden asukasluku on suurempi kuin 10000000.</p>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places dataset</a> from Natural Earth.</p>
-<p>Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">Natural Earth Populated Places shapefile.</a>.</p>
-<p>Data Source <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
+<h2>Hanki tiedot<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Käytämme <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places tietojoukkoa</a> lähteenä Natural Earth.</p>
+<p>Lataa <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">Natural Earth Populated Places shapefile.</a>.</p>
+<p>Tietojen lähde <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<h2>Menettely<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Once you have downloaded the data, open QGIS. Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Ladattuasi datan, käynnistä QGIS. Mene <em class="menuselection">Tasot ‣ Lisää Vektoritaso...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1106.png" class="align-center" src="../_images/1106.png" />
 <ol class="arabic simple" start="2">
-<li>Click on <em class="guilabel">Browse</em> and navigate to the folder where you downloaded the data.</li>
+<li><p class="first">Klikkaa <em class="guilabel">Selaa</em> ja siirry hakemistoon jonne latasit tiedot.</p>
+</li>
 </ol>
 <img alt="../_images/248.png" class="align-center" src="../_images/248.png" />
 <ol class="arabic simple" start="3">
-<li>Locate the downloaded zip file <cite>ne_10m_populated_places_simple.zip</cite>. You do not need to unzip the file. QGIS has the ability to read zip files directly. Select the file and click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Paikallista ladattu zip tiedosto <cite>ne_10m_populated_places_simple.zip</cite>. Pakkauksen purkaminen on tarpeetonta, koska QGIS pystyy lukemaan zip tiedostoja suoraan. Valitse tiedosto ja klikkaa <em class="guilabel">Avaa</em>.</p>
+</li>
 </ol>
 <img alt="../_images/333.png" class="align-center" src="../_images/333.png" />
 <ol class="arabic simple" start="4">
-<li>You will get a dialog asking you to select the layer to open. Select <cite>ne_10m_populated_places_simple.shp</cite> and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Saat valintaikkunan jossa voit valita avattavat tasot. Valitse <cite>ne_10m_populated_places_simple.shp</cite> ja klikkaa <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/425.png" class="align-center" src="../_images/425.png" />
 <ol class="arabic simple" start="5">
-<li>The selected layer will now be loaded in QGIS and you will see many points representing the populated places of the world.</li>
+<li><p class="first">Valitut tasot ladataan nyt QGIS karttapohjalle ja näet paljon pisteitä jotka edustavat maailman asuttuja paikkoja.</p>
+</li>
 </ol>
 <img alt="../_images/526.png" class="align-center" src="../_images/526.png" />
 <ol class="arabic simple" start="6">
-<li>To see the attributes of right-click the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Nähdäksesi attribuutit klikkaa oikealla tason nimeä ja valitse <em class="guilabel">Avaa attribuuttitaulu</em>.</p>
+</li>
 </ol>
 <img alt="../_images/624.png" class="align-center" src="../_images/624.png" />
 <ol class="arabic simple" start="7">
-<li>Explore the various attributes and their values.</li>
+<li><p class="first">Tutki eri attribuutteja ja niiden arvoja.</p>
+</li>
 </ol>
 <img alt="../_images/724.png" class="align-center" src="../_images/724.png" />
 <ol class="arabic simple" start="8">
-<li>We are interested in the population of each feature, so <cite>pop_max</cite> is the field we are looking for. You can click twice on the field header to sort the column in descending order.</li>
+<li><p class="first">Olenne kiinnostuneita jokaisen ominaisuuden asukasluvusta, joten <cite>pop_max</cite> on se tieto jota etsimme. Voit klikata tuplasti tietokentän otsikossa lajitellaksesi sarakkeen laskevaan järjestykseen.</p>
+</li>
 </ol>
 <img alt="../_images/823.png" class="align-center" src="../_images/823.png" />
 <ol class="arabic simple" start="9">
-<li>Now we are ready to perform our query on these attributes. <em class="guilabel">Select features using an expression</em>.</li>
+<li><p class="first">Nyt olemme valmiit suorittamaan kyselyn näihin attribuutteihin. <em class="guilabel">Valitse ominaisuudet käyttämällä lauseketta</em>.</p>
+</li>
 </ol>
 <img alt="../_images/922.png" class="align-center" src="../_images/922.png" />
 <ol class="arabic simple" start="10">
-<li>In the <em class="guilabel">Select By Expression</em> window, expand the <em class="guilabel">Fields and Values</em> section and double-click the <cite>pop_max</cite> label. You will notice that it is added to the expression section at the bottom. If you aren&#8217;t sure about the field values, you can click the <em class="guilabel">Load all unique values</em> to see what the attribute values are present in the dataset. For this exercise, we are looking to find all features that have a population greater than 10,00,000. So complete the expression as <cite>&#8220;pop_max&#8221; &gt; 1000000</cite> and click <em class="guilabel">Select</em>.</li>
+<li><p class="first">Valintaikkunassa <em class="guilabel">Select By Expression</em>, laajenna <em class="guilabel">Tiedot ja arvot</em> valintakappale ja kaksoisklikkaa <cite>pop_max</cite> otsikkoa. Huomaat että se lisättiin Lauseke kappaleeseen alhaalla. Jos olet epävarma tietojen arvoista, voit klikata  <em class="guilabel">Lataa arvot kaikki yksilöllisiä</em> nähdäksesi mitä attribuuttien arvot ovat nykyisellään tietojoukossa. Tässä esimerkissä tarkoituksemme on löytää kaikki ominaisuudet joissa asukasluku on  suurempi kuin 10000000. Joten täydennä lauseke seuraavasti <cite>&#8220;pop_max&#8221; &gt; 10000000</cite> ja klikkaa <em class="guilabel">Valitse</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1022.png" class="align-center" src="../_images/1022.png" />
 <ol class="arabic simple" start="11">
-<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. You will notice that a subset of points is now rendered in yellow. This is the result of our query and you are seeing all places from the dataset that have the <cite>pop_max</cite> attribute value greater than 10,00,000.</li>
+<li><p class="first">Klikkaa <em class="guilabel">Sulje</em> ja palaa QGIS pääikkunaan. Huomaat että pisteiden alajoukko on nyt hahmotettu väriltään keltaisiksi. Tämä on tulosta kyselystämme ja näet kaikki paikat tietojoukosta joiden <cite>pop_max</cite> attribuutin arvo on suurempi kuin 10000000.</p>
+</li>
 </ol>
 <img alt="../_images/1126.png" class="align-center" src="../_images/1126.png" />
 <ol class="arabic simple" start="12">
-<li>The goal for this exercise is to find the places that are country capitals. Let’s refine our query to select only those places which are capitals. Click on the <em class="guilabel">Select feature using an expression</em> button in the attribute table.</li>
+<li><p class="first">Tämän harjoituksen tavoitteena oli löytää paikat jotka ovat maiden pääkaupunkeja. Parannellaapa kyselyämme valitaksemme ainoastaan ne paikat jotka ovat pääkaupunkeja. Klikkaa <em class="guilabel">Valitse ominaisuudet käyttämällä lauseketta</em> näppäintä attribuuttitaulussa.</p>
+</li>
 </ol>
 <img alt="../_images/1222.png" class="align-center" src="../_images/1222.png" />
 <ol class="arabic simple" start="13">
-<li>The field containing this data is <cite>adm0cap</cite>. The value <cite>1</cite> indicates that the place is a capital. Enter the expression as <cite>&#8220;adm0cap&#8221; = 1</cite>. Since we want to  search only within our previous query results, select <em class="guilabel">Select within selection</em>.</li>
+<li><p class="first">Kenttä joka sisältää tämän tiedon on  <cite>adm0cap</cite>. Arvo <cite>1</cite> osoittaa että paikka on pääkaupunki. Anna lauseke kuten <cite>&#8220;adm0cap&#8221; = 1</cite>. Koska haluamme haun kohdistuvan vain edellisen kyselyn tuloksiin, valitse <em class="guilabel">Valitse valinnasta</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
 <ol class="arabic simple" start="14">
-<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. Now you will see a smaller subset of the points selected. This is the result of the second query and shows all places from the dataset that are country capitals as well as have population greater than 10,00,000.</li>
+<li><p class="first">Klikkaa <em class="guilabel">Sulje</em> ja palaa QGIS pääikkunaan. Nyt näet pienemmän pistejoukon valituksi. Tämä on tulosta toisesta kyselystämme ja näyttää tietojoukon kaikki paikat  jotka ovat maiden pääkaupunkeja ja joiden asukasluku on suurempi kuin 10000000.</p>
+</li>
 </ol>
 <img alt="../_images/1420.png" class="align-center" src="../_images/1420.png" />
 <ol class="arabic simple" start="15">
-<li>Let&#8217;s save these results to a separate layer. Right-click on the layer and select <em class="guilabel">Save Selection As</em>.</li>
+<li><p class="first">Tallettakaamme tulokset erilliselle tasolle. Klikkaa oikealla tason nimeä ja valitse  <em class="guilabel">Tallenna nimellä ...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1517.png" class="align-center" src="../_images/1517.png" />
 <ol class="arabic simple" start="16">
-<li>Keep the format selection as <cite>ESRI Shapefile</cite> and enter the output name as <cite>large_capital_cities.shp</cite>. Check the box next to <em class="guilabel">Add saved file to map</em> and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Säilytä tiedostomuodon valinta <cite>ESRI Shapefile</cite>  ja anna tulostiedoston nimeksi <cite>large_capital_cities.shp</cite>. Merkkaa laatikko <em class="guilabel">Lisää talletettu tiedosto kartalle</em> ja merkkaa laatikko <em class="guilabel">Tallenna ainoastaan valitut ominaisuudet</em> ja klikkaa <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1617.png" class="align-center" src="../_images/1617.png" />
 <ol class="arabic simple" start="17">
-<li>The newly created shapefile will be automaticlally loaded into QGIS. Turn off the populated places layer by un-checking the box next to it. Now, you will see only the features from the newly created layer containing capital cities of the world that have population greater than 10,00,000.</li>
+<li><p class="first">Uusi luotu shapefile lisätään automaattisesti QGIS karttapohjalle. Sammuta asuttujen paikkojen taso poistamalla merkkaus lattikosta tason nimen edestä. Nyt näet ainoastaan ominaisuudet uudesta tasosta joka sisältää maailamn pääkaupungit joissa asukasluku on suurempi kuin 10000000.</p>
+</li>
 </ol>
 <img alt="../_images/1716.png" class="align-center" src="../_images/1716.png" />
 </div>
@@ -280,7 +297,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 04, 2014.<br/>
+      Last updated on Jul 05, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
