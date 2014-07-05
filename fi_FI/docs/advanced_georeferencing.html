@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Georeferencing Aerial Imagery &mdash; QGIS Tutorials and Tips</title>
+    <title>Ilmakuvien georeferointi &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -83,8 +83,8 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Johdanto</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Teemme kartan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Työskentely attribuuteilla</a></li>
-<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Käytämme taulukkolaskenta- tai CSV tiedostoja</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Liitännäisiä käyttämään</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calculating Line Lengths and Statistics</a></li>
@@ -93,7 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Georeferencing Aerial Imagery</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Ilmakuvien georeferointi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitizing Map Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
@@ -174,50 +174,41 @@
       
 
   <div class="section" id="georeferencing-aerial-imagery">
-<h1>Georeferencing Aerial Imagery<a class="headerlink" href="#georeferencing-aerial-imagery" title="Permalink to this headline">¶</a></h1>
+<h1>Ilmakuvien georeferointi<a class="headerlink" href="#georeferencing-aerial-imagery" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/advanced_georeferencing_a4.pdf">A4</a>
 <a class="reference external" href="../pdf/advanced_georeferencing_letter.pdf">Letter</a> ]</p>
-<p>In the tutorial <a class="reference internal" href="georeferencing_basics.html"><em>Georeferencing Topo Sheets and Scanned Maps</em></a> we covered the basic process of
-georeferencing in QGIS. That method involved reading the coordinates from your
-scanned map and inputting it manually. Many times though you may not have the
-coordinates printed on your map, or you are trying to georeference an image.
-In that case, you can use another georeferenced data source as your input. In
-this tutorial, you will learn how to use existing open data sources in your
-georeferencing process.</p>
+<p>Oppaassa <a class="reference internal" href="georeferencing_basics.html"><em>Georeferencing Topo Sheets and Scanned Maps</em></a>  tarkastelemme georeferoinnin perusmenettelyä QGIS:ssa. Tuohon menetelmäään sisältyi koordinaattien lukeminen skannatusta kartasta ja niiden syöttäminen manuaalisesti. Usein ei kuitenkaan ole koordinaatteja tulostetussa kartassa tai yrität georeferoida kuvaa. Tässä tapauksessa voit käyttää toista georeferoitua aineistoa lähteenä. Tässä oppaassa opit kuinka käyttää avaoimen datan lähteitä georeferointi prosessissa.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will georeference high resolution balloon-imagery using reference
-coordinates from OpenStreetMap.</p>
+<h2>Katsaus tehtävään<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>Georeferoimme korkearesoluutioista ilmapallokuvaa käyttäen koordinaatteja OpenStreeMap:sta.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<h3>Muita taitoja joita tulet oppimaan<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Downloading super high-resolution public domain imagery.</li>
-<li>Using the OpenLayers plugin in QGIS.</li>
-<li>Converting coordinates between different projection using <strong>cs2cs</strong>
-command-line tool.</li>
-<li>Using an existing georeferenced layer to input GCP points in the Georeferencer
-tool.</li>
-<li>Setting a custom no-data value for a layer.</li>
+<li><p class="first">Super korkearesoluutioden avoimen kuvaianeiston lataaminen.</p>
+</li>
+<li><p class="first">OpenLayers liitännäisen käyttö QGIS:ssä.</p>
+</li>
+<li><p class="first">Koordinaattien konvertointti eri projektioiden välillä käyttäen <strong>cs2cs</strong> komentotulkki työkalua.</p>
+</li>
+<li><p class="first">Olemaas olevan georeferoidun tason käyttö GCP pisteiden lähteenä Georeferointi työkalussa.</p>
+</li>
+<li><p class="first">Räätälöidyn no-data arvon asettaminen tasolle.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>In this tutorial, we will be using some gorgeous kite and balloon imagery
-collected by <a class="reference external" href="http://publiclaboratory.org/archive">The Public Laboratory</a>.
-They make the georeferenced versions of the images also available, but we will
-download a non-georeferenced JPG image and go through the process of
-georeferencing it in QGIS.  If you like the imagery they provide, you can
-<a class="reference external" href="http://google-latlong.blogspot.in/2012/04/balloon-and-kite-imagery-in-google.html">explore it</a> in Google Earth as well.</p>
+<h2>Hanki tiedot<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Tässä oppaassa käytämme eräitä upaeita leija ja ilmapallo kuvia joita <a class="reference external" href="http://publiclaboratory.org/archive">The Public Laboratory</a> on koonnut. Heiltä on tarjolla myös kuvien georeferoituja versioita, mutta me lataamme georeferoimattomat veriot ja georeferoimme ne QGIS:ssä käyden prosessin läpi. Jos pidät heidän tarjoamista kuvista, voit <a class="reference external" href="http://google-latlong.blogspot.in/2012/04/balloon-and-kite-imagery-in-google.html">tutkia niitä</a> myös Google Earth:ssa.</p>
 <p>Download the JPG image of <a class="reference external" href="http://publiclaboratory.org/map/washington-square-park-new-york-new-york/2012-10-01">Washington Square Park, New York</a>.
 You can right-click the JPG button and choose <em class="guilabel">Save link as...</em>.</p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<h2>Menettely<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>For this tutorial, we will be using the OpenStreetMap layer as our reference
 layer. Install the OpenLayers plugin from <em class="menuselection">Plugins ‣ Manage
-and install plugins ‣ Get more</em>. See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> for more
+and install plugins ‣ Get more</em>. See <a class="reference internal" href="using_plugins.html"><em>Liitännäisiä käyttämään</em></a> for more
 information on using plugins in QGIS.</li>
 </ol>
 <img alt="../_images/1.png" class="align-center" src="../_images/1.png" />
@@ -379,7 +370,7 @@ add 255 as the transparent pixels for each band and enter 100 as the
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 05, 2014.<br/>
+      Last updated on Jul 06, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
