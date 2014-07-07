@@ -89,7 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Cercare e scaricare dati da OpenStreetMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Principali tematizzazioni per dati vettoriali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calculating Line Lengths and Statistics</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Raster, elementi base: tematizzazione ed analisi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
@@ -180,7 +180,7 @@
 <p>I dati del GIS sono composti di due parti fondamentali - geometrie e attributi. Gli attributi sono dati strutturati che riguardano ciascuna geometria. Questo esercizio mostra come analizzare gli attributi e fare delle interrogazioni su di loro in QGIS.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Descrizione dell&#8217;esercizio<a class="headerlink" href="#overview-of-the-task" title="link permanente per questa intestazione">¶</a></h2>
-<p>Il dataset per questo esercizio contiene informazioni circa le aree popolate del pianeta. Il nostro obiettivo è quello di cercare e trovare le capitali del mondo che hanno una popolazione più grande di 10,00,000</p>
+<p>The dataset for this tutorial contains information about populated places of the world. The task is to query and find all the capital cities in the world that have a population greater than 1,000,000.</p>
 </div>
 <div class="section" id="get-the-data">
 <h2>Ottenere i dati necessari<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
@@ -238,13 +238,11 @@ Non avete bisogno di estrarre il file. QGIS è in grado di leggere direttamente 
 </ol>
 <img alt="../_images/922.png" class="align-center" src="../_images/922.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">Nella finestra <em class="guilabel">Seleziona valori usando un&#8217;espressione</em> aprite la sezione <em class="guilabel">Campi e Valori</em> e fate doppio click sul nome del campo <cite>pop_max</cite>. Vi accorgerete che sarà riportato nella sezione espressione che si trova in basso. Se non siete sicuri circa i valori del campo potete fare click su <em class="guilabel">Carica Tutti i Valori Univoci</em> per vedere quali valori per ciascun attributo sono presenti nel set di dati. Nell&#8217;ambito di questo esercizio, noi stiamo cercando tutte le geometrie che presentano una popolazione più grande di 10,00,000. Dunque, completate l&#8217;espressione con: <cite>&#8220;pop_max&#8221; &gt; 1000000</cite> e poi fate click su <em class="guilabel">Seleziona</em>.</p>
-</li>
+<li>In the <em class="guilabel">Select By Expression</em> window, expand the <em class="guilabel">Fields and Values</em> section and double-click the <cite>pop_max</cite> label. You will notice that it is added to the expression section at the bottom. If you aren&#8217;t sure about the field values, you can click the <em class="guilabel">Load all unique values</em> to see what the attribute values are present in the dataset. For this exercise, we are looking to find all features that have a population greater than 1,000,000. So complete the expression as <cite>&#8220;pop_max&#8221; &gt; 1000000</cite> and click <em class="guilabel">Select</em>.</li>
 </ol>
 <img alt="../_images/1022.png" class="align-center" src="../_images/1022.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">Fate click su <em class="guilabel">Chiudi</em> e tornate sulla finestra principale di QGIS. Come potete vedere un sottoinsieme di punti ora si presenta colorato di giallo. Questo è il risultato della nostra query e quelli che vedete in giallo sono i luoghi che, nei nostri dati,  hanno l&#8217;attributo <cite>pop_max</cite>  che presenta un valore maggiore di 10,00,000.</p>
-</li>
+<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. You will notice that a subset of points is now rendered in yellow. This is the result of our query and you are seeing all places from the dataset that have the <cite>pop_max</cite> attribute value greater than 1,000,000.</li>
 </ol>
 <img alt="../_images/1126.png" class="align-center" src="../_images/1126.png" />
 <ol class="arabic simple" start="12">
@@ -259,8 +257,7 @@ Inserite questa espressione: <cite>&#8220;adm0cap&#8221; = 1</cite>. Dal momento
 </ol>
 <img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">Facciamo click su <em class="guilabel">Chiudi</em> e torniamo alla finestra principale di QGIS. Ora potrete vedere un sottoinsieme di punti ancora più piccolo. Questo è il risultato della seconda interrogazione e mostra tutti i luoghi che, all&#8217;interno dei dati a nostra disposizione, sono capitali e hanno una popolazione maggiore di 10,00,000.</p>
-</li>
+<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. Now you will see a smaller subset of the points selected. This is the result of the second query and shows all places from the dataset that are country capitals as well as have population greater than 1,000,000.</li>
 </ol>
 <img alt="../_images/1420.png" class="align-center" src="../_images/1420.png" />
 <ol class="arabic simple" start="15">
@@ -274,8 +271,7 @@ Inserite questa espressione: <cite>&#8220;adm0cap&#8221; = 1</cite>. Dal momento
 </ol>
 <img alt="../_images/1617.png" class="align-center" src="../_images/1617.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">Lo shapefile appena creata sarà caricato automaticamente in QGIS. Spegnete il layer dei luoghi popolati del pianeta deselezionando la casella di opzione accanto. Ora potete vedere soltanto le geometrie del nuovo layer, quelle che rappresentano le capitali del mondo che hanno una popolazione maggiore di 10,00,000.</p>
-</li>
+<li>The newly created shapefile will be automaticlally loaded into QGIS. Turn off the populated places layer by un-checking the box next to it. Now, you will see only the features from the newly created layer containing capital cities of the world that have population greater than 1,000,000.</li>
 </ol>
 <img alt="../_images/1716.png" class="align-center" src="../_images/1716.png" />
 </div>
@@ -301,7 +297,7 @@ Inserite questa espressione: <cite>&#8220;adm0cap&#8221; = 1</cite>. Dal momento
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Jul 06, 2014.<br/>
+      Ultimo aggiornamento Jul 07, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

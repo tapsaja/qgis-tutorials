@@ -94,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Ilmakuvien georeferointi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitizing Map Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Karttadatan digitointi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
@@ -198,7 +198,7 @@
 <p>For convenience, the version of railroad dataset used in this tutorial can be
 downloaded directly from the links below:</p>
 <p>Download <a class="reference download internal" href="../_downloads/ne_10m_railroads_north_america.zip"><tt class="xref download docutils literal"><span class="pre">North</span> <span class="pre">America</span> <span class="pre">supplement</span></tt></a></p>
-<p>Data Source <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
+<p>Tietojen lähde <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Menettely<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
@@ -213,130 +213,98 @@ downloaded directly from the links below:</p>
 </ol>
 <img alt="../_images/23.png" class="align-center" src="../_images/23.png" />
 <ol class="arabic simple" start="3">
-<li>In the <em class="guilabel">Select layers to add...</em> dialog, choose
-<tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.shp</span></tt> layer.</li>
+<li><p class="first"><em class="guilabel">Lisää vektoritaso</em> ikkunassa, valitse <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.shp</span></tt> taso.</p>
+</li>
 </ol>
 <img alt="../_images/33.png" class="align-center" src="../_images/33.png" />
 <ol class="arabic simple" start="4">
-<li>Once the layer is loaded, you will notice that the layer has lines
-representing railroads for all of North America. Since we want to calculate
-line lengths only for United States railroads, we need to select the lines
-that fall in the United States. Right-click on the layer and select
-<em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Kun taso on ladattu huomaat että tasolla on viivoja jotka esittävät kaikkia pohjois Ameriikan rautateitä. Koska halusimme laskea vain Yhdysvaltojen lviivojen pituudet tarvitsee meidän valita ne viivat jotka sijaitsevat Yhdysvaltojen alueella. Klikkaa oikeall tasonnimea ja valitse <em class="guilabel">Avaa attribuuttitaulu</em>.</p>
+</li>
 </ol>
 <img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
 <ol class="arabic simple" start="5">
-<li>The layer has an attribute called <em class="guilabel">sov_a3</em>. This is the 3 letter
-code for the country that a particular feature falls in. We can use the
-value of this attribute to select features that are in USA.</li>
+<li><p class="first">Tasolla on attribuutti <em class="guilabel">sov_a3</em>. Tämä on 3 kirjaiminen koodi maasta jonne kukin ominaisuus sijoittuu. Voimme käyttää tämän attribuutin arvoa valitessamme ominaisuudet jotka sijaitsevat USA:ssa.</p>
+</li>
 </ol>
 <img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
 <ol class="arabic simple" start="6">
-<li>In the <em class="guilabel">Attribute Table</em> window, click the <em class="guilabel">Select
-features using an expression</em> button.</li>
+<li><p class="first"><em class="guilabel">Attribuuyyitaulu</em> ikkunassa klikkaa <em class="guilabel">Valitse ominaisuudet käyttämällä lauseketta</em> näppäimellä.</p>
+</li>
 </ol>
 <img alt="../_images/63.png" class="align-center" src="../_images/63.png" />
 <ol class="arabic simple" start="7">
-<li>A new dialog <em class="guilabel">Select By Expression</em> will open. Find the attribute
-<em class="guilabel">sov_a3</em> under <em class="guilabel">Fields and Values</em> in the
-<em class="guilabel">Functions list</em> section. Double-click on it to add it to the
-<em class="guilabel">Expression</em> text area. Complete the expression by typing in
-<tt class="docutils literal"><span class="pre">&quot;sov_a3&quot;</span> <span class="pre">=</span> <span class="pre">'USA'</span></tt>. Click <em class="guilabel">Select</em> followed by
-<em class="guilabel">Close</em>.</li>
+<li><p class="first">Uusi ikkuna <em class="guilabel">Select By Expression</em> avautuu. Etsi attribuutti <em class="guilabel">sov_a3</em> valintalistasta <em class="guilabel">Tiedot ja arvot</em> joka sijaitsee <em class="guilabel">Funktiolista</em> kappaleessa. Kaksoisklikkaa sitä lisätäksesi sen <em class="guilabel">Lauseke</em> tekstialueelle. Taydenna lauseke kirjoittamalla <tt class="docutils literal"><span class="pre">&quot;sov_a3&quot;</span> <span class="pre">=</span> <span class="pre">'USA'</span></tt>. Klikkaa <em class="guilabel">Valitse</em> ja sen jälkeen <em class="guilabel">Sulje</em>.</p>
+</li>
 </ol>
 <img alt="../_images/73.png" class="align-center" src="../_images/73.png" />
 <ol class="arabic simple" start="8">
-<li>Back in the main QGIS window, you will see that all lines that fall in USA
-are selected and appear in yellow.</li>
+<li><p class="first">Takaisin QGIS pääikkunaan, jossa voit nähdä kaikki viivat jotka sijaitsevat USA:n alueella. Ne valittuina ja keltaisia.</p>
+</li>
 </ol>
 <img alt="../_images/83.png" class="align-center" src="../_images/83.png" />
 <ol class="arabic simple" start="9">
-<li>Now let&#8217;s save our selection to a new shapefile. Right-click on the
-<tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> layer and select <em class="guilabel">Save
-Selection As...</em>.</li>
+<li><p class="first">Nyt tallennamme valintamme uuteen shapefile tiedostoon. Klikkaa oikealla <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> tasoa ja valitse <em class="guilabel">Tallenna valinta nimellä...</em>.
+Uudemmissa versioissa valitse <em class="guilabel">Tallenna nimellä...</em> ja merkkaus Tallenna ainoastaan valitut ominaisuudet laatikkoon.
+Huom: kääntäjän lisäys</p>
+</li>
 </ol>
 <img alt="../_images/93.png" class="align-center" src="../_images/93.png" />
 <ol class="arabic simple" start="10">
-<li>Click <em class="guilabel">Browse</em> and name the output file as <tt class="docutils literal"><span class="pre">usa_railroads.shp</span></tt>.
-We also want to change the CRS of the layer. Click on <em class="guilabel">Browse</em>
-next to <em class="guilabel">CRS</em>.</li>
+<li><p class="first">Klikkaa <em class="guilabel">Selaile</em> ja anna nimi tulostiedostolle kuten <tt class="docutils literal"><span class="pre">usa_railroads.shp</span></tt>. Haluamme myös muuttaa tason koordinaattijärjestelmää (CRS). Klikkaa <em class="guilabel">Selaile</em>  <em class="guilabel">CRS</em> vieressä.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Muista</p>
-<p class="last">The built-in functions that use a feature&#8217;s geometry for calculation use the
-units of the layer&#8217;s CRS. Geographic Coordinate Reference System(CRS) such
-as <em>EPSG:4326</em> have <strong>degrees</strong> as units - so the length of the feature
-would be in <strong>degrees</strong> and area in <strong>square degrees</strong> - which is
-meaningless. You need to use a Projected Coordinate Reference System with
-units of <strong>meters</strong> or <strong>feet</strong> to perform such calculations.</p>
+<p class="last">Sisäiset funktiot jotka käyttävät ominaisuuksien geometrioita laskentaan käyttävät tason koordinaattijärjestelmän (CRS) yksiköitä. Maantieteelliset koordinaattijärjestelmissä kuten <em>EPSG:4326</em> ovat yksiköt <strong>asteita</strong> - joten ominaisuuden pituus olisi <strong>asteita</strong> ja ala <strong>neliöasteita</strong> - joka olisi mieletöntä. Sinun tulee siis käyttää projisoitua koordinaattijärjestelmää jossa yksiköt ovat joko <strong>metrejä</strong> tai <strong>jalkoja</strong> laskutoimitusten suorittamiseksi.</p>
 </div>
 <img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
 <ol class="arabic simple" start="11">
-<li>Since we are interested in calculating length, let’s select an equidistance
-projection. Type <em class="guilabel">north america equ</em> in the <em class="guilabel">Filter</em>
-search box. In the results pane below, select
-<em class="guilabel">North_America_Equidistant_Conic EPSG:102010</em> as the CRS. Click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Koska olimme kiinnostuneita laskemaan pituuden valitsemme tasavälisen (equidistant) projektion. Kirjoita <em class="guilabel">north america equ</em> <em class="guilabel">Suodatin</em> hakulaatikkoon. Tulospanelista alhaalta valitse  <em class="guilabel">North_America_Equidistant_Conic EPSG:102010</em> koordinaattijärjestelmäksi (CRS). Klikkaa <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
 <ol class="arabic simple" start="12">
-<li>In the <em class="guilabel">Save vector layer as...</em> dialog, check the <em class="guilabel">Add
-saved file to map</em> and click <em class="guilabel">OK</em>.</li>
+<li><p class="first"><em class="guilabel">Tallenna vektoritaso nimellä...</em> ikkunassa merkkaa <em class="guilabel">Lisää talletettu tiedosto kartalle</em> ja klikkaa <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/123.png" class="align-center" src="../_images/123.png" />
 <ol class="arabic simple" start="13">
-<li>Once the export process finishes, you will see a new layer
-<tt class="docutils literal"><span class="pre">usa_railroads</span></tt> loaded in QGIS. You can uncheck the box next to
-<tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> layer to turn it off as we don&#8217;t need it
-anymore.</li>
+<li><p class="first">Kun tallennus prosessi päättyy näet uuden tason <tt class="docutils literal"><span class="pre">usa_railroads</span></tt> ladatun QGIS karttapohjalle. Voi poistaa merkkauksen tason <a href="#id1"><span class="problematic" id="id2">``</span></a>ne_10m_railroads_north_america` etulaatikosta poistaaksesi sen näytön koska emme tarvitse sitä enää.</p>
+</li>
 </ol>
 <img alt="../_images/133.png" class="align-center" src="../_images/133.png" />
 <ol class="arabic simple" start="14">
-<li>Right-click on the <tt class="docutils literal"><span class="pre">usa_railroads</span></tt> layer and select <em class="guilabel">Open
-Attribute Table</em>.</li>
+<li><p class="first">Klikkaa oikealla <a href="#id1"><span class="problematic" id="id2">``</span></a>usa_railroads` tasoa ja valitse <em class="guilabel">Avaa attribuuttitaulu</em>.</p>
+</li>
 </ol>
 <img alt="../_images/143.png" class="align-center" src="../_images/143.png" />
 <ol class="arabic simple" start="15">
-<li>Now it is time to add a column with length of each feature. Put the layer
-in editing mode by clicking on the <em class="guilabel">Toggle editing</em> button. Once
-in editing mode, click the <em class="guilabel">Open field calculator</em> button.</li>
+<li><p class="first">Nyt on aika lisätä sarake jokaisen ominaisuuden pituudelle. Aseta taso muokkaustilaan klikkamalla <em class="guilabel">Vaihda muokkauksen toimintatilaa</em> näppäintä. Kun muokkaus mahdollista, klikkaa <em class="guilabel">Avaa tiedon laskin</em> näppäintä.</p>
+</li>
 </ol>
 <img alt="../_images/153.png" class="align-center" src="../_images/153.png" />
 <ol class="arabic simple" start="16">
-<li>In the <em class="guilabel">Field Calculator</em>, check <em class="guilabel">Create a new
-field</em>. Enter <strong>length_km</strong> as the <em class="guilabel">Output field name</em>. Choose
-<strong>Decimal number (real)</strong> as the <em class="guilabel">Output field type</em>. Change the
-output <em class="guilabel">Precision</em> to <strong>2</strong>. In the <em class="guilabel">Function list</em>
-panel, find the <em class="guilabel">$length</em> under <em class="guilabel">Geometry</em>.
-Double-click it to add it to the <em class="guilabel">Expression</em>. Complete the
-expression as <tt class="docutils literal"><span class="pre">$length</span> <span class="pre">/</span> <span class="pre">1000</span></tt> because our layer CRS is in <strong>meters</strong>
-unit and we want the output in <strong>km</strong>. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Ikkunassa <em class="guilabel">Tietolaskin</em>, merkkaa <em class="guilabel">Luo uusi tieto</em>. Anna <strong>length_km</strong> <em class="guilabel">Tulostustiedon nimi</em> tietokenttään. Valitse <strong>Desimaalinumero (reaali)</strong>  <em class="guilabel">Tulostustiedon tyyppi</em> kenttään. Vaihda tuloksen <em class="guilabel">Tarkkuus</em> to <strong>2</strong>. <em class="guilabel">Funktiolista</em> paneelista etsi <em class="guilabel">$length</em> <em class="guilabel">Geometria</em> ryhmästä. Tuplaklikkaa sitä lisätäksesi sen <em class="guilabel">Lauseke</em> laatikkoon. Täydennä lauseke <tt class="docutils literal"><span class="pre">$length</span> <span class="pre">/</span> <span class="pre">1000</span></tt> kokska tasomme koordinaattijärjestelmä (CRS) on  <strong>metrit</strong> yksiköissä ja haluamme tuloksen olevan <strong>km</strong> yksiköissä. Klikkaa <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/163.png" class="align-center" src="../_images/163.png" />
 <ol class="arabic simple" start="17">
-<li>Back in <em class="guilabel">Attribute Table</em>, you will see a new column
-<em class="guilabel">length_km</em> appear. Click the <em class="guilabel">Toggle editing</em> button
-to save the changes to the attribute table.</li>
+<li><p class="first">Takaisin <em class="guilabel">Attribuuttitaulussa</em>, näet uuden sarakkeen <em class="guilabel">length_km</em> ilmestyneen. Klikkaa <em class="guilabel">Vaihda muokkauksen toimintatilaa</em> näppäintä tallettaaksesi muutokset attribuuttitaulussa.</p>
+</li>
 </ol>
 <img alt="../_images/173.png" class="align-center" src="../_images/173.png" />
 <ol class="arabic simple" start="18">
-<li>Now that we have length of each individual line in our layer, we can easily
-add it all up and find the <strong>Total</strong> length. Go to <em class="menuselection">Vector
-‣ Analysis Tools ‣ Basic Statistics</em>.</li>
+<li><p class="first">Nyt kun meillä on jokaisen viivan yksilöllinen pituus, voimme helposti summata kaiken ja löytää <strong>Kokonais</strong> pituuden. Mene <em class="menuselection">Vektori ‣ Analyysityökalut ‣ Perustilastot</em>.</p>
+</li>
 </ol>
 <img alt="../_images/183.png" class="align-center" src="../_images/183.png" />
 <ol class="arabic simple" start="19">
-<li>Select the <em class="guilabel">Input Vector layer</em> as <tt class="docutils literal"><span class="pre">usa_railroads</span></tt>. Choose the
-<em class="guilabel">Target field</em> as <tt class="docutils literal"><span class="pre">length_km</span></tt> and click <em class="guilabel">OK</em>. You
-will see various statistics appear. The <em class="guilabel">Sum</em> value is the total
-length of the railroads that we are looking to find.</li>
+<li><p class="first">Valitse <em class="guilabel">Valitse vektoritaso</em> tietoon <tt class="docutils literal"><span class="pre">usa_railroads</span></tt>. Valitse <em class="guilabel">Kohde kenttä</em> tiedosta <tt class="docutils literal"><span class="pre">length_km</span></tt> ja klikkaa <em class="guilabel">OK</em>. Näet erilaisia tilastotietoja ilmestyvän. <em class="guilabel">Summa</em> arvo on rautateiden kokonaispituus jota etsimme.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Muista</p>
-<p class="last">This answer will vary slightly if a different projection is chosen.In
-practice, line lengths for roads and other linear features are measured on
-the ground and provided as attributes to the dataset. This method works in
-absence of such attribute and as an approximation of actual line lengths.</p>
+<p class="last">Tämä vastaus saattaa hieman vaihdella jos eri projektio olisi valittu. Käytännössä tieviivojen pituudet ja muut lineaariset ominaisuudet on mitattu maanpinnalla, kenttätyönä, ja annetaan attribuutteina tietojoukkoon. Tämä menetelmä on toimiva jos tuollainen attribuuttitieto puuttuu ja on likiarvo todellisille viivojen pituuksille.</p>
 </div>
 <img alt="../_images/191.png" class="align-center" src="../_images/191.png" />
 </div>
@@ -362,7 +330,7 @@ absence of such attribute and as an approximation of actual line lengths.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 06, 2014.<br/>
+      Last updated on Jul 07, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
