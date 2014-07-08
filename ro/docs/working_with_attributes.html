@@ -176,85 +176,102 @@
   <div class="section" id="working-with-attributes">
 <h1>Lucrul cu atribute<a class="headerlink" href="#working-with-attributes" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/working_with_attributes_a4.pdf">A4</a> <a class="reference external" href="../pdf/working_with_attributes_letter.pdf">Letter</a> ]</p>
-<p>GIS data has two parts - features and attributes. Attributes are structured data about each feature. This tutorial shows how to view the attributes and do basic queries on them QGIS.</p>
+<p>GIS data has two parts - features and attributes. Attributes are structured data about each feature. This tutorial shows how to view the attributes and do basic queries on them in QGIS.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>The dataset for this tutorial contains information about populated places of the world. The task is to query and find all the capital cities in the world that have a population greater than 1,000,000.</p>
+<p>Setul de date pentru acest tutorial conține informații despre locurile populate ale lumii. Sarcina este de a interoga și de a găsi toate capitalele din lume, care au o populație mai mare de 1.000.000.</p>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places dataset</a> from Natural Earth.</p>
-<p>Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">Natural Earth Populated Places shapefile.</a>.</p>
+<p>Vom folosi setul de date <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Locuri populate</a> de la Natural Earth.</p>
+<p>Descărcați fișierul shape <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">Natural Earth Populated Places.</a>.</p>
 <p>Sursa de date <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Once you have downloaded the data, open QGIS. Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Odată ce ați descărcat datele, deschideți QGIS. Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1106.png" class="align-center" src="../_images/1106.png" />
 <ol class="arabic simple" start="2">
-<li>Click on <em class="guilabel">Browse</em> and navigate to the folder where you downloaded the data.</li>
+<li><p class="first">Faceți clic pe <em class="guilabel">Browse</em> și navigați la folderul unde ați descărcat datele.</p>
+</li>
 </ol>
 <img alt="../_images/248.png" class="align-center" src="../_images/248.png" />
 <ol class="arabic simple" start="3">
-<li>Locate the downloaded zip file <cite>ne_10m_populated_places_simple.zip</cite>. You do not need to unzip the file. QGIS has the ability to read zip files directly. Select the file and click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Localizați fișierul zip descărcat <cite>ne_10m_populated_places_simple.zip</cite>. Nu e nevoie să dezarhivați fișierul. QGIS are capacitatea de a citi în mod direct fișierele zip . Selectați fișierul și faceți clic pe <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/333.png" class="align-center" src="../_images/333.png" />
 <ol class="arabic simple" start="4">
-<li>You will get a dialog asking you to select the layer to open. Select <cite>ne_10m_populated_places_simple.shp</cite> and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Vi se va cere să selectați stratul care urmează a fi deschis. Selectați <cite>ne_10m_populated_places_simple.shp</cite> și faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/425.png" class="align-center" src="../_images/425.png" />
 <ol class="arabic simple" start="5">
-<li>The selected layer will now be loaded in QGIS and you will see many points representing the populated places of the world.</li>
+<li><p class="first">Straturile selectate vor fi de acum încărcate în QGIS, după care veți vedea mai multe puncte care reprezintă locurile populate ale lumii.</p>
+</li>
 </ol>
 <img alt="../_images/526.png" class="align-center" src="../_images/526.png" />
 <ol class="arabic simple" start="6">
-<li>To see the attributes of right-click the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Pentru a vedea atributele faceți clic dreapta pe strat și selectați <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/624.png" class="align-center" src="../_images/624.png" />
 <ol class="arabic simple" start="7">
-<li>Explore the various attributes and their values.</li>
+<li><p class="first">Explorați diversele atribute și valorile lor.</p>
+</li>
 </ol>
 <img alt="../_images/724.png" class="align-center" src="../_images/724.png" />
 <ol class="arabic simple" start="8">
-<li>We are interested in the population of each feature, so <cite>pop_max</cite> is the field we are looking for. You can click twice on the field header to sort the column in descending order.</li>
+<li><p class="first">Ne interesează populația din fiecare entitate, astfel că <cite>pop_max</cite> este câmpul cautat. Puteți să faceți dublu clic pe antetul de câmp pentru a sorta coloana în ordine descrescătoare.</p>
+</li>
 </ol>
 <img alt="../_images/823.png" class="align-center" src="../_images/823.png" />
 <ol class="arabic simple" start="9">
-<li>Now we are ready to perform our query on these attributes. <em class="guilabel">Select features using an expression</em>.</li>
+<li><p class="first">Acum suntem gata pentru a efectua interogarea noastră pe aceste atribute. <em class="guilabel">Select features using an expression</em>.</p>
+</li>
 </ol>
 <img alt="../_images/922.png" class="align-center" src="../_images/922.png" />
 <ol class="arabic simple" start="10">
-<li>In the <em class="guilabel">Select By Expression</em> window, expand the <em class="guilabel">Fields and Values</em> section and double-click the <cite>pop_max</cite> label. You will notice that it is added to the expression section at the bottom. If you aren&#8217;t sure about the field values, you can click the <em class="guilabel">Load all unique values</em> to see what the attribute values are present in the dataset. For this exercise, we are looking to find all features that have a population greater than 1,000,000. So complete the expression as <cite>&#8220;pop_max&#8221; &gt; 1000000</cite> and click <em class="guilabel">Select</em>.</li>
+<li><p class="first">În fereastra <em class="guilabel">Select By Expression</em>, expandați secțiunea <em class="guilabel">Fields and Values</em> și efectuați dublu-clic pe eticheta <cite>pop_max</cite>. Veți observa că ea se adaugă în partea de jos a secțiunii expresiei. Dacă nu sunteți siguri cu privire la valorile câmpului, aveți posibilitatea să faceți clic pe <em class="guilabel">Load all unique values</em> pentru a vedea valorile atributelor prezente în setul de date. Pentru acest exercițiu, căutăm să găsim toate entitățile care au o populație mai mare de 1.000.000. Așa că vom finaliza expresia ca <cite>&#8220;pop_max&#8221; &gt; 1000000</cite>, după care facem clic pe <em class="guilabel">Select</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1022.png" class="align-center" src="../_images/1022.png" />
 <ol class="arabic simple" start="11">
-<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. You will notice that a subset of points is now rendered in yellow. This is the result of our query and you are seeing all places from the dataset that have the <cite>pop_max</cite> attribute value greater than 1,000,000.</li>
+<li><p class="first">Clic pe <em class="guilabel">Close</em> și reveniți la fereastra principală a QGIS. Veți observa că un subset de puncte este acum redat în galben. Acesta este rezultatul interogării noastre, putându-se observa toate locurile din setul de date care au valoarea atributului <cite>pop_max</cite> mai mare decât 1.000.000.</p>
+</li>
 </ol>
 <img alt="../_images/1126.png" class="align-center" src="../_images/1126.png" />
 <ol class="arabic simple" start="12">
-<li>The goal for this exercise is to find the places that are country capitals. Let’s refine our query to select only those places which are capitals. Click on the <em class="guilabel">Select feature using an expression</em> button in the attribute table.</li>
+<li><p class="first">Scopul acestui exercițiu este de a găsi locațiile care reprezintă capitale de țări. Să rafinăm interogarea noastră pentru a selecta doar acele locuri care sunt capitale. Faceți clic pe <em class="guilabel">Select feature using an expression</em> în tabelul atribut.</p>
+</li>
 </ol>
 <img alt="../_images/1222.png" class="align-center" src="../_images/1222.png" />
 <ol class="arabic simple" start="13">
-<li>The field containing this data is <cite>adm0cap</cite>. The value <cite>1</cite> indicates that the place is a capital. Enter the expression as <cite>&#8220;adm0cap&#8221; = 1</cite>. Since we want to  search only within our previous query results, select <em class="guilabel">Select within selection</em>.</li>
+<li><p class="first">Câmpul care conține aceste date este <cite>adm0cap</cite>. Valoarea <cite>1</cite> indică faptul că resprectivul loc reprezintă o capitală. Introduceți expresia <cite>&#8220;adm0cap&#8221;= 1</cite>. Din moment ce dorim să căutăm numai în rezultatele interogării anterioare, vom alege <em class="guilabel">Select within selection</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
 <ol class="arabic simple" start="14">
-<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. Now you will see a smaller subset of the points selected. This is the result of the second query and shows all places from the dataset that are country capitals as well as have population greater than 1,000,000.</li>
+<li><p class="first">Clic pe  <em class="guilabel">Close</em> și revenți la fereastra principală a QGIS. Acum, veți vedea un mic subset de puncte selectate. Acesta este rezultatul celei de-a doua interogări și prezintă toate locurile din setul de date, care sunt capitale țări, și au o populație mai mare de 1.000.000.</p>
+</li>
 </ol>
 <img alt="../_images/1420.png" class="align-center" src="../_images/1420.png" />
 <ol class="arabic simple" start="15">
-<li>Let&#8217;s save these results to a separate layer. Right-click on the layer and select <em class="guilabel">Save Selection As</em>.</li>
+<li><p class="first">Urmează să salvăm aceste rezultate într-un strat separat. Faceți clic dreapta pe strat și selectați <em class="guilabel">Save Selection As</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1517.png" class="align-center" src="../_images/1517.png" />
 <ol class="arabic simple" start="16">
-<li>Keep the format selection as <cite>ESRI Shapefile</cite> and enter the output name as <cite>large_capital_cities.shp</cite>. Check the box next to <em class="guilabel">Add saved file to map</em> and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Păstrați formatul selecției ca <cite>ESRI Shapefile</cite> și introduceți următorul numele de ieșire <cite>large_capital_cities.shp</cite>. Bifați caseta de lângă <em class="guilabel">Add saved file to map</em> apoi faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1617.png" class="align-center" src="../_images/1617.png" />
 <ol class="arabic simple" start="17">
-<li>The newly created shapefile will be automaticlally loaded into QGIS. Turn off the populated places layer by un-checking the box next to it. Now, you will see only the features from the newly created layer containing capital cities of the world that have population greater than 1,000,000.</li>
+<li><p class="first">Fișierul shape nou creat se va încărca automat în QGIS. Ascundeți stratul locurilor populate, debifând caseta de lângă aceasta. Acum, veți vedea doar entitățile noului strat creat, care conține capitalele lumii și care au o populație mai mare de 1.000.000.</p>
+</li>
 </ol>
 <img alt="../_images/1716.png" class="align-center" src="../_images/1716.png" />
 </div>
@@ -280,7 +297,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 07, 2014.<br/>
+      Last updated on Jul 08, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
