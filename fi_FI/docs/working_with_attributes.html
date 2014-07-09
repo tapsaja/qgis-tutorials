@@ -104,7 +104,7 @@
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Tason verteksien lukumäärän laskenta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
@@ -179,7 +179,7 @@
 <p>GIS data has two parts - features and attributes. Attributes are structured data about each feature. This tutorial shows how to view the attributes and do basic queries on them in QGIS.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Katsaus tehtävään<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>The dataset for this tutorial contains information about populated places of the world. The task is to query and find all the capital cities in the world that have a population greater than 1,000,000.</p>
+<p>Tässä oppaassa käytettävä tietojoukko sisältää informaatiota maailman aasutuista paikoista. Tehtävänä on kyselyllä löytää kaikki maailman suuret kaupungin joiden asukasluku on suurempi kuin 1,000,000.</p>
 </div>
 <div class="section" id="get-the-data">
 <h2>Hanki tiedot<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
@@ -235,11 +235,13 @@
 </ol>
 <img alt="../_images/922.png" class="align-center" src="../_images/922.png" />
 <ol class="arabic simple" start="10">
-<li>In the <em class="guilabel">Select By Expression</em> window, expand the <em class="guilabel">Fields and Values</em> section and double-click the <cite>pop_max</cite> label. You will notice that it is added to the expression section at the bottom. If you aren&#8217;t sure about the field values, you can click the <em class="guilabel">Load all unique values</em> to see what the attribute values are present in the dataset. For this exercise, we are looking to find all features that have a population greater than 1,000,000. So complete the expression as <cite>&#8220;pop_max&#8221; &gt; 1000000</cite> and click <em class="guilabel">Select</em>.</li>
+<li><p class="first">Valintaikkunassa <em class="guilabel">Select By Expression</em>, laajenna <em class="guilabel">Tiedot ja arvot</em> valintakappale ja kaksoisklikkaa <cite>pop_max</cite> otsikkoa. Huomaat että se lisättiin Lauseke kappaleeseen alhaalla. Jos olet epävarma tietojen arvoista, voit klikata  <em class="guilabel">Lataa arvot kaikki yksilöllisiä</em> nähdäksesi mitä attribuuttien arvot ovat nykyisellään tietojoukossa. Tässä esimerkissä tarkoituksemme on löytää kaikki ominaisuudet joissa asukasluku on  suurempi kuin 1000000. Joten täydennä lauseke seuraavasti <cite>&#8220;pop_max&#8221; &gt; 1000000</cite> ja klikkaa <em class="guilabel">Valitse</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1022.png" class="align-center" src="../_images/1022.png" />
 <ol class="arabic simple" start="11">
-<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. You will notice that a subset of points is now rendered in yellow. This is the result of our query and you are seeing all places from the dataset that have the <cite>pop_max</cite> attribute value greater than 1,000,000.</li>
+<li><p class="first">Klikkaa <em class="guilabel">Sulje</em> ja palaa QGIS pääikkunaan. Huomaat että pisteiden alajoukko on nyt hahmotettu väriltään keltaisiksi. Tämä on tulosta kyselystämme ja näet kaikki paikat tietojoukosta joiden <cite>pop_max</cite> attribuutin arvo on suurempi kuin 1000000.</p>
+</li>
 </ol>
 <img alt="../_images/1126.png" class="align-center" src="../_images/1126.png" />
 <ol class="arabic simple" start="12">
@@ -253,7 +255,8 @@
 </ol>
 <img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
 <ol class="arabic simple" start="14">
-<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. Now you will see a smaller subset of the points selected. This is the result of the second query and shows all places from the dataset that are country capitals as well as have population greater than 1,000,000.</li>
+<li><p class="first">Klikkaa <em class="guilabel">Sulje</em> ja palaa QGIS pääikkunaan. Nyt näet pienemmän pistejoukon valituksi. Tämä on tulosta toisesta kyselystämme ja näyttää tietojoukon kaikki paikat  jotka ovat maiden pääkaupunkeja ja joiden asukasluku on suurempi kuin 1000000.</p>
+</li>
 </ol>
 <img alt="../_images/1420.png" class="align-center" src="../_images/1420.png" />
 <ol class="arabic simple" start="15">
@@ -267,7 +270,8 @@
 </ol>
 <img alt="../_images/1617.png" class="align-center" src="../_images/1617.png" />
 <ol class="arabic simple" start="17">
-<li>The newly created shapefile will be automaticlally loaded into QGIS. Turn off the populated places layer by un-checking the box next to it. Now, you will see only the features from the newly created layer containing capital cities of the world that have population greater than 1,000,000.</li>
+<li><p class="first">Uusi luotu shapefile lisätään automaattisesti QGIS karttapohjalle. Sammuta asuttujen paikkojen taso poistamalla merkkaus lattikosta tason nimen edestä. Nyt näet ainoastaan ominaisuudet uudesta tasosta joka sisältää maailamn pääkaupungit joissa asukasluku on suurempi kuin 1000000.</p>
+</li>
 </ol>
 <img alt="../_images/1716.png" class="align-center" src="../_images/1716.png" />
 </div>
@@ -293,7 +297,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 08, 2014.<br/>
+      Last updated on Jul 09, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
