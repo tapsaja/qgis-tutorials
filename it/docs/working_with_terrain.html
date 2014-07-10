@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Working with Terrain Data &mdash; QGIS Tutorials and Tips</title>
+    <title>Lavorare con i dati del terrreno &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calcolare la lunghezza lineare e le statistiche</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Raster, elementi base: tematizzazione ed analisi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Mosaici e operazioni di ritaglio con i layer raster</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Working with Terrain Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Lavorare con i dati del terrreno</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
@@ -188,89 +188,71 @@
       
 
   <div class="section" id="working-with-terrain-data">
-<h1>Working with Terrain Data<a class="headerlink" href="#working-with-terrain-data" title="link permanente per questa intestazione">¶</a></h1>
+<h1>Lavorare con i dati del terrreno<a class="headerlink" href="#working-with-terrain-data" title="link permanente per questa intestazione">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/working_with_terrain_a4.pdf">A4</a> <a class="reference external" href="../pdf/working_with_terrain_letter.pdf">Letter</a> ]</p>
-<p>Terrain or elevation data is useful for many GIS Analysis and it is often used
-in maps. QGIS has good terrain processing capabilities built-in. In this
-tutorial, we will work through the steps to generate various products from
-elevation data such as contours, hillshade etc.</p>
+<p>I dati che si riferiscono al terreno o all&#8217;elevazione del suolo sono utili in molte analisi realizzate con i sistemi GIS e vengono spesso usati nella stesura di carte e mappe. QGIS possiede delle ottime funzioni residenti per i processi di analisi del territorio. In questa esercitazione faremo i passi necessari per realizzare diversi risultati a partire dai dati come l&#8217;elevazione, le linee di livello, la pendenza etc.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="link permanente per questa intestazione">¶</a></h2>
-<p>The task is to create contours and hillshade map for area around Mt. Everest.</p>
+<h2>Descrizione del compito<a class="headerlink" href="#overview-of-the-task" title="link permanente per questa intestazione">¶</a></h2>
+<p>L&#8217;obiettivo è quello di creare una mappa delle curve di livello e delle forme montuose per l&#8217;area che circonda il monte Everest.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="link permanente per questa intestazione">¶</a></h3>
+<h3>Altri aspetti che avremo modo di apprendere nel corso dell&#8217;esercizio<a class="headerlink" href="#other-skills-you-will-learn" title="link permanente per questa intestazione">¶</a></h3>
 <ul class="simple">
-<li>Searching and downloading freely available terrain data.</li>
-<li>Exporting a vector layer as KML and viewing it in Google Earth.</li>
+<li><p class="first">Cercare e scaricare dati territoriali liberamente accessibili.</p>
+</li>
+<li><p class="first">sportare un layer vettoriale in KML e visualizzarlo in Google Earth.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
-<p>We will be working with GMTED2010 dataset from USGS. This data can be
-downloaded from the <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> site. <a class="reference external" href="http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/GMTED2010">GMTED (Global Multi-resolution
-Terrain Elevation Data)</a> is a global terrain dataset that is the newer version
-of GTOPO30 dataset.</p>
-<p>Here is how to search and download the revelant data from USGS Earthexplorer.</p>
+<h2>Ottenere i dati necessari<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
+<p>Lavoreremo con il dataset GMTED2010 di USGS. Questi dati possono essere scaricati dal sito <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a>.  <a class="reference external" href="http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/GMTED2010">GMTED (Global Multi-resolution Terrain Elevation Data)</a>  è un dataset territoriale planetario ed è la versione più recente del dataset GTOP30.</p>
+<p>Vediamo come cercare e scaricare i dati che ci interessano da USGS Earthexplorer.</p>
 <ol class="arabic simple">
-<li>Go to the <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> . In the
-<em class="guilabel">Search Criteria</em> tab, search for the place name <cite>Mt. Everest</cite>.
-Click on the result to select the location.</li>
+<li><p class="first">Portiamoci su <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> . Nella scheda <em class="guilabel">Search Criteria</em> facciamo una ricerca del luogo chiamato <cite>Mt. Everest</cite>. Facciamo click sul risultato per vedere il posto.</p>
+</li>
 </ol>
 <img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
 <ol class="arabic simple" start="2">
-<li>In the <em class="guilabel">Data Sets</em> tab, expand the <em class="guilabel">Digital Elevation</em>
-group, and check <em class="guilabel">GMTED2010</em>.</li>
+<li><p class="first">Nella scheda <em class="guilabel">Data Sets</em> apriamo il gruppo <em class="guilabel">Digital Elevation</em> e sbarriamo la casella <em class="guilabel">GMTED2010</em>.</p>
+</li>
 </ol>
 <img alt="../_images/249.png" class="align-center" src="../_images/249.png" />
 <ol class="arabic simple" start="3">
-<li>You can now skip to the <em class="guilabel">Results</em> tab and see the part of the
-dataset intersecting your search criteria. Click the <em class="guilabel">Download
-Options</em> button. You will have to log in to the site at this point. You can
-create a free account if you do not have one.</li>
+<li><p class="first">Adesso potete passare alla scheda <em class="guilabel">Results</em> e vedere le parti del dataset che rispondono ai nostri criteri di ricerca. Fare click sul pulsante <em class="guilabel">Download Options</em> . A questo punto dovete fare login per accedere al sito. Se non avete un account di accesso potete crearlo.</p>
+</li>
 </ol>
 <img alt="../_images/334.png" class="align-center" src="../_images/334.png" />
 <ol class="arabic simple" start="4">
-<li>Select the <em class="guilabel">30 ARC SEC</em> option and click <em class="guilabel">Select
-Download Option</em>.</li>
+<li><p class="first">Selezionate nella opportuna casella l&#8217;opzione  <em class="guilabel">30 ARC SEC</em>  e fate click su  <em class="guilabel">Select Download Option</em>.</p>
+</li>
 </ol>
 <img alt="../_images/426.png" class="align-center" src="../_images/426.png" />
-<p>You will now have a file named <cite>GMTED2010N10E060_300.zip</cite>. Elevation data is
-distributed in various raster formats such as ASC, BIL, GeoTiff etc.
-QGIS supports a wide <a class="reference external" href="http://www.gdal.org/formats_list.html">variety of raster formats</a> via the GDAL library. The GMTED
-data comes as GeoTiff files which are contained in this zip archive.</p>
+<p>Ora avete un file chiamato <cite>GMTED2010N10E060_300.zip</cite>.  I dati altimetrici sono distribuiti in diversi formati raster come ad esempio ASC, BIL, GeoTiff etc. QGIS supporta una grande <cite>varietà di formati raster &lt;http://www.gdal.org/formats_list.html&gt;</cite> mediante la libreria GDAL. I dati GMTED sono contenuti in questo file di archivio e sono in formato GeoTiff.</p>
 <p>For convenience, you can <a class="reference download internal" href="../_downloads/GMTED2010N10E060_300.zip"><tt class="xref download docutils literal"><span class="pre">download</span> <span class="pre">a</span> <span class="pre">copy</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">data</span> <span class="pre">from</span> <span class="pre">here.</span></tt></a>.</p>
-<p>Data Source: <a class="reference internal" href="credits.html#gmted2010" id="id2">[GMTED2010]</a></p>
+<p>Fonte Dati: <a class="reference internal" href="credits.html#gmted2010" id="id2">[GMTED2010]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="link permanente per questa intestazione">¶</a></h2>
+<h2>Procedimento<a class="headerlink" href="#procedure" title="link permanente per questa intestazione">¶</a></h2>
 <ol class="arabic simple" start="5">
-<li>Open <em class="menuselection">Layer ‣ Add Raster Layer</em> and browse to the
-downloaded zip file.</li>
+<li><p class="first">Aprite <em class="menuselection">Layer ‣ Aggiungi raster</em>  e trovate il file zip che avete scaricato.</p>
+</li>
 </ol>
 <img alt="../_images/527.png" class="align-center" src="../_images/527.png" />
 <ol class="arabic simple" start="6">
-<li>There are many different files generated from different algorithms.
-For this tutorial, we will use the file named <cite>10n060e_20101117_gmted_mea300.tif</cite>.</li>
+<li><p class="first">Ci sono molti file diversi, generati da diversi algoritmi. Nell&#8217;ambito di questa esercitazione useremo il file chiamato  <cite>10n060e_20101117_gmted_mea300.tif</cite>.</p>
+</li>
 </ol>
 <img alt="../_images/625.png" class="align-center" src="../_images/625.png" />
 <ol class="arabic simple" start="7">
-<li>You will see the terrain data rendered in the QGIS Canvas. Each pixel in the
-terrain raster represents the average elevation in meters at that location.
-The dark pixels represent areas with low altitude and lighter pixels
-represent areas with high altitude.</li>
+<li><p class="first">Vedrete nella finestra principale di QGIS i dati del terreno. Ciascun pixel nei raster territoriali rappresenta l&#8217;elevazione media misurata in metri in quel punto.
+I pixel scuri indicano le aree con bassi valori di elevazione e i pixel chiari quelli con alti valori di elevazione.</p>
+</li>
 </ol>
 <img alt="../_images/725.png" class="align-center" src="../_images/725.png" />
 <ol class="arabic simple" start="8">
-<li>Let&#8217;s find our area of interest. From <a class="reference external" href="http://en.wikipedia.org/wiki/Mount_Everest">Wikipedia</a>,
-we find that the coordinates for our area of interest - Mt. Everest - is located
-at the coordinates 27.9881° N, 86.9253° E. Note that QGIS
-uses the coordinates in (X,Y) format , so you must use the coordinates as
-(Longitude, Latitude). Paste <cite>86.9253,27.9881</cite> these at the bottom of QGIS
-window where it says <em class="guilabel">Coordinate</em> and press Enter. The viewport will be
-centered at this coordinate. To zoom in, Enter <cite>1:1000000</cite> in the <em class="guilabel">Scale</em> field
-and press Enter. You will see the viewport zoom to the area around the
-Himalayas.</li>
+<li><p class="first">Vediamo adesso di individuare la nostra area di interesse. Consultando <cite>Wikipedia &lt;http://en.wikipedia.org/wiki/Mount_Everest&gt;</cite> possiamo verificare che le coordinate della nostra area di interesse - Mt. Everest - sono situate alle coordinate  27.9881° N, 86.9253° E. Notate, incidentalmente, che QGIS usa le coordinate in formato X,Y, pertanto le coordinate sono, rispettivamente, prima la Longitudine (X) e poi la latitudine (Y). Copiate   <cite>86.9253,27.9881</cite>  alla base della finestra di QGIS, dove c&#8217;è scritto <em class="guilabel">Coordinata</em> e premete il tasto Enter della tastiera. Il punto di vista sarà centrato su questa coordinata. Per ingrandire, inserite <cite>1:1000000</cite> nel campo <em class="guilabel">Scala</em> e poi premete di nuovo Enter. Vedrete ingrandirsi il punto di vista proprio sull&#8217;area che circonda l&#8217;Himalaya.</p>
+</li>
 </ol>
 <img alt="../_images/824.png" class="align-center" src="../_images/824.png" />
 <ol class="arabic simple" start="9">
@@ -279,91 +261,68 @@ tool from <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
-<p class="last">The <em class="guilabel">Raster</em> menu in QGIS comes from a core plugin called
-<em class="guilabel">GdalTools</em>. If you do not see the <em class="guilabel">Raster</em> menu, enable
-the <em class="guilabel">GdalTools</em> plugin from <em class="menuselection">Plugins ‣
-Manage and install plugins ‣ Installed</em>. See <a class="reference internal" href="using_plugins.html"><em>Usare i Plugins</em></a> for more details.</p>
+<p class="last">Il menu <em class="guilabel">Raster</em>  in QGIS viene installato da un plugin interno che si chiama  <em class="guilabel">GdalTools</em>. Nel caso qualcuno non vedesse il menu <em class="guilabel">Raster</em> dovrà attivare il plugin <em class="guilabel">GdalTools</em> da <em class="menuselection">Plugins ‣ Gestisci e installa plugins ‣ Installato</em>. Per ulteriori dettagli sui plugin consultare la pagina <a class="reference internal" href="using_plugins.html"><em>Usare i Plugins</em></a>.</p>
 </div>
 <img alt="../_images/923.png" class="align-center" src="../_images/923.png" />
 <ol class="arabic simple" start="10">
-<li>In the <em class="guilabel">Clipper</em> window, name your output file as
-<cite>everest_gmted30.tif</cite>. Select the <em class="guilabel">Clipping mode</em> as
-<em class="guilabel">Extent</em>.</li>
+<li><p class="first">Nella finestra <em class="guilabel">Clipper</em> chiamate il vostro file di output con il nome di  <cite>everest_gmted30.tif</cite>. Scegliete nella scheda <em class="guilabel">Modo di clip</em>, la checkbox <em class="guilabel">Estensione</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1023.png" class="align-center" src="../_images/1023.png" />
 <ol class="arabic simple" start="11">
-<li>Keep the <em class="guilabel">Clipper</em> window open and switch to the main QGIS
-window. Hold your left mouse button and draw a rectangle covering the full
-canvas.</li>
+<li><p class="first">Lasciando la finestra <em class="guilabel">Clipper</em> aperta - e, se necessario, spostandola - portatevi sulla finestra principale di QGIS. Tenete premuto il tasto sinistro del mouse e disegnate un rettangolo che in modo da coprire l&#8217;intera finestra.</p>
+</li>
 </ol>
 <img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
 <ol class="arabic simple" start="12">
-<li>Now back in the <em class="guilabel">Clipper</em> window, you will see the coordinates
-auto-populated from your selection. Make sure the <em class="guilabel">Load into
-canvas when finished</em> option is checked, and click <em class="guilabel">OK.</em></li>
+<li><p class="first">Adesso tornate nella finestra <em class="guilabel">Clipper</em> e vedrete comparire le coordinate che avete ritagliato con la vostra selezione rettangolare. Assicuratevi che la finestra <em class="guilabel">Carica nella mappa quando finito</em> sia barrata. Fate click su <em class="guilabel">OK.</em></p>
+</li>
 </ol>
 <img alt="../_images/1223.png" class="align-center" src="../_images/1223.png" />
 <ol class="arabic simple" start="13">
-<li>Once the process finishes, you will see a new layer loaded in QGIS. This
-layer covers only the area around Mt. Everest.Now we are ready to generate
-contours. Select the contour tool from <em class="menuselection">Raster ‣ Extraction
-‣ Contour</em>.</li>
+<li><p class="first">Una volta che il processo è finito, vedrete un nuovo layer caricato in QGIS. Questo layer copre esclusivamente l&#8217;area intorno al Monte Everest. Adesso siamo pronti a generare le curve di livello. Selezionate lo strumento per le curve di livello da <em class="menuselection">Raster ‣ Extrazione ‣ Curve di livello</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1322.png" class="align-center" src="../_images/1322.png" />
 <ol class="arabic simple" start="14">
-<li>In the <em class="guilabel">Contour</em> dialog, select <cite>everest_gmted30</cite> as the
-<em class="guilabel">Input file</em>. Name the <em class="guilabel">Output file for contour lines</em>
-as <cite>everest_countours.shp</cite>. We will generate contour lines for 100m
-intervals, so put 100 as the <em class="guilabel">Interval between contour lines.</em>
-Also check the <em class="guilabel">Attribute name</em> option so elevation value will be
-recorded as attribute of each contour line. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Nella finestra di dialogo <em class="guilabel">Curve di livello</em>  selezionate <cite>everest_gmted30</cite> come <em class="guilabel">file di Input</em>. Chiamiamo il file di Output per le curve di livello come <cite>everest_countours.shp</cite>. Ci proponiamo di generare delle curve di livello con intervalli di 100 metri, pertanto mettiamo 100 come <em class="guilabel">Intervallo tra curve di livello</em>.
+Selezionate inoltre la casella di spunta <em class="guilabel">Nome Attributo</em> in modo che il valore dell&#8217;altezza sia memorizzato come attributo di ciascuna linea di livello. Click su <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1421.png" class="align-center" src="../_images/1421.png" />
 <ol class="arabic simple" start="15">
-<li>Once the processing is complete, you will see contour lines loaded into the
-canvas. Each line in this layer represents a particular elevation. All
-points along a countour line in the underlying raster would be at the same
-elevation. The closer the lines, the steeper the slope. Let’s inspect the
-contours a bit more. Right click on the contours layer and choose
-<em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Una volta terminato il processo, vedrete le curve di livello nella finestra principale. Ciascuna linea in questa immagine rappresenta una data misura dell&#8217;altezza. Tutti i punti che giacciono sulla stessa curva di livello dovrebbero essere alla stessa altezza. Tanto più vicine sono le curve di livello, tanto più ripidi sono i pendii. Vediamo le linee di livello in maggior dettaglio. Click con il tasto destro del mouse sul layer delle linee di livello e poi selezionate <em class="guilabel">Apri tabella degli attributi</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1518.png" class="align-center" src="../_images/1518.png" />
 <ol class="arabic simple" start="16">
-<li>You will see that each line feature as an attribute named <em class="guilabel">ELEV</em>.
-This is the height in metres that each line represents. Click on the column header
-a couple of times to sort the values in descending order. Here you will
-find the line representing the highest elevation in our data, i.e. Mt.
-Everest.</li>
+<li><p class="first">Come vedete ciascuna feature dispone di un attributo chiamato <em class="guilabel">ELEV</em>. Esso indica l&#8217;altezza in metri di ciascuna linea. Facendo click un paio di volte sull&#8217;intestazione della colonna <em class="guilabel">ELEV</em> si ordineranno i dati dell&#8217;altezza in senso discendente. In questo modo troveremo facilmente la linea che descrive il punto più alto dei nostri dati, cioè la vetta del Monte Everest.</p>
+</li>
 </ol>
 <img alt="../_images/1618.png" class="align-center" src="../_images/1618.png" />
 <ol class="arabic simple" start="17">
-<li>Select the top row, and click on the <em class="guilabel">Zoom to selection</em>
-button.</li>
+<li><p class="first">Selezioniamo la riga più in alto, e facciamo click sul pulsante <em class="guilabel">Zoom mappa alle righe selezionate</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1717.png" class="align-center" src="../_images/1717.png" />
 <ol class="arabic simple" start="18">
-<li>Switch to the main QGIS window. You will see the selected contour line
-highlighted in yellow. This is the area of the highest elevation in our dataset.</li>
+<li><p class="first">Portiamoci sulla finestra principale di QGIS. Vedrete le curve di livello selezionate colorate di giallo. Questa è l&#8217;area altezza massima all&#8217;interno dei nostri dati.</p>
+</li>
 </ol>
 <img alt="../_images/1816.png" class="align-center" src="../_images/1816.png" />
 <ol class="arabic simple" start="19">
-<li>Now let us create a hillshade map from the raster. Select
-<em class="menuselection">Raster ‣ Analysis ‣ DEM (Terrain Models)</em>.</li>
+<li><p class="first">Ora ricaviamo una carta dei rilievi 3D dal nostro raster. Selezionate <em class="menuselection">Raster ‣ Analisi ‣ DEM (Analisi Geomorfologica)</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1914.png" class="align-center" src="../_images/1914.png" />
 <ol class="arabic simple" start="20">
-<li>In the <em class="guilabel">DEM (Terrain Models)</em> dialog, choose <cite>everest_gmted30</cite> as
-the <em class="guilabel">Input file</em>. Name the <em class="guilabel">Output file</em> as
-<cite>everest_hillshade.tif</cite>. Choose <em class="guilabel">Hillshade</em> as the
-<em class="guilabel">Mode</em>. Leave all other options as is. Make sure the <em class="guilabel">Load into
-canvas when finished</em> option is checked, and click <em class="guilabel">OK.</em></li>
+<li><p class="first">Nella finestra di dialogo <em class="guilabel">DEM (Analisi geomorfologica)</em> scegliete <cite>everest_gmted30</cite>  come <em class="guilabel">file di input</em>. Chiamate il <em class="guilabel">File di output</em> con il nome di  <cite>everest_hillshade.tif</cite>. Scegliete <em class="guilabel">Ombreggiatura</em>  come <em class="guilabel">Modalità</em>. Lasciate le opzioni rimanenti così come sono. E assicuratevi che l&#8217;opzione:guilabel:<cite>Carica sulla mappa quando finito</cite>  sia attivata. Click su <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2010.png" class="align-center" src="../_images/2010.png" />
 <ol class="arabic simple" start="21">
-<li>Once the process finishes, you will see yet another raster loaded into QGIS
-canvas. Since you maybe zoomed-in near the Mt.Everest region, right click
-on the <cite>everest_hillshade</cite> layer and choose <em class="guilabel">Zoom to Layer
-Extent</em>.</li>
+<li><p class="first">Una volta che il processo è terminato, vedrete un nuovo raster caricato nella finestra principale di QGIS. Visto che probabilmente avete usato lo zoom nelle regioni intorno all&#8217;Everest, fate click con il tasto destro sul layer  <cite>everest_hillshade</cite>  e scegliete la voce <em class="guilabel">Zoom all&#8217;estensione del layer</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2114.png" class="align-center" src="../_images/2114.png" />
 <ol class="arabic simple" start="22">
@@ -371,19 +330,18 @@ Extent</em>.</li>
 </ol>
 <img alt="../_images/2213.png" class="align-center" src="../_images/2213.png" />
 <ol class="arabic simple" start="23">
-<li>You can visualize also visualize your contour layer and verify your analysis
-by exporting the contours layer as KML and viewing it in Google Earth.
-Right click on the contours layer, select <em class="guilabel">Save as..</em>.</li>
+<li><p class="first">Potrete infine visualizzare il vostro layer delle curve di livello e verificare la validità del vostro lavoro esportandolo come KML e visualizzandolo in Google Earth. Fate click con il tasto destro sul layer delle curve di livello e selezionate <em class="guilabel">Salva con nome...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2311.png" class="align-center" src="../_images/2311.png" />
 <ol class="arabic simple" start="24">
-<li>Select <em class="guilabel">Keyhole Markup Language [KML]</em> as the
-<em class="guilabel">Format</em>. Name your output as <cite>contours.kml</cite> and click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Selezionate  <em class="guilabel">Keyhole Markup Language [KML]</em>  nella casella <em class="guilabel">Formato</em>. . Salvate il vostro output come <cite>contours.kml</cite> e fate click su  <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2410.png" class="align-center" src="../_images/2410.png" />
 <ol class="arabic simple" start="25">
-<li>Browse to the output file on your diesk and double-click on it to open Google Earth.</li>
+<li><p class="first">Cercate il file di output sul vostro disco e fateci click due volte per lanciare Google Earth.</p>
+</li>
 </ol>
 <img alt="../_images/256.png" class="align-center" src="../_images/256.png" />
 </div>
