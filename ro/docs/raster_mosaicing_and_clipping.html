@@ -176,30 +176,25 @@
   <div class="section" id="raster-mosaicing-and-clipping">
 <h1>Mozaicarea și tăierea rasterelor<a class="headerlink" href="#raster-mosaicing-and-clipping" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/raster_mosaicing_and_clipping_a4.pdf">A4</a> <a class="reference external" href="../pdf/raster_mosaicing_and_clipping_letter.pdf">Letter</a> ]</p>
-<p>This tutorial explores some basic raster operations in QGIS such as viewing, mosaicing
-and subsetting.</p>
+<p>Acest tutorial explorează unele operațiuni de bază din QGIS, care se aplică rasterelor, cum ar fi vizualizarea, mozaicarea și crearea de subseturi.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will download some public domain raster data for Brazil and view it in QGIS. Next, we
-will merge these into a single mosaic and clip it using a country boundary to
-get a single seamless dataset for the country.</p>
+<p>Vom descarce cateva date raster ale Braziliei, din domeniul public, și le vom vizualiza în QGIS. În continuare, le vom uni într-un singur mozaic, și-l  vom tăia folosind limita administrativă a țării, pentru a obține un singur set de date pentru această țară.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Alte abilități pe care le veți căpăta<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Searcing and downloading near real-time public domain satellite imagery.</li>
-<li>Selecting a single feature from a vector layer and saving it to a new
-shapefile.</li>
+<li><p class="first">Căutarea și descărcarea imaginilor din satelita, aproape în timp real, aflate în domeniul public.</p>
+</li>
+<li><p class="first">Selectarea unei singure entități dintr-un strat vectorial, și salvarea sa într-un nou fișier shape.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We need Brazil country boundary to clip our raster. You can get the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - Countries</a> shapefile
-from Natural Earth.</p>
-<p><a class="reference external" href="https://earthdata.nasa.gov/data/near-real-time-data/rapid-response/modis-subsets">NASA/GSFC, Rapid Response site</a>
-has a good collection of near real-time satellite imagery. A good regional product is <a class="reference external" href="http://lance-modis.eosdis.nasa.gov/imagery/subsets/?project=fas">USDA Foreign Agricultural Service (FAS) subsets.</a>. We will
-use 2km resolution FAS subsets for Brazil for this tutorial.</p>
-<p>Here is how to search and download the revelant data.</p>
+<p>Avem nevoie de frontiera Braziliei pentru a tăia rasterul nostru. Puteți obține fișierul shape <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - Countries</a> de la Natural Earth.</p>
+<p><a class="reference external" href="https://earthdata.nasa.gov/data/near-real-time-data/rapid-response/modis-subsets">NASA/GSFC, Rapid Response site</a> are o bună colecție de imagini din satelit, aproape în timp real. Un bun produs regional este <a class="reference external" href="http://lance-modis.eosdis.nasa.gov/imagery/subsets/?project=fas">USDA Foreign Agricultural Service (FAS) subsets.</a>. În acest tutorial vom folosi  subseturile FAS la rezoluție 2 km, ale Braziliei.</p>
+<p>Iată cum să căutați și să descărcați datele revelante.</p>
 <ol class="arabic simple">
 <li>Open the <a class="reference external" href="http://lance-modis.eosdis.nasa.gov/imagery/subsets/?area=sa">South America region subsets</a>. Find the
 Brazil subsets shown in the <em class="guilabel">FAS Subsets</em> section. Click on any
@@ -213,11 +208,11 @@ about NDVI</a>.</li>
 </ol>
 <img alt="../_images/235.png" class="align-center" src="../_images/235.png" />
 <ol class="arabic simple" start="3">
-<li>Click the <em class="guilabel">Download GeoTIFF file</em> link to download the raster
-image.</li>
+<li><p class="first">Clic pe link-ul <em class="guilabel">Download GeoTIFF file</em></p>
+</li>
 </ol>
 <img alt="../_images/324.png" class="align-center" src="../_images/324.png" />
-<p>Repeat the process for all 7 FAS subsets for Brazil.</p>
+<p>Repetați procesul pentru toate cele 7 subseturi FAS pentru Brazilia.</p>
 <p>For convenience, you can directly download sample data used in this tutorial from links below.</p>
 <p><a class="reference download internal" href="../_downloads/ne_10m_admin_0_countries1.zip"><tt class="xref download docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt></a>
 <a class="reference download internal" href="../_downloads/FAS_Brazil1.2013363.aqua.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil1.2013363.aqua.ndvi.2km.tif</span></tt></a>
@@ -232,7 +227,8 @@ image.</li>
 <div class="section" id="procedure">
 <h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple" start="4">
-<li>Open QGIS and go to <em class="menuselection">Layer ‣ Add Raster Layer..</em>.</li>
+<li><p class="first">Deschideți QGIS și mergeți la <em class="menuselection">Layer ‣ Add Raster Layer..</em>.</p>
+</li>
 </ol>
 <img alt="../_images/419.png" class="align-center" src="../_images/419.png" />
 <ol class="arabic simple" start="5">
@@ -290,12 +286,13 @@ toolbar.</li>
 </ol>
 <img alt="../_images/1121.png" class="align-center" src="../_images/1121.png" />
 <ol class="arabic simple" start="12">
-<li>Click anywhere on the Brazil polygon and it will be selected.</li>
+<li><p class="first">Faceți clic oriunde pe poligonul Brazilieim, pentru a-l selecta.</p>
+</li>
 </ol>
 <img alt="../_images/1217.png" class="align-center" src="../_images/1217.png" />
 <ol class="arabic simple" start="13">
-<li>Right-click the <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> layer and select
-<em class="guilabel">Save Selection As...</em>.</li>
+<li><p class="first">Faceți clic dreapta pe stratul <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> și selectați <em class="guilabel">Save Selection As...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1316.png" class="align-center" src="../_images/1316.png" />
 <ol class="arabic simple" start="14">
@@ -304,11 +301,13 @@ saved file to map</em> box is checked. click <em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/1415.png" class="align-center" src="../_images/1415.png" />
 <ol class="arabic simple" start="15">
-<li>You will see the Brazil boundary polygon now loaded in QGIS.</li>
+<li><p class="first">Veți vedea granița poligonală a Braziliei, încărcată acum în QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/1513.png" class="align-center" src="../_images/1513.png" />
 <ol class="arabic simple" start="16">
-<li>Now go to <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</li>
+<li><p class="first">Acum, mergeți la <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1613.png" class="align-center" src="../_images/1613.png" />
 <ol class="arabic simple" start="17">
@@ -326,13 +325,13 @@ pixels surrounding the actual mosaic. Let&#8217;s remove that. Right-click on th
 </ol>
 <img alt="../_images/1812.png" class="align-center" src="../_images/1812.png" />
 <ol class="arabic simple" start="19">
-<li>Go to the <em class="guilabel">Transparency</em> tab, and add <cite>0</cite> as an
-<em class="guilabel">Additional no data value</em>.</li>
+<li><p class="first">Mergeți la fila <em class="guilabel">Transparency</em> și adăugați <cite>0</cite> ca <em class="guilabel">Additional no data value</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1910.png" class="align-center" src="../_images/1910.png" />
 <ol class="arabic simple" start="20">
-<li>Now you have a nice mosaic cropped to a country boundary that you can use
-in your project as a background layer or do further analysis on.</li>
+<li><p class="first">Acum aveți un mozaic frumos, decupat după granițele țării, pe care îl puteți utiliza în proiectul dvs. ca strat de fundal, sau pe care să faceți ulterior o analiză.</p>
+</li>
 </ol>
 <img alt="../_images/206.png" class="align-center" src="../_images/206.png" />
 </div>
@@ -358,7 +357,7 @@ in your project as a background layer or do further analysis on.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 09, 2014.<br/>
+      Last updated on Jul 10, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

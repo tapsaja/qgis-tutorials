@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Basic Raster Styling and Analysis &mdash; QGIS Tutorials and Tips</title>
+    <title>Perustiedot rasterin muotoilusta ja analyysista &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -88,7 +88,7 @@
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Perusteet vektorien muotoiluun</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Viivojen pituuksien laskenta ja tilastot</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Basic Raster Styling and Analysis</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Perustiedot rasterin muotoilusta ja analyysista</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
@@ -174,157 +174,120 @@
       
 
   <div class="section" id="basic-raster-styling-and-analysis">
-<h1>Basic Raster Styling and Analysis<a class="headerlink" href="#basic-raster-styling-and-analysis" title="Permalink to this headline">¶</a></h1>
+<h1>Perustiedot rasterin muotoilusta ja analyysista<a class="headerlink" href="#basic-raster-styling-and-analysis" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/raster_styling_and_analysis_a4.pdf">A4</a> <a class="reference external" href="../pdf/raster_styling_and_analysis_letter.pdf">Letter</a> ]</p>
-<p>A lot of scientific observations and research produces raster datasets. Rasters
-are essentially grids of pixels that have a specific value assigned to them. By
-doing mathematical operations on these values, one can do some interesting
-analysis. QGIS has some basic analysis capabilities built-in via <cite>Raster
-Calculator</cite>. In this tutorial, we will explore basics on using <cite>Raster Calculator</cite>
-and options available for styling rasters.</p>
+<p>Suuri osa tieteellisista havainnoista ja tutkimuksesta on tuotettu rasteroiduille tietojoukoille. Rasterit ovat pohjimmiltaan pikseleiden muoodostamia hiloja joihin on kiinnitetty määritelty arvo. Tekemällä matemaattisia laskutoimituksia näillä arvoilla voidaan saada aikaan mielenkiintoisia analyyseja. QGIS omaa perustavat mahdollisuudet analysointiin sisään rakennetulla <cite>Rasterilaskimella</cite>. Tässä oppaassa tutkimme perusteita käyttää  <cite>Rasterilaskinta</cite> ja mahdollisia vaihtoehtoja rastereiden muotoiluun.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will use population density grid data to find and visualize areas of the world
-that have seen dramatic population density change between year 1990 and 2000.</p>
+<h2>Katsaus tehtävään<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>Käytämme väestömäärän tiheyden rasteroitua dataa etsiäksemme ja visualisoidaksemme maailman alueita jotka ovat nähneet drmaattisia väestömäärän tiheyden muutoksia vuosien 1990 ja 2000 välillä.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<h3>Muita taitoja joita tulet oppimaan<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Selecting and loading multiple datasets in a single step in QGIS.</li>
+<li><p class="first">Useiden tietojoukkojen valinta ja lataus yhdellä kertaa QGIS:ssa.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/collection/gpw-v3">Gridded Population of the World (GPW) v3</a>
-dataset from Columbia University. Specifically, we need the Population Density Grid for the entire globe in ASCII format and for the year 1990 and 2000.</p>
-<p>Here is how to search and download the revelant data.</p>
+<h2>Hanki tiedot<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Käytämme <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/collection/gpw-v3">Gridded Population of the World (GPW) v3</a> tietojoukkoa jonka on tuottanut Columbia University. Erityisesti tarvitsemme väestötiheyden ruudukkoa koko maailmalle ASCII muotoisena ja vuosille 1990 ja 2000.</p>
+<p>Tässä ohhjet kuinka etsiä ja ladata aasiaanliittyvä data.</p>
 <ol class="arabic simple">
-<li>Go to the <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density/data-download">Population Density Grid, v3 download page.</a>
-Select the <em class="guilabel">Data Attributes</em> as <em class="guilabel">.ascii format</em>,
-<em class="guilabel">1° resolution</em> and <em class="guilabel">1990 year</em>. Click
-<em class="guilabel">Download</em>. At this point, you may create a free account and
-login, or use the <em class="guilabel">Guest Download</em> button at the bottom to
-immediately download the data. Repeat the process for <em class="guilabel">2000 year</em>
-data.</li>
+<li><p class="first">Siirry <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density/data-download">Population Density Grid, v3 lataussivulle.</a> Valitse <em class="guilabel">Data Attributes</em> arvoiksi <em class="guilabel">.ascii format</em>, <em class="guilabel">1° resolution</em> ja <em class="guilabel">1990 year</em>. Klikkaa <em class="guilabel">Download</em>. Tässä kohtaa voit luoda vapaan tilin ja tehdä sisään kirjoittautumisen, tai voit käyttää <em class="guilabel">Guest Download</em> näppäintä alhaalla välittömään datan lataamiseen. Toista prosessi <em class="guilabel">2000 year</em> datalle.</p>
+</li>
 </ol>
 <img alt="../_images/1101.png" class="align-center" src="../_images/1101.png" />
-<p>You will now have 2 zip files downloaded.</p>
+<p>Nyt sinulla on 2 zip tiedostoa ladattuna.</p>
 <p>For convenience, you can also download a copy of this data by clicking on following links:</p>
 <p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_90_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_90_ascii_one.zip</span></tt></a></p>
 <p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_00_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_00_ascii_one.zip</span></tt></a></p>
-<p>Data Source <a class="reference internal" href="credits.html#gpw3" id="id1">[GPW3]</a></p>
+<p>Tietojen lähde <a class="reference internal" href="credits.html#gpw3" id="id1">[GPW3]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<h2>Menettely<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple" start="2">
-<li>Open QGIS and go to <em class="menuselection">Layer ‣ Add Raster Layer..</em>.</li>
+<li><p class="first">Käynnistä QGIS ja mene <em class="menuselection">Tasot ‣ Lisää rasteritaso...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/236.png" class="align-center" src="../_images/236.png" />
 <ol class="arabic simple" start="3">
-<li>Locate the downloaded zip files. Hold down the <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> key and click on both
-the zip files to select them. This way you are able to load both the files
-in a single step.</li>
+<li><p class="first">Paikallista ladatut zip tiedostot. Pidä <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> näppäintä alhaalla ja klikkaa kumpaakin zip tiedostoa valitaksesi ne. Tällä tavalla on mahdollista ladata molemmat tiedostot yhdellä kertaa.</p>
+</li>
 </ol>
 <img alt="../_images/325.png" class="align-center" src="../_images/325.png" />
 <ol class="arabic simple" start="4">
-<li>Each zip file contain 2 grid files. The <tt class="docutils literal"><span class="pre">a</span></tt> in the filename
-suggests that the population counts were adjusted to match the UN totals. We
-will use the adjusted grids for this tutorial. Select <tt class="docutils literal"><span class="pre">glds00ag60.asc</span></tt> as
-the layer to add. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Kumpikin zip tiedosto sisältää 2 ruudukkotiedostoa. <tt class="docutils literal"><span class="pre">a</span></tt> kirjain tiedostonimessä tarkoitta että väestömäärät sopeutettiin YK:n määriin . Käytämme tässä oppaassa sovitettuja ruudukoita. Valitse <tt class="docutils literal"><span class="pre">glds00ag60.asc</span></tt> lisättäväksi tasoksi. Klikkaa</p>
+</li>
 </ol>
 <img alt="../_images/420.png" class="align-center" src="../_images/420.png" />
 <ol class="arabic simple" start="5">
-<li>The layer doesn’t have a CRS defined, and since the grids are in lat/long,
-choose <cite>EPSG:4326</cite> as the coordinate reference system.</li>
+<li><p class="first">Tasolla ei ole määriteltyä koordinaattijärjestelmää ja siksi ruudukot ovat lat/long muotoisia. Valitse <cite>EPSG:4326</cite> koordinaattijärjestelmäksi.</p>
+</li>
 </ol>
 <img alt="../_images/521.png" class="align-center" src="../_images/521.png" />
 <ol class="arabic simple" start="6">
-<li>Since we selected both the zip files, you will see similar dialogs once
-again. Repeat the process and select <tt class="docutils literal"><span class="pre">glds90ag60.asc</span></tt> grid as the layer to
-add.</li>
+<li><p class="first">Koska valitsimme molemmat zip tiedostot, tulee sinun käydä sama dialogi uudestaan. Toista prosessi ja valitse <tt class="docutils literal"><span class="pre">glds90ag60.asc</span></tt>  ruudukko lisättäväksi tasoksi.</p>
+</li>
 </ol>
 <img alt="../_images/619.png" class="align-center" src="../_images/619.png" />
 <ol class="arabic simple" start="7">
-<li>Once again, choose <cite>EPSG:4326</cite> as the CRS.</li>
+<li><p class="first">Ja taas, valitse <cite>EPSG:4326</cite> koordinaattijärjestelmäksi.</p>
+</li>
 </ol>
 <img alt="../_images/719.png" class="align-center" src="../_images/719.png" />
 <ol class="arabic simple" start="8">
-<li>Now you will see both the rasters loaded in QGIS. The raster is rendered as
-in grayscale, where darker pixels indicate lower values and lighter pixels
-indicate higher values.</li>
+<li><p class="first">Nyt näet molemmat rasterit ladattuina QGIS:ssä. Rasterit on hahmotettu harmaasävyisiksi, jossa tummemat pikselit merkitsevät alempia arvoja ja vaaleammat pikselit korkeampia arvoja.</p>
+</li>
 </ol>
 <img alt="../_images/818.png" class="align-center" src="../_images/818.png" />
 <ol class="arabic simple" start="9">
-<li>Each pixel in the raster has a value assigned. This value is the population
-density for that grid. Click on <em class="guilabel">Identify Features</em> button to select the
-tool and click anywhere on the raster to see the value of that pixel.</li>
+<li><p class="first">Jokaiselle pikselille  rasterissa on annettu arvo. Tämä arvo on väestön tiheys asianomaisessa ruudukon elementissä. Klikkaa <em class="guilabel">Tunnista ominaisuudet</em> näppäintä valitaksesi työkalun ja klikkaa minne tahansa rasterilla nähdäksesi pikselin arvon.</p>
+</li>
 </ol>
 <img alt="../_images/917.png" class="align-center" src="../_images/917.png" />
 <ol class="arabic simple" start="10">
-<li>To better visualize the pattern of population density, we would need to
-style it. Right-click on the layer name and select <em class="guilabel">Properties</em>. You can also
-double-click on the layer name in the TOC to bring up the Layer
-Properties dialog.</li>
+<li><p class="first">Meidän tarvitsee muotoilla tasoa jotta voisimme nähdä paremmin väestötiheyden kuvioinnin. Klikkaa oikealla tason nimeä ja valitse <em class="guilabel">Ominaisuudet</em>.Voit myös tupla-klikata tason nimeä tasojen luettelossa saadaksesi tason ominaisuudet ikkunan näkyville.</p>
+</li>
 </ol>
 <img alt="../_images/1017.png" class="align-center" src="../_images/1017.png" />
 <ol class="arabic simple" start="11">
-<li>Under the <em class="guilabel">Style</em> tab, change the <em class="guilabel">Render type</em>
-to <em class="guilabel">Singleband pseudocolor</em>. Next, click <em class="guilabel">Classify</em>
-under <em class="guilabel">Generate a new color map</em>. You will see 5 new color
-values created. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Välilehdellä <em class="guilabel">Tyyli</em>, vaihda <em class="guilabel">Hahmotustyyppi</em> arvoksi <em class="guilabel">Yksikaista pseudoväri</em>. Seuraavaksi klikkaa <em class="guilabel">Luokittele</em> kappaleessa <em class="guilabel">Generoi uusi värikartta</em>. Nyt näet 5 uutta väriarvoa. Klikkaa</p>
+</li>
 </ol>
 <img alt="../_images/1122.png" class="align-center" src="../_images/1122.png" />
 <ol class="arabic simple" start="12">
-<li>Back in the QGIS Canvas, you will see a heatmap-like rendering of the
-raster. Repeat the same process for the other raster as well.</li>
+<li><p class="first">Takaisin QGIS karttapohjalle, näet heatmap kaltaisen rasterin hahmottamisen. Toista sama prosessi myös toiselle rasterille.</p>
+</li>
 </ol>
 <img alt="../_images/1218.png" class="align-center" src="../_images/1218.png" />
 <ol class="arabic simple" start="13">
-<li>For our analysis, we would like to find areas with largest population
-change between 1990 and 2000. The way to accomplish this is by finding the
-difference between each grid’s pixel value in both the layers. Select
-<em class="menuselection">Raster ‣ Raster calculator</em>.</li>
+<li><p class="first">Analyysiimme haluamme löytää alueet joilla on ollut suurin västön muutos vuosien 1990 ja 2000 välillä. Tapa tehdä tämä on löytää erot molempien tasojen jokaisen pikselin arvosta. Valitse <em class="menuselection">Rasteri ‣ Rasterilaskin</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1317.png" class="align-center" src="../_images/1317.png" />
 <ol class="arabic simple" start="14">
-<li>In the <em class="guilabel">Raster bands</em> section, you can select the layer by double-clicking
-on them. The bands are named after the raster name followed by &#64; and band
-number. Since each of our rasters have only 1 band, you will see only 1
-entry per raster. The raster calculator can apply mathematical operations
-on the raster pixels. In this case we want to enter a simple formula to
-subtract the 1990 population density from 2000. Enter <tt class="docutils literal"><span class="pre">glds00ag60&#64;1</span> <span class="pre">-</span> <span class="pre">glds90ag60&#64;1</span></tt>
-as the formula. Name your output layer as <em class="guilabel">pop_density_change_2000_1990.tif</em>
-and check the box next to <em class="guilabel">Add result to project</em>. Click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first"><em class="guilabel">Rasterin kaistat</em> kappaleessa voit valita tason tupla-klikkaamalla. Kaistat on nimetty rasterin nimellä jota seuraa &#64; ja kaistan numero. Koska kummassakin rastereistamme on vain yksi kaista, näet vain 1 per rasteri. Rasterilaskin voi suorittaa matemaattisia operaatioita rasterin pisteillä. Tässä tapauksessa haluamme antaa yksinkertaisen kaavan vähentää 1990 väestötiheys vuoden 2000 väestötiheydestä. Anna <tt class="docutils literal"><span class="pre">glds00ag60&#64;1</span> <span class="pre">-</span> <span class="pre">glds90ag60&#64;1</span></tt> kaavaksi. Nimeä tulosrasteri <em class="guilabel">pop_density_change_2000_1990.tif</em> ja merkkaa laatikko <em class="guilabel">Lisää tulos projektiin</em>. vieressä. Klikkaa <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1416.png" class="align-center" src="../_images/1416.png" />
 <ol class="arabic simple" start="15">
-<li>Once the operation is complete, you will see the new layer load in QGIS.</li>
+<li><p class="first">Kun työvaihe on valmistunut, näet uuden tason ladatun QGIS:in.</p>
+</li>
 </ol>
 <img alt="../_images/1514.png" class="align-center" src="../_images/1514.png" />
 <ol class="arabic simple" start="16">
-<li>This grayscale visualization is useful, but we can create a much more informative
-output. Right-click on the <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990</span></tt> layer and
-select <em class="guilabel">Properties</em>.</li>
+<li><p class="first">Tämä harmaasävy visualisointi on hyvä, mutta voimme tehdä myös paljon informatiivisemman tulosteen. Klikkaa oikealla <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990</span></tt> tason nimeä ja valitse  <em class="guilabel">Ominaisuudet</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1614.png" class="align-center" src="../_images/1614.png" />
 <ol class="arabic simple" start="17">
-<li>We want to style the layer so pixel values in certain ranges get the same
-color. Before we dive in to that, go to the <em class="guilabel">Metadata</em> tab and look at the
-properties of the raster. Note the minimum and maximum values of this layer.</li>
+<li><p class="first">Haluamme muotoilla tason siten että tietyillä pikselien arvot tietyillä rajoilla  saavat saman värin. Enenkuin jatkamme tästä, mene  <em class="guilabel">Metadata</em> välilehdelle ja katso rasterin ominaisuuksia. Huomaa tason minimi ja maksimi arvot.</p>
+</li>
 </ol>
 <img alt="../_images/1713.png" class="align-center" src="../_images/1713.png" />
 <ol class="arabic simple" start="18">
-<li>Now go to the <em class="guilabel">Style</em> tab. Select <em class="guilabel">Singleband
-pseudocolor</em> as the <em class="guilabel">Render type</em> under <em class="guilabel">Band
-Rendering</em>. Set the <em class="guilabel">Color interpolation</em> to
-<em class="guilabel">Discrete</em>.  Click the <em class="guilabel">Add entry</em> button 4 times to create 4
-unique classes. Click on an entry to change the values. The way color map
-works is that all values lower than the value entered will be given the
-color of that entry. Since the minmum value in our raster is just above
--2000, we choose -2000 as the first entry. This will be for the No Data
-values. Enter the values and Labels for other entries as below and click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Nyt mene välilehdelle <em class="guilabel">Tyyli</em>. Valitse <em class="guilabel">Yksikaista pseudoväri</em> vihtoehdossa <em class="guilabel">Hahmotustyyppi</em> kappaleessa <em class="guilabel">Kaistan hahmotus</em>. Aseta <em class="guilabel">Värin interpolointi</em> arvoon <em class="guilabel">Erillinen</em>. Klikkaa <em class="guilabel">Lisää arvot käsin</em> näppäintä 4 kertaa luodaksesi 4 yksilöllistä luokkaa. Klikkaa rivin arvoa muokataksesi. Värikartan toimintaperusteena on että kaikki arvot jotka ovat pienempiä kuin annettu arvo saavan rivillä osoitetun värin. Koska minimi arvo rasterissamme on juuri -2000 yläpuolella, valitsemme arvoksi -2000 ensimmäiselle riville. Tämä on No data arvoille. Anna arvot ja nimiöt muille riveille kuten alla kuvassa ja klikkaa</p>
+</li>
 </ol>
 <img alt="../_images/1813.png" class="align-center" src="../_images/1813.png" />
 <ol class="arabic simple" start="19">
@@ -387,7 +350,7 @@ pixels.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 09, 2014.<br/>
+      Last updated on Jul 10, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
