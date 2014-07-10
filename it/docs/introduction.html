@@ -90,7 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Principali tematizzazioni per dati vettoriali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calcolare la lunghezza lineare e le statistiche</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Raster, elementi base: tematizzazione ed analisi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Mosaici e operazioni di ritaglio con i layer raster</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
@@ -133,7 +133,20 @@
               
             
             
+
             
+<form role="form" class="navbar-form navbar-right">
+<select id="languages" class="form-control select-mini">
+  <option value="en">English</option>
+  <option value="fi_FI">Finnish</option>
+  <option value="ro">Romanian</option>
+  <option value="it">Italian</option>
+  <option value="es">Spanish</option>
+  <option value="pt_BR">Portuguese</option>
+  <option value="nl">Dutch</option>
+</select>
+</form>
+
             
               <li class="hidden-sm"></li>
             
@@ -277,6 +290,50 @@ use it to tackle common GIS problems.</p>
 
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts"></script>
 
+<!-- Script fpr language switching. Largely adapted from https://github.com/pcav/faunalia-website -->
+<script>
+    var currentPage = 'docs/introduction.html'; // coming from sphinx, always without starting '/'
+    var currentLang = 'en';
+    $(document).ready(function(){
+
+        var search = new RegExp('\/[a-zA-Z_]{2,8}\/'+ currentPage, 'gi');
+        var langPlusPage = window.location.href.match(search);
+        // it's possible this is a index.html page called without 'index.html', try without the currentPage
+        if (langPlusPage==undefined){
+            search = new RegExp('\/[a-zA-Z_]{2,8}\/$', 'gi');
+            langPlusPage = window.location.href.match(search);
+        }
+
+        // it's possible this is an index.html page called without 'index.html', try removing index.html
+        if (langPlusPage==undefined){
+            currentPage = currentPage.replace('index.html','')
+            search = new RegExp('\/[a-zA-Z_]{2,8}\/'+ currentPage, 'gi');
+            langPlusPage = window.location.href.match(search);
+        }
+        // still no langPlugPage: stop, because the language swicher will misbehave 
+
+        if (langPlusPage == undefined || langPlusPage.length != 1){
+            alert('You hit an error, please report back to us.');
+            return;
+        }
+        langPlusPage = langPlusPage[0];
+        currentLang = langPlusPage.replace(currentPage, '');
+
+        $("#languages").val(currentLang.replace(/\//g,'')); // currentLang is something like '/nl/'
+
+        $("#languages").change(function() {
+            gotoLang($(this).val());
+        });
+
+    });
+
+    // load current page in a different language
+    function gotoLang(lang){
+        var currentUrl = window.location.href;
+        var newUrl = currentUrl.replace(currentLang, '/'+lang+'/');
+        window.location.href = newUrl;
+    }
+</script>
 
   </body>
 </html>

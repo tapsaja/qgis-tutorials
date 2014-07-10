@@ -132,7 +132,20 @@
               
             
             
+
             
+<form role="form" class="navbar-form navbar-right">
+<select id="languages" class="form-control select-mini">
+  <option value="en">English</option>
+  <option value="fi_FI">Finnish</option>
+  <option value="ro">Romanian</option>
+  <option value="it">Italian</option>
+  <option value="es">Spanish</option>
+  <option value="pt_BR">Portuguese</option>
+  <option value="nl">Dutch</option>
+</select>
+</form>
+
             
               <li class="hidden-sm"></li>
             
@@ -176,55 +189,45 @@
   <div class="section" id="working-with-terrain-data">
 <h1>Lucrul cu date despre teren<a class="headerlink" href="#working-with-terrain-data" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/working_with_terrain_a4.pdf">A4</a> <a class="reference external" href="../pdf/working_with_terrain_letter.pdf">Letter</a> ]</p>
-<p>Terrain or elevation data is useful for many GIS Analysis and it is often used
-in maps. QGIS has good terrain processing capabilities built-in. In this
-tutorial, we will work through the steps to generate various products from
-elevation data such as contours, hillshade etc.</p>
+<p>Datele despre teren sau altitudine sunt utile pentru multe Analize GIS și sunt folosite, adesea, de către hărți. QGIS are bune capacități de procesare internă a terenului. În acest tutorial, vom parcurge pașii necesari generării din datele de elevație a diverselor produse, cum ar fi contururi, umbriri etc.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>The task is to create contours and hillshade map for area around Mt. Everest.</p>
+<p>Sarcina este de a crea hărțile curbelor de nivel și de relief, pentru zona din jurul Mt. Everest.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Alte abilități pe care le veți căpăta<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Searching and downloading freely available terrain data.</li>
-<li>Exporting a vector layer as KML and viewing it in Google Earth.</li>
+<li><p class="first">Căutarea și descărcarea datelor despre teren, disponibile în mod gratuit.</p>
+</li>
+<li><p class="first">Exportarea unui strat vectorial în format KML, și vizualizarea sa în Google Earth.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will be working with GMTED2010 dataset from USGS. This data can be
-downloaded from the <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> site. <a class="reference external" href="http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/GMTED2010">GMTED (Global Multi-resolution
-Terrain Elevation Data)</a> is a global terrain dataset that is the newer version
-of GTOPO30 dataset.</p>
-<p>Here is how to search and download the revelant data from USGS Earthexplorer.</p>
+<p>Vom lucra cu setul de date GMTED2010 de la USGS. Aceste date pot fi descărcate de pe site-ul <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a>. <a class="reference external" href="http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/GMTED2010">GMTED (Global Multi-resolution Terrain Elevation Data)</a> este un set de date despre terenul global, care reprezintă versiunea mai nouă a setului de date GTOPO30.</p>
+<p>Iată cum să căutați și să descărcați datele revelante de la USGS Earthexplorer.</p>
 <ol class="arabic simple">
-<li>Go to the <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> . In the
-<em class="guilabel">Search Criteria</em> tab, search for the place name <cite>Mt. Everest</cite>.
-Click on the result to select the location.</li>
+<li><p class="first">Mergeți la <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> . În fila <em class="guilabel">Search Criteria</em>  căutați denumirea <cite>Mt. Everest</cite>. Efectuați clic pe rezultat pentru a selecta locația.</p>
+</li>
 </ol>
 <img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
 <ol class="arabic simple" start="2">
-<li>In the <em class="guilabel">Data Sets</em> tab, expand the <em class="guilabel">Digital Elevation</em>
-group, and check <em class="guilabel">GMTED2010</em>.</li>
+<li><p class="first">În fila <em class="guilabel">Data Sets</em> expandați grupul <em class="guilabel">Digital Elevation</em> și bifați <em class="guilabel">GMTED2010</em>.</p>
+</li>
 </ol>
 <img alt="../_images/249.png" class="align-center" src="../_images/249.png" />
 <ol class="arabic simple" start="3">
-<li>You can now skip to the <em class="guilabel">Results</em> tab and see the part of the
-dataset intersecting your search criteria. Click the <em class="guilabel">Download
-Options</em> button. You will have to log in to the site at this point. You can
-create a free account if you do not have one.</li>
+<li><p class="first">Puteți sări acum la fila <em class="guilabel">Results</em> pentru a vedea acea parte a setului de date care satisface criteriile dvs. de căutare. Efectuați clic pe butonul <em class="guilabel">Download Options</em>. După care, va trebui să vă conectați la site. Puteți să vă creați un cont gratuit, dacă nu aveți unul.</p>
+</li>
 </ol>
 <img alt="../_images/334.png" class="align-center" src="../_images/334.png" />
 <ol class="arabic simple" start="4">
-<li>Select the <em class="guilabel">30 ARC SEC</em> option and click <em class="guilabel">Select
-Download Option</em>.</li>
+<li><p class="first">Selectați opțiunea <em class="guilabel">30 ARC SEC</em> și efectuați clic pe <em class="guilabel">Select Download Option</em>.</p>
+</li>
 </ol>
 <img alt="../_images/426.png" class="align-center" src="../_images/426.png" />
-<p>You will now have a file named <cite>GMTED2010N10E060_300.zip</cite>. Elevation data is
-distributed in various raster formats such as ASC, BIL, GeoTiff etc.
-QGIS supports a wide <a class="reference external" href="http://www.gdal.org/formats_list.html">variety of raster formats</a> via the GDAL library. The GMTED
-data comes as GeoTiff files which are contained in this zip archive.</p>
+<p>Acum, veți avea acum un fișier numit <cite>GMTED2010N10E060_300.zip</cite>. Datele altitudinii sunt distribuite în diferite formate raster, cum ar fi ASC, BIL, GeoTiff etc. QGIS suportă o <a class="reference external" href="http://www.gdal.org/formats_list.html">gamă largă formate raster</a> prin intermediul bibliotecii GDAL. Datele GMTED vin sub formă de fișiere GeoTIFF, care sunt incluse în această arhivă zip.</p>
 <p>For convenience, you can <a class="reference download internal" href="../_downloads/GMTED2010N10E060_300.zip"><tt class="xref download docutils literal"><span class="pre">download</span> <span class="pre">a</span> <span class="pre">copy</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">data</span> <span class="pre">from</span> <span class="pre">here.</span></tt></a>.</p>
 <p>Sursa de date: <a class="reference internal" href="credits.html#gmted2010" id="id2">[GMTED2010]</a></p>
 </div>
@@ -433,6 +436,50 @@ Right click on the contours layer, select <em class="guilabel">Save as..</em>.</
 
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts"></script>
 
+<!-- Script fpr language switching. Largely adapted from https://github.com/pcav/faunalia-website -->
+<script>
+    var currentPage = 'docs/working_with_terrain.html'; // coming from sphinx, always without starting '/'
+    var currentLang = 'en';
+    $(document).ready(function(){
+
+        var search = new RegExp('\/[a-zA-Z_]{2,8}\/'+ currentPage, 'gi');
+        var langPlusPage = window.location.href.match(search);
+        // it's possible this is a index.html page called without 'index.html', try without the currentPage
+        if (langPlusPage==undefined){
+            search = new RegExp('\/[a-zA-Z_]{2,8}\/$', 'gi');
+            langPlusPage = window.location.href.match(search);
+        }
+
+        // it's possible this is an index.html page called without 'index.html', try removing index.html
+        if (langPlusPage==undefined){
+            currentPage = currentPage.replace('index.html','')
+            search = new RegExp('\/[a-zA-Z_]{2,8}\/'+ currentPage, 'gi');
+            langPlusPage = window.location.href.match(search);
+        }
+        // still no langPlugPage: stop, because the language swicher will misbehave 
+
+        if (langPlusPage == undefined || langPlusPage.length != 1){
+            alert('You hit an error, please report back to us.');
+            return;
+        }
+        langPlusPage = langPlusPage[0];
+        currentLang = langPlusPage.replace(currentPage, '');
+
+        $("#languages").val(currentLang.replace(/\//g,'')); // currentLang is something like '/nl/'
+
+        $("#languages").change(function() {
+            gotoLang($(this).val());
+        });
+
+    });
+
+    // load current page in a different language
+    function gotoLang(lang){
+        var currentUrl = window.location.href;
+        var newUrl = currentUrl.replace(currentLang, '/'+lang+'/');
+        window.location.href = newUrl;
+    }
+</script>
 
   </body>
 </html>

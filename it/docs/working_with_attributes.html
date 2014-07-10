@@ -90,7 +90,7 @@
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Principali tematizzazioni per dati vettoriali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calcolare la lunghezza lineare e le statistiche</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Raster, elementi base: tematizzazione ed analisi</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Mosaici e operazioni di ritaglio con i layer raster</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
@@ -133,7 +133,20 @@
               
             
             
+
             
+<form role="form" class="navbar-form navbar-right">
+<select id="languages" class="form-control select-mini">
+  <option value="en">English</option>
+  <option value="fi_FI">Finnish</option>
+  <option value="ro">Romanian</option>
+  <option value="it">Italian</option>
+  <option value="es">Spanish</option>
+  <option value="pt_BR">Portuguese</option>
+  <option value="nl">Dutch</option>
+</select>
+</form>
+
             
               <li class="hidden-sm"></li>
             
@@ -177,10 +190,10 @@
   <div class="section" id="working-with-attributes">
 <h1>Lavorare con gli attributi.<a class="headerlink" href="#working-with-attributes" title="link permanente per questa intestazione">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/working_with_attributes_a4.pdf">A4</a> <a class="reference external" href="../pdf/working_with_attributes_letter.pdf">Letter</a> ]</p>
-<p>GIS data has two parts - features and attributes. Attributes are structured data about each feature. This tutorial shows how to view the attributes and do basic queries on them in QGIS.</p>
+<p>Il GIS è costituito di due parti, geometrie e attributi. Gli attributi sono dati strutturati che si aggiungono a ciascuna geometria. Questa esercitazione mostra come esaminare gli attributi e come effettuare delle interrogazioni elementari sul loro contenuto.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Descrizione dell&#8217;esercizio<a class="headerlink" href="#overview-of-the-task" title="link permanente per questa intestazione">¶</a></h2>
-<p>The dataset for this tutorial contains information about populated places of the world. The task is to query and find all the capital cities in the world that have a population greater than 1,000,000.</p>
+<p>Il dataset per questo esercizio contiene informazioni circa le aree popolate del pianeta. Il nostro obiettivo è quello di cercare e trovare le capitali del mondo che hanno un numero di abitanti superiore a un 1000000.</p>
 </div>
 <div class="section" id="get-the-data">
 <h2>Ottenere i dati necessari<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
@@ -238,11 +251,13 @@ Non avete bisogno di estrarre il file. QGIS è in grado di leggere direttamente 
 </ol>
 <img alt="../_images/922.png" class="align-center" src="../_images/922.png" />
 <ol class="arabic simple" start="10">
-<li>In the <em class="guilabel">Select By Expression</em> window, expand the <em class="guilabel">Fields and Values</em> section and double-click the <cite>pop_max</cite> label. You will notice that it is added to the expression section at the bottom. If you aren&#8217;t sure about the field values, you can click the <em class="guilabel">Load all unique values</em> to see what the attribute values are present in the dataset. For this exercise, we are looking to find all features that have a population greater than 1,000,000. So complete the expression as <cite>&#8220;pop_max&#8221; &gt; 1000000</cite> and click <em class="guilabel">Select</em>.</li>
+<li><p class="first">Nella finestra <em class="guilabel">Seleziona elementi usando un&#8217;espressione</em> aprire la sezione  <em class="guilabel">Campi e Valori</em> e fare doppio click sulla voce <cite>pop_max</cite>. Noterete che questa voce verrà aggiunta alla sezione espressioni in basso. Se non siete sicuri circa il campo dei valori potete fare click sul pulsante <em class="guilabel">Carica tutti i valori unici</em> per vedere quali valori sono presenti nel dataset. In questo esercizio stiamo cercando di trovare tutte le feature che hanno una popolazione maggiore di 1000000. Quindi completate l&#8217;espressione come <cite>&#8220;pop_max&#8221; &gt; 1000000</cite> e fate click su <em class="guilabel">Seleziona</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1022.png" class="align-center" src="../_images/1022.png" />
 <ol class="arabic simple" start="11">
-<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. You will notice that a subset of points is now rendered in yellow. This is the result of our query and you are seeing all places from the dataset that have the <cite>pop_max</cite> attribute value greater than 1,000,000.</li>
+<li><p class="first">Fate click su <em class="guilabel">Chiudi</em> e tornate alla finestra principale di QGIS. Noterete che un sottoinsieme di punti viene ora visualizzato in giallo. Questo è il risultato della vostra query e quelli che vedete sono i luoghi del dataset che hanno il valore dell&#8217;attributo <cite>pop_max</cite>  maggiore di 1000000.</p>
+</li>
 </ol>
 <img alt="../_images/1126.png" class="align-center" src="../_images/1126.png" />
 <ol class="arabic simple" start="12">
@@ -257,7 +272,8 @@ Inserite questa espressione: <cite>&#8220;adm0cap&#8221; = 1</cite>. Dal momento
 </ol>
 <img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
 <ol class="arabic simple" start="14">
-<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. Now you will see a smaller subset of the points selected. This is the result of the second query and shows all places from the dataset that are country capitals as well as have population greater than 1,000,000.</li>
+<li><p class="first">Fate click su  <em class="guilabel">Chiudi</em> e tornate alla finestra principale di QGIS. Noterete un sottoinsieme di punti selezionati. Questo è il risultato della seconda query e mostra tutti i luoghi del nostro dataset che sono capitali di una nazione e che hanno una popolazione maggiore di 1000000.</p>
+</li>
 </ol>
 <img alt="../_images/1420.png" class="align-center" src="../_images/1420.png" />
 <ol class="arabic simple" start="15">
@@ -271,7 +287,8 @@ Inserite questa espressione: <cite>&#8220;adm0cap&#8221; = 1</cite>. Dal momento
 </ol>
 <img alt="../_images/1617.png" class="align-center" src="../_images/1617.png" />
 <ol class="arabic simple" start="17">
-<li>The newly created shapefile will be automaticlally loaded into QGIS. Turn off the populated places layer by un-checking the box next to it. Now, you will see only the features from the newly created layer containing capital cities of the world that have population greater than 1,000,000.</li>
+<li><p class="first">Lo shapefile appena creato sarà caricato automaticamente in QGIS. Spegnete il layer di luoghi deselezionando la casella accanto. Ora potrete vedere solo le geometrie del layer appena creato contentente le città del mondo che sono capitali e che hanno una popolazione maggiore di 1000000.</p>
+</li>
 </ol>
 <img alt="../_images/1716.png" class="align-center" src="../_images/1716.png" />
 </div>
@@ -335,6 +352,50 @@ Inserite questa espressione: <cite>&#8220;adm0cap&#8221; = 1</cite>. Dal momento
 
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts"></script>
 
+<!-- Script fpr language switching. Largely adapted from https://github.com/pcav/faunalia-website -->
+<script>
+    var currentPage = 'docs/working_with_attributes.html'; // coming from sphinx, always without starting '/'
+    var currentLang = 'en';
+    $(document).ready(function(){
+
+        var search = new RegExp('\/[a-zA-Z_]{2,8}\/'+ currentPage, 'gi');
+        var langPlusPage = window.location.href.match(search);
+        // it's possible this is a index.html page called without 'index.html', try without the currentPage
+        if (langPlusPage==undefined){
+            search = new RegExp('\/[a-zA-Z_]{2,8}\/$', 'gi');
+            langPlusPage = window.location.href.match(search);
+        }
+
+        // it's possible this is an index.html page called without 'index.html', try removing index.html
+        if (langPlusPage==undefined){
+            currentPage = currentPage.replace('index.html','')
+            search = new RegExp('\/[a-zA-Z_]{2,8}\/'+ currentPage, 'gi');
+            langPlusPage = window.location.href.match(search);
+        }
+        // still no langPlugPage: stop, because the language swicher will misbehave 
+
+        if (langPlusPage == undefined || langPlusPage.length != 1){
+            alert('You hit an error, please report back to us.');
+            return;
+        }
+        langPlusPage = langPlusPage[0];
+        currentLang = langPlusPage.replace(currentPage, '');
+
+        $("#languages").val(currentLang.replace(/\//g,'')); // currentLang is something like '/nl/'
+
+        $("#languages").change(function() {
+            gotoLang($(this).val());
+        });
+
+    });
+
+    // load current page in a different language
+    function gotoLang(lang){
+        var currentUrl = window.location.href;
+        var newUrl = currentUrl.replace(currentLang, '/'+lang+'/');
+        window.location.href = newUrl;
+    }
+</script>
 
   </body>
 </html>
