@@ -93,7 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Ilmakuvien georeferointi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Karttadatan digitointi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
@@ -103,7 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Käytämme QGIS selainta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Tason verteksien lukumäärän laskenta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
@@ -294,7 +294,7 @@
 </ol>
 <img alt="../_images/1614.png" class="align-center" src="../_images/1614.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">Haluamme muotoilla tason siten että tietyillä pikselien arvot tietyillä rajoilla  saavat saman värin. Enenkuin jatkamme tästä, mene  <em class="guilabel">Metadata</em> välilehdelle ja katso rasterin ominaisuuksia. Huomaa tason minimi ja maksimi arvot.</p>
+<li><p class="first">Haluamme muotoilla tason siten että tietyillä pikselien arvot tietyillä rajoilla  saavat saman värin. Ennenkuin jatkamme tästä, mene  <em class="guilabel">Metadata</em> välilehdelle ja katso rasterin ominaisuuksia. Huomaa tason minimi ja maksimi arvot.</p>
 </li>
 </ol>
 <img alt="../_images/1713.png" class="align-center" src="../_images/1713.png" />
@@ -304,29 +304,23 @@
 </ol>
 <img alt="../_images/1813.png" class="align-center" src="../_images/1813.png" />
 <ol class="arabic simple" start="19">
-<li>Now you will see a much more powerful visualization where you can see areas
-which has seen positive and negative population density changes. Click on
-<em class="guilabel">Zoom In</em> button and draw a rectangle around Europe to
-explore the region in more detail.</li>
+<li><p class="first">Nyt näet huomattavasti tehokkaamman visualisoinnin jossa voit nähdä alueiden väestötiheyden posittiviset ja negatiiviset muutokset. Klikkaa <em class="guilabel">Lähennä</em>  näppäintä ja piirrä suorakulmio Euroopan ympäri tutkiaksesi aluetta tarkemmin.</p>
+</li>
 </ol>
 <img alt="../_images/1911.png" class="align-center" src="../_images/1911.png" />
 <ol class="arabic simple" start="20">
-<li>Select the <em class="guilabel">Identify</em> tool and click on the Red and Blue regions
-to verify that your styling rules worked as intended.</li>
+<li><p class="first">Valitse <em class="guilabel">Tunnista ominaisuudet</em> työkalu ja klikkaa punaisella ja sinisellä alueella että muotoilu toimii oikein niin kuin on tarkoitettu.</p>
+</li>
 </ol>
 <img alt="../_images/207.png" class="align-center" src="../_images/207.png" />
 <ol class="arabic simple" start="21">
-<li>Now let’s take this analysis one-step further and find areas with only
-<cite>negative</cite> population density change. Open <em class="menuselection">Raster ‣ Raster calculator</em>.</li>
+<li><p class="first">Viekkäämme nyt tämä analyysi askeleen edemmäs ja etsikäämme alueet joissa on ainoastaan <cite>negatiivisiä</cite> väestotiheyden muutoksia. Avaa valikosta <em class="menuselection">Rasteri ‣ Rasterilaskin</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2111.png" class="align-center" src="../_images/2111.png" />
 <ol class="arabic simple" start="22">
-<li>Enter the expression <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990&#64;1</span> <span class="pre">&lt;</span> <span class="pre">-10</span></tt>. What this
-expression will do is set the value of the pixel to 1 is if matches the
-expression and 0 if it doesn&#8217;t.  So we will get a raster with pixel value
-of 1 where there was negative change and 0 where there wasn&#8217;t. Name the
-output layer as <tt class="docutils literal"><span class="pre">negative_pop_change_2000_1990</span></tt> and check the box next to
-<em class="guilabel">Add result to project</em>. Click OK.</li>
+<li><p class="first">Anna lauseke <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990&#64;1</span> <span class="pre">&lt;</span> <span class="pre">-10</span></tt>. Tämän lausekkeen tarkoitus on asettaa pikselin arvoksi 1 jossa on lausekkeen kanssa sama ja 0 jos ei. Joten saamme siis rasterin jossa pikselin arvo on 1 jossa negatiivinen muutos ja 0 missä ei. Nimeä tulostaso <tt class="docutils literal"><span class="pre">negative_pop_change_2000_1990</span></tt> ja merkkaa laatikko <em class="guilabel">Lisää tulos projektiin</em>. Klikkaa  OK.</p>
+</li>
 </ol>
 <img alt="../_images/2210.png" class="align-center" src="../_images/2210.png" />
 <ol class="arabic simple" start="23">
@@ -337,8 +331,8 @@ with 0 values also transparent. Click <em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/237.png" class="align-center" src="../_images/237.png" />
 <ol class="arabic simple" start="24">
-<li>Now you will see the areas of negative population density change as gray
-pixels.</li>
+<li><p class="first">Nyt näet aalueet joissa negatiivinen väestötiheyden muutos harmaina pikseleinä.</p>
+</li>
 </ol>
 <img alt="../_images/245.png" class="align-center" src="../_images/245.png" />
 </div>
@@ -364,7 +358,7 @@ pixels.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 11, 2014.<br/>
+      Last updated on Jul 12, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

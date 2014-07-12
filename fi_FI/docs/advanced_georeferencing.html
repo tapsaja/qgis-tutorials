@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Ilmakuvien georeferointi &mdash; QGIS Tutorials and Tips</title>
+    <title>Georeferencing Aerial Imagery &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -93,7 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Ilmakuvien georeferointi</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Georeferencing Aerial Imagery</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Karttadatan digitointi</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
@@ -103,7 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Käytämme QGIS selainta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Tason verteksien lukumäärän laskenta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
@@ -187,7 +187,7 @@
       
 
   <div class="section" id="georeferencing-aerial-imagery">
-<h1>Ilmakuvien georeferointi<a class="headerlink" href="#georeferencing-aerial-imagery" title="Permalink to this headline">¶</a></h1>
+<h1>Georeferencing Aerial Imagery<a class="headerlink" href="#georeferencing-aerial-imagery" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/advanced_georeferencing_a4.pdf">A4</a>
 <a class="reference external" href="../pdf/advanced_georeferencing_letter.pdf">Letter</a> ]</p>
 <p>Oppaassa <a class="reference internal" href="georeferencing_basics.html"><em>Georeferencing Topo Sheets and Scanned Maps</em></a>  tarkastelemme georeferoinnin perusmenettelyä QGIS:ssa. Tuohon menetelmäään sisältyi koordinaattien lukeminen skannatusta kartasta ja niiden syöttäminen manuaalisesti. Usein ei kuitenkaan ole koordinaatteja tulostetussa kartassa tai yrität georeferoida kuvaa. Tässä tapauksessa voit käyttää toista georeferoitua aineistoa lähteenä. Tässä oppaassa opit kuinka käyttää avaoimen datan lähteitä georeferointi prosessissa.</p>
@@ -201,9 +201,9 @@
 </li>
 <li><p class="first">OpenLayers liitännäisen käyttö QGIS:ssä.</p>
 </li>
-<li><p class="first">Koordinaattien konvertointti eri projektioiden välillä käyttäen <strong>cs2cs</strong> komentotulkki työkalua.</p>
+<li><p class="first">Koordinaattien konvertointi eri projektioiden välillä käyttäen <strong>cs2cs</strong> komentotulkki työkalua.</p>
 </li>
-<li><p class="first">Olemaas olevan georeferoidun tason käyttö GCP pisteiden lähteenä Georeferointi työkalussa.</p>
+<li><p class="first">Olemassa olevan georeferoidun tason käyttö GCP pisteiden lähteenä Georeferointi työkalussa.</p>
 </li>
 <li><p class="first">Räätälöidyn no-data arvon asettaminen tasolle.</p>
 </li>
@@ -213,8 +213,7 @@
 <div class="section" id="get-the-data">
 <h2>Hanki tiedot<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
 <p>Tässä oppaassa käytämme eräitä upaeita leija ja ilmapallo kuvia joita <a class="reference external" href="http://publiclaboratory.org/archive">The Public Laboratory</a> on koonnut. Heiltä on tarjolla myös kuvien georeferoituja versioita, mutta me lataamme georeferoimattomat veriot ja georeferoimme ne QGIS:ssä käyden prosessin läpi. Jos pidät heidän tarjoamista kuvista, voit <a class="reference external" href="http://google-latlong.blogspot.in/2012/04/balloon-and-kite-imagery-in-google.html">tutkia niitä</a> myös Google Earth:ssa.</p>
-<p>Download the JPG image of <a class="reference external" href="http://publiclaboratory.org/map/washington-square-park-new-york-new-york/2012-10-01">Washington Square Park, New York</a>.
-You can right-click the JPG button and choose <em class="guilabel">Save link as...</em>.</p>
+<p>Lataa <a class="reference external" href="http://publiclaboratory.org/map/washington-square-park-new-york-new-york/2012-10-01">Washington Square Park, New York</a> JPG kuva. Voit myös klikata oikealla JPG näppäintä ja valita <em class="guilabel">Tallenna kohde levylle...</em>.</p>
 </div>
 <div class="section" id="procedure">
 <h2>Menettely<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
@@ -383,7 +382,7 @@ add 255 as the transparent pixels for each band and enter 100 as the
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 11, 2014.<br/>
+      Last updated on Jul 12, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
