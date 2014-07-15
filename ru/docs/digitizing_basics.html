@@ -133,7 +133,20 @@
               
             
             
+
             
+<form role="form" class="navbar-form navbar-right">
+<select id="languages" class="form-control select-mini">
+  <option value="en">English</option>
+  <option value="fi_FI">Finnish</option>
+  <option value="ro">Romanian</option>
+  <option value="it">Italian</option>
+  <option value="es">Spanish</option>
+  <option value="pt_BR">Portuguese</option>
+  <option value="nl">Dutch</option>
+</select>
+</form>
+
             
               <li class="hidden-sm"></li>
             
@@ -314,7 +327,7 @@ value as well. Click <em class="guilabel">OK</em>.</li>
 <img alt="../_images/125.png" class="align-center" src="../_images/125.png" />
 <ol class="arabic simple" start="13">
 <li>The default style of the new line layer is a thin line. Let&#8217;s change it so
-we can better see the digitized features on the canvas. Right-click the
+we can better see the digitized features on the canvas. Right click the
 <tt class="docutils literal"><span class="pre">Roads</span></tt> layer and select <em class="guilabel">Properties</em>.</li>
 </ol>
 <img alt="../_images/135.png" class="align-center" src="../_images/135.png" />
@@ -353,10 +366,10 @@ the <strong>Node Tool</strong>. Click the <em class="guilabel">Node Tool</em> bu
 <ol class="arabic simple" start="19">
 <li>Once the node tool is activated, click on any feature to show the vertices.
 Click on any vertex to select it. The vertex will change the color once it
-is selected. Now you can move the click and drag your mouse to move the
-vertex. This is useful when you want to make adjustments after the feature
-is created. You can also delete a selected vertex by clicking the
-<tt class="kbd docutils literal"><span class="pre">Delete</span></tt> key. (<tt class="kbd docutils literal"><span class="pre">Option+Delete</span></tt> on a mac)</li>
+is selected. Now you can click and drag your mouse to move the vertex. This
+is useful when you want to make adjustments after the feature is created.
+You can also delete a selected vertex by clicking the <tt class="kbd docutils literal"><span class="pre">Delete</span></tt> key.
+(<tt class="kbd docutils literal"><span class="pre">Option+Delete</span></tt> on a mac)</li>
 </ol>
 <img alt="../_images/193.png" class="align-center" src="../_images/193.png" />
 <ol class="arabic simple" start="20">
@@ -374,7 +387,7 @@ attribute called <tt class="docutils literal"><span class="pre">Name</span></tt>
 <img alt="../_images/212.png" class="align-center" src="../_images/212.png" />
 <ol class="arabic simple" start="22">
 <li>Click the <em class="guilabel">Add feature</em> button and click on the map canvas to add
-a polygon vertex. Digitize the polygon represneting the park. Make sure you
+a polygon vertex. Digitize the polygon representing the park. Make sure you
 snap to the roads vertices so there are no gaps between the park polygons
 and road lines. Right-click to finish the polygon.</li>
 </ol>
@@ -497,7 +510,7 @@ data you created.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Jul 09, 2014.<br/>
+      Обновлено: Jul 15, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
@@ -535,6 +548,50 @@ data you created.</li>
 
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts"></script>
 
+<!-- Script fpr language switching. Largely adapted from https://github.com/pcav/faunalia-website -->
+<script>
+    var currentPage = 'docs/digitizing_basics.html'; // coming from sphinx, always without starting '/'
+    var currentLang = 'en';
+    $(document).ready(function(){
+
+        var search = new RegExp('\/[a-zA-Z_]{2,8}\/'+ currentPage, 'gi');
+        var langPlusPage = window.location.href.match(search);
+        // it's possible this is a index.html page called without 'index.html', try without the currentPage
+        if (langPlusPage==undefined){
+            search = new RegExp('\/[a-zA-Z_]{2,8}\/$', 'gi');
+            langPlusPage = window.location.href.match(search);
+        }
+
+        // it's possible this is an index.html page called without 'index.html', try removing index.html
+        if (langPlusPage==undefined){
+            currentPage = currentPage.replace('index.html','')
+            search = new RegExp('\/[a-zA-Z_]{2,8}\/'+ currentPage, 'gi');
+            langPlusPage = window.location.href.match(search);
+        }
+        // still no langPlugPage: stop, because the language swicher will misbehave 
+
+        if (langPlusPage == undefined || langPlusPage.length != 1){
+            alert('You hit an error, please report back to us.');
+            return;
+        }
+        langPlusPage = langPlusPage[0];
+        currentLang = langPlusPage.replace(currentPage, '');
+
+        $("#languages").val(currentLang.replace(/\//g,'')); // currentLang is something like '/nl/'
+
+        $("#languages").change(function() {
+            gotoLang($(this).val());
+        });
+
+    });
+
+    // load current page in a different language
+    function gotoLang(lang){
+        var currentUrl = window.location.href;
+        var newUrl = currentUrl.replace(currentLang, '/'+lang+'/');
+        window.location.href = newUrl;
+    }
+</script>
 
   </body>
 </html>

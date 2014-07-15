@@ -133,7 +133,20 @@
               
             
             
+
             
+<form role="form" class="navbar-form navbar-right">
+<select id="languages" class="form-control select-mini">
+  <option value="en">English</option>
+  <option value="fi_FI">Finnish</option>
+  <option value="ro">Romanian</option>
+  <option value="it">Italian</option>
+  <option value="es">Spanish</option>
+  <option value="pt_BR">Portuguese</option>
+  <option value="nl">Dutch</option>
+</select>
+</form>
+
             
               <li class="hidden-sm"></li>
             
@@ -240,7 +253,7 @@ the layer in the <em class="guilabel">Select layers to add...</em> dialog.</li>
 </ol>
 <img alt="../_images/519.png" class="align-center" src="../_images/519.png" />
 <ol class="arabic simple" start="6">
-<li>In th pop-up window, select the polygon layer and point layer respectively.
+<li>In the pop-up window, select the polygon layer and point layer respectively.
 Name the output layer as <tt class="docutils literal"><span class="pre">earthquake_per_coutry.shp</span></tt> and Click <em class="guilabel">OK</em>.</li>
 </ol>
 <div class="admonition note">
@@ -267,7 +280,7 @@ each polygon.</li>
 <ol class="arabic simple" start="10">
 <li>To get our answer, we can simply sort the table by <tt class="docutils literal"><span class="pre">PNTCNT</span></tt> field and the
 country with highest count will be our answer. Click 2-times on the <tt class="docutils literal"><span class="pre">PNTCNT</span></tt>
-columnto get it sorted in descending order. Click on the first row to
+column to get it sorted in descending order. Click on the first row to
 select it and close the Attribute Table.</li>
 </ol>
 <img alt="../_images/1015.png" class="align-center" src="../_images/1015.png" />
@@ -307,7 +320,7 @@ earthquakes.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Jul 09, 2014.<br/>
+      Обновлено: Jul 15, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
@@ -345,6 +358,50 @@ earthquakes.</p>
 
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts"></script>
 
+<!-- Script fpr language switching. Largely adapted from https://github.com/pcav/faunalia-website -->
+<script>
+    var currentPage = 'docs/points_in_polygon.html'; // coming from sphinx, always without starting '/'
+    var currentLang = 'en';
+    $(document).ready(function(){
+
+        var search = new RegExp('\/[a-zA-Z_]{2,8}\/'+ currentPage, 'gi');
+        var langPlusPage = window.location.href.match(search);
+        // it's possible this is a index.html page called without 'index.html', try without the currentPage
+        if (langPlusPage==undefined){
+            search = new RegExp('\/[a-zA-Z_]{2,8}\/$', 'gi');
+            langPlusPage = window.location.href.match(search);
+        }
+
+        // it's possible this is an index.html page called without 'index.html', try removing index.html
+        if (langPlusPage==undefined){
+            currentPage = currentPage.replace('index.html','')
+            search = new RegExp('\/[a-zA-Z_]{2,8}\/'+ currentPage, 'gi');
+            langPlusPage = window.location.href.match(search);
+        }
+        // still no langPlugPage: stop, because the language swicher will misbehave 
+
+        if (langPlusPage == undefined || langPlusPage.length != 1){
+            alert('You hit an error, please report back to us.');
+            return;
+        }
+        langPlusPage = langPlusPage[0];
+        currentLang = langPlusPage.replace(currentPage, '');
+
+        $("#languages").val(currentLang.replace(/\//g,'')); // currentLang is something like '/nl/'
+
+        $("#languages").change(function() {
+            gotoLang($(this).val());
+        });
+
+    });
+
+    // load current page in a different language
+    function gotoLang(lang){
+        var currentUrl = window.location.href;
+        var newUrl = currentUrl.replace(currentLang, '/'+lang+'/');
+        window.location.href = newUrl;
+    }
+</script>
 
   </body>
 </html>

@@ -133,7 +133,20 @@
               
             
             
+
             
+<form role="form" class="navbar-form navbar-right">
+<select id="languages" class="form-control select-mini">
+  <option value="en">English</option>
+  <option value="fi_FI">Finnish</option>
+  <option value="ro">Romanian</option>
+  <option value="it">Italian</option>
+  <option value="es">Spanish</option>
+  <option value="pt_BR">Portuguese</option>
+  <option value="nl">Dutch</option>
+</select>
+</form>
+
             
               <li class="hidden-sm"></li>
             
@@ -255,7 +268,7 @@ styling option. Right-click the layer again and choose
 <em class="guilabel">Style</em> tab. Categorized means the features in the layer will be
 shown in different shades of a color based on unique values in an attribute
 field. Choose <em class="guilabel">LIFEXPCT</em> value as the <em class="guilabel">Column</em>. Choose
-a <em class="guilabel">color ramp</em> of your chice and click <em class="guilabel">Classify</em>
+a <em class="guilabel">color ramp</em> of your choice and click <em class="guilabel">Classify</em>
 at the bottom. Click <em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/101.png" class="align-center" src="../_images/101.png" />
@@ -267,9 +280,9 @@ at the bottom. Click <em class="guilabel">OK</em>.</li>
 <ol class="arabic" start="12">
 <li><p class="first">Let us explore the <em class="guilabel">Graduated</em> symbology type in the <em class="guilabel">Style</em>
 dialog now. Graduated symbology type allows you to break down the data in a column in
-unique <cite>classes</cite> and choose a different style for each of the classes. We
-can think of classifying our life expectancy data into 3 classes, <cite>LOW</cite>,
-<cite>MEDIUM</cite> and <cite>HIGH</cite>. Choose <em class="guilabel">LIFEXPCT</em> as the <em class="guilabel">Column</em> and
+unique <em>classes</em> and choose a different style for each of the classes. We
+can think of classifying our life expectancy data into 3 classes, <tt class="docutils literal"><span class="pre">LOW</span></tt>,
+<tt class="docutils literal"><span class="pre">MEDIUM</span></tt> and <tt class="docutils literal"><span class="pre">HIGH</span></tt>. Choose <em class="guilabel">LIFEXPCT</em> as the <em class="guilabel">Column</em> and
 choose <em class="guilabel">3</em> as the classes. you will see there are many <em class="guilabel">Mode</em>
 optionsavailable. Let us see the logic behind each of these modes.
 There are 5 modes available. <em class="guilabel">Equal Interval</em>,
@@ -291,7 +304,7 @@ of data to create classes. The resulting classes will be such that there
 will be maximum variance between individual classes and least variance
 within each class.</li>
 <li>Standard Deviation - This method will calculate the mean of the data, and
-create classes based on standard eviation from the mean.</li>
+create classes based on standard deviation from the mean.</li>
 <li>Pretty Breaks - This is based on the statistical package R’s pretty
 algorithm. It is a bit complex, but the <cite>pretty</cite> in the name means it
 creates class boundaries that are round numbers.</li>
@@ -366,7 +379,7 @@ interpretation of the life expectancy values.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Jul 09, 2014.<br/>
+      Обновлено: Jul 15, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
@@ -404,6 +417,50 @@ interpretation of the life expectancy values.</li>
 
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts"></script>
 
+<!-- Script fpr language switching. Largely adapted from https://github.com/pcav/faunalia-website -->
+<script>
+    var currentPage = 'docs/basic_vector_styling.html'; // coming from sphinx, always without starting '/'
+    var currentLang = 'en';
+    $(document).ready(function(){
+
+        var search = new RegExp('\/[a-zA-Z_]{2,8}\/'+ currentPage, 'gi');
+        var langPlusPage = window.location.href.match(search);
+        // it's possible this is a index.html page called without 'index.html', try without the currentPage
+        if (langPlusPage==undefined){
+            search = new RegExp('\/[a-zA-Z_]{2,8}\/$', 'gi');
+            langPlusPage = window.location.href.match(search);
+        }
+
+        // it's possible this is an index.html page called without 'index.html', try removing index.html
+        if (langPlusPage==undefined){
+            currentPage = currentPage.replace('index.html','')
+            search = new RegExp('\/[a-zA-Z_]{2,8}\/'+ currentPage, 'gi');
+            langPlusPage = window.location.href.match(search);
+        }
+        // still no langPlugPage: stop, because the language swicher will misbehave 
+
+        if (langPlusPage == undefined || langPlusPage.length != 1){
+            alert('You hit an error, please report back to us.');
+            return;
+        }
+        langPlusPage = langPlusPage[0];
+        currentLang = langPlusPage.replace(currentPage, '');
+
+        $("#languages").val(currentLang.replace(/\//g,'')); // currentLang is something like '/nl/'
+
+        $("#languages").change(function() {
+            gotoLang($(this).val());
+        });
+
+    });
+
+    // load current page in a different language
+    function gotoLang(lang){
+        var currentUrl = window.location.href;
+        var newUrl = currentUrl.replace(currentLang, '/'+lang+'/');
+        window.location.href = newUrl;
+    }
+</script>
 
   </body>
 </html>
