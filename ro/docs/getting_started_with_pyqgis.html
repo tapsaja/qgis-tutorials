@@ -189,81 +189,58 @@
   <div class="section" id="getting-started-with-python-programming">
 <h1>Noțiuni de bază despre programarea în Python<a class="headerlink" href="#getting-started-with-python-programming" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/getting_started_with_pyqgis_a4.pdf">A4</a> <a class="reference external" href="../pdf/getting_started_with_pyqgis_letter.pdf">Letter</a> ]</p>
-<p>QGIS has a powerful programming interface that allows you to extend the core
-functionality of the software as well as write scripts to automate your tasks.
-QGIS supports the popular Python scripting language. Even if you are a
-beginner, learning a little bit of Python and QGIS programming interface will
-allow you to be much more productive in your work. This tutorial assumes no
-prior programming knowledge and is intended to give an introduction to
-python scripting in QGIS (PyQGIS).</p>
+<p>QGIS are o interfață de programare puternică, care vă îngăduie să extindeți funcționalitatea de bază a aplicației, precum și să scrieți script-uri pentru a automatiza sarcinile. QGIS suportă  limbajul popular de scripting Python. Chiar dacă sunteți un începător, învățarea unor noțiuni despre Python și desprer interfața de programare a QGIS va permite să fiți mult mai productivi în munca dvs. Acest tutorial nu necesită cunoștințe de programare prealabile, având scopul de a oferi o introducere în scriptarea Python în cadrul QGIS (PyQGIS).</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will load a vector point layer representing all major airports and use
-python scripting to create a text file with the airport name, airport code,
-latitude and longitude for each of the airport in the layer.</p>
+<p>Vom încărca un strat vectorial de tip punct, reprezentând toate aeroporturile majore, folosind scriptarea Python pentru a crea un fișier text cu numele, codul, latitudinea și longitudinea pentru fiecare dintre aeroporturile stratului.</p>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/airports/">Airports</a>
-dataset from Natural Earth.</p>
-<p>Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip">Airports shapefile</a>.</p>
+<p>Vom folosi setul de date <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/airports/">Airports</a> de la Natural Earth.</p>
+<p>Decărcați <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip">Fișierul shape de Aeroporturi</a>.</p>
 <p>Sursa de date <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>In QGIS, go to <em class="menuselection">Layers ‣ Add Vector Layer</em>. Browse to the
-downloaded <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt> file and click <em class="guilabel">Open</em>. Select
-the <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt> layer and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">În QGIS, mergeți la <em class="menuselection">Layers ‣ Add Vector Layer</em>. Navigați la fișierul descărcat <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt> și faceți clic pe <em class="guilabel">Open</em>. Selectați stratul <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt> și faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/130.png" class="align-center" src="../_images/130.png" />
 <ol class="arabic simple" start="2">
-<li>You will see the <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> layer loaded in QGIS.</li>
+<li><p class="first">Veți vedea stratul <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> încărcat în QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/214.png" class="align-center" src="../_images/214.png" />
 <ol class="arabic simple" start="3">
-<li>Select the <em class="guilabel">Identify</em> tool and click on any of the points to
-examine the available attributes. You will see that the name of the airport
-and it&#8217;s 3 digit code are contained in the attributes <tt class="docutils literal"><span class="pre">name</span></tt> and
-<tt class="docutils literal"><span class="pre">iata_code</span></tt> respectively.</li>
+<li><p class="first">Selectați instrumentul <em class="guilabel">Identify</em> și faceți clic pe oricare dintre puncte pentru a examina atributele disponibile. Veți vedea că numele aeroportului și codul de 3 cifre al acestuia sunt conținute în atributele <tt class="docutils literal"><span class="pre">name</span></tt> și respectiv <tt class="docutils literal"><span class="pre">iata_code</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
 <ol class="arabic simple" start="4">
-<li>QGIS provides a built-in console where you can type python commands and get
-the result. This console is a great way to learn scripting and also to do
-quick data processing. Open the <em class="guilabel">Python Console</em> by going to
-<em class="menuselection">Plugins ‣ Python Console</em>.</li>
+<li><p class="first">QGIS oferă o consolă încorporată în care puteți introduce comenzi Python și să obțineți rezultatul. Această consolă este o modalitate foarte bună de a învăța scriptarea și, de asemenea, de a procesa datele rapid. Deschideți <em class="guilabel">Python Console</em> din <em class="menuselection">Plugins ‣ Python Console</em>.</p>
+</li>
 </ol>
 <img alt="../_images/410.png" class="align-center" src="../_images/410.png" />
 <ol class="arabic simple" start="5">
-<li>You will see a new panel open at the bottom of QGIS canvas. You will see a
-prompt like <tt class="docutils literal"><span class="pre">&gt;&gt;&gt;</span></tt> at the bottom where you can type commands. For
-interacting with the QGIS environment, we must use the <tt class="docutils literal"><span class="pre">iface</span></tt> variable.
-To access the currently active layer in QGIS, you can type the following and
-press <tt class="kbd docutils literal"><span class="pre">Enter</span></tt>. This command fetches the reference to the currently
-loaded layer and stores it in the <tt class="docutils literal"><span class="pre">layer</span></tt> variable.</li>
+<li><p class="first">Veți vedea un nou panou, deschis în partea de jos a suportului de hărți al QGIS. Veți vedea un prompt cum ar fi <tt class="docutils literal"><span class="pre">&gt;&gt;&gt;</span></tt>, unde aveți posibilitatea să tastați comenzi. Interacționa cu mediul QGIS, se face folosind variabila <tt class="docutils literal"><span class="pre">iface</span></tt>. Pentru a accesa stratul din QGIS, activ în mod curent, aveți posibilitatea să tastați următoarele, apoi să apăsați <tt class="kbd docutils literal"><span class="pre">Enter</span></tt>. Această comandă obține referința către stratul încărcat și o stochează în variabila <tt class="docutils literal"><span class="pre">layer</span></tt>.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">layer</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
 </pre></div>
 </div>
 <img alt="../_images/510.png" class="align-center" src="../_images/510.png" />
 <ol class="arabic simple" start="6">
-<li>There is a handy function called <tt class="docutils literal"><span class="pre">dir()</span></tt> in python that shows you all
-available methods for any object. This is useful when you are not sure
-what functions are available for the object. Run the following command to
-see what operations we can do on the <tt class="docutils literal"><span class="pre">layer</span></tt> variable.</li>
+<li><p class="first">Există în Python o funcție utilă, numită <tt class="docutils literal"><span class="pre">dir()</span></tt>, care vă arată toate metodele disponibile pentru orice obiect. Acest lucru este folositor atunci când nu știți precis care funcții sunt disponibile pentru un anumit obiect. Executați următoarea comandă pentru a vedea ce operații putem executa cu variabila <tt class="docutils literal"><span class="pre">layer</span></tt>.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="nb">dir</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/69.png" class="align-center" src="../_images/69.png" />
 <ol class="arabic simple" start="7">
-<li>You will see a long list of available functions. For now, we will use a
-function called <tt class="docutils literal"><span class="pre">getFeatures()</span></tt> which will gets you the reference to all
-features of a layer. In our case, each feature will be a point representing
-an airport. You can type the following command to iterate through each of the
-features in the current layer. Make sure to add 2 spaces before typing the
-second line.</li>
+<li><p class="first">Veți vedea o listă lungă de funcții disponibile. Pentru moment, vom folosi o funcție numită <tt class="docutils literal"><span class="pre">getFeatures()</span></tt>, care va obține referința către toate entitățile unui strat. În cazul nostru, fiecare entitate va fi un punct, care reprezintă un aeroport. Puteți tasta următoarea comandă, pentru a parcurge fiecare dintre entitățile din stratul curent. Asigurați-vă că ați adăugat 2 spații, înainte de a introduce a doua linie.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
   <span class="k">print</span> <span class="n">f</span>
@@ -271,11 +248,8 @@ second line.</li>
 </div>
 <img alt="../_images/79.png" class="align-center" src="../_images/79.png" />
 <ol class="arabic simple" start="8">
-<li>As you will see in the output, each line contains a reference to a feature
-within the layer. The reference to the feature is stored in the <tt class="docutils literal"><span class="pre">f</span></tt>
-variable. We can use the <tt class="docutils literal"><span class="pre">f</span></tt> variable to access the attributes of each
-feature. Type the following to print the <tt class="docutils literal"><span class="pre">name</span></tt> and <tt class="docutils literal"><span class="pre">iata_code</span></tt> for each
-airport feature.</li>
+<li><p class="first">După cum veți vedea în ieșire, fiecare linie conține o referire la o entitate din cadrul stratului. Referința către entitate este stocată în variabila <tt class="docutils literal"><span class="pre">f`</span></tt>. Putem folosi variabila <tt class="docutils literal"><span class="pre">f`</span></tt> pentru a accesa atributele fiecărei entități. Introduceți următoarele pentru a imprima <tt class="docutils literal"><span class="pre">name</span></tt> și <tt class="docutils literal"><span class="pre">iata_code</span></tt> pentru fiecare entitate de tip aeroport.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
   <span class="k">print</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;iata_code&#39;</span><span class="p">]</span>
@@ -300,8 +274,8 @@ the x and y coordinates of each feature.</li>
 </div>
 <img alt="../_images/98.png" class="align-center" src="../_images/98.png" />
 <ol class="arabic simple" start="10">
-<li>What if we wanted to get only the <tt class="docutils literal"><span class="pre">x</span></tt> cordinate of the feature? You can
-call the <tt class="docutils literal"><span class="pre">x()</span></tt> function on the point object and get its x coordinate.</li>
+<li><p class="first">Ce se întâmplă dacă vrem să obținem numai coordonata <tt class="docutils literal"><span class="pre">x</span></tt> a entității? Puteți apela funcția <tt class="docutils literal"><span class="pre">x()</span></tt> pe obiectul punct, pentru a-i obține coordonata x.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
   <span class="n">geom</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span>
@@ -345,9 +319,8 @@ the text file.</li>
 </div>
 <img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" />
 <ol class="arabic simple" start="13">
-<li>You can go to the output file location you specified and open the text file.
-You will see the data from the airports shapefile that we extracted using
-python scripting.</li>
+<li><p class="first">Puteți merge la locația fișierului de ieșire specificat și deschideți fișierul text. Veți vedea datele din fișierul shape de aeroporturi, pe care l-am extras folosind scriptarea Python.</p>
+</li>
 </ol>
 <img alt="../_images/138.png" class="align-center" src="../_images/138.png" />
 </div>
