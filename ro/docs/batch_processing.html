@@ -189,160 +189,128 @@
   <div class="section" id="batch-processing-using-processing-framework">
 <h1>Procesarea loturilor folosind cadrul de procesare<a class="headerlink" href="#batch-processing-using-processing-framework" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/batch_processing_a4.pdf">A4</a> <a class="reference external" href="../pdf/batch_processing_letter.pdf">Letter</a> ]</p>
-<p>QGIS 2.0 introduced a new concept called <strong>Processing Framework</strong>. Previously
-known as <strong>Sextante</strong>, the Processing Framework provides an environment within
-QGIS to run native and third-party algorithms for processing data. It contains
-a nice batch processing interface that allows one to execute an algorithm on
-several layers easily. Batch processing is a useful tool that can save manual
-effort and help you automate repetitive tasks.</p>
+<p>QGIS 2.0 a introdus un concept nou numit <strong>Processing Framework</strong>. Anterior cunoscut sub numele de <strong>Sextante</strong>, Processing Framework oferă un mediu în cadrul QGIS pentru a rula algoritmi nativi și terți pentru prelucrarea datelor. Acesta conține o interfață aspectuoasă de prelucrare a loturilor, care permite execuția cu ușurință a unui algoritm pe mai multe straturi. Prelucrarea loturilor este un instrument util care poate salva efortul manual, prin automatizarea sarcinilor repetitive.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will take several global vector layers and clip them to the extent of Africa
-in a single batch command.</p>
+<p>Vom avea mai multe straturi vectoriale globale, pe care le vom tăia după conturul Africii într-o singură comandă lot.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Alte abilități pe care le veți căpăta<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Dissolve (merge) polygons from a layer that have the same attribute.</li>
+<li><p class="first">Dizolvarea (îmbinarea) poligoanelor dintr-un strat care are același atribut.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://naturalearthdata.com">Natural Earth</a> has several global vector
-layers. Download the following layers</p>
+<p><a class="reference external" href="http://naturalearthdata.com">Natural Earth</a> are mai multe straturi vectoriale globale. Descărcați următoarele straturi</p>
 <ul class="simple">
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - Countries</a></li>
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads.zip">Railroads</a></li>
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_ports.zip">Ports</a></li>
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip">Airpots</a></li>
+<li><p class="first"><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - Țări</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads.zip">Căi ferate</a></p>
+</li>
+<li><p class="first"><a href="#id2"><span class="problematic" id="id3">`Porturi&lt;http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_ports.zip&gt;`_</span></a></p>
+</li>
+<li><p class="first"><a href="#id4"><span class="problematic" id="id5">`Aeroporturi&lt;http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip&gt;`_</span></a></p>
+</li>
 </ul>
-<p>Once downloaded, unzip and extract all the shapefiles in a single folder.</p>
+<p>Odată descărcate, dezarhivați și extrageți toate fișierele shape într-un singur folder.</p>
 <p>Sursa de date <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>.</p>
+</li>
 </ol>
 <img alt="../_images/112.png" class="align-center" src="../_images/112.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded Admin 0 Countries shapefile
-<tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt> and click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Răsfoiți la fișierul shape descărcat Admin 0 Countries <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt> și faceți clic pe <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/22.png" class="align-center" src="../_images/22.png" />
 <ol class="arabic simple" start="3">
-<li>As our task is to clip the global layers to the boundary of Africa, we need
-to first prepare a layer containg a polygon for the entire continent. The
-countries layer has an attribute called <strong>CONTINENT</strong>. We can use a
-geoprocessing concept called <em>Dissolve</em> to merge all countries that have the
-same continent value and merge them to a single polygon.</li>
+<li><p class="first">Atât timp cât sarcina noastră este de a tăia straturile globale după granițele Africii, trebuie să pregătim mai întâi un strat conținând un poligon pentru întregul continent. Stratul țărilor are un atribut numit <strong>CONTINENT</strong>. Putem folosi un concept de geoprocesare numit <em>Dissolve</em> pentru a uni toate țările care au aceeași valoare a continentului și pentru a le contopi într-un singur poligon.</p>
+</li>
 </ol>
 <img alt="../_images/32.png" class="align-center" src="../_images/32.png" />
 <ol class="arabic simple" start="4">
-<li>Open the <em class="guilabel">Dissolve</em> tool from <em class="menuselection">Vector ‣
-Geoprocessing Tools ‣ Dissolve</em>.</li>
+<li><p class="first">Deschideți instrumentul <em class="guilabel">Dissolve</em> din <em class="menuselection">Vector ‣ Geoprocessing Tools ‣ Dissolve</em>.</p>
+</li>
 </ol>
 <img alt="../_images/42.png" class="align-center" src="../_images/42.png" />
 <ol class="arabic simple" start="5">
-<li>Select <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> as the <em class="guilabel">Input vector layer</em>.
-The <em class="guilabel">Dissolve field</em> would be <tt class="docutils literal"><span class="pre">CONTINENT</span></tt>. Name the output file
-as <tt class="docutils literal"><span class="pre">continents.shp</span></tt> and  check the box next to <em class="guilabel">Add result to
-convas</em>.</li>
+<li><p class="first">Selectați <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> ca <em class="guilabel">Input vector layer</em>. <em class="guilabel">Dissolve field</em> va fi <tt class="docutils literal"><span class="pre">CONTINENT</span></tt>. Denumiți fișierul de ieșire <tt class="docutils literal"><span class="pre">continents.shp</span></tt> și bifați caseta de lângă <em class="guilabel">Add result to convas</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you want to merge <strong>ALL</strong> polygons regardless of their attributes, you
-can select <em class="guilabel">&#8211; Dissolve All &#8211;</em> as the <em class="guilabel">Dissolve field</em>.
-This will combine all polygons in the layer and give you a single aggregate
-polygon.</p>
+<p class="last">Dacă doriți să îmbinați <strong>TOATE</strong> poligoanele, indiferent de atributele lor, puteți selecta <em class="guilabel">&#8211; Dissolve All &#8211;</em> ca <em class="guilabel">Dissolve field</em>. Acest lucru va combina toate poligoane din strat și vă va oferi un singur poligon agregat.</p>
 </div>
 <img alt="../_images/52.png" class="align-center" src="../_images/52.png" />
 <ol class="arabic simple" start="6">
-<li>The dissolve processing may take a while. Once the process finishes, you
-will see the new <tt class="docutils literal"><span class="pre">continent</span></tt> layer added to QGIS. Use the
-<em class="guilabel">Select Single Feature</em> tool from the toolbar and click on Africa
-to select the polygon representing the continent.</li>
+<li><p class="first">Procesul de dizolvare poate dura ceva timp. O dată procesul terminat, veți vedea noul strat  <tt class="docutils literal"><span class="pre">continent</span></tt> suplimentar, adăugat în QGIS. Utilizați instrumentul <em class="guilabel">Select Single Feature</em> din bara de instrumente și faceți clic pe Africa pentru a selecta poligonul reprezentând continentul.</p>
+</li>
 </ol>
 <img alt="../_images/62.png" class="align-center" src="../_images/62.png" />
 <ol class="arabic simple" start="7">
-<li>Right-click the <tt class="docutils literal"><span class="pre">continents</span></tt> layer and select <em class="guilabel">Save Selection
-As...</em>.</li>
+<li><p class="first">Clic-dreapta pe stratul <tt class="docutils literal"><span class="pre">continente</span></tt> și selectați <em class="guilabel">Save Selection As...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/72.png" class="align-center" src="../_images/72.png" />
 <ol class="arabic simple" start="8">
-<li>Name the output file as <tt class="docutils literal"><span class="pre">africa.shp</span></tt>. Since we are only interested in the
-shape of the continent and not any attributes, you may check the
-<em class="guilabel">Skip attribute creation</em>. Make sure the <em class="guilabel">Add saved file
-to map</em> box is checked and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Denumiți fișierul de ieșire ca <tt class="docutils literal"><span class="pre">africa.shp</span></tt>. Din moment ce suntem interesați numai de forma continentului și nu de toate atributele, puteți bifa <em class="guilabel">Skip attribute creation</em>. Asigurați-vă că ați bifat caseta <em class="guilabel">Add saved file to map</em> și că ați efectuat clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/82.png" class="align-center" src="../_images/82.png" />
 <ol class="arabic simple" start="9">
-<li>Now you will have the <tt class="docutils literal"><span class="pre">africa</span></tt> layer loaded in QGIS containing a single
-polygon for the entire continent. Now, it&#8217;s time to start our batch clip
-process. Open <em class="menuselection">Processing ‣ Toolbox</em>.</li>
+<li><p class="first">Acum, veți avea stratul <tt class="docutils literal"><span class="pre">Africa</span></tt> încărcat în QGIS și conținând un singur poligon pentru întregul continent. Acum, este timpul de a începe procesul de tăiere lot. Deschideți <em class="menuselection">Processing ‣ Toolbox</em>.</p>
+</li>
 </ol>
 <img alt="../_images/92.png" class="align-center" src="../_images/92.png" />
 <ol class="arabic simple" start="10">
-<li>Browse all available algorithms and find the <em class="guilabel">Clip</em> tool from
-<em class="menuselection">QGIS geoalgorithms ‣ Vector overlay tools ‣ Clip</em>. You
-may also use the <em class="guilabel">Search</em> box to easily find the algorithm as
-well.</li>
+<li><p class="first">Răsfoiți algoritmii disponibili și găsiți instrumentul <em class="guilabel">Clip</em> din <em class="menuselection">QGIS geoalgorithms ‣ Vector overlay tools ‣ Clip</em>. Puteți folosi, de asemenea, câmpul <em class="guilabel">Search</em> pentru a găsi ușor algoritmul.</p>
+</li>
 </ol>
 <img alt="../_images/102.png" class="align-center" src="../_images/102.png" />
 <ol class="arabic simple" start="11">
-<li>Right-click the <em class="guilabel">Clip</em> algorithm and select <em class="guilabel">Execure as
-batch process</em>.</li>
+<li><p class="first">Faceți clic-dreapta pe <em class="guilabel">Clip</em> algorithm and select <em class="guilabel">Execure as batch process</em>.</p>
+</li>
 </ol>
 <img alt="../_images/113.png" class="align-center" src="../_images/113.png" />
 <ol class="arabic simple" start="12">
-<li>In the <em class="guilabel">Batch Processing</em> dialog, the first tab is
-<em class="guilabel">Parameters</em> where we define out inputs. Click the
-<em class="guilabel">...</em> next to the first row in the <em class="guilabel">Input layer</em> column.</li>
+<li><p class="first">În fereastra de dialog <em class="guilabel">Batch Processing</em>, prima filă este <em class="guilabel">Parameters</em>, care definește intrările. Clic pe <em class="guilabel">...</em> din dreptul primului rând din coloana <em class="guilabel">Input layer</em>.</p>
+</li>
 </ol>
 <img alt="../_images/122.png" class="align-center" src="../_images/122.png" />
 <ol class="arabic simple" start="13">
-<li>Browse to the directory containing the global transportation layers that
-you had downloaded. Hold the <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> key and select all the layers that
-you want to clip. You may also use <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> or <tt class="kbd docutils literal"><span class="pre">Ctrl-A</span></tt> to make
-multiple selection. Click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Navigați la directorul care conține straturile transportului global pe care le-ați descărcat. Mențineți apăsată tasta <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> și selectați toate straturile pe care doriți să le tăiați. De asemenea, puteți folosi <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> or <tt class="kbd docutils literal"><span class="pre">Ctrl-A</span></tt> pentru a face selecții multiple. Clic pe <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/132.png" class="align-center" src="../_images/132.png" />
 <ol class="arabic simple" start="14">
-<li>You will notice that the <em class="guilabel">Input layer</em> columns will be
-auto-populated with all layers you had selected. You may use <em class="guilabel">Add
-row</em> button to add more rows and define more inputs. Next, we need to
-select the layer containing the boundary to clip our input layers. Click the
-<em class="guilabel">...</em> button for the first row and add the <tt class="docutils literal"><span class="pre">africa.shp</span></tt>
-<em class="guilabel">Clip layer</em>. Since the clip layer is the same for all our inputs,
-you can double-click the column header <em class="guilabel">Clip layer</em> and the same
-layer will be auto-filled for all the rows. Next, we need to define our
-outputs.  Click the <em class="guilabel">...</em> buton next to the first row in the
-<em class="guilabel">Clipped</em> column.</li>
+<li><p class="first">Veți observa că se vor auto-popula coloanele <em class="guilabel">Input layer</em>, cu toate straturile pe care le-ați selectat. Puteți folosi butonul <em class="guilabel">Add row</em> pentru a adăuga mai multe rânduri și pentru a defini mai multe intrări. Apoi, trebuie să selectați stratul care conține limita de tăiere a straturilor noastre de intrare. Faceți clic pe butonul <em class="guilabel">...</em> din primul rând și adăugați <tt class="docutils literal"><span class="pre">africa.shp</span></tt> în <em class="guilabel">Clip layer</em>. Deoarece stratul de tăiere este același pentru toate intrările noastre, puteți face dublu clic pe antetul coloanei <em class="guilabel">Clip layer</em> și același strat va fi auto-completat pentru toate rândurile. Apoi, trebuie să ne definim rezultatele. Faceți clic pe butonul <em class="guilabel">...</em> de lângă primul rând din coloana <em class="guilabel">Clipped</em>.</p>
+</li>
 </ol>
 <img alt="../_images/142.png" class="align-center" src="../_images/142.png" />
 <ol class="arabic simple" start="15">
-<li>Browse the the directory where you want your output layers. Type the
-filename as <tt class="docutils literal"><span class="pre">output_</span></tt> and click <em class="guilabel">Save</em>.</li>
+<li><p class="first">Răsfoiți directorul în care doriți straturile de ieșire. Tastați numele fișierului ca <tt class="docutils literal"><span class="pre">output_</span></tt>  și faceți clic pe <em class="guilabel">Save</em>.</p>
+</li>
 </ol>
 <img alt="../_images/152.png" class="align-center" src="../_images/152.png" />
 <ol class="arabic simple" start="16">
-<li>You will see a new <em class="guilabel">Autofill settings</em> dialog pop up. Select
-<em class="guilabel">Fill with parameter values</em> as the <em class="guilabel">Autofill mode</em>.
-Select <em class="guilabel">Parameter to use</em> as <em class="guilabel">Input layer</em>. This
-setting will add the input file name to the output along with the specified
-<tt class="docutils literal"><span class="pre">output_</span></tt> filename. This is important to ensure all the output files have
-unique names and they do not overwrite each other.</li>
+<li><p class="first">Veți vedea un nou dialog de tip pop-up <em class="guilabel">Autofill settings</em>. Selectați <em class="guilabel">Fill with parameter values</em> ca <em class="guilabel">Autofill mode</em>. Selectați <em class="guilabel">Parameter to use</em> ca <em class="guilabel">Input layer</em>. Această setare va adăuga numele fișierului de intrare la cel de ieșire, împreună cu numele fișierului <tt class="docutils literal"><span class="pre">output_</span></tt> specificat. Acest lucru este important pentru a ne asigura că toate fișierele de ieșire au nume unice și nu se suprascriu reciproc.</p>
+</li>
 </ol>
 <img alt="../_images/162.png" class="align-center" src="../_images/162.png" />
 <ol class="arabic simple" start="17">
-<li>Now we are ready to start the batch procesing. Click <em class="guilabel">Run</em>.</li>
+<li><p class="first">Acum suntem gata să începem procesarea lot. Clic pe <em class="guilabel">Run</em>.</p>
+</li>
 </ol>
 <img alt="../_images/172.png" class="align-center" src="../_images/172.png" />
 <ol class="arabic simple" start="18">
-<li>The clip algorithm will run for each of the inputs and create output files
-are we have specified. Once the batch process finishes, you will see the
-layers added to QGIS canvas. As you will notice, all the global layers are
-properly clipped to the continent boundary that we had specified.</li>
+<li><p class="first">Algoritmul de tăiere va rula pentru fiecare intrare și va crea fișierele de ieșire așa cum s-a specificat. O dată ce procesarea de lot se încheie, veți vedea straturile adăugate la suportul QGIS. După cum veți observa, toate straturile globale sunt tăiate în mod adecvat, la limita continentului specificat.</p>
+</li>
 </ol>
 <img alt="../_images/182.png" class="align-center" src="../_images/182.png" />
 </div>
@@ -368,7 +336,7 @@ properly clipped to the continent boundary that we had specified.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 13, 2014.<br/>
+      Last updated on Jul 15, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

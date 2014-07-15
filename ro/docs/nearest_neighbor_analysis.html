@@ -189,31 +189,22 @@
   <div class="section" id="nearest-neighbor-analysis">
 <h1>Analiza celui mai apropiat vecin<a class="headerlink" href="#nearest-neighbor-analysis" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/nearest_neighbor_analysis_a4.pdf">A4</a> <a class="reference external" href="../pdf/nearest_neighbor_analysis_letter.pdf">Letter</a> ]</p>
-<p>GIS is very useful is analyzing spatial relationship between features. One such
-analysis is finding out which features are closest to a given feature. QGIS has
-a tool called <strong>Distance Matrix</strong> which helps with such analysis. In this
-tutorial, we will use 2 datasets and find out which points from one layer are
-closest to which point from the second layer.</p>
+<p>GIS este foarte util în analiza relației spațiale dintre caracteristici. O astfel de analiză este de a afla ce entități sunt cele mai apropiate de o anumită caracteristică. QGIS are un instrument numit <strong>Distance Matrix</strong> care ne ajută în efectuarea acestei analize. În acest tutorial, vom folosi 2 seturi de date și vom afla care puncte dintr-un strat sunt mai aproape de punctele dintr-un al doilea strat.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Given the locations of all known significant earthquakes, find out the nearest
-populated place for each location where the earthquake happened.</p>
+<p>Având locațiile tuturor cutremurelor semnificative cunoscute, vom încerca să aflăm care este cel mai apropiat loc populat de locul unde s-au produs cutremurele.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Alte abilități pe care le veți căpăta<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>How to do table joins in QGIS. (See <a class="reference internal" href="performing_table_joins.html"><em>Unificarea tabelelor</em></a> for
-detailed instructions.)</li>
+<li><p class="first">Cum se faceți unificarea tabelelor în QGIS. (A se vedea <a class="reference internal" href="performing_table_joins.html"><em>Unificarea tabelelor</em></a> pentru instrucțiuni detaliate.)</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use NOAA’s National Geophysical Data Center’s <a class="reference external" href="http://www.ngdc.noaa.gov/nndc/struts/form?t=101650&amp;s=1&amp;d=1">Significant Earthquake
-Database</a> as our
-layer represenging all major earthquakes. Download the <a class="reference external" href="http://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&amp;query_0=$ID&amp;t=101650&amp;s=13&amp;d=189&amp;dfn=signif.txt">tab-delimited
-earthquake data</a>.</p>
-<p>Natural Earth has a nice <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places</a>
-dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simple (less columns) dataset</a></p>
+<p>Vom folosi NOAA’s National Geophysical Data Center’s <a class="reference external" href="http://www.ngdc.noaa.gov/nndc/struts/form?t=101650&amp;s=1&amp;d=1">Significant Earthquake Database</a> ca strat al tuturor cutremurelor majore. Descărcați <a class="reference external" href="http://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&amp;query_0=$ID&amp;t=101650&amp;s=13&amp;d=189&amp;dfn=signif.txt">tab-delimited earthquake data</a>.</p>
+<p>Natural Earth are un set de date interesant despre`Populated Places <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/</a>&gt;`_. Descărcați <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simple (less columns) dataset</a></p>
 <p>For convenience, you may directly download a copy of both the datasets from the links
 below:</p>
 <p><a class="reference download internal" href="../_downloads/signif.txt"><tt class="xref download docutils literal"><span class="pre">signif.txt</span></tt></a></p>
@@ -223,131 +214,105 @@ below:</p>
 <div class="section" id="procedure">
 <h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open <em class="menuselection">Layer ‣ Add Delimited Text Layer</em> and browse to the
-downloaded <tt class="docutils literal"><span class="pre">signif.txt</span></tt> file.</li>
+<li><p class="first">Deschideți <em class="menuselection">Layer ‣ Add Delimited Text Layer</em> și navigați la fișierul descărcat <tt class="docutils literal"><span class="pre">signif.txt</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/150.png" class="align-center" src="../_images/150.png" />
 <ol class="arabic simple" start="2">
-<li>Since this is a <em>tab-delimited file</em>, choose <em class="guilabel">Tab</em> as the
-<em class="guilabel">File format</em>. The <em class="guilabel">X field</em> and <em class="guilabel">Y field</em>
-would be auto-populated. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Deoarece acesta este un <em>fișier delimitat de tab-uri</em> alegeți <em class="guilabel">Tab</em> ca <em class="guilabel">File format</em>. <em class="guilabel">X field</em> și <em class="guilabel">Y field</em> se vor auto-popula. Clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">You may see some error messages as QGIS tries to import the file. These are
-valid errors and some rows from the file will not be imported. You can ignore
-the errors for the purpose of this tutorial.</p>
+<p class="last">Puteți vedea unele mesaje de eroare, pe măsură ce QGIS încearcă să importe fișierul. Acestea sunt erori valide, iar câteva rânduri din fișier nu vor fi importate. Puteți ignora erorile, în scopul acestui tutorial.</p>
 </div>
 <img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
 <ol class="arabic simple" start="3">
-<li>As the earthquake dataset has Latitude/Longitude coordinates, choose
-<em class="guilabel">WGS 84 EPSG:436</em> as the CRS in the <em class="guilabel">Coordinate Reference System Selector</em>
-dialog.</li>
+<li><p class="first">Deoarece setul de date al cutremurelor are coordonate Latitudine/Longitudine, alegeți <em class="guilabel">WGS 84 EPSG:436</em> ca CRS, în fereastra de dialog <em class="guilabel">Coordinate Reference System Selector</em>.</p>
+</li>
 </ol>
 <img alt="../_images/317.png" class="align-center" src="../_images/317.png" />
 <ol class="arabic simple" start="4">
-<li>The earthquake point layer would now be loaded and displayed in QGIS. Let&#8217;s
-also open the Populated Places layer. Go to <em class="menuselection">Layer ‣ Add
-Vector Layer</em>.</li>
+<li><p class="first">Stratul de tip punct al cutremurelor ar trebui sa fie de-acum încărcat și afișat în QGIS. Să deschidem, de asemenea, stratul Locurilor Populate. Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>.</p>
+</li>
 </ol>
 <img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
 <ol class="arabic simple" start="5">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt> file and
-click <em class="guilabel">Open</em>. Select the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.shp</span></tt> as
-the layer in the <em class="guilabel">Select layers to add...</em> dialog.</li>
+<li><p class="first">Navigați la fișierul descărcat <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt> și faceți clic pe <em class="guilabel">Open</em>. Selectați stratul <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.shp</span></tt> în fereastra de dialog <em class="guilabel">Select layers to add...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/514.png" class="align-center" src="../_images/514.png" />
 <ol class="arabic simple" start="6">
-<li>Zoom around and explore both the datasets. Each purple point represents the
-location of a significant earthquake and each blue point represents the
-location of a populated place. We need a way to find out the nearest point
-from the populated places layer for each of the points in the earthquake
-layer.</li>
+<li><p class="first">Măriți și explorati ambele seturi de date. Fiecare punct purpuriu reprezintă locația unui cutremur semnificativ și fiecare punct albastru reprezintă locația unei așezări populate. Avem nevoie de o modalitate de a afla cel mai apropiat punct din stratul de locuri populate, pentru fiecare dintre locațiile stratului de cutremure.</p>
+</li>
 </ol>
 <img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
 <ol class="arabic simple" start="7">
-<li>Go to <em class="menuselection">Vector ‣ Analysis Tools ‣ Distance Matrix</em>.</li>
+<li><p class="first">Mergeți la <em class="menuselection">Vector ‣ Analysis Tools ‣ Distance Matrix</em>.</p>
+</li>
 </ol>
 <img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
 <ol class="arabic simple" start="8">
-<li>Here select the earthquake layer <tt class="docutils literal"><span class="pre">signif</span></tt> as the Input point layer and the populated
-places <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> as the target layer. You also need
-to select a unique field from each of these layers which is how your results
-will be displayed. In this analysis, we are looking to get only <strong>1</strong> nearest
-point, so check the <em class="guilabel">Use only the nearest(k) target points</em>, and
-enter <em class="guilabel">1</em>. Name your output file <tt class="docutils literal"><span class="pre">matrix.csv</span></tt>, and click OK.</li>
+<li><p class="first">Aici selectați stratul <tt class="docutils literal"><span class="pre">signif</span></tt> al cutremurelor stratul de intrare de tip punct, și locurile populate <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> ca strat țintă. De asemenea, trebuie sa selectați un câmp unic din fiecare dintre aceste straturi, care reprezintă modul în care vor fi afișate rezultatele. În această analiză, dorim să obținem doar <strong>1</strong> punct mai apropiat, deci bifați <em class="guilabel">Use only the nearest(k) target points</em>, și introduceți <em class="guilabel">1</em>. Denumiți fișierul de ieșire <tt class="docutils literal"><span class="pre">matrix.csv</span></tt>, și apăsați OK.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">A useful thing to note is that you can even perform the analysis with only 1
-layer. Select the same layer as both Input and Target. The result would be a
-nearest neighbor from the same layer instead of a different layer as we have
-used here.</p>
+<p class="last">Un lucru util de reținut este faptul că se pot efectua chiar și analize cu doar 1 singur strat. Selectați același layer atât ca și intrare cât și ca ieșire. Rezultatul va fi cel mai apropiat vecin din același strat în loc de a folosi un strat diferit, așa cum am procedat mai înainte.</p>
 </div>
 <img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
 <ol class="arabic simple" start="9">
-<li>Once your file is generated, you can view it in Notepad or any text editor.
-QGIS can import CSV files as well, so we will add it to QGIS and view it
-there. Go to <em class="menuselection">Layer ‣ Add Delimited Text Layer...</em>.</li>
+<li><p class="first">Odată ce fișierul este generat, îl puteți vedea în Notepad sau în oricare editor de text. QGIS poate importa fișiere CSV, de asemenea, așa că adăugați-l la QGIS și vizualizați-l acolo. Mergeți la <em class="menuselection">Layer ‣ Add Delimited Text Layer...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
 <ol class="arabic simple" start="10">
-<li>Browse to the newly created <tt class="docutils literal"><span class="pre">matrix.csv</span></tt> file. Since this file is just
-text columns, select <em class="guilabel">No geometry (attribute only table)</em> as the
-<em class="guilabel">Geometry definition</em>. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Navigați la fișierul nou creat <tt class="docutils literal"><span class="pre">matrix.csv</span></tt>. Deoarece acest fișier conține doar coloane de text, selectați <em class="guilabel">No geometry (attribute only table)</em> ca <em class="guilabel">Geometry definition</em>. Clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
 <ol class="arabic simple" start="11">
-<li>You will the the CSV file loaded as a table. Right-click on the table layer
-and select <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Veți vedea fișierul CSV încărcat ca tabel. Faceți clic dreapta pe stratul tabelului și selectați <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
 <ol class="arabic simple" start="12">
-<li>Now you will be able to see the content of our results. The <em class="guilabel">InputID</em>
-field contains the field name from the Earthquake layer. The <em class="guilabel">TargetID</em>
-field contains the name of the feature from the Populated Places layer that was
-the closest to the earthquake point. The <em class="guilabel">Distance</em> field is the distance
-between the 2 points.</li>
+<li><p class="first">Acum, veți fi capabili să vedeți conținutul rezultatelor noastre. Câmpul <em class="guilabel">InputID</em> conține numele fișierului din stratul Earthquake. Câmpul <em class="guilabel">TargetID</em> conține numele entității din stratul Populated Places care a fost cea mai apropiată de locația cutremurului.  Câmpul <em class="guilabel">Distance</em> reprezintă distanța dintre 2 puncte.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Remember that the <em>distance</em> calculation will be done using the layers&#8217;
-Coordinate Reference System. Here the distance will be in <em>decimal degrees</em>
-units because our source layer coordinates are in degrees. If you want
-distance in meters, reproject the layers before running the tool.</p>
+<p class="last">Calculul <em>distanței</em> se va face cu ajutorul Sistemului de Coordonate de Referință al straturilor. Distanța va fi în <em>grade zecimale</em> deoarece coordonatele stratului nostru sursă sunt în grade. Dacă doriți distanța în metri, reproiectați straturile înainte de execuția calculului.</p>
 </div>
 <img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
 <ol class="arabic simple" start="13">
-<li>This is very close to the result we were looking for. For some users, this
-table would be sufficient. However, we can also integrate this results in
-our original Earthquake layer using a <strong>Table Join</strong>. Right-click on the Earthquake
-layer, and select <em class="guilabel">Properties</em>.</li>
+<li><p class="first">Acest lucru este foarte aproape de rezultatul pe care îl căutăm. Pentru unii utilizatori, acest tabel va fi suficient. Cu toate acestea, putem integra, aceste rezultate în stratul de Cutremure original utilizând <strong>Table Join</strong>. Faceți clic-dreapta pe stratul Earthquake, și selectați <em class="guilabel">Properties</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
 <ol class="arabic simple" start="14">
-<li>Go to the <em class="guilabel">Joins</em> tab and click on the <em class="guilabel">+</em> button.</li>
+<li><p class="first">Mergeți la fila <em class="guilabel">Joins</em> și faceți clic pe butonul <em class="guilabel">+</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
 <ol class="arabic simple" start="15">
-<li>We want to join the data from our analysis result (<tt class="docutils literal"><span class="pre">matrix.csv</span></tt>) to this
-layer. We need to select a field from each of the layers that has the same
-values. Select the fields as shown below.</li>
+<li><p class="first">Vrem să unificam datele rezultatelor analizelor noastre (<tt class="docutils literal"><span class="pre">matrix.csv</span></tt>) pentru acest strat. Avem nevoie de selectarea unui câmp din fiecare dintre straturile care au aceleași valori. Selectați câmpurile așa cum se arată mai jos.</p>
+</li>
 </ol>
 <img alt="../_images/1510.png" class="align-center" src="../_images/1510.png" />
 <ol class="arabic simple" start="16">
-<li>You will see the join appear in the <em class="guilabel">Joins</em> tab. Click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Veți vedea ca uniunea va apărea în fila <em class="guilabel">Joins</em>. Clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1610.png" class="align-center" src="../_images/1610.png" />
 <ol class="arabic simple" start="17">
-<li>Now open the attribute table of the Earthquakes layer by right-clicking and
-selecting <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Acum, deschideți tabelul atribut al stratului Earthquakes, făcând clic-dreapta și selectând <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
 <ol class="arabic simple" start="18">
-<li>You will see that for every Earthquake feature, we now have an attribute
-which is the nearest neighbor (closest populated place) and the distance to
-the nearest neighbor.</li>
+<li><p class="first">Veți vedea că pentru fiecare entitate de tip cutremur, acum avem un atribut care reprezintă cel mai apropiat vecin (cea mai apropiată așezare populată) și distanța până la cel mai apropiat vecin.</p>
+</li>
 </ol>
 <img alt="../_images/189.png" class="align-center" src="../_images/189.png" />
 </div>
@@ -373,7 +338,7 @@ the nearest neighbor.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 13, 2014.<br/>
+      Last updated on Jul 15, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

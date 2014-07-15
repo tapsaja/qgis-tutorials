@@ -189,15 +189,10 @@
   <div class="section" id="performing-spatial-joins">
 <h1>Realizarea uniunilor spațiale<a class="headerlink" href="#performing-spatial-joins" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/performing_spatial_joins_a4.pdf">A4</a> <a class="reference external" href="../pdf/performing_spatial_joins_letter.pdf">Letter</a> ]</p>
-<p>Spatial Join is a classic GIS problem - transferring attributes from one layer
-to another based on their spatial relationship. In QGIS, this functionality is
-available through the <strong>Join Attributes by Location</strong> tool.</p>
+<p>Uniunea Spațială este o problemă clasică în GIS - transferul de atribute de la un strat la altul, în funcție de relația lor spațială. În QGIS, această funcționalitate este disponibilă prin intermediul funcției <strong>Join Attributes by Location</strong>.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will use 2 layers - A shapefile of burough boundaries of New York city and
-another shapefile of nursing home locations in New York city. We will use
-spatial join technique to find the total nursing home capacity for each of the
-buroughs.</p>
+<p>Vom folosi 2 straturi - un fișier shape cu limitele sectoarelor orașului New York, și un alt fișier shape a locațiilor asistentelor care oferă îngrijire medicală la domiciliu. Vom folosi tehnica de unificare spațială, pentru a afla capacitatea de a oferi asistență la domiciliu a fiecărui sector.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Alte abilități pe care le veți căpăta<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -208,16 +203,15 @@ buroughs.</p>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://data.cityofnewyork.us/">NYC Open Data Portal</a> is an excellent source
-of free data for New York city.</p>
+<p><a class="reference external" href="https://data.cityofnewyork.us/">NYC Open Data Portal</a> este o excelentă sursă de date gratuite pentru New York City.</p>
 <ol class="arabic simple">
-<li>Download the <a class="reference external" href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm">Borough Boundaries</a>
-zip file using the Export option on the portal.</li>
+<li><p class="first">Descărcați fișierul zip <a class="reference external" href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm">Borough Boundaries</a> folosind opțiunea de Export a portalului.</p>
+</li>
 </ol>
 <img alt="../_images/170.png" class="align-center" src="../_images/170.png" />
 <ol class="arabic simple" start="2">
-<li>Download the <a class="reference external" href="https://data.cityofnewyork.us/Health/Nursing-Homes/9tqc-rnkr">Nursing Homes</a>  zip file
-using the Export option on the portal.</li>
+<li><p class="first">Descărcați fișierul zip <a class="reference external" href="https://data.cityofnewyork.us/Health/Nursing-Homes/9tqc-rnkr">Nursing Homes</a> folosind opțiunea de Export a portalului.</p>
+</li>
 </ol>
 <img alt="../_images/226.png" class="align-center" src="../_images/226.png" />
 <p>For convenience, the version of datasets used in this tutorial can be
@@ -228,8 +222,8 @@ downloaded directly from the links below:</p>
 <div class="section" id="procedure">
 <h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple" start="3">
-<li>Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>. Browse to the downloaded
-zip file <tt class="docutils literal"><span class="pre">nybb_12c.zip</span></tt> and select <em class="guilabel">Open</em>.</li>
+<li><p class="first">Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>. Navigați la fișierul descărcat <tt class="docutils literal"><span class="pre">nybb_12c.zip</span></tt> și selectați <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/319.png" class="align-center" src="../_images/319.png" />
 <ol class="arabic simple" start="4">
@@ -238,16 +232,13 @@ zip file <tt class="docutils literal"><span class="pre">nybb_12c.zip</span></tt>
 </ol>
 <img alt="../_images/415.png" class="align-center" src="../_images/415.png" />
 <ol class="arabic simple" start="5">
-<li>Repeat the steps 3 and 4 for the another file <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.zip</span></tt>
-and load the <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.shp</span></tt> layer. Once both the layers are
-loaded, right-click on the <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> layer and select
-<em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Repetați pașii 3 și 4 pentru un alt fișier <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.zip</span></tt> și încărcați stratul <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.shp</span></tt>. O dată ce ambele straturi sunt încărcate, faceți clic-dreapta pe stratul <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> și selectați <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/516.png" class="align-center" src="../_images/516.png" />
 <ol class="arabic simple" start="6">
-<li>Examine the attributes available for each feature. Since our task is to
-calculate the total nursing home capacity for each borough, we can use the
-attribute <strong>Capacity</strong> which can join to the boundaries layer.</li>
+<li><p class="first">Examinați atributele disponibile pentru fiecare entitate. Deoarece sarcina noastră este de a calcula capacitatea totală de asistență la domiciliu pentru fiecare sector, putem folosi atributul <strong>Capacity</strong>, pentru unificarea cu stratul sectoarelor.</p>
+</li>
 </ol>
 <img alt="../_images/615.png" class="align-center" src="../_images/615.png" />
 <ol class="arabic simple" start="7">
@@ -256,50 +247,38 @@ attribute <strong>Capacity</strong> which can join to the boundaries layer.</li>
 </ol>
 <img alt="../_images/714.png" class="align-center" src="../_images/714.png" />
 <ol class="arabic simple" start="8">
-<li>The <em class="guilabel">Target vector layer</em> is the one we want to add the attributes
-to. In our case, this will be the burrounds boundary <tt class="docutils literal"><span class="pre">nybb</span></tt> layer. The
-<em class="guilabel">Join vector layer</em> will be the nursing homes
-<tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> layer. As we want to sum the capacity of nursing
-homes, select <em class="guilabel">Take summary of intersecting features</em> and choose
-<em class="guilabel">Sum</em>. Name the output file as <tt class="docutils literal"><span class="pre">nyc_borough_join.shp</span></tt>. In the
-<em class="guilabel">Output table</em> select <em class="guilabel">Keep all records`</em>.</li>
+<li><p class="first"><em class="guilabel">Target vector layer</em> este cel pe care ne dorim să-l adaugăm la atribute. În cazul nostru, acesta va fi stratul granițelor sectoarelor <tt class="docutils literal"><span class="pre">nybb</span></tt>. <em class="guilabel">Join vector layer</em> va fi stratul locațiilor asistentelor <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt>. Deoarece ne dorim să însumăm capacitatea de a oferi asistență medicală, selectați <em class="guilabel">Take summary of intersecting features</em>, apoi alegeți <em class="guilabel">Sum</em>. Denumiți fișierul ca <tt class="docutils literal"><span class="pre">nyc_borough_join.shp</span></tt>. În <em class="guilabel">Output table</em> selectați <em class="guilabel">Keep all records`</em>.</p>
+</li>
 </ol>
 <img alt="../_images/813.png" class="align-center" src="../_images/813.png" />
 <ol class="arabic simple" start="9">
-<li>Once the process finishes, select <em class="guilabel">Yes</em> when asked if you want to
-add the layer to TOC. The new layer <tt class="docutils literal"><span class="pre">nyc_borough_join</span></tt> would have the
-features from <tt class="docutils literal"><span class="pre">nybb</span></tt> layer along with spatially joined attributes from
-<tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> layer. Right-click on the layer and select
-<em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">O dată ce procesul se termină, selectați <em class="guilabel">Yes</em> când sunteți întrebați dacă doriți să adăugați stratul la Cuprins. Noul strat <tt class="docutils literal"><span class="pre">nyc_borough_join</span></tt> ar avea entitățile stratului <tt class="docutils literal"><span class="pre">nybb</span></tt>, împreună cu atributele unificate spațial ale stratului <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt>. Faceți clic dreapta pe strat și selectați <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/912.png" class="align-center" src="../_images/912.png" />
 <ol class="arabic simple" start="10">
-<li>You will see a column <strong>SUMCapacit</strong> in the attribute table. This is the
-sum of the <strong>Capacity</strong> attribute for the nursing homes that fall within
-each borough feature.</li>
+<li><p class="first">Veți observa coloana <strong>SUMCapacit</strong> în tabela de atribute. Aceasta reprezintă suma atributului <strong>Capacity</strong> pentru locațiile asistentelor care se încadrează în fiecare entitate sectorială.</p>
+</li>
 </ol>
 <img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" />
 <ol class="arabic simple" start="11">
-<li>This is the answer we are looking for. But there are extra columns that we
-do not need in our output. Let&#8217;s clean up our output. Click on the
-<em class="guilabel">Toggle editing</em> button and then the <em class="guilabel">Delete column</em>
-button.</li>
+<li><p class="first">Acesta este răspunsul căutat. Dar există și coloane suplimentare de care nu avem nevoie în rezultatul nostru. Haideți să îl curățăm. Apăsați pe butonul <em class="guilabel">Delete column</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" />
 <ol class="arabic simple" start="12">
-<li>Press <tt class="kbd docutils literal"><span class="pre">Control-A</span></tt> to select all columns in the <em class="guilabel">Delete
-Attributes</em> dialog. Next hold the <tt class="kbd docutils literal"><span class="pre">Control</span></tt> key and de-select the
-columns you want to keep. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Apăsați <tt class="kbd docutils literal"><span class="pre">Control-A</span></tt> pentru a selecta toate coloanele din fereastra de dialog <em class="guilabel">Delete Attributes</em>. Mai departe, țineți apăsată tasta <tt class="kbd docutils literal"><span class="pre">Control</span></tt> și deselectați coloanele nedorite. Clic <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" />
 <ol class="arabic simple" start="13">
-<li>In the attribute table, click <em class="guilabel">Toggle editing</em> button again to
-save the changes.</li>
+<li><p class="first">În tabela de atribute, faceți clic din nou pe butonul <em class="guilabel">Toggle editing</em>, pentru a salva modificările.</p>
+</li>
 </ol>
 <img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" />
 <ol class="arabic simple" start="14">
-<li>Back in the QGIS Canvas, use the <em class="guilabel">Identify</em> tool to verify that
-the output file has the desired attributes for each burough feature.</li>
+<li><p class="first">Înapoi în suportul hărții din QGIS, utilizați instrumentul <em class="guilabel">Identify</em> pentru a verifica dacă fișierul de ieșire are atributele dorite pentru fiecare entitate sectorială.</p>
+</li>
 </ol>
 <img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
 </div>
@@ -325,7 +304,7 @@ the output file has the desired attributes for each burough feature.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 13, 2014.<br/>
+      Last updated on Jul 15, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

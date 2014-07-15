@@ -189,27 +189,24 @@
   <div class="section" id="performing-table-joins">
 <h1>Unificarea tabelelor<a class="headerlink" href="#performing-table-joins" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/performing_table_joins_a4.pdf">A4</a> <a class="reference external" href="../pdf/performing_table_joins_letter.pdf">Letter</a> ]</p>
-<p>Not every dataset you want to use comes as a shapefile, or in a spatial format. Often the data would come as a table or a spreadsheet and you would need to link it with your existing spatial data for use in your analysis. This operation is known as a <cite>Table Join</cite> and this tutorial will cover how to carry out table joins in QGIS.</p>
+<p>Nu orice set de date, pe care doriți să-l folosiți, are format de fișier shape, sau spațial. Adesea, datele vor veni sub formă tabelară sau de foaie de calcul și va trebui să-l legați de datele spațiale existente, pentru utilzarea în analiza dumneavoastră. Această operațiune este cunoscută ca o <cite>Joncțiune Tabelară</cite>, iar prezentul tutorial vă arată cum să efectuați acest lucru în QGIS.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will use a shapefile of census tracts for California and population data table from US Census Bureau to create a population map for california.</p>
+<p>Vom folosi un fișier shape al zonelor de recensământ din California, și un tabel de date al US Census Bureau, pentru a crea o hartă a populației Californiei.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Alte abilități pe care le veți căpăta<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Creating <cite>.csvt</cite> files to indicate column data types in a CSV file.</li>
-<li>Loading CSV files that do not contain any geometry in QGIS.</li>
+<li><p class="first">Crearea fișierelor <cite>.csvt</cite> pentru a indica tipurile de date ale coloanelor dintr-un fișier CSV.</p>
+</li>
+<li><p class="first">Încărcarea fișierelelor CSV, care nu conțin nici o geometrie, în QGIS.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://www.census.gov/geo/maps-data/data/tiger.html">US Census Bureau</a> has various spatial extracts from the MAF/TIGER database. You can query and download census tracts shapefile for California.</p>
-<p><a class="reference external" href="http://factfinder2.census.gov/faces/nav/jsf/pages/searchresults.xhtml?refresh=t">Americal FactFinder</a>
-is a repository of all census data for the US. You can use <cite>Advanced Search</cite> and
-query for the <cite>Topic - Total Population</cite> and
-<cite>Geographies - All Census Tracts in California</cite> to create a custom CSV and
-download it. This tutorial uses <cite>Total Population 2010 Census Summary File 1</cite>
-data.</p>
+<p><a class="reference external" href="http://www.census.gov/geo/maps-data/data/tiger.html">US Census Bureau</a> are mai multe extrase din baza de date spațiale MAF/TIGER. Puteți interoga și descărca fișierul shape al zonelor de recensamant din California.</p>
+<p><a class="reference external" href="http://factfinder2.census.gov/faces/nav/jsf/pages/searchresults.xhtml?refresh=t">Americal FactFinder</a> este un depozit al tuturor datelor recensămintelor din SUA. Puteți folosi <cite>Advanced Search</cite> și să interogați după subiectele <cite>Topic - Total Population</cite> și <cite>Geographies - All Census Tracts in California</cite>, să creați un CSV personalizat și să-l descărcați. Acest tutorial folosește datele Total Population 2010 Census Summary File 1`.</p>
 <p>Download <a class="reference external" href="http://www2.census.gov/geo/tiger/TIGER2013/TRACT/tl_2013_06_tract.zip">Census Tracts for California</a></p>
 <p>Download <a class="reference download internal" href="../_downloads/ca_tracts_pop.csv"><tt class="xref download docutils literal"><span class="pre">Total</span> <span class="pre">Population</span> <span class="pre">by</span> <span class="pre">Census</span> <span class="pre">Tracts</span> <span class="pre">CSV</span></tt></a></p>
 <p>Surse de date: <a class="reference internal" href="credits.html#tiger" id="id1">[TIGER]</a> <a class="reference internal" href="credits.html#uscensus" id="id2">[USCENSUS]</a></p>
@@ -222,7 +219,8 @@ data.</p>
 </ol>
 <img alt="../_images/190.png" class="align-center" src="../_images/190.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded zip file <cite>tl_2013_06_tract.zip</cite> and select it. QGIS can open zip files directly so no need to uncompress it first.</li>
+<li><p class="first">Navigați la  fișierul descărcat <cite>tl_2013_06_tract.zip</cite> și selectați-l. QGIS poate deschide direct fișierele zip, așa că nu este necesară decomprimarea prealabilă.</p>
+</li>
 </ol>
 <img alt="../_images/229.png" class="align-center" src="../_images/229.png" />
 <ol class="arabic simple" start="3">
@@ -231,71 +229,88 @@ data.</p>
 </ol>
 <img alt="../_images/322.png" class="align-center" src="../_images/322.png" />
 <ol class="arabic simple" start="4">
-<li>You will see the census tracts loaded into QGIS.</li>
+<li><p class="first">Veți vedea zonele recensământului încărcate în QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/417.png" class="align-center" src="../_images/417.png" />
 <ol class="arabic simple" start="5">
-<li>Right-click on the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Faceți clic-dreapta pe layer și selectați <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/518.png" class="align-center" src="../_images/518.png" />
 <ol class="arabic simple" start="6">
-<li>Examine the attributes of the tracts shapefile. To join a table with this shapefile, we need a unique and common attribute for each feature. In this case, the <strong>GEOID</strong> field is a unique identifier for each tract and can be used to <cite>link</cite> this shapefile with any other table containing the same ID.</li>
+<li><p class="first">Examinați atributele fișierele shape ale zonelor de recenzare. Pentru a uni un tabel cu acest fișier shape, avem nevoie de un atribut unic, și comun cu fiecare entitate. În acest caz, câmpul <strong>GEOID</strong> reprezintă un identificator unic pentru fiecare zonă și poate fi folosit pentru a <cite>lega</cite> acest fișier shape cu orice alt tabel conținând același ID.</p>
+</li>
 </ol>
 <img alt="../_images/617.png" class="align-center" src="../_images/617.png" />
 <ol class="arabic simple" start="7">
-<li>Open the CSV file <cite>ca_tracts_pop.csv</cite> in a text editor. You will notice that each row of the file contains information about a tract along with the unique identifier we saw in the previous step. Note that this field is called <strong>GEO.id2</strong> in the CSV. You will also note that the <strong>D001</strong> column has population value for each of the census tract.</li>
+<li><p class="first">Deschideți fișierul CSV <cite>ca_tracts_pop.csv</cite> într-un editor de texte. Veți observa că fiecare rând din fișier conține informații despre un zona de recenzie, alături de codul unic de identificare pr care l-am văzut în etapa anterioară. Rețineți că acest câmp este denumit <strong>GEO.id2</strong> în CSV. Observați, de asemenea, că în coloana <strong>D001</strong> este specificată cifra populației corespunzatoare fiecărei zone de recenzie.</p>
+</li>
 </ol>
 <img alt="../_images/716.png" class="align-center" src="../_images/716.png" />
 <ol class="arabic simple" start="8">
-<li>We could import this csv file without any further action and it would be imported. But, the default type of each column would be a <em>String</em> (text). That is ok except for the <cite>D001</cite> field which contains numbers for the population. Having those imported as text would not allow us to run any mathematical operations on this column. To tell QGIS to import the field as a number, we need to create a <cite>sidecar</cite> file with a <cite>.csvt</cite> extension. This file will have only 1 row specifying data types for each column. Save this file as <cite>ca_tracts_pop.csvt</cite> in the same directory as the original <cite>.csv</cite> file. You can also <a class="reference download internal" href="../_downloads/ca_tracts_pop.csvt"><tt class="xref download docutils literal"><span class="pre">download</span> <span class="pre">the</span> <span class="pre">csvt</span> <span class="pre">file</span> <span class="pre">from</span> <span class="pre">here.</span></tt></a></li>
+<li><p class="first">Am putea importa acest fișier csv, fără alte acțiuni suplimentare, iar el va fi importat. Însă, tipul implicit al fiecarei coloane va <em>String</em> (text). Aceasta este ok, cu excepția câmpului <cite>D001</cite> care conține cifrele referitoare la populație. Această coloană fiind de format text, nu am putea executa operațiunile matematice dorite. Pe0ntru a indica aplicatiei QGIS că acest câmp este de tip numeric, trebuie să creăm un fișier <cite>companion</cite> cu extensia <cite>. csvt</cite>. Acest fișier va avea doar un singur rând, în care este specifica tipul datelor pentru fiecare coloană. Salvați acest fișier ca <cite>ca_tracts_pop.csvt</cite> în același director ca și fișierul <cite>. csv</cite> original. De asemenea, puteți <a class="reference download internal" href="../_downloads/ca_tracts_pop.csvt"><tt class="xref download docutils literal"><span class="pre">descărca</span> <span class="pre">fisierul</span> <span class="pre">csvt</span> <span class="pre">de</span> <span class="pre">aici.</span></tt></a></p>
+</li>
 </ol>
 <img alt="../_images/815.png" class="align-center" src="../_images/815.png" />
 <ol class="arabic simple" start="9">
-<li>Now we are ready to import the CSV file to QGIS. Go to <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</li>
+<li><p class="first">Acum suntem gata pentru a importa fișierul CSV în QGIS. Mergeți la <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</p>
+</li>
 </ol>
 <img alt="../_images/914.png" class="align-center" src="../_images/914.png" />
 <ol class="arabic simple" start="10">
-<li>Browse to the folder containing the CSV file and select it. Make sure you have selected <em class="guilabel">File format</em> as <em class="guilabel">CSV (comma separated values)</em>. Since we are importing this as a table, we must specify that our file contains no geometry. Select the <em class="guilabel">No geometry (attribute only table)</em> option. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Navigați la folderul care conține fișierul CSV și selectați-l. Asigurați-vă că ați selectat <em class="guilabel">File format</em> ca <em class="guilabel">CSV (comma separated values)</em>. Din moment ce importăm acest lucru ca pe un tabel, trebuie să precizăm că dosarul nostru nu conține nici o geometrie. Selectați opțiunea <em class="guilabel">No geometry (attribute only table)</em>. Clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1014.png" class="align-center" src="../_images/1014.png" />
 <ol class="arabic simple" start="11">
-<li>The CSV will now be imported as a table to QGIS.</li>
+<li><p class="first">CSV-ul va fi importat ca tabel în QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/1119.png" class="align-center" src="../_images/1119.png" />
 <ol class="arabic simple" start="12">
-<li>Select the <cite>tl_2013_06_tract</cite> layer. Right-click on it and select <em class="guilabel">Properties</em>.</li>
+<li><p class="first">Selectați <cite>stratul de tl_2013_06_tract</cite>. Faceți clic-dreapta pe el și selectați <em class="guilabel">Properties</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1216.png" class="align-center" src="../_images/1216.png" />
 <ol class="arabic simple" start="13">
-<li>In the <em class="guilabel">Layer Properties</em> dialog, select the <em class="guilabel">Joins</em> tab. Click on the <cite>+</cite> button at the bottom to create a new table join.</li>
+<li><p class="first">În fereastra de dialog <em class="guilabel">Layer Properties</em> selectați fila <em class="guilabel">Joins</em>. Faceți clic pe butonul <cite>+</cite> din partea de jos, pentru a adăuga o nouă uniune cu un tabel.</p>
+</li>
 </ol>
 <img alt="../_images/1315.png" class="align-center" src="../_images/1315.png" />
 <ol class="arabic simple" start="14">
-<li>In the <em class="guilabel">Add vector join</em> dialog, select <cite>ca_tracts_pop</cite> as the <em class="guilabel">Join layer</em>. Next we have to select the field with unique ids in both the shapefile and the CSV. Select <cite>GEO.id2</cite> and <cite>GEOID</cite> as the <em class="guilabel">Join field</em> and <em class="guilabel">Target field</em> respectively. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">În fereastra de dialog <em class="guilabel">Add vector join</em>, selectați <cite>ca_tracts_pop</cite> ca <em class="guilabel">Join layer</em>. Apoi, trebuie să selectăm câmpul cu id-uri unice atât din fișierul ​​shape cât și din CSV. Selectați <cite>GEO.id2</cite> și <cite>GEOID</cite> ca <em class="guilabel">Join field</em> și respectiv <em class="guilabel">Target field</em>. Clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1414.png" class="align-center" src="../_images/1414.png" />
 <ol class="arabic simple" start="15">
-<li>Close the <em class="guilabel">Layer Properties</em> dialog and return to the main QGIS window. At this point, the fields from the CSV file are joined with the shapefile. Right-click on the <cite>tl_2013_06_tract</cite> layer and select <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Închideți fereastra de dialog <em class="guilabel">Layer Properties</em> și întoarceți-vă în principala fereastră a QGIS. În acest moment, câmpurile din fișierul CSV sunt urcate în fișierul shape. Faceți clic-dreapta pe stratul <cite>tl_2013_06_tract</cite> și selectați <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1512.png" class="align-center" src="../_images/1512.png" />
 <ol class="arabic simple" start="16">
-<li>You can now see a new set of fields, including <em class="guilabel">ca_tracts_pop_D001</em> field added to each feature. Now you have access to the population value of each tract from the CSV file. Close the attribute table and return to the main QGIS window.</li>
+<li><p class="first">Puteți observa acum un nou set de câmpuri, inclusiv câmpul <em class="guilabel">ca_tracts_pop_D001</em> adăugat fiecărei entități. Acum aveți acces la valoarea populației fiecărei zone de recenzie din fișierul CSV. Închideți tabela de atribute și reveniți la fereastra principală a QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/1612.png" class="align-center" src="../_images/1612.png" />
 <ol class="arabic simple" start="17">
-<li>Right-click the <cite>tl_2013_06_tract</cite> layer and select <em class="guilabel">Properties</em>.</li>
+<li><p class="first">Faceți clic dreapta pe stratul <cite>tl_2013_06_tract</cite> și selectați <em class="guilabel">Properties</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1711.png" class="align-center" src="../_images/1711.png" />
 <ol class="arabic simple" start="18">
-<li>Select the <em class="guilabel">Style</em> tab. Select the <em class="guilabel">Graduated</em> from the drop-down menu. As we are looking to create a population map, we want to assign different color to each census tract feature based on the population count. Select <em class="guilabel">ca_tracts_pop_D001</em> as the <em class="guilabel">Column</em>. Select a color ramp of your liking from the <em class="guilabel">Color ramp</em> drop-down. In the <em class="guilabel">Mode</em>, select <em class="guilabel">Quantile (Equal Count)</em>. Next click <em class="guilabel">Classify</em>. You will see a different color assigned to certain population ranges. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Selectați fila <em class="guilabel">Style</em>. Selectați <em class="guilabel">Graduated</em> din meniul drop-down. Având în vedere că dorim să creăm o hartă a populației, vrem să atribuim diferite culori pentru fiecare entitate a zonelor de recenzie, în funcție de numărul populației. Selectați <em class="guilabel">ca_tracts_pop_D001</em> ca și <em class="guilabel">Column</em>. Selectați o gamă de culori pe placul dvs. din caseta <em class="guilabel">Color ramp</em>. În <em class="guilabel">Mode</em>, selectați <em class="guilabel">Quantile (Equal Count)</em>. Apoi, efectuați clic pe <em class="guilabel">Classify</em>. Veți vedea asignată o culoare diferită pentru anumite intervale de valori ale populației. Clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1811.png" class="align-center" src="../_images/1811.png" />
 <ol class="arabic simple" start="19">
-<li>You will now see a nice visualization of the census tracts as styled using population values. Use the <em class="guilabel">Zoom in</em> tool to select a smaller area from the layer.</li>
+<li><p class="first">Veți vedea acum o prezentare frumoasă a ariilor recensământului, stilizată folosind valorile populației. Utilizați instrumentul <em class="guilabel">Zoom in</em> pentru a selecta o suprafață mai mică din strat.</p>
+</li>
 </ol>
 <img alt="../_images/198.png" class="align-center" src="../_images/198.png" />
 <ol class="arabic simple" start="20">
-<li>You have a detailed and accurate population map of California. You can use the same technique to create maps based on variety of census data.</li>
+<li><p class="first">Aveți o hartă detaliată și precisă a populației din California. Puteți folosi aceeași tehnică pentru a crea hărți bazate pe diverse date ale recensămintelor.</p>
+</li>
 </ol>
 <img alt="../_images/205.png" class="align-center" src="../_images/205.png" />
 </div>
@@ -321,7 +336,7 @@ data.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 13, 2014.<br/>
+      Last updated on Jul 15, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
