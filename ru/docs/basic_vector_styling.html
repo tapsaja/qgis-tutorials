@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Основные Вектор Стайлинг &mdash; QGIS Tutorials and Tips</title>
+    <title>Основная стилизация векторного слоя &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -87,7 +87,7 @@
 <li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Основные Вектор Стайлинг</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Основная стилизация векторного слоя</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calculating Line Lengths and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
@@ -138,12 +138,13 @@
 <form role="form" class="navbar-form navbar-right">
 <select id="languages" class="form-control select-mini">
   <option value="en">English</option>
-  <option value="fi_FI">Finnish</option>
   <option value="ro">Romanian</option>
+  <option value="fi_FI">Finnish</option>
   <option value="it">Italian</option>
-  <option value="es">Spanish</option>
-  <option value="pt_BR">Portuguese</option>
   <option value="nl">Dutch</option>
+  <option value="es">Spanish</option>
+  <option value="ru">Russian</option>
+  <option value="pt_BR">Portuguese</option>
 </select>
 </form>
 
@@ -188,92 +189,81 @@
       
 
   <div class="section" id="basic-vector-styling">
-<h1>Основные Вектор Стайлинг<a class="headerlink" href="#basic-vector-styling" title="Ссылка на этот заголовок">¶</a></h1>
+<h1>Основная стилизация векторного слоя<a class="headerlink" href="#basic-vector-styling" title="Ссылка на этот заголовок">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/basic_vector_styling_a4.pdf">A4</a> <a class="reference external" href="../pdf/basic_vector_styling_letter.pdf">Letter</a> ]</p>
-<p>Чтобы создать карту, нужно укладывать данные ГИС, и представить его в такой форме, которая визуально информативен. Есть большое количество опций, доступных в QGIS применять различные типы символизма к базовым данным. В этом уроке мы будем изучать некоторые основы стиля.</p>
+<p>Чтобы создать карту, нужно стилизовать данные ГИС и представить их в визуально информативной форме. Есть большое количество опций, доступных в QGIS, применяемых к символизации данных. В этом уроке мы будем изучать некоторые основы стиля.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Обзор задачи<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Мы будем укладывать векторный слой, чтобы показать продолжительность жизни в разных странах мира.</p>
+<p>Мы стилизуем векторный слой так, чтобы показать продолжительность жизни в разных странах мира.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Другие навыки вы узнаете<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>Другие навыки, которые Вы узнаете<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
 <ul class="simple">
-<li><p class="first">Просмотр таблицу атрибутов векторного слоя.</p>
+<li><p class="first">Просмотр таблицы атрибутов векторного слоя.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Получить данные<a class="headerlink" href="#get-the-data" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Данные, которые мы будем использовать от <cite>Центр устойчивого развития и глобальной окружающей среды (SAGE) &lt;http://www.sage.wisc.edu/atlas/maps.php&gt;</cite> _ в Университете Висконсин-Мэдисон.</p>
-<p>Вы можете скачать <cite>продолжительность жизни ГИС сетке данных &lt;http://www.sage.wisc.edu/atlas/data.php?incdataset=Life%20Expectancy&gt;</cite> _ от человеческого воздействия данных. Для удобства вы также можете скачать копию этих данных, нажав на следующую ссылку:</p>
-<p>: скачать: <a href="#id1"><span class="problematic" id="id2">`</span></a>жизнь ожидание почтовый &lt;.. / статический / basic_vector_styling / данные / жизнь
-ожидание . почтовый&gt; `</p>
-<p>Data Source <a class="reference internal" href="credits.html#sage" id="id1">[SAGE]</a></p>
+<p>Данные, которые мы будем использовать, предоставлены <cite>Центром устойчивого развития и глобальной окружающей среды (SAGE) &lt;http://www.sage.wisc.edu/atlas/maps.php&gt;</cite> _ в Университете Висконсин-Мэдисон.</p>
+<p>Вы можете скачать <cite>данные о продолжительность жизни &lt;http://www.sage.wisc.edu/atlas/data.php?incdataset=Life%20Expectancy&gt;</cite> _ из архива данных. Для удобства Вы также можете скачать копию этих данных, нажав на следующую ссылку:</p>
+<p><a class="reference download internal" href="../_downloads/lifeexpectancy.zip"><tt class="xref download docutils literal"><span class="pre">lifeexpectancy.zip</span></tt></a></p>
+<p>Источник данных <a class="reference internal" href="credits.html#sage" id="id1">[SAGE]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>процедура<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Процедура<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">Открыть QGIS и перейдите по ссылке: выбор меню: <cite>Layer -&gt; Добавить векторный слой ..</cite>.</p>
+<li><p class="first">Откройте QGIS и перейдите в <em class="menuselection">Слой ‣ Добавить векторный слой...</em></p>
 </li>
 </ol>
 <img alt="../_images/110.png" class="align-center" src="../_images/110.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">lifeexpectancy.zip</span></tt> file and click
-<em class="guilabel">Open</em>. Select <tt class="docutils literal"><span class="pre">newsweek_data.shp</span></tt> and click <em class="guilabel">Open</em>.
-Next you will be prompted for choosing the CRS. Select <cite>WGS84 EPSG:4326</cite>
-as the Coordinate Reference System (CRS).</li>
+<li><p class="first">Найдите скачанный файл <tt class="docutils literal"><span class="pre">lifeexpectancy.zip</span></tt> и нажмите <em class="guilabel">Открыть</em>. Выберите <tt class="docutils literal"><span class="pre">newsweek_data.shp</span></tt> и снова нажмите <em class="guilabel">Открыть</em>. Затем Вы должны выбрать СОК. Выберите <cite>WGS84 EPSG:4326</cite> в качестве системы отсчёта координат (СОК).</p>
+</li>
 </ol>
 <img alt="../_images/21.png" class="align-center" src="../_images/21.png" />
 <ol class="arabic simple" start="3">
-<li><p class="first">Шейп содержится в файле почтового индекса теперь загружается и вы можете видеть стиль по умолчанию, применяемый к нему.</p>
+<li><p class="first">Файл формы, находящийся в архиве, теперь загружен, и к нему применён стиль по умолчанию.</p>
 </li>
 </ol>
 <img alt="../_images/31.png" class="align-center" src="../_images/31.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">Щелкните правой кнопкой мыши на имени слоя и выберите: графический интерфейс этикетку: <cite>Открыть таблицу атрибутов</cite>.</p>
+<li><p class="first">Щёлкните правой кнопкой мыши на имени слоя и выберите <em class="guilabel">Открыть таблицу атрибутов</em>.</p>
 </li>
 </ol>
 <img alt="../_images/41.png" class="align-center" src="../_images/41.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">Исследуйте различные атрибуты. Для стиля слоя, мы должны выбрать в <cite>атрибут</cite> или <cite>колонки</cite>, который будет представлять карту мы пытаемся создать. Так как мы хотим, чтобы создать слой, представляющий продолжительность жизни, то есть средний возраст до человек живет в стране, поле: графический интерфейс метка: <cite>ЖИЗНЬ РСТ</cite> является атрибутом мы хотим использовать в моделировании.</p>
+<li><p class="first">Исследуйте различные атрибуты. Для стилизации слоя мы должны выбрать <cite>атрибут</cite> или <cite>столбец</cite>, который будет представлять карту, которую мы пытаемся создать. Так как мы хотим создать слой, представляющий продолжительность жизни, т.е. средний возраст, до которого человек живет в стране, нам нужен атрибут <em class="guilabel">LIFEXPCT</em>, сокращённо от Life Expectancy - продолжительность жизни.</p>
 </li>
 </ol>
 <img alt="../_images/51.png" class="align-center" src="../_images/51.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">Закройте таблицу атрибутов. Щелкните правой кнопкой мыши на слое снова и выберите: графический интерфейс этикетку:
-<cite>Свойства</cite>.</p>
+<li><p class="first">Закройте таблицу атрибутов. Снова щёлкните правой кнопкой мыши на слое и выберите <em class="guilabel">Свойства</em>.</p>
 </li>
 </ol>
 <img alt="../_images/61.png" class="align-center" src="../_images/61.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">Различные варианты укладки расположены в: графический интерфейс этикетке: <cite>Стиль</cite> диалогового Properties. При нажатии на кнопку раскрывающегося списка в диалоговом окне Style, вы будете видеть, что есть пять вариантов -: графический интерфейс этикеток: <cite>один символ</cite>,: графический интерфейс этикеток: <cite>Категоризованные</cite>,: графический интерфейс этикеток: <cite>Окончил</cite>,: графический интерфейс этикеток: <cite>Правило основании</cite> и: графический интерфейс метка: <cite>Точка смещения</cite>. Мы будем изучать первые три в этом учебнике.</p>
+<li><p class="first">Различные варианты стилизации расположены во вкладке <em class="guilabel">Стиль</em> окна свойств. Нажав на кнопку, открывающую выпадающее меню, в окне стиля, вы увидите пять опций: <em class="guilabel">Единичный символ</em>, <em class="guilabel">Категоризованный</em>, <em class="guilabel">Упорядоченный</em>, <em class="guilabel">По правилу</em> и <em class="guilabel">Смещение точек</em>. Мы изучим первые три в этом уроке.</p>
 </li>
 </ol>
 <img alt="../_images/71.png" class="align-center" src="../_images/71.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">Выберите: графический интерфейс этикетку: <cite>один символ</cite>. Эта опция позволяет выбрать единый стиль, который будет применяться ко всем функциям в слое. Так как это полигон набор данных, у вас есть два варианта на выбор. Вы можете <cite>заполнить</cite> многоугольник, или вы можете стиль только <cite>чертах</cite>. Вы можете выбрать: графический интерфейс этикетку: <cite>пунктирная</cite> узор заливки и нажмите: графический интерфейс этикетку: <cite>OK</cite>.</p>
+<li><p class="first">Выберите <em class="guilabel">Единичный символ</em>. Эта опция позволяет Вам выбрать единственный стиль, применяемый ко всему на слое. Это набор данных полигона, поэтому у вас будет два выбора. Во-первых, вы можете <cite>залить</cite> полигон, или стилизовать его <cite>обводку</cite>. По желанию Вы можете выбрать <em class="guilabel">точечный</em> узор. Затем нажмите <em class="guilabel">ОК</em>.</p>
 </li>
 </ol>
 <img alt="../_images/81.png" class="align-center" src="../_images/81.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">Вы увидите новый стиль, примененный к слою с заполнения шаблона вы выберете.</p>
+<li><p class="first">Вы увидите, как новый стиль применился к слою в соответствии с выбранными настройками.</p>
 </li>
 </ol>
 <img alt="../_images/91.png" class="align-center" src="../_images/91.png" />
 <ol class="arabic simple" start="10">
-<li>You will see that this Single Symbol style isn’t useful in communicating
-the life expectancy data we are trying to map. Let us explore another
-styling option. Right-click the layer again and choose
-<em class="guilabel">Properties</em>. This time choose <em class="guilabel">Categorized</em> from the
-<em class="guilabel">Style</em> tab. Categorized means the features in the layer will be
-shown in different shades of a color based on unique values in an attribute
-field. Choose <em class="guilabel">LIFEXPCT</em> value as the <em class="guilabel">Column</em>. Choose
-a <em class="guilabel">color ramp</em> of your choice and click <em class="guilabel">Classify</em>
-at the bottom. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Как Вы можете заметить, тип &#8220;Единичный символ&#8221; не сильно помогает перенести продолжительность жизни на карту. Давайте попробуем другое вариант. Снова нажмите правой кнопкой на слой и перейдите в <em class="guilabel">Свойства</em>. На этот раз выберите <em class="guilabel">Категоризованный</em> на вкладке <em class="guilabel">Стиль</em>. &#8220;Категоризованный&#8221; значит, что всё на слое будет окрашено в соответствии со значениями атрибутов. Выберите <em class="guilabel">LIFEXPCT</em> как <em class="guilabel">Столбец</em>. Затем выберите желаемое <em class="guilabel">изменение цвета</em> и нажмите <em class="guilabel">Классифицировать</em> внизу. Нажмите <em class="guilabel">ОК</em>.</p>
+</li>
 </ol>
 <img alt="../_images/101.png" class="align-center" src="../_images/101.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">Вы увидите разные страны, входящие в оттенки синего. Легкие оттенки означает более низкую продолжительность жизни и более темные оттенки, означающие высшее продолжительность жизни. Это представление данных является более полезным и ясно показывают, как ожидаемая продолжительность жизни в развитых странах против развивающихся стран. Это будет тип стиля мы задались целью создать.</p>
+<li><p class="first">Вы увидите, как разные страны окрасились в разные оттенки синего. Светлые оттенки значат меньшую продолжительность жизни, тёмные - большую. Это представление данных полезно и ясно показывает продолжительность жизни в развитых и развивающихся странах. Именно такой стиль мы и хотели создать.</p>
 </li>
 </ol>
 <img alt="../_images/111.png" class="align-center" src="../_images/111.png" />
@@ -291,69 +281,53 @@ There are 5 modes available. <em class="guilabel">Equal Interval</em>,
 These modes use different statistical algorithms to break down the data
 into separate classes.</p>
 <ul class="simple">
-<li>Equal Interval: As the name suggests, this method will will create classes
-which are at the same size. If our data ranges from 0-100 and we want 10
-classes, this method would create a class from 0-10, 10-20, 20-30 and so on
-, keeping each class the same size of 10 units.</li>
-<li>Quantile - This method will decide the classes such that number of values
-in each class are the same. If there are 100 values and we want 4
-classes, quantile method will decide the classes such that each class
-will have 25 values.</li>
-<li>Natural Breaks (Jenks) - This algorithm tries to find natural groupings
-of data to create classes. The resulting classes will be such that there
-will be maximum variance between individual classes and least variance
-within each class.</li>
-<li>Standard Deviation - This method will calculate the mean of the data, and
-create classes based on standard deviation from the mean.</li>
-<li>Pretty Breaks - This is based on the statistical package R’s pretty
-algorithm. It is a bit complex, but the <cite>pretty</cite> in the name means it
-creates class boundaries that are round numbers.</li>
+<li><p class="first">Равный интервал: Этот метод, как и предполагает имя, создаст классы равного размера. Если наши данные имеют значения 0-100, и мы хотим 10 классов, то этот метод создаст классы 0-10, 10-20, 20-30 и т.д., придерживаясь размера в 10 для каждого класса.</p>
+</li>
+<li><p class="first">Квантильный: Этот метод разделит классы так, что в каждом будет равное количество пунктов. Если у нас есть 100 значений, и мы хотим 4 класса, квантильный режим поместит в каждый класс по 25 значений.</p>
+</li>
+<li><p class="first">Естественное разделение: Этот алгоритм попытается сгруппировать значения так, чтобы они выглядели естественно. Значения в конечных классах будут отличаться максимально от значений других классов, но минимально между собой.</p>
+</li>
+<li><p class="first">Стандартное отклонение: Этот метод посчитает среднее значение данных и создаст классы, основываясь на отклонении от этого значения.</p>
+</li>
+<li><p class="first">Приятное разделение: Использует алгоритм статистического разделение R&#8217;s pretty algorithm. Он немного сложен, но <cite>приятное</cite> в названии означает, что границы классов будут круглыми числами.</p>
+</li>
 </ul>
-<p>To keep things simple, let’s use the Quantile method. Click <em class="guilabel">Classify</em> at the
-bottom and you will see 3 classes show up with their corresponding values.
-Click <em class="guilabel">OK</em>.</p>
+<p>Чтобы упростить работу, давайте используем квантильный режим. Нажмите <em class="guilabel">Классифицировать</em> внизу, и Вы увидите 3 новых класса с соответствующими значениями. Нажмите <em class="guilabel">ОК</em>.</p>
 </li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Примечание</p>
-<p class="last">For an attribute to be used in <em class="guilabel">Graduated</em> style, it must be a numeric field. Integer and Real
-values are fine, but if the attribute field type is String, it cannot be
-used with this styling option.</p>
+<p class="last">Чтобы использовать атрибут в стиле <em class="guilabel">Упорядоченный</em>, он должен быть циферным. Любые вещественные числа подойдут, но если значение будет строкой, Вы не сможете использовать этот тип стилизации.</p>
 </div>
 <img alt="../_images/121.png" class="align-center" src="../_images/121.png" />
 <ol class="arabic simple" start="13">
-<li>You will see a map showing countries in either of 3 colors representing
-average life expectancy in the country.</li>
+<li><p class="first">Вы увидите карту, показывающую страны в 3 разных цветах, в зависимости от средней продолжительности жизни.</p>
+</li>
 </ol>
 <img alt="../_images/131.png" class="align-center" src="../_images/131.png" />
 <ol class="arabic simple" start="14">
-<li>Now go back to the <em class="guilabel">Style</em> dialog by right clicking the layer and choosing
-<em class="guilabel">Properties</em>. There are some more styling options available.
-You can click on the Symbol for each of the classes and choose a different style.
-We will choose Red, Yellow and Green fill colors to indicate low, medium and high life expectancy.</li>
+<li><p class="first">Теперь идите назад к окну <em class="guilabel">Стиль</em>, нажав правой кнопкой мыши на слой и выбрав <em class="guilabel">Свойства</em>. Там есть ещё больше опций. Вы можете нажать на символ каждого класса и выбрать нужный стиль. Мы используем красный, жёлтый и зелёный цвета заливки, чтобы показать малую, среднюю и высокую продолжительности жизни.</p>
+</li>
 </ol>
 <img alt="../_images/141.png" class="align-center" src="../_images/141.png" />
 <ol class="arabic simple" start="15">
-<li>In the <em class="guilabel">Symbol Selector</em> dialog, click on <em class="guilabel">Color</em>
-selector.</li>
+<li><p class="first">В окне <em class="guilabel">Выбор символа</em> нажмите на <em class="guilabel">Цвет</em>.</p>
+</li>
 </ol>
 <img alt="../_images/151.png" class="align-center" src="../_images/151.png" />
 <ol class="arabic simple" start="16">
-<li>Click on a color fom the <em class="guilabel">Select Color</em> dialog.</li>
+<li><p class="first">В окне <em class="guilabel">Цвет</em> выберите нужный цвет.</p>
+</li>
 </ol>
 <img alt="../_images/161.png" class="align-center" src="../_images/161.png" />
 <ol class="arabic simple" start="17">
-<li>Back in the <em class="guilabel">Layer Properties</em> dialog, you can double-click on the
-<em class="guilabel">Label</em> column next to each value and enter the text that you
-want to display. Similarly, you may double-click on the <em class="guilabel">Value</em>
-column to edit the selected ranges. Click <em class="guilabel">OK</em> once you are
-satisfied with the classes.</li>
+<li><p class="first">В окне <em class="guilabel">Свойства слоя</em> Вы можете дважды кликнуть по столбцу <em class="guilabel">Ярлык</em> рядом с каждым значением и ввести текст для отображения. Также вы можете дважды кликнуть по столбцу <em class="guilabel">Значение</em>, чтобы редактировать область значений. Нажмите <em class="guilabel">ОК</em>, когда закончите с классами.</p>
+</li>
 </ol>
 <img alt="../_images/171.png" class="align-center" src="../_images/171.png" />
 <ol class="arabic simple" start="18">
-<li>This style definitely conveys a lot more useful map than the previous two
-attempts. There are clearly marked class names and colors to represent our
-interpretation of the life expectancy values.</li>
+<li><p class="first">Этот стиль определённо даёт больше полезной информации, чем две предыдущие попытки. Теперь у нас также есть чётко отмеченные имена классов и цвета, представляющие среднюю продолжительность жизни.</p>
+</li>
 </ol>
 <img alt="../_images/181.png" class="align-center" src="../_images/181.png" />
 </div>
@@ -379,7 +353,7 @@ interpretation of the life expectancy values.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Jul 15, 2014.<br/>
+      Обновлено: Jul 16, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
