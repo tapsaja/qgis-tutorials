@@ -213,25 +213,18 @@
 <div class="section" id="procedure">
 <h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Install the <tt class="docutils literal"><span class="pre">qgis2leaf</span></tt> plugin by going to <em class="menuselection">Plugins ‣
-Manage and Install Plugin</em>. Note that the plugin is currently marked
-<strong>experimental</strong>, so you will need to check <em class="guilabel">Show also
-experimental plugins</em> in Plugin Settings. (See <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a> for more details on
-installing plugins in QGIS)</li>
+<li><p class="first">Instalați plugin-ul <tt class="docutils literal"><span class="pre">qgis2leaf</span></tt> mergând la <em class="menuselection">Plugins ‣ Manage and Install Plugin</em>. Rețineți că plugin-ul este marcat în prezent <strong>experimental</strong>, așa că va trebui să bifați <em class="guilabel">Show also experimental plugins</em> în Setările Plugin-ului. (Parcurgeți <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a> pentru mai multe detalii despre instalarea plugin-urilor în QGIS)</p>
+</li>
 </ol>
 <img alt="../_images/140.png" class="align-center" src="../_images/140.png" />
 <ol class="arabic simple" start="2">
-<li>Unzip the downloaded <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt> file. Open QGIS and go to
-<em class="menuselection">Layer ‣ Add Vector Layer</em>. Browse to the location when the
-files were extracted and select <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt>. Click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Dezarhivați fișierul descărcat <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt>. Deschideți QGIS și mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>. Navigați în locația unde s-au extras fișierele și selectați <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt>. Clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/216.png" class="align-center" src="../_images/216.png" />
 <ol class="arabic simple" start="3">
-<li>Once the <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> layer is loaded, use the <em class="guilabel">Identify</em>
-tool to click on any feature and look at the attributes. We will create an
-airport map where we classify the airports into 3 categories. The attribute
-<tt class="docutils literal"><span class="pre">type</span></tt> will be useful when classifying the features.</li>
+<li><p class="first">O dată ce s-a încărcat stratul <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt>, folosiți instrumentul <em class="guilabel">Identify</em> pentru a efectua clic pe oricare entitate, și pentru a-i viziona atributele. Vom crea o hartă în care aeroporturile vor fi  clasificate în 3 categorii. Atributul <tt class="docutils literal"><span class="pre">type</span></tt> va fi util atunci când se clasifică entitățile.</p>
+</li>
 </ol>
 <img alt="../_images/314.png" class="align-center" src="../_images/314.png" />
 <ol class="arabic simple" start="4">
@@ -240,20 +233,13 @@ airport map where we classify the airports into 3 categories. The attribute
 </ol>
 <img alt="../_images/412.png" class="align-center" src="../_images/412.png" />
 <ol class="arabic simple" start="5">
-<li>In the attribute table dialog, click the <em class="guilabel">Toggle Editing</em> button.
-Once the layer is in editing mode, click the <em class="guilabel">Open Field
-Calculator</em> button.</li>
+<li><p class="first">În fereastra de dialog, apăsați pe butonul <em class="guilabel">Toggle Editing</em>. O dată ce stratul a intrat în modul de editare, faceți clic pe butonul <em class="guilabel">Open Field Calculator</em>.</p>
+</li>
 </ol>
 <img alt="../_images/512.png" class="align-center" src="../_images/512.png" />
 <ol class="arabic simple" start="6">
-<li>We want to create a new attribute called <tt class="docutils literal"><span class="pre">type_code</span></tt> where we give major
-airports a value of 3, mid-sized airports a value of 2 and all others a
-value of 1. We can use the <em>CASE</em> statement and write an expression that
-will look at the value of <tt class="docutils literal"><span class="pre">type</span></tt> attribute and create a <tt class="docutils literal"><span class="pre">type_code</span></tt>
-attribute based on the condition. Check the <em class="guilabel">Create a new field</em>
-box and enter <tt class="docutils literal"><span class="pre">type_code</span></tt> as the <em class="guilabel">Output field name</em>. Select
-<em class="guilabel">Whole number (integer)</em> as the <em class="guilabel">Output field type</em>. In
-the <em class="guilabel">Expression</em> window, enter the following text.</li>
+<li><p class="first">Vrem să creăm un nou atribut numit <tt class="docutils literal"><span class="pre">type_code</span></tt> în care vom da marilor aeroporturi o valoare de 3, celor mijlocii o valoare de 2, și tuturor celelalte o valoare de 1. Putem folosi instrucțiunea <em>CASE</em> pentru a scrie o expresie care se va uita la valoarea de atributului <tt class="docutils literal"><span class="pre">type</span></tt> și va crea un atribut <tt class="docutils literal"><span class="pre">type_code</span></tt> bazat pe condiție. Bifați caseta <em class="guilabel">Create a new field</em> și introduceți <tt class="docutils literal"><span class="pre">type_code</span></tt> ca <em class="guilabel">Output field name</em>. Selectați <em class="guilabel">Whole number (integer)</em> ca <em class="guilabel">Output field type</em>. În fereastra <em class="guilabel">Expression</em> introduceți următorul text.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>CASE  WHEN &quot;type&quot; LIKE &#39;%major%&#39;  THEN 3
  WHEN &quot;type&quot; LIKE &#39;%mid%&#39; THEN 2
@@ -263,47 +249,33 @@ END
 </div>
 <img alt="../_images/611.png" class="align-center" src="../_images/611.png" />
 <ol class="arabic simple" start="7">
-<li>Back in the <em class="guilabel">Attribute Table</em> window, you will see a new column at
-the end. Verify that your expression worked correctly and click the
-<em class="guilabel">Toggle Editing</em> button to save the changes.</li>
+<li><p class="first">Înapoi, în fereastra <em class="guilabel">Attribute Table</em>, veți vedea la capăt o nouă coloană. Verificați dacă expresia lucrează corect, și faceți clic pe butonul <em class="guilabel">Toggle Editing</em> pentru a salva modificările.</p>
+</li>
 </ol>
 <img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
 <ol class="arabic simple" start="8">
-<li>Now we will style the airports layer using the newly created <tt class="docutils literal"><span class="pre">type_code</span></tt>
-attribute. Right-click the <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> layer and select
-<em class="guilabel">Properties</em>.</li>
+<li><p class="first">Acum vom stiliza stratul aeroporturilor folosind atributul nou creat <tt class="docutils literal"><span class="pre">type_code</span></tt>. Clic-dreapta pe stratul <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> și selectați <em class="guilabel">Properties</em>.</p>
+</li>
 </ol>
 <img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
 <ol class="arabic simple" start="9">
-<li>Select the <em class="guilabel">Style</em> tab in the <em class="guilabel">Layer Properties</em> dialog.
-Select <em class="guilabel">Categorized</em> style from the drop-down menu and choose
-<tt class="docutils literal"><span class="pre">type_code</span></tt> as the <em class="guilabel">Column</em>. Choose a color ramp of your choice
-and click <em class="guilabel">Classify</em>. Click <em class="guilabel">OK</em> to go back to the main
-QGIS window.</li>
+<li><p class="first">Selectați fila <em class="guilabel">Style</em> din fereastra de dialog <em class="guilabel">Layer Properties</em>. Selectați stilul <em class="guilabel">Categorized</em> din meniul drop-down și alegeți <tt class="docutils literal"><span class="pre">type_code</span></tt> pentru <em class="guilabel">Column</em>. Alegeți, după dorință, o gamă de culori, și faceți clic pe <em class="guilabel">Classify</em>. Apăsați <em class="guilabel">OK</em> pentru a merge înapoi în fereastra principală a QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
 <ol class="arabic simple" start="10">
-<li>Here you will see a nicely styled airport map. Let&#8217;s export this to create
-an interactive web map. Go to <em class="menuselection">Web ‣ qgis2leaf ‣ Exports
-a QGIS Project to a working leaflet webmap</em>.</li>
+<li><p class="first">Veți vedea o hartă a aeroporturilor, frumos stilizată. Haideți să o exportăm, pentru a crea o hartă web interactivă. Mergeți la <em class="menuselection">Web ‣ qgis2leaf ‣ Exports a QGIS Project to a working leaflet webmap</em>.</p>
+</li>
 </ol>
 <img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
 <ol class="arabic simple" start="11">
-<li>In the <em class="guilabel">QGIS 2 Leaflet</em> dialog, click <em class="guilabel">Get Layers</em> to
-get the refreshed layer list. Select the <em class="guilabel">Full screen</em> option to
-have a full screen web map. Choose <em class="guilabel">layer extent</em> as the
-<em class="guilabel">Extent</em> of the exported map. Choose a <em class="guilabel">Output project
-folder</em> on your system where the plugin will write the output files. Click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">În fereastra de dialog <em class="guilabel">QGIS 2 Leaflet</em>, faceți clic pe <em class="guilabel">Get Layers</em> pentru a obține o listă de straturi, actualizată. Selectați opțiunea <em class="guilabel">Full screen</em> pentru a vedea harta web acoperind tot ecranul. Alegeți <em class="guilabel">layer extent</em> ca <em class="guilabel">Extent</em> al hărții exportate. Alegeți un <em class="guilabel">Output project folder</em> de pe sistemul dvs, în care ar trebui sa fie scrise fișierele de ieșire. Faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1114.png" class="align-center" src="../_images/1114.png" />
 <ol class="arabic simple" start="12">
-<li>Once the export process finishes, locate the output folder on your disk.
-Open the <tt class="docutils literal"><span class="pre">index.html</span></tt> file in a browser. You will see an interactive web
-map that is a replica of the QGIS map. You can zoom and pan around the map
-and also click on any feature to get an popup window with attribute
-information. You can copy the contents of this folder to a web server to
-have a full featured web map.</li>
+<li><p class="first">O dată ce s-a încheiat procesul de export, localizați folderul de ieșire de pe disc. Deschideți fișierul  <tt class="docutils literal"><span class="pre">index.html</span></tt> într-un browser. Veți vedea o hartă web interactiva, care este o replica a hărții QGIS. Puteți mări și deplasa harta și, de asemenea, să faceți clic pe orice entitate pentru a obține o fereastră de tip pop-up cu informații ale atributelor. Puteți copia conținutul acestui dosar într-un server web pentru a avea o hartă web completă, a entităților.</p>
+</li>
 </ol>
 <img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
 <ol class="arabic simple" start="13">
@@ -317,9 +289,8 @@ custom HTML in a column named <tt class="docutils literal"><span class="pre">htm
 </ol>
 <img alt="../_images/1310.png" class="align-center" src="../_images/1310.png" />
 <ol class="arabic simple" start="14">
-<li>In the attribute table dialog, click the <em class="guilabel">Toggle Editing</em> button.
-Once the layer is in editing mode, click the <em class="guilabel">Open Field
-Calculator</em> button.</li>
+<li><p class="first">În fereastra de dialog, apăsați pe butonul <em class="guilabel">Toggle Editing</em>. O dată ce stratul a intrat în modul de editare, faceți clic pe butonul <em class="guilabel">Open Field Calculator</em>.</p>
+</li>
 </ol>
 <img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
 <ol class="arabic simple" start="15">
@@ -339,19 +310,17 @@ values from attributes <tt class="docutils literal"><span class="pre">iata_code<
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The shapefile format can contain a maximum of 254 characters in a field. If
-you want to store longer text in the field, choose another format.</p>
+<p class="last">Formatul fișierului shape poate conține maxim 254 de caractere într-un câmp. Dacă doriți să stocați un text mai lung într-un câmp, atunci alegeți un alt format.</p>
 </div>
 <img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
 <ol class="arabic simple" start="16">
-<li>Back in the <em class="guilabel">Attribute Table</em> window, you will see a new column at
-the end. Verify that your expression worked correctly and click the
-<em class="guilabel">Toggle Editing</em> button to save the changes.</li>
+<li><p class="first">Înapoi, în fereastra <em class="guilabel">Attribute Table</em>, veți vedea la capăt o nouă coloană. Verificați dacă expresia lucrează corect, și faceți clic pe butonul <em class="guilabel">Toggle Editing</em> pentru a salva modificările.</p>
+</li>
 </ol>
 <img alt="../_images/168.png" class="align-center" src="../_images/168.png" />
 <ol class="arabic simple" start="17">
-<li>Now export the map again using <em class="menuselection">Web ‣ qgis2leaf ‣
-Exports a QGIS Project to a working leaflet webmap</em>.</li>
+<li><p class="first">Acum, exportați harta iarăsi, folosind <em class="menuselection">Web ‣ qgis2leaf ‣ Exports a QGIS Project to a working leaflet webmap</em>.</p>
+</li>
 </ol>
 <img alt="../_images/177.png" class="align-center" src="../_images/177.png" />
 <ol class="arabic simple" start="18">
@@ -376,47 +345,44 @@ expression</em> tool from the toolbar.</li>
 </ol>
 <img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
 <ol class="arabic simple" start="21">
-<li>Enter the expression below and press <em class="guilabel">Select</em> to select all major
-airports.</li>
+<li><p class="first">Introduceți expresia de mai jos și apăsați <em class="guilabel">Select</em> pentru a selecta toate aeroporturile majore.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;type_code&quot; = 3
 </pre></div>
 </div>
 <img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
 <ol class="arabic simple" start="22">
-<li>Right-click the <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> airports and select <em class="guilabel">Save
-Selection As...</em>.</li>
+<li><p class="first">Clic-dreapta pe <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> airports and select <em class="guilabel">Save Selection As...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/223.png" class="align-center" src="../_images/223.png" />
 <ol class="arabic simple" start="23">
-<li>In the <em class="guilabel">Save vector layer as...</em> dialog, name the output file as
-<tt class="docutils literal"><span class="pre">major_airports.shp</span></tt>. Check the <em class="guilabel">Add saved file to map</em> and
-click <em class="guilabel">OK</em>.</li>
+<li><p class="first">În fereastra de dialog <em class="guilabel">Save vector layer as...</em>, denumiți fișierul de ieșire ca <tt class="docutils literal"><span class="pre">major_airports.shp</span></tt>. Bifați <em class="guilabel">Add saved file to map</em> și faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/232.png" class="align-center" src="../_images/232.png" />
 <ol class="arabic simple" start="24">
-<li>Once the <tt class="docutils literal"><span class="pre">major_airports</span></tt> layer is loaded in QGIS, right-click it and
-select <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">O dată ce s-a încărcat în QGIS stratul <tt class="docutils literal"><span class="pre">major_airports</span></tt> este, faceți clic dreapta și selectați <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/242.png" class="align-center" src="../_images/242.png" />
 <ol class="arabic simple" start="25">
-<li>In the attribute table dialog, click the <em class="guilabel">Toggle Editing</em> button.
-Once the layer is in editing mode, click the <em class="guilabel">Open Field
-Calculator</em> button.</li>
+<li><p class="first">În fereastra de dialog, apăsați pe butonul <em class="guilabel">Toggle Editing</em>. O dată ce stratul a intrat în modul de editare, faceți clic pe butonul <em class="guilabel">Open Field Calculator</em>.</p>
+</li>
 </ol>
 <img alt="../_images/252.png" class="align-center" src="../_images/252.png" />
 <ol class="arabic simple" start="26">
-<li>In <em class="guilabel">Field Calculator</em> dialog, enter <tt class="docutils literal"><span class="pre">icon_exp</span></tt> as the
-<em class="guilabel">Output field name</em>. Make it a <em class="guilabel">Text (string)</em> type. In
-the <em class="guilabel">Expression</em> area, enter the following expression.</li>
+<li><p class="first">În fereastra de dialog <em class="guilabel">Field Calculator</em>, introduceți <tt class="docutils literal"><span class="pre">icon_exp</span></tt> ca <em class="guilabel">Output field name</em>. Faceți-l de tip <em class="guilabel">Text (string)</em>. În zona <em class="guilabel">Expression</em> introduceți următoarea expresie.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&#39;airport.svg&#39;
 </pre></div>
 </div>
 <img alt="../_images/262.png" class="align-center" src="../_images/262.png" />
 <ol class="arabic simple" start="27">
-<li>Save your edits by clicking the <em class="guilabel">Toggle Editing</em> button in the
-<em class="guilabel">Attribute Table</em>.</li>
+<li><p class="first">Salvați modificările făcând clic pe butonul <em class="guilabel">Toggle Editing</em> din <em class="guilabel">Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/271.png" class="align-center" src="../_images/271.png" />
 <ol class="arabic simple" start="28">
@@ -438,15 +404,13 @@ and choose an icon you like. For our map, we can try the
 </ol>
 <img alt="../_images/291.png" class="align-center" src="../_images/291.png" />
 <ol class="arabic simple" start="30">
-<li>Copy and paste this icon in the output directory you had specified when exporting
-the map. Rename it as <tt class="docutils literal"><span class="pre">airport.svg</span></tt>.</li>
+<li><p class="first">Copiați și inserați această pictogramă în directorul de ieșire pe care l-ați specificat când ați exportat harta. Redenumiți-o ca <tt class="docutils literal"><span class="pre">airport.svg</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/301.png" class="align-center" src="../_images/301.png" />
 <ol class="arabic simple" start="31">
-<li>Now open the <tt class="docutils literal"><span class="pre">index.html</span></tt> file located in the folder. You will see a
-beautiful basemap with our custom icons for the major airports. Also notice
-the layer panel at top-right corner which has layer display control for
-both the layers.</li>
+<li><p class="first">Acum deschideți fișierul <tt class="docutils literal"><span class="pre">index.html</span></tt> situat în folder. Veți vedea o frumoasă hartă de bază, având pictogramele noastre personalizate pentru marile aeroporturi. De asemenea, observați panoul straturilor din colțul din dreapta sus, care controlează afișarea ambelor straturi.</p>
+</li>
 </ol>
 <img alt="../_images/315.png" class="align-center" src="../_images/315.png" />
 <p>Hope this tutorial gives you a head start in creating web maps. Below is the
