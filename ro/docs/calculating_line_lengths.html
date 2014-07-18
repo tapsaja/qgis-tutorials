@@ -190,29 +190,25 @@
   <div class="section" id="calculating-line-lengths-and-statistics">
 <h1>Determinarea lungimii liniilor și vizualizarea statisticilor<a class="headerlink" href="#calculating-line-lengths-and-statistics" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/calculating_line_lengths_a4.pdf">A4</a> <a class="reference external" href="../pdf/calculating_line_lengths_letter.pdf">Letter</a> ]</p>
-<p>QGIS has built-in functions to calculate various properties based on the
-geometry of the feature - such as length, area, perimeter etc. This tutorial
-will show how to use <strong>Field Calculator</strong> to add a column with a value
-representing length of each feature.</p>
+<p>QGIS dispune de funcții interne pentru calculul diverselor proprietăți bazate pe geometria entității - cum ar fi lungimea, zona, perimetrul etc. Acest tutorial vă arată cum să folosiți <strong>Calculatorul de Câmpuri</strong> pentru a adăuga o coloană, împreună cu o valoare care reprezintă lungimea fiecărei entități.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will use a polyline shapefile of railroads in North America and try to
-determine the total length of railroads in the United States.</p>
+<p>Vom folosi un fișier shape de tip polilinie al căilor ferate din America de Nord, și vom încerca să determinăm lungimea totală a sistemului feroviar din Statele Unite.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Alte abilități pe care le veți căpăta<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Using expressions to select features.</li>
-<li>Re-projecting a layer from Geographic to Projected Coordinate Reference
-System(CRS).</li>
-<li>Viewing statistics for values of an attribute in a layer.</li>
+<li><p class="first">Folosirea expresiilor pentru a selecta entitățile.</p>
+</li>
+<li><p class="first">Reproiectarea un strat dintr-un Sistem de Coordonate de Referință  (CRS) Geografic într-unul proiectat.</p>
+</li>
+<li><p class="first">Vizualizarea statisticilor valorilor unui atribut dintr-un strat.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/railroads/">Natural Earth</a>
-has a public domain railroads dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads_north_america.zip">North America supplement</a>
-zip file from the portal.</p>
+<p><a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/railroads/">Natural Earth</a> pune la dispoziția publică un set de date sistemului feroviar. Descărcați arhiva zip <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads_north_america.zip">North America supplement</a> de pe portal.</p>
 <p>For convenience, the version of railroad dataset used in this tutorial can be
 downloaded directly from the links below:</p>
 <p>Download <a class="reference download internal" href="../_downloads/ne_10m_railroads_north_america.zip"><tt class="xref download docutils literal"><span class="pre">North</span> <span class="pre">America</span> <span class="pre">supplement</span></tt></a></p>
@@ -221,139 +217,106 @@ downloaded directly from the links below:</p>
 <div class="section" id="procedure">
 <h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>.</p>
+</li>
 </ol>
 <img alt="../_images/114.png" class="align-center" src="../_images/114.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.zip</span></tt> file and click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Navigați la fișierul <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.zip</span></tt> și dați clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/23.png" class="align-center" src="../_images/23.png" />
 <ol class="arabic simple" start="3">
-<li>In the <em class="guilabel">Select layers to add...</em> dialog, choose
-<tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.shp</span></tt> layer.</li>
+<li><p class="first">În fereastra de dialog <em class="guilabel">Select layers to add...</em> selectați stratul <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.shp</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/33.png" class="align-center" src="../_images/33.png" />
 <ol class="arabic simple" start="4">
-<li>Once the layer is loaded, you will notice that the layer has lines
-representing railroads for all of North America. Since we want to calculate
-line lengths only for United States railroads, we need to select the lines
-that fall in the United States. Right-click on the layer and select
-<em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">După ce stratul este încărcat, veți observa că stratul conține linii, reprezentând căile ferate pentru întreaga Americă de Nord. Din moment ce dorim să calculăm lungimea liniilor doar pentru sistemul feroviar din SUA, trebuie să selectăm acele linii pe care le includ Statele Unite ale Americii. Faceți clic dreapta pe denumirea stratului și selectați <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
 <ol class="arabic simple" start="5">
-<li>The layer has an attribute called <em class="guilabel">sov_a3</em>. This is the 3 letter
-code for the country that a particular feature falls in. We can use the
-value of this attribute to select features that are in USA.</li>
+<li><p class="first">Stratul are un atribut numit <em class="guilabel">sov_a3</em>. Acesta este codficarea pe 3 litere al țării căreia îi aparține o anumită entitate. Putem folosi valoarea acestui atribut pentru a selecta entitățile din Statele Unite ale Americii.</p>
+</li>
 </ol>
 <img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
 <ol class="arabic simple" start="6">
-<li>In the <em class="guilabel">Attribute Table</em> window, click the <em class="guilabel">Select
-features using an expression</em> button.</li>
+<li><p class="first">În fereastra <em class="guilabel">Attribute Table</em> faceți clic pe butonul <em class="guilabel">Select features using an expression</em>.</p>
+</li>
 </ol>
 <img alt="../_images/63.png" class="align-center" src="../_images/63.png" />
 <ol class="arabic simple" start="7">
-<li>A new dialog <em class="guilabel">Select By Expression</em> will open. Find the attribute
-<em class="guilabel">sov_a3</em> under <em class="guilabel">Fields and Values</em> in the
-<em class="guilabel">Functions list</em> section. Double-click on it to add it to the
-<em class="guilabel">Expression</em> text area. Complete the expression by typing in
-<tt class="docutils literal"><span class="pre">&quot;sov_a3&quot;</span> <span class="pre">=</span> <span class="pre">'USA'</span></tt>. Click <em class="guilabel">Select</em> followed by
-<em class="guilabel">Close</em>.</li>
+<li><p class="first">Se va deschide o nouă fereastră de dialog <em class="guilabel">Select By Expression</em>. Căutați atributul <em class="guilabel">sov_a3</em> sub <em class="guilabel">Fields and Values</em> în secțiunea <em class="guilabel">Functions list</em>. Efectuați dublu-clic pe el, pentru a-l adăuga zonei de text <em class="guilabel">Expression</em>. Completați expresia tastând <tt class="docutils literal"><span class="pre">&quot;sov_a3&quot;</span> <span class="pre">=</span> <span class="pre">'USA'</span></tt>. Clic pe <em class="guilabel">Select</em> urmat de <em class="guilabel">Close</em>.</p>
+</li>
 </ol>
 <img alt="../_images/73.png" class="align-center" src="../_images/73.png" />
 <ol class="arabic simple" start="8">
-<li>Back in the main QGIS window, you will see that all lines that fall in USA
-are selected and appear in yellow.</li>
+<li><p class="first">Înapoi, în fereastra principală QGIS, veți vedea că toate liniile care se încadrează în Statele Unite ale Americii sunt selectate și apar în galben.</p>
+</li>
 </ol>
 <img alt="../_images/83.png" class="align-center" src="../_images/83.png" />
 <ol class="arabic simple" start="9">
-<li>Now let&#8217;s save our selection to a new shapefile. Right-click on the
-<tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> layer and select <em class="guilabel">Save
-Selection As...</em>.</li>
+<li><p class="first">Acum, vom salva selecția noastră într-un nou fișier shape. Faceți clic dreapta pe stratul <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> și selectați <em class="guilabel">Save Selection As...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/93.png" class="align-center" src="../_images/93.png" />
 <ol class="arabic simple" start="10">
-<li>Click <em class="guilabel">Browse</em> and name the output file as <tt class="docutils literal"><span class="pre">usa_railroads.shp</span></tt>.
-We also want to change the CRS of the layer. Click on <em class="guilabel">Browse</em>
-next to <em class="guilabel">CRS</em>.</li>
+<li><p class="first">Faceți clic pe  <em class="guilabel">Browse</em> și denumiți fișierul de ieșire ca <tt class="docutils literal"><span class="pre">usa_railroads.shp</span></tt>. De asemenea, dorim să schimbăm CRS-ul stratului. Faceți clic pe <em class="guilabel">Browse</em> de lângă <em class="guilabel">CRS</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The built-in functions that use a feature&#8217;s geometry for calculation use the
-units of the layer&#8217;s CRS. Geographic Coordinate Reference System(CRS) such
-as <em>EPSG:4326</em> have <strong>degrees</strong> as units - so the length of the feature
-would be in <strong>degrees</strong> and area in <strong>square degrees</strong> - which is
-meaningless. You need to use a Projected Coordinate Reference System with
-units of <strong>meters</strong> or <strong>feet</strong> to perform such calculations.</p>
+<p class="last">Funcțiile interne care utilizează geometria entităților în calcul folosesc unitățile CRS-ului stratului.  Sistemele de Coordonate de Referință (CRS) Geografice, cum ar fi <em>EPSG:4326</em> au ca unități <strong>gradele</strong> - astfel încât lungimea entităților va fi în <strong>grade</strong> iar suprafața în <strong>grade pătrate</strong> - lucru lipsit de sens. Este nevoie să utilizați un Sistem de Coordonate de Referință Proiectat, cu unitățile în <strong>metri</strong> sau <strong>picioare</strong>,  pentru efectuarea calculelor.</p>
 </div>
 <img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
 <ol class="arabic simple" start="11">
-<li>Since we are interested in calculating length, let’s select an equidistance
-projection. Type <em class="guilabel">north america equ</em> in the <em class="guilabel">Filter</em>
-search box. In the results pane below, select
-<em class="guilabel">North_America_Equidistant_Conic EPSG:102010</em> as the CRS. Click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Din moment ce suntem interesați în calculul lungimii, haideți să selectăm o proiecție echidistantă. Tastați <em class="guilabel">north america equ</em> în <em class="guilabel">Filter</em>. În panoul de rezultate de mai jos, selectați <em class="guilabel">North_America_Equidistant_Conic EPSG: 102010</em> ca CRS. Faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
 <ol class="arabic simple" start="12">
-<li>In the <em class="guilabel">Save vector layer as...</em> dialog, check the <em class="guilabel">Add
-saved file to map</em> and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">În fereastra de dialog <em class="guilabel">Save vector layer as...</em> bifați <em class="guilabel">Add saved file to map</em> și apăsați <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/123.png" class="align-center" src="../_images/123.png" />
 <ol class="arabic simple" start="13">
-<li>Once the export process finishes, you will see a new layer <tt class="docutils literal"><span class="pre">usa_railroads</span></tt>
-loaded in QGIS. You can uncheck the box next to
-<tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> layer to turn it off as we don&#8217;t need it
-anymore.</li>
+<li><p class="first">O dată ce s-a terminat procesul de export, veți vedea un nou strat <tt class="docutils literal"><span class="pre">usa_railroads</span></tt> încărcat în QGIS. Aveți posibilitatea să debifați caseta de lângă numele stratului <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> pentru a-l ascunde, atât timp cât nu mai avem nevoie de el.</p>
+</li>
 </ol>
 <img alt="../_images/133.png" class="align-center" src="../_images/133.png" />
 <ol class="arabic simple" start="14">
-<li>Right-click on the <tt class="docutils literal"><span class="pre">usa_railroads</span></tt> layer and select
-<em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Clic dreapta pe stratul <tt class="docutils literal"><span class="pre">usa_railroads</span></tt> și selectați <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/143.png" class="align-center" src="../_images/143.png" />
 <ol class="arabic simple" start="15">
-<li>Now it is time to add a column with length of each feature. Put the layer
-in editing mode by clicking on the <em class="guilabel">Toggle editing</em> button. Once
-in editing mode, click the <em class="guilabel">Open field calculator</em> button.</li>
+<li><p class="first">Acum este timpul să adăugăm o coloană cu lungimea fiecărei entități. Puneți stratul în modul de editare, făcând clic pe butonul <em class="guilabel">Toggle editing</em>. O dată activat modul de editare, efectuați clic pe butonul <em class="guilabel">Open field calculator</em>.</p>
+</li>
 </ol>
 <img alt="../_images/153.png" class="align-center" src="../_images/153.png" />
 <ol class="arabic simple" start="16">
-<li>In the <em class="guilabel">Field Calculator</em>, check <em class="guilabel">Create a new
-field</em>. Enter <strong>length_km</strong> as the <em class="guilabel">Output field name</em>. Choose
-<strong>Decimal number (real)</strong> as the <em class="guilabel">Output field type</em>. Change the
-output <em class="guilabel">Precision</em> to <strong>2</strong>. In the <em class="guilabel">Function list</em>
-panel, find the <em class="guilabel">$length</em> under <em class="guilabel">Geometry</em>.
-Double-click it to add it to the <em class="guilabel">Expression</em>. Complete the
-expression as <tt class="docutils literal"><span class="pre">$length</span> <span class="pre">/</span> <span class="pre">1000</span></tt> because our layer CRS is in <strong>meters</strong>
-unit and we want the output in <strong>km</strong>. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">În <em class="guilabel">Field Calculator</em> bifați <em class="guilabel">Create a new field</em>. Introduceți <strong>length_km</strong> ca <em class="guilabel">Output field name</em>. Selectați <strong>Număr Zecimal (real)</strong> ca <em class="guilabel">Output field type</em>. Introduceți <strong>2</strong> în ieșirea <em class="guilabel">Precision</em>. În panoul <em class="guilabel">Function list</em>, găsiți <em class="guilabel">$length</em> sub <em class="guilabel">Geometry</em>. Faceți dublu-clic pe funcție pentru a o adăuga în <em class="guilabel">Expression</em>. Completați expresia ca <tt class="docutils literal"><span class="pre">$length</span> <span class="pre">/</span> <span class="pre">1000</span></tt>, deoarece unitățile CRS-ului stratului nostru sunt în  <strong>metri</strong> și ne dorim ieșirea în <strong>km</strong>. Faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/163.png" class="align-center" src="../_images/163.png" />
 <ol class="arabic simple" start="17">
-<li>Back in <em class="guilabel">Attribute Table</em>, you will see a new column
-<em class="guilabel">length_km</em> appear. Click the <em class="guilabel">Toggle editing</em> button
-to save the changes to the attribute table.</li>
+<li><p class="first">Mergând înapoi la <em class="guilabel">Attribute Table</em>, veți observa o nouă coloană <em class="guilabel">length_km</em>. Faceți clic pe butonul <em class="guilabel">Toggle editing</em> pentru a salva modificările din tabela de atribute.</p>
+</li>
 </ol>
 <img alt="../_images/173.png" class="align-center" src="../_images/173.png" />
 <ol class="arabic simple" start="18">
-<li>Now that we have length of each individual line in our layer, we can easily
-add it all up and find the <strong>Total</strong> length. Go to <em class="menuselection">Vector
-‣ Analysis Tools ‣ Basic Statistics</em>.</li>
+<li><p class="first">Acum, că avem lungimea fiecărei linii din stratul nostru, le putem însuma cu ușurință pe toate și să găsim lungimea <strong>Totală</strong>. Mergeți la <em class="menuselection">Vector ‣ Analysis Tools ‣ Basic Statistics</em>.</p>
+</li>
 </ol>
 <img alt="../_images/183.png" class="align-center" src="../_images/183.png" />
 <ol class="arabic simple" start="19">
-<li>Select the <em class="guilabel">Input Vector layer</em> as <tt class="docutils literal"><span class="pre">usa_railroads</span></tt>. Choose the
-<em class="guilabel">Target field</em> as <tt class="docutils literal"><span class="pre">length_km</span></tt> and click <em class="guilabel">OK</em>. You
-will see various statistics appear. The <em class="guilabel">Sum</em> value is the total
-length of the railroads that we are looking to find.</li>
+<li><p class="first">Selectați <em class="guilabel">Input Vector layer</em> ca <tt class="docutils literal"><span class="pre">usa_railroads</span></tt>. Alegeți <em class="guilabel">Target field</em> ca <tt class="docutils literal"><span class="pre">length_km</span></tt>  și faceți clic pe <em class="guilabel">OK</em>. Veți vedea apărând diverse statistici. Valoarea <em class="guilabel">Sum</em> reprezintă exact ceea ce căutăm, și anume lungimea totală a căilor ferate.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This answer will vary slightly if a different projection is chosen.In
-practice, line lengths for roads and other linear features are measured on
-the ground and provided as attributes to the dataset. This method works in
-absence of such attribute and as an approximation of actual line lengths.</p>
+<p class="last">Acest răspuns va varia ușor în cazul în care s-a ales o proiecție diferită. În practică, lungimile drumurilor precum și alte caracteristici liniare sunt măsurate în teren, după care vor fi transmise ca atribute pentru setul de date. Metoda prezentată în acest capitol funcționează în absența unui astfel de atribut, fiind de fapt o aproximare a lungimii reale a liniilor.</p>
 </div>
 <img alt="../_images/191.png" class="align-center" src="../_images/191.png" />
 </div>
@@ -379,7 +342,7 @@ absence of such attribute and as an approximation of actual line lengths.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 17, 2014.<br/>
+      Last updated on Jul 19, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

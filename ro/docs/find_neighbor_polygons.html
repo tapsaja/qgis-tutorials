@@ -190,75 +190,61 @@
   <div class="section" id="find-neighbor-polygons-in-a-layer">
 <h1>Găsirea poligoanelor învecinate dintr-un strat<a class="headerlink" href="#find-neighbor-polygons-in-a-layer" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/find_neighbor_polygons_a4.pdf">A4</a> <a class="reference external" href="../pdf/find_neighbor_polygons_letter.pdf">Letter</a> ]</p>
-<p>There are some use cases where you want to find all neighboring polygons of
-each of the polygons in a layer. With a little python script, we can accomplish
-this and much more in QGIS. Here is an example script you can use to find all
-polygons that share boundary with each of the polygons in a layer and also add
-their names to the attribute table. As an added bonus, the script also sums up
-an attribute of your choice form all the neighboring polygons.</p>
+<p>Există unele cazuri de utilizare, când doriți să găsiți toate poligoanele vecine, pentru fiecare dintre poligoanele dintr-un strat. Cu un mic script în Python, putem realiza acest lucru și multe altele, în QGIS. Aici este un exemplu de script, pe care îl puteți folosi pentru a găsi toate poligoane care au granița comună, pentru fiecare dintre poligoanele dintr-un strat și, de asemenea, să adăugați numele lor la tabela de atribute. De asemenea, ca un bonus, script-ul însumează un atribut, la alegere, din toate poligoanele învecinate.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>To demonstrate how the script works, we will use a layer of country polygons
-and find countries that share the border. We also want to compute the total
-population of the country’s neighbors.</p>
+<p>Pentru a demonstra modul în care funcționează script-ul, vom folosi un strat poligonal de țări și vom găsi țările care împart aceeași frontieră. De asemenea, ne dorim să calculăm totalul populației  din țările învecinate.</p>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/">Admin 0 - Countries</a>
-dataset from Natural Earth.</p>
-<p>Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - countries shapefile.</a>.</p>
+<p>Vom folosi setul de date <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/">Admin 0 - Țări</a> de la Natural Earth.</p>
+<p>Vom folosi setul de date <a href="#id2"><span class="problematic" id="id3">`Admin 0 - fișierul shape al țărilor.&lt;http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip&gt;`_</span></a>.</p>
 <p>Sursa de date <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="get-the-script">
 <h2>Obținerea script-ului<a class="headerlink" href="#get-the-script" title="Permalink to this headline">¶</a></h2>
-<p>Download the <a class="reference download internal" href="../_downloads/neighbors.py"><tt class="xref download docutils literal"><span class="pre">neighbors.py</span> <span class="pre">script</span></tt></a>
-and save it to your disk.</p>
+<p>Descărcați script-ul <a class="reference download internal" href="../_downloads/neighbors.py"><tt class="xref download docutils literal"><span class="pre">neighbors.py</span></tt></a> și salvați-l pe discul dumneavoastră.</p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Load the <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> layer by going to
-<em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Încărcați stratul <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> mergând la <em class="menuselection">Layer ‣ Add Vector Layer</em>.</p>
+</li>
 </ol>
 <img alt="../_images/127.png" class="align-center" src="../_images/127.png" />
 <ol class="arabic simple" start="2">
-<li>The script uses 2 fields to perform the action. A name field and a field
-that you want to sum up. Use the <em class="guilabel">Identify</em> tool to click on any
-feature and examine the attributes. In this case the name field is <strong>NAME</strong> and we want
-to sum up the population estimates from <strong>POP_EST</strong> field.</li>
+<li><p class="first">Script-ul folosește 2 câmpuri pentru a efectua acțiunea. Un câmp pentru nume și un câmp pe care doriți să-l însumați. Utilizați instrumentul <em class="guilabel">Identify</em> pentru a face clic pe orice element și să examinați atributele. În acest caz, câmpul pentru nume este <strong>NAME</strong>, și vrem să însumăm estimările de populație din câmpul <strong>POP_EST</strong>.</p>
+</li>
 </ol>
 <img alt="../_images/210.png" class="align-center" src="../_images/210.png" />
 <ol class="arabic simple" start="3">
-<li>Go to <em class="menuselection">Plugins ‣ Python Console</em>.</li>
+<li><p class="first">Mergeți la <em class="menuselection">Plugins ‣ Python Console</em>.</p>
+</li>
 </ol>
 <img alt="../_images/39.png" class="align-center" src="../_images/39.png" />
 <ol class="arabic simple" start="4">
-<li>In the <em class="guilabel">Python Console</em> window, click the <em class="guilabel">Show Editor</em>
-button.</li>
+<li><p class="first">În fereastra <em class="guilabel">Python Console</em>, faceți clic pe butonul <em class="guilabel">Show Editor</em>.</p>
+</li>
 </ol>
 <img alt="../_images/48.png" class="align-center" src="../_images/48.png" />
 <ol class="arabic simple" start="5">
-<li>In the <em class="guilabel">Editor</em> panel, click the <em class="guilabel">Open file</em> button and
-browse to downloaded <tt class="docutils literal"><span class="pre">neighbors.py</span></tt> script and click <em class="guilabel">Open</em>.</li>
+<li><p class="first">În panoul <em class="guilabel">Editor</em>, faceți clic pe butonul <em class="guilabel">Open file</em>, navigați la script-ul descărcat <tt class="docutils literal"><span class="pre">neighbors.py</span></tt> și apăsați <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
 <ol class="arabic simple" start="6">
-<li>Once the script is loaded, you may want to change the <tt class="docutils literal"><span class="pre">_NAME_FIELD</span></tt> and
-<tt class="docutils literal"><span class="pre">_SUM_FIELD</span></tt> values to match the attributes from your own layer. If you
-are working with the <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> layer, you can leave those
-as they are. Click the <em class="guilabel">Save</em> button in the <em class="guilabel">Editor</em>
-panel if you made any changes. Now click the <em class="guilabel">Run script</em> button
-to execute the script.</li>
+<li><p class="first">O dată ce script-ul este încărcat, este posibil să doriți să schimbați valorile <tt class="docutils literal"><span class="pre">_NAME_FIELD</span></tt> și <tt class="docutils literal"><span class="pre">_SUM_FIELD</span></tt> pentru a se potrivi cu atributele din propriul strat. Dacă lucrați cu stratul  <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt>, le puteți lăsa așa cum sunt. Faceți clic pe butonul <em class="guilabel">Save</em> din panoul <em class="guilabel">Editor</em> dacă ați făcut vreo schimbare. Apoi apăsați butonul <em class="guilabel">Run script</em> pentru a rula script-ul.</p>
+</li>
 </ol>
 <img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
 <ol class="arabic simple" start="7">
-<li>Once the script finishes, right-click the <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> layer
-and select <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">O dată ce script-ul se încheie, faceți clic-dreapta pe stratul <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> și selectați <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/77.png" class="align-center" src="../_images/77.png" />
 <ol class="arabic simple" start="8">
-<li>You will notice 2 new attributes called <tt class="docutils literal"><span class="pre">NEIGHBORS</span></tt> and <tt class="docutils literal"><span class="pre">SUM</span></tt>. These
-were added by the script.</li>
+<li><p class="first">Veți observa 2 noi atribute, numite <tt class="docutils literal"><span class="pre">NEIGHBORS</span></tt> și <tt class="docutils literal"><span class="pre">SUM</span></tt>. Acestea au fost adăugate de către script.</p>
+</li>
 </ol>
 <img alt="../_images/87.png" class="align-center" src="../_images/87.png" />
 <p>Pentru referință, mai jos este script-ul complet. Îl puteți modifica pentru a se potrivi cerințelor dumneavoastră.</p>
@@ -368,7 +354,7 @@ were added by the script.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 17, 2014.<br/>
+      Last updated on Jul 19, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
