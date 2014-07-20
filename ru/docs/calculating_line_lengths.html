@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Calculating Line Lengths and Statistics &mdash; QGIS Tutorials and Tips</title>
+    <title>Подсчёт длины линий и статистики &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -88,7 +88,7 @@
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Основная стилизация векторного слоя</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Calculating Line Lengths and Statistics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Подсчёт длины линий и статистики</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
@@ -103,7 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Выполнение пакетных файлов с помощью среды обработки</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
@@ -189,112 +189,91 @@
       
 
   <div class="section" id="calculating-line-lengths-and-statistics">
-<h1>Calculating Line Lengths and Statistics<a class="headerlink" href="#calculating-line-lengths-and-statistics" title="Ссылка на этот заголовок">¶</a></h1>
+<h1>Подсчёт длины линий и статистики<a class="headerlink" href="#calculating-line-lengths-and-statistics" title="Ссылка на этот заголовок">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/calculating_line_lengths_a4.pdf">A4</a> <a class="reference external" href="../pdf/calculating_line_lengths_letter.pdf">Letter</a> ]</p>
-<p>QGIS has built-in functions to calculate various properties based on the
-geometry of the feature - such as length, area, perimeter etc. This tutorial
-will show how to use <strong>Field Calculator</strong> to add a column with a value
-representing length of each feature.</p>
+<p>В QGIS имеются встроенные функции для подсчёта различных геометрических свойств, таких как длина, площадь, периметр и т.д. Этот урок покажет Вам, как использовать <strong>Калькулятор полей</strong>, чтобы добавить столбец со значением длины каждого элемента.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
-<p>We will use a polyline shapefile of railroads in North America and try to
-determine the total length of railroads in the United States.</p>
+<h2>Обзор задачи<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Мы используем ломаную линию железных дорог Северной Америки и попробуем определить общую длину железных дорог США.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>Другие навыки, которые Вы узнаете<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
 <ul class="simple">
-<li>Using expressions to select features.</li>
-<li>Re-projecting a layer from Geographic to Projected Coordinate Reference
-System(CRS).</li>
-<li>Viewing statistics for values of an attribute in a layer.</li>
+<li><p class="first">Использование выражений для выделения элементов.</p>
+</li>
+<li><p class="first">Репроекция слоя из географической в проецированную систему отсчёта координат (СОК).</p>
+</li>
+<li><p class="first">Просмотр статистики значений атрибута слоя.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Ссылка на этот заголовок">¶</a></h2>
-<p><a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/railroads/">Natural Earth</a>
-has a public domain railroads dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads_north_america.zip">North America supplement</a>
-zip file from the portal.</p>
+<h2>Получить данные<a class="headerlink" href="#get-the-data" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/railroads/">Natural Earth</a> имеет публичный пакет данных о железных дорогах. Скачайте <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads_north_america.zip">архив северноамериканской части</a> с портала.</p>
 <p>For convenience, the version of railroad dataset used in this tutorial can be
 downloaded directly from the links below:</p>
 <p>Download <a class="reference download internal" href="../_downloads/ne_10m_railroads_north_america.zip"><tt class="xref download docutils literal"><span class="pre">North</span> <span class="pre">America</span> <span class="pre">supplement</span></tt></a></p>
 <p>Data Source <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Процедура<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
 <ol class="arabic simple">
-<li>Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Перейдите в <em class="menuselection">Слой ‣ Добавить векторный слой</em>.</p>
+</li>
 </ol>
 <img alt="../_images/114.png" class="align-center" src="../_images/114.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.zip</span></tt> file and click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Найдите скачанный архив <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.zip</span></tt> и нажмите <em class="guilabel">ОК</em>.</p>
+</li>
 </ol>
 <img alt="../_images/23.png" class="align-center" src="../_images/23.png" />
 <ol class="arabic simple" start="3">
-<li>In the <em class="guilabel">Select layers to add...</em> dialog, choose
-<tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.shp</span></tt> layer.</li>
+<li><p class="first">В окне <em class="guilabel">Выберите слои для добавления</em> выберите слой <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.shp</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/33.png" class="align-center" src="../_images/33.png" />
 <ol class="arabic simple" start="4">
-<li>Once the layer is loaded, you will notice that the layer has lines
-representing railroads for all of North America. Since we want to calculate
-line lengths only for United States railroads, we need to select the lines
-that fall in the United States. Right-click on the layer and select
-<em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Как только слой загрузится, Вы увидите линию, показывающую железные дороги на территории Северной Америки. Так как мы хотим посчитать длину только железных дорог США, нам нужно выбрать линии, находящиеся в США. Щёлкните правой кнопкой мыли по слою и выберите <em class="guilabel">Открыть таблицу атрибутов</em>.</p>
+</li>
 </ol>
 <img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
 <ol class="arabic simple" start="5">
-<li>The layer has an attribute called <em class="guilabel">sov_a3</em>. This is the 3 letter
-code for the country that a particular feature falls in. We can use the
-value of this attribute to select features that are in USA.</li>
+<li><p class="first">У этого слоя есть атрибут <em class="guilabel">sov_a3</em>. Это трёхзначный код страны, в которой находится элемент. Мы может использовать этот атрибут, чтобы выбрать элементы, находящиеся в США.</p>
+</li>
 </ol>
 <img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
 <ol class="arabic simple" start="6">
-<li>In the <em class="guilabel">Attribute Table</em> window, click the <em class="guilabel">Select
-features using an expression</em> button.</li>
+<li><p class="first">В окне <em class="guilabel">Таблица атрибутов</em> нажмите на кнопку <em class="guilabel">Выбрать элементы по выражению</em>.</p>
+</li>
 </ol>
 <img alt="../_images/63.png" class="align-center" src="../_images/63.png" />
 <ol class="arabic simple" start="7">
-<li>A new dialog <em class="guilabel">Select By Expression</em> will open. Find the attribute
-<em class="guilabel">sov_a3</em> under <em class="guilabel">Fields and Values</em> in the
-<em class="guilabel">Functions list</em> section. Double-click on it to add it to the
-<em class="guilabel">Expression</em> text area. Complete the expression by typing in
-<tt class="docutils literal"><span class="pre">&quot;sov_a3&quot;</span> <span class="pre">=</span> <span class="pre">'USA'</span></tt>. Click <em class="guilabel">Select</em> followed by
-<em class="guilabel">Close</em>.</li>
+<li><p class="first">Откроется новое окно <em class="guilabel">Выбор по выражению</em>. Найдите атрибут <em class="guilabel">sov_a3</em> под <em class="guilabel">Поля и значения</em> в секции <em class="guilabel">Список функций</em>. Дважды кликните по нему, чтобы добавить его в поле <em class="guilabel">Выражение</em>. Завершите выражение, написав <tt class="docutils literal"><span class="pre">&quot;sov_a3&quot;</span> <span class="pre">=</span> <span class="pre">'USA'</span></tt>. Нажмите <em class="guilabel">Выбрать</em> и затем <em class="guilabel">Закрыть</em>.</p>
+</li>
 </ol>
 <img alt="../_images/73.png" class="align-center" src="../_images/73.png" />
 <ol class="arabic simple" start="8">
-<li>Back in the main QGIS window, you will see that all lines that fall in USA
-are selected and appear in yellow.</li>
+<li><p class="first">В основном окне QGIS вы увидите, что линии внутри США выделились и окрасились в жёлтый.</p>
+</li>
 </ol>
 <img alt="../_images/83.png" class="align-center" src="../_images/83.png" />
 <ol class="arabic simple" start="9">
-<li>Now let&#8217;s save our selection to a new shapefile. Right-click on the
-<tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> layer and select <em class="guilabel">Save
-Selection As...</em>.</li>
+<li><p class="first">Теперь давайте сохраним наше выделение в новый файл формы. Щёлкните правой кнопкой мыши по слою <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> и выберите <em class="guilabel">Сохранить выделение как...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/93.png" class="align-center" src="../_images/93.png" />
 <ol class="arabic simple" start="10">
-<li>Click <em class="guilabel">Browse</em> and name the output file as <tt class="docutils literal"><span class="pre">usa_railroads.shp</span></tt>.
-We also want to change the CRS of the layer. Click on <em class="guilabel">Browse</em>
-next to <em class="guilabel">CRS</em>.</li>
+<li><p class="first">Нажмите <em class="guilabel">Обзор</em> и назовите выходной файл <tt class="docutils literal"><span class="pre">usa_railroads.shp</span></tt>. Мы также хотим изменить СОК слоя. Нажмите <em class="guilabel">Обзор</em> рядом с <em class="guilabel">СОК</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Примечание</p>
-<p class="last">The built-in functions that use a feature&#8217;s geometry for calculation use the
-units of the layer&#8217;s CRS. Geographic Coordinate Reference System(CRS) such
-as <em>EPSG:4326</em> have <strong>degrees</strong> as units - so the length of the feature
-would be in <strong>degrees</strong> and area in <strong>square degrees</strong> - which is
-meaningless. You need to use a Projected Coordinate Reference System with
-units of <strong>meters</strong> or <strong>feet</strong> to perform such calculations.</p>
+<p class="last">Встроенные функции, использующие геометрические элементы, используют единицы измерения СОК слоя. Географические системы отсчёта координат(СОК), такие как <em>EPSG:4326</em> используют <strong>градусы</strong>, т.е. длина элементов была бы в <strong>градусах</strong>, а площадь - в <strong>квадратных градусах</strong>, что довольно бессмысленно. Вам понадобится проецированная система отсчёта координат, использующая <strong>метры</strong> или <strong>футы</strong> для подсчёта.</p>
 </div>
 <img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
 <ol class="arabic simple" start="11">
-<li>Since we are interested in calculating length, let’s select an equidistance
-projection. Type <em class="guilabel">north america equ</em> in the <em class="guilabel">Filter</em>
-search box. In the results pane below, select
-<em class="guilabel">North_America_Equidistant_Conic EPSG:102010</em> as the CRS. Click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Так как нам важна лишь длина, давайте выберем равноудалённую проекцию. Напишите <em class="guilabel">north america equ</em> в поле <em class="guilabel">Фильтр</em>. В списке результатов выберите <em class="guilabel">North_America_Equidistant_Conic EPSG:102010</em> в качестве СОК. Нажмите <em class="guilabel">ОК</em>.</p>
+</li>
 </ol>
 <img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
 <ol class="arabic simple" start="12">
@@ -380,7 +359,7 @@ absence of such attribute and as an approximation of actual line lengths.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Jul 19, 2014.<br/>
+      Обновлено: Jul 20, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

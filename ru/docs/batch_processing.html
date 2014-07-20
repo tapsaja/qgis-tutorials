@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Batch Processing using Processing Framework &mdash; QGIS Tutorials and Tips</title>
+    <title>Выполнение пакетных файлов с помощью среды обработки &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -88,7 +88,7 @@
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Основная стилизация векторного слоя</a></li>
-<li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calculating Line Lengths and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Подсчёт длины линий и статистики</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
@@ -103,7 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Batch Processing using Processing Framework</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Выполнение пакетных файлов с помощью среды обработки</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
@@ -189,162 +189,130 @@
       
 
   <div class="section" id="batch-processing-using-processing-framework">
-<h1>Batch Processing using Processing Framework<a class="headerlink" href="#batch-processing-using-processing-framework" title="Ссылка на этот заголовок">¶</a></h1>
+<h1>Выполнение пакетных файлов с помощью среды обработки<a class="headerlink" href="#batch-processing-using-processing-framework" title="Ссылка на этот заголовок">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/batch_processing_a4.pdf">A4</a> <a class="reference external" href="../pdf/batch_processing_letter.pdf">Letter</a> ]</p>
-<p>QGIS 2.0 introduced a new concept called <strong>Processing Framework</strong>. Previously
-known as <strong>Sextante</strong>, the Processing Framework provides an environment within
-QGIS to run native and third-party algorithms for processing data. It contains
-a nice batch processing interface that allows one to execute an algorithm on
-several layers easily. Batch processing is a useful tool that can save manual
-effort and help you automate repetitive tasks.</p>
+<p>QGIS 2.0 представляет новую концепцию: <strong>Среда обработки</strong>. Ранее известная как <strong>Секстанта</strong>, Среда обработки предоставляет среду QGIS, которая может выполнять алгоритмы обработки данных. Она содержит удобный интерфес, исполняющий пакетные файлы и позволяющий легко использовать алгоритмы на несколько слоёв. Пакетные файлы полезны, если Вы хотите автоматизировать повторяющиеся задачи.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
-<p>We will take several global vector layers and clip them to the extent of Africa
-in a single batch command.</p>
+<h2>Обзор задачи<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Мы возьмём несколько глобальных векторных слоёв и обрежем их до Африки одним пакетным файлом.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>Другие навыки, которые Вы узнаете<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
 <ul class="simple">
-<li>Dissolve (merge) polygons from a layer that have the same attribute.</li>
+<li><p class="first">Соединять полигоны одного слоя с одинаковым атрибутом.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Ссылка на этот заголовок">¶</a></h2>
-<p><a class="reference external" href="http://naturalearthdata.com">Natural Earth</a> has several global vector
-layers. Download the following layers</p>
+<h2>Получить данные<a class="headerlink" href="#get-the-data" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a class="reference external" href="http://naturalearthdata.com">Natural Earth</a> имеет несколько глобальных векторных слоёв. Скачайте следующие слои:</p>
 <ul class="simple">
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - Countries</a></li>
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads.zip">Railroads</a></li>
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_ports.zip">Ports</a></li>
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip">Airpots</a></li>
+<li><p class="first"><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - Страны</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads.zip">Железные дороги</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_ports.zip">Порты</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip">Аэропорты</a></p>
+</li>
 </ul>
-<p>Once downloaded, unzip and extract all the shapefiles in a single folder.</p>
-<p>Data Source: <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
+<p>После скачивания распакуйте содержимое всех архивов в одну папку.</p>
+<p>Источник данных: <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Процедура<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
 <ol class="arabic simple">
-<li>Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Перейдите в <em class="menuselection">Слой ‣ Добавить векторный слой</em>.</p>
+</li>
 </ol>
 <img alt="../_images/112.png" class="align-center" src="../_images/112.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded Admin 0 Countries shapefile
-<tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt> and click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Найдите распакованный ранее файл <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt> и нажмите <em class="guilabel">Открыть</em>.</p>
+</li>
 </ol>
 <img alt="../_images/22.png" class="align-center" src="../_images/22.png" />
 <ol class="arabic simple" start="3">
-<li>As our task is to clip the global layers to the boundary of Africa, we need
-to first prepare a layer containg a polygon for the entire continent. The
-countries layer has an attribute called <strong>CONTINENT</strong>. We can use a
-geoprocessing concept called <em>Dissolve</em> to merge all countries that have the
-same continent value and merge them to a single polygon.</li>
+<li><p class="first">Так как мы хотим обрезать глобальные слои только в Африке, сначала нам нужно сделать слой, содержащий полигон с континентом.  Слой со странами имеет атрибут, называющийся <strong>CONTINENT</strong>. Мы можем использовать инструмент <em>Роспуск</em>, чтобы слить все страны одного континента в один полигон.</p>
+</li>
 </ol>
 <img alt="../_images/32.png" class="align-center" src="../_images/32.png" />
 <ol class="arabic simple" start="4">
-<li>Open the <em class="guilabel">Dissolve</em> tool from <em class="menuselection">Vector ‣
-Geoprocessing Tools ‣ Dissolve</em>.</li>
+<li><p class="first">Откройте <em class="guilabel">Роспуск</em> из меню <em class="menuselection">Вектор ‣ Инструменты геообработки ‣ Роспуск</em>.</p>
+</li>
 </ol>
 <img alt="../_images/42.png" class="align-center" src="../_images/42.png" />
 <ol class="arabic simple" start="5">
-<li>Select <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> as the <em class="guilabel">Input vector layer</em>.
-The <em class="guilabel">Dissolve field</em> would be <tt class="docutils literal"><span class="pre">CONTINENT</span></tt>. Name the output file
-as <tt class="docutils literal"><span class="pre">continents.shp</span></tt> and  check the box next to <em class="guilabel">Add result to
-convas</em>.</li>
+<li><p class="first">Выберите <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> как <em class="guilabel">Входной векторный слой</em>. <em class="guilabel">Поле роспуска</em> должно быть <tt class="docutils literal"><span class="pre">CONTINENT</span></tt>. Назовите выходной файл <tt class="docutils literal"><span class="pre">continents.shp</span></tt> и отметьте галочку <em class="guilabel">Добавить результат на холст</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Примечание</p>
-<p class="last">If you want to merge <strong>ALL</strong> polygons regardless of their attributes, you
-can select <em class="guilabel">&#8211; Dissolve All &#8211;</em> as the <em class="guilabel">Dissolve field</em>.
-This will combine all polygons in the layer and give you a single aggregate
-polygon.</p>
+<p class="last">Если Вы хотите слить <strong>ВСЕ</strong> полигоны независимо от их атрибутов, выберите <em class="guilabel">&#8211; Роспуск всего &#8211;</em> как <em class="guilabel">Поле роспуска</em>. Это скомбинирует все полигоны в один слой и предоставит вам один цельный полигон.</p>
 </div>
 <img alt="../_images/52.png" class="align-center" src="../_images/52.png" />
 <ol class="arabic simple" start="6">
-<li>The dissolve processing may take a while. Once the process finishes, you
-will see the new <tt class="docutils literal"><span class="pre">continent</span></tt> layer added to QGIS. Use the
-<em class="guilabel">Select Single Feature</em> tool from the toolbar and click on Africa
-to select the polygon representing the continent.</li>
+<li><p class="first">Процесс роспуска может занять некоторое время. По окончанию Вы увидите новый слой <tt class="docutils literal"><span class="pre">continent</span></tt>, добавленный в QGIS. Используйте инструмент <em class="guilabel">Выбор одного элемента</em> с панели инструментов и нажмите на Африку, чтобы выбрать полигон континента.</p>
+</li>
 </ol>
 <img alt="../_images/62.png" class="align-center" src="../_images/62.png" />
 <ol class="arabic simple" start="7">
-<li>Right-click the <tt class="docutils literal"><span class="pre">continents</span></tt> layer and select <em class="guilabel">Save Selection
-As...</em>.</li>
+<li><p class="first">Щёлкните правой кнопкой мыши по слою <tt class="docutils literal"><span class="pre">continents</span></tt> и выберите <em class="guilabel">Сохранить выделение как...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/72.png" class="align-center" src="../_images/72.png" />
 <ol class="arabic simple" start="8">
-<li>Name the output file as <tt class="docutils literal"><span class="pre">africa.shp</span></tt>. Since we are only interested in the
-shape of the continent and not any attributes, you may check the
-<em class="guilabel">Skip attribute creation</em>. Make sure the <em class="guilabel">Add saved file
-to map</em> box is checked and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Назовите выходной файл <tt class="docutils literal"><span class="pre">africa.shp</span></tt>. Так как нам важна лишь форма, а не атрибуты, можете поставить галочку у <em class="guilabel">Пропустить создание атрибутов</em>. Убедитесь, что галочка <em class="guilabel">Добавить сохранённый файл на карту</em> отмечена и нажмите <em class="guilabel">ОК</em>.</p>
+</li>
 </ol>
 <img alt="../_images/82.png" class="align-center" src="../_images/82.png" />
 <ol class="arabic simple" start="9">
-<li>Now you will have the <tt class="docutils literal"><span class="pre">africa</span></tt> layer loaded in QGIS containing a single
-polygon for the entire continent. Now, it&#8217;s time to start our batch clip
-process. Open <em class="menuselection">Processing ‣ Toolbox</em>.</li>
+<li><p class="first">Теперь у Вас в QGIS появится слой <tt class="docutils literal"><span class="pre">africa</span></tt>, содержащий полигон всего континента. Настало время обрезки. Откройте меню <em class="menuselection">Обработка ‣ Инструменты</em>.</p>
+</li>
 </ol>
 <img alt="../_images/92.png" class="align-center" src="../_images/92.png" />
 <ol class="arabic simple" start="10">
-<li>Browse all available algorithms and find the <em class="guilabel">Clip</em> tool from
-<em class="menuselection">QGIS geoalgorithms ‣ Vector overlay tools ‣ Clip</em>. You
-may also use the <em class="guilabel">Search</em> box to easily find the algorithm as
-well.</li>
+<li><p class="first">Среди доступных алгоритмов найдите <em class="guilabel">Обрезка</em> из меню <em class="menuselection">Геоалгоритмы QGIS ‣ Инструменты векторного наложения ‣ Обрезка</em>. Вы также можете использовать <em class="guilabel">Поиск</em>, чтобы легче найти алгоритм.</p>
+</li>
 </ol>
 <img alt="../_images/102.png" class="align-center" src="../_images/102.png" />
 <ol class="arabic simple" start="11">
-<li>Right-click the <em class="guilabel">Clip</em> algorithm and select <em class="guilabel">Execure as
-batch process</em>.</li>
+<li><p class="first">Щёлкните правой кнопкой мыши на алгоритм <em class="guilabel">Обрезка</em> и выберите <em class="guilabel">Выполнить как пакетный файл</em>.</p>
+</li>
 </ol>
 <img alt="../_images/113.png" class="align-center" src="../_images/113.png" />
 <ol class="arabic simple" start="12">
-<li>In the <em class="guilabel">Batch Processing</em> dialog, the first tab is
-<em class="guilabel">Parameters</em> where we define out inputs. Click the
-<em class="guilabel">...</em> next to the first row in the <em class="guilabel">Input layer</em> column.</li>
+<li><p class="first">В окне <em class="guilabel">Обработка пакетного файла</em>, на первой вкладке <em class="guilabel">Параметры</em> мы укажем входные данные. Нажмите на <em class="guilabel">...</em> рядом с первой строкой в столбце <em class="guilabel">Входной слой</em>.</p>
+</li>
 </ol>
 <img alt="../_images/122.png" class="align-center" src="../_images/122.png" />
 <ol class="arabic simple" start="13">
-<li>Browse to the directory containing the global transportation layers that
-you had downloaded. Hold the <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> key and select all the layers that
-you want to clip. You may also use <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> or <tt class="kbd docutils literal"><span class="pre">Ctrl-A</span></tt> to make
-multiple selection. Click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Проследуйте в папку, куда Вы распаковали все глобальные слои. Зажав кнопку <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>, выберите все слои, которые хотите обрезать. Вы также можете использовать <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> или <tt class="kbd docutils literal"><span class="pre">Ctrl+A</span></tt>, чтобы сделать множественное выделение. Нажмите <em class="guilabel">Открыть</em>.</p>
+</li>
 </ol>
 <img alt="../_images/132.png" class="align-center" src="../_images/132.png" />
 <ol class="arabic simple" start="14">
-<li>You will notice that the <em class="guilabel">Input layer</em> columns will be
-auto-populated with all layers you had selected. You may use <em class="guilabel">Add
-row</em> button to add more rows and define more inputs. Next, we need to
-select the layer containing the boundary to clip our input layers. Click the
-<em class="guilabel">...</em> button for the first row and add the <tt class="docutils literal"><span class="pre">africa.shp</span></tt>
-<em class="guilabel">Clip layer</em>. Since the clip layer is the same for all our inputs,
-you can double-click the column header <em class="guilabel">Clip layer</em> and the same
-layer will be auto-filled for all the rows. Next, we need to define our
-outputs.  Click the <em class="guilabel">...</em> buton next to the first row in the
-<em class="guilabel">Clipped</em> column.</li>
+<li><p class="first">Вы заметите, что столбцы <em class="guilabel">Входной слой</em> будут автоматически заполнены выбранными слоями. Вы можете использовать кнопку <em class="guilabel">Добавить строку</em>, чтобы включить больше файлов. Нажмите на <em class="guilabel">...</em> возле первой строки и добавьте <tt class="docutils literal"><span class="pre">africa.shp</span></tt> как <em class="guilabel">Слой для обрезки</em>. Так как слой для обрезки везде одинаковый, Вы можете просто дважды щёлкнуть название столбца <em class="guilabel">Слой для обрезки</em>, и он будет скопирован во все строки. Теперь нам нужно указать имена выходных файлов. Нажмите на <em class="guilabel">...</em> рядом с первой строкой в столбце <em class="guilabel">Результат</em>.</p>
+</li>
 </ol>
 <img alt="../_images/142.png" class="align-center" src="../_images/142.png" />
 <ol class="arabic simple" start="15">
-<li>Browse the the directory where you want your output layers. Type the
-filename as <tt class="docutils literal"><span class="pre">output_</span></tt> and click <em class="guilabel">Save</em>.</li>
+<li><p class="first">Перейдите в папку, куда вы хотите сохранить выходной слой. В качестве имени задайте <tt class="docutils literal"><span class="pre">output_</span></tt> и нажмите <em class="guilabel">Сохранить</em>.</p>
+</li>
 </ol>
 <img alt="../_images/152.png" class="align-center" src="../_images/152.png" />
 <ol class="arabic simple" start="16">
-<li>You will see a new <em class="guilabel">Autofill settings</em> dialog pop up. Select
-<em class="guilabel">Fill with parameter values</em> as the <em class="guilabel">Autofill mode</em>.
-Select <em class="guilabel">Parameter to use</em> as <em class="guilabel">Input layer</em>. This
-setting will add the input file name to the output along with the specified
-<tt class="docutils literal"><span class="pre">output_</span></tt> filename. This is important to ensure all the output files have
-unique names and they do not overwrite each other.</li>
+<li><p class="first">У Вас откроется новое окно <em class="guilabel">Настройки автозаполнения</em>. Выберите <em class="guilabel">Заполнить значениями параметра</em> как <em class="guilabel">Режим автозаполнения</em> и <em class="guilabel">Используемый параметр</em> как <em class="guilabel">Входной слой</em>. Эта настройка добавит имя входного файла в выходной файл вместе с заданным ранее <tt class="docutils literal"><span class="pre">output_</span></tt>. Это важно, чтобы выходные файлы имели уникальные имена и не переписывали друг друга.</p>
+</li>
 </ol>
 <img alt="../_images/162.png" class="align-center" src="../_images/162.png" />
 <ol class="arabic simple" start="17">
-<li>Now we are ready to start the batch procesing. Click <em class="guilabel">Run</em>.</li>
+<li><p class="first">Теперь мы готовы выполнить пакетный файл. Нажмите <em class="guilabel">Выполнить</em>.</p>
+</li>
 </ol>
 <img alt="../_images/172.png" class="align-center" src="../_images/172.png" />
 <ol class="arabic simple" start="18">
-<li>The clip algorithm will run for each of the inputs and create output files
-are we have specified. Once the batch process finishes, you will see the
-layers added to QGIS canvas. As you will notice, all the global layers are
-properly clipped to the continent boundary that we had specified.</li>
+<li><p class="first">Алгоритм обрезки будет выполнен для каждого из входных файлов и создаст указанный выходной файл для каждого. Когда процесс будет завершён, Вы увидите новые слои в QGIS. В них все глобальные слои будут правильно обрезаны так, как Вы указали.</p>
+</li>
 </ol>
 <img alt="../_images/182.png" class="align-center" src="../_images/182.png" />
 </div>
@@ -370,7 +338,7 @@ properly clipped to the continent boundary that we had specified.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Jul 19, 2014.<br/>
+      Обновлено: Jul 20, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

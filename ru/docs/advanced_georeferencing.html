@@ -88,7 +88,7 @@
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Основная стилизация векторного слоя</a></li>
-<li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calculating Line Lengths and Statistics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Подсчёт длины линий и статистики</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
@@ -103,7 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Выполнение пакетных файлов с помощью среды обработки</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
@@ -192,61 +192,60 @@
 <h1>Привязка аэрофотоснимков<a class="headerlink" href="#georeferencing-aerial-imagery" title="Ссылка на этот заголовок">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/advanced_georeferencing_a4.pdf">A4</a>
 <a class="reference external" href="../pdf/advanced_georeferencing_letter.pdf">Letter</a> ]</p>
-<p>В учебнике: doc:<cite>Основы Привязка</cite> мы рассмотрели основной процесс географической привязки в QGIS. Этот метод участвует чтения координат из отсканированного карте и ввода его вручную. Много раз, хотя вы не можете иметь координаты, напечатанные на вашей карте, или вы пытаетесь привязку изображения. В этом случае, вы можете использовать другой привязками источник данных в качестве входных данных. В этом уроке вы узнаете, как использовать существующие открытые источники данных в процессе привязка.</p>
+<p>В учебнике <tt class="xref doc docutils literal"><span class="pre">Основы</span> <span class="pre">Привязки</span></tt> мы рассмотрели основной процесс географической привязки в QGIS. Этот метод включает чтение координат с Вашей отсканированной карты и его ручной ввод. Но часто у Вас не будет координат на карте, либо Вы захотите привязать изображение. В этом случае Вы можете использовать другой источник привязки в качестве входных данных. В этом уроке Вы узнаете, как использовать существующие открытые источники данных в процессе привязки.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Обзор задачи<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Мы будем привязку высокого разрешения баллон-образы с использованием опорных координат из открыто улица Карта.</p>
+<p>Мы привяжем воздушный снимок высокого разрешения к местоположению, используя опорные координаты из OpenStreetMap.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Другие навыки вы узнаете<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>Другие навыки, которые Вы узнаете<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
 <ul class="simple">
-<li><p class="first">Скачивая супер снимки с высоким разрешением общественным достоянием</p>
+<li><p class="first">Скачивание публичных снимков очень высокого разрешения.</p>
 </li>
-<li><p class="first">Использование открыто Слои плагин в QGIS.</p>
+<li><p class="first">Использование модуля OpenLayers в QGIS.</p>
 </li>
-<li><p class="first">Преобразование координат между различными проекции с использованием <strong>cs2cs</strong> программы командной строки.</p>
+<li><p class="first">Преобразование между двумя различными системами координат, используя <strong>cs2cs</strong></p>
 </li>
-<li>Using an existing georeferenced layer to input GCP points in the Georeferencer
-tool.</li>
-<li><p class="first">Установка значения без данных пользовательского для слоем.</p>
+<li><p class="first">Использование существующих привязанных слоёв для добавления опорных точек.</p>
+</li>
+<li><p class="first">Установка пользовательского пустого значения для слоя.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Получить данные<a class="headerlink" href="#get-the-data" title="Ссылка на этот заголовок">¶</a></h2>
-<p>В этом уроке мы будем использовать некоторые великолепные кайт и воздушный шар образы, собранные <a class="reference external" href="http://publiclaboratory.org/archive">Общественной лаборатории</a>. Они делают с географической привязкой версии изображений также доступны, но мы будем скачать без привязками JPG изображение и идти через процесс привязку его в QGIS. Если вам нравится образность, которую они оказывают, вы можете <a class="reference external" href="http://google-latlong.blogspot.in/2012/04/balloon-and-kite-imagery-in-google.html">изучить его</a> в Google Планета Земля, как хорошо.</p>
-<p>Загрузите изображение JPG Парка <a class="reference external" href="http://publiclaboratory.org/map/washington-square-park-new-york-new-york/2012-10-01">Washington Square, Нью-Йорк</a>. Вы можете щелкнуть правой кнопкой мыши на кнопке JPG и выберите: guilabel: <cite>Сохранить ссылку как ...</cite>.</p>
+<h2>Требуемые материалы<a class="headerlink" href="#get-the-data" title="Ссылка на этот заголовок">¶</a></h2>
+<p>В этом уроке мы будем использовать великолепные снимки с воздушных змеев и шаров, сделанных <a class="reference external" href="http://publiclaboratory.org/archive">Общественной лабораторией</a>. Они также делают привязанные версии изображений, но мы возьмём непривязанное JPG изображение и пройдём процесс привязки в QGIS. Если вам нравятся предоставленные снимки, вы можете <a class="reference external" href="http://google-latlong.blogspot.in/2012/04/balloon-and-kite-imagery-in-google.html">посмотреть больше снимков</a> в Google Планета Земля.</p>
+<p>Загрузите JPG изображение <a class="reference external" href="http://publiclaboratory.org/map/washington-square-park-new-york-new-york/2012-10-01">Вашингтон-Сквер-парка в Нью-Йорке</a>. Вы можете щелкнуть правой кнопкой мыши на кнопке JPG и выбрать <em class="guilabel">Сохранить ссылку как...</em>.</p>
 </div>
 <div class="section" id="procedure">
-<h2>процедура<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Процедура<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">Для этого урока, мы будем использовать открыто улица Карта слой в качестве опорного слоя. Установите открытом Слои плагин от: menuselection:<cite>Плагины &#8211;&gt; Управление и установка плагинов &#8211;&gt; Получить другие</cite>. См. <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> для получения дополнительной информации об использовании плагинов в QGIS.</p>
+<li><p class="first">Для этого урока мы будем использовать слой OpenStreetMap в качестве опорного слоя. Установите модуль OpenLayers из меню <em class="menuselection">Модули ‣ Управление модулями...</em>. См. <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> для получения дополнительной информации об использовании модулей в QGIS.</p>
 </li>
 </ol>
 <img alt="../_images/1.png" class="align-center" src="../_images/1.png" />
 <ol class="arabic simple" start="2">
-<li><p class="first">После установки, перейдите по ссылке <a href="#id1"><span class="problematic" id="id2">:menuselection:`Плагины &#8211;&gt; Открыть Слои Плагин &#8211;&gt; Добавить Открыть улица
-Карта слой `. Это добавит слой предварительно оказанные плитки, созданный из `Открыть улица Карта данных &lt;http://www.openstreetmap.org/&gt;`_</span></a>.</p>
+<li><p class="first">После установки перейдите в <em class="menuselection">Плагины ‣ Плагин OpenLayers ‣ Добавить слой OpenStreetMap</em>. Это добавит слой предварительно обработанных плиток, созданных из <a class="reference external" href="http://www.openstreetmap.org/">данных OpenStreetMap</a>.</p>
 </li>
 </ol>
 <img alt="../_images/2.png" class="align-center" src="../_images/2.png" />
 <ol class="arabic simple" start="3">
-<li><p class="first">Теперь у вас есть открыто улица Слой Карта загружалась в QGIS. Примечание справочной системы координат (CRS) для этого слоя. Он расположен как EPSG 3857 Псевдо Mercator. Это важно отметить, поскольку координаты мы заключить из этого слоя будет в этом CRS.</p>
+<li><p class="first">Так вы загрузили слой OpenStreetMap в QGIS. Заметьте, что система отсчёта координат (СОК) для это слоя установлена на EPSG 3857 Pseudo Mercator. Это важно, так как координаты в этом слое будут в этой СОК.</p>
 </li>
 </ol>
 <img alt="../_images/3.png" class="align-center" src="../_images/3.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">Теперь задача состоит в том, чтобы найти общую близости от области, которую мы пытаемся привязку. Вы можете просто использовать панорамирования и масштабирования инструменты, чтобы найти ту область на открытия улица Карта слой. Но мы можем воспользоваться этой возможностью, чтобы продемонстрировать еще один инструмент, который может помочь вам в будущем. Мы знаем, что образ мы скачали для парка Вашингтон-сквер в Нью-Йорке. Если вы будете искать для этого месте, вы сможете найти на странице Википедии для него. Координаты для парка там указаны.</p>
+<li><p class="first">Теперь задача состоит в том, чтобы найти общую близость к области, к которой мы выполняем привязку. Вы можете просто использовать перемещение и масштабирование, чтобы найти нужную область на OpenStreetMap. Но есть ещё один инструмент, который может вам помочь. Мы знаем, что у нас изображение Вашингтон-Сквер-парка. Если Вы поищете это место, Вы сможете найти его страницу на Википедии. Там указаны его координаты.</p>
 </li>
 </ol>
 <img alt="../_images/4.png" class="align-center" src="../_images/4.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">Вы заметите, что координаты указаны в градусах / минуты / секунды и широта и долгота. Но так как наш слой находится в проекции Меркатора, нам понадобится Меркатор координаты, чтобы найти парк. Вот где это инструмент командной строки называется ** cs2cs ** попадется под руку. Если у вас установлен QGIS от OSGeo4W установки, вы будете уже установлена ​​в вашей системе. В Linux и Mac тоже, это поставляется с предварительно установленной с QGIS. Запустите окно терминала и введите `` cs2cs `` проверить, если он доступен. Окна пользователи могут найти терминал в: меню выбора: <cite>Пуск -&gt; OSGeo4W -&gt; MSYS</cite>.</p>
+<li><p class="first">Вы можете заметить, что координаты указаны в градусах/минутах/секунд и являются широтой и долготой. Но так как наш слой находится в проекции Mercator&#8217;а, нам будут нужны координаты Mercator&#8217;а, чтобы определить местонахождение парка. С этим может помочь инструмент командной-строки <strong>cs2cs</strong>. Если вы установили QGIS установщиком OSGeo4W, он у вас уже есть. На Linux и Mac он тоже идёт вместе с QGIS. Откройте терминал и напишите <tt class="docutils literal"><span class="pre">cs2cs</span></tt>, чтобы проверить его наличие. Пользователи Windows могут найти терминал в <em class="menuselection">Пуск ‣ OSGeo4W ‣ MSYS</em>.</p>
 </li>
 </ol>
 <img alt="../_images/5.png" class="align-center" src="../_images/5.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">После того, как вы убедились, что инструмент cs2cs существует в вашей системе, пора конвертировать из широту и долготу в Меркатор координаты. Путь этот инструмент работает, что вам нужно указать: графический интерфейс пользователя этикетка : <cite>источник</cite> и: графический интерфейс пользователя этикетка : <cite>назначения</cite> CRS. Определение CRS может быть <a class="reference external" href="http://trac.osgeo.org/proj/wiki/GenParms">PROJ 4 строка</a> или <a class="reference external" href="http://www.epsg-registry.org/">EPSG код</a> . Так как мы уже знаем, код EPSG для выезда входе и выходе CRS, мы будем использовать этот. Самый простой способ использовать инструмент является поставка ввести координаты на самой командной строке. Обратите внимание, что инструмент принимает координаты в порядке <cite>XY</cite>, поэтому мы должны ввести <cite>Долгота Широта</cite>. Введите следующую команду в терминале и нажмите вводить. Обратите внимание, что мы должны избежать кавычки (&#8221;) с обратной косой черты (). После того, как вы нажмете введите, вы увидите тоже</p>
+<li><p class="first">После того, как вы убедились, что инструмент cs2cs существует в вашей системе, пора конвертировать широту и долготу в координаты Mercator. Для работы этого инструмента вам нужно указать <em class="guilabel">исходную</em> и <em class="guilabel">целевую</em> СОК. СОК может быть записана как <a class="reference external" href="http://trac.osgeo.org/proj/wiki/GenParms">строка PROJ4</a> или <a class="reference external" href="http://www.epsg-registry.org/">EPSG код</a>. Так как мы уже знаем код EPSG для наших СОК, мы будем использовать второй вариант. Самый простой способ использовать инструмент - ввести координаты прямо в командную строку. Обратите внимание, что инструмент принимает координаты в порядке <cite>XY</cite>, поэтому мы должны ввести <cite>Долготу Широту</cite>. Введите следующую команду в терминале и нажмите Ввод. Обратите внимание, что мы должны избегать кавычки (&#8221;) и обратную косую черту (\). После того, как Вы нажмёте Ввод, Вы увидите, как cs2cs обработает координаты и выдаст координаты в СОК EPSG 3857.</p>
 </li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>echo &quot;-73d59&#39;51\&quot; 40d43&#39;51\&quot;&quot; | cs2cs +init=EPSG:4326 +to +init=EPSG:3857
@@ -256,69 +255,67 @@ tool.</li>
 </div>
 <img alt="../_images/6.png" class="align-center" src="../_images/6.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">Скопируйте эти координаты и переключиться на QGIS. В нижней части окна QGIS, вы увидите текстовое поле с надписью Координаты. Введите координаты там в X, Y форме. Нажмите клавишу Enter. Вы увидите карту сдвинуть немного, но не увеличить. Для увеличения в область, выберите 1:2500 масштаб по шкале раскрывающемся списке рядом с полем координат и нажмите вводить.</p>
+<li><p class="first">Скопируйте эти координаты и переключитесь на QGIS. В нижней части окна QGIS Вы увидите текстовое поле с надписью &#8220;Координаты&#8221;. Введите туда X,Y координаты и нажмите Ввод. Вы увидите, как карта сдвинулась, но не увеличилась. Для увеличения области, выберите масштаб 1:25000 в выпадающем меню масштаба (рядом с координатами) и нажмите Ввод.</p>
 </li>
 </ol>
 <img alt="../_images/7.png" class="align-center" src="../_images/7.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">Вуаля! Вы сейчас видите парка Вашингтон-сквер область на холсте. Теперь настало время, чтобы начать привязку. Запустите <strong>геопривязки</strong> от: menuselection:<cite>Растр &#8211;&gt; геопривязки &#8211;&gt; привязкой</cite>. Если вы не видите, что пункт меню, вам нужно будет для того, чтобы: графический интерфейс этикетку: <cite>привязкой GDAL</cite> плагин от: menuselection:<cite>Плагины &#8211;&gt; Управление и установить Плагины -&gt; Установленные</cite>.</p>
+<li><p class="first">Вуаля! Теперь вы видите Вашингтон-Сквер-парк на вашем холсте. Настало время гео-привязки. Запустите <strong>геопривязчик</strong> из <em class="menuselection">Растр ‣ Геопривязчик ‣ Геопривязчик</em>. Если у вас нет этого пункта меню, включить плагин <em class="guilabel">Геопривязчик GDAL</em> из <em class="menuselection">Плагины ‣ Управление и установка плагинов ‣ Установленные</em>.</p>
 </li>
 </ol>
 <img alt="../_images/8.png" class="align-center" src="../_images/8.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">В: графический интерфейс этикетке:<cite>Геопривязки</cite> окна, перейдите по ссылке: menuselection:<cite>Файл &#8211;&gt; Открыть растр `. Перейдите к загруженному JPG файла и нажмите кнопку: графический интерфейс этикетку: `Открыть</cite>.</p>
+<li><p class="first">В окне <em class="guilabel">Геопривязчик</em>, перейдите в <em class="menuselection">Файл ‣ Открыть растровое изображение</em>. Найдите скачанное JPG изображение и нажмите <em class="guilabel">Открыть</em>.</p>
 </li>
 </ol>
 <img alt="../_images/9.png" class="align-center" src="../_images/9.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">В: графический интерфейс этикетке: <cite>координат Ссылка система выбора `, выберите :guilabel:</cite> EPSG: 3857 Псевдо Меркатор `</p>
+<li><p class="first">В :<cite>Выбор системы отсчёта координат</cite> выберите <em class="guilabel">EPSG:3857 Pseudo Mercator</em></p>
 </li>
 </ol>
 <img alt="../_images/10.png" class="align-center" src="../_images/10.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">Теперь нажмите на <em class="guilabel">кнопку Точка</em> Добавить на панели инструментов и выберите легко узнаваемый место на изображении. Уголки, пересечения, столбы и т.д. делают хорошие контрольных точек.</p>
+<li><p class="first">Теперь нажмите на <em class="guilabel">Добавить точку</em> на панели инструментов и выберите легко узнаваемое место на изображении. Углы, пересечения, столбы и т.п. хорошо подходят в качестве контрольных точек.</p>
 </li>
 </ol>
 <img alt="../_images/11.png" class="align-center" src="../_images/11.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">Как только вы нажмете на изображении в точке устройства управления, вы увидите всплывающее просьбой ввести координаты на карте. Нажмите кнопку: графический интерфейс этикетка: <cite>С карте холсте</cite>.</p>
+<li><p class="first">Как только Вы нажмёте на изображение в контрольной точке, Вы увидите всплывающее окно с просьбой ввести координаты на карте. Нажмите на кнопку <em class="guilabel">С карты-холста</em>.</p>
 </li>
 </ol>
 <img alt="../_images/12.png" class="align-center" src="../_images/12.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">Найти то же место в вашем опорного слоя, в Открыть улица Карта слой и нажмите там. Координаты являются автоматического заполнения с вашего Нажмите на карте холсте. Нажмите Ok. Точно так же, выбрать хотя бы 4 очка на изображении и добавить их координаты от опорного слоя.</p>
+<li><p class="first">Найдите то же место в Вашем опорном слое, т.е. слое OpenStreetMap, и нажмите туда. Координаты появятся автоматически от Вашего нажатия на карту-холст. Нажмите ОК. Так же выберите хотя бы 4 точки на изображении и добавьте их координаты из опорного слоя.</p>
 </li>
 </ol>
 <img alt="../_images/13.png" class="align-center" src="../_images/13.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">Теперь перейдите к: menuselection:<cite>Настройки &#8211;&gt; Настройки преобразования</cite>.</p>
+<li><p class="first">Теперь перейдите в <em class="menuselection">Настройки ‣ Настройки преобразования</em>.</p>
 </li>
 </ol>
 <img alt="../_images/14.png" class="align-center" src="../_images/14.png" />
 <ol class="arabic simple" start="15">
-<li><p class="first">Выберите режим, как показано ниже. Убедитесь, что вы: графический интерфейс
-<em class="guilabel">нагрузки в QGIS когда сделано кнопку</em> проверяется. Нажмите кнопку ОК. Вернуться в <em class="guilabel">геопривязки</em>, перейдите по ссылке :menuselection:
-<cite>Файл -&gt; Начать привязку</cite>. Это позволит начать процесс деформирования изображения с помощью опорных точек и создания целевой растр.</p>
+<li><p class="first">Выберите режим, показанный ниже. Убедитесь, что включена опция <em class="guilabel">Загрузить в QGIS по окончанию</em>. Нажмите ОК. В окне <em class="guilabel">Геопривязчик</em> перейдите в <em class="menuselection">Файл ‣ Начать геопривязку</em>. Это начнёт процесс деформации изображения, используя контрольные точки, и создания целевого растрового изображения.</p>
 </li>
 </ol>
 <img alt="../_images/15.png" class="align-center" src="../_images/15.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">Как только процесс завершится, вы увидите с привязками слой загружалась в QGIS. Если все прошло хорошо, вы увидите, что красиво наложить тха Открыть улица карта слой.</p>
+<li><p class="first">Как только процесс завершится, Вы увидите привязанный слой в QGIS. Если все прошло хорошо, Вы увидите, как он покрывает слой OpenStreetMap.</p>
 </li>
 </ol>
 <img alt="../_images/16.png" class="align-center" src="../_images/16.png" />
 <ol class="arabic simple" start="17">
-<li>To make our output look nicer, let’s remove the black and white no-data
-values. Right click on the image layer and choose <em class="guilabel">Properties</em>.</li>
+<li><p class="first">Чтобы наше изображение выглядело ещё лучше, давайте уберём белые и чёрные пиксели. Нажмите правой кнопкой мыши по слою с изображением и выберите <em class="guilabel">Свойства</em>.</p>
+</li>
 </ol>
 <img alt="../_images/17.png" class="align-center" src="../_images/17.png" />
 <ol class="arabic simple" start="18">
-<li><p class="first">Переключитесь на: графический интерфейс этикетке: вкладки <cite>Прозрачность</cite>. Мы хотим, чтобы указать, что любые черные или белые пиксели в изображении <cite>значения без данных</cite> и должны быть прозрачными. Вход 0 как: графический интерфейс этикетке: <cite>Нет значения данных</cite>. Кроме того, в: графический интерфейс этикетке: <cite>Пользовательские прозрачности опций</cite>, нажмите: графический интерфейс этикетку: кнопку <cite>+</cite> и добавить 255 как прозрачных пикселов для каждого диапазона и введите 100 в качестве: графический интерфейс этикетке: <cite>Процент прозрачным</cite>. Нажмите: графический интерфейс этикетку: <cite>OK</cite>.</p>
+<li><p class="first">Переключитесь на вкладку <em class="guilabel">Прозрачность</em>. Мы хотим указать, что любые белые или чёрные пиксели являются <cite>пустыми</cite> и должны быть прозрачными. Введите 0 в <em class="guilabel">Пустое значение</em>. Также, в <em class="guilabel">Пользовательские настройки прозрачности</em>, нажмите кнопку <em class="guilabel">+</em> и укажите 255 в качестве прозрачных пикселей. В поле <em class="guilabel">Процент прозрачности</em> введите 100. Нажмите <em class="guilabel">ОК</em>.</p>
 </li>
 </ol>
 <img alt="../_images/18.png" class="align-center" src="../_images/18.png" />
 <ol class="arabic simple" start="19">
-<li><p class="first">Теперь вы будет видеть ваше топографические изображения приятно накладывается на базовом уровне.</p>
+<li><p class="first">Теперь Вы будете видеть ваше геопривязанное изображение поверх основного слоя.</p>
 </li>
 </ol>
 <img alt="../_images/19.png" class="align-center" src="../_images/19.png" />
@@ -345,7 +342,7 @@ values. Right click on the image layer and choose <em class="guilabel">Propertie
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Jul 19, 2014.<br/>
+      Обновлено: Jul 20, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
