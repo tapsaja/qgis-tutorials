@@ -190,22 +190,22 @@
   <div class="section" id="basic-vector-styling">
 <h1>Noțiuni de bază despre stilizarea vectorilor<a class="headerlink" href="#basic-vector-styling" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/basic_vector_styling_a4.pdf">A4</a> <a class="reference external" href="../pdf/basic_vector_styling_letter.pdf">Letter</a> ]</p>
-<p>Pentru a crea o harta, trebuie sa stilizați datele GIS și să le prezentați într-o formă informativă din punct de vedere vizual. Există un număr mare de opțiuni disponibile în QGIS, care pot aplica diferite tipuri de simbologie datelor de bază. În acest tutorial, vom explora unele aspecte de bază ale stilizării.</p>
+<p>Pentru a crea o hartă, trebuie să stilizați datele GIS și să le prezentați într-o formă informativă din punct de vedere vizual. Există un număr mare de opțiuni disponibile în QGIS, pentru a aplica datelor de bază diferite tipuri de simbologie. În acest tutorial, vom explora câteva aspecte de bază ale stilizării.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
 <p>Vom stiliza un strat vectorial pentru a arăta speranța de viață în diferite țări ale lumii.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Alte abilități pe care le veți căpăta<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<h3>Alte competențe pe care le veți dobândi<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p class="first">Vezi tabelul de atribute al stratului vectorial.</p>
+<li><p class="first">Vizualizarea tabelului de atribute al unui strat vectorial.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>Datele pe care le vom folosi sunt de la <a class="reference external" href="http://www.sage.wisc.edu/atlas/maps.php">Centrul pentru Sustenabilitate și Mediul Încurajator Global (SAGE)</a> al Universității din Wisconsin-Madison.</p>
-<p>Puteți descărca <a class="reference external" href="http://www.sage.wisc.edu/atlas/data.php?incdataset=Life%20Expectancy">Life Expectancy GIS Grid data</a> din setul de date al impactului uman. Pentru comoditate, puteți descărca, de asemenea, o copie a acestor date, făcând clic pe link-ul următor:</p>
+<p>Datele pe care le vom folosi sunt de la <a class="reference external" href="http://www.sage.wisc.edu/atlas/maps.php">Centrul pentru Sustenabilitate și Mediul Înconjurător Global (SAGE)</a> al Universității din Wisconsin-Madison.</p>
+<p>Puteți descărca <a class="reference external" href="http://www.sage.wisc.edu/atlas/data.php?incdataset=Life%20Expectancy">Life Expectancy GIS Grid data</a> din setul de date Human Impact. Pentru comoditate, puteți descărca o copie a acestor date, făcând clic pe link-ul următor:</p>
 <p><a class="reference download internal" href="../_downloads/lifeexpectancy.zip"><tt class="xref download docutils literal"><span class="pre">lifeexpectancy.zip</span></tt></a></p>
 <p>Sursa de date <a class="reference internal" href="credits.html#sage" id="id1">[SAGE]</a></p>
 </div>
@@ -217,52 +217,52 @@
 </ol>
 <img alt="../_images/110.png" class="align-center" src="../_images/110.png" />
 <ol class="arabic simple" start="2">
-<li><p class="first">Navigați la fișierul anterior descărcat, <tt class="docutils literal"><span class="pre">lifeexpectancy.zip</span></tt>, și efectuați and clic pe <em class="guilabel">Open</em>. Selectați <tt class="docutils literal"><span class="pre">newsweek_data.shp</span></tt> și apăsați <em class="guilabel">Open</em>. Vi se va cere alegerea unui CRS. Selectați <cite>WGS84 EPSG: 4326</cite> ca Sistem de Coordonate de Referință (CRS).</p>
+<li><p class="first">Navigați la fișierul anterior descărcat, <tt class="docutils literal"><span class="pre">lifeexpectancy.zip</span></tt>, și efectuați clic pe <em class="guilabel">Open</em>. Selectați <tt class="docutils literal"><span class="pre">newsweek_data.shp</span></tt>, apoi apăsați <em class="guilabel">Open</em>. Vi se va cere alegerea unui CRS. Selectați <cite>WGS84 EPSG: 4326</cite> ca Sistem de Coordonate de Referință (CRS).</p>
 </li>
 </ol>
 <img alt="../_images/21.png" class="align-center" src="../_images/21.png" />
 <ol class="arabic simple" start="3">
-<li><p class="first">Fișierul shape conținut în arhiva zip este încărcat acum și puteți observa stilul implicit care i s-a aplicat.</p>
+<li><p class="first">Fișierul shape arhivat este încărcat acum și puteți observa stilul implicit care i-a fost aplicat.</p>
 </li>
 </ol>
 <img alt="../_images/31.png" class="align-center" src="../_images/31.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">Faceți clic dreapta pe numele stratului și selectați <em class="guilabel">Open Attribute Table</em>.</p>
+<li><p class="first">Faceți clic-dreapta pe numele stratului și selectați <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
 <img alt="../_images/41.png" class="align-center" src="../_images/41.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">Explorați diferite atribute. Pentru a stiliza un strat, trebuie să alegeți un <cite>atribut</cite> sau o <cite>coloană</cite>, care va reprezenta harta pe care încercăm să o creăm. Din moment ce dorim să creăm un strat reprezentând speranța de viață, adică vârsta medie până la care o persoană care locuiește într-o țară, câmpul <em class="guilabel">LIFEXPCT</em> este atributul pe care dorim sa-l utilizăm în stilizare.</p>
+<li><p class="first">Explorați diferite atribute. Pentru a stiliza un strat, trebuie să alegeți un <cite>atribut</cite> sau o <cite>coloană</cite>, care va reprezenta harta pe care încercăm să o creăm. Din moment ce dorim să creăm un strat reprezentând speranța de viață, adică vârsta medie până la care trăiește un locuitor al unei țări, câmpul <em class="guilabel">LIFEXPCT</em> este atributul pe care dorim să-l utilizăm în stilizare.</p>
 </li>
 </ol>
 <img alt="../_images/51.png" class="align-center" src="../_images/51.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">Închideți tabela de atribute. Faceți iarăși clic dreapta pe strat și alegeți <em class="guilabel">Properties</em>.</p>
+<li><p class="first">Închideți tabela de atribute. Faceți iarăși clic-dreapta pe strat și alegeți <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
 <img alt="../_images/61.png" class="align-center" src="../_images/61.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">Diferitele opțiuni de stilizare sunt situate în tab-ul <em class="guilabel">Style</em> al ferestrei de dialog Proprietăți. Dacă faceți clic pe butonul drop-down, veți observa că există cinci opțiuni disponibile - <em class="guilabel">Single Symbol</em>, <em class="guilabel">Categorized</em>, <em class="guilabel">Graduated</em>, <em class="guilabel">Rule Based</em> și <em class="guilabel">Point displacement</em>. Le vom explora pe primele trei din acest tutorial.</p>
+<li><p class="first">Diferitele opțiuni de stilizare sunt situate în fila <em class="guilabel">Style</em> a ferestrei Proprietăți. Dacă faceți clic pe butonul drop-down, veți observa că există cinci opțiuni disponibile - <em class="guilabel">Single Symbol</em>, <em class="guilabel">Categorized</em>, <em class="guilabel">Graduated</em>, <em class="guilabel">Rule Based</em> și <em class="guilabel">Point displacement</em>. În acest tutorial le vom explora pe primele trei.</p>
 </li>
 </ol>
 <img alt="../_images/71.png" class="align-center" src="../_images/71.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">Selectați <em class="guilabel">Single Symbol</em>. Această opțiune vă permite să alegeți un stil unic, care va fi aplicat tuturor entităților din strat. Din moment ce acest lucru este un set de date poligonale, aveți două opțiuni de bază. Puteți <cite>umple</cite> poligonul, sau puteți stiliza doar <cite>conturul</cite>. Puteți alege șablonul de umplere <em class="guilabel">dotted</em>, apoi faceți clic pe <em class="guilabel">OK</em>.</p>
+<li><p class="first">Selectați <em class="guilabel">Single Symbol</em>. Această opțiune permite alegerea unui stil unic, care va fi aplicat tuturor entităților din strat. Din moment ce deținem un set de date poligonale, avem două opțiuni de bază. Se poate <cite>umple</cite> poligonul, sau doar se poate stiliza <cite>conturul</cite>. Alegeți șablonul de umplere <em class="guilabel">dotted</em>, apoi faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/81.png" class="align-center" src="../_images/81.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">Veți vedea un nou stil aplicat stratului, și anume cu modelul de umplere pe care l-ați ales.</p>
+<li><p class="first">Stratului i se va aplica un nou stil, folosind modelul de umplere pe care l-ați ales.</p>
 </li>
 </ol>
 <img alt="../_images/91.png" class="align-center" src="../_images/91.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">Veți vedea că stilul Simbolului Unic nu este util în comunicarea datelor speranței de viață pe care încercăm să o afișăm. Să explorăm o altă opțiune de stilizare. Faceți iarăși clic dreapta pe denumirea stratului și alegeți <em class="guilabel">Properties</em>. De data aceasta alegeți <em class="guilabel">Categorized</em> din fila <em class="guilabel">Style</em>. Acest lucru înseamnă că entitățile stratului vor fi afișate în diferite nuanțe de culori bazate pe valorile unice dintr-un câmp al atributului. Alegeți valoarea <em class="guilabel">LIFEXPCT</em> pentru :guilabel: <cite>Column</cite>. Alegeți o <em class="guilabel">Gamă de culori</em> după dorință și faceți clic în partea de jos, pe <em class="guilabel">Classify</em>. Clic pe <em class="guilabel">OK</em>.</p>
+<li><p class="first">Veți vedea că stilul Single Symbol nu este util în comunicarea datelor speranței de viață, pe care încercăm să o afișăm. Să explorăm o altă opțiune de stilizare. Faceți iarăși clic-dreapta pe denumirea stratului și alegeți <em class="guilabel">Properties</em>. De data aceasta alegeți <em class="guilabel">Categorized</em> din fila <em class="guilabel">Style</em>. Acest lucru înseamnă că entitățile stratului vor fi afișate în diferite nuanțe de culori, în funcție de valorile unice dintr-un câmp al atributului. Alegeți valoarea <em class="guilabel">LIFEXPCT</em> pentru :guilabel: <cite>Column</cite>. Alegeți <em class="guilabel">color ramp</em> după dorință și faceți clic în partea de jos, pe <em class="guilabel">Classify</em>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/101.png" class="align-center" src="../_images/101.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">Veți vedea diferite țări care apar în nuanțe de albastru. Nuanțele mai deschise indică speranța de viață mai scăzută, iar nuanțele mai inchise arată speranța mai mare de viață. Această reprezentare a datelor este mai utilă și prezintă în mod clar speranța de viață din țările dezvoltate comparativ cu cea din țările în curs de dezvoltare. Acesta ar fi tipul de stil pe care ne-am propus să-l creăm.</p>
+<li><p class="first">Veți vedea țările colorate în diferite nuanțe de albastru. În zonele mai deschise speranța de viață este mai scăzută, iar în cele mai inchise mai mare. Această reprezentare a datelor este mai utilă, prezentând în mod clar speranța de viață din țările dezvoltate, comparativ cu cea din țările în curs de dezvoltare. Acesta ar fi exemplul de stil pe care ne-am propus să-l creăm.</p>
 </li>
 </ol>
 <img alt="../_images/111.png" class="align-center" src="../_images/111.png" />
@@ -282,21 +282,21 @@ into separate classes.</p>
 <ul class="simple">
 <li><p class="first">Intervale egale: După cum sugerează și numele, această metodă va crea clase de aceeași dimensiune. Dacă datele noastre variază de la 0-100 și dorim 10 clase, această metodă va crea clasele 0-10,  10-20, 20-30 și așa mai departe, păstrând pentru fiecare clasă aceeași mărime de 10 unități.</p>
 </li>
-<li><p class="first">Cuantile - Această metodă va decide clasele astfel încât numărul de valori din fiecare clasă să fie același. În cazul în care există 100 de valori și vrem 4 clase, metoda Cuantile va decide clasele astfel încât fiecare clasă va avea 25 valori.</p>
+<li><p class="first">Cuantile - Această metodă va decide clasele în așa fel încât numărul de valori din fiecare clasă să fie același. În cazul în care există 100 de valori și vrem 4 clase, metoda Cuantile va determina ca fiecare clasă să aibă 25 valori.</p>
 </li>
-<li><p class="first">Intervale naturale (Jenks)  - Acest algoritm încearcă să identifice grupările naturale de date, pentru a crea clasele. Clasele rezultate vor fi de așa natură, încât variația maximă va fi între clasele individuale, cea mai mică variație regăsindu-se în interiorul fiecărei clase.</p>
+<li><p class="first">Intervale naturale (Jenks)  - Acest algoritm va folosi gruparea naturală a datelor, în procesul de creare a claselor. Clasele rezultate vor fi de așa natură, încât variația maximă se va manifesta între clasele individuale, iar cea mai mică în interiorul fiecărei clase.</p>
 </li>
-<li><p class="first">Abaterea standard - Această metodă va calcula media datelor, și va crea clasele pe baza deviației standard de la medie.</p>
+<li><p class="first">Abaterea standard - Această metodă va calcula media datelor, apoi va crea clasele pe baza deviației standard de la medie.</p>
 </li>
-<li><p class="first">Intervale moderate - Aceasta se bazează pe un algoritm din pachetul statistic al limbajului R. Este ceva mai complex, dar cuvântul <cite>moderat</cite> se referă la crearea unor clase ale căror limite reprezintă numere rotunjite.</p>
+<li><p class="first">Intervale moderate - Această metodă se bazează pe un algoritm din pachetul statistic al limbajului R. Este ceva mai complexă, cuvântul <cite>moderat</cite> referindu-se la crearea unor clase ale căror limite sunt numere rotunjite.</p>
 </li>
 </ul>
-<p>Pentru a păstra lucrurile simple, vom utiliza metoda Quantile. Clic pe <em class="guilabel">Classify</em>, din partea de jos, apoi veți vedea 3 clase și valorile care le corespund. Clic pe <em class="guilabel">OK</em>.</p>
+<p>Pentru a păstra lucrurile simple, vom utiliza metoda Quantile. După ce efectuați clic pe butonul <em class="guilabel">Classify</em>, vor apărea 3 clase, împreună cu valorile corespunzătoare. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Pentru ca un atribut să poata folosi stilul <em class="guilabel">Graduated</em>, va trebui ca acesta să reprezinte un câmp numeric. Numerele întregi sau reale sunt la fel de bune, însă atunci când tipul câmpului reprezintă un șir, opțiunea de stilizare nu va mai fi disponibilă.</p>
+<p class="last">Pentru ca un atribut să poată folosi stilul <em class="guilabel">Graduated</em>, va trebui ca acesta să fie un câmp numeric. Sunt acceptate și numerele întregi sau reale, însă atunci când tipul câmpului reprezintă un șir, opțiunea de stilizare nu va mai fi disponibilă.</p>
 </div>
 <img alt="../_images/121.png" class="align-center" src="../_images/121.png" />
 <ol class="arabic simple" start="13">
@@ -305,7 +305,7 @@ into separate classes.</p>
 </ol>
 <img alt="../_images/131.png" class="align-center" src="../_images/131.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">Acum, întoarceți-vă la fereastra de dialog <em class="guilabel">Style</em> efectuând clic dreapta pe strat și alegând <em class="guilabel">Properties</em>. Sunt disponibile mai multe opțiuni de stilizare. Puteți face clic pe simbolul corespunzător fiecărei clase și alegeți un stil diferit. Pentru a indica speranțele mari, medii și joase de viață vom alege culorile de umplere Roșu, Galben și Verde.</p>
+<li><p class="first">Acum, întoarceți-vă la fereastra de dialog <em class="guilabel">Style</em> efectuând clic-dreapta pe strat și alegând <em class="guilabel">Properties</em>. Sunt disponibile mai multe opțiuni de stilizare. Puteți face clic pe simbolul corespunzător fiecărei clase și să alegeți un stil diferit. Pentru indicarea speranțelor mari, medii și joase de viață vom alege culorile de umplere Roșu, Galben și Verde.</p>
 </li>
 </ol>
 <img alt="../_images/141.png" class="align-center" src="../_images/141.png" />
@@ -320,7 +320,7 @@ into separate classes.</p>
 </ol>
 <img alt="../_images/161.png" class="align-center" src="../_images/161.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">Înapoi, în fereastra de dialog <em class="guilabel">Properties Layer</em>, puteți să faceți dublu-clic pe coloana <em class="guilabel">Label</em> din dreptul fiecărei valori, și să introduceți textul pe care doriți să-l afișați. În mod similar, puteți da dublu-clic pe coloana <em class="guilabel">Value</em>, pentru a edita intervalele selectate. Faceți clic pe <em class="guilabel">OK</em>, o dată ce sunteți mulțumit de clase.</p>
+<li><p class="first">Înapoi, în fereastra de dialog <em class="guilabel">Properties Layer</em>, puteți să faceți dublu-clic pe coloana <em class="guilabel">Label</em> din dreptul fiecărei valori, și să introduceți textul pe care doriți să-l afișați. În mod similar, puteți da dublu-clic pe coloana <em class="guilabel">Value</em>, pentru a edita intervalele selectate. Faceți clic pe <em class="guilabel">OK</em>, dacă aceste clase sunt suficiente.</p>
 </li>
 </ol>
 <img alt="../_images/171.png" class="align-center" src="../_images/171.png" />
@@ -352,7 +352,7 @@ into separate classes.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 23, 2014.<br/>
+      Last updated on Jul 27, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

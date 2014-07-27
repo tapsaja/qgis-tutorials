@@ -190,12 +190,12 @@
   <div class="section" id="basic-raster-styling-and-analysis">
 <h1>Noțiuni de bază despre analiza și stilizarea rasterelor<a class="headerlink" href="#basic-raster-styling-and-analysis" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/raster_styling_and_analysis_a4.pdf">A4</a> <a class="reference external" href="../pdf/raster_styling_and_analysis_letter.pdf">Letter</a> ]</p>
-<p>O mulțime de cercetări și observații științifice produc seturi de date raster. Rasterele sunt, în esență, grile de pixeli, cărora le este atribuită o anumită valoare. Prin efectuarea de operații matematice cu aceste valori, vor rezulta analize interesante. QGIS are unele capabilități interne pentru analiza de bază, prin intermediul <cite>Calculatorului Raster</cite>. În acest tutorial, vom explora elementele de bază cu privire la utilizarea <cite>Calculatorului Raster</cite> și opțiunile disponibile pentru stilizarea rasterelor.</p>
+<p>Multe activități de cercetare și observare științifică generează seturi de date raster. Rasterele sunt, în esență, grile de pixeli, cărora le este atribuită o anumită valoare. Prin efectuarea de operații matematice cu aceste valori, vor rezulta analize interesante. QGIS are unele capabilități interne de analiză, accesibile prin intermediul <cite>Raster Calculator</cite>. În acest tutorial, vom explora elementele de bază cu privire la utilizarea <cite>Raster Calculator</cite> și opțiunile disponibile pentru stilizarea rasterelor.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Vom folosi datele privind densitatea populației pentru a găsi și a vizualiza zone ale lumii care au suferit schimbări dramatice în densitatea populației între anii 1990 și 2000.</p>
+<p>Vom folosi datele privind densitatea populației, pentru a găsi și a vizualiza zone ale lumii, care au suferit schimbări dramatice în densitatea populației între 1990 și 2000.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Alte abilități pe care le veți căpăta<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<h3>Alte competențe pe care le veți dobândi<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p class="first">Selectarea și încărcarea în QGIS a seturilor de date multiple, într-un singur pas.</p>
 </li>
@@ -204,10 +204,10 @@
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>Vom folosi setul de date <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/collection/gpw-v3">Gridded Population of the World (GPW) v3</a> Universității Columbia. În mod specific, avem nevoie de densitatea populației pentru întregul glob în format ASCII, și pentru anii 1990 și 2000.</p>
+<p>Vom folosi setul de date <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/collection/gpw-v3">Gridded Population of the World (GPW) v3</a> Universității Columbia. În mod specific, avem nevoie de densitatea populației pentru întregul glob, în format ASCII, și pentru anii 1990 și 2000.</p>
 <p>Iată cum să căutați și să descărcați datele revelante.</p>
 <ol class="arabic simple">
-<li><p class="first">Mergeți la <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density/data-download">Population Density Grid, v3 download page.</a> Selectați <em class="guilabel">Data Attributes</em> ca <em class="guilabel">.ascii format</em>, <em class="guilabel">1° resolution</em> și <em class="guilabel">1990 year</em>. Faceți clic pe <em class="guilabel">Download</em>. În acest moment, puteți crea un cont gratuit și să vă conectați, sau să folosiți butonul <em class="guilabel">Guest Download</em> din partea de jos, pentru a descărca imediat datele. Repetați procesul pentru datele <em class="guilabel">2000 year</em> data.</p>
+<li><p class="first">Mergeți la <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density/data-download">Population Density Grid, v3 download page.</a> Alegeți formatul <em class="guilabel">.ascii</em>, rezoluția <em class="guilabel">1°</em> și anul <em class="guilabel">1990</em> pentru <em class="guilabel">Data Attributes</em>. Faceți clic pe <em class="guilabel">Download</em>. În acest moment, puteți crea un cont gratuit, apoi să vă conectați, sau să folosiți butonul <em class="guilabel">Guest Download</em> din partea de jos, pentru a descărca imediat datele. Repetați procesul pentru datele anului <em class="guilabel">2000</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1101.png" class="align-center" src="../_images/1101.png" />
@@ -230,17 +230,17 @@
 </ol>
 <img alt="../_images/325.png" class="align-center" src="../_images/325.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">Fiecare fișier zip conține 2 fișiere grilă. Litera <tt class="docutils literal"><span class="pre">a</span></tt> din numele fișierului sugerează că valorile corespunzătoare populației au fost ajustate pentru a se potrivi cu totalurile ONU. Vom folosi grilele ajustate pentru acest tutorial. Selectați <tt class="docutils literal"><span class="pre">glds00ag60.asc</span></tt> ca strat de adăugat. Clic pe <em class="guilabel">OK</em>.</p>
+<li><p class="first">Fiecare fișier zip conține 2 fișiere grilă. Litera <tt class="docutils literal"><span class="pre">a</span></tt> din numele fișierului sugerează că valorile corespunzătoare populației au fost ajustate pentru a se potrivi cu totalurile ONU. Vom folosi grilele ajustate, pentru acest tutorial. Selectați <tt class="docutils literal"><span class="pre">glds00ag60.asc</span></tt> ca strat de adăugat. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/420.png" class="align-center" src="../_images/420.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">Stratul nu are un CRS definit, și din moment ce grilele sunt în lat/lung, alegeți <cite>EPSG: 4326</cite> ca sistem de coordonate de referință.</p>
+<li><p class="first">Stratul nu are un CRS definit, și din moment ce grilele sunt în lat/long, alegeți <cite>EPSG: 4326</cite> ca sistem de coordonate de referință.</p>
 </li>
 </ol>
 <img alt="../_images/521.png" class="align-center" src="../_images/521.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">Din moment ce am selectat ambele fișiere zip, veți vedea încă o dată ferestre de dialog similare. Repetați procesul și selectați grila <tt class="docutils literal"><span class="pre">glds90ag60.asc</span></tt> pentru a fi adăugată ca strat.</p>
+<li><p class="first">Din moment ce am selectat ambele fișiere zip, veți vedea, încă o dată, ferestre de dialog similare. Repetați procesul și selectați grila <tt class="docutils literal"><span class="pre">glds90ag60.asc</span></tt>, pentru a fi adăugată ca strat.</p>
 </li>
 </ol>
 <img alt="../_images/619.png" class="align-center" src="../_images/619.png" />
@@ -250,7 +250,7 @@
 </ol>
 <img alt="../_images/719.png" class="align-center" src="../_images/719.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">Acum, veți vedea ambele rastere încărcate în QGIS. Rasterul este redat în tonuri de gri, unde pixelii întunecați indică valorile mai mici, iar pixelii mai deschiși indică valorile mai mari.</p>
+<li><p class="first">Acum, veți vedea ambele rastere încărcate în QGIS. Rasterul este redat în tonuri de gri; pixelii întunecați indicând valorile mai mici, iar cei deschiși valorile mai mari.</p>
 </li>
 </ol>
 <img alt="../_images/818.png" class="align-center" src="../_images/818.png" />
@@ -260,7 +260,7 @@
 </ol>
 <img alt="../_images/917.png" class="align-center" src="../_images/917.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">Pentru a vizualiza mai bine modelul densității populației, ar trebui să-l stilizăm. Faceți clic dreapta pe numele stratului și selectați <em class="guilabel">Properties</em>. Puteți efectua, de asemenea, dublu-clic pe numele stratului din Cuprins pentru a deschide fereastra de dialog Layer Properties.</p>
+<li><p class="first">Pentru a vizualiza mai bine modelul densității populației, ar trebui să-l stilizăm. Faceți clic dreapta pe numele stratului și selectați <em class="guilabel">Properties</em>. Puteți efectua, de asemenea, dublu-clic pe numele stratului din Cuprins, pentru a deschide fereastra de dialog Layer Properties.</p>
 </li>
 </ol>
 <img alt="../_images/1017.png" class="align-center" src="../_images/1017.png" />
@@ -270,17 +270,17 @@
 </ol>
 <img alt="../_images/1122.png" class="align-center" src="../_images/1122.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">Înapoi, în suportul hărții din QGIS, rasterul va fi redat asemănător unei zone fierbinți. De asemenea, se va repeta aceeași procedură și pentru cealalt raster.</p>
+<li><p class="first">Înapoi, în suportul hărții din QGIS, rasterul va fi redat asemănător unei zone fierbinți. Repetați aceeași procedură și pentru cealalt raster.</p>
 </li>
 </ol>
 <img alt="../_images/1218.png" class="align-center" src="../_images/1218.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">Pentru analiza noastră, ne dorim să găsim zonele cu cea mai mare schimbare a populației între 1990 și 2000. Modul de realizare al acestui lucru este prin găsirea diferenței dintre valorile pixelilor din grilele celor două straturi. Selectați <em class="menuselection">Raster ‣ Raster calculator</em>.</p>
+<li><p class="first">Pentru analiza noastră, ne dorim să găsim zonele cu cea mai mare schimbare a populației între 1990 și 2000. Acest lucru se face prin găsirea diferenței dintre valorile pixelilor din grilele celor două straturi. Selectați <em class="menuselection">Raster ‣ Raster calculator</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1317.png" class="align-center" src="../_images/1317.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">În secțiunea <em class="guilabel">Raster bands</em>, puteți selecta stratul efectuând dublu-clic pe numele lui. Benzile sunt denumite după numele rasterului, urmat de &#64; și de numărul benzii. Din moment ce fiecare dintre rasterele noastre au doar 1 bandă, veți vedea doar 1 intrare pe raster. Calculatorul raster poate aplica operații matematice pe pixelii rasterelor. În acest caz, dorim să introducem o formulă simplă pentru a scădea densitatea populației anului 1990 din cea a anului 2000. Introduceți formula <tt class="docutils literal"><span class="pre">glds00ag60&#64;1</span> <span class="pre">-</span> <span class="pre">glds90ag60&#64;1</span></tt>. Denumiți stratul de ieșire ca <em class="guilabel">pop_density_change_2000_1990.tif</em> și bifați caseta de lângă <em class="guilabel">Add result to project</em>. Apoi faceți clic pe <em class="guilabel">OK</em>.</p>
+<li><p class="first">În secțiunea <em class="guilabel">Raster bands</em>, puteți selecta stratul efectuând dublu-clic pe numele lui. Benzile sunt denumite după numele rasterului, urmat de &#64; și de numărul benzii. Din moment ce fiecare dintre rasterele noastre au doar 1 bandă, veți vedea doar 1 intrare pe raster. Calculatorul raster poate efectua operații matematice asupra pixelilor din rastere. În acest caz, dorim să introducem o formulă simplă pentru a scădea densitatea populației anului 1990 din cea a anului 2000. Introduceți formula <tt class="docutils literal"><span class="pre">glds00ag60&#64;1</span> <span class="pre">-</span> <span class="pre">glds90ag60&#64;1</span></tt>. Denumiți stratul de ieșire ca <em class="guilabel">pop_density_change_2000_1990.tif</em> și bifați caseta de lângă <em class="guilabel">Add result to project</em>. Apoi faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1416.png" class="align-center" src="../_images/1416.png" />
@@ -300,17 +300,17 @@
 </ol>
 <img alt="../_images/1713.png" class="align-center" src="../_images/1713.png" />
 <ol class="arabic simple" start="18">
-<li><p class="first">Acum, mergeți la fila <em class="guilabel">Style</em>. Selectați <em class="guilabel">Singleband pseudocolor</em> ca <em class="guilabel">Render type</em> sub <em class="guilabel">Band Rendering</em>. Setați <em class="guilabel">Color interpolation</em> la <em class="guilabel">Discrete</em>. Faceți clic pe butonul <em class="guilabel">Add entry</em> de 4 ori, pentru a crea 4 clase unice. Faceți clic pe o intrare pentru a modifica valorile. Harta de culori lucrează în așa fel, încât toate valorile mai mici decât valoarea introdusă vor da culoarea acelei intrări. Având în vedere că valorile minime din rasterul nostru sunt mai mari de -2000, vom alege -2000 ca primă intrare. Acest lucru va fi pentru valorile No Data. Introduceți valorile și etichetele pentru alte intrări la fel ca în imaginea de mai jos, și faceți clic pe <em class="guilabel">OK</em>.</p>
+<li><p class="first">Acum, mergeți la fila <em class="guilabel">Style</em>. Selectați <em class="guilabel">Singleband pseudocolor</em> pentru <em class="guilabel">Render type</em> din secțiunea <em class="guilabel">Band Rendering</em>. Setați <em class="guilabel">Discrete</em> pentru <em class="guilabel">Color interpolation</em>. Faceți clic pe butonul <em class="guilabel">Add entry</em> de 4 ori, pentru a crea 4 clase unice. Faceți clic pe o intrare pentru a modifica valorile. Harta de culori lucrează în așa fel, încât toate valorile mai mici decât valoarea introdusă vor avea culoarea acelei intrări. Având în vedere că valorile minime din rasterul nostru sunt mai mari de -2000, vom alege -2000 ca primă intrare. Acest lucru va fi valabil pentru valorile No Data. Introduceți valorile și etichetele pentru alte intrări, la fel ca în imaginea de mai jos, și faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1813.png" class="align-center" src="../_images/1813.png" />
 <ol class="arabic simple" start="19">
-<li><p class="first">În acest moment, veți vizualiza mult mai puternic zonele care au înregistrat schimbări pozitive sau negative ale densității populației. Faceți clic pe butonul <em class="guilabel">Zoom In</em> și trageți un dreptunghi deasupra Europei, pentru a explora regiunea în detaliu.</p>
+<li><p class="first">În acest moment, veți vizualiza mult mai bine zonele care au înregistrat schimbări pozitive sau negative în densitatea populației. Faceți clic pe butonul <em class="guilabel">Zoom In</em> și glisați, realizând un dreptunghi deasupra Europei, pentru a explora regiunea în detaliu.</p>
 </li>
 </ol>
 <img alt="../_images/1911.png" class="align-center" src="../_images/1911.png" />
 <ol class="arabic simple" start="20">
-<li><p class="first">Selectați instrumentul <em class="guilabel">Identify</em> și faceți clic pe regiunile Roșii și Albastre pentru a verifica dacă regulile de stilizare lucrează așa cum vă așteptați.</p>
+<li><p class="first">Selectați instrumentul <em class="guilabel">Identify</em> și faceți clic pe regiunile Roșii și Albastre, pentru a vă convinge că regulile de stilizare lucrează așa cum vă așteptați.</p>
 </li>
 </ol>
 <img alt="../_images/207.png" class="align-center" src="../_images/207.png" />
@@ -320,7 +320,7 @@
 </ol>
 <img alt="../_images/2111.png" class="align-center" src="../_images/2111.png" />
 <ol class="arabic simple" start="22">
-<li><p class="first">Introduceți expresia <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990&#64;1</span> <span class="pre">&lt;</span> <span class="pre">-10</span></tt>. Această expresie va seta valoarea pixelului la 1 în cazul satisfacerii expresiei, sau la 0 în caz contrar. Asa că vom obține un raster cu valoarea 1 a pixelilor acolo unde schimbarea a fost negativă, și cu 0 acolo unde nu a fost negativă. Denumiți stratul de ieșire ca <tt class="docutils literal"><span class="pre">negative_pop_change_2000_1990</span></tt> și bifați caseta de lângă <em class="guilabel">Add result to project</em>. Faceți clic pe OK.</p>
+<li><p class="first">Introduceți expresia <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990&#64;1</span> <span class="pre">&lt;</span> <span class="pre">-10</span></tt>. Această expresie va seta valoarea pixelului la 1 în cazul satisfacerii expresiei, sau la 0 în caz contrar. Asa că vom obține un raster ai căror pixeli vor avea valoarea 1 acolo unde schimbarea a fost negativă, și 0 acolo unde nu a fost negativă. Denumiți stratul de ieșire ca <tt class="docutils literal"><span class="pre">negative_pop_change_2000_1990</span></tt> și bifați caseta de lângă <em class="guilabel">Add result to project</em>. Faceți clic pe OK.</p>
 </li>
 </ol>
 <img alt="../_images/2210.png" class="align-center" src="../_images/2210.png" />
@@ -330,7 +330,7 @@
 </ol>
 <img alt="../_images/237.png" class="align-center" src="../_images/237.png" />
 <ol class="arabic simple" start="24">
-<li><p class="first">Veți vedea ca ariile cu densitate negativă a populației sunt alcătuite din pixeli gri.</p>
+<li><p class="first">Veți vedea că ariile cu densitate negativă a populației sunt alcătuite din pixeli gri.</p>
 </li>
 </ol>
 <img alt="../_images/245.png" class="align-center" src="../_images/245.png" />
@@ -357,7 +357,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 23, 2014.<br/>
+      Last updated on Jul 27, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

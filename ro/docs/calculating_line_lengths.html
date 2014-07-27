@@ -190,25 +190,25 @@
   <div class="section" id="calculating-line-lengths-and-statistics">
 <h1>Determinarea lungimii liniilor și vizualizarea statisticilor<a class="headerlink" href="#calculating-line-lengths-and-statistics" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/calculating_line_lengths_a4.pdf">A4</a> <a class="reference external" href="../pdf/calculating_line_lengths_letter.pdf">Letter</a> ]</p>
-<p>QGIS dispune de funcții interne pentru calculul diverselor proprietăți bazate pe geometria entității - cum ar fi lungimea, zona, perimetrul etc. Acest tutorial vă arată cum să folosiți <strong>Calculatorul de Câmpuri</strong> pentru a adăuga o coloană, împreună cu o valoare care reprezintă lungimea fiecărei entități.</p>
+<p>QGIS dispune de funcții interne pentru calculul diverselor proprietăți geometrice ale unei entități - cum ar fi lungimea, zona, perimetrul etc. Acest tutorial vă arată cum să folosiți <strong>Calculatorul de Câmpuri</strong> pentru a adăuga, într-o nouă coloană, o valoare care reprezintă lungimea fiecărei entități.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Vom folosi un fișier shape de tip polilinie al căilor ferate din America de Nord, și vom încerca să determinăm lungimea totală a sistemului feroviar din Statele Unite.</p>
+<p>Vom folosi un fișier shape de tip polilinie, al căilor ferate nord-americane, pe baza căruia vom încerca să determinăm lungimea totală a sistemului feroviar din Statele Unite.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Alte abilități pe care le veți căpăta<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<h3>Alte competențe pe care le veți dobândi<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p class="first">Folosirea expresiilor pentru a selecta entitățile.</p>
 </li>
-<li><p class="first">Reproiectarea un strat dintr-un Sistem de Coordonate de Referință  (CRS) Geografic într-unul proiectat.</p>
+<li><p class="first">Reproiectarea un strat dintr-un Sistem de Coordonate de Referință  (CRS) Geografic într-unul Proiectat.</p>
 </li>
-<li><p class="first">Vizualizarea statisticilor valorilor unui atribut dintr-un strat.</p>
+<li><p class="first">Vizualizarea statisticilor pentru valorile unui atribut dintr-un strat.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/railroads/">Natural Earth</a> pune la dispoziția publică un set de date sistemului feroviar. Descărcați arhiva zip <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads_north_america.zip">North America supplement</a> de pe portal.</p>
+<p><a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/railroads/">Natural Earth</a> pune la dispoziția publică un set de date al sistemului feroviar. Descărcați arhiva zip <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads_north_america.zip">North America supplement</a> de pe portal.</p>
 <p>For convenience, the version of railroad dataset used in this tutorial can be
 downloaded directly from the links below:</p>
 <p>Download <a class="reference download internal" href="../_downloads/ne_10m_railroads_north_america.zip"><tt class="xref download docutils literal"><span class="pre">North</span> <span class="pre">America</span> <span class="pre">supplement</span></tt></a></p>
@@ -232,12 +232,12 @@ downloaded directly from the links below:</p>
 </ol>
 <img alt="../_images/33.png" class="align-center" src="../_images/33.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">După ce stratul este încărcat, veți observa că stratul conține linii, reprezentând căile ferate pentru întreaga Americă de Nord. Din moment ce dorim să calculăm lungimea liniilor doar pentru sistemul feroviar din SUA, trebuie să selectăm acele linii pe care le includ Statele Unite ale Americii. Faceți clic dreapta pe denumirea stratului și selectați <em class="guilabel">Open Attribute Table</em>.</p>
+<li><p class="first">După ce stratul este încărcat, veți observa că stratul conține linii, reprezentând căile ferate pentru întreaga Americă de Nord. Din moment ce dorim să calculăm lungimea liniilor doar pentru sistemul feroviar din SUA, trebuie să selectăm acele linii incluse în Statele Unite ale Americii. Faceți clic-dreapta pe denumirea stratului și selectați <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
 <img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">Stratul are un atribut numit <em class="guilabel">sov_a3</em>. Acesta este codficarea pe 3 litere al țării căreia îi aparține o anumită entitate. Putem folosi valoarea acestui atribut pentru a selecta entitățile din Statele Unite ale Americii.</p>
+<li><p class="first">Stratul are un atribut numit <em class="guilabel">sov_a3</em>. Acesta este codficarea pe 3 litere a țării căreia îi aparține o anumită entitate. Putem folosi valoarea acestui atribut pentru a selecta entitățile din Statele Unite ale Americii.</p>
 </li>
 </ol>
 <img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
@@ -252,7 +252,7 @@ downloaded directly from the links below:</p>
 </ol>
 <img alt="../_images/73.png" class="align-center" src="../_images/73.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">Înapoi, în fereastra principală QGIS, veți vedea că toate liniile care se încadrează în Statele Unite ale Americii sunt selectate și apar în galben.</p>
+<li><p class="first">Înapoi, în fereastra principală a QGIS, veți vedea că toate liniile care se încadrează în Statele Unite ale Americii sunt selectate și apar în galben.</p>
 </li>
 </ol>
 <img alt="../_images/83.png" class="align-center" src="../_images/83.png" />
@@ -262,12 +262,12 @@ downloaded directly from the links below:</p>
 </ol>
 <img alt="../_images/93.png" class="align-center" src="../_images/93.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">Faceți clic pe  <em class="guilabel">Browse</em> și denumiți fișierul de ieșire ca <tt class="docutils literal"><span class="pre">usa_railroads.shp</span></tt>. De asemenea, dorim să schimbăm CRS-ul stratului. Faceți clic pe <em class="guilabel">Browse</em> de lângă <em class="guilabel">CRS</em>.</p>
+<li><p class="first">Faceți clic pe  <em class="guilabel">Browse</em> și denumiți fișierul de ieșire ca <tt class="docutils literal"><span class="pre">usa_railroads.shp</span></tt>. De asemenea, dorim să schimbăm CRS-ul stratului. Faceți clic pe butonul <em class="guilabel">Browse</em> din dreptul <em class="guilabel">CRS</em>.</p>
 </li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Funcțiile interne care utilizează geometria entităților în calcul folosesc unitățile CRS-ului stratului.  Sistemele de Coordonate de Referință (CRS) Geografice, cum ar fi <em>EPSG:4326</em> au ca unități <strong>gradele</strong> - astfel încât lungimea entităților va fi în <strong>grade</strong> iar suprafața în <strong>grade pătrate</strong> - lucru lipsit de sens. Este nevoie să utilizați un Sistem de Coordonate de Referință Proiectat, cu unitățile în <strong>metri</strong> sau <strong>picioare</strong>,  pentru efectuarea calculelor.</p>
+<p class="last">Funcțiile interne, care utilizează geometria entităților pentru calcule, folosesc unitățile CRS-ului stratului.  Sistemele de Coordonate de Referință (CRS) Geografice, cum ar fi <em>EPSG:4326</em> au ca unități <strong>gradele</strong> - astfel încât lungimea entităților va fi în <strong>grade</strong> iar suprafața ar putea fi în <strong>grade pătrate</strong> - lucru lipsit de sens. Este necesară utilizarea unui Sistem de Coordonate de Referință Proiectat, cu unitățile în <strong>metri</strong> sau <strong>picioare</strong>,  pentru efectuarea calculelor.</p>
 </div>
 <img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
 <ol class="arabic simple" start="11">
@@ -296,7 +296,7 @@ downloaded directly from the links below:</p>
 </ol>
 <img alt="../_images/153.png" class="align-center" src="../_images/153.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">În <em class="guilabel">Field Calculator</em> bifați <em class="guilabel">Create a new field</em>. Introduceți <strong>length_km</strong> ca <em class="guilabel">Output field name</em>. Selectați <strong>Număr Zecimal (real)</strong> ca <em class="guilabel">Output field type</em>. Introduceți <strong>2</strong> în ieșirea <em class="guilabel">Precision</em>. În panoul <em class="guilabel">Function list</em>, găsiți <em class="guilabel">$length</em> sub <em class="guilabel">Geometry</em>. Faceți dublu-clic pe funcție pentru a o adăuga în <em class="guilabel">Expression</em>. Completați expresia ca <tt class="docutils literal"><span class="pre">$length</span> <span class="pre">/</span> <span class="pre">1000</span></tt>, deoarece unitățile CRS-ului stratului nostru sunt în  <strong>metri</strong> și ne dorim ieșirea în <strong>km</strong>. Faceți clic pe <em class="guilabel">OK</em>.</p>
+<li><p class="first">În <em class="guilabel">Field Calculator</em> bifați <em class="guilabel">Create a new field</em>. Introduceți <strong>length_km</strong> ca <em class="guilabel">Output field name</em>. Selectați <strong>Decimal number (real)</strong> ca <em class="guilabel">Output field type</em>. Introduceți <strong>2</strong> în <em class="guilabel">Precision</em>. În panoul <em class="guilabel">Function list</em>, găsiți <em class="guilabel">$length</em> sub <em class="guilabel">Geometry</em>. Faceți dublu-clic pe funcție pentru a o adăuga în <em class="guilabel">Expression</em>. Completați expresia ca <tt class="docutils literal"><span class="pre">$length</span> <span class="pre">/</span> <span class="pre">1000</span></tt>, deoarece unitățile CRS-ului stratului nostru sunt în  <strong>metri</strong> și ne dorim ieșirea în <strong>km</strong>. Faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/163.png" class="align-center" src="../_images/163.png" />
@@ -306,17 +306,17 @@ downloaded directly from the links below:</p>
 </ol>
 <img alt="../_images/173.png" class="align-center" src="../_images/173.png" />
 <ol class="arabic simple" start="18">
-<li><p class="first">Acum, că avem lungimea fiecărei linii din stratul nostru, le putem însuma cu ușurință pe toate și să găsim lungimea <strong>Totală</strong>. Mergeți la <em class="menuselection">Vector ‣ Analysis Tools ‣ Basic Statistics</em>.</p>
+<li><p class="first">Acum, că avem lungimile fiecărei linii din stratul nostru, le putem însuma cu ușurință pe toate, pentru a găsi lungimea <strong>Totală</strong>. Mergeți la <em class="menuselection">Vector ‣ Analysis Tools ‣ Basic Statistics</em>.</p>
 </li>
 </ol>
 <img alt="../_images/183.png" class="align-center" src="../_images/183.png" />
 <ol class="arabic simple" start="19">
-<li><p class="first">Selectați <em class="guilabel">Input Vector layer</em> ca <tt class="docutils literal"><span class="pre">usa_railroads</span></tt>. Alegeți <em class="guilabel">Target field</em> ca <tt class="docutils literal"><span class="pre">length_km</span></tt>  și faceți clic pe <em class="guilabel">OK</em>. Veți vedea apărând diverse statistici. Valoarea <em class="guilabel">Sum</em> reprezintă exact ceea ce căutăm, și anume lungimea totală a căilor ferate.</p>
+<li><p class="first">Selectați <tt class="docutils literal"><span class="pre">usa_railroads</span></tt> ca <em class="guilabel">Input Vector layer</em>. Alegeți <tt class="docutils literal"><span class="pre">length_km</span></tt> pentru <em class="guilabel">Target field</em> și faceți clic pe <em class="guilabel">OK</em>. Veți vedea apărând diverse statistici. Valoarea <em class="guilabel">Sum</em> reprezintă exact ceea ce căutăm, și anume lungimea totală a căilor ferate.</p>
 </li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Acest răspuns va varia ușor în cazul în care s-a ales o proiecție diferită. În practică, lungimile drumurilor precum și alte caracteristici liniare sunt măsurate în teren, după care vor fi transmise ca atribute pentru setul de date. Metoda prezentată în acest capitol funcționează în absența unui astfel de atribut, fiind de fapt o aproximare a lungimii reale a liniilor.</p>
+<p class="last">Acest răspuns va diferi ușor în cazul în care s-a ales o proiecție diferită. În practică, lungimile drumurilor precum și alte caracteristici liniare sunt măsurate în teren, după care vor fi transmise ca atribute pentru setul de date. Metoda prezentată în acest capitol funcționează în absența unui astfel de atribut, fiind de fapt o aproximare a lungimii reale a liniilor.</p>
 </div>
 <img alt="../_images/191.png" class="align-center" src="../_images/191.png" />
 </div>
@@ -342,7 +342,7 @@ downloaded directly from the links below:</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 23, 2014.<br/>
+      Last updated on Jul 27, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
