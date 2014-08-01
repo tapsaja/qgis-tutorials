@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Unificarea tabelelor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Realizarea uniunilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Analiza punctelor dintr-un poligon</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Crearea zonelor fierbinți</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Crearea hărților calorice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Efectuarea interogărilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analiza celui mai apropiat vecin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster folosind puncte sau poligoane</a></li>
@@ -190,23 +190,23 @@
   <div class="section" id="working-with-terrain-data">
 <h1>Lucrul cu date despre teren<a class="headerlink" href="#working-with-terrain-data" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/working_with_terrain_a4.pdf">A4</a> <a class="reference external" href="../pdf/working_with_terrain_letter.pdf">Letter</a> ]</p>
-<p>Datele despre teren sau altitudine sunt utile pentru multe Analize GIS și sunt folosite, adesea, de către hărți. QGIS are bune capacități de procesare internă a terenului. În acest tutorial, vom parcurge pașii necesari generării din datele de elevație a diverselor produse, cum ar fi contururi, umbriri etc.</p>
+<p>Datele despre teren, sau despre altitudine, sunt utile pentru multe Analize GIS, fiind folosite, adesea, în cadrul hărților. QGIS are bune capacități de procesare internă a terenului. În acest tutorial, vom parcurge pașii necesari obținerii, din datele de elevație, a diverselor rezultate, cum ar fi liniile de nivel, relieful etc.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Sarcina este de a crea hărțile curbelor de nivel și de relief, pentru zona din jurul Mt. Everest.</p>
+<p>Sarcina este de a crea hărțile reliefului și a curbelor de nivel, pentru zona din jurul Mt. Everest.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Alte competențe pe care le veți dobândi<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p class="first">Căutarea și descărcarea datelor despre teren, disponibile în mod gratuit.</p>
+<li><p class="first">Găsirea și descărcarea datelor despre teren, disponibile în mod gratuit.</p>
 </li>
-<li><p class="first">Exportarea unui strat vectorial în format KML, și vizualizarea sa în Google Earth.</p>
+<li><p class="first">Exportarea în format KML a unui strat vectorial, precum și vizualizarea sa în Google Earth.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>Vom lucra cu setul de date GMTED2010 de la USGS. Aceste date pot fi descărcate de pe site-ul <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a>. <a class="reference external" href="http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/GMTED2010">GMTED (Global Multi-resolution Terrain Elevation Data)</a> este un set de date despre terenul global, care reprezintă versiunea mai nouă a setului de date GTOPO30.</p>
+<p>Vom lucra cu setul de date GMTED2010 de la USGS. Aceste date pot fi descărcate de pe site-ul <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a>. <a class="reference external" href="http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/GMTED2010">GMTED (Global Multi-resolution Terrain Elevation Data)</a> este un set de date despre terenul global, fiind, de fapt, o versiune mai nouă a setului de date GTOPO30.</p>
 <p>Iată cum să căutați și să descărcați datele revelante de la USGS Earthexplorer.</p>
 <ol class="arabic simple">
 <li><p class="first">Mergeți la <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> . În fila <em class="guilabel">Search Criteria</em>  căutați denumirea <cite>Mt. Everest</cite>. Efectuați clic pe rezultat pentru a selecta locația.</p>
@@ -228,29 +228,29 @@
 </li>
 </ol>
 <img alt="../_images/426.png" class="align-center" src="../_images/426.png" />
-<p>Acum, veți avea acum un fișier numit <cite>GMTED2010N10E060_300.zip</cite>. Datele altitudinii sunt distribuite în diferite formate raster, cum ar fi ASC, BIL, GeoTiff etc. QGIS suportă o <a class="reference external" href="http://www.gdal.org/formats_list.html">gamă largă formate raster</a> prin intermediul bibliotecii GDAL. Datele GMTED vin sub formă de fișiere GeoTIFF, care sunt incluse în această arhivă zip.</p>
+<p>Acum, veți avea acum un fișier numit <cite>GMTED2010N10E060_300.zip</cite>. Datele altitudinii sunt distribuite în diverse formate raster, cum ar fi ASC, BIL, GeoTiff etc. QGIS suportă o <a class="reference external" href="http://www.gdal.org/formats_list.html">gamă largă de formate raster</a> prin intermediul bibliotecii GDAL. Datele GMTED vin sub formă de fișiere GeoTIFF, care sunt incluse în această arhivă zip.</p>
 <p>For convenience, you can <a class="reference download internal" href="../_downloads/GMTED2010N10E060_300.zip"><tt class="xref download docutils literal"><span class="pre">download</span> <span class="pre">a</span> <span class="pre">copy</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">data</span> <span class="pre">from</span> <span class="pre">here.</span></tt></a>.</p>
 <p>Sursa de date: <a class="reference internal" href="credits.html#gmted2010" id="id2">[GMTED2010]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple" start="5">
-<li><p class="first">Deschideți  <em class="menuselection">Layer ‣ Add Raster Layer</em> și navigați la fișierul zip descărcat.</p>
+<li><p class="first">Deschideți  <em class="menuselection">Layer ‣ Add Raster Layer</em> și navigați la fișierul zip, descărcat anterior.</p>
 </li>
 </ol>
 <img alt="../_images/527.png" class="align-center" src="../_images/527.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">Există multe fișiere diferite, generate de diverși algoritmi. Pentru acest tutorial, vom folosi fișierul numit <cite>10n060e_20101117_gmted_mea300.tif</cite>.</p>
+<li><p class="first">Există o diversitate de fișiere, generate de algoritmi diferiți. Pentru acest tutorial, vom folosi fișierul numit <cite>10n060e_20101117_gmted_mea300.tif</cite>.</p>
 </li>
 </ol>
 <img alt="../_images/625.png" class="align-center" src="../_images/625.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">Veți vedea datele terenului afișate în suportul de hartă al QGIS. Fiecare pixel din raster reprezintă altitudinea medie, în metri, la acea locație. Pixelii întunecați reprezintă zonele cu altitudine joasă, iar pixelii mai luminoși reprezintă zonele cu altitudine mare.</p>
+<li><p class="first">Datele terenului vor fi afișate în suportul de hartă al QGIS. Fiecare pixel din raster reprezintă altitudinea medie a acelei locații, în metri. Pixelii întunecați reprezintă zonele cu altitudine joasă, iar pixelii mai luminoși zonele cu altitudine mare.</p>
 </li>
 </ol>
 <img alt="../_images/725.png" class="align-center" src="../_images/725.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">Haideți să găsim zona noastră de interes. De la <a class="reference external" href="http://en.wikipedia.org/wiki/Mount_Everest">Wikipedia</a>, aflăm că zona noastră de interes - Mt. Everest - este situat la coordonatele 27.9881° N, 86.9253° E. Rețineți că QGIS utilizează coordonatele în format (X, Y), deci trebuie să utilizați coordonatele ca (Longitudine, Latitudine). Copiați și lipiți aceste coordonate, <cite>86.9253,27.9881</cite>,  în partea de jos a ferestrei QGIS în care scrie  <em class="guilabel">Coordinate</em> și apăsați Enter.  va fi centrat la aceste coordonate. Pentru a mări, Enter <cite>1:1000000</cite> în câmpul <em class="guilabel">Scale</em> și apăsați Enter. Portul de vizualizare se va mări, cuprinzând zona din jurul munților Himalaya.</p>
+<li><p class="first">Haideți să găsim zona noastră de interes. De la <a class="reference external" href="http://en.wikipedia.org/wiki/Mount_Everest">Wikipedia</a>, aflăm că zona noastră de interes - Mt. Everest - se situează la coordonatele 27.9881° N, 86.9253° E. Rețineți că QGIS utilizează coordonatele în format (X, Y), așa că va trebui să utilizăm coordonatele ca (Longitudine, Latitudine). Copiați și lipiți următoarele coordonate, <cite>86.9253,27.9881</cite>,  în partea de jos a ferestrei QGIS în care scrie <em class="guilabel">Coordinate</em> și apăsați Enter. Imaginea se va fi centra pe aceste coordonate. Pentru a mări harta, introduceți <cite>1:1000000</cite> în câmpul <em class="guilabel">Scale</em> și apăsați Enter. Portul de vizualizare se va mări, cuprinzând zona din jurul munților Himalaya.</p>
 </li>
 </ol>
 <img alt="../_images/824.png" class="align-center" src="../_images/824.png" />
@@ -260,26 +260,26 @@
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Meniul <em class="guilabel">Raster</em> din QGIS provine de la un plugin numit <em class="guilabel">GdalTools</em>. Dacă nu vedeți meniul <em class="guilabel">Raster</em>, activați plugin-ul <em class="guilabel">GdalTools</em> din <em class="menuselection">Plugins ‣ Manage and install plugins ‣ Installed</em>. Parcurgeți <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a> pentru mai multe detalii.</p>
+<p class="last">Meniul <em class="guilabel">Raster</em> din QGIS provine de la un plugin numit <em class="guilabel">GdalTools</em>. Dacă nu vedeți meniul <em class="guilabel">Raster</em>, activați plugin-ul <em class="guilabel">GdalTools</em> din <em class="menuselection">Plugins ‣ Manage and install plugins ‣ Installed</em>. Pentru mai multe detalii, parcurgeți <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a>.</p>
 </div>
 <img alt="../_images/923.png" class="align-center" src="../_images/923.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">În fereastra <em class="guilabel">Clipper</em>, denumiți fișierul de ieșire ca <cite>everest_gmted30.tif</cite>. Selectați <em class="guilabel">Clipping mode</em> ca <em class="guilabel">Extent</em>.</p>
+<li><p class="first">În fereastra <em class="guilabel">Clipper</em>, denumiți fișierul de ieșire ca <cite>everest_gmted30.tif</cite>. Alegeți <em class="guilabel">Extent</em> pentru <em class="guilabel">Clipping mode</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1023.png" class="align-center" src="../_images/1023.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">Păstrați fereastra <em class="guilabel">Clipper</em> deschisă și comutați la fereastra principală a QGIS. Țineți apăsat butonul stâng al mouse-ului si trageți un dreptunghi care acoperă complet suportul de hartă.</p>
+<li><p class="first">Păstrați fereastra <em class="guilabel">Clipper</em> deschisă și comutați la fereastra principală a QGIS. Țineți apăsat butonul stâng al mouse-ului, apoi glisați, trasând un dreptunghi care să acopere complet suportul de hartă.</p>
 </li>
 </ol>
 <img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">Acum, înapoi la fereastra <em class="guilabel">Clipper</em>, veți vedea coordonatele auto-populându-se, conform selecției dvs. Asigurați-vă că opțiunea <em class="guilabel">Load into canvas when finished</em> este bifată, și faceți clic pe <em class="guilabel">OK.</em></p>
+<li><p class="first">Înapoi, în fereastra <em class="guilabel">Clipper</em>, veți vedea coordonatele auto-populându-se conform selecției dvs. Asigurați-vă că opțiunea <em class="guilabel">Load into canvas when finished</em> este bifată, apoi faceți clic pe <em class="guilabel">OK.</em></p>
 </li>
 </ol>
 <img alt="../_images/1223.png" class="align-center" src="../_images/1223.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">O dată ce se termină procesul, veți vedea un nou strat încărcat în QGIS. Acest strat acoperă doar zona din jurul Mt. Everest. Acum suntem gata să generăm contururi. Selectați instrumentul de contur din <em class="menuselection">Raster ‣ Extraction ‣ Contour</em>.</p>
+<li><p class="first">O dată cu încheierea procesului, veți vedea un nou strat încărcat în QGIS. Acest strat va acoperi doar zona din jurul Mt. Everest. În acest moment suntem gata să generăm liniile de nivel. Selectați instrumentul corespunzător din <em class="menuselection">Raster ‣ Extraction ‣ Contour</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1322.png" class="align-center" src="../_images/1322.png" />
@@ -314,22 +314,22 @@
 </ol>
 <img alt="../_images/1914.png" class="align-center" src="../_images/1914.png" />
 <ol class="arabic simple" start="20">
-<li><p class="first">În fereastra de dialog <em class="guilabel">DEM (Terrain Models)</em>, alegeți <cite>everest_gmted30</cite> ca <em class="guilabel">Input file</em>. Denumiți <em class="guilabel">Output file</em> ca <cite>everest_hillshade.tif</cite>. Alegeți <em class="guilabel">Hillshade</em> ca <em class="guilabel">Mode</em>. Lăsați toate celelalte opțiuni așa cum sunt. Asigurați-vă că opțiunea <em class="guilabel">Load into canvas when finished</em> este bifată, și faceți clic pe <em class="guilabel">OK.</em></p>
+<li><p class="first">În fereastra de dialog <em class="guilabel">DEM (Terrain Models)</em>, alegeți <cite>everest_gmted30</cite> ca <em class="guilabel">Input file</em>. Denumiți <em class="guilabel">Output file</em> ca <cite>everest_hillshade.tif</cite>. Alegeți <em class="guilabel">Hillshade</em> pentru <em class="guilabel">Mode</em>. Lăsați toate celelalte opțiuni așa cum sunt. Asigurați-vă că opțiunea <em class="guilabel">Load into canvas when finished</em> este bifată, și faceți clic pe <em class="guilabel">OK.</em></p>
 </li>
 </ol>
 <img alt="../_images/2010.png" class="align-center" src="../_images/2010.png" />
 <ol class="arabic simple" start="21">
-<li><p class="first">O dată ce procesul se termină, veți vedea încă un alt raster încărcat în suportul de hartă QGIS. Din moment ce, eventual, ați mărit harta pentru a fi mai aproape de regiunea Mt. Everest, faceți clic dreapta pe stratul <cite>everest_hillshade</cite> și alegeți <em class="guilabel">Zoom to Layer Extent</em>.</p>
+<li><p class="first">O dată ce procesul se termină, veți vedea un alt raster încărcat în suportul de hartă QGIS. Din moment ce, eventual, ați mărit harta pentru a fi mai aproape de regiunea Mt. Everest, faceți clic dreapta pe stratul <cite>everest_hillshade</cite> și alegeți <em class="guilabel">Zoom to Layer Extent</em>.</p>
 </li>
 </ol>
 <img alt="../_images/2114.png" class="align-center" src="../_images/2114.png" />
 <ol class="arabic simple" start="22">
-<li><p class="first">Acum, veți vedea relieful întregii suprafațe a rasterului.</p>
+<li><p class="first">Acum, se vede relieful întregii suprafațe a rasterului.</p>
 </li>
 </ol>
 <img alt="../_images/2213.png" class="align-center" src="../_images/2213.png" />
 <ol class="arabic simple" start="23">
-<li><p class="first">Puteți vizualiza, de asemenea, stratul curbelor de nivel, și să vă verificați analiza exportând stratul contururilor ca KML, și apoi vizualizându-l în Google Earth. Faceți clic dreapta pe stratul de contururi și selectați <em class="guilabel">Save as..</em>.</p>
+<li><p class="first">Puteți vizualiza, de asemenea, stratul curbelor de nivel, și să vă verificați ulterior analiza exportând, în format KML, stratul curbelor de nivel, și afișându-l în Google Earth. Faceți clic dreapta pe stratul curbelor de nivel și selectați <em class="guilabel">Save as..</em>.</p>
 </li>
 </ol>
 <img alt="../_images/2311.png" class="align-center" src="../_images/2311.png" />
@@ -339,7 +339,7 @@
 </ol>
 <img alt="../_images/2410.png" class="align-center" src="../_images/2410.png" />
 <ol class="arabic simple" start="25">
-<li><p class="first">Navigați la fișierul de ieșire de pe disk, și efectuați dublu-clic pe el pentru a deschide Google Earth.</p>
+<li><p class="first">Navigați la fișierul de ieșire de pe disk, și efectuați dublu-clic pe el pentru a-l deschide în Google Earth.</p>
 </li>
 </ol>
 <img alt="../_images/256.png" class="align-center" src="../_images/256.png" />
@@ -366,7 +366,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 27, 2014.<br/>
+      Last updated on Aug 01, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

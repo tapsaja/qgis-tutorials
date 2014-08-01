@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Digitizing Map Data &mdash; QGIS Tutorials and Tips</title>
+    <title>Vettorializzare mappe raster &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Performing Table Joins" href="performing_table_joins.html" />
+    <link rel="next" title="Realizzare unioni tabellari" href="performing_table_joins.html" />
     <link rel="prev" title="Georeferenziare immagini aeree" href="advanced_georeferencing.html" />
 
 <meta charset='utf-8'>
@@ -95,8 +95,8 @@
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Lavorare con i dati WMS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferenziare mappe e carte geografiche raster</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferenziare immagini aeree</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Digitizing Map Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Vettorializzare mappe raster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Realizzare unioni tabellari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
@@ -127,7 +127,7 @@
     </a>
   </li>
   <li>
-    <a href="performing_table_joins.html" title="Next Chapter: Performing Table Joins"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Performing Table... &raquo;</span>
+    <a href="performing_table_joins.html" title="Next Chapter: Realizzare unioni tabellari"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Realizzare union... &raquo;</span>
     </a>
   </li>
               
@@ -189,193 +189,136 @@
       
 
   <div class="section" id="digitizing-map-data">
-<h1>Digitizing Map Data<a class="headerlink" href="#digitizing-map-data" title="link permanente per questa intestazione">¶</a></h1>
+<h1>Vettorializzare mappe raster<a class="headerlink" href="#digitizing-map-data" title="link permanente per questa intestazione">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/digitizing_basics_a4.pdf">A4</a> <a class="reference external" href="../pdf/digitizing_basics_letter.pdf">Letter</a> ]</p>
-<p>Digitizing is one of the most common tasks that a GIS Specialist has to do.
-Often a large amount of <em>GIS time</em> is spent in digitizing raster data to create
-vector layers that you use in your analysis. QGIS has powerful on-screen
-digitizing and editing capabilities that we will explore in this tutorial.</p>
+<p>Digitalizzare è uno dei compiti che gli specialisti GIS sono chiamati a svolgere con maggior frequenza. Una cospicua quantità dell&#8217;intero <em>GIS time</em> è normalmente investita nella digitalizzazione di dati raster per ottenere dei layer vettoriali da usare nel corso delle nostre analisi. QGIS dispone di potenti risorse per la digitalizzazione e l&#8217;editing che esploreremo nel corso di questa esercitazione.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="link permanente per questa intestazione">¶</a></h2>
-<p>We will use a raster topographic map and create several vector layers
-representing features around a park.</p>
+<h2>Descrizione dell&#8217;esercizio<a class="headerlink" href="#overview-of-the-task" title="link permanente per questa intestazione">¶</a></h2>
+<p>Partiremo da una carta topografica raster e creeremo alcuni layer vettoriali per rappresentare le geometrie che interessano un parco e l&#8217;area circostante.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="link permanente per questa intestazione">¶</a></h3>
+<h3>Altri aspetti che avremo modo di apprendere nel corso dell&#8217;esercizio<a class="headerlink" href="#other-skills-you-will-learn" title="link permanente per questa intestazione">¶</a></h3>
 <ul class="simple">
-<li>Building pyramids for large raster datasets to speed up zoom and pan
-operations.</li>
-<li>Working with a Spatialite database.</li>
+<li><p class="first">Costruire piramidi per grandi dataset raster per velocizzare le operazioni di zoom (ingrandisci) e di pan (sposta mappa).</p>
+</li>
+<li><p class="first">Lavorare con un database Spatialite.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
-<p><a class="reference external" href="http://www.linz.govt.nz/">Land Information New Zealand (LINZ)</a> provides
-raster topographic maps at 1:50,000 scale for the New Zealand mainland and
-Chatham Islands.</p>
-<p>Download the <a class="reference external" href="http://topo.linz.govt.nz/Topo50_raster_images/GeoTIFFTopo50/BX24_GeoTifv1-02.tif">GeoTIFF Image file</a>
-from the <a class="reference external" href="http://www.linz.govt.nz/topography/topo-maps/map-chooser/christchurch/christchurch#digitalfile">Christchurch Topo50 map download page</a>.</p>
+<h2>Ottenere i dati necessari<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
+<p><a href="#id1"><span class="problematic" id="id2">`</span></a>Land Information New Zealand (LINZ) &lt;<a class="reference external" href="http://www.linz.govt.nz/">http://www.linz.govt.nz/</a>&gt;`_fornisce carte topografiche alla scala 1:50000 per la Nuova Zelanda e le isole Chatham.</p>
+<p>Scaricate il <a class="reference external" href="http://topo.linz.govt.nz/Topo50_raster_images/GeoTIFFTopo50/BX24_GeoTifv1-02.tif">GeoTIFF Image file</a> dalla pagina <a class="reference external" href="http://www.linz.govt.nz/topography/topo-maps/map-chooser/christchurch/christchurch#digitalfile">Christchurch Topo50 map download page</a>.</p>
 <p>If you are on a slow connection, you may download a clipped version of the
 original GeoTIFF which is a much smaller file size.</p>
 <p><a class="reference download internal" href="../_downloads/BX24_GeoTifv1-02-clip.tif"><tt class="xref download docutils literal"><span class="pre">BX24_GeoTifv1-02-clip.tif</span></tt></a></p>
-<p>Data Source <a class="reference internal" href="credits.html#linz" id="id1">[LINZ]</a></p>
+<p>Fonte Dati <a class="reference internal" href="credits.html#linz" id="id1">[LINZ]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="link permanente per questa intestazione">¶</a></h2>
+<h2>Procedimento<a class="headerlink" href="#procedure" title="link permanente per questa intestazione">¶</a></h2>
 <ol class="arabic simple">
-<li>Go to <em class="menuselection">Layer ‣ Add Raster Layer</em>. Locate the downloaded
-<tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02.tif</span></tt> and click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Andate su <em class="menuselection">Layer ‣ Aggiungi raster...</em>. Individuate l&#8217;immagine scaricata <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02.tif</span></tt> e fate click su <em class="guilabel">Apri</em>.</p>
+</li>
 </ol>
 <img alt="../_images/119.png" class="align-center" src="../_images/119.png" />
 <ol class="arabic simple" start="2">
-<li>This is a large raster file and you may notice that when you zoom or pan
-around the map, the map takes a little time to render the image. QGIS offers
-a simple solution to make rasters load much faster by using <strong>Image
-Pyramids</strong>. QGIS creates pre-rendered tiles at different resolutions and
-these are presented to you instead of the full raster. This makes map
-navigation snappy and responsive. Right-click the <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02</span></tt> layer
-and choose <em class="guilabel">Properties</em>.</li>
+<li><p class="first">Abbiamo caricato un file raster piuttosto pesante e potrete notare che quando fate operazioni di zoom o di pan sulla mappa passa un certo  tempo prima che l&#8217;immagine venga visualizzata di nuovo. QGIS offre una semplice soluzione per rendere il caricamento dei raster più veloce attraverso <strong>Image Pyramids</strong>. Con questo servizio QGIS crea delle piastrelle (tile) precaricate a risoluzioni diverse e saranno proprio queste piastrelle - le cosiddette piramidi - a venir rappresentate al posto dell&#8217;intero raster. Ciò renderà la navigazione più rapida e diretta. Fate click con il tasto destro del mouse sul layer del raster <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02</span></tt> e scegliete <em class="guilabel">Proprietà</em>.</p>
+</li>
 </ol>
 <img alt="../_images/26.png" class="align-center" src="../_images/26.png" />
 <ol class="arabic simple" start="3">
-<li>Choose the <em class="guilabel">Pyramids</em> tab. Hold the <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> key and select all
-the resolutios offered in the <em class="guilabel">Resolutions</em> panel. Leave other
-options to defaults and click <em class="guilabel">Build pyramids</em>. Once the process
-finishes, click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Scegliete la scheda  <em class="guilabel">Piramidi</em>. Tenete premuto il tasto <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> e selezionate tutte le risoluzioni proposte nel pannello <em class="guilabel">Risoluzioni</em>. Lasciate le altre opzioni come sono e fate click su  <em class="guilabel">Crea piramidi</em>. Quando il processo è finito fate click su <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/36.png" class="align-center" src="../_images/36.png" />
 <ol class="arabic simple" start="4">
-<li>Back in the main QGIS window, use the <em class="guilabel">Zoom</em> tool to locate
-<em>Hagley Park</em> area in Christchurch. This is the park that we will be
-digitizing.</li>
+<li><p class="first">Tornate sulla finestra principale di QGIS e usate lo strumento <em class="guilabel">Zoom</em> per individuare l&#8217;area di <em>Hagley Park</em> nella città di Christchurch. Questo è l&#8217;area verde che intendiamo digitalizzare.</p>
+</li>
 </ol>
 <img alt="../_images/46.png" class="align-center" src="../_images/46.png" />
 <ol class="arabic simple" start="5">
-<li>Before we start, we need to set default <strong>Digitizing Options</strong>. Go to
-<em class="menuselection">Settings ‣ Options...</em>.</li>
+<li><p class="first">Prima di iniziare è necessario impostare l&#8217;opzione <strong>Digitalizzazione</strong>. Andate su  <em class="menuselection">Impostazioni ‣ Opzioni...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/56.png" class="align-center" src="../_images/56.png" />
 <ol class="arabic simple" start="6">
-<li>Select the <em class="guilabel">Digitizing</em> tab in the <em class="guilabel">Options</em> dialog.
-Set the <em class="guilabel">Default snap mode</em> to <em class="guilabel">To vertex and segment</em>.
-This will allow you to snap to the nearest vertex or line segment. I also
-prefer to set the <em class="guilabel">Default snapping tolerance</em> and
-<em class="guilabel">Search radius for vertex edits</em> in pixels instead of map units.
-This will ensure that the snapping distance remains constant regardless of
-zoom level. Depending on your computer screen resolution, you
-may choose an appropriate value. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Selezionate la scheda <em class="guilabel">Digitalizzazione</em>  nella finestra di dialogo <em class="guilabel">Opzioni</em> . All&#8217;interno della scheda  <em class="guilabel">Snapping</em>  e precisamente nella casella <em class="guilabel">Modalità di snap predefinita</em>, settate la voce <em class="guilabel">Al vertice e al segmento</em>. E&#8217; preferibile settare le caselle  <em class="guilabel">Modalità di snap predefinita</em> e <em class="guilabel">Tolleranza di snapping predefinita</em> su pixel invece che su unità di mappa. Questo ci assicura che la distanza di snapping rimane costante indipendentemente dal livello di zoom. Sulla base della risoluzione dei vostri schermi, scegliete dei valori appropriati. Click su <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/65.png" class="align-center" src="../_images/65.png" />
 <ol class="arabic simple" start="7">
-<li>Now we are ready to start digitizing. We will first create a roads layer and
-digitize the roads around the park area. Select <em class="menuselection">Layer ‣ New
-‣ New Spatialite Layer...</em>. You may also choose to create a <em class="guilabel">New
-Shapefile Layer...</em> instead if you prefer. Spatialite is an open database
-format similar to ESRI&#8217;s geodatabase format. Spatialite database is
-contained within a single file on your hard drive and can contain diferent
-types of spatial (point, line, polygon) as well as non-spatial layers. This
-makes is much easier to move it around instead of a bunch of shapefiles. In
-this tutorial, we are creating a couple of polygon layers and a line layer,
-so a Spatialite database will be better suited. You can always load a
-spatialite layer and save it as a shapefile or any other format you want.</li>
+<li><p class="first">Ora siamo pronti ad avviare la digitalizzazione. Per prima cosa creeremo un layer per le strade trasformando in dati vettoriali le strade intorno all&#8217;area del parco. Selezionate <em class="menuselection">Layer ‣ Nuovo ‣ Nuovo vettore spatialite...</em>.  Naturalmente, per vostre specifiche esigenze, avreste anche potuto scegliere di creare un nuovo shapefile selezionando <em class="guilabel">Nuovo shapefile...</em>. Spatialite è un formato aperto dei database, per molti versi simile al formato ESRI per i geodatabase. Il database Spatialite è contenuto all&#8217;interno di un singolo file che, salvato all&#8217;interno dei vostri dispositivi di memoria,  riesce a contenere insieme diversi tipi di geometrie (punti, linee, poligoni) come pure attributi di tipo non geometrico. Questo rende notevolmente più semplice spostarlo rispetto a quanto accade con un ventaglio composto da diversi shapefile. In questa esercitazione creeremo una coppia di layer poligonali e uno di tipo lineare, per cui ci sembra che un database Spatialite faccia al caso nostro. Tenete presente che, in ogni modo, potete sempre caricare un layer Spatialite e poi salvarlo come uno shapefile o in qualsiasi altro formato preferite.</p>
+</li>
 </ol>
 <img alt="../_images/75.png" class="align-center" src="../_images/75.png" />
 <ol class="arabic simple" start="8">
-<li>In the <em class="guilabel">New Spatialite Layer</em> dialog, click the <em class="guilabel">...</em>
-button and save a new spatialite database named <tt class="docutils literal"><span class="pre">nztopo.sqlite</span></tt>. Choose
-the <em class="guilabel">Layer name</em> as <tt class="docutils literal"><span class="pre">Roads</span></tt> and select <tt class="docutils literal"><span class="pre">Line</span></tt> as the
-<em class="guilabel">Type</em>. The base topographic map is in the
-<tt class="docutils literal"><span class="pre">EPSG:2193</span> <span class="pre">-</span> <span class="pre">NZGD</span> <span class="pre">2000</span></tt> CRS, so we can select
-the same for our roads layer. Check the <em class="guilabel">Create an
-autoincrementing primary key</em> box. This will create a field called <strong>pkuid</strong>
-in the attribute table and assign a unique numeric id automatically to each
-feature. When creating a GIS layer, you must decide on the attributes that
-each feature will have. Since this is a roads layer, we will have 2 basic
-attributes - Name and Class. Enter <tt class="docutils literal"><span class="pre">Name</span></tt> as the <em class="guilabel">Name</em>
-of the attribute in the <em class="guilabel">New attribute</em> section and click
-<em class="guilabel">Add to attribute list.</em></li>
+<li><p class="first">Nella finestra di dialogo <em class="guilabel">Nuovo layer Spazialite</em>  scegliete il pulsante <em class="guilabel">...</em>  e salvate un nuovo database spatiaLite che chiameremo <tt class="docutils literal"><span class="pre">nztopo.sqlite</span></tt>. Scegliete <tt class="docutils literal"><span class="pre">Roads</span></tt>  come <em class="guilabel">Nome layer</em>  e selezionate <tt class="docutils literal"><span class="pre">Linea</span></tt> come <em class="guilabel">Tipo</em>. La carta topografica di base ha come CRS <tt class="docutils literal"><span class="pre">EPSG:2193</span> <span class="pre">-</span> <span class="pre">NZGD</span> <span class="pre">2000</span></tt>, quindi dovremo selezionare lo stesso sistema di riferimento per il nostro layer stradale. Barrate la casella <em class="guilabel">Crea una chiave primaria autoincrementale</em>. Questo creerà un campo chiamato <strong>pkuid</strong>  nella tabella degli attributi e assegnerà automaticamente un unico id numerico per ciascuna geometria. In generale, quando create un layer GIS, dovete decidere quali attributi assegnare alle geometrie. Considerando che qui abbiamo a che fare con un layer stradale,  sceglieremo 2 attributi di base: Name and Class. Digitate <cite>Name`</cite> , inteso come il nome dell&#8217;attributo, nella sezione <em class="guilabel">Nuovo attributo</em> e fate click su <em class="guilabel">Aggiungi alla lista degli attributi.</em></p>
+</li>
 </ol>
 <img alt="../_images/85.png" class="align-center" src="../_images/85.png" />
 <ol class="arabic simple" start="9">
-<li>Similarly create a new attribute <tt class="docutils literal"><span class="pre">Class</span></tt> of the type <em class="guilabel">Text data</em>.
-Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">In modo del tutto analogo create il nuovo attributo <tt class="docutils literal"><span class="pre">Class</span></tt> sempre con tipo di dato <em class="guilabel">Testo`Fate click su :guilabel:`OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/95.png" class="align-center" src="../_images/95.png" />
 <ol class="arabic simple" start="10">
-<li>Once the layer is loaded, click the <em class="guilabel">Toggle Editing</em> button to
-put the layer in editing mode.</li>
+<li><p class="first">Una volta che il layer è stato caricato fate click sul pulsante <em class="guilabel">Modifica</em>  per mettere il layer in modalità di editing.</p>
+</li>
 </ol>
 <img alt="../_images/105.png" class="align-center" src="../_images/105.png" />
 <ol class="arabic simple" start="11">
-<li>Click the <em class="guilabel">Add feature</em> button. Click on the map canvas to add a
-new vertex. Add new vertices along the road feature. Once you have digitized
-a road segment, right-click to end the feature.</li>
+<li><p class="first">Click sul pulsante <em class="guilabel">Aggiungi elemento</em>. Click sulla mappa per aggiungere un nuovo vertice. Aggiungete nuovi vertici lungo la linea stradale. Una volta che avete digitalizzato un segmento di strada, fate click con il tasto destro per concludere l&#8217;inserimento della geometria.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
-<p class="last">You can use the scroll wheel of the mouse to zoom in or out while digitizing.
-You can also hold the scroll button and move the mouse to pan around.</p>
+<p class="last">potete usare la ruota di scorrimento del mouse per ingrandire o rendere più piccola l&#8217;immagine mentre lavorate alla digitalizzazione. Potete anche tenere pigiata la ruota del mouse e spostare la mappa con movimenti di pan.</p>
 </div>
 <img alt="../_images/1110.png" class="align-center" src="../_images/1110.png" />
 <ol class="arabic simple" start="12">
-<li>After you right-click to end the feature, you will get a pop-up dialog
-called <em class="guilabel">Attributes</em>. Here you can enter attributes of the newly
-created feature. Since the <strong>pkuid</strong> is an auto-incrementing field, you
-will not be able to enter a value manually. Leave it blank and enter the
-road name as it appears on the topo map. Optionally, assign a Road Class
-value as well. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Dopo aver fatto click sul tasto destro del mouse apparirà una finestra di dialogo chiamata:guilabel:<cite>Attributi</cite>. Qui potete inserire gli attributi delle geometrie che andate via via creando. Visto che <strong>pkuid</strong>  è un campo che si autoincrementa, non vi sarà permesso digitare valori al suo interno manualmente. Lasciatelo vuoto e scrivete il nome della strada così come appare sulla mappa topografica. Se volete, potete assegnare un valore di Road Class. Click su <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/125.png" class="align-center" src="../_images/125.png" />
 <ol class="arabic simple" start="13">
-<li>The default style of the new line layer is a thin line. Let&#8217;s change it so
-we can better see the digitized features on the canvas. Right click the
-<tt class="docutils literal"><span class="pre">Roads</span></tt> layer and select <em class="guilabel">Properties</em>.</li>
+<li><p class="first">Lo stile di default per il layer delle nuove linee è una linea troppo sottile. Cambiamola, così potremo vedere meglio le geometrie che digitalizziamo sulla mappa. Fate click sul layer <a href="#id1"><span class="problematic" id="id2">``</span></a>Roads` e selezionate:guilabel:<cite>Proprietà</cite>.</p>
+</li>
 </ol>
 <img alt="../_images/135.png" class="align-center" src="../_images/135.png" />
 <ol class="arabic simple" start="14">
-<li>Select the <em class="guilabel">Style</em> tab in the <em class="guilabel">Layer Properties</em>
-dialog. Choose a thicker line style such as <em class="guilabel">Primary</em> from the
-predefined styles. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Selezionate la scheda <em class="guilabel">Stile</em> nella finestra di dialogo <em class="guilabel">Proprietà vettore</em> . Scegliamo tra gli stili salvati un tratto un po&#8217; più grande, come ad esempio  <em class="guilabel">Primary</em>. Click su <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/145.png" class="align-center" src="../_images/145.png" />
 <ol class="arabic simple" start="15">
-<li>Now you will see the digitized road feature clearly. Click <em class="guilabel">Save
-Layer Edits</em> to commit the new feature to disk.</li>
+<li><p class="first">Ora potrete vedere chiaramente la strada digitalizzata. Fate click su:guilabel:<cite>Salva modifiche vettori</cite>  per salvare la nuova geometria sul vostro supporto di memoria.</p>
+</li>
 </ol>
 <img alt="../_images/155.png" class="align-center" src="../_images/155.png" />
 <ol class="arabic simple" start="16">
-<li>Before we digitize remaining roads, it is important to update some other
-settings that are important to create an error free layer. Go to
-<em class="menuselection">Settings ‣ Snapping Options...</em>.</li>
+<li><p class="first">Prima di digitalizzare le strade rimanenti è importante aggiornare alcune altre impostazioni che sono utili per creare un layer privo di errori.:menuselection:<cite>Impostazioni &#8211;&gt; Optioni di snap...</cite>.</p>
+</li>
 </ol>
 <img alt="../_images/165.png" class="align-center" src="../_images/165.png" />
 <ol class="arabic simple" start="17">
-<li>In the <em class="guilabel">Snapping Options</em> dialog, check the <em class="guilabel">Enable
-topological editing</em>. This option will ensure that the common boundaries
-are maintained correctly in polygon layers. Also check the
-<em class="guilabel">Enable snapping on intersection</em> which allows you to snap on an
-intersection of a background layer.</li>
+<li><p class="first">Nella finestra di dialogo:guilabel:<cite>Opzioni di snap</cite>  spuntare la casella in basso <em class="guilabel">Abilita la modifica topologica</em>.. Questa opzione ci assicura che i vincoli verranno mantenuti nei layers poligonali. Spuntate anche la casella <em class="guilabel">Abilita l&#8217;ancoraggio alle intersezioni</em>  che ci permette di agganciarci all&#8217;intersezione di un layer di sfondo.</p>
+</li>
 </ol>
 <img alt="../_images/175.png" class="align-center" src="../_images/175.png" />
 <ol class="arabic simple" start="18">
-<li>Now you can click <em class="guilabel">Add feature</em> button and digitize other roads
-around the park. Make sure to click <em class="guilabel">Save Edits</em> after you add a
-new feaure to save your work. A useful tool to help you with digitizing is
-the <strong>Node Tool</strong>. Click the <em class="guilabel">Node Tool</em> button.</li>
+<li><p class="first">Ora potete fare click sul pulsante <em class="guilabel">Aggiungi elemento</em> e digitalizzare le altre strade intorno al parco. Assicuratevi sempre di fare click su <em class="guilabel">Salva modifiche vettore</em> dopo che avete aggiunto una nuova geometria, per salvare il vostro lavoro. Uno strumento molto utile per aiutarvi nella digitalizzazione è lo strumento <strong>Vertice</strong>. Fate click sul pulsante <em class="guilabel">Strumento vertice</em>.</p>
+</li>
 </ol>
 <img alt="../_images/185.png" class="align-center" src="../_images/185.png" />
 <ol class="arabic simple" start="19">
-<li>Once the node tool is activated, click on any feature to show the vertices.
-Click on any vertex to select it. The vertex will change the color once it
-is selected. Now you can click and drag your mouse to move the vertex. This
-is useful when you want to make adjustments after the feature is created.
-You can also delete a selected vertex by clicking the <tt class="kbd docutils literal"><span class="pre">Delete</span></tt> key.
-(<tt class="kbd docutils literal"><span class="pre">Option+Delete</span></tt> on a mac)</li>
+<li><p class="first">Una volta che lo strumento vertice è attivato fate click su alcune geometrie per vedere i vertici. Fate quindi click su qualche vertice per selezionarlo. Il vertice cambierà colore una volta selezionato. Adesso, potete fare click e trascinare il vertice con il mouse. Questo può essere molto utile quando volete fare un aggiustamento dopo che la geometria è stata creata. Potete anche cancellare un vertice selezionato facendo click sul pulsante <tt class="kbd docutils literal"><span class="pre">Delete</span></tt> .
+(<tt class="kbd docutils literal"><span class="pre">Option+Delete</span></tt>  su mac).</p>
+</li>
 </ol>
 <img alt="../_images/193.png" class="align-center" src="../_images/193.png" />
 <ol class="arabic simple" start="20">
-<li>Once you have finished digitizing all the roads, click the
-<em class="guilabel">Toggle Editing</em> button.</li>
+<li><p class="first">Quando avete finto di digitalizzare tutte le strade fate click sul pulsante <em class="guilabel">modifica</em>.</p>
+</li>
 </ol>
 <img alt="../_images/201.png" class="align-center" src="../_images/201.png" />
 <ol class="arabic simple" start="21">
@@ -387,21 +330,22 @@ attribute called <tt class="docutils literal"><span class="pre">Name</span></tt>
 </ol>
 <img alt="../_images/212.png" class="align-center" src="../_images/212.png" />
 <ol class="arabic simple" start="22">
-<li>Click the <em class="guilabel">Add feature</em> button and click on the map canvas to add
-a polygon vertex. Digitize the polygon representing the park. Make sure you
-snap to the roads vertices so there are no gaps between the park polygons
-and road lines. Right-click to finish the polygon.</li>
+<li><p class="first">Fate click sul pulsante <em class="guilabel">Aggiungi elemento</em> e fate click sulla mappa per aggiungere il vertice del poligono. Digitalizzate il poligono che definisce il parco.
+Assicuratevi che vi siete agganciati sui vertici delle strade in
+modo che non ci siano vuoti tra i poligoni del parco e le linee
+stradali. Tasto destro per terminare l&#8217;operazione con il poligono e
+salvarlo.</p>
+</li>
 </ol>
 <img alt="../_images/222.png" class="align-center" src="../_images/222.png" />
 <ol class="arabic simple" start="23">
-<li>Enter the park name in the <em class="guilabel">Attributes</em> pop-up.</li>
+<li><p class="first">Inserite il nome del parco nella finestra di pop-up <em class="guilabel">Attributi</em>.</p>
+</li>
 </ol>
 <img alt="../_images/231.png" class="align-center" src="../_images/231.png" />
 <ol class="arabic simple" start="24">
-<li>Polygon layers offer another very useful setting called <strong>Avoid
-intersections of new polygons</strong>. Go to <em class="menuselection">Settings ‣
-Snapping Options...</em>. Check the box in the <em class="guilabel">Avoid Int</em> column in
-the row for the <tt class="docutils literal"><span class="pre">Parks</span></tt> layer. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">I layers poligonali mettono a nostra disposizione un altro settaggio davvero utile chiamato <strong>Evita intersezioni</strong>.  Go to <em class="menuselection">Impostazioni ‣ Opzioni di snap...</em>. Nella finestra di dialogo che compare spuntate la casella <em class="guilabel">Evita intersezioni</em> nella riga relativa al layer chiamato <tt class="docutils literal"><span class="pre">Parks</span></tt>. Fate click  su <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/241.png" class="align-center" src="../_images/241.png" />
 <ol class="arabic simple" start="25">
@@ -411,81 +355,63 @@ polygon without worrying about snapping exactly to the neighboring polygons.</li
 </ol>
 <img alt="../_images/251.png" class="align-center" src="../_images/251.png" />
 <ol class="arabic simple" start="26">
-<li>Right-click to finish the polygon and enter the attributes. Magically the
-new polygon is shrunk and snapped exactly to the boundary of the neighboring
-polygons! This is very useful when digitizing complex boundaries where you
-need not be very precise and still have topologically correct polygon.
-Click <em class="guilabel">Toggle Editing</em> to finish editing the <tt class="docutils literal"><span class="pre">Parks</span></tt> layer.</li>
+<li><p class="first">Click sul tasto destro per terminare il poligono e inserire gli attributi. Magicamente il nuovo poligono si è agganciato esattamente sui confini dei poligoni vicini ! Questo è straordinariamente utile quando digitalizziamo confini complessi:  non abbiamo bisogno di essere esageratamente precisi e riusciamo ugualmente ad ottenere poligoni topologicamente corretti. Fate click sul pulsante <em class="guilabel">Modifica</em>  per terminare la fase di editing del layer``Parks``</p>
+</li>
 </ol>
 <img alt="../_images/261.png" class="align-center" src="../_images/261.png" />
 <ol class="arabic simple" start="27">
-<li>Now it is time to digitize a buildings layer. Create a new polygon layer named
-<tt class="docutils literal"><span class="pre">Buildings</span></tt> by going to <em class="menuselection">Layer ‣ New ‣ New Spatialite
-Layer</em>.</li>
+<li><p class="first">Finalmente è giunto il momento di vettorializzare il layer relativo agli edifici. Create un nuovo layer poligonale che chiameremo <tt class="docutils literal"><span class="pre">Buildings</span></tt> andando su <em class="menuselection">Layer ‣ Nuovo  ‣ Nuovo layer Spatialite</em>.</p>
+</li>
 </ol>
 <img alt="../_images/27.png" class="align-center" src="../_images/27.png" />
 <ol class="arabic simple" start="28">
-<li>Once the <tt class="docutils literal"><span class="pre">Buildings</span></tt> layer is added, turn off the <tt class="docutils literal"><span class="pre">Parks</span></tt> and <tt class="docutils literal"><span class="pre">Roads</span></tt>
-layer so the base topo map is visible. Select the <tt class="docutils literal"><span class="pre">Buildings</span></tt> layer and
-click <em class="guilabel">Toggle Editing</em>.</li>
+<li><p class="first">Una volta che il layer <tt class="docutils literal"><span class="pre">Buildings</span></tt> è stato aggiunto, spegnete i layer <tt class="docutils literal"><span class="pre">Parks</span></tt> e <tt class="docutils literal"><span class="pre">Roads</span></tt> in modo che la carta topografica di base sia ben visibile. Selezionate il layer <tt class="docutils literal"><span class="pre">Buildings</span></tt>   e fate click su <em class="guilabel">Modifica</em>.</p>
+</li>
 </ol>
 <img alt="../_images/261.png" class="align-center" src="../_images/261.png" />
 <ol class="arabic simple" start="29">
-<li>Digitizing buildings can be a cumbersome task. Also it is difficult to add
-vertices manually so that the edges are perpendicular and form a rectangle.
-We will use a plugin called <strong>Rectangles Ovals Digitizing</strong> to help with
-this task. See <a class="reference internal" href="using_plugins.html"><em>Usare i Plugins</em></a> to see how to search and install
-plugins. Once the <strong>Rectangles Ovals Digitizing</strong> plugin is installed, you
-will see a new toolbar appear above the canvas.</li>
+<li><p class="first">Digitalizzare edifici può essere un compito ingrato. E&#8217; particolarmente difficile aggiungere vertici manualmente in modo che i bordi siano perpendicolari e formino un rettangolo. Possiamo aiutarci con un plugin chiamato <strong>Rectangles Ovals Digitizing</strong>. Se avete bisogno di vedere come trovare e installare un plugin andate su <tt class="xref doc docutils literal"><span class="pre">usare</span> <span class="pre">i</span> <span class="pre">plugins</span></tt> . Una volta che il plugin <a href="#id1"><span class="problematic" id="id2">**</span></a>Rectangles Ovals Digitizing**è stato installato, vedrete una nuova barra degli strumenti proprio sopra la finestra principale di QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/29.png" class="align-center" src="../_images/29.png" />
 <ol class="arabic simple" start="30">
-<li>Zoom to an area with the buildings and click <em class="guilabel">Rectangle by
-Extent</em> button. Click and drag the mouse to draw a perfect rectangle.
-Similarly, add remaining buildings.</li>
+<li><p class="first">Fate uno zoom su un area con molti edifici e fate click sul pulsante <em class="guilabel">Rectangle by Extent</em>. Fate click e disegnate un rettangolo perfetto. Allo stesso modo aggiungete gli edifici rimanenti.</p>
+</li>
 </ol>
 <img alt="../_images/30.png" class="align-center" src="../_images/30.png" />
 <ol class="arabic simple" start="31">
-<li>You will notice that some buildings are not vertical. We will need to draw
-a rectangle at an angle to match the building footprint. Click the
-<em class="guilabel">Rectangle from center</em>.</li>
+<li><p class="first">Noterete che alcuni edifici non sono verticali. Quindi sarà necessario disegnare un rettangolo e  ruotarlo di una grandezza angolare che lo allinei all&#8217;edificio. Fate click sul pulsante <em class="guilabel">Rectangle from center</em>.</p>
+</li>
 </ol>
 <img alt="../_images/311.png" class="align-center" src="../_images/311.png" />
 <ol class="arabic simple" start="32">
-<li>Click at the center of the building and drag the mouse to draw a vertical
-rectangle.</li>
+<li><p class="first">Fate click al centro dell&#8217;edificio e muovete il mouse in modo da creare un rettangolo verticale.</p>
+</li>
 </ol>
 <img alt="../_images/321.png" class="align-center" src="../_images/321.png" />
 <ol class="arabic simple" start="33">
-<li>We need to rotate this rectangle to match the image on the topo map. The
-rotate tool is available in the <strong>Advanced Digitizing</strong> toolbar.
-Right-click on an empty area on the toolbar section and enable the
-<em class="guilabel">Advanced Digitizing</em> toolbar.</li>
+<li><p class="first">E&#8217; necessario ruotare questo rettangolo per allinearlo all&#8217;immagine sulla carta topografica. Lo strumento per ruotare questi oggetti è disponibile nella barra degli strumenti <strong>Digitalizzazione avanzata</strong> . Fate click con il tasto destro su un&#8217;area vuota della barra dei menu e attivate la barra degli strumenti &#8220;<strong>Digitalizzazione avanzata</strong>.</p>
+</li>
 </ol>
 <img alt="../_images/331.png" class="align-center" src="../_images/331.png" />
 <ol class="arabic simple" start="34">
-<li>Click the <em class="guilabel">Rotate Feature(s)</em> button.</li>
+<li><p class="first">Fate click sul pulsante <em class="guilabel">Ruota elemento</em> .</p>
+</li>
 </ol>
 <img alt="../_images/341.png" class="align-center" src="../_images/341.png" />
 <ol class="arabic simple" start="35">
-<li>Use the <em class="guilabel">Select Single feature</em> tool to select the polygon that
-you want to rotate. Once the <em class="guilabel">Rotate Feature(s)</em> tool is
-activated, you will see crosshairs at the center of the polygon. Click
-exactly on that crosshairs and drag the mouse while holding the left-click
-button. A preview of the rotated feature will appear. Let go of the mouse
-button when the polygon aligns with the building footprint.</li>
+<li><p class="first">Usate lo strumento <em class="guilabel">Seleziona Singolo elemento</em> per selezionare il poligono che volete ruotare. Una volta che il pulsante <em class="guilabel">Routa Elemento</em>  è attivato vedrete un bersaglio a croce nel centro del poligono. Fate click esattamente sulla freccia bersaglio e spostate il mouse mentre tenete il tasto sinistro premuto. Comparirà una rappresentazione grafica della rotazione dell&#8217;elemento. Lasciate il pulsante del mouse quando il poligono sarà perfettamente allineato con il profilo dell&#8217;edificio.</p>
+</li>
 </ol>
 <img alt="../_images/351.png" class="align-center" src="../_images/351.png" />
 <ol class="arabic simple" start="36">
-<li>Save the layer edits and click <em class="guilabel">Toggle Editing</em> once you finish
-digitizing all buildings. You can drag the layers to change their order of
-appearance.</li>
+<li><p class="first">Quando avete finito di digitalizzare tutti gli edifici salvate il layer e fate click su <em class="guilabel">Modifica</em> . Potete trascinare con il mouse i layer sulla TOC  uno sull&#8217;altro per modificare la loro sequenza e migliorare la mappa finale.</p>
+</li>
 </ol>
 <img alt="../_images/361.png" class="align-center" src="../_images/361.png" />
 <ol class="arabic simple" start="37">
-<li>The digitizing task is now complete. You can play with the styling and
-labelling options in layer properties to create a nice looking map from the
-data you created.</li>
+<li><p class="first">Il lavoro di digitalizzazione a questo punto si può considerare terminato. Potete tematizzare ed etichettare a vostro piacimento i dati che avete realizzato per realizzare un&#8217;elegante modello topografico.</p>
+</li>
 </ol>
 <img alt="../_images/37.png" class="align-center" src="../_images/37.png" />
 </div>
@@ -511,7 +437,7 @@ data you created.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Jul 27, 2014.<br/>
+      Ultimo aggiornamento Aug 01, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

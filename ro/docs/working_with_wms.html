@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Unificarea tabelelor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Realizarea uniunilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Analiza punctelor dintr-un poligon</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Crearea zonelor fierbinți</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Crearea hărților calorice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Efectuarea interogărilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analiza celui mai apropiat vecin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster folosind puncte sau poligoane</a></li>
@@ -190,7 +190,7 @@
   <div class="section" id="working-with-wms-data">
 <h1>Lucrul cu date WMS<a class="headerlink" href="#working-with-wms-data" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/working_with_wms_a4.pdf">A4</a> <a class="reference external" href="../pdf/working_with_wms_letter.pdf">Letter</a> ]</p>
-<p>De multe ori aveți nevoie de straturile de date de referință pentru harta de bază, sau pentru a afișa rezultatele dvs. în contextul altor seturi de date. Multe organizații publică seturi de date online, care pot fi folosite cu ușurință în GIS. Un standard popular pentru publicarea hărților on-line este numit <strong>WMS (Web Map Service)</strong>. Aceasta este o alegere mai bună pentru utilizarea straturilor de referință, atât timp cât aveți acces la seturi de date bogate în propriul GIS, fără a vă deranja să descărcați sau să stilizați date.</p>
+<p>De multe ori, este necesară referențierea straturilor de date de către o hartă de bază, sau afișarea rezultatelor dvs. în contextul altor seturi de date. Multe organizații publică seturi de date online, care pot fi folosite cu ușurință în GIS. Un standard popular pentru publicarea hărților on-line este numit <strong>WMS (Web Map Service)</strong>. Această modalitate de utilizare a straturilor referențiate este utilă deoarece aveți acces la seturile de date complexe din propriul GIS, fără a vă mai deranja să descărcați sau să stilizați date.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
 <p>În acest tutorial, vom încărca straturile <a class="reference external" href="http://mrdata.usgs.gov/wms.html">Mineral Resources</a> publicate de USGS.</p>
@@ -209,12 +209,12 @@
 </ol>
 <img alt="../_images/250.png" class="align-center" src="../_images/250.png" />
 <ol class="arabic simple" start="3">
-<li><p class="first">Dați un nume conexiunii. Acesta nu este numele stratului ci numele serviciului care oferă stratul WMS. Un singur serviciu oferă, de obicei, multiple straturi care pot fi adăugate proiectului dumneavoastră. URL-ul de care aveți nevoie pentru a accesa un strat WMS este numit <em>GetCapabilities</em>. Când accesați un server WMS cu acest parametru în URL, vi se returnează o listă de straturi disponibile, împreună cu diverse metadate. În acest caz, denumiți conexiunea ca <tt class="docutils literal"><span class="pre">http://mrdata.usgs.gov/services/ca?request=getcapabilities&amp;service=WMS&amp;version=1.1.1&amp;</span></tt>. Clic pe <em class="guilabel">OK</em>.</p>
+<li><p class="first">Dați un nume conexiunii. Acesta nu reprezintă numele stratului ci numele serviciului care pune la dispoziție stratul WMS. Un singur serviciu oferă, de obicei, accesul la o serie de straturi, care pot fi adăugate proiectului dumneavoastră. URL-ul de care aveți nevoie pentru accesarea unui strat WMS este numit <em>GetCapabilities</em>. Când accesați un server WMS cu acest parametru în URL, vi se returnează o listă de straturi disponibile, împreună cu diverse metadate. În acest caz, denumiți conexiunea ca <tt class="docutils literal"><span class="pre">http://mrdata.usgs.gov/services/ca?request=getcapabilities&amp;service=WMS&amp;version=1.1.1&amp;</span></tt>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/335.png" class="align-center" src="../_images/335.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">Mai departe, efectuați clic pe butonul <em class="guilabel">Connect</em> pentru a obține lista straturilor disponibile. Veți observa diferite ID-uri listate în dreptul straturilor. ID <tt class="docutils literal"><span class="pre">0</span></tt> semnifică faptul aveți o hartă a tuturor straturilor. Dacă nu doriți toate straturile, puteți să extindeți lista, făcând clic pe pictograma <em class="guilabel">+</em> și selectănd stratul de interes. Selectați stratul <tt class="docutils literal"><span class="pre">0</span></tt> pentru acest tutorial.</p>
+<li><p class="first">Mai departe, efectuați clic pe butonul <em class="guilabel">Connect</em> pentru a obține lista straturilor disponibile. În dreptul straturilor sunt afișate diverse ID-uri. ID-ul <tt class="docutils literal"><span class="pre">0</span></tt> semnifică faptul aveți o hartă a tuturor straturilor. Dacă nu doriți toate straturile, puteți să extindeți lista, făcând clic pe pictograma <em class="guilabel">+</em> și selectând stratul de interes. Pentru acest tutorial, selectați stratul <tt class="docutils literal"><span class="pre">0</span></tt> .</p>
 </li>
 </ol>
 <img alt="../_images/427.png" class="align-center" src="../_images/427.png" />
@@ -223,9 +223,9 @@
 <ul class="simple">
 <li><p class="first">Calitatea: PNG este un format de imagine, comprimat fără pierderi. JPEG este un format comprimat cu pierderi. TIFF pot fi comprimat în ambele moduri. Asta înseamnă că, în comparație cu JPEG, calitatea imaginilor PNG va fi mai bună. În cazul în care scopul principal este de a imprima o hartă, utilizați PNG.</p>
 </li>
-<li><p class="first">Viteza: Din moment ce imaginile PNG sunt comprimate și, prin urmare, mai mari în dimensiune, încărcarea lor va dura mai mult. Dacă utilizați stratul din proiectul dumneavoastră ca strat de referință, și dacă măriți / deplasați des harta, atunci utilizați JPEG.</p>
+<li><p class="first">Viteza: Din moment ce imaginile PNG sunt comprimate și, prin urmare, mai mari în dimensiune, încărcarea lor va dura mai mult. Dacă stratul din proiectul dvs. va fi utilizat ca referință, sau dacă măriți / deplasați des harta, atunci utilizați JPEG.</p>
 </li>
-<li><p class="first">Versatilitatea clientului: QGIS suportă cele mai multe formate, dar dacă dezvoltați aplicații web, navigatoarele, de obicei, nu suportă TIFF, astfel încât ar trebui să alegeți un alt format.</p>
+<li><p class="first">Versatilitatea clientului: QGIS suportă cele mai multe formate, dar dacă dezvoltați aplicații web, ar trebui să alegeți un format diferit de TIFF, pe care nu-l suportă, de obicei, navigatoarele.</p>
 </li>
 <li><p class="first">Tipul de date: Dacă straturile dvs sunt în primul rând vectoriale, PNG va da rezultate mai bune. Pentru straturile de imagini, JPEG este, de obicei, o alegere mai bună.</p>
 </li>
@@ -235,7 +235,7 @@
 </ol>
 <img alt="../_images/528.png" class="align-center" src="../_images/528.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">Veți vedea stratul încărcat în suportul de hartă al QGIS. Puteți  la fel ca în oricare alt strat. Modul în care funcționează serviciul WMS este că, de fiecare dată când măriți/deplasați, acesta trimite coordonatele portului de vizualizare la server, iar acesta creează o imagine pentru acel port, după care îl returnează la client. Așadar, va exista o întârziere înainte de a vedea imaginea zonei, după ce ați mărit-o. De asemenea, din moment ce datele pe care le vedeți reprezintă o imagine, nu există nici o modalitate de a le interoga atributele, la fel ca într-un strat obișnuit vectorial/raster.</p>
+<li><p class="first">Veți vedea stratul încărcat în suportul de hartă al QGIS. Puteți efectua operații de mărire/deplasare la fel ca în oricare alt strat. Serviciul WMS funcționează în așa fel încât, de fiecare dată când măriți/deplasați, coordonatele ferestrei de vizualizare vor fi transmise la server, care va crea o imagine pentru acea fereastră, după care o va returna clientului. Așadar, va exista o întârziere înainte de a vedea imaginea zonei, în urma unei operațiuni de mărire. De asemenea, din moment ce datele pe care le vedeți reprezintă o imagine, nu există nici o modalitate de a îi interoga atributele, așa cum procedați într-un strat obișnuit vectorial/raster.</p>
 </li>
 </ol>
 <img alt="../_images/626.png" class="align-center" src="../_images/626.png" />
@@ -272,7 +272,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 27, 2014.<br/>
+      Last updated on Aug 01, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

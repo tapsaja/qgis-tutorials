@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Unificarea tabelelor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Realizarea uniunilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Analiza punctelor dintr-un poligon</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Crearea zonelor fierbinți</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Crearea hărților calorice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Efectuarea interogărilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analiza celui mai apropiat vecin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster folosind puncte sau poligoane</a></li>
@@ -191,10 +191,10 @@
 <h1>Georeferențierea imaginilor aeriene<a class="headerlink" href="#georeferencing-aerial-imagery" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/advanced_georeferencing_a4.pdf">A4</a>
 <a class="reference external" href="../pdf/advanced_georeferencing_letter.pdf">Letter</a> ]</p>
-<p>In tutorialul <a class="reference internal" href="georeferencing_basics.html"><em>Georeferențierea paginilor topografice și a hărților scanate</em></a> am acoperit procesul de bază de georeferențiere în QGIS. Această metodă implică citirea coordonatelor hărții scanate și introducerea lor manuală. De multe ori, nu aveți coordonatele imprimate pe harta dvs., sau în imaginea pe care încercați să o georeferențiați. În acest caz, puteți utiliza ca intrare o altă sursă de date georeferențiate. În acest tutorial, veți învăța cum să folosiți sursele de date din domeniul public, în procesul de georeferențiere.</p>
+<p>In tutorialul <a class="reference internal" href="georeferencing_basics.html"><em>Georeferențierea paginilor topografice și a hărților scanate</em></a> s-a acoperit procesul de bază al georeferențierii în QGIS. Această metodă implică citirea coordonatelor hărții scanate și introducerea lor manuală. De multe ori, coordonatele nu sunt imprimate pe hartă, sau în imaginea pe care încercați să o georeferențiați. În acest caz, puteți utiliza ca intrare o altă sursă de date georeferențiate. În acest tutorial, veți învăța cum să folosiți în procesul de georeferențiere sursele de date aflate în domeniul public.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Vom georeferenția imaginile de înaltă rezoluție, luate din balon, folosind coordonate de referință de la OpenStreetMap.</p>
+<p>Vom georeferenția imagini de înaltă rezoluție, luate din balon, folosind coordonatele de referință din OpenStreetMap.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Alte competențe pe care le veți dobândi<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -202,7 +202,7 @@
 </li>
 <li><p class="first">Folosirea plugin-ului OpenLayers în QGIS.</p>
 </li>
-<li><p class="first">Conversia coordonatelor între proiecții diferite, folosind instrumentul de linie de comandă <strong>cs2cs</strong>.</p>
+<li><p class="first">Conversia coordonatelor între proiecții diferite, folosind instrumentul de tip linie de comandă <strong>cs2cs</strong>.</p>
 </li>
 <li><p class="first">Folosirea unui strat existent, georeferențiat, introducând punctele GCP în unealta Georeferencer.</p>
 </li>
@@ -213,18 +213,18 @@
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>În acest tutorial, vom folosi unele și imagini superbe luate din balon și din zmeu, colectate de <a class="reference external" href="http://publiclaboratory.org/archive">The Public Laboratory</a>. De asemenea, sunt fac disponibile și versiunile georeferențiate ale imaginilor, dar noi vom descărca o imagine JPG ne-georeferențiată  și o vom supune procesului de georeferențiere în QGIS. Dacă vă plac imaginile oferite, la fel de bine, le puteți <a class="reference external" href="http://google-latlong.blogspot.in/2012/04/balloon-and-kite-imagery-in-google.html">explora</a> în Google Earth.</p>
-<p>Descărcați imaginea JPG a <a class="reference external" href="http://publiclaboratory.org/map/washington-square-park-new-york-new-york/2012-10-01">Washington Square Park, New York</a>. Aveți posibilitatea să faceți clic dreapta pe butonul JPG și să alegeți <em class="guilabel">Save link as...</em>.</p>
+<p>În acest tutorial, vom folosi unele imagini superbe luate din balon și din zmeu, colectate de <a class="reference external" href="http://publiclaboratory.org/archive">The Public Laboratory</a>. Deși sunt disponibile și versiunile georeferențiate ale imaginilor, noi vom descărca o imagine JPG, ne-georeferențiată, pe care o vom supune procesului de georeferențiere, în QGIS. Dacă vă plac imaginile oferite, le puteți <a class="reference external" href="http://google-latlong.blogspot.in/2012/04/balloon-and-kite-imagery-in-google.html">explora</a> în Google Earth, la fel de bine.</p>
+<p>Descărcați imaginea JPG a <a class="reference external" href="http://publiclaboratory.org/map/washington-square-park-new-york-new-york/2012-10-01">Washington Square Park, New York</a>. Puteți face clic-dreapta pe butonul JPG și să alegeți <em class="guilabel">Save link as...</em>.</p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">Pentru acest tutorial, vom folosi stratul OpenStreetMap ca strat de referință. Instalați plugin-ul OpenLayers din <em class="menuselection">Plugins ‣ Manage and install plugins ‣ Get more</em>. Parcurgeți <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a> pentru mai multe informații despre utilizarea plugin-urilor în QGIS.</p>
+<li><p class="first">Pentru acest tutorial, vom folosi stratul OpenStreetMap ca strat de referință. Instalați plugin-ul OpenLayers din <em class="menuselection">Plugins ‣ Manage and install plugins ‣ Get more</em>. Pentru mai multe informații despre utilizarea plugin-urilor în QGIS, puteți parcurge <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a> .</p>
 </li>
 </ol>
 <img alt="../_images/1.png" class="align-center" src="../_images/1.png" />
 <ol class="arabic simple" start="2">
-<li><p class="first">O dată instalat, mergeți la <em class="menuselection">Plugins ‣ OpenLayers plugin ‣ Add OpenStreetMap layer</em>. Aceasta va adăuga un strat cu dale pre-randate create din <a class="reference external" href="http://www.openstreetmap.org/">Datele OpenStreetMap</a>.</p>
+<li><p class="first">O dată instalat, mergeți la <em class="menuselection">Plugins ‣ OpenLayers plugin ‣ Add OpenStreetMap layer</em>. Ca rezultat al acestei operațiune se va adăuga un strat cu dale pre-randate, create din <a class="reference external" href="http://www.openstreetmap.org/">Datele OpenStreetMap</a>.</p>
 </li>
 </ol>
 <img alt="../_images/2.png" class="align-center" src="../_images/2.png" />
@@ -234,17 +234,17 @@
 </ol>
 <img alt="../_images/3.png" class="align-center" src="../_images/3.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">Acum, sarcina este de a localiza vecinătatea generală a zonei pe care încercăm să o georeferențiem. Puteți folosi doar instrumentele Mărire și Deplasare pentru a localiza zona în stratul OpenStreetMap. Dar profităm de această ocazie pentru a demonstra un alt instrument care vă poate ajuta în viitor. Știm că imaginea descărcată este pentru Washington Square Park din New York. Dacă veți căuta acel loc, localizați pagina ei de pe wikipedia. Coordonatele parcului sunt indicate acolo.</p>
+<li><p class="first">Sarcina curentă este de a localiza vecinătatea generală a zonei pe care încercăm să o georeferențiem. Se pot folosi doar instrumentele Mărire și Deplasare pentru a localiza zona în stratul OpenStreetMap. Dar profităm de această ocazie, pentru a prezenta un alt instrument care vă poate ajuta pe viitor. Știm că imaginea descărcată este pentru Washington Square Park din New York. Dacă veți căuta acel loc, localizați pagina lui de pe Wikipedia. Coordonatele parcului sunt indicate acolo.</p>
 </li>
 </ol>
 <img alt="../_images/4.png" class="align-center" src="../_images/4.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">În acest moment, coordonatele sunt exprimate în Grade/Minute/Secunde, reprezentând Latitudinea și Longitudinea. Dar, din moment ce stratul nostru este în proiecție Mercator, vom avea nevoie de coordonatele Mercator pentru a localiza parcul. Iată de ce un instrument de linie de comandă denumit <strong>cs2cs</strong> ne vine la îndemână. Dacă ați instalat QGIS cu ajutorul programului de instalare OSGeo4W, el va fi deja instalat pe sistemul dumneavoastră. Pe Linux și Mac, de asemenea, el vine pre-instalat, o data cu QGIS. Lansați o fereastră terminal și tastați <tt class="docutils literal"><span class="pre">cs2cs</span></tt>  pentru a verifica dacă acesta este disponibil. Utilizatorii de Windows pot găsi o fereastră terminal la <em class="menuselection">Start ‣ OSGeo4W ‣ MSYS</em>.</p>
+<li><p class="first">În acest moment, coordonatele sunt exprimate în Grade/Minute/Secunde, reprezentând Latitudinea și Longitudinea. Dar, din moment ce stratul nostru este în proiecție Mercator, vom avea nevoie de coordonatele Mercator pentru a localiza parcul. Iată de ce un instrument din linia de comandă, denumit <strong>cs2cs</strong>, ne vine la îndemână. Dacă ați instalat QGIS cu ajutorul programului OSGeo4W, el se află deja pe sistemul dumneavoastră. Pe Linux și Mac, de asemenea, el vine pre-instalat, o dată cu aplicația QGIS. Lansați o fereastră terminal și tastați <tt class="docutils literal"><span class="pre">cs2cs</span></tt>  pentru a verifica dacă acesta este disponibil. Utilizatorii de Windows pot găsi o fereastră terminal la <em class="menuselection">Start ‣ OSGeo4W ‣ MSYS</em>.</p>
 </li>
 </ol>
 <img alt="../_images/5.png" class="align-center" src="../_images/5.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">După ce ați verificat că instrumentul cs2cs există pe sistemul dvs., este timpul să convertim Latitudinea și Longitudinea în coordonate Mercator. Modul în care funcționează acest  acest instrument presupune specificarea unor CRS-uri <em class="guilabel">sursă</em> și <em class="guilabel">destinație</em>. Definiția CRS ar putea fi un <a class="reference external" href="http://trac.osgeo.org/proj/wiki/GenParms">Șir PROJ4</a> sau un <a class="reference external" href="http://www.epsg-registry.org/">Cod EPSG</a>. Din moment ce știm deja codul EPSG al CRS-urilor de intrare și de ieșire, vom folosi acest lucru. Cel mai simplu mod utilizare a instrumentului, este de a furniza coordonatele de intrare chiar în linia de comandă. Rețineți că instrumentul acceptă coordonatele în ordinea <cite>X Y</cite>, așa că vom introduce <cite>Longitudinea Latitudinea</cite>. Introduceți următoarea comandă în terminal și apăsați Enter. Rețineți că e nevoie să prefixăm ghilimelele (&#8216;), cu un backslash (\). După ce apăsați ENTER, instrumentul va procesa coordonatele și va afișa coordonatele X Y în CRS-ul EPSG:3857.</p>
+<li><p class="first">După ce v-ați asigurat că instrumentul cs2cs există pe sistemul dvs., este timpul să convertim Latitudinea și Longitudinea în coordonate Mercator. Modul în care funcționează acest instrument presupune specificarea unor CRS-uri <em class="guilabel">sursă</em> și <em class="guilabel">destinație</em>. Definiția CRS constă într-un <a class="reference external" href="http://trac.osgeo.org/proj/wiki/GenParms">Șir PROJ4</a> sau un <a class="reference external" href="http://www.epsg-registry.org/">Cod EPSG</a>. Din moment ce știm deja codul EPSG al CRS-urilor de intrare și de ieșire, vom folosi acest lucru. Cel mai simplu mod de utilizare a instrumentului, este de a furniza coordonatele de intrare chiar în linia de comandă. Rețineți că instrumentul acceptă coordonatele în ordinea <cite>X Y</cite>, așa că vom introduce <cite>Longitudine Latitudine</cite>. Introduceți următoarea comandă în terminal și apăsați Enter. Rețineți că e nevoie să prefixăm ghilimelele (&#8216;), cu un backslash (\). După ce apăsați ENTER, instrumentul va procesa coordonatele și va afișa coordonatele X Y în CRS-ul EPSG:3857.</p>
 </li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>echo &quot;-73d59&#39;51\&quot; 40d43&#39;51\&quot;&quot; | cs2cs +init=EPSG:4326 +to +init=EPSG:3857
@@ -254,17 +254,17 @@
 </div>
 <img alt="../_images/6.png" class="align-center" src="../_images/6.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">Copiați aceste coordonate și mergeți la QGIS. În partea de jos a ferestrei QGIS, veți vedea o căsuță etichetată Coordonate. Introduceți coordonatele acolo, sub forma X, Y. Apăsați Enter. Veți vedea harta deplasată un pic, dar nu încercați să măriți. Pentru a vizualiza zona respectivă, selectați scara 1:2500 în caseta de lângă coordonate, apoi apăsați Enter.</p>
+<li><p class="first">Copiați aceste coordonate și mergeți la QGIS. În partea de jos a ferestrei QGIS, veți vedea o căsuță etichetată Coordonate. Introduceți coordonatele acolo, sub forma X, Y. Apăsați Enter. Veți vedea harta deplasată un pic, dar nu încercați să măriți. Pentru a vizualiza zona respectivă, selectați scara 1:2500 în caseta alăturată coordonatelor, apoi apăsați Enter.</p>
 </li>
 </ol>
 <img alt="../_images/7.png" class="align-center" src="../_images/7.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">Iată! Vedeți acum zona Washington Square Park pe suportul hărții dumneavoastră. Este timpul să începeți georeferențierea. Lansați <strong>Georeferențiator</strong> din <em class="menuselection">Raster ‣ Georeferencer ‣ Georeferencer</em>. Dacă nu vedeți acel element de meniu, trebuie să activați plugin-ul <em class="guilabel">Georeferencer GDAL</em> din <em class="menuselection">Plugins ‣ Manage and install Plugins ‣ Installed</em>.</p>
+<li><p class="first">Et Voilà! Se vede acum zona Washington Square Park pe suportul hărții dumneavoastră. Este timpul să începeți georeferențierea. Lansați <strong>Georeferențiator</strong> din <em class="menuselection">Raster ‣ Georeferencer ‣ Georeferencer</em>. Dacă acel element de meniu nu există, atunci va trebui să activați plugin-ul <em class="guilabel">Georeferencer GDAL</em> din <em class="menuselection">Plugins ‣ Manage and install Plugins ‣ Installed</em>.</p>
 </li>
 </ol>
 <img alt="../_images/8.png" class="align-center" src="../_images/8.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">În fereastra <em class="guilabel">Georeferencer</em>, mergeți la <em class="menuselection">File ‣ Open raster</em>. Navigați la fișierul JPG descărcat și faceți clic pe <em class="guilabel">Open</em>.</p>
+<li><p class="first">În fereastra <em class="guilabel">Georeferencer</em>, mergeți la <em class="menuselection">File ‣ Open raster</em>. Navigați la fișierul JPG, anterior descărcat, și faceți clic pe <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
 <img alt="../_images/9.png" class="align-center" src="../_images/9.png" />
@@ -274,17 +274,17 @@
 </ol>
 <img alt="../_images/10.png" class="align-center" src="../_images/10.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">Acum, faceți clic pe butonul :guilabel: <cite>Add punct</cite> din bara de instrumente și selectați o locație ușor identificabilă în imagine. Colțurile, intersecțiile, stâlpii etc. reprezintă bune puncte de control.</p>
+<li><p class="first">Acum, faceți clic pe butonul <em class="guilabel">Add Point</em> din bara de instrumente și selectați o locație ușor identificabilă în imagine. Colțurile, intersecțiile, stâlpii etc. reprezintă bune puncte de control.</p>
 </li>
 </ol>
 <img alt="../_images/11.png" class="align-center" src="../_images/11.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">După ce faceți clic pe imagine, într-o locație a unui punct de control, veți vedea un pop-up care va cere să introduceți coordonatele hărții. Faceți clic pe butonul <em class="guilabel">From map canvas</em>.</p>
+<li><p class="first">După ce faceți clic pe imagine, într-o locație a unui punct de control, va apărea un pop-up în care vor trebui introduse coordonatele hărții. Faceți clic pe butonul <em class="guilabel">From map canvas</em>.</p>
 </li>
 </ol>
 <img alt="../_images/12.png" class="align-center" src="../_images/12.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">Găsiți aceeași locație în stratul de referință, adică în stratul OpenStreetMap și faceți clic pe suportul hărții. În acest mod, coordonatele vor fi auto-populate. Faceți clic pe OK. În mod similar, alegeți cel puțin 4 puncte pe imagine și adăugați coordonatele lor în stratul de referință.</p>
+<li><p class="first">Găsiți aceeași locație în stratul de referință, adică în stratul OpenStreetMap, și faceți clic pe suportul hărții. În acest mod, coordonatele se vor auto-popula. Faceți clic pe OK. În mod similar, alegeți cel puțin 4 puncte pe imagine, apoi adăugați coordonatele lor în stratul de referință.</p>
 </li>
 </ol>
 <img alt="../_images/13.png" class="align-center" src="../_images/13.png" />
@@ -294,27 +294,27 @@
 </ol>
 <img alt="../_images/14.png" class="align-center" src="../_images/14.png" />
 <ol class="arabic simple" start="15">
-<li><p class="first">Alegeți setările de mai jos. Asigurați-vă că ați bifat caseta <em class="guilabel">Load in QGIS when done</em>. Apăsați OK. Înapoi, în fereastra <em class="guilabel">Georeferencer</em>, mergeți la <em class="menuselection">File ‣ Start georeferencing</em>. Acest lucru va începe procesul de modificare a imaginii folosind GCP-urile, urmat de crearea rasterului țintă.</p>
+<li><p class="first">Alegeți setările de mai jos. Asigurați-vă că ați bifat caseta <em class="guilabel">Load in QGIS when done</em>. Apăsați OK. Înapoi, în fereastra <em class="guilabel">Georeferencer</em>, mergeți la <em class="menuselection">File ‣ Start georeferencing</em>. Acest lucru va începe procesul de modificare a imaginii folosind GCP-urile, care se va încheia prin crearea rasterului țintă.</p>
 </li>
 </ol>
 <img alt="../_images/15.png" class="align-center" src="../_images/15.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">O dată ce procesul se termină, veți vedea stratul georeferențiat, încărcat în QGIS. Dacă totul a mers bine, îl veți vedea frumos suprapus peste stratul OpenStreetMap.</p>
+<li><p class="first">La încheierea procesului, stratul georeferențiat se va încărca în QGIS. Dacă totul a mers bine, îl veți vedea suprapus frumos peste stratul OpenStreetMap.</p>
 </li>
 </ol>
 <img alt="../_images/16.png" class="align-center" src="../_images/16.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">Pentru a face produsul nostru să arate mai frumos, scoateți valorile no-data, albe și negre. Faceți clic dreapta pe stratul imagine și alegeți <em class="guilabel">Properties</em>.</p>
+<li><p class="first">Pentru ca rezultatul să arate mai frumos, scoateți valorile no-data, albe și negre. Faceți clic dreapta pe stratul imagine și alegeți <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
 <img alt="../_images/17.png" class="align-center" src="../_images/17.png" />
 <ol class="arabic simple" start="18">
-<li><p class="first">Selectați fila <em class="guilabel">Transparency</em>. Vrem să indicăm faptul că oricare pixel negru sau alb din imagine sunt valori <cite>no-data</cite> și ar trebui să fie transparente. Introduceți 0 ca <em class="guilabel">No data value</em>. De asemenea, în <em class="guilabel">Custom transparency options</em>, apăsați butonul <em class="guilabel">+</em> și adăugați 255 pentru pixelii transparenți din fiecare bandă, apoi alegeți 100 ca :<em class="guilabel">Percent transparent</em>. Apăsați pe <em class="guilabel">OK</em>.</p>
+<li><p class="first">Selectați fila <em class="guilabel">Transparency</em>. Vrem să indicăm faptul că pixelii negri sau albi din imagine reprezintă valori <cite>no-data</cite> și ar trebui să fie transparenți. Introduceți 0 pentru <em class="guilabel">No data value</em>. De asemenea, în <em class="guilabel">Custom transparency options</em>, apăsați butonul <em class="guilabel">+</em> și adăugați 255 pentru pixelii transparenți din fiecare bandă, apoi alegeți 100 pentru <em class="guilabel">Percent transparent</em>. Apăsați pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/18.png" class="align-center" src="../_images/18.png" />
 <ol class="arabic simple" start="19">
-<li><p class="first">Acum, veți vedea imaginea georeferențiată frumos suprapusă peste stratul de bază.</p>
+<li><p class="first">În acest moment, imaginea georeferențiată este suprapusă frumos peste stratul de bază.</p>
 </li>
 </ol>
 <img alt="../_images/19.png" class="align-center" src="../_images/19.png" />
@@ -341,7 +341,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 27, 2014.<br/>
+      Last updated on Aug 01, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

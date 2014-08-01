@@ -98,7 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Unificarea tabelelor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Realizarea uniunilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Analiza punctelor dintr-un poligon</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Crearea zonelor fierbinți</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Crearea hărților calorice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Efectuarea interogărilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analiza celui mai apropiat vecin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster folosind puncte sau poligoane</a></li>
@@ -190,7 +190,7 @@
   <div class="section" id="georeferencing-topo-sheets-and-scanned-maps">
 <h1>Georeferențierea paginilor topografice și a hărților scanate<a class="headerlink" href="#georeferencing-topo-sheets-and-scanned-maps" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/georeferencing_basics_a4.pdf">A4</a> <a class="reference external" href="../pdf/georeferencing_basics_letter.pdf">Letter</a> ]</p>
-<p>Multe proiecte GIS necesită georeferențierea unele date raster. <em>Georeferențierea</em> reprezintă procesul de atribuire de coordonate ale lumii reale pentru fiecare pixel al rasterului. De multe ori aceste coordonate sunt obținute prin efectuarea de observații în teren - colectare de coordonate cu un dispozitiv GPS pentru câteva entități ușor de identificat în imagine sau în hartă. În unele cazuri, în cazul în care urmăriți să digitizați hărți scanate, puteți obține coordonatele chiar din marcajele de pe hartă. Folosind aceste coordonate sau GCP-urile (Ground Control Points), imaginea este modificată, pentru a se potrivi în cadrul sistemului de coordonate ales. În acest tutorial, voi discuta conceptele, strategiile și instrumentele din QGIS necesare efectuării unei georeferențieri de mare precizie.</p>
+<p>Multe proiecte GIS necesită georeferențierea unor date raster. <em>Georeferențierea</em> reprezintă procesul de atribuire a coordonatelor lumii reale pentru fiecare pixel al rasterului. De multe ori, aceste coordonate sunt obținute prin efectuarea de observații în teren - mai precis, prin folosirea unui dispozitiv GPS la colectarea coordonatelor unor, entități ușor identificabile în imagine sau în hartă. În unele cazuri, atunci când urmăriți să digitizați hărți scanate, puteți obține coordonatele chiar din marcajele de pe hartă. Folosind aceste coordonate sau GCP-urile (Ground Control Points), imaginea va fi modificată, pentru a se potrivi în cadrul sistemului de coordonate ales. În acest tutorial, vom discuta conceptele, strategiile și instrumentele din QGIS necesare efectuării unei georeferențieri de mare precizie.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
 <p>Vom folosi o hartă scanată a sudului Indiei, din 1870 și o vom georeferenția, folosind QGIS.</p>
@@ -222,17 +222,17 @@ with plugins.</p>
 </ol>
 <img alt="../_images/213.png" class="align-center" src="../_images/213.png" />
 <ol class="arabic simple" start="3">
-<li><p class="first">Fereastra plugin-ului este împărțită în 2 secțiuni. Secțiunea de sus este pentru afișarea raster-ului, iar secțiunea de jos găzduiește tabelul GCP-urilor.</p>
+<li><p class="first">Fereastra plugin-ului este împărțită în 2 secțiuni. În secțiunea de sus se afișează rasterul, iar în cea de jos este găzduit tabelul GCP-urilor.</p>
 </li>
 </ol>
 <img alt="../_images/310.png" class="align-center" src="../_images/310.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">Acum vom deschide imaginea noastră JPG. Mergeți la <em class="menuselection">File ‣ Open Raster</em>. Navigați la imaginea, descărcată, a hărții scanate și faceți clic pe <em class="guilabel">Open</em>.</p>
+<li><p class="first">Acum vom deschide imaginea noastră JPG. Mergeți la <em class="menuselection">File ‣ Open Raster</em>. Navigați la imaginea, anterior descărcată, a hărții scanate și faceți clic pe <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
 <img alt="../_images/49.png" class="align-center" src="../_images/49.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">În următorul ecran, vi se va cere să alegeți sistemul de coordonate de referință al rasterului (CRS). Asta înseamnă specificarea proiecției și a datumului punctelor dvs. de control. Dacă ați adunat punctele de control de la sol cu ​​ajutorul unui dispozitiv GPS, ar trebui să aveți CRS-ul WGS84. Dacă georeferențiați harta scanată în acest mod, puteți obține informațiile CRS chiar din hartă. Privind la imaginea hărții noastre, coordonatele sunt în Lat/Long. Nu ni se dă nici o informație despre datum, așa că trebuie să ne asumăm unul adecvat. Având în vedere că este vorba despre India, iar harta este destul de veche, putem fi destul de siguri că datumul Everest 1830 ne-ar da rezultate bune.</p>
+<li><p class="first">În următorul ecran, vi se va cere să alegeți sistemul de coordonate de referință al rasterului (CRS). Asta înseamnă specificarea proiecției și a datumului punctelor dvs. de control. Dacă ați adunat punctele de control de la sol cu ​​ajutorul unui dispozitiv GPS, ar trebui să aveți CRS-ul WGS84. Dacă georeferențiați în acest mod o hartă scanată, atunci puteți obține informațiile despre CRS chiar din harta respectivă. Coordonatele hărții noastre sunt date în Lat/Long. Nu avem nici o informație despre datum, așa că trebuie să ne asumăm unul adecvat. Deoarece este vorba despre India, iar harta este destul de veche, putem fi destul de siguri că datumul Everest 1830 ne-ar da rezultate bune.</p>
 </li>
 </ol>
 <img alt="../_images/59.png" class="align-center" src="../_images/59.png" />
@@ -247,7 +247,7 @@ with plugins.</p>
 </ol>
 <img alt="../_images/78.png" class="align-center" src="../_images/78.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">Acum, este nevoie să atribuim coordonate unor puncte de pe această hartă. Dacă privți cu atenție, veți observa grila de coordonate cu marcaje. Folosind această grilă, puteți determina coordonatele X și Y ale punctelor în care grilele se intersectează. Faceți clic pe <em class="guilabel">Add Point</em> în bara de instrumente.</p>
+<li><p class="first">În continuare, trebuie să atribuim coordonate unor puncte de pe hartă. Dacă priviți cu atenție, veți observa grila de coordonate cu marcaje. Folosind această grilă, puteți determina coordonatele X și Y ale punctelor în care grilele se intersectează. Faceți clic pe <em class="guilabel">Add Point</em> în bara de instrumente.</p>
 </li>
 </ol>
 <img alt="../_images/88.png" class="align-center" src="../_images/88.png" />
@@ -262,32 +262,32 @@ with plugins.</p>
 </ol>
 <img alt="../_images/107.png" class="align-center" src="../_images/107.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">În mod similar, adăugați cel puțin 4 GCP-uri, acoperind întreaga imagine. Cu cât aveți mai multe puncte, cu atât mai precis este înregistrată imaginea dvs. în coordonatele țintă.</p>
+<li><p class="first">În mod similar, adăugați cel puțin 4 GCP-uri, care să acopere întreaga imagine. Cu cât aveți mai multe puncte, cu atât mai precis se încadrează imaginea dvs. în coordonatele țintă.</p>
 </li>
 </ol>
 <img alt="../_images/1112.png" class="align-center" src="../_images/1112.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">Odată ce aveți suficiente puncte, mergeți la <em class="menuselection">Settings -&gt; Transformation settings</em>.</p>
+<li><p class="first">O dată ce aveți suficiente puncte, mergeți la <em class="menuselection">Settings -&gt; Transformation settings</em>.</p>
 </li>
 </ol>
 <img alt="../_images/129.png" class="align-center" src="../_images/129.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">În fereastra de dialog <em class="guilabel">Transformation settings</em> alegeți <em class="guilabel">Transformation type</em> ca <em class="guilabel">Thin Plate Spline</em>. Denumiți rasterul de ieșire ca <em class="guilabel">1870_southern_india_modified.tif</em>. Alegeți <em class="guilabel">EPSG:4326</em> ca SRS țintă, astfel încât imaginea rezultată este într-un datum compatibil pe scară largă. Asigurați-vă că opțiunea  <em class="guilabel">Load in QGIS when done</em> este bifată. Clic pe <em class="guilabel">OK</em>.</p>
+<li><p class="first">În fereastra de dialog <em class="guilabel">Transformation settings</em> alegeți <em class="guilabel">Transformation type</em> ca <em class="guilabel">Thin Plate Spline</em>. Denumiți rasterul de ieșire ca <em class="guilabel">1870_southern_india_modified.tif</em>. Alegeți <em class="guilabel">EPSG:4326</em> ca SRS țintă, astfel încât imaginea rezultată sa fie într-un datum general compatibil. Asigurați-vă că opțiunea <em class="guilabel">Load in QGIS when done</em> este bifată. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/137.png" class="align-center" src="../_images/137.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">Înapoi în fereastra <em class="guilabel">Georeferencer</em>, mergeți la <em class="menuselection">File ‣ Start georeferencing</em>. Acest lucru va începe procesul de modificare a imaginii corespunzător GCP-urilor, rezultând rasterul țintă.</p>
+<li><p class="first">Înapoi în fereastra <em class="guilabel">Georeferencer</em>, mergeți la <em class="menuselection">File ‣ Start georeferencing</em>. Acest lucru va începe procesul de modificare a imaginii, conform GCP-urilor, în urma căruia va rezulta rasterul țintă.</p>
 </li>
 </ol>
 <img alt="../_images/147.png" class="align-center" src="../_images/147.png" />
 <ol class="arabic simple" start="15">
-<li><p class="first">O dată ce procesul se încheie, veți vedea stratul georeferențiat, încărcat în QGIS.</p>
+<li><p class="first">O dată ce procesul s-a încheiat, stratul georeferențiat se va încărca în QGIS.</p>
 </li>
 </ol>
 <img alt="../_images/157.png" class="align-center" src="../_images/157.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">Georeferențierea este acum completă. Dar, ca întotdeauna, este o bună practică să vă verificați munca. Cum putem verifica dacă georeferențierea noastră este corectă? În acest caz, încărcați fișierul shape cu granițele țării, dibtr-o sursă de încredere, cum ar fi setul de date Natural Earth, pentru a le compara. Veți observa că acestea se potrivesc destul de bine. Există și unele erori, care se pot reduce prin luarea mai multor puncte de control, prin schimbarea parametrilor de transformare, sau încercând un datum diferit.</p>
+<li><p class="first">Georeferențierea este acum completă. Dar, ca întotdeauna, o bună practică o reprezintă verificarea muncii. Cum putem afla dacă georeferențierea noastră este corectă? În acest caz, încărcați un fișier shape cu granițele țării, dintr-o sursă de încredere, cum ar fi setul de date Natural Earth, pentru a le compara. Veți observa că acestea se potrivesc destul de bine. Există și unele erori, care se pot reduce prin luarea mai multor puncte de control, prin schimbarea parametrilor de transformare, sau încercând un datum diferit.</p>
 </li>
 </ol>
 <img alt="../_images/167.png" class="align-center" src="../_images/167.png" />
@@ -314,7 +314,7 @@ with plugins.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jul 27, 2014.<br/>
+      Last updated on Aug 01, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
