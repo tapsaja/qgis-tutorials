@@ -101,8 +101,8 @@
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Crearea hărților calorice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Efectuarea interogărilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analiza celui mai apropiat vecin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster folosind puncte sau poligoane</a></li>
-<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea loturilor folosind cadrul de procesare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster, folosind puncte sau poligoane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea în serie, folosind cadrul de procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Utilizarea QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
@@ -190,15 +190,15 @@
   <div class="section" id="find-neighbor-polygons-in-a-layer">
 <h1>Găsirea poligoanelor învecinate dintr-un strat<a class="headerlink" href="#find-neighbor-polygons-in-a-layer" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/find_neighbor_polygons_a4.pdf">A4</a> <a class="reference external" href="../pdf/find_neighbor_polygons_letter.pdf">Letter</a> ]</p>
-<p>Există unele cazuri de utilizare, când se dorește găsirea tuturor poligoanelor învecinate, pentru fiecare dintre poligoanele dintr-un strat. Cu un mic script în Python, putem realiza acest lucru și multe altele, în QGIS. Aici este un exemplu de script, pe care îl puteți folosi pentru a găsi toate poligoane care au granița comună, pentru fiecare dintre poligoanele stratului și, de asemenea, să adăugați numele lor la tabela de atribute. De asemenea, ca un bonus, script-ul însumează un atribut, la alegere, din toate poligoanele învecinate.</p>
+<p>Există unele cazuri de utilizare, când se dorește găsirea tuturor poligoanelor învecinate, pentru fiecare dintre poligoanele dintr-un strat. Cu un mic script în Python, putem realiza acest lucru și multe altele, în QGIS. Aici este un exemplu de script, pe care îl puteți folosi pentru a găsi toate poligoanele care au granița comună, pentru fiecare dintre poligoanele stratului și, de asemenea, să le adăugați numele în tabela de atribute. Ca bonus, script-ul însumează un atribut, la alegere, din toate poligoanele învecinate.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Pentru a demonstra modul în care funcționează script-ul, vom folosi un strat poligonal de țări și vom găsi țările care împart aceeași frontieră. De asemenea, ne dorim să calculăm totalul populației  din țările învecinate.</p>
+<p>Pentru a demonstra modul în care funcționează script-ul, vom folosi un strat poligonal de țări și vom găsi țările care împart aceeași frontieră. De asemenea, vom calcula totalul populației din țările învecinate.</p>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
 <p>Vom folosi setul de date <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/">Admin 0 - Țări</a> de la Natural Earth.</p>
-<p>Vom folosi setul de date <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - fișierul shape al țărilor.</a>.</p>
+<p>Vom folosi setul de date <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - fișierul shape al țărilor.</a></p>
 <p>Sursa de date <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="get-the-script">
@@ -213,7 +213,7 @@
 </ol>
 <img alt="../_images/127.png" class="align-center" src="../_images/127.png" />
 <ol class="arabic simple" start="2">
-<li><p class="first">Script-ul folosește 2 câmpuri pentru a efectua acțiunea. Un câmp pentru nume și un câmp pe care doriți să-l însumați. Utilizați instrumentul <em class="guilabel">Identify</em> pentru a face clic pe orice element și să examinați atributele. În acest caz, câmpul pentru nume este <strong>NAME</strong>, și vrem să însumăm estimările de populație din câmpul <strong>POP_EST</strong>.</p>
+<li><p class="first">Script-ul folosește 2 câmpuri pentru a efectua acțiunea. Un câmp pentru nume, și un câmp pe care doriți să-l însumați. Utilizați instrumentul <em class="guilabel">Identify</em> pentru a face clic pe orice element, pentru a-i examina atributele. În acest caz, câmpul pentru nume este <strong>NAME</strong>, și dorim să însumăm estimările de populație din câmpul <strong>POP_EST</strong>.</p>
 </li>
 </ol>
 <img alt="../_images/210.png" class="align-center" src="../_images/210.png" />
@@ -233,12 +233,12 @@
 </ol>
 <img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">O dată ce script-ul este încărcat, este posibil să doriți să schimbați valorile <tt class="docutils literal"><span class="pre">_NAME_FIELD</span></tt> și <tt class="docutils literal"><span class="pre">_SUM_FIELD</span></tt> pentru a se potrivi cu atributele din propriul strat. Dacă lucrați cu stratul  <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt>, le puteți lăsa așa cum sunt. Faceți clic pe butonul <em class="guilabel">Save</em> din panoul <em class="guilabel">Editor</em> dacă ați făcut vreo schimbare. Apoi apăsați butonul <em class="guilabel">Run script</em> pentru a rula script-ul.</p>
+<li><p class="first">O dată ce script-ul este încărcat, este posibil să doriți să schimbați valorile <tt class="docutils literal"><span class="pre">_NAME_FIELD</span></tt> și <tt class="docutils literal"><span class="pre">_SUM_FIELD</span></tt> pentru a se potrivi cu atributele din propriul strat. Dacă lucrați cu stratul  <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt>, le puteți lăsa așa cum sunt. Faceți clic pe butonul <em class="guilabel">Save</em> din panoul <em class="guilabel">Editor</em>, dacă ați făcut vreo schimbare. Apoi apăsați butonul <em class="guilabel">Run script</em> pentru a rula script-ul.</p>
 </li>
 </ol>
 <img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">O dată ce script-ul se încheie, faceți clic-dreapta pe stratul <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> și selectați <em class="guilabel">Open Attribute Table</em>.</p>
+<li><p class="first">O dată ce script-ul se încheie, faceți clic-dreapta pe stratul <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt>, apoi selectați <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
 <img alt="../_images/77.png" class="align-center" src="../_images/77.png" />
@@ -354,7 +354,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Aug 01, 2014.<br/>
+      Last updated on Aug 27, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

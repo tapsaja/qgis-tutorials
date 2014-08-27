@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Performing Spatial Joins &mdash; QGIS Tutorials and Tips</title>
+    <title>Realizzare unioni spaziali (Spatial Joins) &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Points in Polygon Analysis" href="points_in_polygon.html" />
+    <link rel="next" title="Analisi Punti nel Poligono" href="points_in_polygon.html" />
     <link rel="prev" title="Realizzare unioni tabellari" href="performing_table_joins.html" />
 
 <meta charset='utf-8'>
@@ -97,17 +97,17 @@
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferenziare immagini aeree</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Vettorializzare mappe raster</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Realizzare unioni tabellari</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Performing Spatial Joins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Realizzare unioni spaziali (Spatial Joins)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Analisi Punti nel Poligono</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Realizzare delle mappe di concentrazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Utilizzare le interrogazioni spaziali</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analisi di prossimità</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Campionare i dati di un raster usando punti o poligoni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Elaborazioni &#8220;batch&#8221; usando il Processing Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Usare il browser di QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Primi passi con la programmazione Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -127,7 +127,7 @@
     </a>
   </li>
   <li>
-    <a href="points_in_polygon.html" title="Next Chapter: Points in Polygon Analysis"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Points in Polygo... &raquo;</span>
+    <a href="points_in_polygon.html" title="Next Chapter: Analisi Punti nel Poligono"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Analisi Punti ne... &raquo;</span>
     </a>
   </li>
               
@@ -189,36 +189,31 @@
       
 
   <div class="section" id="performing-spatial-joins">
-<h1>Performing Spatial Joins<a class="headerlink" href="#performing-spatial-joins" title="link permanente per questa intestazione">¶</a></h1>
+<h1>Realizzare unioni spaziali (Spatial Joins)<a class="headerlink" href="#performing-spatial-joins" title="link permanente per questa intestazione">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/performing_spatial_joins_a4.pdf">A4</a> <a class="reference external" href="../pdf/performing_spatial_joins_letter.pdf">Letter</a> ]</p>
-<p>Spatial Join is a classic GIS problem - transferring attributes from one layer
-to another based on their spatial relationship. In QGIS, this functionality is
-available through the <strong>Join Attributes by Location</strong> tool.</p>
+<p>L&#8217;unione spaziale è un classico problema in ambito GIS - si tratta di trasferire attributi da un layer ad un altro basandosi sulle loro reciproche relazioni spaziali. In QGIS questa funzionalità può essere avviata attraverso lo strumento  <strong>Unisci attributi per posizione</strong> .</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="link permanente per questa intestazione">¶</a></h2>
-<p>We will use 2 layers - A shapefile of burough boundaries of New York city and
-another shapefile of nursing home locations in New York city. We will use
-spatial join technique to find the total nursing home capacity for each of the
-buroughs.</p>
+<h2>Descrizione dell&#8217;esercizio<a class="headerlink" href="#overview-of-the-task" title="link permanente per questa intestazione">¶</a></h2>
+<p>Useremo due layer - Uno shapefile dei confini amministrativi dei quartieri di New York e un altro shapefile che contiene gli  indirizzi delle case di cura a New York. Useremo la tecnica di unione spaziale (join) per accertare la capacità totale delle case di cura in ciascuno dei quartieri di New York.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="link permanente per questa intestazione">¶</a></h3>
+<h3>Altri aspetti che avremo modo di apprendere nel corso dell&#8217;esercizio<a class="headerlink" href="#other-skills-you-will-learn" title="link permanente per questa intestazione">¶</a></h3>
 <ul class="simple">
-<li>Deleting columns from the attribute table of a layer.</li>
+<li><p class="first">Eliminare colonne dalla tabella degli attributi di un layer.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
-<p><a class="reference external" href="https://data.cityofnewyork.us/">NYC Open Data Portal</a> is an excellent source
-of free data for New York city.</p>
+<h2>Ottenere i dati necessari<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
+<p><a class="reference external" href="https://data.cityofnewyork.us/">NYC Open Data Portal</a> è una fonte straordinaria di open data che riguardano la città di New York.</p>
 <ol class="arabic simple">
-<li>Download the <a class="reference external" href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm">Borough Boundaries</a>
-zip file using the Export option on the portal.</li>
+<li><p class="first">Scaricate il file .zip dei confini amministrativi dei quartieri di New York <a class="reference external" href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm">Borough Boundaries</a> usando l&#8217;opzione Export sul portale.</p>
+</li>
 </ol>
 <img alt="../_images/170.png" class="align-center" src="../_images/170.png" />
 <ol class="arabic simple" start="2">
-<li>Download the <a class="reference external" href="https://data.cityofnewyork.us/Health/Nursing-Homes/9tqc-rnkr">Nursing Homes</a>  zip file
-using the Export option on the portal.</li>
+<li><p class="first">Scaricare il file .zip <a class="reference external" href="https://data.cityofnewyork.us/Health/Nursing-Homes/9tqc-rnkr">Nursing Homes</a>  (case di cura) usando l&#8217;opzione export del portale.</p>
+</li>
 </ol>
 <img alt="../_images/226.png" class="align-center" src="../_images/226.png" />
 <p>For convenience, the version of datasets used in this tutorial can be
@@ -227,79 +222,65 @@ downloaded directly from the links below:</p>
 <p>Download <a class="reference download internal" href="../_downloads/OEM_NursingHomes_001.zip"><tt class="xref download docutils literal"><span class="pre">Nursing</span> <span class="pre">Homes</span></tt></a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="link permanente per questa intestazione">¶</a></h2>
+<h2>Procedimento<a class="headerlink" href="#procedure" title="link permanente per questa intestazione">¶</a></h2>
 <ol class="arabic simple" start="3">
-<li>Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>. Browse to the downloaded
-zip file <tt class="docutils literal"><span class="pre">nybb_12c.zip</span></tt> and select <em class="guilabel">Open</em>.</li>
+<li><p class="first">Andate su <em class="menuselection">Layer ‣ Aggiungi Vettore</em>. Cercate il file .zip scaricato  <a href="#id1"><span class="problematic" id="id2">``</span></a>nybb_12c.zip` e selezionatre <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/319.png" class="align-center" src="../_images/319.png" />
 <ol class="arabic simple" start="4">
-<li>Select the layer <tt class="docutils literal"><span class="pre">nybb.shp</span></tt> and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Selezionate il layer <tt class="docutils literal"><span class="pre">nybb.shp</span></tt> e fate click su <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/415.png" class="align-center" src="../_images/415.png" />
 <ol class="arabic simple" start="5">
-<li>Repeat the steps 3 and 4 for the another file <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.zip</span></tt>
-and load the <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.shp</span></tt> layer. Once both the layers are
-loaded, right-click on the <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> layer and select
-<em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Ripetete i passi 3 e 4 per l&#8217;altro file <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.zip</span></tt> e caricate il layer <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.shp</span></tt>. Quando entrambi i file sono stati caricati fate click con il tasto destro del mouse sul layer  <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> e selezionate <em class="guilabel">Apri la tabella degli Attributi</em>.</p>
+</li>
 </ol>
 <img alt="../_images/516.png" class="align-center" src="../_images/516.png" />
 <ol class="arabic simple" start="6">
-<li>Examine the attributes available for each feature. Since our task is to
-calculate the total nursing home capacity for each borough, we can use the
-attribute <strong>Capacity</strong> which can join to the boundaries layer.</li>
+<li><p class="first">Esaminiamo gli attributi che sono disponibili per ciascuna geometria. Stante che il nostro obiettivo è quello di calcolare il numero totale di posti nelle case di cura per ciascun quartiere, si potrebbe utilizzare l&#8217;attributo <strong>Capacity</strong>, che indica i posti letto disponibili per ciascuna casa di cura, per unirlo al layer dei confini amministrativi dei quartieri di New York.</p>
+</li>
 </ol>
 <img alt="../_images/615.png" class="align-center" src="../_images/615.png" />
 <ol class="arabic simple" start="7">
-<li>Go to <em class="menuselection">Vector ‣ Data Mangement Tools ‣ Join attributes by
-location</em>.</li>
+<li><p class="first">Andate dunque sul menu  <em class="menuselection">Vettore ‣ Strumenti di gestione dati ‣ Unisci attributi per posizione</em>.</p>
+</li>
 </ol>
 <img alt="../_images/714.png" class="align-center" src="../_images/714.png" />
 <ol class="arabic simple" start="8">
-<li>The <em class="guilabel">Target vector layer</em> is the one we want to add the attributes
-to. In our case, this will be the burrounds boundary <tt class="docutils literal"><span class="pre">nybb</span></tt> layer. The
-<em class="guilabel">Join vector layer</em> will be the nursing homes
-<tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> layer. As we want to sum the capacity of nursing
-homes, select <em class="guilabel">Take summary of intersecting features</em> and choose
-<em class="guilabel">Sum</em>. Name the output file as <tt class="docutils literal"><span class="pre">nyc_borough_join.shp</span></tt>. In the
-<em class="guilabel">Output table</em> select <em class="guilabel">Keep all records`</em>.</li>
+<li><p class="first">Il  <em class="guilabel">vettore in Output</em> è quello a cui noi intendiamo aggiungere gli attributi. Nel nostro caso è quello dei confini dei quartieri, cioè il layer <tt class="docutils literal"><span class="pre">nybb</span></tt>. Sotto la voce <em class="guilabel">unisci vettore</em> si dovrà invece inserire il layer delle case di cura. Visto che intendiamo sommare la capacità di posti letto selezionate  <em class="guilabel">Prendi il sommario dell&#8217;intersezione delle geometrie</em>  e poi attivate la checkbox <em class="guilabel">Somma</em>. Chiamate il file di output con il nome di <a href="#id1"><span class="problematic" id="id2">``</span></a>nyc_borough_join.shp`. Nella <em class="guilabel">Tabella di output</em>  selezionate <em class="guilabel">includi tutti i record</em> (compresi quelli non corrispondenti)`.</p>
+</li>
 </ol>
 <img alt="../_images/813.png" class="align-center" src="../_images/813.png" />
 <ol class="arabic simple" start="9">
-<li>Once the process finishes, select <em class="guilabel">Yes</em> when asked if you want to
-add the layer to TOC. The new layer <tt class="docutils literal"><span class="pre">nyc_borough_join</span></tt> would have the
-features from <tt class="docutils literal"><span class="pre">nybb</span></tt> layer along with spatially joined attributes from
-<tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> layer. Right-click on the layer and select
-<em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Una volta terminato il processo, selezionate <em class="guilabel">Si</em> quando vi verrà chiesto se intendete aggiungere il layer alla TOC. Il nuovo <tt class="docutils literal"><span class="pre">nyc_borough_join</span></tt>  dovrebbe avere le geometrie prese dal layer  <tt class="docutils literal"><span class="pre">nybb</span></tt> unite spazialmente con gli attributi provenienti dal layer <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt>. Click con il tasto destro sul nuovo layer e selezionate <em class="guilabel">Apri Tabella degli Attributi</em> .</p>
+</li>
 </ol>
 <img alt="../_images/912.png" class="align-center" src="../_images/912.png" />
 <ol class="arabic simple" start="10">
-<li>You will see a column <strong>SUMCapacit</strong> in the attribute table. This is the
-sum of the <strong>Capacity</strong> attribute for the nursing homes that fall within
-each borough feature.</li>
+<li><p class="first">Vedrete una colonna <strong>SUMCapacit**nella tabella degli attributi. Questa è la sommatoria dell&#8217;attributo **Capacity</strong> per le case di cura che cadono in ciascuna delle geometrie dei limiti amministrativi dei quartieri di New York.</p>
+</li>
 </ol>
 <img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" />
 <ol class="arabic simple" start="11">
-<li>This is the answer we are looking for. But there are extra columns that we
-do not need in our output. Let&#8217;s clean up our output. Click on the
-<em class="guilabel">Toggle editing</em> button and then the <em class="guilabel">Delete column</em>
-button.</li>
+<li><p class="first">E questa è la risposta che stavamo cercando. Ci sono tuttavia alcune colonne di cui non abbiamo bisogno. Puliamo il nostro risultato. Facciamo click sul pulsante <em class="guilabel">Modalità di Modifica</em>   e quindi sul pulsante <em class="guilabel">Elimina colonna</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" />
 <ol class="arabic simple" start="12">
-<li>Press <tt class="kbd docutils literal"><span class="pre">Control-A</span></tt> to select all columns in the <em class="guilabel">Delete
-Attributes</em> dialog. Next hold the <tt class="kbd docutils literal"><span class="pre">Control</span></tt> key and de-select the
-columns you want to keep. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Premete <tt class="kbd docutils literal"><span class="pre">Control-A</span></tt> per selezionare tutte le colonne nella casella di dialogo  <em class="guilabel">Rimuovi Attributi</em>. Poi tenete premuto il tasto <tt class="kbd docutils literal"><span class="pre">Control</span></tt> e de-selezionate le colonne che volete conservare. Click su <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" />
 <ol class="arabic simple" start="13">
-<li>In the attribute table, click <em class="guilabel">Toggle editing</em> button again to
-save the changes.</li>
+<li><p class="first">Nella tavola degli attributi fate di nuovo click sul pulsante <em class="guilabel">Modalità di modifica</em> per salvare i cambiamenti.</p>
+</li>
 </ol>
 <img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" />
 <ol class="arabic simple" start="14">
-<li>Back in the QGIS Canvas, use the <em class="guilabel">Identify</em> tool to verify that
-the output file has the desired attributes for each burough feature.</li>
+<li><p class="first">Tornate nella finestra principale e usate lo strumento <em class="guilabel">Informazione elementi</em> per verificare che il file di output ha gli attributi desiderati per ogni geometria di quartiere.</p>
+</li>
 </ol>
 <img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
 </div>
@@ -325,7 +306,7 @@ the output file has the desired attributes for each burough feature.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Aug 01, 2014.<br/>
+      Ultimo aggiornamento Aug 27, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

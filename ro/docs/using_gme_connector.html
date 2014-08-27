@@ -101,8 +101,8 @@
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Crearea hărților calorice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Efectuarea interogărilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analiza celui mai apropiat vecin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster folosind puncte sau poligoane</a></li>
-<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea loturilor folosind cadrul de procesare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster, folosind puncte sau poligoane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea în serie, folosind cadrul de procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Utilizarea QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
@@ -190,14 +190,14 @@
   <div class="section" id="using-google-maps-engine-connector-for-qgis">
 <h1>Folosirea conectorului Google Maps Engine pentru QGIS<a class="headerlink" href="#using-google-maps-engine-connector-for-qgis" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/using_gme_connector_a4.pdf">A4</a> <a class="reference external" href="../pdf/using_gme_connector_letter.pdf">Letter</a> ]</p>
-<p>Google Maps Engine este o platformă de cartografiere, bazată pe cloud, pentru crearea și partajarea hărților personalizate. <a class="reference external" href="https://github.com/googlemaps/mapsengine-qgis-connector">Google Maps Engine Connector</a> reprezintă un plug-in care vă permite să vizualizați și să încărcați date Google Maps Engine în cadrul QGIS. În acest tutorial veți merge prin procesul de creare a unui cont Google Maps Engine, de obținere a acreditărilor necesare pentru utilizarea conectorului, de creare a unei hărți cu ajutorul Google Maps Engine și de a consuma harta rezultată în QGIS.</p>
+<p>Google Maps Engine este o platformă de cartografiere, bazată pe cloud, pentru crearea și partajarea hărților personalizate. <a class="reference external" href="https://github.com/googlemaps/mapsengine-qgis-connector">Google Maps Engine Connector</a> reprezintă un plugin care vă permite să vizualizați și să încărcați date Google Maps Engine în QGIS. În acest tutorial veți merge prin procesul de creare a unui cont Google Maps Engine, de obținere a acreditărilor necesare pentru utilizarea conectorului, de creare a unei hărți cu ajutorul Google Maps Engine și de a utiliza în QGIS harta rezultată.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Precizare: Eu sunt autorul Google Maps Engine Connector și, în prezent, fac parte din echipa Google Maps.</p>
 </div>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Vom lua un strat de tip linie, care reprezintă traseele de bicicletă din San Francisco, și-l vom încărca în Google Maps Engine folosind plugin-ul. O dată ce stratul este stilizat iar harta este creată, vom adăuga un strat WMS al hărții în QGIS.</p>
+<p>Vom lua un strat de tip linie, care reprezintă traseele de bicicletă din San Francisco, și-l vom încărca în Google Maps Engine cu ajutorul plugin-ului. O dată ce stratul este stilizat iar harta este creată, vom adăuga un strat WMS al hărții în QGIS.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Alte competențe pe care le veți dobândi<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -219,7 +219,7 @@
 <div class="section" id="create-a-google-maps-engine-account">
 <h2>Crearea unui cont Google Maps Engine<a class="headerlink" href="#create-a-google-maps-engine-account" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple" start="2">
-<li><p class="first">Puteți să vă creați un cont gratuit de testare pentru Google Maps Engine. Contul de testare reprezintă o instanță a motorului de hărți, complet funcțional, dar cu o cotă de stocare limitată. Vizitați <a class="reference external" href="http://www.google.com/enterprise/mapsearth/products/mapsengine.html">Google Maps Engine homepage</a> și faceți clic pe link-ul <cite>Get started with a free account</cite>.</p>
+<li><p class="first">Vă puteți crea un cont gratuit de testare pentru Google Maps Engine. Contul de testare reprezintă o instanță a motorului de hărți, complet funcțională, dar cu o cotă de stocare limitată. Vizitați <a class="reference external" href="http://www.google.com/enterprise/mapsearth/products/mapsengine.html">Google Maps Engine homepage</a> și faceți clic pe link-ul <cite>Get started with a free account</cite>.</p>
 </li>
 </ol>
 <img alt="../_images/239.png" class="align-center" src="../_images/239.png" />
@@ -232,7 +232,7 @@
 <div class="section" id="create-a-google-developer-console-project">
 <h2>Crearea unui proiect Google Developer Console<a class="headerlink" href="#create-a-google-developer-console-project" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple" start="4">
-<li><p class="first">Google Maps Engine Connector folosește  <tt class="docutils literal"><span class="pre">Google</span> <span class="pre">Maps</span> <span class="pre">Engine</span> <span class="pre">API</span></tt> pentru a accesa datele stocate în contul dumneavoastră. Veți avea nevoie să obțineți acreditări speciale, pe care plugin-ul le va folosi pentru a vă accesa programatic datele. Vizitați <a class="reference external" href="https://console.developers.google.com/">Google Developer Console</a> și faceți clic pe <em class="guilabel">Create Project</em>. întroduceți <tt class="docutils literal"><span class="pre">GME</span> <span class="pre">Connector</span> <span class="pre">for</span> <span class="pre">QGIS</span> <span class="pre">API</span></tt> ca <em class="guilabel">PROJECT NAME</em>, și <tt class="docutils literal"><span class="pre">gme-qgis-api</span></tt> ca <em class="guilabel">PROJECT ID</em>. Aceste nume sunt doar o sugestie - puteți utiliza orice nume și orice id vă place.</p>
+<li><p class="first">Google Maps Engine Connector folosește  <tt class="docutils literal"><span class="pre">Google</span> <span class="pre">Maps</span> <span class="pre">Engine</span> <span class="pre">API</span></tt> pentru a accesa datele stocate în contul dumneavoastră. Veți avea nevoie de acreditări speciale, pe care plugin-ul le va folosi pentru a vă accesa programatic datele. Vizitați <a class="reference external" href="https://console.developers.google.com/">Google Developer Console</a> și faceți clic pe <em class="guilabel">Create Project</em>. Introduceți <tt class="docutils literal"><span class="pre">GME</span> <span class="pre">Connector</span> <span class="pre">for</span> <span class="pre">QGIS</span> <span class="pre">API</span></tt> ca <em class="guilabel">PROJECT NAME</em>, și <tt class="docutils literal"><span class="pre">gme-qgis-api</span></tt> ca <em class="guilabel">PROJECT ID</em>. Aceste nume sunt doar o sugestie - puteți utiliza orice nume și orice id vă place.</p>
 </li>
 </ol>
 <img alt="../_images/422.png" class="align-center" src="../_images/422.png" />
@@ -257,12 +257,12 @@
 </ol>
 <img alt="../_images/820.png" class="align-center" src="../_images/820.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">Înapoi în QGIS, vizitați:m enuselection:<cite>Plugins &#8211;&gt; Manage and Install Plugins...</cite>. Găsiți plugin-ul <tt class="docutils literal"><span class="pre">Google</span> <span class="pre">Maps</span> <span class="pre">Engine</span> <span class="pre">Connector</span></tt> și faceți click pe <em class="guilabel">Install plugin</em>.</p>
+<li><p class="first">Înapoi în QGIS, vizitați <em class="menuselection">Plugins ‣ Manage and Install Plugins...</em>. Găsiți plugin-ul <tt class="docutils literal"><span class="pre">Google</span> <span class="pre">Maps</span> <span class="pre">Engine</span> <span class="pre">Connector</span></tt> și faceți click pe <em class="guilabel">Install plugin</em>.</p>
 </li>
 </ol>
 <img alt="../_images/919.png" class="align-center" src="../_images/919.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">Odată ce plugin-ul este instalat, veți vedea o nouă bară de instrumente în QGIS. Această bară de instrumente conține diferite instrumente pentru lucula cu Google Maps Engine. Faceți clic pe butonul <em class="guilabel">More</em>.</p>
+<li><p class="first">O dată ce plugin-ul este instalat, veți vedea o nouă bară de instrumente în QGIS. Această bară de instrumente conține diferite instrumente pentru lucrul cu Google Maps Engine. Faceți clic pe butonul <em class="guilabel">More</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1019.png" class="align-center" src="../_images/1019.png" />
@@ -272,7 +272,7 @@
 </ol>
 <img alt="../_images/1124.png" class="align-center" src="../_images/1124.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">După cum ați introdus noile acreditări API, vi se va cere să vă logați și să autorizați plugin-ul pentru a le folosi pe acestea. Conectați-vă la contul dvs. Google.</p>
+<li><p class="first">După ce ați introdus noile acreditări API, vi se va cere să vă logați și să autorizați plugin-ul pentru a le folosi pe acestea. Conectați-vă la contul dvs. Google.</p>
 </li>
 </ol>
 <img alt="../_images/1220.png" class="align-center" src="../_images/1220.png" />
@@ -297,12 +297,12 @@
 </ol>
 <img alt="../_images/1616.png" class="align-center" src="../_images/1616.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">În fereastra de dialog <em class="guilabel">Upload a dataset to Google Maps Engine</em>, introduceți o <em class="guilabel">Description</em> a setului de date. Puteți lăsa toate celelalte setări la valorile implicite. Clic pe <em class="guilabel">OK</em>.</p>
+<li><p class="first">În fereastra de dialog <em class="guilabel">Upload a dataset to Google Maps Engine</em>, introduceți o <em class="guilabel">Descriere</em> a setului de date. Puteți lăsa toate celelalte setări la valorile implicite. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1715.png" class="align-center" src="../_images/1715.png" />
 <ol class="arabic simple" start="18">
-<li><p class="first">Plugin-ul va folosi Google Maps Engine API pentru a încărca stratul și de a crea o <em>Sursă de date</em> pentru motorul Google Maps. După ce încărcarea s-a încheiat, o nouă filă de browser se va deschide și vă va duce la sursa de date nou creată.</p>
+<li><p class="first">Plugin-ul va folosi Google Maps Engine API pentru a încărca stratul și va crea o <em>Sursă de date</em> pentru motorul Google Maps. După ce încărcarea s-a încheiat, o nouă filă de browser se va deschide și vă va duce la sursa de date nou creată.</p>
 </li>
 </ol>
 <img alt="../_images/1815.png" class="align-center" src="../_images/1815.png" />
@@ -425,7 +425,7 @@ width="100%" height="600px"></iframe>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Aug 01, 2014.<br/>
+      Last updated on Aug 27, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

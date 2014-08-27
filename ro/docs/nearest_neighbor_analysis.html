@@ -29,7 +29,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Eșantionarea datelor raster folosind puncte sau poligoane" href="sampling_raster_data.html" />
+    <link rel="next" title="Eșantionarea datelor raster, folosind puncte sau poligoane" href="sampling_raster_data.html" />
     <link rel="prev" title="Efectuarea interogărilor spațiale" href="performing_spatial_queries.html" />
 
 <meta charset='utf-8'>
@@ -101,8 +101,8 @@
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Crearea hărților calorice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Efectuarea interogărilor spațiale</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Analiza celui mai apropiat vecin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster folosind puncte sau poligoane</a></li>
-<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea loturilor folosind cadrul de procesare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster, folosind puncte sau poligoane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea în serie, folosind cadrul de procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Utilizarea QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
@@ -126,7 +126,7 @@
     </a>
   </li>
   <li>
-    <a href="sampling_raster_data.html" title="Next Chapter: Eșantionarea datelor raster folosind puncte sau poligoane"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Eșantionarea dat... &raquo;</span>
+    <a href="sampling_raster_data.html" title="Next Chapter: Eșantionarea datelor raster, folosind puncte sau poligoane"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Eșantionarea dat... &raquo;</span>
     </a>
   </li>
               
@@ -190,14 +190,14 @@
   <div class="section" id="nearest-neighbor-analysis">
 <h1>Analiza celui mai apropiat vecin<a class="headerlink" href="#nearest-neighbor-analysis" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/nearest_neighbor_analysis_a4.pdf">A4</a> <a class="reference external" href="../pdf/nearest_neighbor_analysis_letter.pdf">Letter</a> ]</p>
-<p>GIS este foarte util în analiza relației spațiale dintre caracteristici. O astfel de analiză este de a afla ce entități sunt cele mai apropiate de o anumită caracteristică. QGIS are un instrument numit <strong>Distance Matrix</strong> care ne ajută în efectuarea acestei analize. În acest tutorial, vom folosi 2 seturi de date și vom afla care puncte dintr-un strat sunt mai aproape de punctele dintr-un al doilea strat.</p>
+<p>Aplicațiile GIS sunt foarte utile în analiza relației spațiale dintre entități. O astfel de analiză constă în identificarea entităților care sunt cele mai apropiate de o anumită caracteristică. QGIS are un instrument numit <strong>Distance Matrix</strong> care ne ajută în efectuarea acestei analize. În acest tutorial, vom folosi 2 seturi de date și vom afla care puncte dintr-un strat sunt mai aproape de punctele dintr-un al doilea strat.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Având locațiile tuturor cutremurelor semnificative cunoscute, vom încerca să aflăm care este cel mai apropiat loc populat de locul unde s-au produs cutremurele.</p>
+<p>Cunoscând locațiile tuturor cutremurelor semnificative cunoscute, vom încerca să aflăm care este cel mai apropiat loc populat față de locul unde s-au produs cutremurele.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Alte competențe pe care le veți dobândi<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p class="first">Cum se faceți unificarea tabelelor în QGIS. (A se vedea <a class="reference internal" href="performing_table_joins.html"><em>Unificarea tabelelor</em></a> pentru instrucțiuni detaliate.)</p>
+<li><p class="first">Cum să efectuați unificarea tabelelor în QGIS. (Pentru instrucțiuni detaliate, parcurgeți <a class="reference internal" href="performing_table_joins.html"><em>Unificarea tabelelor</em></a>.)</p>
 </li>
 </ul>
 </div>
@@ -215,7 +215,7 @@ below:</p>
 <div class="section" id="procedure">
 <h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">Deschideți <em class="menuselection">Layer ‣ Add Delimited Text Layer</em> și navigați la fișierul descărcat <tt class="docutils literal"><span class="pre">signif.txt</span></tt>.</p>
+<li><p class="first">Deschideți <em class="menuselection">Layer ‣ Add Delimited Text Layer</em> și navigați la fișierul anterior descărcat, <tt class="docutils literal"><span class="pre">signif.txt</span></tt>.</p>
 </li>
 </ol>
 <img alt="../_images/150.png" class="align-center" src="../_images/150.png" />
@@ -229,12 +229,12 @@ below:</p>
 </div>
 <img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
 <ol class="arabic simple" start="3">
-<li><p class="first">Deoarece setul de date al cutremurelor are coordonate Latitudine/Longitudine, alegeți <em class="guilabel">WGS 84 EPSG:436</em> ca CRS, în fereastra de dialog <em class="guilabel">Coordinate Reference System Selector</em>.</p>
+<li><p class="first">Deoarece setul de date al cutremurelor are coordonate de forma Latitudine/Longitudine, alegeți <em class="guilabel">WGS 84 EPSG:436</em> ca CRS, în fereastra de dialog <em class="guilabel">Coordinate Reference System Selector</em>.</p>
 </li>
 </ol>
 <img alt="../_images/317.png" class="align-center" src="../_images/317.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">Stratul de tip punct al cutremurelor ar trebui sa fie de-acum încărcat și afișat în QGIS. Să deschidem, de asemenea, stratul Locurilor Populate. Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>.</p>
+<li><p class="first">Stratul de tip punct, al cutremurelor, ar trebui să fie de-acum încărcat și afișat în QGIS. Să deschidem, de asemenea, stratul Locurilor Populate. Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>.</p>
 </li>
 </ol>
 <img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
@@ -244,7 +244,7 @@ below:</p>
 </ol>
 <img alt="../_images/514.png" class="align-center" src="../_images/514.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">Măriți și explorati ambele seturi de date. Fiecare punct purpuriu reprezintă locația unui cutremur semnificativ și fiecare punct albastru reprezintă locația unei așezări populate. Avem nevoie de o modalitate de a afla cel mai apropiat punct din stratul de locuri populate, pentru fiecare dintre locațiile stratului de cutremure.</p>
+<li><p class="first">Măriți și explorați ambele seturi de date. Fiecare punct purpuriu arată locația unui cutremur semnificativ, în timp ce fiecare punct albastru indică locația unei așezări populate. Avem nevoie de o modalitate de a afla cel mai apropiat punct din stratul de locuri populate, pentru fiecare locație din stratul cutremurelor.</p>
 </li>
 </ol>
 <img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
@@ -254,7 +254,7 @@ below:</p>
 </ol>
 <img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">Aici selectați stratul <tt class="docutils literal"><span class="pre">signif</span></tt> al cutremurelor stratul de intrare de tip punct, și locurile populate <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> ca strat țintă. De asemenea, trebuie sa selectați un câmp unic din fiecare dintre aceste straturi, care reprezintă modul în care vor fi afișate rezultatele. În această analiză, dorim să obținem doar <strong>1</strong> punct mai apropiat, deci bifați <em class="guilabel">Use only the nearest(k) target points</em>, și introduceți <em class="guilabel">1</em>. Denumiți fișierul de ieșire <tt class="docutils literal"><span class="pre">matrix.csv</span></tt>, și apăsați OK.</p>
+<li><p class="first">În această fereastră, alegeți stratul cutremurelor, <tt class="docutils literal"><span class="pre">signif</span></tt>, ca strat de intrare de tip punct, iar locurile populate <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> ca strat țintă. De asemenea, trebuie să selectați un câmp unic din fiecare strat, care stabilește modul în care vor fi afișate rezultatele. În această analiză, dorim să obținem doar <strong>1</strong> dintre cele mai apropiate puncte, așa că bifați <em class="guilabel">Use only the nearest(k) target points</em>, apoi introduceți <em class="guilabel">1</em>. Denumiți fișierul de ieșire <tt class="docutils literal"><span class="pre">matrix.csv</span></tt>, și apăsați OK.</p>
 </li>
 </ol>
 <div class="admonition note">
@@ -263,31 +263,31 @@ below:</p>
 </div>
 <img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">Odată ce fișierul este generat, îl puteți vedea în Notepad sau în oricare editor de text. QGIS poate importa fișiere CSV, de asemenea, așa că adăugați-l la QGIS și vizualizați-l acolo. Mergeți la <em class="menuselection">Layer ‣ Add Delimited Text Layer...</em>.</p>
+<li><p class="first">O dată ce fișierul este generat, îl puteți vedea în Notepad sau în oricare editor de text. QGIS poate importa fișiere CSV, de asemenea, așa că încărcați-l în QGIS și vizualizați-l acolo. Mergeți la <em class="menuselection">Layer ‣ Add Delimited Text Layer...</em>.</p>
 </li>
 </ol>
 <img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">Navigați la fișierul nou creat <tt class="docutils literal"><span class="pre">matrix.csv</span></tt>. Deoarece acest fișier conține doar coloane de text, selectați <em class="guilabel">No geometry (attribute only table)</em> ca <em class="guilabel">Geometry definition</em>. Clic pe <em class="guilabel">OK</em>.</p>
+<li><p class="first">Navigați la fișierul <tt class="docutils literal"><span class="pre">matrix.csv</span></tt>, nou creat. Deoarece acest fișier conține doar coloane de text, alegeți <em class="guilabel">No geometry (attribute only table)</em> pentru <em class="guilabel">Geometry definition</em>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">Veți vedea fișierul CSV încărcat ca tabel. Faceți clic dreapta pe stratul tabelului și selectați <em class="guilabel">Open Attribute Table</em>.</p>
+<li><p class="first">Veți vedea fișierul CSV, încărcat sub formă de tabel. Faceți clic dreapta pe stratul acestui tabel, apoi selectați <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">Acum, veți fi capabili să vedeți conținutul rezultatelor noastre. Câmpul <em class="guilabel">InputID</em> conține numele fișierului din stratul Earthquake. Câmpul <em class="guilabel">TargetID</em> conține numele entității din stratul Populated Places care a fost cea mai apropiată de locația cutremurului.  Câmpul <em class="guilabel">Distance</em> reprezintă distanța dintre 2 puncte.</p>
+<li><p class="first">Acum, veți putea vedea conținutul rezultatelor obținute. Câmpul <em class="guilabel">InputID</em> conține numele fișierului din stratul Earthquake. Câmpul <em class="guilabel">TargetID</em> conține numele entității, din stratul Populated Places, care a fost cea mai apropiată de locația cutremurului. Câmpul <em class="guilabel">Distance</em> reprezintă distanța dintre 2 puncte.</p>
 </li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Calculul <em>distanței</em> se va face cu ajutorul Sistemului de Coordonate de Referință al straturilor. Distanța va fi în <em>grade zecimale</em> deoarece coordonatele stratului nostru sursă sunt în grade. Dacă doriți distanța în metri, reproiectați straturile înainte de execuția calculului.</p>
+<p class="last">Calculul <em>distanței</em> se va face cu ajutorul Sistemului de Coordonate de Referință al straturilor. Distanța va fi în <em>grade zecimale</em>, deoarece coordonatele stratului sursă sunt în grade. Dacă doriți distanța în metri, reproiectați straturile înainte de efectuarea calculului.</p>
 </div>
 <img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">Acest lucru este foarte aproape de rezultatul pe care îl căutăm. Pentru unii utilizatori, acest tabel va fi suficient. Cu toate acestea, putem integra, aceste rezultate în stratul de Cutremure original utilizând <strong>Table Join</strong>. Faceți clic-dreapta pe stratul Earthquake, și selectați <em class="guilabel">Properties</em>.</p>
+<li><p class="first">Aproape că am obținut rezultatele dorite. Pentru unii utilizatori, acest tabel va fi suficient. Totuși, am putea integra aceste rezultate în stratul Earthquake original, folosind <strong>Table Join</strong>. Faceți clic-dreapta pe stratul Earthquake, apoi selectați <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
@@ -297,12 +297,12 @@ below:</p>
 </ol>
 <img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
 <ol class="arabic simple" start="15">
-<li><p class="first">Vrem să unificam datele rezultatelor analizelor noastre (<tt class="docutils literal"><span class="pre">matrix.csv</span></tt>) pentru acest strat. Avem nevoie de selectarea unui câmp din fiecare dintre straturile care au aceleași valori. Selectați câmpurile așa cum se arată mai jos.</p>
+<li><p class="first">Vrem să unificăm datele rezultatelor analizelor (<tt class="docutils literal"><span class="pre">matrix.csv</span></tt>) efectuate pentru acest strat. Trebuie să selectăm un câmp din fiecare dintre straturile care au valori similare. Selectați câmpurile așa cum se arată mai jos.</p>
 </li>
 </ol>
 <img alt="../_images/1510.png" class="align-center" src="../_images/1510.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">Veți vedea ca uniunea va apărea în fila <em class="guilabel">Joins</em>. Clic pe <em class="guilabel">OK</em>.</p>
+<li><p class="first">Uniunea va apărea în fila <em class="guilabel">Joins</em>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1610.png" class="align-center" src="../_images/1610.png" />
@@ -312,7 +312,7 @@ below:</p>
 </ol>
 <img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
 <ol class="arabic simple" start="18">
-<li><p class="first">Veți vedea că pentru fiecare entitate de tip cutremur, acum avem un atribut care reprezintă cel mai apropiat vecin (cea mai apropiată așezare populată) și distanța până la cel mai apropiat vecin.</p>
+<li><p class="first">Observați că, pentru fiecare entitate de tip cutremur, acum avem câte un atribut care reprezintă cel mai apropiat vecin (cea mai apropiată așezare populată), respectiv distanța până la cel mai apropiat vecin.</p>
 </li>
 </ol>
 <img alt="../_images/189.png" class="align-center" src="../_images/189.png" />
@@ -339,7 +339,7 @@ below:</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Aug 01, 2014.<br/>
+      Last updated on Aug 27, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

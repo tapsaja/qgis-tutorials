@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Eșantionarea datelor raster folosind puncte sau poligoane &mdash; QGIS Tutorials and Tips</title>
+    <title>Eșantionarea datelor raster, folosind puncte sau poligoane &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -29,7 +29,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Procesarea loturilor folosind cadrul de procesare" href="batch_processing.html" />
+    <link rel="next" title="Procesarea în serie, folosind cadrul de procesare" href="batch_processing.html" />
     <link rel="prev" title="Analiza celui mai apropiat vecin" href="nearest_neighbor_analysis.html" />
 
 <meta charset='utf-8'>
@@ -101,8 +101,8 @@
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Crearea hărților calorice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Efectuarea interogărilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analiza celui mai apropiat vecin</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Eșantionarea datelor raster folosind puncte sau poligoane</a></li>
-<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea loturilor folosind cadrul de procesare</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Eșantionarea datelor raster, folosind puncte sau poligoane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea în serie, folosind cadrul de procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Utilizarea QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
@@ -126,7 +126,7 @@
     </a>
   </li>
   <li>
-    <a href="batch_processing.html" title="Next Chapter: Procesarea loturilor folosind cadrul de procesare"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Procesarea lotur... &raquo;</span>
+    <a href="batch_processing.html" title="Next Chapter: Procesarea în serie, folosind cadrul de procesare"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Procesarea în se... &raquo;</span>
     </a>
   </li>
               
@@ -188,12 +188,12 @@
       
 
   <div class="section" id="sampling-raster-data-using-points-or-polygons">
-<h1>Eșantionarea datelor raster folosind puncte sau poligoane<a class="headerlink" href="#sampling-raster-data-using-points-or-polygons" title="Permalink to this headline">¶</a></h1>
+<h1>Eșantionarea datelor raster, folosind puncte sau poligoane<a class="headerlink" href="#sampling-raster-data-using-points-or-polygons" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/sampling_raster_data_a4.pdf">A4</a> <a class="reference external" href="../pdf/sampling_raster_data_letter.pdf">Letter</a> ]</p>
-<p>Mai multe seturi de date științifice și de mediu vin sub formă de grilă raster. Datele de elevație (DEM)sunt, de asemenea, distribuite ca fișiere raster. În aceste fișiere raster, parametrul care este reprezentat este codificat ca valori ale pixelilor rasterului. Adesea, este nevoie să extragem valorile pixelilor la anumite locații sau de a le agrega pe un anumit domeniu. Această funcționalitate este disponibilă în QGIS prin două plugin-uri - <tt class="docutils literal"><span class="pre">Point</span> <span class="pre">Sampling</span> <span class="pre">Tool</span></tt> și <tt class="docutils literal"><span class="pre">Zonal</span> <span class="pre">Statistics</span> <span class="pre">plugin</span></tt>.</p>
+<p>Mai multe seturi de date științifice și de mediu vin sub formă de grilă raster. Datele de elevație (DEM) sunt, de asemenea, distribuite ca fișiere raster. În aceste fișiere raster, parametrul reprezentat este codificat sub formă de valori ale pixelilor rasterului. Adesea, este nevoie să extragem valorile pixelilor din anumite locații sau de a le agrega pe un anumit domeniu. Această funcționalitate este disponibilă în QGIS prin două plugin-uri - <tt class="docutils literal"><span class="pre">Point</span> <span class="pre">Sampling</span> <span class="pre">Tool</span></tt> și <tt class="docutils literal"><span class="pre">Zonal</span> <span class="pre">Statistics</span> <span class="pre">plugin</span></tt>.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Având în vedere o grilă raster a temperaturilor maxime din SUA, trebuie să extragem temperatura tuturor zonelor urbane și, de asemenea, să calculăm temperatura medie pentru fiecare stat din Statele Unite ale Americii.</p>
+<p>Având la dispoziție o grilă raster a temperaturilor maxime din SUA, va trebui să extragem temperaturile tuturor zonele urbane și, de asemenea, să calculăm temperatura medie pentru fiecare stat din Statele Unite ale Americii.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Alte competențe pe care le veți dobândi<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -206,7 +206,7 @@
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>NOAA’s <a class="reference external" href="http://www.cpc.ncep.noaa.gov/">Climate Prediction Center</a> pune la dispoziție <a class="reference external" href="http://www.cpc.ncep.noaa.gov/products/GIS/GIS_DATA/">GIS data</a> referitoare la temperatura și precipitațiile din SUA. Descărcați <a class="reference external" href="ftp://ftp.cpc.ncep.noaa.gov/GIS/GRADS_GIS/GeoTIFF/TEMP/us_tmax/">latest grid filei for maximum temperatures</a>. Fișierul va fi denumit <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float.tif</span></tt></p>
+<p>NOAA’s <a class="reference external" href="http://www.cpc.ncep.noaa.gov/">Climate Prediction Center</a> pune la dispoziție <a class="reference external" href="http://www.cpc.ncep.noaa.gov/products/GIS/GIS_DATA/">date GIS</a> referitoare la temperatura și precipitațiile din SUA. Descărcați <a class="reference external" href="ftp://ftp.cpc.ncep.noaa.gov/GIS/GRADS_GIS/GeoTIFF/TEMP/us_tmax/">latest grid file for maximum temperatures</a>. Fișierul va fi denumit <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float.tif</span></tt></p>
 <p>Vom folosi un fișier CSV din <a class="reference external" href="https://www.census.gov/geo/maps-data/data/gazetteer2013.html">2013 US Gazetteer</a> reprezentând zonele urbane din Statele Unite. Descărcați <a class="reference external" href="http://www2.census.gov/geo/gazetteer/2013_Gazetteer/2013_Gaz_ua_national.zip">Urban Areas Gazetteer File</a>.</p>
 <p>Pentru că ne dorim să agregăm temperatura de-a lungul statelor, vom folosi <a class="reference external" href="https://www.census.gov/cgi-bin/geo/shapefiles2013/main">2013 TIGER/Line Shapefiles</a>. Descărcați <a class="reference external" href="http://www2.census.gov/geo/tiger/TIGER2013/COUNTY/tl_2013_us_county.zip">Counties (and equivalents) shapefile</a>.</p>
 <p>Surse de date: <a class="reference internal" href="credits.html#noaacpc" id="id1">[NOAACPC]</a>, <a class="reference internal" href="credits.html#usgazetteer" id="id2">[USGAZETTEER]</a> <a class="reference internal" href="credits.html#tiger" id="id3">[TIGER]</a></p>
@@ -219,7 +219,7 @@
 </ol>
 <img alt="../_images/1102.png" class="align-center" src="../_images/1102.png" />
 <ol class="arabic simple" start="2">
-<li><p class="first">O dată ce stratul este încărcat, selectați instrumentul <em class="guilabel">Identify</em>, apoi faceți clic oriunde, pe strat. Veți vedea fie valoarea temperaturii în celsius, fie valoarea Benzii 1 de la acea locație.</p>
+<li><p class="first">O dată ce stratul este încărcat, selectați instrumentul <em class="guilabel">Identify</em>, apoi faceți clic oriunde, pe strat. Veți vedea, fie valoarea temperaturii în celsius, fie valoarea Benzii 1 de la acea locație.</p>
 </li>
 </ol>
 <img alt="../_images/238.png" class="align-center" src="../_images/238.png" />
@@ -234,67 +234,67 @@
 </ol>
 <img alt="../_images/421.png" class="align-center" src="../_images/421.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">Acum suntem gata pentru a extrage valorile temperaturii din stratul raster. Instalați plugin-ul <tt class="docutils literal"><span class="pre">Point</span> <span class="pre">Sampling</span> <span class="pre">Tool</span></tt>. Vedeți <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a> pentru detalii cu privire la modul de instalare a plugin-urilor.</p>
+<li><p class="first">Acum suntem gata pentru a extrage valorile temperaturii din stratul raster. Instalați plugin-ul <tt class="docutils literal"><span class="pre">Point</span> <span class="pre">Sampling</span> <span class="pre">Tool</span></tt>. Pentru detalii cu privire la modul de instalare a plugin-urilor, parcurgeți <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a>.</p>
 </li>
 </ol>
 <img alt="../_images/522.png" class="align-center" src="../_images/522.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">Deschideți fereastra de dialog a plugin-ului de la <em class="menuselection">Plugins ‣ Analyses ‣ Point sampling tool</em>.</p>
+<li><p class="first">Deschideți fereastra de dialog a plugin-ului, de la <em class="menuselection">Plugins ‣ Analyses ‣ Point sampling tool</em>.</p>
 </li>
 </ol>
 <img alt="../_images/620.png" class="align-center" src="../_images/620.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">În fereastra de dialog <em class="guilabel">Point Sampling Tool</em>, selectați <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt> ca <em class="guilabel">Layer containing sampling points</em>. Trebuie să selectăm în mod explicit câmpurile din stratul de intrare pe care le dorim în stratul de ieșire. Alegeți câmpurile <tt class="docutils literal"><span class="pre">GEOID</span></tt> și <tt class="docutils literal"><span class="pre">NAME</span></tt> din stratul <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt>. Putem eșantiona valorile din multiple benzi raster dintr-o dată, dar din moment ce rasterul nostru are doar o bandă, alegeți <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float:</span> <span class="pre">Band</span> <span class="pre">1</span></tt>. Denumiți stratul vectorial de ieșire ca <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations.shp</span></tt>. Clic pe <em class="guilabel">OK</em> pentru a porni procesul de eșantionare. Clic <em class="guilabel">Close</em> o dată ce s-a încheiat procesul.</p>
+<li><p class="first">În fereastra de dialog <em class="guilabel">Point Sampling Tool</em>, alegeți <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt> pentru <em class="guilabel">Layer containing sampling points</em>. Trebuie să selectăm în mod explicit câmpurile din stratul de intrare pe care le dorim în stratul de ieșire. Alegeți câmpurile <tt class="docutils literal"><span class="pre">GEOID</span></tt> și <tt class="docutils literal"><span class="pre">NAME</span></tt> din stratul <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt>. Putem eșantiona valorile din multiple benzi raster dintr-o dată, dar din moment ce rasterul nostru are doar o bandă, alegeți <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float:</span> <span class="pre">Band</span> <span class="pre">1</span></tt>. Denumiți stratul vectorial de ieșire ca <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations.shp</span></tt>. Clic pe <em class="guilabel">OK</em> pentru a porni procesul de eșantionare. Clic <em class="guilabel">Close</em>, la încheierea procesului.</p>
 </li>
 </ol>
 <img alt="../_images/720.png" class="align-center" src="../_images/720.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">Veți vedea un nou strat <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations</span></tt> încărcat în QGIS. Utilizați instrumentul <em class="guilabel">Identify</em> pentru a face clic pe orice punct, pentru a-i vedea atributele. Veți vedea câmpul <tt class="docutils literal"><span class="pre">us.tmax_no</span></tt> - care conține valoarea pixelilor raster de la locația punctului.</p>
+<li><p class="first">Veți vedea un nou strat, <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations</span></tt>, încărcat în QGIS. Folosind instrumentul <em class="guilabel">Identify</em>, faceți clic pe oricare punct, pentru a-i vedea atributele. Veți vedea câmpul <tt class="docutils literal"><span class="pre">us.tmax_no</span></tt> - care conține valoarea pixelilor raster de la locația punctului.</p>
 </li>
 </ol>
 <img alt="../_images/819.png" class="align-center" src="../_images/819.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">Prima parte a analizei noastre s-a încheiat. Să înlăturăm straturile inutile. Țineți tasta <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> apăsată și selectați straturile <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations</span></tt> și <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt>. Clic-dreapta și selectați <em class="guilabel">Remove</em> pentru a le elimina din Cuprinsul QGIS.</p>
+<li><p class="first">Prima parte a analizei s-a încheiat. Haideți să înlăturăm straturile inutile. Mențineți apăsată tasta <tt class="kbd docutils literal"><span class="pre">Shift</span></tt>, apoi selectați straturile <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations</span></tt> și <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt>. Clic-dreapta și apăsați <em class="guilabel">Remove</em>, pentru a le elimina din Cuprinsul QGIS.</p>
 </li>
 </ol>
 <img alt="../_images/918.png" class="align-center" src="../_images/918.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>. Navigați la fișierul descărcat <tt class="docutils literal"><span class="pre">tl_2013_us_county.zip</span></tt> și faceți clic pe <em class="guilabel">Open</em>. Selectați <tt class="docutils literal"><span class="pre">tl_2013_us_county.shp</span></tt> ca strat și apăsați <em class="guilabel">OK</em>.</p>
+<li><p class="first">Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>. Navigați la fișierul descărcat <tt class="docutils literal"><span class="pre">tl_2013_us_county.zip</span></tt> și faceți clic pe <em class="guilabel">Open</em>. Alegeți <tt class="docutils literal"><span class="pre">tl_2013_us_county.shp</span></tt>, apoi apăsați <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1018.png" class="align-center" src="../_images/1018.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first"><tt class="docutils literal"><span class="pre">tl_2013_us_county</span></tt> va fi adăugat la QGIS. Acest strat este în proiecție <tt class="docutils literal"><span class="pre">EPSG:4269</span> <span class="pre">NAD83</span></tt>. Acest lucru nu se potrivește cu proiecția stratului raster. Vom reproiecta acest strat în proiecția <tt class="docutils literal"><span class="pre">EPSG:4326</span> <span class="pre">WGS84</span></tt>.</p>
+<li><p class="first"><tt class="docutils literal"><span class="pre">tl_2013_us_county</span></tt> va fi adăugat la QGIS. Stratul respectiv este în proiecția <tt class="docutils literal"><span class="pre">EPSG:4269</span> <span class="pre">NAD83</span></tt>. Asta înseamnă că nu se potrivește cu proiecția stratului raster. Vom reproiecta acest strat pentru <tt class="docutils literal"><span class="pre">EPSG:4326</span> <span class="pre">WGS84</span></tt>.</p>
 </li>
 </ol>
 <img alt="../_images/1123.png" class="align-center" src="../_images/1123.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">Faceți clic dreapta pe stratul <tt class="docutils literal"><span class="pre">tl_2013_us_county</span></tt> și selectați <em class="guilabel">Save As..</em>.</p>
+<li><p class="first">Faceți clic dreapta pe stratul <tt class="docutils literal"><span class="pre">tl_2013_us_county</span></tt>, apoi alegeți <em class="guilabel">Save As..</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1219.png" class="align-center" src="../_images/1219.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">În fereastra de dialog <em class="guilabel">Save Vector layer as..</em>, faceți clic pe <em class="guilabel">Browse</em> și denumiți fișierul de ieșire ca <tt class="docutils literal"><span class="pre">counties.shp</span></tt>. Alegeți <em class="guilabel">Selected CRS</em> din meniul dropdown <em class="guilabel">CRS</em>. Clic pe <em class="guilabel">Browse</em> și selectați <tt class="docutils literal"><span class="pre">WGS</span> <span class="pre">84</span></tt> ca CRS. Bifați <em class="guilabel">Add saved file to map</em> și faceți clic pe <em class="guilabel">OK</em>.</p>
+<li><p class="first">În fereastra de dialog <em class="guilabel">Save Vector layer as..</em>, faceți clic pe <em class="guilabel">Browse</em> și denumiți fișierul de ieșire drept <tt class="docutils literal"><span class="pre">counties.shp</span></tt>. Alegeți <em class="guilabel">Selected CRS</em> din meniul dropdown <em class="guilabel">CRS</em>. Clic pe <em class="guilabel">Browse</em>, apoi alegeți <tt class="docutils literal"><span class="pre">WGS</span> <span class="pre">84</span></tt> pentru CRS. Bifați <em class="guilabel">Add saved file to map</em> și faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1318.png" class="align-center" src="../_images/1318.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">Un nou strat numit <tt class="docutils literal"><span class="pre">state</span></tt> va fi adăugat în QGIS.</p>
+<li><p class="first">Un nou strat numit <tt class="docutils literal"><span class="pre">counties</span></tt> va fi adăugat în QGIS.</p>
 </li>
 </ol>
 <img alt="../_images/1417.png" class="align-center" src="../_images/1417.png" />
 <ol class="arabic simple" start="15">
-<li><p class="first">Activați <tt class="docutils literal"><span class="pre">Zonal</span> <span class="pre">Statistics</span> <span class="pre">Plugins</span></tt>. Acesta este un plug-in de bază, deci este deja instalat. Vedeți <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a> pentru a afla cum să activați plugin-urile de bază.</p>
+<li><p class="first">Activați <tt class="docutils literal"><span class="pre">Zonal</span> <span class="pre">Statistics</span> <span class="pre">Plugins</span></tt>. Acesta este un plug-in de bază, deci este deja instalat. Parcurgeți <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a>, pentru a afla cum să activați plugin-urile de bază.</p>
 </li>
 </ol>
 <img alt="../_images/1515.png" class="align-center" src="../_images/1515.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">Mergeti la <em class="menuselection">Raster ‣ Zonal statistics ‣ Zonal statistics</em>.</p>
+<li><p class="first">Mergeți la <em class="menuselection">Raster ‣ Zonal statistics ‣ Zonal statistics</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1615.png" class="align-center" src="../_images/1615.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">Selectați <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float</span></tt> ca <em class="guilabel">Raster layer</em> și <tt class="docutils literal"><span class="pre">sectoarele</span></tt> ca <em class="guilabel">Polygon layer containing the zones</em>. Introduceți  <tt class="docutils literal"><span class="pre">ZS_</span></tt> ca <em class="guilabel">Output column prefix</em>. Clic pe <em class="guilabel">OK</em>.</p>
+<li><p class="first">Selectați <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float</span></tt> pentru <em class="guilabel">Raster layer</em>, apoi <tt class="docutils literal"><span class="pre">sectoarele</span></tt> pentru <em class="guilabel">Polygon layer containing the zones</em>. Introduceți  <tt class="docutils literal"><span class="pre">ZS_</span></tt> în <em class="guilabel">Output column prefix</em>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1714.png" class="align-center" src="../_images/1714.png" />
@@ -304,22 +304,22 @@
 </ol>
 <img alt="../_images/1814.png" class="align-center" src="../_images/1814.png" />
 <ol class="arabic simple" start="19">
-<li><p class="first">După ce procesarea se încheie, selectați stratul <tt class="docutils literal"><span class="pre">state</span></tt>. Utilizați instrumentul <em class="guilabel">Identify</em> și faceți clic pe orice stat poligonal. Veți vedea trei noi atribute adăugate la stratul: <tt class="docutils literal"><span class="pre">ZS_count</span></tt>, <tt class="docutils literal"><span class="pre">ZS_mean</span></tt> și <tt class="docutils literal"><span class="pre">ZS_sum</span></tt>. Aceste atribute conțin numărul de pixeli raster, media valorilor pixelilor raster și, respectiv, suma valorilor pixelilor raster. Din moment ce sunt interesați de temperatură medie, câmpul <tt class="docutils literal"><span class="pre">ZS_mean</span></tt> va fi cel care va fi utilizat.</p>
+<li><p class="first">După ce se termină procesarea, selectați stratul <tt class="docutils literal"><span class="pre">counties</span></tt>. Utilizați instrumentul <em class="guilabel">Identify</em> și faceți clic pe orice stat poligonal. Veți vedea trei noi atribute adăugate la stratul: <tt class="docutils literal"><span class="pre">ZS_count</span></tt>, <tt class="docutils literal"><span class="pre">ZS_mean</span></tt> și <tt class="docutils literal"><span class="pre">ZS_sum</span></tt>. Aceste atribute conțin numărul de pixeli raster, media valorilor pixelilor raster și, respectiv, suma valorilor pixelilor raster. Din moment ce ne interesează temperatura medie, vom utiliza câmpul <tt class="docutils literal"><span class="pre">ZS_mean</span></tt>.</p>
 </li>
 </ol>
 <img alt="../_images/1912.png" class="align-center" src="../_images/1912.png" />
 <ol class="arabic simple" start="20">
-<li><p class="first">Să stilizăm acest strat pentru a crea o hartă a temperaturii. Clic-dreapta pe stratul <tt class="docutils literal"><span class="pre">statelor</span></tt> și selectați <em class="guilabel">Properties</em>.</p>
+<li><p class="first">Să stilizăm acest strat pentru a crea o hartă a temperaturii. Clic-dreapta pe stratul <tt class="docutils literal"><span class="pre">counties</span></tt>, apoi selectați <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
 <img alt="../_images/208.png" class="align-center" src="../_images/208.png" />
 <ol class="arabic simple" start="21">
-<li><p class="first">Comutați la fila <em class="guilabel">Style</em>. Alegeți stilul <em class="guilabel">Graduated</em> și selectați <tt class="docutils literal"><span class="pre">ZS_mean</span></tt> ca și <em class="guilabel">Column</em>. Alegeți o <em class="guilabel">Color Ramp</em> și <em class="guilabel">Mode</em> după dorință. Clic pe <em class="guilabel">Classify</em> pentru a crea clasele. Apăsați pe <em class="guilabel">OK</em>. (Parcurgeți <a class="reference internal" href="basic_vector_styling.html"><em>Noțiuni de bază despre stilizarea vectorilor</em></a> pentru mai multe detalii despre stilizare.)</p>
+<li><p class="first">Comutați la fila <em class="guilabel">Style</em>. Alegeți stilul <em class="guilabel">Graduated</em> și selectați <tt class="docutils literal"><span class="pre">ZS_mean</span></tt> ca și <em class="guilabel">Column</em>. Modificați <em class="guilabel">Color Ramp</em> și <em class="guilabel">Mode</em> după dorință. Clic pe <em class="guilabel">Classify</em> pentru a crea clasele. Apăsați pe <em class="guilabel">OK</em>. (Pentru mai multe detalii despre stilizare, parcurgeți <a class="reference internal" href="basic_vector_styling.html"><em>Noțiuni de bază despre stilizarea vectorilor</em></a>.)</p>
 </li>
 </ol>
 <img alt="../_images/2112.png" class="align-center" src="../_images/2112.png" />
 <ol class="arabic simple" start="22">
-<li><p class="first">Veți vedea poligoanele statale stilizate, folosind media temperaturii maxime extrase din grila raster.</p>
+<li><p class="first">Veți vedea poligoanele statale stilizate, utilizând media temperaturii maxime extrasă din grila raster.</p>
 </li>
 </ol>
 <img alt="../_images/2211.png" class="align-center" src="../_images/2211.png" />
@@ -346,7 +346,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Aug 01, 2014.<br/>
+      Last updated on Aug 27, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

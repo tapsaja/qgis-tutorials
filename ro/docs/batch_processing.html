@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Procesarea loturilor folosind cadrul de procesare &mdash; QGIS Tutorials and Tips</title>
+    <title>Procesarea în serie, folosind cadrul de procesare &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Utilizarea QGIS Browser" href="using_qgis_browser.html" />
-    <link rel="prev" title="Eșantionarea datelor raster folosind puncte sau poligoane" href="sampling_raster_data.html" />
+    <link rel="prev" title="Eșantionarea datelor raster, folosind puncte sau poligoane" href="sampling_raster_data.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -101,8 +101,8 @@
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Crearea hărților calorice</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Efectuarea interogărilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analiza celui mai apropiat vecin</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster folosind puncte sau poligoane</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Procesarea loturilor folosind cadrul de procesare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster, folosind puncte sau poligoane</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Procesarea în serie, folosind cadrul de procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Utilizarea QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
@@ -122,7 +122,7 @@
               
                 
   <li>
-    <a href="sampling_raster_data.html" title="Previous Chapter: Eșantionarea datelor raster folosind puncte sau poligoane"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Eșantionarea dat...</span>
+    <a href="sampling_raster_data.html" title="Previous Chapter: Eșantionarea datelor raster, folosind puncte sau poligoane"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Eșantionarea dat...</span>
     </a>
   </li>
   <li>
@@ -188,12 +188,12 @@
       
 
   <div class="section" id="batch-processing-using-processing-framework">
-<h1>Procesarea loturilor folosind cadrul de procesare<a class="headerlink" href="#batch-processing-using-processing-framework" title="Permalink to this headline">¶</a></h1>
+<h1>Procesarea în serie, folosind cadrul de procesare<a class="headerlink" href="#batch-processing-using-processing-framework" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/batch_processing_a4.pdf">A4</a> <a class="reference external" href="../pdf/batch_processing_letter.pdf">Letter</a> ]</p>
-<p>QGIS 2.0 a introdus un concept nou numit <strong>Processing Framework</strong>. Anterior cunoscut sub numele de <strong>Sextante</strong>, Processing Framework oferă un mediu în cadrul QGIS pentru a rula algoritmi nativi și terți pentru prelucrarea datelor. Acesta conține o interfață aspectuoasă de prelucrare a loturilor, care permite execuția cu ușurință a unui algoritm pe mai multe straturi. Prelucrarea loturilor este un instrument util care poate salva efortul manual, prin automatizarea sarcinilor repetitive.</p>
+<p>QGIS 2.0 a introdus un concept nou numit <strong>Processing Framework</strong>. Anterior cunoscut sub numele de <strong>Sextante</strong>, cadrul de procesare oferă un mediu în interiorul QGIS, adecvat rulării algoritmilor nativi și terți de prelucrare a datelor. Acesta conține o interfață de prelucrare în serie, aspectuoasă, care permite execuția cu ușurință a unui algoritm asupra mai multor straturi. Prelucrarea în serie reprezintă un instrument util care poate salva efortul manual, prin automatizarea sarcinilor repetitive.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Vom avea mai multe straturi vectoriale globale, pe care le vom tăia după conturul Africii într-o singură comandă lot.</p>
+<p>Vom decupa mai multe straturi vectoriale globale, după conturul Africii, folosind o comandă pentru seturi.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Alte competențe pe care le veți dobândi<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -226,12 +226,12 @@
 </ol>
 <img alt="../_images/112.png" class="align-center" src="../_images/112.png" />
 <ol class="arabic simple" start="2">
-<li><p class="first">Răsfoiți la fișierul shape descărcat Admin 0 Countries <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt> și faceți clic pe <em class="guilabel">Open</em>.</p>
+<li><p class="first">Navigați la fișierul shape descărcat, Admin 0 Țări, <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt>, apoi faceți clic pe <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
 <img alt="../_images/22.png" class="align-center" src="../_images/22.png" />
 <ol class="arabic simple" start="3">
-<li><p class="first">Atât timp cât sarcina noastră este de a tăia straturile globale după granițele Africii, trebuie să pregătim mai întâi un strat conținând un poligon pentru întregul continent. Stratul țărilor are un atribut numit <strong>CONTINENT</strong>. Putem folosi un concept de geoprocesare numit <em>Dissolve</em> pentru a uni toate țările care au aceeași valoare a continentului și pentru a le contopi într-un singur poligon.</p>
+<li><p class="first">Atât timp cât sarcina noastră este de a tăia straturile globale după granițele Africii, trebuie să pregătim mai întâi un strat care să conțină un poligon pentru întregul continent. Stratul țărilor are un atribut numit <strong>CONTINENT</strong>. Putem folosi un concept de geoprocesare numit <em>Dissolve</em>, pentru a uni toate țările care au aceeași valoare a continentului, după care le vom contopi într-un singur poligon.</p>
 </li>
 </ol>
 <img alt="../_images/32.png" class="align-center" src="../_images/32.png" />
@@ -241,16 +241,16 @@
 </ol>
 <img alt="../_images/42.png" class="align-center" src="../_images/42.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">Selectați <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> ca <em class="guilabel">Input vector layer</em>. <em class="guilabel">Dissolve field</em> va fi <tt class="docutils literal"><span class="pre">CONTINENT</span></tt>. Denumiți fișierul de ieșire <tt class="docutils literal"><span class="pre">continents.shp</span></tt> și bifați caseta de lângă <em class="guilabel">Add result to convas</em>.</p>
+<li><p class="first">Alegeți <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> pentru <em class="guilabel">Input vector layer</em>. În <em class="guilabel">Dissolve field</em> alegeți <tt class="docutils literal"><span class="pre">CONTINENT</span></tt>. Denumiți fișierul de ieșire <tt class="docutils literal"><span class="pre">continents.shp</span></tt> și bifați caseta de lângă <em class="guilabel">Add result to convas</em>.</p>
 </li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Dacă doriți să îmbinați <strong>TOATE</strong> poligoanele, indiferent de atributele lor, puteți selecta <em class="guilabel">&#8211; Dissolve All &#8211;</em> ca <em class="guilabel">Dissolve field</em>. Acest lucru va combina toate poligoane din strat și vă va oferi un singur poligon agregat.</p>
+<p class="last">Dacă doriți să îmbinați <strong>TOATE</strong> poligoanele, indiferent de atributele lor, puteți selecta <em class="guilabel">&#8211; Dissolve All &#8211;</em> ca <em class="guilabel">Dissolve field</em>. Acest lucru va combina toate poligoanele din strat și vă va oferi un singur poligon agregat.</p>
 </div>
 <img alt="../_images/52.png" class="align-center" src="../_images/52.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">Procesul de dizolvare poate dura ceva timp. O dată procesul terminat, veți vedea noul strat  <tt class="docutils literal"><span class="pre">continent</span></tt> suplimentar, adăugat în QGIS. Utilizați instrumentul <em class="guilabel">Select Single Feature</em> din bara de instrumente și faceți clic pe Africa pentru a selecta poligonul reprezentând continentul.</p>
+<li><p class="first">Procesul de dizolvare poate dura ceva timp. O dată procesul terminat, veți vedea noul strat  <tt class="docutils literal"><span class="pre">continent</span></tt> suplimentar, adăugat în QGIS. Utilizați instrumentul <em class="guilabel">Select Single Feature</em> din bara de instrumente și faceți clic pe Africa, pentru a selecta poligonul reprezentând continentul.</p>
 </li>
 </ol>
 <img alt="../_images/62.png" class="align-center" src="../_images/62.png" />
@@ -265,32 +265,32 @@
 </ol>
 <img alt="../_images/82.png" class="align-center" src="../_images/82.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">Acum, veți avea stratul <tt class="docutils literal"><span class="pre">Africa</span></tt> încărcat în QGIS și conținând un singur poligon pentru întregul continent. Acum, este timpul de a începe procesul de tăiere lot. Deschideți <em class="menuselection">Processing ‣ Toolbox</em>.</p>
+<li><p class="first">Acum, aveți stratul <tt class="docutils literal"><span class="pre">Africa</span></tt> încărcat în QGIS, și conținând un singur poligon pentru întregul continent. A venit momentul procesării comenzii de decupare în serie. Deschideți <em class="menuselection">Processing ‣ Toolbox</em>.</p>
 </li>
 </ol>
 <img alt="../_images/92.png" class="align-center" src="../_images/92.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">Răsfoiți algoritmii disponibili și găsiți instrumentul <em class="guilabel">Clip</em> din <em class="menuselection">QGIS geoalgorithms ‣ Vector overlay tools ‣ Clip</em>. Puteți folosi, de asemenea, câmpul <em class="guilabel">Search</em> pentru a găsi ușor algoritmul.</p>
+<li><p class="first">Răsfoiți algoritmii disponibili și găsiți instrumentul <em class="guilabel">Clip</em> din <em class="menuselection">QGIS geoalgorithms ‣ Vector overlay tools ‣ Clip</em>. Puteți folosi, de asemenea, câmpul <em class="guilabel">Search</em> pentru a identifica ușor algoritmul.</p>
 </li>
 </ol>
 <img alt="../_images/102.png" class="align-center" src="../_images/102.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">Faceți clic-dreapta pe <em class="guilabel">Clip</em> algorithm and select <em class="guilabel">Execure as batch process</em>.</p>
+<li><p class="first">Faceți clic-dreapta pe algoritmul <em class="guilabel">Clip</em>, apoi selectați <em class="guilabel">Execure as batch process</em>.</p>
 </li>
 </ol>
 <img alt="../_images/113.png" class="align-center" src="../_images/113.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">În fereastra de dialog <em class="guilabel">Batch Processing</em>, prima filă este <em class="guilabel">Parameters</em>, care definește intrările. Clic pe <em class="guilabel">...</em> din dreptul primului rând din coloana <em class="guilabel">Input layer</em>.</p>
+<li><p class="first">În fereastra de dialog <em class="guilabel">Batch Processing</em>, prima filă este <em class="guilabel">Parameters</em>, care definește intrările. Clic pe <em class="guilabel">...</em> din dreptul primului rând al coloanei <em class="guilabel">Input layer</em>.</p>
 </li>
 </ol>
 <img alt="../_images/122.png" class="align-center" src="../_images/122.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">Navigați la directorul care conține straturile transportului global pe care le-ați descărcat. Mențineți apăsată tasta <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> și selectați toate straturile pe care doriți să le tăiați. De asemenea, puteți folosi <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> or <tt class="kbd docutils literal"><span class="pre">Ctrl-A</span></tt> pentru a face selecții multiple. Clic pe <em class="guilabel">Open</em>.</p>
+<li><p class="first">Navigați la directorul care conține straturile de transport global, pe care le-ați descărcat. Mențineți apăsată tasta <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> și selectați toate straturile pe care doriți să le decupați. De asemenea, puteți folosi <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> sau <tt class="kbd docutils literal"><span class="pre">Ctrl-A</span></tt> pentru a face selecții multiple. Clic pe <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
 <img alt="../_images/132.png" class="align-center" src="../_images/132.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">Veți observa că se vor auto-popula coloanele <em class="guilabel">Input layer</em>, cu toate straturile pe care le-ați selectat. Puteți folosi butonul <em class="guilabel">Add row</em> pentru a adăuga mai multe rânduri și pentru a defini mai multe intrări. Apoi, trebuie să selectați stratul care conține limita de tăiere a straturilor noastre de intrare. Faceți clic pe butonul <em class="guilabel">...</em> din primul rând și adăugați <tt class="docutils literal"><span class="pre">africa.shp</span></tt> în <em class="guilabel">Clip layer</em>. Deoarece stratul de tăiere este același pentru toate intrările noastre, puteți face dublu clic pe antetul coloanei <em class="guilabel">Clip layer</em> și același strat va fi auto-completat pentru toate rândurile. Apoi, trebuie să ne definim rezultatele. Faceți clic pe butonul <em class="guilabel">...</em> de lângă primul rând din coloana <em class="guilabel">Clipped</em>.</p>
+<li><p class="first">Veți observa că se vor auto-popula coloanele <em class="guilabel">Input layer</em>, cu toate straturile pe care le-ați selectat. Puteți folosi butonul <em class="guilabel">Add row</em> pentru a adăuga mai multe rânduri și pentru a defini mai multe intrări. Apoi, trebuie să selectați stratul care conține limita de decupare a straturilor de intrare. Faceți clic pe butonul <em class="guilabel">...</em> din primul rând și adăugați <tt class="docutils literal"><span class="pre">africa.shp</span></tt> în <em class="guilabel">Clip layer</em>. Deoarece stratul de tăiere este același pentru toate intrările, puteți face dublu-clic pe antetul coloanei <em class="guilabel">Clip layer</em>, pentru ca stratul să se auto-completeze pentru toate rândurile. Apoi, trebuie să ne definim rezultatele. Faceți clic pe butonul <em class="guilabel">...</em> de lângă primul rând din coloana <em class="guilabel">Clipped</em>.</p>
 </li>
 </ol>
 <img alt="../_images/142.png" class="align-center" src="../_images/142.png" />
@@ -300,17 +300,17 @@
 </ol>
 <img alt="../_images/152.png" class="align-center" src="../_images/152.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">Veți vedea un nou dialog de tip pop-up <em class="guilabel">Autofill settings</em>. Selectați <em class="guilabel">Fill with parameter values</em> ca <em class="guilabel">Autofill mode</em>. Selectați <em class="guilabel">Parameter to use</em> ca <em class="guilabel">Input layer</em>. Această setare va adăuga numele fișierului de intrare la cel de ieșire, împreună cu numele fișierului <tt class="docutils literal"><span class="pre">output_</span></tt> specificat. Acest lucru este important pentru a ne asigura că toate fișierele de ieșire au nume unice și nu se suprascriu reciproc.</p>
+<li><p class="first">Veți vedea o nouă fereastră de dialog, de tip pop-up, <em class="guilabel">Autofill settings</em>. Alegeți <em class="guilabel">Fill with parameter values</em> pentru <em class="guilabel">Autofill mode</em>. Selectați <em class="guilabel">Input layer</em> pentru <em class="guilabel">Parameter to use</em>. Această setare va adăuga numele fișierului de intrare la cel de ieșire, împreună cu numele fișierului <tt class="docutils literal"><span class="pre">output_</span></tt> specificat. Acest lucru este important, pentru a ne asigura că toate fișierele de ieșire au nume unice și nu se suprascriu reciproc.</p>
 </li>
 </ol>
 <img alt="../_images/162.png" class="align-center" src="../_images/162.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">Acum suntem gata să începem procesarea lot. Clic pe <em class="guilabel">Run</em>.</p>
+<li><p class="first">Acum suntem gata să începem procesarea în serie. Clic pe <em class="guilabel">Run</em>.</p>
 </li>
 </ol>
 <img alt="../_images/172.png" class="align-center" src="../_images/172.png" />
 <ol class="arabic simple" start="18">
-<li><p class="first">Algoritmul de tăiere va rula pentru fiecare intrare și va crea fișierele de ieșire așa cum s-a specificat. O dată ce procesarea de lot se încheie, veți vedea straturile adăugate la suportul QGIS. După cum veți observa, toate straturile globale sunt tăiate în mod adecvat, la limita continentului specificat.</p>
+<li><p class="first">Algoritmul de tăiere va rula pentru fiecare intrare și va crea fișierele de ieșire, așa cum s-a specificat. O dată ce procesarea în serie se încheie, veți vedea straturile adăugate la suportul QGIS. După cum veți observa, toate straturile globale sunt tăiate în mod adecvat, la limita continentului specificat.</p>
 </li>
 </ol>
 <img alt="../_images/182.png" class="align-center" src="../_images/182.png" />
@@ -337,7 +337,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Aug 01, 2014.<br/>
+      Last updated on Aug 27, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
