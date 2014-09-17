@@ -191,10 +191,10 @@
   <div class="section" id="raster-mosaicing-and-clipping">
 <h1>Mosaici e operazioni di ritaglio con i layer raster<a class="headerlink" href="#raster-mosaicing-and-clipping" title="link permanente per questa intestazione">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/raster_mosaicing_and_clipping_a4.pdf">A4</a> <a class="reference external" href="../pdf/raster_mosaicing_and_clipping_letter.pdf">Letter</a> ]</p>
-<p>Questo esercizio esplora alcune operazioni di base in QGIS con i file raster, come la visualizzazione, la composizione di mosaici e la creazione di sottoinsiemi.</p>
+<p>Questa esercitazione esplora alcune operazioni di base in QGIS con i file raster, come la visualizzazione, la composizione di mosaici e la creazione di sottoinsiemi.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Descrizione del compito<a class="headerlink" href="#overview-of-the-task" title="link permanente per questa intestazione">¶</a></h2>
-<p>Scaricheremo alcune immagini raster di pubblico dominio che descrivono il territorio del Brasile e le esamineremo in QGIS. Poi, uniremo queste foto in una sorta di mosaico e, infine, le ritaglieremo usando i confini amministrativi del paese per ricavarne un unico dataset abbastanza verosimile.</p>
+<p>Scaricheremo alcuni dati raster di pubblico dominio che descrivono il territorio del Brasile e li esamineremo in QGIS. Poi, uniremo queste foto in una sorta di mosaico e, infine, le ritaglieremo usando i confini amministrativi del paese per ricavare un unico dataset del Brasile abbastanza verosimile.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Altri aspetti che avremo modo di apprendere nel corso dell&#8217;esercizio.<a class="headerlink" href="#other-skills-you-will-learn" title="link permanente per questa intestazione">¶</a></h3>
 <ul class="simple">
@@ -206,17 +206,17 @@ shapefile.</li>
 </div>
 <div class="section" id="get-the-data">
 <h2>Ottenere i dati necessari.<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
-<p>Ci servono i confini geografici del Brasile per tagliare il nostro raster.
+<p>Intanto, per ritagliare il nostro raster, ci occorrono i confini del Brasile.
 Potete scaricare lo shapefile <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - Countries</a> da Natural Earth.</p>
-<p>Il sito NASA/GSFC Rapid Response &lt;<a class="reference external" href="https://earthdata.nasa.gov/data/near-real-time-data/rapid-response/modis-subsets">https://earthdata.nasa.gov/data/near-real-time-data/rapid-response/modis-subsets</a>&gt;`_  dispone di una buona collezione di immagini prodotte in tempo quasi reale. Un ottimo lavoro  è <a class="reference external" href="http://lance-modis.eosdis.nasa.gov/imagery/subsets/?project=fas">USDA Foreign Agricultural Service (FAS) subsets.</a>.. Nell&#8217;ambito di questo esercizio utilizzeremo una risoluzione di 2km dal FAS subset del Brasile.</p>
-<p>Di seguito viene spiegato come cercare e scaricare i dati di nostro interesse.</p>
+<p>Il sito <a class="reference external" href="https://earthdata.nasa.gov/data/near-real-time-data/rapid-response/modis-subsets">NASA/GSFC, Rapid Response site</a>   dispone di una buona collezione di immagini prodotte in tempo quasi reale. Un ottimo lavoro a carattere locale è <a class="reference external" href="http://lance-modis.eosdis.nasa.gov/imagery/subsets/?project=fas">USDA Foreign Agricultural Service (FAS) subsets.</a>.. Nell&#8217;ambito di questo esercizio utilizzeremo una risoluzione di 2km dal FAS subset del Brasile.</p>
+<p>Di seguito spieghiamo in dettaglio come cercare e scaricare i dati di nostro interesse.</p>
 <ol class="arabic simple">
 <li><p class="first">Aprite <a class="reference external" href="http://lance-modis.eosdis.nasa.gov/imagery/subsets/?area=sa">South America region subsets</a>.. Trovate il sottoinsieme di foto che si chiama Brasile visibile nella sezione <em class="guilabel">FAS Subsets</em>.  Fate click su alcune di esse.</p>
 </li>
 </ol>
 <img alt="../_images/1100.png" class="align-center" src="../_images/1100.png" />
 <ol class="arabic simple" start="2">
-<li><p class="first">ella pagina dettagli fate click sul link <em class="guilabel">2km</em> che si trova al di sotto dell&#8217;immagine che avete scelto. Qui scaricheremo il prodotto:guilabel:<cite>NDVI</cite>. <a class="reference external" href="http://en.wikipedia.org/wiki/Normalized_Difference_Vegetation_Index">Qui sono disponibili ulteriori informazioni su NDVI</a>.</p>
+<li><p class="first">Nella pagina dettagli fate click sul link <em class="guilabel">2km</em> che si trova al di sotto dell&#8217;immagine che avete scelto. Qui scaricheremo il prodotto <em class="guilabel">NDVI</em>. <a class="reference external" href="http://en.wikipedia.org/wiki/Normalized_Difference_Vegetation_Index">Qui sono disponibili ulteriori informazioni su NDVI</a>.</p>
 </li>
 </ol>
 <img alt="../_images/235.png" class="align-center" src="../_images/235.png" />
@@ -225,7 +225,7 @@ Potete scaricare lo shapefile <a class="reference external" href="http://www.nat
 </li>
 </ol>
 <img alt="../_images/324.png" class="align-center" src="../_images/324.png" />
-<p>Ripetere la stessa l&#8217;operazione per tutti i 7 successivi sottinsiemi FAS del Brasile.</p>
+<p>Ripetere la stessa operazione per tutti i 7 successivi sottinsiemi FAS del Brasile.</p>
 <p>For convenience, you can directly download sample data used in this tutorial from links below.</p>
 <p><a class="reference download internal" href="../_downloads/ne_10m_admin_0_countries1.zip"><tt class="xref download docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt></a>
 <a class="reference download internal" href="../_downloads/FAS_Brazil1.2013363.aqua.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil1.2013363.aqua.ndvi.2km.tif</span></tt></a>
@@ -240,42 +240,42 @@ Potete scaricare lo shapefile <a class="reference external" href="http://www.nat
 <div class="section" id="procedure">
 <h2>Procedimento<a class="headerlink" href="#procedure" title="link permanente per questa intestazione">¶</a></h2>
 <ol class="arabic simple" start="4">
-<li><p class="first">Aprite QGIS e andate su <em class="menuselection">:menuselection:`Layer ‣ Aggiungi raster. .</em>.</p>
+<li><p class="first">Aprite QGIS e andate su <em class="menuselection">Layer ‣ Aggiungi raster. .</em>.</p>
 </li>
 </ol>
 <img alt="../_images/419.png" class="align-center" src="../_images/419.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">Selezionate la cartella che contiene le singole immagini. Tenete premuto il pulsante della tastiera kbd:<cite>Ctrl</cite>  e fate click con il mouse sui file di immagine per ottenere una selezione multipla. Click su <em class="guilabel">Apri</em>.</p>
+<li><p class="first">Selezionate la cartella che contiene le singole immagini. Tenete premuto il pulsante della tastiera <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>  e fate click con il mouse sui file di immagine per ottenere una selezione multipla. Click su <em class="guilabel">Apri</em>.</p>
 </li>
 </ol>
 <img alt="../_images/520.png" class="align-center" src="../_images/520.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">Vedrete le immagin caricate alla vostra sinistra, nella Tabella dei Contenuti. Adesso creeremo una singola immagine  <cite>Mosaico</cite>  ricavata dall&#8217;unione delle immagini che abbiamo scaricato. Fate click su <em class="menuselection">Raster ‣ Miscellanea ‣ Unione</em>.</p>
+<li><p class="first">Vedrete le immagini caricate alla vostra sinistra, nella Tabella dei Contenuti (TOC). Ora, andremo a compilare una singola immagine  <cite>Mosaico</cite>  ricavata dall&#8217;unione delle immagini che abbiamo scaricato. Fate click su <em class="menuselection">Raster ‣ Miscellanea ‣ Unione</em>.</p>
 </li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
-<p class="last">Il menu raster di QGIS proviene da un plugin interno chiamato <em class="guilabel">GdalTools</em>. Se a qualcuno dovesse mancare il menu <em class="guilabel">Raster</em>, attivate il plugin <em class="guilabel">GdalTools</em> da <em class="menuselection">Plugins ‣ Gestisci e installa plugin ‣ Installa</em>. Date un&#8217;occhiata <a class="reference internal" href="using_plugins.html"><em>Usare i Plugins</em></a> se avete bisogno di ulteriori dettagli sui plugin.</p>
+<p class="last">Il menu raster di QGIS proviene da un plugin interno chiamato <em class="guilabel">GdalTools</em>. Se a qualcuno dovesse mancare il menu <em class="guilabel">Raster</em>, attivate il plugin <em class="guilabel">GdalTools</em> da <em class="menuselection">Plugins ‣ Gestisci e installa plugin ‣ Installa</em>. Se avete bisogno di ulteriori dettagli sui plugin, potete dare un&#8217;occhiata a <a class="reference internal" href="using_plugins.html"><em>Usare i Plugins</em></a></p>
 </div>
 <img alt="../_images/618.png" class="align-center" src="../_images/618.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">Nella finestra di dialogo <em class="guilabel">Unione</em> , fate click su <em class="guilabel">Scegli...</em> poi <em class="guilabel">File di input</em> e selezionate dalla loro directory tutte le singole immagini geotiff tenendo premuto il tasto <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> della tastiera e facendo click su ciascuna di esse. Ora fate click su <em class="guilabel">Scegli...</em>  e poi su <em class="guilabel">File di output</em>. Chiamate il file di output <tt class="docutils literal"><span class="pre">Brazil_mosaic.tif</span></tt>.
-In basso, cliccate la casella <em class="guilabel">Carica sulla mappa quando finito</em>. Click su <em class="guilabel">OK</em>.</p>
+<li><p class="first">Nella finestra di dialogo <em class="guilabel">Unione</em> , fate click sul tasto <em class="guilabel">Scegli...</em> vicino a <em class="guilabel">File di input</em> . Quindi, selezionate dalla loro directory tutte le singole immagini geotiff  mantenendo premuto il tasto <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> della tastiera e facendo click su ciascuna di esse. Ora, fate click sul tasto  <em class="guilabel">Scegli...</em>  vicino a <em class="guilabel">File di output</em>. Date al file di output il nome di <tt class="docutils literal"><span class="pre">Brazil_mosaic.tif</span></tt>. Poi,
+in basso, cliccate la casella <em class="guilabel">Carica sulla mappa quando finito</em>. Click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/718.png" class="align-center" src="../_images/718.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">Quando l&#8217;immagine mosaico sarà stata creata e caricata nella finestra principale riceverete in una finestra di pop-up il messaggio <cite>Processo completato</cite>. Come vedete le singole immagini sono ora combinate e &#8220;mosaicizzate&#8221; in un singolo layer. Potete spegnere i layer delle singole immagini deselezionando le rispettive check box.</p>
+<li><p class="first">Quando l&#8217;immagine mosaico sarà stata creata e caricata nella finestra principale riceverete in una finestra di pop-up il messaggio  <cite>Processo Completato</cite> . Come potete vedere, le singole immagini sono ora combinate e &#8220;mosaicizzate&#8221; in un singolo layer. Potete spegnere i layer delle singole immagini deselezionando le rispettive check box nella TOC.</p>
 </li>
 </ol>
 <img alt="../_images/817.png" class="align-center" src="../_images/817.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">Un&#8217;altra tipica operazione Rater che potete effettuare è quella di raggruppare un&#8217;immagine. Possiamo usare un poligono di un layer vettoriale per adattare il raster alla forma esatta del Brasile. Iniziamo caricando lo shapefile poligonale delle nazioni che abbiamo scaricato da Natural Earth. Go to <em class="menuselection">Layer ‣ Aggiungi Vettore...</em>.</p>
+<li><p class="first">Un&#8217;altra classica operazione con il Raster che possiamo realizzare è quella di riassemblare o ritagliare un&#8217;immagine. Possiamo usare un poligono di un layer vettoriale per adattare il raster alla sua forma esatta. Iniziamo caricando lo shapefile poligonale delle nazioni che abbiamo scaricato da Natural Earth. Go to <em class="menuselection">Layer ‣ Aggiungi Vettore...</em>.</p>
 </li>
 </ol>
 <img alt="../_images/916.png" class="align-center" src="../_images/916.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">Selezionate il <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt> e fate click su <em class="guilabel">Apri</em>.  Quando comparirà la finestra di dialogo per selezionare il layer all&#8217;interno dello zip file, selezionate <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt>.</p>
+<li><p class="first">Selezionate il <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt> e fate click su <em class="guilabel">Apri</em>.  Quando comparirà la finestra di dialogo per selezionare il layer all&#8217;interno dello zip file, selezionate <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt>. (Al variare dei sistemi operativi e delle versioni di QGIS potrebbero darsi rari casi in cui è necessario estrarre e aprire i file zip in modo tradizionale. N.d.T).</p>
 </li>
 </ol>
 <img alt="../_images/1016.png" class="align-center" src="../_images/1016.png" />
@@ -290,7 +290,7 @@ In basso, cliccate la casella <em class="guilabel">Carica sulla mappa quando fin
 </ol>
 <img alt="../_images/1217.png" class="align-center" src="../_images/1217.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">Click con il tasto destro sul <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> e scegliere <em class="guilabel">Salava la Selezione con nome...</em>.</p>
+<li><p class="first">Click con il tasto destro sul <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> e scegliere <em class="guilabel">Salva la Selezione con nome...</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1316.png" class="align-center" src="../_images/1316.png" />
@@ -300,7 +300,7 @@ In basso, cliccate la casella <em class="guilabel">Carica sulla mappa quando fin
 </ol>
 <img alt="../_images/1415.png" class="align-center" src="../_images/1415.png" />
 <ol class="arabic simple" start="15">
-<li><p class="first">Vedete ora il poligono dei confini del Brasile caricato nella finestra di QGIS.</p>
+<li><p class="first">Vedrete ora nella finestra di QGIS il poligono dei confini amministrativi del Brasile.</p>
 </li>
 </ol>
 <img alt="../_images/1513.png" class="align-center" src="../_images/1513.png" />
@@ -310,12 +310,12 @@ In basso, cliccate la casella <em class="guilabel">Carica sulla mappa quando fin
 </ol>
 <img alt="../_images/1613.png" class="align-center" src="../_images/1613.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">Scegliete come <em class="guilabel">file di input (raster)</em> il file <tt class="docutils literal"><span class="pre">Brazil_mosaic</span></tt>. Chiamate il <em class="guilabel">File di Output</em> con il nome di <tt class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></tt>.. Nella sezione <em class="guilabel">Modi di clip</em>  della finestra, selezionate <em class="guilabel">Strato per la Maschera</em>. Selezionate il file appena creato <tt class="docutils literal"><span class="pre">brazil_boundary</span></tt>  come strato per la maschera. Selezionate l&#8217;opzione <em class="guilabel">Carica sulla mappa quando finito</em>. Click su <em class="guilabel">OK</em>.</p>
+<li><p class="first">Scegliete come <em class="guilabel">file di input (raster)</em> il file <tt class="docutils literal"><span class="pre">Brazil_mosaic</span></tt>. Chiamate il <em class="guilabel">File di Output</em> con il nome di <tt class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></tt>.. Nella sezione <em class="guilabel">Modi di clip</em>  della finestra, selezionate <em class="guilabel">Strato per la Maschera</em>. Selezionate il file appena creato <tt class="docutils literal"><span class="pre">brazil_boundary</span></tt>  come strato per la maschera. Selezionate infine l&#8217;opzione <em class="guilabel">Carica sulla mappa quando finito</em>. Click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1712.png" class="align-center" src="../_images/1712.png" />
 <ol class="arabic simple" start="18">
-<li><p class="first">Il layer appena mosaicizzato sarà caricato in QGIS, come potete notare i pixel neri circondano la nostra immagine. Togliamoli. Click sul tasto destro sul layer <tt class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></tt>  e selezionate <em class="guilabel">Proprietà</em>.</p>
+<li><p class="first">Il layer appena ritagliato sarà caricato in QGIS, come potete notare i pixel neri circondano la nostra immagine. Togliamoli. Click sul tasto destro sul layer <tt class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></tt>  e selezionate <em class="guilabel">Proprietà</em>.</p>
 </li>
 </ol>
 <img alt="../_images/1812.png" class="align-center" src="../_images/1812.png" />
@@ -325,7 +325,7 @@ In basso, cliccate la casella <em class="guilabel">Carica sulla mappa quando fin
 </ol>
 <img alt="../_images/1910.png" class="align-center" src="../_images/1910.png" />
 <ol class="arabic simple" start="20">
-<li><p class="first">Ora avete a disposizione una simpatica immagine mosaico tagliata sui confini del paese che potete utilizzare nei vostri progetti come layer di sfondo o per ricavarne ulteriori analisi.</p>
+<li><p class="first">Ora avete a disposizione una bella immagine mosaicizzata e ritagliata sui confini del paese. Potrete utilizzarla nei vostri progetti come un layer di sfondo oppure per ricavarne ulteriori analisi.</p>
 </li>
 </ol>
 <img alt="../_images/206.png" class="align-center" src="../_images/206.png" />
@@ -352,7 +352,7 @@ In basso, cliccate la casella <em class="guilabel">Carica sulla mappa quando fin
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Sep 09, 2014.<br/>
+      Ultimo aggiornamento Sep 17, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
