@@ -226,93 +226,171 @@
 </ol>
 <img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">Una vez el mapa esté centrado en el área de interés, haga click en el botón <em class="guilabel">Nuevo Diseñador de Impresiones</em>. También es accesible a través de   <em class="menuselection">Proyecto ‣ Nuevo Diseñador de Impresiones</em>.</p>
-</li>
+<li>Before we make a map suitable for printing, we need to choose an appropriate
+projection. This dataset comes in Geographic Coordinate System (GCS) where
+the units are degrees. This is not appropriate for a map where you want the
+distances to be in kilometers or miles. We need to use a Projected Coordinate
+System that minimizes distortions for our region of interest and has units
+in meters. Universal Transverse Mercator (UTM) is a decent choice for a
+projected coordinate system. It is also global, so it&#8217;s a good default that
+you can rely on and  choose a UTM zone that contains your area of interest
+to minimize distortions for your region. In our case, we will use UTM Zone
+54N. Click the <em class="guilabel">CRS Status</em> button at the bottom-right of the QGIS
+window.</li>
 </ol>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">For Japan, Japan Plane Rectangular CS is a projected coordinate reference
+system (CRS) that is designed for minimum distortions. It is divided in 18
+zones and if you are working for a smaller region in Japan, using this CRS
+will be better.</p>
+</div>
 <img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">Aparecerá una ventana donde se le preguntará el título para la creación del mapa. Ingrese &#8220;mapa de japón&#8221; y haga click en <em class="guilabel">Ok</em>.</p>
-</li>
+<li>Check the <em class="guilabel">Enable on-the-fly CRS Transformation</em> box. Type <tt class="docutils literal"><span class="pre">Tokyo</span>
+<span class="pre">utm</span> <span class="pre">zone54n</span></tt> in the <em class="guilabel">Filter</em> search box. Once you see the
+results, select <em class="guilabel">Tokyo / UTM Zone 54N - EPSG:3095</em>. Click
+<em class="guilabel">Apply</em>.</li>
 </ol>
 <img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">En la ventana del compositor de impresión haga click en  <em class="guilabel">Zoom full</em> para despleguar la extensión completa del mapa.</p>
-</li>
+<li>Zoom and Pan to keep Japan at the center of your map canvas. At this point,
+you can check the box next to <tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt> layer to turn off
+the labels from that layer.</li>
 </ol>
 <img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
 <ol class="arabic simple" start="8">
-<li>Now we would have to bring the map view that we see in the QGIS Canvas to this layer. Click on the <em class="guilabel">Add Map</em> button. This tool can also be access from <em class="menuselection">Layout ‣ Add Map</em>.</li>
+<li><p class="first">Una vez el mapa esté centrado en el área de interés, haga click en el botón <em class="guilabel">Nuevo Diseñador de Impresiones</em>. También es accesible a través de   <em class="menuselection">Proyecto ‣ Nuevo Diseñador de Impresiones</em>.</p>
+</li>
 </ol>
 <img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
 <ol class="arabic simple" start="9">
-<li>Once the <em class="guilabel">Add Map</em> button is active, hold the left mouse button and drag a rectangle where you want to insert the map.</li>
+<li><p class="first">Aparecerá una ventana donde se le preguntará el título para la creación del mapa. Ingrese &#8220;mapa de japón&#8221; y haga click en <em class="guilabel">Ok</em>.</p>
+</li>
 </ol>
 <img alt="../_images/910.png" class="align-center" src="../_images/910.png" />
 <ol class="arabic simple" start="10">
-<li>You will see that the rectangle window will be rendered with the map from the main QGIS canvas. Since we want our map to be covering the full extent of the layout, drag the corners of the rectangle to the edges.</li>
+<li><p class="first">En la ventana del compositor de impresión haga click en  <em class="guilabel">Zoom full</em> para despleguar la extensión completa del mapa.</p>
+</li>
 </ol>
 <img alt="../_images/1010.png" class="align-center" src="../_images/1010.png" />
 <ol class="arabic simple" start="11">
-<li>Let us adjust the zoom level for the given map. Click on the <em class="guilabel">Item Properties</em> tab and enter <cite>3500000</cite> for <em class="guilabel">Scale</em> value.</li>
+<li>Now we would have to bring the map view that we see in the QGIS Canvas to
+this layer. Click on the <em class="guilabel">Add Map</em> button. This tool can also be
+access from <em class="menuselection">Layout ‣ Add Map</em>.</li>
 </ol>
 <img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
 <ol class="arabic simple" start="12">
-<li>Now we will add a North Arrow to the map. Print Composer comes with a nice collection of map-related images - including many types of North Arrows. Click <em class="menuselection">Layout ‣ Add Image</em>.</li>
+<li>Once the <em class="guilabel">Add Map</em> button is active, hold the left mouse button
+and drag a rectangle where you want to insert the map.</li>
 </ol>
 <img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
 <ol class="arabic simple" start="13">
-<li>Holding your left mouse button, draw a rectangle on the top-right corner of the map canvas.</li>
+<li>You will see that the rectangle window will be rendered with the map from
+the main QGIS canvas. Since we want our map to be covering the full extent
+of the layout, drag the corners of the rectangle to the edges.</li>
 </ol>
 <img alt="../_images/1311.png" class="align-center" src="../_images/1311.png" />
 <ol class="arabic simple" start="14">
-<li>On the right-hand panel, click on the <em class="guilabel">Item Properties</em> tab and expand the <em class="guilabel">Search directories</em> section and select the North Arrow image of your liking.</li>
+<li>The rendered map may not be covering the full extent of our interest area.
+Click the <em class="guilabel">Move item content</em> button to pan the map in the window
+and center it in the composer.</li>
 </ol>
 <img alt="../_images/1410.png" class="align-center" src="../_images/1410.png" />
 <ol class="arabic simple" start="15">
-<li>Next, scroll down below and un-check the <em class="guilabel">Background</em> option. This will make the image transparent.</li>
+<li>Let us adjust the zoom level for the given map. Click on the
+<em class="guilabel">Item Properties</em> tab and enter <cite>5000000</cite> for <em class="guilabel">Scale</em>
+value.</li>
 </ol>
 <img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
 <ol class="arabic simple" start="16">
-<li>Now we will add a scale bar. Click on <em class="menuselection">Layout ‣ Add Scalebar</em>.</li>
+<li>Now we will add a North Arrow to the map. Print Composer comes with a nice
+collection of map-related images - including many types of North Arrows.
+Click <em class="menuselection">Layout ‣ Add Image</em>.</li>
 </ol>
 <img alt="../_images/169.png" class="align-center" src="../_images/169.png" />
 <ol class="arabic simple" start="17">
-<li>Click on the layout where you want the scalebar to appear. From the <em class="guilabel">Item Properties</em> tab, choose the Style that fit your requirement.  Also change the units to be <em class="guilabel">Map units</em> and label it &#8216;Degree&#8217; since the map units are degrees. You should also set the transparency by un-cecking the <em class="guilabel">Background</em> option.</li>
+<li>Holding your left mouse button, draw a rectangle on the top-right corner of
+the map canvas. On the right-hand panel, click on the
+<em class="guilabel">Item Properties</em> tab and expand the
+<em class="guilabel">Search directories</em> section and select the North Arrow image of
+your liking.</li>
 </ol>
 <img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
 <ol class="arabic simple" start="18">
-<li>Now we will add a legend to the map. Click on <em class="menuselection">Layout ‣ Add Legend</em>.</li>
+<li>Next, scroll down below and un-check the <em class="guilabel">Background</em> option.
+This will make the image transparent.</li>
 </ol>
 <img alt="../_images/188.png" class="align-center" src="../_images/188.png" />
 <ol class="arabic simple" start="19">
-<li>Click on the layout where you want the legend to appear. Since our layer list is huge, you will see a big box with all the layers appear.</li>
+<li>You can drag the North Arrow and move it around in the composer window to a
+suitable position.</li>
 </ol>
 <img alt="../_images/196.png" class="align-center" src="../_images/196.png" />
 <ol class="arabic simple" start="20">
-<li>Click on the <em class="guilabel">Item Properties</em> tab and select the layers which we do not want in the legend. Click the <em class="guilabel">-</em> button to remove it from the legend.</li>
+<li>Now we will add a scale bar. Click on
+<em class="menuselection">Layout ‣ Add Scalebar</em>.</li>
 </ol>
 <img alt="../_images/203.png" class="align-center" src="../_images/203.png" />
 <ol class="arabic simple" start="21">
-<li>For the purpose of this map, we will keep legend information only for the five layers as seen below. Click on the <em class="guilabel">Edit</em> button and change the display text for the legend items to be more readable.</li>
+<li>Click on the layout where you want the scalebar to appear.
+From the <em class="guilabel">Item Properties</em> tab, choose the Style that fit your
+requirement. You should also set the transparency by un-cecking the
+<em class="guilabel">Background</em> option.</li>
 </ol>
 <img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
 <ol class="arabic simple" start="22">
-<li>Now time to label our map. Click on <em class="menuselection">Layout ‣ Add Label</em>.</li>
+<li>Now we will add a legend to the map. Click on
+<em class="menuselection">Layout ‣ Add Legend</em>.</li>
 </ol>
 <img alt="../_images/224.png" class="align-center" src="../_images/224.png" />
 <ol class="arabic simple" start="23">
-<li>Click on the map and draw a box where the label should be. In the <em class="guilabel">Item Properties</em> tab, expand the <em class="guilabel">Label</em> section and enter the text. We can enter the text as HTML as well. Check the box <em class="guilabel">Render as Html</em> so the composer will interpret the HTML tags.</li>
+<li>Click on the layout where you want the legend to appear. Since our layer
+list is huge, you will see a big box with all the layers appear. Click on
+the <em class="guilabel">Item Properties</em> tab and select the layers which we do not
+want in the legend. Click the <em class="guilabel">-</em> button to remove it from the
+legend.</li>
 </ol>
 <img alt="../_images/233.png" class="align-center" src="../_images/233.png" />
 <ol class="arabic simple" start="24">
-<li>Once you are satisfied with the map, you can export it as Image, PDF or SVG. For this tutorial, let’s export it as an image.</li>
+<li>For the purpose of this map, we will keep legend information only for the
+five layers as seen below.</li>
 </ol>
 <img alt="../_images/243.png" class="align-center" src="../_images/243.png" />
 <ol class="arabic simple" start="25">
+<li>Click on the <em class="guilabel">Edit</em> button and change the display text for the
+legend items to be more readable.</li>
+</ol>
+<img alt="../_images/253.png" class="align-center" src="../_images/253.png" />
+<ol class="arabic simple" start="26">
+<li>Now time to label our map. Click on <em class="menuselection">Layout ‣ Add Label</em>.</li>
+</ol>
+<img alt="../_images/263.png" class="align-center" src="../_images/263.png" />
+<ol class="arabic simple" start="27">
+<li>Click on the map and draw a box where the label should be. In the
+<em class="guilabel">Item Properties</em> tab, expand the <em class="guilabel">Label</em> section and
+enter the text as shown below. We can enter the text as HTML as well.
+Check the box <em class="guilabel">Render as Html</em> so the composer will interpret the
+HTML tags.</li>
+</ol>
+<div class="highlight-none"><div class="highlight"><pre>&lt;div align=center&gt;
+&lt;h1&gt;Map of Japan&lt;/h1&gt;
+&lt;p&gt;Created using Natural Earth data in QGIS&lt;/p&gt;
+&lt;/div&gt;
+</pre></div>
+</div>
+<img alt="../_images/272.png" class="align-center" src="../_images/272.png" />
+<ol class="arabic simple" start="28">
+<li>Once you are satisfied with the map, you can export it as Image, PDF or
+SVG. For this tutorial, let’s export it as an image. Click
+<em class="menuselection">Composer ‣ Export as Image</em>.</li>
+</ol>
+<img alt="../_images/282.png" class="align-center" src="../_images/282.png" />
+<ol class="arabic simple" start="29">
 <li><p class="first">Guarde la imagen en el formato de su preferencia. A continuación encuentra la imagen PNG exportada</p>
 </li>
 </ol>
-<img alt="../_images/253.png" class="align-center" src="../_images/253.png" />
+<img alt="../_images/292.png" class="align-center" src="../_images/292.png" />
 </div>
 </div>
 
@@ -336,7 +414,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Actualizado por última vez en Oct 08, 2014.<br/>
+      Actualizado por última vez en Oct 16, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
