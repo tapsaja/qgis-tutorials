@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Working with Attributes" href="working_with_attributes.html" />
+    <link rel="next" title="Travailler avec les attributs" href="working_with_attributes.html" />
     <link rel="prev" title="Introduction" href="introduction.html" />
 
 <meta charset='utf-8'>
@@ -83,7 +83,7 @@
       aria-labelledby="dLabelGlobalToc"><ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Créer une carte</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Travailler avec les attributs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
@@ -103,6 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
@@ -127,7 +128,7 @@
     </a>
   </li>
   <li>
-    <a href="working_with_attributes.html" title="Next Chapter: Working with Attributes"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Working with Att... &raquo;</span>
+    <a href="working_with_attributes.html" title="Next Chapter: Travailler avec les attributs"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Travailler avec ... &raquo;</span>
     </a>
   </li>
               
@@ -209,22 +210,22 @@
 <li><p class="first">Télécharger et extraire l&#8217;archive &#8220;Natural Earth Quick Start Kit Data&#8221;. Ouvrir QGIS. Cliquer sur  <em class="menuselection">File ‣ Open Project</em>.</p>
 </li>
 </ol>
-<img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
+<img alt="../_images/150.png" class="align-center" src="../_images/150.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Naviguer jusqu&#8217;au répertoire ou sont extraites les données de Natural Earth. Il devrait y avoir un dossier nommé <tt class="file docutils literal"><span class="pre">Natural_Earth_quick_start_for_QGIS.qgs</span></tt>. Il s&#8217;agit du dossier du projet qui contient des couches stylisées en format QGIS Document. Cliquer sur <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
+<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Vous allez voir de nombreuses couches de contenu et une carte du monde stylisée sur la fenêtre QGIS. S&#8217;il y a des erreurs qui apparaissent dans le haut de la fenêtre, les fermer en cliquant sur la  croix.</p>
 </li>
 </ol>
-<img alt="../_images/316.png" class="align-center" src="../_images/316.png" />
+<img alt="../_images/317.png" class="align-center" src="../_images/317.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Dans ce tutoriel, nous allons réaliser une carte du Japon. Cliquer sur le bouton <em class="guilabel">Zoom In</em>  et tracer un rectangle autour du japon pour agrandir la zone.</p>
 </li>
 </ol>
-<img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
+<img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
 <ol class="arabic simple" start="5">
 <li>Before we make a map suitable for printing, we need to choose an appropriate
 projection. This dataset comes in Geographic Coordinate System (GCS) where
@@ -245,67 +246,67 @@ system (CRS) that is designed for minimum distortions. It is divided in 18
 zones and if you are working for a smaller region in Japan, using this CRS
 will be better.</p>
 </div>
-<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
+<img alt="../_images/514.png" class="align-center" src="../_images/514.png" />
 <ol class="arabic simple" start="6">
 <li>Check the <em class="guilabel">Enable on-the-fly CRS Transformation</em> box. Type <tt class="docutils literal"><span class="pre">Tokyo</span>
 <span class="pre">utm</span> <span class="pre">zone54n</span></tt> in the <em class="guilabel">Filter</em> search box. Once you see the
 results, select <em class="guilabel">Tokyo / UTM Zone 54N - EPSG:3095</em>. Click
 <em class="guilabel">Apply</em>.</li>
 </ol>
-<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
+<img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
 <ol class="arabic simple" start="7">
 <li>Zoom and Pan to keep Japan at the center of your map canvas. At this point,
 you can check the box next to <tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt> layer to turn off
 the labels from that layer.</li>
 </ol>
-<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
+<img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Une fois centré autour de la zone d&#8217;intérêt, cliquer sur le bouton <em class="guilabel">New Print Composer</em>, ou alternativement via <em class="menuselection">Project ‣ New Print Composer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
+<img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Une fenêtre demandant d&#8217;entrer un titre pour le composeur apparaît. Entrer &#8216;Japan map&#8217; et cliquer sur <em class="guilabel">Ok</em>.</p>
 </li>
 </ol>
-<img alt="../_images/910.png" class="align-center" src="../_images/910.png" />
+<img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Dans la fenêtre Print Composer, cliquer sur <em class="guilabel">Zoom full</em> pour afficher la page dans son ensemble.</p>
 </li>
 </ol>
-<img alt="../_images/1010.png" class="align-center" src="../_images/1010.png" />
+<img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Maintenant, il s&#8217;agit de mettre en place la vue de la carte qui se trouve dans la fenêtre QGIS sur cette couche. Cliquer sur le bouton <em class="guilabel">Add Map</em>. On peut aussi trouver cet outil via <em class="menuselection">Layout ‣ Add Map</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
+<img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Une fois que le bouton <em class="guilabel">Add Map</em> est actif, faire un click droit et maintenir appuyé pour tracer un rectangle à l&#8217;endroit voulu pour la carte.</p>
 </li>
 </ol>
-<img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
+<img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">La fenêtre rectangulaire va alors être recouverte par la carte de la fenêtre QGIS. Puisqu&#8217;on veut que notre carte recouvre l&#8217;intégralité du dessin, il faut encore tirer le coin du rectangle jusqu&#8217;au bord.</p>
 </li>
 </ol>
-<img alt="../_images/1311.png" class="align-center" src="../_images/1311.png" />
+<img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
 <ol class="arabic simple" start="14">
 <li>The rendered map may not be covering the full extent of our interest area.
 Click the <em class="guilabel">Move item content</em> button to pan the map in the window
 and center it in the composer.</li>
 </ol>
-<img alt="../_images/1410.png" class="align-center" src="../_images/1410.png" />
+<img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
 <ol class="arabic simple" start="15">
 <li>Let us adjust the zoom level for the given map. Click on the
 <em class="guilabel">Item Properties</em> tab and enter <cite>5000000</cite> for <em class="guilabel">Scale</em>
 value.</li>
 </ol>
-<img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
+<img alt="../_images/1510.png" class="align-center" src="../_images/1510.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">A présent on va ajouter une flèche du Nord à la carte. Print Composer possède une grande collection d&#8217;images pour les cartes - dont de nombreux types de flêches du nord. Cliquer sur <em class="menuselection">Layout ‣ Add Image</em>.</p>
 </li>
 </ol>
-<img alt="../_images/169.png" class="align-center" src="../_images/169.png" />
+<img alt="../_images/1610.png" class="align-center" src="../_images/1610.png" />
 <ol class="arabic simple" start="17">
 <li>Holding your left mouse button, draw a rectangle on the top-right corner of
 the map canvas. On the right-hand panel, click on the
@@ -313,29 +314,29 @@ the map canvas. On the right-hand panel, click on the
 <em class="guilabel">Search directories</em> section and select the North Arrow image of
 your liking.</li>
 </ol>
-<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
+<img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Ensuite, scroller jusqu&#8217;en bas et décocher la case <em class="guilabel">Background</em>. Celà rendra l&#8217;image transparente.</p>
 </li>
 </ol>
-<img alt="../_images/188.png" class="align-center" src="../_images/188.png" />
+<img alt="../_images/189.png" class="align-center" src="../_images/189.png" />
 <ol class="arabic simple" start="19">
 <li>You can drag the North Arrow and move it around in the composer window to a
 suitable position.</li>
 </ol>
-<img alt="../_images/196.png" class="align-center" src="../_images/196.png" />
+<img alt="../_images/197.png" class="align-center" src="../_images/197.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">A présent, on va rajouter l&#8217;échelle. Cliquer sur <em class="menuselection">Layout ‣ Add Scalebar</em>.</p>
 </li>
 </ol>
-<img alt="../_images/203.png" class="align-center" src="../_images/203.png" />
+<img alt="../_images/204.png" class="align-center" src="../_images/204.png" />
 <ol class="arabic simple" start="21">
 <li>Click on the layout where you want the scalebar to appear.
 From the <em class="guilabel">Item Properties</em> tab, choose the Style that fit your
 requirement. You should also set the transparency by un-cecking the
 <em class="guilabel">Background</em> option.</li>
 </ol>
-<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
+<img alt="../_images/2110.png" class="align-center" src="../_images/2110.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">A présent, ajoutons une légende à la carte. Cliquer sur <em class="menuselection">Layout ‣ Add Legend</em>.</p>
 </li>
@@ -412,7 +413,7 @@ SVG. For this tutorial, let’s export it as an image. Click
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Mis à jour le Oct 16, 2014.<br/>
+      Mis à jour le Nov 26, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

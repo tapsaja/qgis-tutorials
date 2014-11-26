@@ -102,6 +102,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Efectuarea interogărilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analiza celui mai apropiat vecin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster, folosind puncte sau poligoane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea în serie, folosind cadrul de procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Utilizarea QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
@@ -208,22 +209,22 @@
 <li><p class="first">Descărcați și extrageți datele Natural Earth Quick Start Kit. Deschideți QGIS. Faceți clic pe <em class="menuselection">File ‣ Open Project</em>.</p>
 </li>
 </ol>
-<img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
+<img alt="../_images/150.png" class="align-center" src="../_images/150.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Răsfoiți directorul în care ați extras datele Natural Earth. Ar trebui să vedeți un fișier numit <tt class="file docutils literal"><span class="pre">Natural_Earth_quick_start_for_QGIS.qgs</span></tt>. Acesta este fișierul proiect, care conține straturi stilizate, în formate specifice QGIS. Clic pe <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
+<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">În interiorul cuprinsului, vor apărea o mulțime de straturi, iar pe suportul de prezentare al QGIS va fi expusă o hartă stilizată a lumii. Dacă observați erori în partea de sus a ferestrei, faceți clic pe butonul de închidere.</p>
 </li>
 </ol>
-<img alt="../_images/316.png" class="align-center" src="../_images/316.png" />
+<img alt="../_images/317.png" class="align-center" src="../_images/317.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">În acest tutorial, vom elabora o hartă a Japoniei. Faceți clic pe butonul <em class="guilabel">Zoom In</em> și desenați un dreptunghi în jurul Japoniei, pentru a mări zona respectivă.</p>
 </li>
 </ol>
-<img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
+<img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
 <ol class="arabic simple" start="5">
 <li>Before we make a map suitable for printing, we need to choose an appropriate
 projection. This dataset comes in Geographic Coordinate System (GCS) where
@@ -244,67 +245,67 @@ system (CRS) that is designed for minimum distortions. It is divided in 18
 zones and if you are working for a smaller region in Japan, using this CRS
 will be better.</p>
 </div>
-<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
+<img alt="../_images/514.png" class="align-center" src="../_images/514.png" />
 <ol class="arabic simple" start="6">
 <li>Check the <em class="guilabel">Enable on-the-fly CRS Transformation</em> box. Type <tt class="docutils literal"><span class="pre">Tokyo</span>
 <span class="pre">utm</span> <span class="pre">zone54n</span></tt> in the <em class="guilabel">Filter</em> search box. Once you see the
 results, select <em class="guilabel">Tokyo / UTM Zone 54N - EPSG:3095</em>. Click
 <em class="guilabel">Apply</em>.</li>
 </ol>
-<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
+<img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
 <ol class="arabic simple" start="7">
 <li>Zoom and Pan to keep Japan at the center of your map canvas. At this point,
 you can check the box next to <tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt> layer to turn off
 the labels from that layer.</li>
 </ol>
-<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
+<img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">O dată ce ați centrat zona de interes, faceți clic pe butonul <em class="guilabel">New Print Composer</em>. Același lucru s-ar fi putut face, selectând <em class="menuselection">Project ‣ New Print Composer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
+<img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Vi se va solicita titlul compoziției. Introduceți &#8216;Japan map&#8217;, apoi faceți clic pe <em class="guilabel">Ok</em>.</p>
 </li>
 </ol>
-<img alt="../_images/910.png" class="align-center" src="../_images/910.png" />
+<img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">În fereastra Compozitorului de Hărți, faceți clic pe <em class="guilabel">Zoom full</em> pentru a încadra corespunzător suprafața compoziției în interiorul ferestrei.</p>
 </li>
 </ol>
-<img alt="../_images/1010.png" class="align-center" src="../_images/1010.png" />
+<img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Va trebui să aducem o vedere a hărții care se observă pe suportul de prezentare al QGIS. Apăsați pe butonul <em class="guilabel">Add Map</em>. Același instrument poate fi accesat prin selectarea <em class="menuselection">Layout ‣ Add Map</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
+<img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">O dată ce <em class="guilabel">Add Map</em> s-a activat, țineți apăsat butonul stâng al mouse-ului și glisați, pentru a se desena un dreptunghi în zona în care se dorește inserarea hărții.</p>
 </li>
 </ol>
-<img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
+<img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Veți vedea că aria dreptunghiului se va umple cu harta de pe suportul de prezentare al QGIS . Din moment ce dorim ca harta să acopere pagina în totalitate, vom trage de colțurile dreptunghiului, înspre margini.</p>
 </li>
 </ol>
-<img alt="../_images/1311.png" class="align-center" src="../_images/1311.png" />
+<img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
 <ol class="arabic simple" start="14">
 <li>The rendered map may not be covering the full extent of our interest area.
 Click the <em class="guilabel">Move item content</em> button to pan the map in the window
 and center it in the composer.</li>
 </ol>
-<img alt="../_images/1410.png" class="align-center" src="../_images/1410.png" />
+<img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
 <ol class="arabic simple" start="15">
 <li>Let us adjust the zoom level for the given map. Click on the
 <em class="guilabel">Item Properties</em> tab and enter <cite>5000000</cite> for <em class="guilabel">Scale</em>
 value.</li>
 </ol>
-<img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
+<img alt="../_images/1510.png" class="align-center" src="../_images/1510.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Urmează adăugarea pe hartă a unei săgeți a nordului. Compozitorul de Hărți vine cu o frumoasă colecție de imagini caracteristice hărților - inclusiv multe tipuri de săgeți ale nordului. Clic pe <em class="menuselection">Layout ‣ Add Image</em>.</p>
 </li>
 </ol>
-<img alt="../_images/169.png" class="align-center" src="../_images/169.png" />
+<img alt="../_images/1610.png" class="align-center" src="../_images/1610.png" />
 <ol class="arabic simple" start="17">
 <li>Holding your left mouse button, draw a rectangle on the top-right corner of
 the map canvas. On the right-hand panel, click on the
@@ -312,29 +313,29 @@ the map canvas. On the right-hand panel, click on the
 <em class="guilabel">Search directories</em> section and select the North Arrow image of
 your liking.</li>
 </ol>
-<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
+<img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Mai departe, derulați în jos și debifați opțiunea <em class="guilabel">Background</em>. Acest lucru va face imaginea transparentă.</p>
 </li>
 </ol>
-<img alt="../_images/188.png" class="align-center" src="../_images/188.png" />
+<img alt="../_images/189.png" class="align-center" src="../_images/189.png" />
 <ol class="arabic simple" start="19">
 <li>You can drag the North Arrow and move it around in the composer window to a
 suitable position.</li>
 </ol>
-<img alt="../_images/196.png" class="align-center" src="../_images/196.png" />
+<img alt="../_images/197.png" class="align-center" src="../_images/197.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Urmează adăugarea unui indicator de scară. Faceți clic pe <em class="menuselection">Layout ‣ Add Scalebar</em>.</p>
 </li>
 </ol>
-<img alt="../_images/203.png" class="align-center" src="../_images/203.png" />
+<img alt="../_images/204.png" class="align-center" src="../_images/204.png" />
 <ol class="arabic simple" start="21">
 <li>Click on the layout where you want the scalebar to appear.
 From the <em class="guilabel">Item Properties</em> tab, choose the Style that fit your
 requirement. You should also set the transparency by un-cecking the
 <em class="guilabel">Background</em> option.</li>
 </ol>
-<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
+<img alt="../_images/2110.png" class="align-center" src="../_images/2110.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Urmează adăugarea unui indicator de scară. Faceți clic pe <em class="menuselection">Layout ‣ Add Scalebar</em>.</p>
 </li>
@@ -411,7 +412,7 @@ SVG. For this tutorial, let’s export it as an image. Click
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Oct 16, 2014.<br/>
+      Last updated on Nov 26, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -103,6 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Utilizzare le interrogazioni spaziali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analisi di prossimità</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Campionare i dati di un raster usando punti o poligoni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Elaborazioni &#8220;batch&#8221; usando il Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Usare il browser di QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
@@ -218,27 +219,27 @@
 <li><p class="first">Installiamo il plugin <tt class="docutils literal"><span class="pre">qgis2leaf</span></tt> andando su <em class="menuselection">Plugins ‣ Istalla e gestisci Plugin</em>.  Tenete conto del fatto che questo plugin è attualmente classificato come <strong>sperimentale</strong>,  quindi la casella che corrisponde alla voce <em class="guilabel">Mostra anche plugin sperimentali</em>  dovrà essere spuntata. (Vedi <a class="reference internal" href="using_plugins.html"><em>Usare i Plugins</em></a>  per maggiori dettagli sull&#8217;installazione dei plugin in QGIS).</p>
 </li>
 </ol>
-<img alt="../_images/140.png" class="align-center" src="../_images/140.png" />
+<img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Estraete il file appena scaricato <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt>. Aprite QGIS e andate su <em class="menuselection">Layer ‣ Aggiungi Vettore...</em> Individuate la cartella in cui i file sono stati decompressi e selezionate <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt>. Fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/216.png" class="align-center" src="../_images/216.png" />
+<img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Una volta che il file <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> è stato caricato, utilizziamo lo strumento <em class="guilabel">Informazioni elemento</em> per fare qualche click sugli elementi puntuali e dare un primo sguardo agli attributi. Creeremo una mappa in cui suddivideremo gli aeroporti in tre categorie principali. L&#8217;attributo <tt class="docutils literal"><span class="pre">type</span></tt> ci sarà prezioso proprio quando andremo a suddividere gli aeroporti in diverse categorie.</p>
 </li>
 </ol>
-<img alt="../_images/314.png" class="align-center" src="../_images/314.png" />
+<img alt="../_images/315.png" class="align-center" src="../_images/315.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Tasto destro sul layer <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt>  e selezionate <em class="guilabel">Opri Tabella Attributi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/412.png" class="align-center" src="../_images/412.png" />
+<img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Nella finestra della tabella degli attributi fate click sul pulsante  <em class="guilabel">Modalità di Modifica</em>  e quindi sul pulsante <em class="guilabel">Apri il calcolatore dei campi</em> .</p>
 </li>
 </ol>
-<img alt="../_images/512.png" class="align-center" src="../_images/512.png" />
+<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Ciò che intendiamo fare, adesso, è creare un nuovo attributo che chiameremo <tt class="docutils literal"><span class="pre">type_code</span></tt>. In tale attributo assegneremo valore 3 agli aeroporti più grandi, 2 a quelli di medie dimensioni e 1 a tutti gli altri. Utilizzeremo la clausola di selezione  <em>CASE</em> e scriveremo un&#8217;espressione che esaminerà i valori dell&#8217;attributo <tt class="docutils literal"><span class="pre">type</span></tt> e creerà un nuovo attributo <tt class="docutils literal"><span class="pre">type_code</span></tt> basato sulla condizione inserita nell&#8217;espressione. Spuntate la casella  <em class="guilabel">Crea un nuovo campo</em> e inserite  <a href="#id1"><span class="problematic" id="id2">``</span></a>type_code` come <em class="guilabel">Nome campo in output</em>. Selezionate <em class="guilabel">Numero Intero (integer)</em> alla corrispondente voce <em class="guilabel">Tipo campo in output</em>. Dentro la finestra chiamata <em class="guilabel">Espressione</em> inserite il codice seguente</p>
 </li>
@@ -249,47 +250,47 @@
 END
 </pre></div>
 </div>
-<img alt="../_images/611.png" class="align-center" src="../_images/611.png" />
+<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Torniamo nella finestra della :guilabel:` Tabella Attributi` e vedrete la nuova colonna che si è aggiunta in fondo alla tabella.  Verificate che la nostra espressione abbia lavorato in modo corretto e quindi fate premete il pulsante  <em class="guilabel">Modalità Modifica</em> per salvare i cambiamenti appena realizzati.</p>
 </li>
 </ol>
-<img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
+<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Adesso possiamo finalmente tematizzare in modo significativo il layer degli areoporti usando il nuovo attributo chiamato  <tt class="docutils literal"><span class="pre">type_code</span></tt> . Fare click con il tasto destro sul layer <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> e selezionate <em class="guilabel">Proprietà</em>.</p>
 </li>
 </ol>
-<img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
+<img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Selezionate nel layer la scheda <em class="guilabel">Stile</em>  nella finestra di dialogo <em class="guilabel">Proprietà</em> . Selezionate lo stile <em class="guilabel">Categorizzato</em> dal menu a discesa e scegliete <tt class="docutils literal"><span class="pre">type_code</span></tt> come <em class="guilabel">Colonna</em>. Scegliete una scala di colore a vostra scelta e fate click su <em class="guilabel">Classifica</em>. Ora fate click su <em class="guilabel">OK</em>  per tornare alla finestra principale di QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
+<img alt="../_images/910.png" class="align-center" src="../_images/910.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">A questo punto, vedrete una mappa degli aeroporti ben tematizzata. Ora esportiamo questa mappa in una finestra interattiva che potrebbe essere presente su web. Andiamo su <em class="menuselection">Web ‣ qgis2leaf ‣ Exports a QGIS Project to a working leaflet webmap</em>.</p>
 </li>
 </ol>
-<img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
+<img alt="../_images/1010.png" class="align-center" src="../_images/1010.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Nella finestra di dialogo di <em class="guilabel">QGIS 2 Leaflet</em>  fate click su <em class="guilabel">Get Layers</em>  per avere la lista dei layer. Selezionate l&#8217;opzione Full screen per avere una mappa web a schermo intero. Scegliete layer extent come Extent della mappa da esportare. Scegliete sul vostro sistema una cartella per la cartella di output su cui il plugin andrà a scrivere i file di output. Click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1114.png" class="align-center" src="../_images/1114.png" />
+<img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Terminato il processo di esportazione, andate sulla cartella in cui avete indirizzato il processo di output. Aprite il file <tt class="docutils literal"><span class="pre">index.html</span></tt> in un browser. Vedrete una mappa web interattiva che è una replica della mappa di QGIS. Potete effettuare operazioni di zoom e di pan intorno alla mappa e, facendo click sugli elementi, otterrete una finestra di popup con una serie di informazioni riguardanti l&#8217;aeroporto su cui avete fatti click. Per avere una vera web map sarà sufficiente copiare il contenuto di questa cartella su un web server.</p>
 </li>
 </ol>
-<img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
+<img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Ora esamineremo alcune funzioni avanzate di questo plugin che vi permetteranno di personalizzare la mappa. Per esempio, alcuni attributi non sono molto utili e le finestre di popup nell&#8217;insieme sono piuttosto brutte. Possiamo modificare il popup di default con del nostro codice HTML per renderlo molto più attraente. Questo risultato si ottiene aggiungendo il nostro codice HTML in una colonna chiamata <tt class="docutils literal"><span class="pre">html_exp</span></tt>. . Fate click con il tasto destro sul layer <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> e selezionate <em class="guilabel">Apri Tabella Attributi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1310.png" class="align-center" src="../_images/1310.png" />
+<img alt="../_images/1311.png" class="align-center" src="../_images/1311.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Nella finestra della tabella degli attributi fate click sul pulsante  <em class="guilabel">Modalità di Modifica</em>  e quindi sul pulsante <em class="guilabel">Apri il calcolatore dei campi</em> .</p>
 </li>
 </ol>
-<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
+<img alt="../_images/1410.png" class="align-center" src="../_images/1410.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Spuntate la casella <em class="guilabel">Crea un nuovo campo</em> e digitate <tt class="docutils literal"><span class="pre">html_exp</span></tt> come <em class="guilabel">Nome campo in output</em>. Scegliete <em class="guilabel">Testo (stringa)</em>  alla voce  <em class="guilabel">Tipo campo in output</em>. Dal momento che creeremo una stringa HTML piuttosto lunga, scegliete  <tt class="docutils literal"><span class="pre">200</span></tt> come  <em class="guilabel">larghezza campo in output</em>. Inserite l&#8217;espressione di seguito nello spazio <em class="guilabel">Espressione</em>. L&#8217;espressione è complessa solo in apparenza, in realtà definisce una tabella HTMLe sostituisce le intestazioni delle celle <tt class="docutils literal"><span class="pre">iata_code</span></tt>, <tt class="docutils literal"><span class="pre">name</span></tt> e <tt class="docutils literal"><span class="pre">type</span></tt>. Controllate l&#8217;<em class="guilabel">anteprima</em>  in basso per assicurarvi che l&#8217;espressione abbia svolto il suo compito come  previsto.</p>
 </li>
@@ -303,32 +304,32 @@ END
 <p class="first admonition-title">Nota</p>
 <p class="last">Il formato shapefile può contenere un massimo di 254 caratteri in un campo. Se volete immagazzinare quantitativi di dati maggiori dovete scegliere un diverso formato.</p>
 </div>
-<img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
+<img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Torniamo nella finestra della :guilabel:` Tabella Attributi` e vedrete la nuova colonna che si è aggiunta in fondo alla tabella.  Verificate che la nostra espressione abbia lavorato in modo corretto e quindi fate premete il pulsante  <em class="guilabel">Modalità Modifica</em> per salvare i cambiamenti appena realizzati.</p>
 </li>
 </ol>
-<img alt="../_images/168.png" class="align-center" src="../_images/168.png" />
+<img alt="../_images/169.png" class="align-center" src="../_images/169.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Adesso esportiamo la mappa di nuovo, usando <em class="menuselection">Web ‣ qgis2leaf ‣ Exports a QGIS Project to a working leaflet webmap</em>.</p>
 </li>
 </ol>
-<img alt="../_images/177.png" class="align-center" src="../_images/177.png" />
+<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Impostate le opzioni esattamente come avete fatto sopra.</p>
 </li>
 </ol>
-<img alt="../_images/187.png" class="align-center" src="../_images/187.png" />
+<img alt="../_images/188.png" class="align-center" src="../_images/188.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Quando il processo sarà concluso, andate nella cartella in cui avete indirizzato l&#8217;output. Troverete una sottocartella che ha come nome la data e l&#8217;ora in cui è stato lanciato il processo. Trovate al suo interno il file <tt class="docutils literal"><span class="pre">index.html</span></tt> e apritelo in un browser. Fate click su qualsiasi geometria e date un&#8217;occhiata alla nuova finestra di popup.</p>
 </li>
 </ol>
-<img alt="../_images/195.png" class="align-center" src="../_images/195.png" />
+<img alt="../_images/196.png" class="align-center" src="../_images/196.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Un&#8217;altra caratteristica molto utile del plugin <tt class="docutils literal"><span class="pre">qgis2leaf</span></tt>  è la sua abilità nello specificare un&#8217;icona personalizzata da usare con la web map. Questo si ottiene specificando il path dell&#8217;icona in un campo chiamato <tt class="docutils literal"><span class="pre">icon_exp</span></tt>.. Creeremo un nuovo layer contenente solo gli areoporti classificati come principali e lo tematizzeremo usando un&#8217;icona SVG .scelta da noi. Individuate il pulsante <em class="guilabel">Select features using an expression</em> dalla barra degli strumenti.</p>
 </li>
 </ol>
-<img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
+<img alt="../_images/203.png" class="align-center" src="../_images/203.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Inserite l&#8217;espressione qui sotto e premete <em class="guilabel">Seleziona</em>  per selezionare tutti gli aereporti più grandi.</p>
 </li>
@@ -336,7 +337,7 @@ END
 <div class="highlight-none"><div class="highlight"><pre>&quot;type_code&quot; = 3
 </pre></div>
 </div>
-<img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
+<img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Click con il tasto destro sul layer del file <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> e selezionate <em class="guilabel">Salva Selezione con Nome...</em>.</p>
 </li>
@@ -390,7 +391,7 @@ Fate click su <em class="guilabel">Get Layers</em>  per portare entrambi i layer
 <li><p class="first">Ora aprite il file <tt class="docutils literal"><span class="pre">index.html</span></tt> che si trova nella cartella. Vedrete una bella mappa di base con le nostre icone ad indicare gli areoporti principali. Noterete anche che il pannello in alto a destra ha la possibilità di visualizzare entrambi i layer.</p>
 </li>
 </ol>
-<img alt="../_images/315.png" class="align-center" src="../_images/315.png" />
+<img alt="../_images/316.png" class="align-center" src="../_images/316.png" />
 <p>Hope this tutorial gives you a head start in creating web maps. Below is the
 live interactive map created for this tutorial.</p>
 <div>
@@ -420,7 +421,7 @@ width="100%" height="600px"></iframe>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Oct 16, 2014.<br/>
+      Ultimo aggiornamento Nov 26, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -102,6 +102,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Efectuarea interogărilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analiza celui mai apropiat vecin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster, folosind puncte sau poligoane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea în serie, folosind cadrul de procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Utilizarea QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
@@ -217,27 +218,27 @@
 <li><p class="first">Instalați plugin-ul <tt class="docutils literal"><span class="pre">qgis2leaf</span></tt> mergând la <em class="menuselection">Plugins ‣ Manage and Install Plugin</em>. Rețineți că plugin-ul este marcat în prezent <strong>experimental</strong>, așa că va trebui să bifați <em class="guilabel">Show also experimental plugins</em> în Setările Plugin-ului. (Pentru mai multe detalii despre instalarea plugin-urilor în QGIS, parcurgeți <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a>)</p>
 </li>
 </ol>
-<img alt="../_images/140.png" class="align-center" src="../_images/140.png" />
+<img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Dezarhivați fișierul descărcat <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt>. Deschideți QGIS și mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>. Navigați în locația unde s-au extras fișierele și selectați <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/216.png" class="align-center" src="../_images/216.png" />
+<img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">O dată ce s-a încărcat stratul <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt>, folosiți instrumentul <em class="guilabel">Identify</em> pentru a efectua clic pe oricare entitate, și pentru a-i viziona atributele. Vom crea o hartă în care aeroporturile vor fi clasificate în 3 categorii. Atributul <tt class="docutils literal"><span class="pre">type</span></tt> va fi util pentru clasificarea entităților.</p>
 </li>
 </ol>
-<img alt="../_images/314.png" class="align-center" src="../_images/314.png" />
+<img alt="../_images/315.png" class="align-center" src="../_images/315.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Clic-dreapta pe stratul <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt>, apoi selectați <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/412.png" class="align-center" src="../_images/412.png" />
+<img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">În fereastra de dialog, apăsați pe butonul <em class="guilabel">Toggle Editing</em>. O dată ce stratul a intrat în modul de editare, faceți clic pe butonul <em class="guilabel">Open Field Calculator</em>.</p>
 </li>
 </ol>
-<img alt="../_images/512.png" class="align-center" src="../_images/512.png" />
+<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Vrem să creăm un nou atribut numit <tt class="docutils literal"><span class="pre">type_code</span></tt> în care vom aloca marilor aeroporturi valoarea 3, celor mijlocii valoarea 2, și tuturor celelalte valoarea 1. Putem folosi instrucțiunea <em>CASE</em> pentru a scrie o expresie care va citi valoarea atributului <tt class="docutils literal"><span class="pre">type</span></tt> și va crea un atribut <tt class="docutils literal"><span class="pre">type_code</span></tt> bazat pe condiția formulată. Bifați caseta <em class="guilabel">Create a new field</em> și introduceți <tt class="docutils literal"><span class="pre">type_code</span></tt> ca <em class="guilabel">Output field name</em>. Selectați <em class="guilabel">Whole number (integer)</em> ca <em class="guilabel">Output field type</em>. În fereastra <em class="guilabel">Expression</em> introduceți următorul text.</p>
 </li>
@@ -248,47 +249,47 @@
 END
 </pre></div>
 </div>
-<img alt="../_images/611.png" class="align-center" src="../_images/611.png" />
+<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Înapoi, în fereastra <em class="guilabel">Attribute Table</em>, veți vedea la capăt o nouă coloană. Verificați dacă expresia lucrează corect, și faceți clic pe butonul <em class="guilabel">Toggle Editing</em> pentru a salva modificările.</p>
 </li>
 </ol>
-<img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
+<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">În continuare, vom stiliza stratul aeroporturilor folosind atributul <tt class="docutils literal"><span class="pre">type_code</span></tt>, nou creat. Clic-dreapta pe stratul <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt>, apoi selectați <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
+<img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Selectați fila <em class="guilabel">Style</em> din fereastra de dialog <em class="guilabel">Layer Properties</em>. Selectați stilul <em class="guilabel">Categorized</em> din meniul drop-down și alegeți <tt class="docutils literal"><span class="pre">type_code</span></tt> pentru <em class="guilabel">Column</em>. Alegeți, după dorință, o gamă de culori, apoi faceți clic pe <em class="guilabel">Classify</em>. Apăsați <em class="guilabel">OK</em> pentru a merge înapoi în fereastra principală a QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
+<img alt="../_images/910.png" class="align-center" src="../_images/910.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Veți vedea o hartă a aeroporturilor, frumos stilizată. Haideți să o exportăm, pentru a crea o hartă web interactivă. Mergeți la <em class="menuselection">Web ‣ qgis2leaf ‣ Exports a QGIS Project to a working leaflet webmap</em>.</p>
 </li>
 </ol>
-<img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
+<img alt="../_images/1010.png" class="align-center" src="../_images/1010.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">În fereastra de dialog <em class="guilabel">QGIS 2 Leaflet</em>, faceți clic pe <em class="guilabel">Get Layers</em> pentru a obține o listă de straturi, actualizată. Selectați opțiunea <em class="guilabel">Full screen</em> pentru a vedea harta web acoperind tot ecranul. Alegeți <em class="guilabel">layer extent</em> ca <em class="guilabel">Extent</em> al hărții exportate. Alegeți un <em class="guilabel">Output project folder</em> de pe sistemul dvs, în care ar trebui sa fie scrise fișierele de ieșire. Faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1114.png" class="align-center" src="../_images/1114.png" />
+<img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">O dată ce s-a încheiat procesul de export, localizați folderul de ieșire de pe disc. Deschideți fișierul  <tt class="docutils literal"><span class="pre">index.html</span></tt> într-un browser. Veți vedea o hartă web interactivă, care este o replică a hărții QGIS. Puteți mări și deplasa harta și, de asemenea, să faceți clic pe orice entitate, pentru a obține o fereastră de tip pop-up cu informații ale atributelor. Puteți copia conținutul acestui dosar într-un server web, pentru a avea o hartă web a entităților completă.</p>
 </li>
 </ol>
-<img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
+<img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">În continuare, vom explora unele caracteristici avansate ale acestui plugin, care vor permite personalizarea ulterioară a hărții. Dacă ați observat, pop-up-ul cuprinde toate atributele entității. Unele atribute nu sunt foarte utile iar, în ansamblu, pop-up-ul nu arată prea bine. Pentru a-l îmbunătăți, putem înlocui pop-up-ul implicit cu propriul nostru HTML personalizat. Acest lucru se realizează prin adăugarea de cod HTML propriu într-o coloană numită <tt class="docutils literal"><span class="pre">html_exp</span></tt>. Faceți clic-dreapta pe stratul <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt>, apoi selectați <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1310.png" class="align-center" src="../_images/1310.png" />
+<img alt="../_images/1311.png" class="align-center" src="../_images/1311.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">În fereastra de dialog, apăsați pe butonul <em class="guilabel">Toggle Editing</em>. O dată ce stratul a intrat în modul de editare, faceți clic pe butonul <em class="guilabel">Open Field Calculator</em>.</p>
 </li>
 </ol>
-<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
+<img alt="../_images/1410.png" class="align-center" src="../_images/1410.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Bifați caseta <em class="guilabel">Create a new field</em> și introduceți <tt class="docutils literal"><span class="pre">html_exp</span></tt> ca <em class="guilabel">Output field name</em>. Alegeți <em class="guilabel">Text (string)</em> ca <em class="guilabel">Output field type</em>. Din moment ce se va crea un șir HTML lung, alegeți <tt class="docutils literal"><span class="pre">200</span></tt> ca <em class="guilabel">Output field width</em>. Introduceți următoarea expresie în zona <em class="guilabel">Expression</em>. Expresia cu aparență complexă, pur și simplu definește un tabel HTML și substituie valorile din celule cu atributele <tt class="docutils literal"><span class="pre">iata_code</span></tt>, <tt class="docutils literal"><span class="pre">name</span></tt> și <tt class="docutils literal"><span class="pre">type</span></tt>. Verificați <em class="guilabel">Output preview</em> pentru a vă asigura că expresia este corectă.</p>
 </li>
@@ -302,32 +303,32 @@ END
 <p class="first admonition-title">Note</p>
 <p class="last">Formatul fișierului shape poate conține maxim 254 de caractere într-un câmp. Dacă doriți să stocați un text mai lung într-un câmp, atunci alegeți un alt format.</p>
 </div>
-<img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
+<img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Înapoi, în fereastra <em class="guilabel">Attribute Table</em>, veți vedea la capăt o nouă coloană. Verificați dacă expresia lucrează corect, și faceți clic pe butonul <em class="guilabel">Toggle Editing</em> pentru a salva modificările.</p>
 </li>
 </ol>
-<img alt="../_images/168.png" class="align-center" src="../_images/168.png" />
+<img alt="../_images/169.png" class="align-center" src="../_images/169.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Acum, exportați harta iarăși, folosind <em class="menuselection">Web ‣ qgis2leaf ‣ Exports a QGIS Project to a working leaflet webmap</em>.</p>
 </li>
 </ol>
-<img alt="../_images/177.png" class="align-center" src="../_images/177.png" />
+<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Alegeți opțiunile la fel ca înainte.</p>
 </li>
 </ol>
-<img alt="../_images/187.png" class="align-center" src="../_images/187.png" />
+<img alt="../_images/188.png" class="align-center" src="../_images/188.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Mergeți la dosarul de ieșire o dată ce procesul de export s-a încheiat. Veți avea un subfolder cu amprenta de timp curentă. Localizați fișierul <tt class="docutils literal"><span class="pre">index.html</span></tt> din interiorul acestuia, și deschideți-l într-un browser. Faceți clic pe orice entitate și analizați pop-up-ul. Veți observa că pare mult mai curat și informativ.</p>
 </li>
 </ol>
-<img alt="../_images/195.png" class="align-center" src="../_images/195.png" />
+<img alt="../_images/196.png" class="align-center" src="../_images/196.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">O altă caracteristică utilă a plugin-ului <tt class="docutils literal"><span class="pre">qgis2leaf</span></tt> este abilitatea de a specifica o pictogramă proprie pentru a o utiliza cu harta web. Acest lucru este realizat prin specificarea căii pictogramei personalizate într-un câmp numit <tt class="docutils literal"><span class="pre">icon_exp</span></tt>. Vom crea un nou strat care conține numai marile aeroporturi și-l vom stiliza folosind o pictogramă SVG personalizată. Localizați instrumentul <em class="guilabel">Select features using an expression</em> în bara de instrumente.</p>
 </li>
 </ol>
-<img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
+<img alt="../_images/203.png" class="align-center" src="../_images/203.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Introduceți expresia de mai jos și apăsați <em class="guilabel">Select</em> pentru a obține toate aeroporturile majore.</p>
 </li>
@@ -335,7 +336,7 @@ END
 <div class="highlight-none"><div class="highlight"><pre>&quot;type_code&quot; = 3
 </pre></div>
 </div>
-<img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
+<img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Clic-dreapta pe stratul <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt>, apoi alegeți <em class="guilabel">Save Selection As...</em>.</p>
 </li>
@@ -388,7 +389,7 @@ END
 <li><p class="first">În continuare, deschideți fișierul <tt class="docutils literal"><span class="pre">index.html</span></tt> situat în folder. Veți vedea o frumoasă hartă de bază, având pictograma aleasă de noi pentru marile aeroporturi. De asemenea, observați panoul straturilor din colțul din dreapta sus, care controlează afișarea ambelor straturi.</p>
 </li>
 </ol>
-<img alt="../_images/315.png" class="align-center" src="../_images/315.png" />
+<img alt="../_images/316.png" class="align-center" src="../_images/316.png" />
 <p>Hope this tutorial gives you a head start in creating web maps. Below is the
 live interactive map created for this tutorial.</p>
 <div>
@@ -418,7 +419,7 @@ width="100%" height="600px"></iframe>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Oct 16, 2014.<br/>
+      Last updated on Nov 26, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

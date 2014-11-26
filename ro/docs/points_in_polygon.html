@@ -102,6 +102,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Efectuarea interogărilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analiza celui mai apropiat vecin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster, folosind puncte sau poligoane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea în serie, folosind cadrul de procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Utilizarea QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
@@ -212,7 +213,7 @@ below:</p>
 <li><p class="first">Deschideți <em class="menuselection">Layer ‣ Add Delimited Text Layer</em> și navigați la fișierul descărcat <tt class="docutils literal"><span class="pre">signif.txt</span></tt>.</p>
 </li>
 </ol>
-<img alt="../_images/199.png" class="align-center" src="../_images/199.png" />
+<img alt="../_images/1100.png" class="align-center" src="../_images/1100.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Deoarece acesta este un <em>fișier delimitat de tab-uri</em> alegeți <em class="guilabel">Tab</em> ca <em class="guilabel">File format</em>. <em class="guilabel">X field</em> și <em class="guilabel">Y field</em> se vor auto-popula. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
@@ -226,17 +227,17 @@ below:</p>
 <li><p class="first">Deoarece setul de date al cutremurelor are coordonate Latitudine/Longitudine, alegeți <em class="guilabel">WGS 84 EPSG:436</em> ca CRS, în fereastra de dialog <em class="guilabel">Coordinate Reference System Selector</em>.</p>
 </li>
 </ol>
-<img alt="../_images/323.png" class="align-center" src="../_images/323.png" />
+<img alt="../_images/324.png" class="align-center" src="../_images/324.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Stratul de tip punct al cutremurelor ar trebui să fie de-acum încărcat și afișat în QGIS. Să deschidem, de asemenea, stratul țărilor. Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>. Navigați la fișierul descărcat <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt> și faceți clic pe <em class="guilabel">Open</em>. Selectați <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt> ca strat, în fereastra de dialog <em class="guilabel">Select layers to add...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/418.png" class="align-center" src="../_images/418.png" />
+<img alt="../_images/419.png" class="align-center" src="../_images/419.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Clic pe <em class="menuselection">Vector ‣ Analysis Tools ‣ Point in Polygon</em></p>
 </li>
 </ol>
-<img alt="../_images/519.png" class="align-center" src="../_images/519.png" />
+<img alt="../_images/520.png" class="align-center" src="../_images/520.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">În fereastra tip pop-up, selectați stratul poligonal și, respectiv, stratul de tip punct. Denumiți stratul de ieșire ca <tt class="docutils literal"><span class="pre">earthquake_per_coutry.shp</span></tt> și faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
@@ -249,27 +250,27 @@ below:</p>
 <li><p class="first">Când sunteți întrebați dacă doriți să adăugați stratul la Cuprins, faceți clic pe <em class="guilabel">Yes</em>.</p>
 </li>
 </ol>
-<img alt="../_images/717.png" class="align-center" src="../_images/717.png" />
+<img alt="../_images/718.png" class="align-center" src="../_images/718.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Veți vedea că un nou strat este adăugat la Cuprins. Deschideți tabela de atribute prin clic-dreapta pe strat și selectând <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/816.png" class="align-center" src="../_images/816.png" />
+<img alt="../_images/817.png" class="align-center" src="../_images/817.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">În tabela de atribute, veți observa un câmp nou, denumit <tt class="docutils literal"><span class="pre">PNTCNT</span></tt>. Acesta este numărul de numărul de puncte din stratul de cutremure care sunt în interiorul fiecărui poligon.</p>
 </li>
 </ol>
-<img alt="../_images/915.png" class="align-center" src="../_images/915.png" />
+<img alt="../_images/916.png" class="align-center" src="../_images/916.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Pentru a obține răspunsul, pur și simplu se poate sorta tabelul după câmpul <tt class="docutils literal"><span class="pre">PNTCNT</span></tt>, iar țara cu cel mai mare număr va constitui răspunsul nostru. Efectuând clic de 2 ori pe <tt class="docutils literal"><span class="pre">PNTCNT</span></tt>, coloana va fi sortată în ordine descrescătoare. Faceți clic pe primul rând pentru a o selecta, apoi închideți tabela de atribute.</p>
 </li>
 </ol>
-<img alt="../_images/1015.png" class="align-center" src="../_images/1015.png" />
+<img alt="../_images/1016.png" class="align-center" src="../_images/1016.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Înapoi, în fereastra principală a QGIS, veți vedea o entitate evidențiat în galben. Aceasta este o ebtitateă legată de rândul selectat din tabela de atribute care a avut cel mai mare număr de puncte. Selectați instrumentul <em class="guilabel">Identify</em> și efectuați clic p;e acel poligon. Puteți vedea că țara cu cel mai mare număr de cutremure semnificative este <strong>China</strong>.</p>
 </li>
 </ol>
-<img alt="../_images/1120.png" class="align-center" src="../_images/1120.png" />
+<img alt="../_images/1121.png" class="align-center" src="../_images/1121.png" />
 <p>Am determinat, din analiza simplă a 2 seturi de date, că cel mai mare număr de cutremure majore le-a avut China. S-ar putea rafina această analiză mai departe, prin luarea în considerare a populației, precum și a mărimii țării, și să determinăm care este țara cea mai grav afectată de cutremurele majore.</p>
 </div>
 </div>
@@ -294,7 +295,7 @@ below:</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Oct 16, 2014.<br/>
+      Last updated on Nov 26, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

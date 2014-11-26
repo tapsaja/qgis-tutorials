@@ -102,6 +102,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Eräkäsittely käyttäen Processing toimintoja</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Käytämme QGIS selainta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Tason verteksien lukumäärän laskenta</a></li>
@@ -211,7 +212,7 @@
 <li><p class="first">Siirry <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density/data-download">Population Density Grid, v3 lataussivulle.</a> Valitse <em class="guilabel">Data Attributes</em> arvoiksi <em class="guilabel">.ascii format</em>, <em class="guilabel">1° resolution</em> ja <em class="guilabel">1990 year</em>. Klikkaa <em class="guilabel">Download</em>. Tässä kohtaa voit luoda vapaan tilin ja tehdä sisään kirjoittautumisen, tai voit käyttää <em class="guilabel">Guest Download</em> näppäintä alhaalla välittömään datan lataamiseen. Toista prosessi <em class="guilabel">2000 year</em> datalle.</p>
 </li>
 </ol>
-<img alt="../_images/1101.png" class="align-center" src="../_images/1101.png" />
+<img alt="../_images/1102.png" class="align-center" src="../_images/1102.png" />
 <p>Nyt sinulla on 2 zip tiedostoa ladattuna.</p>
 <p>For convenience, you can also download a copy of this data by clicking on following links:</p>
 <p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_90_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_90_ascii_one.zip</span></tt></a></p>
@@ -229,97 +230,97 @@
 <li><p class="first">Paikallista ladatut zip tiedostot. Pidä <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> näppäintä alhaalla ja klikkaa kumpaakin zip tiedostoa valitaksesi ne. Tällä tavalla on mahdollista ladata molemmat tiedostot yhdellä kertaa.</p>
 </li>
 </ol>
-<img alt="../_images/325.png" class="align-center" src="../_images/325.png" />
+<img alt="../_images/326.png" class="align-center" src="../_images/326.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Kumpikin zip tiedosto sisältää 2 ruudukkotiedostoa. <tt class="docutils literal"><span class="pre">a</span></tt> kirjain tiedostonimessä tarkoitta että väestömäärät sopeutettiin YK:n määriin . Käytämme tässä oppaassa sovitettuja ruudukoita. Valitse <tt class="docutils literal"><span class="pre">glds00ag60.asc</span></tt> lisättäväksi tasoksi. Klikkaa</p>
 </li>
 </ol>
-<img alt="../_images/420.png" class="align-center" src="../_images/420.png" />
+<img alt="../_images/421.png" class="align-center" src="../_images/421.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Tasolla ei ole määriteltyä koordinaattijärjestelmää ja siksi ruudukot ovat lat/long muotoisia. Valitse <cite>EPSG:4326</cite> koordinaattijärjestelmäksi.</p>
 </li>
 </ol>
-<img alt="../_images/521.png" class="align-center" src="../_images/521.png" />
+<img alt="../_images/522.png" class="align-center" src="../_images/522.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Koska valitsimme molemmat zip tiedostot, tulee sinun käydä sama dialogi uudestaan. Toista prosessi ja valitse <tt class="docutils literal"><span class="pre">glds90ag60.asc</span></tt>  ruudukko lisättäväksi tasoksi.</p>
 </li>
 </ol>
-<img alt="../_images/619.png" class="align-center" src="../_images/619.png" />
+<img alt="../_images/620.png" class="align-center" src="../_images/620.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Ja taas, valitse <cite>EPSG:4326</cite> koordinaattijärjestelmäksi.</p>
 </li>
 </ol>
-<img alt="../_images/719.png" class="align-center" src="../_images/719.png" />
+<img alt="../_images/720.png" class="align-center" src="../_images/720.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Nyt näet molemmat rasterit ladattuina QGIS:ssä. Rasterit on hahmotettu harmaasävyisiksi, jossa tummemat pikselit merkitsevät alempia arvoja ja vaaleammat pikselit korkeampia arvoja.</p>
 </li>
 </ol>
-<img alt="../_images/818.png" class="align-center" src="../_images/818.png" />
+<img alt="../_images/819.png" class="align-center" src="../_images/819.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Jokaiselle pikselille  rasterissa on annettu arvo. Tämä arvo on väestön tiheys asianomaisessa ruudukon elementissä. Klikkaa <em class="guilabel">Tunnista ominaisuudet</em> näppäintä valitaksesi työkalun ja klikkaa minne tahansa rasterilla nähdäksesi pikselin arvon.</p>
 </li>
 </ol>
-<img alt="../_images/917.png" class="align-center" src="../_images/917.png" />
+<img alt="../_images/918.png" class="align-center" src="../_images/918.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Meidän tarvitsee muotoilla tasoa jotta voisimme nähdä paremmin väestötiheyden kuvioinnin. Klikkaa oikealla tason nimeä ja valitse <em class="guilabel">Ominaisuudet</em>.Voit myös tupla-klikata tason nimeä tasojen luettelossa saadaksesi tason ominaisuudet ikkunan näkyville.</p>
 </li>
 </ol>
-<img alt="../_images/1017.png" class="align-center" src="../_images/1017.png" />
+<img alt="../_images/1018.png" class="align-center" src="../_images/1018.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Välilehdellä <em class="guilabel">Tyyli</em>, vaihda <em class="guilabel">Hahmotustyyppi</em> arvoksi <em class="guilabel">Yksikaista pseudoväri</em>. Seuraavaksi klikkaa <em class="guilabel">Luokittele</em> kappaleessa <em class="guilabel">Generoi uusi värikartta</em>. Nyt näet 5 uutta väriarvoa. Klikkaa</p>
 </li>
 </ol>
-<img alt="../_images/1122.png" class="align-center" src="../_images/1122.png" />
+<img alt="../_images/1123.png" class="align-center" src="../_images/1123.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Takaisin QGIS karttapohjalle, näet heatmap kaltaisen rasterin hahmottamisen. Toista sama prosessi myös toiselle rasterille.</p>
 </li>
 </ol>
-<img alt="../_images/1218.png" class="align-center" src="../_images/1218.png" />
+<img alt="../_images/1219.png" class="align-center" src="../_images/1219.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Analyysiimme haluamme löytää alueet joilla on ollut suurin västön muutos vuosien 1990 ja 2000 välillä. Tapa tehdä tämä on löytää erot molempien tasojen jokaisen pikselin arvosta. Valitse <em class="menuselection">Rasteri ‣ Rasterilaskin</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1317.png" class="align-center" src="../_images/1317.png" />
+<img alt="../_images/1318.png" class="align-center" src="../_images/1318.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first"><em class="guilabel">Rasterin kaistat</em> kappaleessa voit valita tason tupla-klikkaamalla. Kaistat on nimetty rasterin nimellä jota seuraa &#64; ja kaistan numero. Koska kummassakin rastereistamme on vain yksi kaista, näet vain 1 per rasteri. Rasterilaskin voi suorittaa matemaattisia operaatioita rasterin pisteillä. Tässä tapauksessa haluamme antaa yksinkertaisen kaavan vähentää 1990 väestötiheys vuoden 2000 väestötiheydestä. Anna <tt class="docutils literal"><span class="pre">glds00ag60&#64;1</span> <span class="pre">-</span> <span class="pre">glds90ag60&#64;1</span></tt> kaavaksi. Nimeä tulosrasteri <em class="guilabel">pop_density_change_2000_1990.tif</em> ja merkkaa laatikko <em class="guilabel">Lisää tulos projektiin</em>. vieressä. Klikkaa <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1416.png" class="align-center" src="../_images/1416.png" />
+<img alt="../_images/1417.png" class="align-center" src="../_images/1417.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Kun työvaihe on valmistunut, näet uuden tason ladatun QGIS:in.</p>
 </li>
 </ol>
-<img alt="../_images/1514.png" class="align-center" src="../_images/1514.png" />
+<img alt="../_images/1515.png" class="align-center" src="../_images/1515.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Tämä harmaasävy visualisointi on hyvä, mutta voimme tehdä myös paljon informatiivisemman tulosteen. Klikkaa oikealla <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990</span></tt> tason nimeä ja valitse  <em class="guilabel">Ominaisuudet</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1614.png" class="align-center" src="../_images/1614.png" />
+<img alt="../_images/1615.png" class="align-center" src="../_images/1615.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Haluamme muotoilla tason siten että tietyillä pikselien arvot tietyillä rajoilla  saavat saman värin. Ennenkuin jatkamme tästä, mene  <em class="guilabel">Metadata</em> välilehdelle ja katso rasterin ominaisuuksia. Huomaa tason minimi ja maksimi arvot.</p>
 </li>
 </ol>
-<img alt="../_images/1713.png" class="align-center" src="../_images/1713.png" />
+<img alt="../_images/1714.png" class="align-center" src="../_images/1714.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Nyt mene välilehdelle <em class="guilabel">Tyyli</em>. Valitse <em class="guilabel">Yksikaista pseudoväri</em> vihtoehdossa <em class="guilabel">Hahmotustyyppi</em> kappaleessa <em class="guilabel">Kaistan hahmotus</em>. Aseta <em class="guilabel">Värin interpolointi</em> arvoon <em class="guilabel">Erillinen</em>. Klikkaa <em class="guilabel">Lisää arvot käsin</em> näppäintä 4 kertaa luodaksesi 4 yksilöllistä luokkaa. Klikkaa rivin arvoa muokataksesi. Värikartan toimintaperusteena on että kaikki arvot jotka ovat pienempiä kuin annettu arvo saavan rivillä osoitetun värin. Koska minimi arvo rasterissamme on juuri -2000 yläpuolella, valitsemme arvoksi -2000 ensimmäiselle riville. Tämä on No data arvoille. Anna arvot ja nimiöt muille riveille kuten alla kuvassa ja klikkaa</p>
 </li>
 </ol>
-<img alt="../_images/1813.png" class="align-center" src="../_images/1813.png" />
+<img alt="../_images/1814.png" class="align-center" src="../_images/1814.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Nyt näet huomattavasti tehokkaamman visualisoinnin jossa voit nähdä alueiden väestötiheyden posittiviset ja negatiiviset muutokset. Klikkaa <em class="guilabel">Lähennä</em>  näppäintä ja piirrä suorakulmio Euroopan ympäri tutkiaksesi aluetta tarkemmin.</p>
 </li>
 </ol>
-<img alt="../_images/1911.png" class="align-center" src="../_images/1911.png" />
+<img alt="../_images/1912.png" class="align-center" src="../_images/1912.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Valitse <em class="guilabel">Tunnista ominaisuudet</em> työkalu ja klikkaa punaisella ja sinisellä alueella että muotoilu toimii oikein niin kuin on tarkoitettu.</p>
 </li>
 </ol>
-<img alt="../_images/207.png" class="align-center" src="../_images/207.png" />
+<img alt="../_images/208.png" class="align-center" src="../_images/208.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Viekkäämme nyt tämä analyysi askeleen edemmäs ja etsikäämme alueet joissa on ainoastaan <cite>negatiivisiä</cite> väestotiheyden muutoksia. Avaa valikosta <em class="menuselection">Rasteri ‣ Rasterilaskin</em>.</p>
 </li>
 </ol>
-<img alt="../_images/2111.png" class="align-center" src="../_images/2111.png" />
+<img alt="../_images/2112.png" class="align-center" src="../_images/2112.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Anna lauseke <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990&#64;1</span> <span class="pre">&lt;</span> <span class="pre">-10</span></tt>. Tämän lausekkeen tarkoitus on asettaa pikselin arvoksi 1 jossa on lausekkeen kanssa sama ja 0 jos ei. Joten saamme siis rasterin jossa pikselin arvo on 1 jossa negatiivinen muutos ja 0 missä ei. Nimeä tulostaso <tt class="docutils literal"><span class="pre">negative_pop_change_2000_1990</span></tt> ja merkkaa laatikko <em class="guilabel">Lisää tulos projektiin</em>. Klikkaa  OK.</p>
 </li>
@@ -358,7 +359,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Oct 16, 2014.<br/>
+      Last updated on Nov 26, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

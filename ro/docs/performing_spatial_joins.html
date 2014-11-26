@@ -102,6 +102,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Efectuarea interogărilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analiza celui mai apropiat vecin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster, folosind puncte sau poligoane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea în serie, folosind cadrul de procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Utilizarea QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
@@ -210,7 +211,7 @@
 <li><p class="first">Descărcați fișierul zip <a class="reference external" href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm">Borough Boundaries</a> folosind opțiunea de Export a portalului.</p>
 </li>
 </ol>
-<img alt="../_images/170.png" class="align-center" src="../_images/170.png" />
+<img alt="../_images/180.png" class="align-center" src="../_images/180.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Descărcați fișierul zip <a class="reference external" href="https://data.cityofnewyork.us/Health/Nursing-Homes/9tqc-rnkr">Nursing Homes</a> folosind opțiunea de Export a portalului.</p>
 </li>
@@ -227,62 +228,62 @@ downloaded directly from the links below:</p>
 <li><p class="first">Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>. Navigați la fișierul descărcat <tt class="docutils literal"><span class="pre">nybb_12c.zip</span></tt> și selectați <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/319.png" class="align-center" src="../_images/319.png" />
+<img alt="../_images/320.png" class="align-center" src="../_images/320.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Selectați stratul <tt class="docutils literal"><span class="pre">nybb.shp</span></tt> și efectuați clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/415.png" class="align-center" src="../_images/415.png" />
+<img alt="../_images/416.png" class="align-center" src="../_images/416.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Repetați pașii 3 și 4 pentru un alt fișier <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.zip</span></tt> și încărcați stratul <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.shp</span></tt>. O dată ce ambele straturi sunt încărcate, faceți clic-dreapta pe stratul <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> și selectați <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/516.png" class="align-center" src="../_images/516.png" />
+<img alt="../_images/517.png" class="align-center" src="../_images/517.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Examinați atributele disponibile pentru fiecare entitate. Deoarece sarcina noastră este de a calcula capacitatea totală de asistență la domiciliu pentru fiecare sector, putem folosi atributul <strong>Capacity</strong>, pentru unificarea cu stratul sectoarelor.</p>
 </li>
 </ol>
-<img alt="../_images/615.png" class="align-center" src="../_images/615.png" />
+<img alt="../_images/616.png" class="align-center" src="../_images/616.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Mergeți la <em class="menuselection">Vector ‣ Data Mangement Tools ‣ Join attributes by location</em>.</p>
 </li>
 </ol>
-<img alt="../_images/714.png" class="align-center" src="../_images/714.png" />
+<img alt="../_images/715.png" class="align-center" src="../_images/715.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first"><em class="guilabel">Target vector layer</em> este cel pe care ne dorim să-l adaugăm la atribute. În cazul nostru, acesta va fi stratul granițelor sectoarelor <tt class="docutils literal"><span class="pre">nybb</span></tt>. <em class="guilabel">Join vector layer</em> va fi stratul locațiilor asistentelor <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt>. Deoarece ne dorim să însumăm capacitatea de a oferi asistență medicală, selectați <em class="guilabel">Take summary of intersecting features</em>, apoi alegeți <em class="guilabel">Sum</em>. Denumiți fișierul ca <tt class="docutils literal"><span class="pre">nyc_borough_join.shp</span></tt>. În <em class="guilabel">Output table</em> selectați <em class="guilabel">Keep all records`</em>.</p>
 </li>
 </ol>
-<img alt="../_images/813.png" class="align-center" src="../_images/813.png" />
+<img alt="../_images/814.png" class="align-center" src="../_images/814.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">O dată ce procesul se termină, selectați <em class="guilabel">Yes</em> când sunteți întrebați dacă doriți să adăugați stratul la Cuprins. Noul strat <tt class="docutils literal"><span class="pre">nyc_borough_join</span></tt> ar avea entitățile stratului <tt class="docutils literal"><span class="pre">nybb</span></tt>, împreună cu atributele unificate spațial ale stratului <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt>. Faceți clic dreapta pe strat și selectați <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/912.png" class="align-center" src="../_images/912.png" />
+<img alt="../_images/913.png" class="align-center" src="../_images/913.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Veți observa coloana <strong>SUMCapacit</strong> în tabela de atribute. Aceasta reprezintă suma atributului <strong>Capacity</strong> pentru locațiile asistentelor care se încadrează în fiecare entitate sectorială.</p>
 </li>
 </ol>
-<img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" />
+<img alt="../_images/1013.png" class="align-center" src="../_images/1013.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Acesta este răspunsul căutat. Dar există și coloane suplimentare de care nu avem nevoie în rezultatul nostru. Haideți să îl curățăm. Apăsați pe butonul <em class="guilabel">Delete column</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" />
+<img alt="../_images/1118.png" class="align-center" src="../_images/1118.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Apăsați <tt class="kbd docutils literal"><span class="pre">Control-A</span></tt> pentru a selecta toate coloanele din fereastra de dialog <em class="guilabel">Delete Attributes</em>. Mai departe, țineți apăsată tasta <tt class="kbd docutils literal"><span class="pre">Control</span></tt> și deselectați coloanele nedorite. Clic <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" />
+<img alt="../_images/1215.png" class="align-center" src="../_images/1215.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">În tabela de atribute, faceți clic din nou pe butonul <em class="guilabel">Toggle editing</em>, pentru a salva modificările.</p>
 </li>
 </ol>
-<img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" />
+<img alt="../_images/1314.png" class="align-center" src="../_images/1314.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Înapoi în suportul hărții din QGIS, utilizați instrumentul <em class="guilabel">Identify</em> pentru a verifica dacă fișierul de ieșire are atributele dorite pentru fiecare entitate sectorială.</p>
 </li>
 </ol>
-<img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
+<img alt="../_images/1413.png" class="align-center" src="../_images/1413.png" />
 </div>
 </div>
 
@@ -306,7 +307,7 @@ downloaded directly from the links below:</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Oct 16, 2014.<br/>
+      Last updated on Nov 26, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

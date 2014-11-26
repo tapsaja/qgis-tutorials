@@ -103,6 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Utilizzare le interrogazioni spaziali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analisi di prossimità</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Campionare i dati di un raster usando punti o poligoni</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Elaborazioni &#8220;batch&#8221; usando il Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Usare il browser di QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
@@ -209,22 +210,22 @@
 <li><p class="first">Scaricate ed estraete il Natural Earth Quick Start Kit data. Aprite QGIS. Cliccate su <em class="menuselection">Progetto ‣ Apri...</em></p>
 </li>
 </ol>
-<img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
+<img alt="../_images/150.png" class="align-center" src="../_images/150.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Cercate la cartella in cui avete estratto il dato. Dovreste vedere al suo interno un file che si chiama <tt class="file docutils literal"><span class="pre">Natural_Earth_quick_start_for_QGIS.qgs</span></tt>. Questo è il file di progetto che contiene il layer tematizzato in formato QGIS. Click su <em class="guilabel">apri</em>.</p>
 </li>
 </ol>
-<img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
+<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Dovreste vedere parecchi layer nella tavola dei contenuti (TOC)  e una mappa del mondo tematizzata nel riquadro di QGIS. Se vi viene mostrato un messaggio di errore in cima al riquadro fate click sulla croce per chiuderlo.</p>
 </li>
 </ol>
-<img alt="../_images/316.png" class="align-center" src="../_images/316.png" />
+<img alt="../_images/317.png" class="align-center" src="../_images/317.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">In questo esercizio realizzeremo una mappa del Giappone.  Fate clcik sullo strumento <em class="guilabel">ingrandisci</em> e disegnate un rettangolo intorno al Giappone per ingrandire l&#8217;area.</p>
 </li>
 </ol>
-<img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
+<img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
 <ol class="arabic simple" start="5">
 <li>Before we make a map suitable for printing, we need to choose an appropriate
 projection. This dataset comes in Geographic Coordinate System (GCS) where
@@ -245,67 +246,67 @@ system (CRS) that is designed for minimum distortions. It is divided in 18
 zones and if you are working for a smaller region in Japan, using this CRS
 will be better.</p>
 </div>
-<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
+<img alt="../_images/514.png" class="align-center" src="../_images/514.png" />
 <ol class="arabic simple" start="6">
 <li>Check the <em class="guilabel">Enable on-the-fly CRS Transformation</em> box. Type <tt class="docutils literal"><span class="pre">Tokyo</span>
 <span class="pre">utm</span> <span class="pre">zone54n</span></tt> in the <em class="guilabel">Filter</em> search box. Once you see the
 results, select <em class="guilabel">Tokyo / UTM Zone 54N - EPSG:3095</em>. Click
 <em class="guilabel">Apply</em>.</li>
 </ol>
-<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
+<img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
 <ol class="arabic simple" start="7">
 <li>Zoom and Pan to keep Japan at the center of your map canvas. At this point,
 you can check the box next to <tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt> layer to turn off
 the labels from that layer.</li>
 </ol>
-<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
+<img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Adesso che vi siete posizionati intorno alla nostra area di interesse, fate click sul pulsante <em class="guilabel">Nuova Composizione di Stampa</em>. Il comando è accessibile anche dal menu degli strumenti <em class="menuselection">Progetto ‣ Nuova Composizione di Stampa</em>.</p>
 </li>
 </ol>
-<img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
+<img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Vi verrà chiesto di inserire un titolo per la stampa. Scrivete &#8216;Japan map&#8217;  e fate click su <em class="guilabel">Ok</em>.</p>
 </li>
 </ol>
-<img alt="../_images/910.png" class="align-center" src="../_images/910.png" />
+<img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Nella finestra Composizione di Stampa, fare click su <em class="guilabel">Zoom Completo</em> per vedere l&#8217;intera estensione della pagina.</p>
 </li>
 </ol>
-<img alt="../_images/1010.png" class="align-center" src="../_images/1010.png" />
+<img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Ora si tratta di trasportare l&#8217;immagine della mappa che vediamo in QGIS dentro questa finestra. Fare click sul pulsante <em class="guilabel">Aggiungi Mappa</em> . Questo strumento è accessibile anche da <em class="menuselection">Layout ‣ Aggiungi Mappa</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
+<img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Una volta che il pulsante <em class="guilabel">Aggiungi Mappa</em> è attivo, tenete premuto il pulsante sinistro del mouse e trascinate un rettangolo dove intendete inserire la mappa.</p>
 </li>
 </ol>
-<img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
+<img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Vedrete che la finestra rettangolare sarà riempita con la mappa proveniente dal riquadro principale di QGIS. Dal momento che noi vogliamo che la nostra mappa copra l&#8217;intera estensione del layout, trascinate gli angoli del rettangolo sui bordi.</p>
 </li>
 </ol>
-<img alt="../_images/1311.png" class="align-center" src="../_images/1311.png" />
+<img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
 <ol class="arabic simple" start="14">
 <li>The rendered map may not be covering the full extent of our interest area.
 Click the <em class="guilabel">Move item content</em> button to pan the map in the window
 and center it in the composer.</li>
 </ol>
-<img alt="../_images/1410.png" class="align-center" src="../_images/1410.png" />
+<img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
 <ol class="arabic simple" start="15">
 <li>Let us adjust the zoom level for the given map. Click on the
 <em class="guilabel">Item Properties</em> tab and enter <cite>5000000</cite> for <em class="guilabel">Scale</em>
 value.</li>
 </ol>
-<img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
+<img alt="../_images/1510.png" class="align-center" src="../_images/1510.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Ora aggiungeremo una Freccia del Nord alla mappa. La Composizione di Stampa presenta una ricca collezione di immagini da usare nella mappa - compresi molte varietà di Freccia del Nord. Fare click su <em class="menuselection">Layout ‣ Aggiungi Immagine</em>.</p>
 </li>
 </ol>
-<img alt="../_images/169.png" class="align-center" src="../_images/169.png" />
+<img alt="../_images/1610.png" class="align-center" src="../_images/1610.png" />
 <ol class="arabic simple" start="17">
 <li>Holding your left mouse button, draw a rectangle on the top-right corner of
 the map canvas. On the right-hand panel, click on the
@@ -313,29 +314,29 @@ the map canvas. On the right-hand panel, click on the
 <em class="guilabel">Search directories</em> section and select the North Arrow image of
 your liking.</li>
 </ol>
-<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
+<img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Poi spostatevi in basso e deselezionate l&#8217;opzione <em class="guilabel">Sfondo</em> . Questo renderà l&#8217;immagine trasparente.</p>
 </li>
 </ol>
-<img alt="../_images/188.png" class="align-center" src="../_images/188.png" />
+<img alt="../_images/189.png" class="align-center" src="../_images/189.png" />
 <ol class="arabic simple" start="19">
 <li>You can drag the North Arrow and move it around in the composer window to a
 suitable position.</li>
 </ol>
-<img alt="../_images/196.png" class="align-center" src="../_images/196.png" />
+<img alt="../_images/197.png" class="align-center" src="../_images/197.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Ora aggiungiamo una Barra di Scala. Fare click su <em class="menuselection">Layout ‣ Aggiugi Barra di Scala</em>.</p>
 </li>
 </ol>
-<img alt="../_images/203.png" class="align-center" src="../_images/203.png" />
+<img alt="../_images/204.png" class="align-center" src="../_images/204.png" />
 <ol class="arabic simple" start="21">
 <li>Click on the layout where you want the scalebar to appear.
 From the <em class="guilabel">Item Properties</em> tab, choose the Style that fit your
 requirement. You should also set the transparency by un-cecking the
 <em class="guilabel">Background</em> option.</li>
 </ol>
-<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
+<img alt="../_images/2110.png" class="align-center" src="../_images/2110.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Ora aggiungeremo una legenda alla mappa. Fate click su <em class="menuselection">Layout ‣ Aggiungi Legenda</em>.</p>
 </li>
@@ -412,7 +413,7 @@ SVG. For this tutorial, let’s export it as an image. Click
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Oct 16, 2014.<br/>
+      Ultimo aggiornamento Nov 26, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

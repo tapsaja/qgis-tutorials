@@ -102,6 +102,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Efectuarea interogărilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analiza celui mai apropiat vecin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster, folosind puncte sau poligoane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea în serie, folosind cadrul de procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Utilizarea QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
@@ -208,7 +209,7 @@
 <li><p class="first">O dată ce ați descărcat datele, deschideți QGIS. Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1106.png" class="align-center" src="../_images/1106.png" />
+<img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Faceți clic pe <em class="guilabel">Browse</em> și navigați la folderul unde ați descărcat datele.</p>
 </li>
@@ -218,77 +219,77 @@
 <li><p class="first">Localizați fișierul descărcat, <cite>ne_10m_populated_places_simple.zip</cite>. Nu e nevoie să-l dezarhivați. QGIS are capacitatea de a citi în mod direct fișierele zip. Selectați fișierul și faceți clic pe <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/333.png" class="align-center" src="../_images/333.png" />
+<img alt="../_images/334.png" class="align-center" src="../_images/334.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Vi se va cere să selectați stratul care trebuie deschis. Selectați <cite>ne_10m_populated_places_simple.shp</cite> și faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/425.png" class="align-center" src="../_images/425.png" />
+<img alt="../_images/426.png" class="align-center" src="../_images/426.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Straturile selectate se vor încărca în QGIS, după care vor apărea mai multe puncte, reprezentând locurile populate ale lumii.</p>
 </li>
 </ol>
-<img alt="../_images/526.png" class="align-center" src="../_images/526.png" />
+<img alt="../_images/527.png" class="align-center" src="../_images/527.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Pentru a vedea atributele faceți clic dreapta pe strat și selectați <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/624.png" class="align-center" src="../_images/624.png" />
+<img alt="../_images/625.png" class="align-center" src="../_images/625.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Explorați atributele și valorile lor.</p>
 </li>
 </ol>
-<img alt="../_images/724.png" class="align-center" src="../_images/724.png" />
+<img alt="../_images/725.png" class="align-center" src="../_images/725.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Deoarece ne interesează populația din fiecare entitate, <cite>pop_max</cite> va fi câmpul căutat. Puteți face dublu-clic pe denumirea câmpului, pentru a sorta coloana în ordine descrescătoare.</p>
 </li>
 </ol>
-<img alt="../_images/823.png" class="align-center" src="../_images/823.png" />
+<img alt="../_images/824.png" class="align-center" src="../_images/824.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Acum suntem gata pentru a efectua interogarea acestor atribute. Apăsați butonul <em class="guilabel">Select features using an expression</em>.</p>
 </li>
 </ol>
-<img alt="../_images/922.png" class="align-center" src="../_images/922.png" />
+<img alt="../_images/923.png" class="align-center" src="../_images/923.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">În fereastra <em class="guilabel">Select By Expression</em>, expandați secțiunea <em class="guilabel">Fields and Values</em> și efectuați dublu-clic pe eticheta <cite>pop_max</cite>. Veți observa că ea se adaugă în zona de expresii. Dacă nu sunteți siguri cu privire la valorile câmpului, aveți posibilitatea să faceți clic pe <em class="guilabel">Load all unique values</em> pentru a vedea valorile atributelor prezente în setul de date. Pentru acest exercițiu, căutăm să găsim toate entitățile care au un număr de locuitori mai mare de 1.000.000. Așa că introduceți expresia <cite>&#8220;pop_max&#8221; &gt; 1000000</cite>, după care faceți clic pe <em class="guilabel">Select</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1022.png" class="align-center" src="../_images/1022.png" />
+<img alt="../_images/1023.png" class="align-center" src="../_images/1023.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Apăsați <em class="guilabel">Close</em> și reveniți la fereastra principală a QGIS. Veți observa că un subset de puncte este redat în galben. Acesta este rezultatul interogării noastre, putându-se observa toate locurile din setul de date care au valoarea atributului <cite>pop_max</cite> mai mare decât 1.000.000.</p>
 </li>
 </ol>
-<img alt="../_images/1126.png" class="align-center" src="../_images/1126.png" />
+<img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Scopul acestui exercițiu este de a găsi locațiile care reprezintă capitale de țări. Să rafinăm interogarea noastră, pentru a selecta doar acele locuri care sunt capitale. În tabela de atribute, efectuați clic pe <em class="guilabel">Select feature using an expression</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1222.png" class="align-center" src="../_images/1222.png" />
+<img alt="../_images/1223.png" class="align-center" src="../_images/1223.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Câmpul care conține aceste date este <cite>adm0cap</cite>. Valoarea <cite>1</cite> indică faptul că respectivul loc reprezintă o capitală. Introduceți expresia <cite>&#8220;adm0cap&#8221;= 1</cite>. Din moment ce dorim să căutăm numai în rezultatele interogării anterioare, vom alege Select within selection`.</p>
 </li>
 </ol>
-<img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
+<img alt="../_images/1322.png" class="align-center" src="../_images/1322.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Clic pe  <em class="guilabel">Close</em> și reveniți la fereastra principală a QGIS. Acum, veți vedea un mic subset de puncte selectate. Acesta este rezultatul celei de-a doua interogări, el arătându-ne acele locuri din setul de date, care sunt capitale țări și depășesc 1.000.000 locuitori.</p>
 </li>
 </ol>
-<img alt="../_images/1420.png" class="align-center" src="../_images/1420.png" />
+<img alt="../_images/1421.png" class="align-center" src="../_images/1421.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Urmează să salvăm aceste rezultate într-un strat separat. Faceți clic dreapta pe strat și selectați <em class="guilabel">Save Selection As</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1517.png" class="align-center" src="../_images/1517.png" />
+<img alt="../_images/1518.png" class="align-center" src="../_images/1518.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Păstrați formatul selecției ca <cite>ESRI Shapefile</cite> și introduceți numele de ieșire <cite>large_capital_cities.shp</cite>. Bifați caseta de lângă <em class="guilabel">Add saved file to map</em> apoi faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1617.png" class="align-center" src="../_images/1617.png" />
+<img alt="../_images/1618.png" class="align-center" src="../_images/1618.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Fișierul shape nou creat se va încărca automat în QGIS. Ascundeți stratul locurilor populate, debifând caseta de lângă aceasta. Acum, veți vedea doar entitățile noului strat creat, care conține capitalele lumii și care au o mai mult de 1.000.000 locuitori.</p>
 </li>
 </ol>
-<img alt="../_images/1716.png" class="align-center" src="../_images/1716.png" />
+<img alt="../_images/1717.png" class="align-center" src="../_images/1717.png" />
 </div>
 </div>
 
@@ -312,7 +313,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Oct 16, 2014.<br/>
+      Last updated on Nov 26, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

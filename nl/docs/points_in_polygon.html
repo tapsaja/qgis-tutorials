@@ -103,6 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Massa verwerken met behulp van Framework Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
@@ -223,7 +224,7 @@ below:</p>
 <li>Open <em class="menuselection">Layer ‣ Add Delimited Text Layer</em> and browse to the
 downloaded <tt class="docutils literal"><span class="pre">signif.txt</span></tt> file.</li>
 </ol>
-<img alt="../_images/199.png" class="align-center" src="../_images/199.png" />
+<img alt="../_images/1100.png" class="align-center" src="../_images/1100.png" />
 <ol class="arabic simple" start="2">
 <li>Since this is a <em>tab-delimited file</em>, choose <em class="guilabel">Tab</em> as the
 <em class="guilabel">File format</em>. The <em class="guilabel">X field</em> and <em class="guilabel">Y field</em>
@@ -241,7 +242,7 @@ the errors for the purpose of this tutorial.</p>
 <em class="guilabel">WGS 84 EPSG:436</em> as the CRS in the <em class="guilabel">Coordinate Reference System Selector</em>
 dialog.</li>
 </ol>
-<img alt="../_images/323.png" class="align-center" src="../_images/323.png" />
+<img alt="../_images/324.png" class="align-center" src="../_images/324.png" />
 <ol class="arabic simple" start="4">
 <li>The earthquake point layer would now be loaded and displayed in QGIS. Let&#8217;s
 also open the Countries layer. Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.
@@ -249,11 +250,11 @@ Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10m_a
 click <em class="guilabel">Open</em>. Select the <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt> as
 the layer in the <em class="guilabel">Select layers to add...</em> dialog.</li>
 </ol>
-<img alt="../_images/418.png" class="align-center" src="../_images/418.png" />
+<img alt="../_images/419.png" class="align-center" src="../_images/419.png" />
 <ol class="arabic simple" start="5">
 <li>Click on <em class="menuselection">Vector ‣ Analysis Tools ‣ Point in Polygon</em></li>
 </ol>
-<img alt="../_images/519.png" class="align-center" src="../_images/519.png" />
+<img alt="../_images/520.png" class="align-center" src="../_images/520.png" />
 <ol class="arabic simple" start="6">
 <li>In the pop-up window, select the polygon layer and point layer respectively.
 Name the output layer as <tt class="docutils literal"><span class="pre">earthquake_per_coutry.shp</span></tt> and Click <em class="guilabel">OK</em>.</li>
@@ -266,26 +267,26 @@ results.</p>
 <ol class="arabic simple" start="7">
 <li>When asked whether you want to add the layer to TOC, click <em class="guilabel">Yes</em>.</li>
 </ol>
-<img alt="../_images/717.png" class="align-center" src="../_images/717.png" />
+<img alt="../_images/718.png" class="align-center" src="../_images/718.png" />
 <ol class="arabic simple" start="8">
 <li>You will see a new layer is added to the table of content. Open the
 attribute table by right-clicking on the layer and selecting <em class="guilabel">Open
 Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/816.png" class="align-center" src="../_images/816.png" />
+<img alt="../_images/817.png" class="align-center" src="../_images/817.png" />
 <ol class="arabic simple" start="9">
 <li>In the attribute table, you will notice a new field named <tt class="docutils literal"><span class="pre">PNTCNT</span></tt>. This is
 the count of number of points from the earthquakes layer that fall within
 each polygon.</li>
 </ol>
-<img alt="../_images/915.png" class="align-center" src="../_images/915.png" />
+<img alt="../_images/916.png" class="align-center" src="../_images/916.png" />
 <ol class="arabic simple" start="10">
 <li>To get our answer, we can simply sort the table by <tt class="docutils literal"><span class="pre">PNTCNT</span></tt> field and the
 country with highest count will be our answer. Click 2-times on the <tt class="docutils literal"><span class="pre">PNTCNT</span></tt>
 column to get it sorted in descending order. Click on the first row to
 select it and close the Attribute Table.</li>
 </ol>
-<img alt="../_images/1015.png" class="align-center" src="../_images/1015.png" />
+<img alt="../_images/1016.png" class="align-center" src="../_images/1016.png" />
 <ol class="arabic simple" start="11">
 <li>Back in  the main QGIS window, you will see one feature highlighted in
 yellow. This is the feature linked to the selected row in the attribute
@@ -293,7 +294,7 @@ table which had the highest number of points. Select the
 <em class="guilabel">Identify</em> tool and click on that polygon. You can see that the
 country with the highest number of Significant earthquakes is <strong>China</strong>.</li>
 </ol>
-<img alt="../_images/1120.png" class="align-center" src="../_images/1120.png" />
+<img alt="../_images/1121.png" class="align-center" src="../_images/1121.png" />
 <p>We determined from the simple analysis of 2 datasets that China has had
 the highest number of major earthquakes. You may refine this analysis further
 by taking into consideration the population as well as the size of the country
@@ -322,7 +323,7 @@ earthquakes.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Oct 16, 2014.<br/>
+      Laatste aanpassing op Nov 26, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

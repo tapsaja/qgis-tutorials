@@ -103,6 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Massa verwerken met behulp van Framework Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
@@ -209,22 +210,22 @@
 <li><p class="first">Download en pak de gegevens van de Natural Earth Quick Start Kit uit. Open QGIS. Klik op <em class="menuselection">Project ‣ Open...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
+<img alt="../_images/150.png" class="align-center" src="../_images/150.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Blader naar de map waar u de gegevens van Natural Earth hebt uitgepakt. U zou een bestand moeten zien genaamd <tt class="file docutils literal"><span class="pre">Natural_Earth_quick_start_for_QGIS.qgs</span></tt>. Dat is het projectbestand dat de opgemaakte lagen bevat in de indeling QGIS Document. Klik op <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
+<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">U zou vele lagen in de inhoudstabel moeten zien en een opgemaakte kaart van de wereld in het kaartvenster van QGIS. Als u ziet dat fouten worden weergegeven aan de bovenzijde van het kaartvenster, klik op het kruis om ze te sluiten.</p>
 </li>
 </ol>
-<img alt="../_images/316.png" class="align-center" src="../_images/316.png" />
+<img alt="../_images/317.png" class="align-center" src="../_images/317.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">In deze handleiding zullen we ene kaart van Japan maken. Klik op de knop <em class="guilabel">Inzoomen</em> en teken een rechthoek rondom Japan om op het gebied in te zoomen.</p>
 </li>
 </ol>
-<img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
+<img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
 <ol class="arabic simple" start="5">
 <li>Before we make a map suitable for printing, we need to choose an appropriate
 projection. This dataset comes in Geographic Coordinate System (GCS) where
@@ -245,67 +246,67 @@ system (CRS) that is designed for minimum distortions. It is divided in 18
 zones and if you are working for a smaller region in Japan, using this CRS
 will be better.</p>
 </div>
-<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
+<img alt="../_images/514.png" class="align-center" src="../_images/514.png" />
 <ol class="arabic simple" start="6">
 <li>Check the <em class="guilabel">Enable on-the-fly CRS Transformation</em> box. Type <tt class="docutils literal"><span class="pre">Tokyo</span>
 <span class="pre">utm</span> <span class="pre">zone54n</span></tt> in the <em class="guilabel">Filter</em> search box. Once you see the
 results, select <em class="guilabel">Tokyo / UTM Zone 54N - EPSG:3095</em>. Click
 <em class="guilabel">Apply</em>.</li>
 </ol>
-<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
+<img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
 <ol class="arabic simple" start="7">
 <li>Zoom and Pan to keep Japan at the center of your map canvas. At this point,
 you can check the box next to <tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt> layer to turn off
 the labels from that layer.</li>
 </ol>
-<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
+<img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Klik op de knop <em class="guilabel">Nieuwe printvormgeving</em> als u eenmaal bent gecentreerd rondom het gebied van uw interesse. Het is ook te bereiken via <em class="menuselection">Project ‣ Nieuwe printvormgeving</em>.</p>
 </li>
 </ol>
-<img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
+<img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">U zult worden gevraagd een titel voor de printvormgeving in te vullen. Voer &#8216;Kaart Japan&#8217; in en klik op <em class="guilabel">Ok</em>.</p>
 </li>
 </ol>
-<img alt="../_images/910.png" class="align-center" src="../_images/910.png" />
+<img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Klik, in het venster Printvormgeving, op <em class="guilabel">Zoom naar 100%</em> om de volledige inhoud van de lay-out te weer te geven.</p>
 </li>
 </ol>
-<img alt="../_images/1010.png" class="align-center" src="../_images/1010.png" />
+<img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Nu zouden we de kaartweergave die we zien in het kaartvenster van QGIS moeten overbrengen naar deze laag. Klik op de knop <em class="guilabel">Nieuwe kaart toevoegen</em>. Dit gereedschap kan ook worden bereikt via <em class="menuselection">Lay-out ‣ Kaart toevoegen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
+<img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Als de knop <em class="guilabel">Nieuwe kaart toevoegen</em> actief is, houdt dan de linker muisknop ingedrukt en sleep een rechthoek waar u de kaart wilt invoegen.</p>
 </li>
 </ol>
-<img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
+<img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">U zult zien dat het rechthoekige venster zal worden gerenderd met de kaart uit het kaartvenster van QGIS canvas. Omdat we willen dat onze kaart de volledige inhoud van de lay-out vult, sleep de hoeken van de rechthoek naar de hoeken.</p>
 </li>
 </ol>
-<img alt="../_images/1311.png" class="align-center" src="../_images/1311.png" />
+<img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
 <ol class="arabic simple" start="14">
 <li>The rendered map may not be covering the full extent of our interest area.
 Click the <em class="guilabel">Move item content</em> button to pan the map in the window
 and center it in the composer.</li>
 </ol>
-<img alt="../_images/1410.png" class="align-center" src="../_images/1410.png" />
+<img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
 <ol class="arabic simple" start="15">
 <li>Let us adjust the zoom level for the given map. Click on the
 <em class="guilabel">Item Properties</em> tab and enter <cite>5000000</cite> for <em class="guilabel">Scale</em>
 value.</li>
 </ol>
-<img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
+<img alt="../_images/1510.png" class="align-center" src="../_images/1510.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Nu zullen we een Noordpijl aan de kaart toevoegen Printvormgeving bevat een aardige collectie kaartgerelateerde afbeeldingen - inclusief vele typen Noordpijlen. Klik op <em class="menuselection">Lay-out ‣ Afbeelding toevoegen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/169.png" class="align-center" src="../_images/169.png" />
+<img alt="../_images/1610.png" class="align-center" src="../_images/1610.png" />
 <ol class="arabic simple" start="17">
 <li>Holding your left mouse button, draw a rectangle on the top-right corner of
 the map canvas. On the right-hand panel, click on the
@@ -313,29 +314,29 @@ the map canvas. On the right-hand panel, click on the
 <em class="guilabel">Search directories</em> section and select the North Arrow image of
 your liking.</li>
 </ol>
-<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
+<img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Scroll vervolgens naar beneden en deselecteer de optie <em class="guilabel">Achtergrond</em>. Dit zal de afbeelding transparant maken.</p>
 </li>
 </ol>
-<img alt="../_images/188.png" class="align-center" src="../_images/188.png" />
+<img alt="../_images/189.png" class="align-center" src="../_images/189.png" />
 <ol class="arabic simple" start="19">
 <li>You can drag the North Arrow and move it around in the composer window to a
 suitable position.</li>
 </ol>
-<img alt="../_images/196.png" class="align-center" src="../_images/196.png" />
+<img alt="../_images/197.png" class="align-center" src="../_images/197.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Nu zullen we een schaalbalk toevoegen. Klik op <em class="menuselection">Lay-out ‣ Nieuwe schaalbalk toevoegen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/203.png" class="align-center" src="../_images/203.png" />
+<img alt="../_images/204.png" class="align-center" src="../_images/204.png" />
 <ol class="arabic simple" start="21">
 <li>Click on the layout where you want the scalebar to appear.
 From the <em class="guilabel">Item Properties</em> tab, choose the Style that fit your
 requirement. You should also set the transparency by un-cecking the
 <em class="guilabel">Background</em> option.</li>
 </ol>
-<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
+<img alt="../_images/2110.png" class="align-center" src="../_images/2110.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Nu zullen we een legenda aan de kaart toevoegen. Klik op <em class="menuselection">Lay-out ‣ Nieuwe legenda toevoegen</em>.</p>
 </li>
@@ -412,7 +413,7 @@ SVG. For this tutorial, let’s export it as an image. Click
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Oct 16, 2014.<br/>
+      Laatste aanpassing op Nov 26, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
