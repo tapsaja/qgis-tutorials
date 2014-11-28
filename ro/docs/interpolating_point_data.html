@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Interpolating Point Data &mdash; QGIS Tutorials and Tips</title>
+    <title>Interpolarea Datelor de tip Punct &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -102,7 +102,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Efectuarea interogărilor spațiale</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analiza celui mai apropiat vecin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster, folosind puncte sau poligoane</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Interpolating Point Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Interpolarea Datelor de tip Punct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea în serie, folosind cadrul de procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Utilizarea QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
@@ -190,99 +190,78 @@
       
 
   <div class="section" id="interpolating-point-data">
-<h1>Interpolating Point Data<a class="headerlink" href="#interpolating-point-data" title="Permalink to this headline">¶</a></h1>
+<h1>Interpolarea Datelor de tip Punct<a class="headerlink" href="#interpolating-point-data" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/interpolating_point_data_a4.pdf">A4</a> <a class="reference external" href="../pdf/interpolating_point_data_letter.pdf">Letter</a> ]</p>
-<p>Interpolation is a commonly used GIS technique to create continuous surface
-from discrete points. A lot of real world phenomena are continuous -
-elevations, soils, temperatures etc. If we wanted to model these surfaces for
-analysis, it is impossible to take measurements throughout the surface. Hence,
-the field measurements are taken at various points along the surface and the
-intermediate values are inferred by a process called &#8216;interpolation&#8217;. In QGIS,
-interpolation is achieved using the built-in <tt class="docutils literal"><span class="pre">Interpolation</span> <span class="pre">plugin</span></tt>.</p>
+<p>Interpolarea este o tehnică GIS frecvent utilizată pentru a crea suprafețe continue de puncte discrete. O mulțime de fenomene din lumea reală sunt continue - elevațiile, solurile, temperaturile etc. Dacă dorim să modelăm aceste suprafețe pentru ale analiza ulterior, este imposibil să efectuăm măsurători pe întreaga suprafață. Astfel, măsurătorile din teren se fac în diverse puncte, de-a lungul suprafeței, iar valorile intermediare sunt deduse printr-un proces numit &#8216;interpolare&#8217;. În QGIS, interpolarea este realizată cu ajutorul <tt class="docutils literal"><span class="pre">Pluginului</span> <span class="pre">de</span> <span class="pre">Interpolare</span></tt> nativ.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will take field depth measurements for a Lake Arlington in Texas and create
-an elevation relief map and contours from these measurements.</p>
+<h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>Vom folosi datele măsurate în teren pentru Lacul Arlington din Texas și vom crea o hartă a elevației reliefului și a curbelor de nivel.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<h3>Alte competențe pe care le veți dobândi<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Creating contours from point data.</li>
-<li>Masking no-data values from a raster layer.</li>
-<li>Adding labels to a vector layer.</li>
+<li><p class="first">Crearea curbelor de nivel cu ajutorul datelor de tip punct.</p>
+</li>
+<li><p class="first">Mascarea valorilor nule dintr-un strat raster.</p>
+</li>
+<li><p class="first">Adăugarea etichetelor în straturile vectoriale</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>Texas Water Development Board provides the <a class="reference external" href="http://www.twdb.state.tx.us/surfacewater/surveys/completed/list/index.asp">shapefiles for completed lake
-surveys</a>.</p>
-<p>Download the <a class="reference external" href="http://www.twdb.texas.gov/hydro_survey/Arlington/2007-12/Shapefiles.zip">2007-12 survey shapefiles for Lake Arlington</a>.</p>
+<h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Consiliul de Dezvoltare al Apelor din Texas oferă <a class="reference external" href="http://www.twdb.state.tx.us/surfacewater/surveys/completed/list/index.asp">fișierele shape ale studiilor realizate asupra lacului</a>.</p>
+<p>Descărcați fișierele shape ale studiului din 2007-12 pentru Lacul Arlington &lt;<a class="reference external" href="http://www.twdb.texas.gov/hydro_survey/Arlington/2007-12/Shapefiles.zip">http://www.twdb.texas.gov/hydro_survey/Arlington/2007-12/Shapefiles.zip</a>&gt;`_.</p>
 <p>For convenience, you can directly download the sample data used in this
 tutorial from link below.</p>
 <p><a class="reference download internal" href="../_downloads/Shapefiles.zip"><tt class="xref download docutils literal"><span class="pre">Shapefiles.zip</span></tt></a></p>
-<p>Data Sources: <a class="reference internal" href="credits.html#twdb" id="id1">[TWDB]</a></p>
+<p>Sursa de date: <a class="reference internal" href="credits.html#twdb" id="id1">[TWDB]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS. Go to <em class="menuselection">Layer ‣ Add Layer  ‣ Add Vector Layer..</em></li>
+<li><p class="first">Deschideți QGIS. Mergeți la <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer..</em></p>
+</li>
 </ol>
 <img alt="../_images/140.png" class="align-center" src="../_images/140.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">Shapefiles.zip</span></tt> file and select it. Click
-<em class="guilabel">Open</em>.</li>
+<li><p class="first">Navigați la fișierul descărcat <tt class="docutils literal"><span class="pre">Shapefiles.zip</span></tt> și selectați-l, Clic pe <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/216.png" class="align-center" src="../_images/216.png" />
 <ol class="arabic simple" start="3">
-<li>In the <em class="guilabel">Select layers to add...</em> dialog, hold the <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> key
-and select <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83.shp</span></tt> and
-<tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83.shp</span></tt> layers. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">În fereastra de dialog <em class="guilabel">Select layers to add...</em>, țineți apăsată tasta <tt class="kbd docutils literal"><span class="pre">Shift</span></tt>, apoi selectați straturile <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83.shp</span></tt> și <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83.shp</span></tt>. Clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/314.png" class="align-center" src="../_images/314.png" />
 <ol class="arabic simple" start="4">
-<li>You will see the 2 layers loaded in QGIS. The <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83</span></tt>
-layer represents the boundary of the lake. Un-check the box next to it in
-the Table of Contents.</li>
+<li><p class="first">Veți vedea 2 straturi încărcate în QGIS. Stratul <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83</span></tt> reprezintă limitele lacului. În Cuprins, debifați căsuța de lângă acesta.</p>
+</li>
 </ol>
 <img alt="../_images/412.png" class="align-center" src="../_images/412.png" />
 <ol class="arabic simple" start="5">
-<li>This will reveal the data from the second layer
-<tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></tt>. Though the data looks like lines, it is
-a series of points that are very close.</li>
+<li><p class="first">În acest fel, veți putea observa datele celui de-al doilea strat <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></tt>. Ceea ce se vede arată similar unor linii, dar de fapt este doar o serie de puncte foarte apropiate.</p>
+</li>
 </ol>
 <img alt="../_images/512.png" class="align-center" src="../_images/512.png" />
 <ol class="arabic simple" start="6">
-<li>Click the <em class="guilabel">Zoom</em> icon and select a small area on the screen. As
-you zoom closer, you will see the points. Each point represents a reading
-taken by a <em>Depth Sounder</em> at the location recorded by a <em>DGPS</em> equipment.</li>
+<li><p class="first">Efectuați clic pe pictograma <em class="guilabel">Zoom</em> și selectați o mică arie de pe ecran. Pe măsură ce veți mări imaginea, veți observa punctele. Fiecare punct reprezintă o citire luată de o <em>Sondă de Adâncime</em> într-o locație înregistrată de un echipament <em>DGPS</em>.</p>
+</li>
 </ol>
 <img alt="../_images/611.png" class="align-center" src="../_images/611.png" />
 <ol class="arabic simple" start="7">
-<li>Select the <em class="guilabel">Identify</em> tool and click on a point. You will see the
-<em class="guilabel">Identify Results</em> panel show up on the left with the attribute
-value of the point. In this case, the <tt class="docutils literal"><span class="pre">ELEVATION</span></tt> attribute contains the
-depth of the lake at the location. As our task is to create a depth profile
-and elevation contours, we will use this values as input for the
-interpolation.</li>
+<li><p class="first">Selectați instrumentul <em class="guilabel">Identify</em> și faceți clic pe un punct. Veți vedea panoul cu <em class="guilabel">Rezultatele Identificării</em> apărând în partea stângă, alături de valoarea atributului punctului. În acest caz, atributul <tt class="docutils literal"><span class="pre">ELEVAȚIE</span></tt> conține adâncimea lacului la acea locație. Deoarece sarcina noastră este de a crea un profil de adâncime și curbele de nivel, vom folosi aceste valori ca intrare pentru interpolare.</p>
+</li>
 </ol>
 <img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
 <ol class="arabic simple" start="8">
-<li>Make sure you have the <tt class="docutils literal"><span class="pre">Interpolation</span> <span class="pre">plugin</span></tt> enabled. See
-<a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a> for how to enable plugins. Once enabled, go to
-<em class="menuselection">Raster ‣ Interpolation ‣ Interpolation</em>.</li>
+<li><p class="first">Asigurați-vă că <tt class="docutils literal"><span class="pre">Plugin-ul</span> <span class="pre">Interpolare</span></tt> a fost activat. Parcurgeți <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a> pentru a vedea cum se activează plugin-urile. După activare, mergeți la <em class="menuselection">Raster ‣ Interpolation ‣ Interpolation</em>.</p>
+</li>
 </ol>
 <img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
 <ol class="arabic simple" start="9">
-<li>In the <em class="guilabel">Interpolation</em> dialog, select
-<tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></tt> as the <em class="guilabel">Vector layers</em> in the
-<em class="guilabel">Input</em> panel. Select <tt class="docutils literal"><span class="pre">ELEVATION</span></tt> as the
-<em class="guilabel">Interpolation attribute</em>. Click <em class="guilabel">Add</em>. Change the
-<em class="guilabel">Cellsize X</em> and <em class="guilabel">Cellsize Y</em> values to <tt class="docutils literal"><span class="pre">5</span></tt>. This
-value is the size of each pixel in the output grid. Since our source data is
-in a projected CRS with <strong>Feet-US</strong> as units, based on our selection, the
-grid size will be <strong>5 feet</strong>. Click on the <em class="guilabel">...</em> button next to
-<em class="guilabel">Output file</em> and name the output file as <tt class="docutils literal"><span class="pre">elevation_tin.tif</span></tt>.
-CLick <em class="guilabel">OK</em>.</li>
+<li><p class="first">În fereastra de dialog <em class="guilabel">Interpolation</em>, selectați <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></tt> pentru <em class="guilabel">Vector layers</em> în panoul <em class="guilabel">Input</em>. Selectați <tt class="docutils literal"><span class="pre">ELEVATION</span></tt> ca <em class="guilabel">Interpolation attribute</em>. Apăsați <em class="guilabel">Add</em>. Schimbați valorile <em class="guilabel">Cellsize X</em> și <em class="guilabel">Cellsize Y</em> la <tt class="docutils literal"><span class="pre">5</span></tt>. Această valoare este dimensiunea fiecărui pixel din grila de ieșire. Deoarece datele noastre sursă sunt într-un CRS proiectat, cu unități <strong>Feet-US</strong>, pe baza selecției noastre, dimensiunea grilei va fi de <strong>5 metri</strong>. Faceți clic pe butonul <em class="guilabel">...</em> de lângă <em class="guilabel">Output file</em> și denumiți fișierul de ieșire ca <tt class="docutils literal"><span class="pre">elevation_tin.tif</span></tt>. Faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -296,8 +275,8 @@ module of the QGIS documentation for more details.</p>
 </div>
 <img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
 <ol class="arabic simple" start="10">
-<li>You will see the new later <tt class="docutils literal"><span class="pre">elevation_tin</span></tt> loaded in QGIS. Right-click
-the layer and select <em class="guilabel">Zoom to layer</em>.</li>
+<li><p class="first">Veți vedea noul strat, <tt class="docutils literal"><span class="pre">elevation_tin</span></tt>, încărcat în QGIS. Efectuați clic-dreapta pe strat, apoi selectați <em class="guilabel">Zoom to layer</em>.</p>
+</li>
 </ol>
 <img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
 <ol class="arabic simple" start="11">
@@ -361,8 +340,8 @@ with</em> box and select <tt class="docutils literal"><span class="pre">ELEV</sp
 </ol>
 <img alt="../_images/195.png" class="align-center" src="../_images/195.png" />
 <ol class="arabic simple" start="20">
-<li>You will see that each contour line will be appropriately labeled with the
-elevation along the line.</li>
+<li><p class="first">Veți vedea că fiecare curbă de nivel va fi etichetată în mod corespunzător, afișând cota de-a lungul liniei.</p>
+</li>
 </ol>
 <img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
 </div>
@@ -388,7 +367,7 @@ elevation along the line.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Nov 26, 2014.<br/>
+      Last updated on Nov 28, 2014.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
