@@ -103,7 +103,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Utilizzare le interrogazioni spaziali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analisi di prossimità</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Campionare i dati di un raster usando punti o poligoni</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolazione di dati puntuali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Elaborazioni &#8220;batch&#8221; usando il Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Usare il browser di QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
@@ -211,7 +211,7 @@
 </div>
 <div class="section" id="get-the-data">
 <h2>Ottenere i dati necessari<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
-<p><a href="#id1"><span class="problematic" id="id2">`</span></a>Land Information New Zealand (LINZ) &lt;<a class="reference external" href="http://www.linz.govt.nz/">http://www.linz.govt.nz/</a>&gt;`_fornisce carte topografiche alla scala 1:50000 per la Nuova Zelanda e le isole Chatham.</p>
+<p><a class="reference external" href="http://www.linz.govt.nz/">Land Information New Zealand (LINZ)</a> fornisce carte topografiche alla scala 1:50000 per la Nuova Zelanda e le isole Chatham.</p>
 <p>Scaricate il <a class="reference external" href="http://topo.linz.govt.nz/Topo50_raster_images/GeoTIFFTopo50/BX24_GeoTifv1-02.tif">GeoTIFF Image file</a> dalla pagina <a class="reference external" href="http://www.linz.govt.nz/topography/topo-maps/map-chooser/christchurch/christchurch#digitalfile">Christchurch Topo50 map download page</a>.</p>
 <p>If you are on a slow connection, you may download a clipped version of the
 original GeoTIFF which is a much smaller file size.</p>
@@ -226,7 +226,7 @@ original GeoTIFF which is a much smaller file size.</p>
 </ol>
 <img alt="../_images/119.png" class="align-center" src="../_images/119.png" />
 <ol class="arabic simple" start="2">
-<li><p class="first">Abbiamo caricato un file raster piuttosto pesante e potrete notare che quando fate operazioni di zoom o di pan sulla mappa passa un certo  tempo prima che l&#8217;immagine venga visualizzata di nuovo. QGIS offre una semplice soluzione per rendere il caricamento dei raster più veloce attraverso <strong>Image Pyramids</strong>. Con questo servizio QGIS crea delle piastrelle (tile) precaricate a risoluzioni diverse e saranno proprio queste piastrelle - le cosiddette piramidi - a venir rappresentate al posto dell&#8217;intero raster. Ciò renderà la navigazione più rapida e diretta. Fate click con il tasto destro del mouse sul layer del raster <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02</span></tt> e scegliete <em class="guilabel">Proprietà</em>.</p>
+<li><p class="first">Abbiamo caricato un file raster piuttosto pesante e potrete notare che, quando fate operazioni di zoom o di pan sulla mappa, passa un certo  tempo prima che l&#8217;immagine venga visualizzata di nuovo. QGIS offre una semplice soluzione per rendere il caricamento dei raster più veloce attraverso <strong>Image Pyramids</strong>. Con questo servizio QGIS crea delle piastrelle (tile) precaricate a risoluzioni diverse e saranno proprio queste piastrelle - le cosiddette piramidi - a venir rappresentate al posto dell&#8217;intero raster. Ciò renderà la navigazione più rapida e diretta. Fate click con il tasto destro del mouse sul layer del raster <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02</span></tt> e scegliete <em class="guilabel">Proprietà</em>.</p>
 </li>
 </ol>
 <img alt="../_images/26.png" class="align-center" src="../_images/26.png" />
@@ -246,7 +246,7 @@ original GeoTIFF which is a much smaller file size.</p>
 </ol>
 <img alt="../_images/56.png" class="align-center" src="../_images/56.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">Selezionate la scheda <em class="guilabel">Digitalizzazione</em>  nella finestra di dialogo <em class="guilabel">Opzioni</em> . All&#8217;interno della scheda  <em class="guilabel">Snapping</em>  e precisamente nella casella <em class="guilabel">Modalità di snap predefinita</em>, settate la voce <em class="guilabel">Al vertice e al segmento</em>. E&#8217; preferibile settare le caselle  <em class="guilabel">Modalità di snap predefinita</em> e <em class="guilabel">Tolleranza di snapping predefinita</em> su pixel invece che su unità di mappa. Questo ci assicura che la distanza di snapping rimane costante indipendentemente dal livello di zoom. Sulla base della risoluzione dei vostri schermi, scegliete dei valori appropriati. Click su <em class="guilabel">OK</em>.</p>
+<li><p class="first">Selezionate la scheda <em class="guilabel">Digitalizzazione</em>  nella finestra di dialogo <em class="guilabel">Opzioni</em> . All&#8217;interno della scheda  <em class="guilabel">Snapping</em>  e precisamente nella casella <em class="guilabel">Modalità di snap predefinita</em>, settate la voce <em class="guilabel">Al vertice e al segmento</em>. E&#8217; preferibile settare le caselle  <em class="guilabel">Modalità di snap predefinita</em> e <em class="guilabel">Raggio di ricerca per le modifiche dei vertici</em> su pixel invece che su unità di mappa. Questo ci assicura che la distanza di snapping rimane costante indipendentemente dal livello di zoom. Sulla base della risoluzione dei vostri schermi, scegliete dei valori appropriati. Click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/65.png" class="align-center" src="../_images/65.png" />
@@ -256,12 +256,12 @@ original GeoTIFF which is a much smaller file size.</p>
 </ol>
 <img alt="../_images/75.png" class="align-center" src="../_images/75.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">Nella finestra di dialogo <em class="guilabel">Nuovo layer Spazialite</em>  scegliete il pulsante <em class="guilabel">...</em>  e salvate un nuovo database spatiaLite che chiameremo <tt class="docutils literal"><span class="pre">nztopo.sqlite</span></tt>. Scegliete <tt class="docutils literal"><span class="pre">Roads</span></tt>  come <em class="guilabel">Nome layer</em>  e selezionate <tt class="docutils literal"><span class="pre">Linea</span></tt> come <em class="guilabel">Tipo</em>. La carta topografica di base ha come CRS <tt class="docutils literal"><span class="pre">EPSG:2193</span> <span class="pre">-</span> <span class="pre">NZGD</span> <span class="pre">2000</span></tt>, quindi dovremo selezionare lo stesso sistema di riferimento per il nostro layer stradale. Barrate la casella <em class="guilabel">Crea una chiave primaria autoincrementale</em>. Questo creerà un campo chiamato <strong>pkuid</strong>  nella tabella degli attributi e assegnerà automaticamente un unico id numerico per ciascuna geometria. In generale, quando create un layer GIS, dovete decidere quali attributi assegnare alle geometrie. Considerando che qui abbiamo a che fare con un layer stradale,  sceglieremo 2 attributi di base: Name and Class. Digitate <cite>Name`</cite> , inteso come il nome dell&#8217;attributo, nella sezione <em class="guilabel">Nuovo attributo</em> e fate click su <em class="guilabel">Aggiungi alla lista degli attributi.</em></p>
+<li><p class="first">Nella finestra di dialogo <em class="guilabel">Nuovo layer Spazialite</em>  scegliete il pulsante <em class="guilabel">...</em>  e salvate un nuovo database spatiaLite che chiameremo <tt class="docutils literal"><span class="pre">nztopo.sqlite</span></tt>. Scegliete <tt class="docutils literal"><span class="pre">Roads</span></tt>  come <em class="guilabel">Nome layer</em>  e selezionate <tt class="docutils literal"><span class="pre">Linea</span></tt> come <em class="guilabel">Tipo</em>. La carta topografica di base ha come CRS <tt class="docutils literal"><span class="pre">EPSG:2193</span> <span class="pre">-</span> <span class="pre">NZGD</span> <span class="pre">2000</span></tt>, quindi dovremo selezionare lo stesso sistema di riferimento per il nostro layer stradale. Barrate la casella <em class="guilabel">Crea una chiave primaria autoincrementale</em>. Questo creerà un campo chiamato <strong>pkuid</strong>  nella tabella degli attributi e assegnerà automaticamente un unico id numerico per ciascuna geometria. In generale, quando create un layer GIS, dovete decidere quali attributi assegnare alle geometrie. Considerando che qui abbiamo a che fare con un layer stradale,  sceglieremo 2 attributi di base: Name and Class. Digitate <tt class="docutils literal"><span class="pre">Name</span></tt> , inteso come il nome dell&#8217;attributo, nella sezione <em class="guilabel">Nuovo attributo</em> e fate click su <em class="guilabel">Aggiungi alla lista degli attributi.</em></p>
 </li>
 </ol>
 <img alt="../_images/85.png" class="align-center" src="../_images/85.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">In modo del tutto analogo create il nuovo attributo <tt class="docutils literal"><span class="pre">Class</span></tt> sempre con tipo di dato <em class="guilabel">Testo`Fate click su :guilabel:`OK</em>.</p>
+<li><p class="first">In modo del tutto analogo create il nuovo attributo <tt class="docutils literal"><span class="pre">Class</span></tt> sempre con tipo di dato <em class="guilabel">Testo</em>. Fate quindi click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/95.png" class="align-center" src="../_images/95.png" />
@@ -276,16 +276,16 @@ original GeoTIFF which is a much smaller file size.</p>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
-<p class="last">potete usare la ruota di scorrimento del mouse per ingrandire o rendere più piccola l&#8217;immagine mentre lavorate alla digitalizzazione. Potete anche tenere pigiata la ruota del mouse e spostare la mappa con movimenti di pan.</p>
+<p class="last">Potete usare la ruota di scorrimento del mouse per ingrandire o rendere più piccola l&#8217;immagine mentre lavorate alla digitalizzazione. Potete anche tenere pigiata la ruota del mouse e spostare la mappa con movimenti di pan.</p>
 </div>
 <img alt="../_images/1110.png" class="align-center" src="../_images/1110.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">Dopo aver fatto click sul tasto destro del mouse apparirà una finestra di dialogo chiamata:guilabel:<cite>Attributi</cite>. Qui potete inserire gli attributi delle geometrie che andate via via creando. Visto che <strong>pkuid</strong>  è un campo che si autoincrementa, non vi sarà permesso digitare valori al suo interno manualmente. Lasciatelo vuoto e scrivete il nome della strada così come appare sulla mappa topografica. Se volete, potete assegnare un valore di Road Class. Click su <em class="guilabel">OK</em>.</p>
+<li><p class="first">Dopo aver fatto click sul tasto destro del mouse apparirà una finestra di dialogo chiamata <em class="guilabel">Attributi</em>. Qui potete inserire gli attributi delle geometrie che andate via via creando. Visto che <strong>pkuid</strong>  è un campo che si autoincrementa, non vi sarà permesso digitare valori al suo interno manualmente. Lasciatelo vuoto e scrivete il nome della strada così come appare sulla mappa topografica. Se volete, potete assegnare un valore di Road Class. Click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <img alt="../_images/125.png" class="align-center" src="../_images/125.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">Lo stile di default per il layer delle nuove linee è una linea troppo sottile. Cambiamola, così potremo vedere meglio le geometrie che digitalizziamo sulla mappa. Fate click sul layer <a href="#id1"><span class="problematic" id="id2">``</span></a>Roads` e selezionate:guilabel:<cite>Proprietà</cite>.</p>
+<li><p class="first">Lo stile di default per il layer delle nuove linee è una linea troppo sottile. Cambiamola, così potremo vedere meglio le geometrie che digitalizziamo sulla mappa. Fate click sul layer <a href="#id1"><span class="problematic" id="id2">``</span></a>Roads` e selezionate <em class="guilabel">Proprietà</em>.</p>
 </li>
 </ol>
 <img alt="../_images/135.png" class="align-center" src="../_images/135.png" />
@@ -295,17 +295,17 @@ original GeoTIFF which is a much smaller file size.</p>
 </ol>
 <img alt="../_images/145.png" class="align-center" src="../_images/145.png" />
 <ol class="arabic simple" start="15">
-<li><p class="first">Ora potrete vedere chiaramente la strada digitalizzata. Fate click su:guilabel:<cite>Salva modifiche vettori</cite>  per salvare la nuova geometria sul vostro supporto di memoria.</p>
+<li><p class="first">Ora potrete vedere chiaramente la strada digitalizzata. Fate click su <em class="guilabel">Salva modifiche vettori</em>  per salvare la nuova geometria sul vostro supporto di memoria.</p>
 </li>
 </ol>
 <img alt="../_images/155.png" class="align-center" src="../_images/155.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">Prima di digitalizzare le strade rimanenti è importante aggiornare alcune altre impostazioni che sono utili per creare un layer privo di errori.:menuselection:<cite>Impostazioni &#8211;&gt; Optioni di snap...</cite>.</p>
+<li><p class="first">Prima di digitalizzare le strade rimanenti è importante aggiornare alcune altre impostazioni che sono utili per creare un layer privo di errori. Andate su <em class="menuselection">Impostazioni ‣ Optioni di snap...</em>.</p>
 </li>
 </ol>
 <img alt="../_images/165.png" class="align-center" src="../_images/165.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">Nella finestra di dialogo:guilabel:<cite>Opzioni di snap</cite>  spuntare la casella in basso <em class="guilabel">Abilita la modifica topologica</em>.. Questa opzione ci assicura che i vincoli verranno mantenuti nei layers poligonali. Spuntate anche la casella <em class="guilabel">Abilita l&#8217;ancoraggio alle intersezioni</em>  che ci permette di agganciarci all&#8217;intersezione di un layer di sfondo.</p>
+<li><p class="first">Nella finestra di dialogo <em class="guilabel">Opzioni di snap</em>  spuntare la casella in basso <em class="guilabel">Abilita la modifica topologica</em>. Questa opzione ci assicura che i confini verranno rispettati nei layers poligonali. Spuntate anche la casella <em class="guilabel">Abilita l&#8217;ancoraggio alle intersezioni</em>  che ci permette di agganciarci all&#8217;intersezione di un layer di sfondo.</p>
 </li>
 </ol>
 <img alt="../_images/175.png" class="align-center" src="../_images/175.png" />
@@ -315,7 +315,7 @@ original GeoTIFF which is a much smaller file size.</p>
 </ol>
 <img alt="../_images/185.png" class="align-center" src="../_images/185.png" />
 <ol class="arabic simple" start="19">
-<li><p class="first">Una volta che lo strumento vertice è attivato fate click su alcune geometrie per vedere i vertici. Fate quindi click su qualche vertice per selezionarlo. Il vertice cambierà colore una volta selezionato. Adesso, potete fare click e trascinare il vertice con il mouse. Questo può essere molto utile quando volete fare un aggiustamento dopo che la geometria è stata creata. Potete anche cancellare un vertice selezionato facendo click sul pulsante <tt class="kbd docutils literal"><span class="pre">Delete</span></tt> .
+<li><p class="first">Una volta che lo strumento vertice è attivato fate click su alcune geometrie per vedere i vertici. Fate quindi click con il tasto destro e sinistro su qualche vertice per selezionarlo. Il vertice cambierà colore una volta selezionato. Adesso, potete fare click e trascinare il vertice con il mouse. Questo può essere molto utile quando volete fare un aggiustamento dopo che la geometria è stata creata. Potete anche cancellare un vertice selezionato facendo click sul pulsante <tt class="kbd docutils literal"><span class="pre">Delete</span></tt> .
 (<tt class="kbd docutils literal"><span class="pre">Option+Delete</span></tt>  su mac).</p>
 </li>
 </ol>
@@ -441,7 +441,7 @@ polygon without worrying about snapping exactly to the neighboring polygons.</li
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Jan 10, 2015.<br/>
+      Ultimo aggiornamento Jan 19, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
