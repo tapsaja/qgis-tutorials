@@ -176,16 +176,7 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><h4>Author</h4>
 <div class="g-person" data-width="250" data-href="//plus.google.com/u/0/116912222767108657277" data-showtagline="false" data-showcoverphoto="false" data-rel="author"></div>
 
-<!-- AddThis Button BEGIN -->
-<h4>Share</h4>
-<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-    <a class="addthis_button_google_plusone_share"></a>
-    <a class="addthis_button_twitter"></a>
-    <a class="addthis_button_facebook"></a>
-    <a class="addthis_button_email"></a>
-    <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-</div>
-<!-- AddThis Button END -->
+<div class="addthis_horizontal_follow_toolbox"></div>
         </div>
       </div>
     <div class="col-md-9">
@@ -194,47 +185,68 @@
   <div class="section" id="making-a-map">
 <h1>Making a Map<a class="headerlink" href="#making-a-map" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/making_a_map_a4.pdf">A4</a> <a class="reference external" href="../pdf/making_a_map_letter.pdf">Letter</a> ]</p>
-<p>Often one needs to create a map that can be printed or published. QGIS has a powerful tool called <em class="guilabel">Print Composer</em> that allows you to take your GIS layers and package them to create maps.</p>
+<p>Often one needs to create a map that can be printed or published. QGIS has a
+powerful tool called <em class="guilabel">Print Composer</em> that allows you to take your
+GIS layers and package them to create maps.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>The tutorial shows how to create a map of Japan with standard map elements like north arrow, scale bar, legend and label.</p>
+<p>The tutorial shows how to create a map of Japan with standard map elements like
+map inset, grids, north arrow, scale bar and labels.</p>
+<div class="section" id="other-skills-you-will-learn">
+<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Using &#8216;on-the-fly&#8217; CRS transformation to visualize your data in a different
+projection.</li>
+</ul>
+</div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use the Natural Earth dataset - specifically the Natural Earth Quick Start Kit that comes with beautifully styled global layers that can be loaded directly to QGIS.</p>
+<p>We will use the Natural Earth dataset - specifically the Natural Earth Quick
+Start Kit that comes with beautifully styled global layers that can be loaded
+directly to QGIS.</p>
 <p>Download the <a class="reference external" href="http://kelso.it/x/nequickstart">Natural Earth Quickstart Kit</a>.</p>
 <p>Data Source <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Download and extract the Natural Earth Quick Start Kit data. Open QGIS. Click on <em class="menuselection">File ‣ Open Project</em>.</li>
+<li>Download and extract the Natural Earth Quick Start Kit data. Open QGIS.
+Click on <em class="menuselection">File ‣ Open Project</em>.</li>
 </ol>
 <img alt="../_images/150.png" class="align-center" src="../_images/150.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the directory when you had extracted the natural earth data. You should see a file named <tt class="file docutils literal"><span class="pre">Natural_Earth_quick_start_for_QGIS.qgs</span></tt>. This is the project file that contains styled layers in QGIS Document format. Click <em class="guilabel">Open</em>.</li>
+<li>Browse to the directory when you had extracted the natural earth data. You
+should see a file named <tt class="file docutils literal"><span class="pre">Natural_Earth_quick_start_for_QGIS.qgs</span></tt>. This
+is the project file that contains styled layers in QGIS Document format.
+Click <em class="guilabel">Open</em>.</li>
 </ol>
 <img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
 <ol class="arabic simple" start="3">
-<li>You would see a lot of layers in the table of content and a styled world map in the QGIS canvas. If you see errors displayed at the top of the canvas, click on the cross to close it.</li>
+<li>You would see a lot of layers in the table of content and a styled world map
+in the QGIS canvas. If you see errors displayed at the top of the canvas,
+click on the cross to close it.</li>
 </ol>
 <img alt="../_images/317.png" class="align-center" src="../_images/317.png" />
 <ol class="arabic simple" start="4">
-<li>In this tutorial, we will make a map of Japan. Click the <em class="guilabel">Zoom In</em> button and draw a rectangle around Japan to zoom to the area.</li>
+<li>In this tutorial, we will make a map of Japan. Click the <em class="guilabel">Zoom In</em>
+button and draw a rectangle around Japan to zoom to the area.</li>
 </ol>
 <img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
 <ol class="arabic simple" start="5">
-<li>Before we make a map suitable for printing, we need to choose an appropriate
+<li>You can turn off some map layers for data that we do not need for this map.
+Un-check the box next to <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> and
+<tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt> layers. Before we make a map suitable for printing, we need to choose an appropriate
 projection. This dataset comes in Geographic Coordinate System (GCS) where
 the units are degrees. This is not appropriate for a map where you want the
-distances to be in kilometers or miles. We need to use a Projected Coordinate
-System that minimizes distortions for our region of interest and has units
-in meters. Universal Transverse Mercator (UTM) is a decent choice for a
-projected coordinate system. It is also global, so it&#8217;s a good default that
-you can rely on and  choose a UTM zone that contains your area of interest
-to minimize distortions for your region. In our case, we will use UTM Zone
-54N. Click the <em class="guilabel">CRS Status</em> button at the bottom-right of the QGIS
-window.</li>
+distances to be in kilometers or miles. We need to use a Projected
+Coordinate System that minimizes distortions for our region of interest and
+has units in meters. Universal Transverse Mercator (UTM) is a decent choice
+for a projected coordinate system. It is also global, so it&#8217;s a good default
+that you can rely on and  choose a UTM zone that contains your area of
+interest to minimize distortions for your region. In our case, we will use
+UTM Zone 54N. Click the <em class="guilabel">CRS Status</em> button at the bottom-right of
+the QGIS window.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -252,120 +264,160 @@ results, select <em class="guilabel">Tokyo / UTM Zone 54N - EPSG:3095</em>. Clic
 </ol>
 <img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
 <ol class="arabic simple" start="7">
-<li>Zoom and Pan to keep Japan at the center of your map canvas. At this point,
-you can check the box next to <tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt> layer to turn off
-the labels from that layer.</li>
+<li>Now we can start to assemble our map. Go to
+<em class="menuselection">Project ‣ New Print Composer</em>.</li>
 </ol>
 <img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
 <ol class="arabic simple" start="8">
-<li>Once you are centered around the area of interest, click on the
-<em class="guilabel">New Print Composer</em> button. It is also accessible by
-<em class="menuselection">Project ‣ New Print Composer</em>.</li>
+<li>You will be prompted to enter a title for the composer. You can leave it
+empty and click <em class="guilabel">Ok</em>.</li>
 </ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Leaving the composer name empty will assign a default name such as
+<tt class="docutils literal"><span class="pre">Composer</span> <span class="pre">1</span></tt>.</p>
+</div>
 <img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
-<ol class="arabic simple" start="9">
-<li>You will be prompted to enter a title for the composer. Enter &#8216;Japan map&#8217;
-and click <em class="guilabel">Ok</em>.</li>
-</ol>
-<img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
 <ol class="arabic simple" start="10">
 <li>In the Print Composer window, click on <em class="guilabel">Zoom full</em> to display the
-full extent of the Layout.</li>
+full extent of the Layout. Now we would have to bring the map view that we
+see in the QGIS Canvas to the composer. Go to <em class="menuselection">Layout ‣
+Add Map</em>.</li>
 </ol>
 <img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
 <ol class="arabic simple" start="11">
-<li>Now we would have to bring the map view that we see in the QGIS Canvas to
-this layer. Click on the <em class="guilabel">Add Map</em> button. This tool can also be
-access from <em class="menuselection">Layout ‣ Add Map</em>.</li>
-</ol>
-<img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
-<ol class="arabic simple" start="12">
 <li>Once the <em class="guilabel">Add Map</em> button is active, hold the left mouse button
 and drag a rectangle where you want to insert the map.</li>
 </ol>
+<img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
+<ol class="arabic simple" start="12">
+<li>You will see that the rectangle window will be rendered with the map from
+the main QGIS canvas. The rendered map may not be covering the full extent
+of our interest area.  Select <em class="menuselection">Layout ‣ Move item content</em>
+to pan the map in the window and center it in the composer.</li>
+</ol>
 <img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
 <ol class="arabic simple" start="13">
-<li>You will see that the rectangle window will be rendered with the map from
-the main QGIS canvas. Since we want our map to be covering the full extent
-of the layout, drag the corners of the rectangle to the edges.</li>
+<li>Let us adjust the zoom level for the given map. Click on the
+<em class="guilabel">Item Properties</em> tab and enter <cite>7000000</cite> for <em class="guilabel">Scale</em>
+value.</li>
 </ol>
 <img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
 <ol class="arabic simple" start="14">
-<li>The rendered map may not be covering the full extent of our interest area.
-Click the <em class="guilabel">Move item content</em> button to pan the map in the window
-and center it in the composer.</li>
+<li>Now we will add a map inset that shows a zoomed in view for the Tokyo area.
+Before we make  any changes to the layers in the main QGIS window, check
+the <em class="guilabel">Lock layers for map item</em> and <em class="guilabel">Lock layer styles
+for map item</em> boxes. This will ensure that if we turn off some layers or
+change their styles, this view will not change.</li>
 </ol>
 <img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
 <ol class="arabic simple" start="15">
-<li>Let us adjust the zoom level for the given map. Click on the
-<em class="guilabel">Item Properties</em> tab and enter <cite>5000000</cite> for <em class="guilabel">Scale</em>
-value.</li>
+<li>Switch to the main QGIS window. Use the <em class="guilabel">Zoom In</em> button to zoom
+to the area around Tokyo.</li>
 </ol>
 <img alt="../_images/1510.png" class="align-center" src="../_images/1510.png" />
 <ol class="arabic simple" start="16">
-<li>Now we will add a North Arrow to the map. Print Composer comes with a nice
-collection of map-related images - including many types of North Arrows.
-Click <em class="menuselection">Layout ‣ Add Image</em>.</li>
+<li>There are some duplicate labels coming from the <tt class="docutils literal"><span class="pre">ne_10m_populated_places</span></tt>
+layer. You can turn it off for this view.</li>
 </ol>
 <img alt="../_images/1610.png" class="align-center" src="../_images/1610.png" />
 <ol class="arabic simple" start="17">
-<li>Holding your left mouse button, draw a rectangle on the top-right corner of
-the map canvas. On the right-hand panel, click on the
-<em class="guilabel">Item Properties</em> tab and expand the
-<em class="guilabel">Search directories</em> section and select the North Arrow image of
-your liking.</li>
+<li>We are now ready to add the map inset. Switch the the <em class="guilabel">Print
+Composer</em> window. Go to <em class="menuselection">Layout ‣ Add Map</em>.</li>
 </ol>
 <img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
 <ol class="arabic simple" start="18">
-<li>Next, scroll down below and un-check the <em class="guilabel">Background</em> option.
-This will make the image transparent.</li>
+<li>Drag a rectangle at the place where you want to add the map inset. You will
+now notice that we have 2 map objects in the Print Composer. When making
+changes, make sure you have the correct map selected. Select the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt>
+object that we just added from the <em class="guilabel">Items</em> panel. Select the
+<em class="guilabel">Item properties</em> tab. Scroll down to the <em class="guilabel">Frame</em> panel
+and check the box next to it. You can change the color and thickness of the
+frame border so it is easy to distinguish against the map background.</li>
 </ol>
 <img alt="../_images/189.png" class="align-center" src="../_images/189.png" />
 <ol class="arabic simple" start="19">
-<li>You can drag the North Arrow and move it around in the composer window to a
-suitable position.</li>
+<li>One neat feature of the Print Composer is that it can automatically
+highlight the area from the main map which is represented in our inset.
+Select the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> object from the <em class="guilabel">Items</em> panel. In the
+<em class="guilabel">Item properties</em> tab, scroll down to the <em class="guilabel">Overviews</em>
+section. Click the <em class="guilabel">Add a new overview</em> button.</li>
 </ol>
 <img alt="../_images/197.png" class="align-center" src="../_images/197.png" />
 <ol class="arabic simple" start="20">
-<li>Now we will add a scale bar. Click on
-<em class="menuselection">Layout ‣ Add Scalebar</em>.</li>
+<li>Select <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt> as the <em class="guilabel">Map Frame</em>. What this is telling the
+Print Composer is that it must highlight our current object <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> with
+the extent of the map shown in the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt> object.</li>
 </ol>
 <img alt="../_images/204.png" class="align-center" src="../_images/204.png" />
 <ol class="arabic simple" start="21">
-<li>Click on the layout where you want the scalebar to appear.
-From the <em class="guilabel">Item Properties</em> tab, choose the Style that fit your
-requirement. You should also set the transparency by un-cecking the
-<em class="guilabel">Background</em> option.</li>
+<li>Now that we have the map inset ready, we will add a grid and zebra border
+to the main map. Select the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> object from the <em class="guilabel">Items</em>
+panel. In the <em class="guilabel">Item properties</em> tab, scroll down to the
+<em class="guilabel">Grids</em> section. Click the <em class="guilabel">Add a new grid</em> button.</li>
 </ol>
 <img alt="../_images/2110.png" class="align-center" src="../_images/2110.png" />
 <ol class="arabic simple" start="22">
-<li>Now we will add a legend to the map. Click on
-<em class="menuselection">Layout ‣ Add Legend</em>.</li>
+<li>By default, the grid lines use the same units and projections as the
+currently selected map projections. However, it is more common and useful
+to display grid lines in degrees. We can select a different CRS for the
+grid. Click on the <em class="guilabel">change...</em> button next to <em class="guilabel">CRS</em>.</li>
 </ol>
 <img alt="../_images/224.png" class="align-center" src="../_images/224.png" />
 <ol class="arabic simple" start="23">
-<li>Click on the layout where you want the legend to appear. Since our layer
-list is huge, you will see a big box with all the layers appear. Click on
-the <em class="guilabel">Item Properties</em> tab and select the layers which we do not
-want in the legend. Click the <em class="guilabel">-</em> button to remove it from the
-legend.</li>
+<li>In the <em class="guilabel">Coordinate Reference System Selector</em> dialog, enter
+<tt class="docutils literal"><span class="pre">4326</span></tt> in the <em class="guilabel">Filter</em> box. From the results, select the
+<tt class="docutils literal"><span class="pre">WGS84</span> <span class="pre">EPSG:4326</span></tt> as the CRS. Click <em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/233.png" class="align-center" src="../_images/233.png" />
 <ol class="arabic simple" start="24">
-<li>For the purpose of this map, we will keep legend information only for the
-five layers as seen below.</li>
+<li>Select the <em class="guilabel">Interval</em> values as <tt class="docutils literal"><span class="pre">5</span></tt> degrees in both
+<em class="guilabel">X</em> and <em class="guilabel">Y</em> direction. You can adjust the
+<em class="guilabel">Offset</em> to change where the grid lines appear.</li>
 </ol>
 <img alt="../_images/243.png" class="align-center" src="../_images/243.png" />
 <ol class="arabic simple" start="25">
-<li>Click on the <em class="guilabel">Edit</em> button and change the display text for the
-legend items to be more readable.</li>
+<li>Scroll down to the <em class="guilabel">Grid frame</em> section and select a frame style
+that suits your taste. Also check the <em class="guilabel">Draw coordinates</em> box.</li>
 </ol>
 <img alt="../_images/253.png" class="align-center" src="../_images/253.png" />
 <ol class="arabic simple" start="26">
-<li>Now time to label our map. Click on <em class="menuselection">Layout ‣ Add Label</em>.</li>
+<li>Adjust the <em class="guilabel">Distance to map frame</em> till the coordinates are
+legible. Change the <em class="guilabel">Coordinate precision</em> to <tt class="docutils literal"><span class="pre">1</span></tt> so the
+coordinates are displayed only upto the first decimal.</li>
 </ol>
 <img alt="../_images/263.png" class="align-center" src="../_images/263.png" />
 <ol class="arabic simple" start="27">
+<li>Now we will add a North Arrow to the map. The Print Composer comes with a
+nice collection of map-related images - including many types of North
+Arrows.  Click <em class="menuselection">Layout ‣ Add Image</em>.</li>
+</ol>
+<img alt="../_images/272.png" class="align-center" src="../_images/272.png" />
+<ol class="arabic simple" start="28">
+<li>Holding your left mouse button, draw a rectangle on the top-right corner of
+the map canvas. On the right-hand panel, click on the <em class="guilabel">Item
+Properties</em> tab and expand the <em class="guilabel">Search directories</em> section and
+select the North Arrow image of your liking.</li>
+</ol>
+<img alt="../_images/282.png" class="align-center" src="../_images/282.png" />
+<ol class="arabic simple" start="29">
+<li>Now we will add a scale bar. Click on <em class="menuselection">Layout ‣ Add
+Scalebar</em>.</li>
+</ol>
+<img alt="../_images/292.png" class="align-center" src="../_images/292.png" />
+<ol class="arabic simple" start="30">
+<li>Click on the layout where you want the scalebar to appear.  In the
+<em class="guilabel">Item Properties</em> tab, make sure you have chosen the correct map
+element for which to display the scalebar. Choose the Style that fit your
+requirement. In the <em class="guilabel">Segments</em> panel, you can adjust the number
+of segments and their size.</li>
+</ol>
+<img alt="../_images/302.png" class="align-center" src="../_images/302.png" />
+<ol class="arabic simple" start="31">
+<li>It is time to label our map. Click on <em class="menuselection">Layout ‣ Add Label</em>.</li>
+</ol>
+<img alt="../_images/318.png" class="align-center" src="../_images/318.png" />
+<ol class="arabic simple" start="32">
 <li>Click on the map and draw a box where the label should be. In the
 <em class="guilabel">Item Properties</em> tab, expand the <em class="guilabel">Label</em> section and
 enter the text as shown below. We can enter the text as HTML as well.
@@ -374,25 +426,31 @@ HTML tags.</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&lt;div align=center&gt;
 &lt;h1&gt;Map of Japan&lt;/h1&gt;
-&lt;p&gt;Created using Natural Earth data in QGIS&lt;/p&gt;
 &lt;/div&gt;
 </pre></div>
 </div>
-<img alt="../_images/272.png" class="align-center" src="../_images/272.png" />
-<ol class="arabic simple" start="28">
+<img alt="../_images/322.png" class="align-center" src="../_images/322.png" />
+<ol class="arabic simple" start="33">
+<li>Similarly add another label to add the data and software credits.</li>
+</ol>
+<img alt="../_images/332.png" class="align-center" src="../_images/332.png" />
+<ol class="arabic simple" start="34">
 <li>Once you are satisfied with the map, you can export it as Image, PDF or
 SVG. For this tutorial, let’s export it as an image. Click
 <em class="menuselection">Composer ‣ Export as Image</em>.</li>
 </ol>
-<img alt="../_images/282.png" class="align-center" src="../_images/282.png" />
-<ol class="arabic simple" start="29">
+<img alt="../_images/342.png" class="align-center" src="../_images/342.png" />
+<ol class="arabic simple" start="35">
 <li>Save the image in the format of your liking. Below is the exported PNG
 image.</li>
 </ol>
-<img alt="../_images/292.png" class="align-center" src="../_images/292.png" />
+<img alt="../_images/352.png" class="align-center" src="../_images/352.png" />
 </div>
 </div>
 
+
+
+<div class="addthis_sharing_toolbox"></div>
 
 
   <div id="disqus_thread"></div>
@@ -413,7 +471,7 @@ image.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Jan 19, 2015.<br/>
+      Last updated on Mar 25, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
@@ -449,7 +507,8 @@ image.</li>
   })();
 </script>
 
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts" async="async"></script>
 
 <!-- Script fpr language switching. Largely adapted from https://github.com/pcav/faunalia-website -->
 <script>

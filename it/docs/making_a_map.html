@@ -177,16 +177,7 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><h4>Author</h4>
 <div class="g-person" data-width="250" data-href="//plus.google.com/u/0/116912222767108657277" data-showtagline="false" data-showcoverphoto="false" data-rel="author"></div>
 
-<!-- AddThis Button BEGIN -->
-<h4>Share</h4>
-<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-    <a class="addthis_button_google_plusone_share"></a>
-    <a class="addthis_button_twitter"></a>
-    <a class="addthis_button_facebook"></a>
-    <a class="addthis_button_email"></a>
-    <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-</div>
-<!-- AddThis Button END -->
+<div class="addthis_horizontal_follow_toolbox"></div>
         </div>
       </div>
     <div class="col-md-9">
@@ -198,7 +189,15 @@
 <p>Spesso si ha necessità di creare una mappa che possa essere stampata o pubblicata. QGIS offre un potente strumento chiamato <em class="guilabel">Print Composer</em> che vi permetterà di usare i vostri layer GIS e  per creare delle mappe e delle carte.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Descrizione dell&#8217;esercizio<a class="headerlink" href="#overview-of-the-task" title="link permanente per questa intestazione">¶</a></h2>
-<p>Questa esercitazione mostra come creare una mappa del Giappone con elementi standard delle carte geografiche come la freccia del nord, la barra della scala, la legenda e le etichette.</p>
+<p>The tutorial shows how to create a map of Japan with standard map elements like
+map inset, grids, north arrow, scale bar and labels.</p>
+<div class="section" id="other-skills-you-will-learn">
+<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="link permanente per questa intestazione">¶</a></h3>
+<ul class="simple">
+<li>Using &#8216;on-the-fly&#8217; CRS transformation to visualize your data in a different
+projection.</li>
+</ul>
+</div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Ottenere i dati necessari<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
@@ -229,8 +228,19 @@
 </ol>
 <img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">Prima di realizzare una mappa da stampare, dobbiamo scegliere un sistema di proiezione appropriato. Questo set di dati adotta un Sistema di Coordinate Geografiche (GCS). E questo non è l&#8217;ideale per una mappa cartografica in cui vogliamo che le distanze siano misurate in chilometri o in miglia. Abbiamo pertanto bisogno di un Sistema di Coordinate Proiettate che riduca al minimo la distorsione delle regioni di nostro interesse e abbia l&#8217; unità di misura in metri. Una scelta accettabile per un sistema di coordinate proiettate può essere il sistema Universale Trasverso di Mercatore (UTM). Tra l&#8217;altro è un sistema globalizzato e un&#8217;ottima risorsa cui potete affidarvi nello scegliere una zona UTM che contiene l&#8217;area di vostro interesse e minimizza le distorsioni della vostra regione. Nel nostro caso useremo la zona UTM 54N. Fate click sul pulsante <em class="guilabel">Stato SR</em> in basso a destra nella finestra principale di QGIS.</p>
-</li>
+<li>You can turn off some map layers for data that we do not need for this map.
+Un-check the box next to <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> and
+<tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt> layers. Before we make a map suitable for printing, we need to choose an appropriate
+projection. This dataset comes in Geographic Coordinate System (GCS) where
+the units are degrees. This is not appropriate for a map where you want the
+distances to be in kilometers or miles. We need to use a Projected
+Coordinate System that minimizes distortions for our region of interest and
+has units in meters. Universal Transverse Mercator (UTM) is a decent choice
+for a projected coordinate system. It is also global, so it&#8217;s a good default
+that you can rely on and  choose a UTM zone that contains your area of
+interest to minimize distortions for your region. In our case, we will use
+UTM Zone 54N. Click the <em class="guilabel">CRS Status</em> button at the bottom-right of
+the QGIS window.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
@@ -243,129 +253,187 @@
 </ol>
 <img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">Usate gli strumenti zoom e pan per collocare il Giappone al centro della vostra finestra di lavoro. A questo punto potete cliccare nella casella a fianco del layer <tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt> per spegnere le etichette da questo layer.</p>
-</li>
+<li>Now we can start to assemble our map. Go to
+<em class="menuselection">Project ‣ New Print Composer</em>.</li>
 </ol>
 <img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">Adesso che vi siete posizionati intorno alla nostra area di interesse, fate click sul pulsante <em class="guilabel">Nuova Composizione di Stampa</em>. Il comando è accessibile anche dal menu degli strumenti <em class="menuselection">Progetto ‣ Nuova Composizione di Stampa</em>.</p>
-</li>
+<li>You will be prompted to enter a title for the composer. You can leave it
+empty and click <em class="guilabel">Ok</em>.</li>
 </ol>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Leaving the composer name empty will assign a default name such as
+<tt class="docutils literal"><span class="pre">Composer</span> <span class="pre">1</span></tt>.</p>
+</div>
 <img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
-<ol class="arabic simple" start="9">
-<li><p class="first">Vi verrà chiesto di inserire un titolo per la stampa.  Scrivete &#8216;Japan map&#8217;  e fate click su <em class="guilabel">Ok</em>.</p>
-</li>
-</ol>
-<img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">Nella finestra Composizione di Stampa, fare click su <em class="guilabel">Zoom Completo</em> per vedere l&#8217;intera estensione della pagina.</p>
-</li>
+<li>In the Print Composer window, click on <em class="guilabel">Zoom full</em> to display the
+full extent of the Layout. Now we would have to bring the map view that we
+see in the QGIS Canvas to the composer. Go to <em class="menuselection">Layout ‣
+Add Map</em>.</li>
 </ol>
 <img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">Ora si tratta di trasportare l&#8217;immagine della mappa che vediamo in QGIS dentro questa finestra. Fare click sul pulsante <em class="guilabel">Aggiungi Mappa</em> . Questo strumento è accessibile anche da <em class="menuselection">Layout ‣ Aggiungi Mappa</em>.</p>
+<li><p class="first">Una volta che il pulsante <em class="guilabel">Aggiungi Mappa</em> è attivo, tenete premuto il pulsante sinistro del mouse e trascinate un rettangolo dove intendete inserire la mappa.</p>
 </li>
 </ol>
 <img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">Una volta che il pulsante <em class="guilabel">Aggiungi Mappa</em> è attivo, tenete premuto il pulsante sinistro del mouse e trascinate un rettangolo dove intendete inserire la mappa.</p>
-</li>
+<li>You will see that the rectangle window will be rendered with the map from
+the main QGIS canvas. The rendered map may not be covering the full extent
+of our interest area.  Select <em class="menuselection">Layout ‣ Move item content</em>
+to pan the map in the window and center it in the composer.</li>
 </ol>
 <img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">Vedrete che la finestra rettangolare sarà riempita con la mappa proveniente dal riquadro principale di QGIS. Dal momento che noi vogliamo che la nostra mappa copra l&#8217;intera estensione del layout, trascinate gli angoli del rettangolo sui bordi.</p>
-</li>
+<li>Let us adjust the zoom level for the given map. Click on the
+<em class="guilabel">Item Properties</em> tab and enter <cite>7000000</cite> for <em class="guilabel">Scale</em>
+value.</li>
 </ol>
 <img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">La mappa disegnata potrebbe non coprire l&#8217;intera estensione della vostra area di interesse. Fate click sul pulsante <em class="guilabel">Sposta contenuti elemento</em> per mostrare la mappa nella finestra e centrarla nel compositore.</p>
-</li>
+<li>Now we will add a map inset that shows a zoomed in view for the Tokyo area.
+Before we make  any changes to the layers in the main QGIS window, check
+the <em class="guilabel">Lock layers for map item</em> and <em class="guilabel">Lock layer styles
+for map item</em> boxes. This will ensure that if we turn off some layers or
+change their styles, this view will not change.</li>
 </ol>
 <img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
 <ol class="arabic simple" start="15">
-<li><p class="first">Adesso aggiustiamo il livello delle zoom sulla mappa data. Fate click sulla scheda <em class="guilabel">Proprietà oggetto</em> e inserite <cite>5000000</cite>  come valore di guilabel:<cite>Scala</cite>.</p>
-</li>
+<li>Switch to the main QGIS window. Use the <em class="guilabel">Zoom In</em> button to zoom
+to the area around Tokyo.</li>
 </ol>
 <img alt="../_images/1510.png" class="align-center" src="../_images/1510.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">Ora aggiungeremo una Freccia del Nord alla mappa. La Composizione di Stampa presenta una ricca collezione di immagini da usare nella mappa - compresi molte varietà di Freccia del Nord. Fare click su <em class="menuselection">Layout ‣ Aggiungi Immagine</em>.</p>
-</li>
+<li>There are some duplicate labels coming from the <tt class="docutils literal"><span class="pre">ne_10m_populated_places</span></tt>
+layer. You can turn it off for this view.</li>
 </ol>
 <img alt="../_images/1610.png" class="align-center" src="../_images/1610.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">Tenendo il pulsante sinistro del mouse premuto, trascinate un rettangolo nell&#8217;angolo in alto a destra della finestra principale di QGIS. Nel pannella sulla destra click sulla scheda  <em class="guilabel">Proprietà dell&#8217;oggetto</em> e aprire la sezione <em class="guilabel">Cerca cartelle</em> . Selezionate la freccia del Nord che più vi piace.</p>
-</li>
+<li>We are now ready to add the map inset. Switch the the <em class="guilabel">Print
+Composer</em> window. Go to <em class="menuselection">Layout ‣ Add Map</em>.</li>
 </ol>
 <img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
 <ol class="arabic simple" start="18">
-<li><p class="first">Poi spostatevi in basso e deselezionate l&#8217;opzione <em class="guilabel">Sfondo</em> . Questo renderà l&#8217;immagine trasparente.</p>
-</li>
+<li>Drag a rectangle at the place where you want to add the map inset. You will
+now notice that we have 2 map objects in the Print Composer. When making
+changes, make sure you have the correct map selected. Select the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt>
+object that we just added from the <em class="guilabel">Items</em> panel. Select the
+<em class="guilabel">Item properties</em> tab. Scroll down to the <em class="guilabel">Frame</em> panel
+and check the box next to it. You can change the color and thickness of the
+frame border so it is easy to distinguish against the map background.</li>
 </ol>
 <img alt="../_images/189.png" class="align-center" src="../_images/189.png" />
 <ol class="arabic simple" start="19">
-<li><p class="first">Potete trascinare la Freccia del Nord e spostarla nella finestra del compositore fino a raggiungere una posizione soddisfacente.</p>
-</li>
+<li>One neat feature of the Print Composer is that it can automatically
+highlight the area from the main map which is represented in our inset.
+Select the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> object from the <em class="guilabel">Items</em> panel. In the
+<em class="guilabel">Item properties</em> tab, scroll down to the <em class="guilabel">Overviews</em>
+section. Click the <em class="guilabel">Add a new overview</em> button.</li>
 </ol>
 <img alt="../_images/197.png" class="align-center" src="../_images/197.png" />
 <ol class="arabic simple" start="20">
-<li><p class="first">Ora aggiungiamo una Barra di Scala. Fare click su <em class="menuselection">Layout ‣ Aggiugi Barra di Scala</em>.</p>
-</li>
+<li>Select <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt> as the <em class="guilabel">Map Frame</em>. What this is telling the
+Print Composer is that it must highlight our current object <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> with
+the extent of the map shown in the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt> object.</li>
 </ol>
 <img alt="../_images/204.png" class="align-center" src="../_images/204.png" />
 <ol class="arabic simple" start="21">
-<li><p class="first">Fate click sul layout dove volete che la barra della scala appaia. Dalla scheda   <em class="guilabel">Proprietà oggetto</em> scegliete lo stile adatto alle vostre esigenze. Potete anche definire la trasparenza deselezionando l&#8217;opzione  <em class="guilabel">Sfondo</em> .</p>
-</li>
+<li>Now that we have the map inset ready, we will add a grid and zebra border
+to the main map. Select the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> object from the <em class="guilabel">Items</em>
+panel. In the <em class="guilabel">Item properties</em> tab, scroll down to the
+<em class="guilabel">Grids</em> section. Click the <em class="guilabel">Add a new grid</em> button.</li>
 </ol>
 <img alt="../_images/2110.png" class="align-center" src="../_images/2110.png" />
 <ol class="arabic simple" start="22">
-<li><p class="first">Ora aggiungeremo una legenda alla mappa. Fate click su <em class="menuselection">Layout ‣ Aggiungi Legenda</em>.</p>
-</li>
+<li>By default, the grid lines use the same units and projections as the
+currently selected map projections. However, it is more common and useful
+to display grid lines in degrees. We can select a different CRS for the
+grid. Click on the <em class="guilabel">change...</em> button next to <em class="guilabel">CRS</em>.</li>
 </ol>
 <img alt="../_images/224.png" class="align-center" src="../_images/224.png" />
 <ol class="arabic simple" start="23">
-<li><p class="first">Fate click su layout nel punto in cui volete che appaia la legenda. Visto che la nostra lista di layer è enorme, vedrete apparire un grande box con tutti i layer. Fate click sulla scheda <em class="guilabel">Proprietà elemento</em> e selezionate i layer che non volete appaiano sulla legenda. Fate click sul pulsante <em class="guilabel">-</em> per rimuoverli dalla legenda.</p>
-</li>
+<li>In the <em class="guilabel">Coordinate Reference System Selector</em> dialog, enter
+<tt class="docutils literal"><span class="pre">4326</span></tt> in the <em class="guilabel">Filter</em> box. From the results, select the
+<tt class="docutils literal"><span class="pre">WGS84</span> <span class="pre">EPSG:4326</span></tt> as the CRS. Click <em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/233.png" class="align-center" src="../_images/233.png" />
 <ol class="arabic simple" start="24">
-<li><p class="first">Per gli scopi di questa mappa, possiamo tenere nella legenda soltanto le informazione che riguardano i cinque layer, come si vede qui sotto.</p>
-</li>
+<li>Select the <em class="guilabel">Interval</em> values as <tt class="docutils literal"><span class="pre">5</span></tt> degrees in both
+<em class="guilabel">X</em> and <em class="guilabel">Y</em> direction. You can adjust the
+<em class="guilabel">Offset</em> to change where the grid lines appear.</li>
 </ol>
 <img alt="../_images/243.png" class="align-center" src="../_images/243.png" />
 <ol class="arabic simple" start="25">
-<li><p class="first">Fate click sul pulsante <em class="guilabel">Edit</em> e cambiate il testo per la legenda per renderlo più leggibile.</p>
-</li>
+<li>Scroll down to the <em class="guilabel">Grid frame</em> section and select a frame style
+that suits your taste. Also check the <em class="guilabel">Draw coordinates</em> box.</li>
 </ol>
 <img alt="../_images/253.png" class="align-center" src="../_images/253.png" />
 <ol class="arabic simple" start="26">
-<li><p class="first">Ora è il momento di etichettare la nostra mappa. Click su <em class="menuselection">Layout ‣ Aggiungi Testo</em>.</p>
-</li>
+<li>Adjust the <em class="guilabel">Distance to map frame</em> till the coordinates are
+legible. Change the <em class="guilabel">Coordinate precision</em> to <tt class="docutils literal"><span class="pre">1</span></tt> so the
+coordinates are displayed only upto the first decimal.</li>
 </ol>
 <img alt="../_images/263.png" class="align-center" src="../_images/263.png" />
 <ol class="arabic simple" start="27">
+<li>Now we will add a North Arrow to the map. The Print Composer comes with a
+nice collection of map-related images - including many types of North
+Arrows.  Click <em class="menuselection">Layout ‣ Add Image</em>.</li>
+</ol>
+<img alt="../_images/272.png" class="align-center" src="../_images/272.png" />
+<ol class="arabic simple" start="28">
+<li><p class="first">Tenendo il pulsante sinistro del mouse premuto, trascinate un rettangolo nell&#8217;angolo in alto a destra della finestra principale di QGIS. Nel pannella sulla destra click sulla scheda  <em class="guilabel">Proprietà dell&#8217;oggetto</em> e aprire la sezione <em class="guilabel">Cerca cartelle</em> . Selezionate la freccia del Nord che più vi piace.</p>
+</li>
+</ol>
+<img alt="../_images/282.png" class="align-center" src="../_images/282.png" />
+<ol class="arabic simple" start="29">
+<li><p class="first">Ora aggiungiamo una Barra di Scala. Fare click su <em class="menuselection">Layout ‣ Aggiugi Barra di Scala</em>.</p>
+</li>
+</ol>
+<img alt="../_images/292.png" class="align-center" src="../_images/292.png" />
+<ol class="arabic simple" start="30">
+<li>Click on the layout where you want the scalebar to appear.  In the
+<em class="guilabel">Item Properties</em> tab, make sure you have chosen the correct map
+element for which to display the scalebar. Choose the Style that fit your
+requirement. In the <em class="guilabel">Segments</em> panel, you can adjust the number
+of segments and their size.</li>
+</ol>
+<img alt="../_images/302.png" class="align-center" src="../_images/302.png" />
+<ol class="arabic simple" start="31">
+<li>It is time to label our map. Click on <em class="menuselection">Layout ‣ Add Label</em>.</li>
+</ol>
+<img alt="../_images/318.png" class="align-center" src="../_images/318.png" />
+<ol class="arabic simple" start="32">
 <li><p class="first">Fate click sulla mappa e trascinate un riquadro dove dovrebbe essere situata l&#8217;etichetta. Nella scheda  <em class="guilabel">Proprietà oggetto</em> aprite la sezione  <em class="guilabel">Etichette</em> e inserite in testo come mostrato sotto. Possia mo anche inserire il testo come HTML. Sbarriamo la casella  <em class="guilabel">Trasforma in HTML</em> in modo che il Composer possa interpretare i tags HTML.</p>
 </li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&lt;div align=center&gt;
 &lt;h1&gt;Map of Japan&lt;/h1&gt;
-&lt;p&gt;Created using Natural Earth data in QGIS&lt;/p&gt;
 &lt;/div&gt;
 </pre></div>
 </div>
-<img alt="../_images/272.png" class="align-center" src="../_images/272.png" />
-<ol class="arabic simple" start="28">
+<img alt="../_images/322.png" class="align-center" src="../_images/322.png" />
+<ol class="arabic simple" start="33">
+<li>Similarly add another label to add the data and software credits.</li>
+</ol>
+<img alt="../_images/332.png" class="align-center" src="../_images/332.png" />
+<ol class="arabic simple" start="34">
 <li><p class="first">Una volta che siete soddisfatti della mappa, potete esportartarla come un&#8217;immagine, un PDF o un SVG. In questa esercitazione esportiamola come immagine. Click <em class="menuselection">Compositore ‣ Esporta come immagine</em>.</p>
 </li>
 </ol>
-<img alt="../_images/282.png" class="align-center" src="../_images/282.png" />
-<ol class="arabic simple" start="29">
+<img alt="../_images/342.png" class="align-center" src="../_images/342.png" />
+<ol class="arabic simple" start="35">
 <li><p class="first">Salvate l&#8217;immagine nel formato che preferite. Quella che vedete di sotto è un&#8217;immagine esportata in formato PNG.</p>
 </li>
 </ol>
-<img alt="../_images/292.png" class="align-center" src="../_images/292.png" />
+<img alt="../_images/352.png" class="align-center" src="../_images/352.png" />
 </div>
 </div>
 
+
+
+<div class="addthis_sharing_toolbox"></div>
 
 
   <div id="disqus_thread"></div>
@@ -386,7 +454,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Jan 19, 2015.<br/>
+      Ultimo aggiornamento Mar 25, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
@@ -422,7 +490,8 @@
   })();
 </script>
 
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts" async="async"></script>
 
 <!-- Script fpr language switching. Largely adapted from https://github.com/pcav/faunalia-website -->
 <script>

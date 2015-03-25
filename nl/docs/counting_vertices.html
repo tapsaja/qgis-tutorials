@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Counting Number of Vertices in a Layer &mdash; QGIS Tutorials and Tips</title>
+    <title>Aantal punten in een laag tellen &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -83,8 +83,8 @@
       aria-labelledby="dLabelGlobalToc"><ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introductie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Een kaart maken</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Working with Attributes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Werken met attributen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Werkbladen of CSV-bestanden importeren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Zoeken en downloaden van gegevens van OpenStreetMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basis opmaken van vectoren</a></li>
@@ -106,7 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Massa verwerken met behulp van Framework Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Counting Number of Vertices in a Layer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Aantal punten in een laag tellen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
@@ -177,66 +177,49 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><h4>Author</h4>
 <div class="g-person" data-width="250" data-href="//plus.google.com/u/0/116912222767108657277" data-showtagline="false" data-showcoverphoto="false" data-rel="author"></div>
 
-<!-- AddThis Button BEGIN -->
-<h4>Share</h4>
-<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-    <a class="addthis_button_google_plusone_share"></a>
-    <a class="addthis_button_twitter"></a>
-    <a class="addthis_button_facebook"></a>
-    <a class="addthis_button_email"></a>
-    <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-</div>
-<!-- AddThis Button END -->
+<div class="addthis_horizontal_follow_toolbox"></div>
         </div>
       </div>
     <div class="col-md-9">
       
 
   <div class="section" id="counting-number-of-vertices-in-a-layer">
-<h1>Counting Number of Vertices in a Layer<a class="headerlink" href="#counting-number-of-vertices-in-a-layer" title="Permalink naar deze titel">¶</a></h1>
+<h1>Aantal punten in een laag tellen<a class="headerlink" href="#counting-number-of-vertices-in-a-layer" title="Permalink naar deze titel">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/counting_vertices_a4.pdf">A4</a> <a class="reference external" href="../pdf/counting_vertices_letter.pdf">Letter</a> ]</p>
-<p>QGIS doesn’t have a built-in function to calculate number of vertices for each
-feature in a layer. But a very handy plugin called <strong>Vertices Counter</strong> fills
-this gap and adds a few handy features as well.</p>
+<p>QGIS heeft geen ingebouwde functie om het aantal punten voor elk object op een laag te berekenen. Maar een zeer handige plug-in, genaamd <strong>Vertices Counter</strong>, vult dit gat op en voegt nog een aantal handige mogelijkheden toe.</p>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink naar deze titel">¶</a></h2>
 <ol class="arabic simple">
-<li>Find and install the <strong>Vertices Counter</strong> plugin. See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a>
-for details on installing plugins in QGIS.</li>
+<li><p class="first">Zoek en installeer de plug-in <strong>Vertices Counter</strong>. Zie <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> voor details over het installeren van plug-ins in QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/116.png" class="align-center" src="../_images/116.png" />
 <ol class="arabic simple" start="2">
-<li>Load any polygon or line layer in QGIS. Go to <em class="menuselection">Vector ‣
-Vertices Counter ‣ Vertices Counter</em>.</li>
+<li><p class="first">Laad een polygoon- of lijnenlaag in QGIS. Ga naar <em class="menuselection">Vector ‣ Vertices Counter ‣ Vertices Counter</em>.</p>
+</li>
 </ol>
 <img alt="../_images/24.png" class="align-center" src="../_images/24.png" />
 <ol class="arabic simple" start="3">
-<li>By default, the active layer will be selected under the <em class="guilabel">Layer
-Selection</em>. You may select any other loaded layers or open layer directly
-from disk as well. The plugin has an option called <em class="guilabel">Create new
-column</em> which can add an number of vertices as an attribute for each
-feature. This is handy for a lot of use cases, so we can select that option.
-Now click on the <em class="guilabel">Count Vertices</em> button and the
-<em class="guilabel">Results</em> section will be populated with vertex count for each
-feature. You can even see the <em class="guilabel">Total Vertices</em> displayed on the
-side.</li>
+<li><p class="first">Standaard zal de actieve laag worden geselecteerd onder <em class="guilabel">Layer Selection</em>. U kunt elke andere geladen laag selecteren of ook een laag direct vanaf schijf openen. De plug-in heeft een optie, genaamd <em class="guilabel">Create new column</em>, die een aantal punten als attribuut voor elk object kan toevoegen. Dit is handig in vele gevallen, dus we kunnen die optie selecteren. Klik nu op de knop <em class="guilabel">Count Vertices</em> en het gedeelte <em class="guilabel">Results</em> zal worden gevuld met de telling van het aantal punten voor elk object. U kunt zelfs het <em class="guilabel">Total Vertices</em> zien weergegeven aan de zijkant.</p>
+</li>
 </ol>
 <img alt="../_images/34.png" class="align-center" src="../_images/34.png" />
 <ol class="arabic simple" start="4">
-<li>Back in the main QGIS window, let&#8217;s verify if a new column was added to our
-layer. Right-click the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Laten we, terug in het hoofdvenster van QGIS, verifiëren of een nieuwe kolom werd toegevoegd aan onze laag. Klik met rechts op de laag en selecteer <em class="guilabel">Attributentabel openen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/44.png" class="align-center" src="../_images/44.png" />
 <ol class="arabic simple" start="5">
-<li>As you will notice, a column named <em>Vertices</em> will be added at the end with
-values representing the vertex count for each feature. This column can come
-in handy if you want to do a query such as <em>Select all features with Vertices
-&gt; X</em>.</li>
+<li><p class="first">Zoals u zult opmerken is een nieuwe kolom, genaamd <em>Vertices</em>, toegevoegd aan het einde, met waarden die het aantal punten weergeven voor elk object. Deze klom kan van pas komen als u een query wilt uitvoeren, zoals <em>Selecteer alle objecten met punten &gt; X</em>.</p>
+</li>
 </ol>
 <img alt="../_images/54.png" class="align-center" src="../_images/54.png" />
 </div>
 </div>
 
+
+
+<div class="addthis_sharing_toolbox"></div>
 
 
   <div id="disqus_thread"></div>
@@ -257,7 +240,7 @@ in handy if you want to do a query such as <em>Select all features with Vertices
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Jan 19, 2015.<br/>
+      Laatste aanpassing op Mar 25, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
@@ -293,7 +276,8 @@ in handy if you want to do a query such as <em>Select all features with Vertices
   })();
 </script>
 
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts" async="async"></script>
 
 <!-- Script fpr language switching. Largely adapted from https://github.com/pcav/faunalia-website -->
 <script>

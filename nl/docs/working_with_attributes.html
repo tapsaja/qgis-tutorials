@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Working with Attributes &mdash; QGIS Tutorials and Tips</title>
+    <title>Werken met attributen &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Importing Spreadsheets or CSV files" href="importing_spreadsheets_csv.html" />
+    <link rel="next" title="Werkbladen of CSV-bestanden importeren" href="importing_spreadsheets_csv.html" />
     <link rel="prev" title="Een kaart maken" href="making_a_map.html" />
 
 <meta charset='utf-8'>
@@ -83,8 +83,8 @@
       aria-labelledby="dLabelGlobalToc"><ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introductie</a></li>
 <li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Een kaart maken</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Working with Attributes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Werken met attributen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Werkbladen of CSV-bestanden importeren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Zoeken en downloaden van gegevens van OpenStreetMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basis opmaken van vectoren</a></li>
@@ -106,7 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Massa verwerken met behulp van Framework Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aantal punten in een laag tellen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
@@ -128,7 +128,7 @@
     </a>
   </li>
   <li>
-    <a href="importing_spreadsheets_csv.html" title="Next Chapter: Importing Spreadsheets or CSV files"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Importing Spread... &raquo;</span>
+    <a href="importing_spreadsheets_csv.html" title="Next Chapter: Werkbladen of CSV-bestanden importeren"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Werkbladen of CS... &raquo;</span>
     </a>
   </li>
               
@@ -177,108 +177,119 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><h4>Author</h4>
 <div class="g-person" data-width="250" data-href="//plus.google.com/u/0/116912222767108657277" data-showtagline="false" data-showcoverphoto="false" data-rel="author"></div>
 
-<!-- AddThis Button BEGIN -->
-<h4>Share</h4>
-<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-    <a class="addthis_button_google_plusone_share"></a>
-    <a class="addthis_button_twitter"></a>
-    <a class="addthis_button_facebook"></a>
-    <a class="addthis_button_email"></a>
-    <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-</div>
-<!-- AddThis Button END -->
+<div class="addthis_horizontal_follow_toolbox"></div>
         </div>
       </div>
     <div class="col-md-9">
       
 
   <div class="section" id="working-with-attributes">
-<h1>Working with Attributes<a class="headerlink" href="#working-with-attributes" title="Permalink naar deze titel">¶</a></h1>
+<h1>Werken met attributen<a class="headerlink" href="#working-with-attributes" title="Permalink naar deze titel">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/working_with_attributes_a4.pdf">A4</a> <a class="reference external" href="../pdf/working_with_attributes_letter.pdf">Letter</a> ]</p>
-<p>GIS data has two parts - features and attributes. Attributes are structured data about each feature. This tutorial shows how to view the attributes and do basic queries on them in QGIS.</p>
+<p>Gegevens van GIS bestaan uit twee gedeelten - objecten en  attributen. Attributen zijn gestructureerde gegevens over elk object. Deze handleiding laat zien hoe de attributen te bekijken en basisquery&#8217;s op ze uit te voeren in QGIS.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
-<p>The dataset for this tutorial contains information about populated places of the world. The task is to query and find all the capital cities in the world that have a population greater than 1,000,000.</p>
+<h2>Overzicht van de taak<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
+<p>De gegevensset voor deze handleiding bevat informatie over bewoonde plaatsen in de wereld. De taak is om een bevraging te doen en alle hoofdsteden in de wereld te zoeken die een bevolking hebben van meer dan 1.000.000.</p>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places dataset</a> from Natural Earth.</p>
-<p>Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">Natural Earth Populated Places shapefile.</a>.</p>
-<p>Data Source <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
+<h2>De gegevens ophalen<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
+<p>We zullen de gegevensset <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places</a> van Natural Earth gebruiken.</p>
+<p>Download het shapefile <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">Natural Earth Populated Places.</a>.</p>
+<p>Gegevensbron <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink naar deze titel">¶</a></h2>
 <ol class="arabic simple">
-<li>Once you have downloaded the data, open QGIS. Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Als u de gegevens eenmaal heeft gedownload, open QGIS. Ga naar <em class="menuselection">Lagen ‣ Laag toevoegen ‣ Vectorlaag toevoegen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
 <ol class="arabic simple" start="2">
-<li>Click on <em class="guilabel">Browse</em> and navigate to the folder where you downloaded the data.</li>
+<li><p class="first">Klik op <em class="guilabel">Bladeren</em> en navigeer naar de map waar u de gegevens heeft opgeslagen.</p>
+</li>
 </ol>
 <img alt="../_images/248.png" class="align-center" src="../_images/248.png" />
 <ol class="arabic simple" start="3">
-<li>Locate the downloaded zip file <cite>ne_10m_populated_places_simple.zip</cite>. You do not need to unzip the file. QGIS has the ability to read zip files directly. Select the file and click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Zoek het gedownloade zip-bestand <cite>ne_10m_populated_places_simple.zip</cite>. U hoeft het bestand niet uit te pakken. QGIS heeft de mogelijkheid om zip-bestanden direct in te lezen. Selecteer het bestand en klik op <em class="guilabel">Openen</em>.</p>
+</li>
 </ol>
-<img alt="../_images/334.png" class="align-center" src="../_images/334.png" />
+<img alt="../_images/336.png" class="align-center" src="../_images/336.png" />
 <ol class="arabic simple" start="4">
-<li>You will get a dialog asking you to select the layer to open. Select <cite>ne_10m_populated_places_simple.shp</cite> and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">U zult een dialoogvenster krijgen wat u vraagt de laag te selecteren die moet worden geopend. Selecteer <cite>ne_10m_populated_places_simple.shp</cite> en klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/426.png" class="align-center" src="../_images/426.png" />
 <ol class="arabic simple" start="5">
-<li>The selected layer will now be loaded in QGIS and you will see many points representing the populated places of the world.</li>
+<li><p class="first">De geselecteerde laag zal nu worden geladen in QGIS en u zult vele punten zien die de bewoonde plaatsen in de wereld weergeven.</p>
+</li>
 </ol>
 <img alt="../_images/527.png" class="align-center" src="../_images/527.png" />
 <ol class="arabic simple" start="6">
-<li>To see the attributes of right-click the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Klik met rechts op de laag en selecteer <em class="guilabel">Attributentabel openen</em> om de attributen van de laag te zien.</p>
+</li>
 </ol>
 <img alt="../_images/625.png" class="align-center" src="../_images/625.png" />
 <ol class="arabic simple" start="7">
-<li>Explore the various attributes and their values.</li>
+<li><p class="first">Verken de verschillende attributen en hun waraden.</p>
+</li>
 </ol>
 <img alt="../_images/725.png" class="align-center" src="../_images/725.png" />
 <ol class="arabic simple" start="8">
-<li>We are interested in the population of each feature, so <cite>pop_max</cite> is the field we are looking for. You can click twice on the field header to sort the column in descending order.</li>
+<li><p class="first">We zijn geïnteresseerd in de populatie van elk object, dus <cite>pop_max</cite> is het veld waar we naar zoeken. U kunt tweemaal op de kolomkop klikken om de kolom in aflopende volgorde te sorteren.</p>
+</li>
 </ol>
 <img alt="../_images/824.png" class="align-center" src="../_images/824.png" />
 <ol class="arabic simple" start="9">
-<li>Now we are ready to perform our query on these attributes. <em class="guilabel">Select features using an expression</em>.</li>
+<li><p class="first">Nu zijn we klaar om onze query op deze attributen uit te voeren. <em class="guilabel">Selecteer objecten m.b.v. reguliere expressie</em>.</p>
+</li>
 </ol>
-<img alt="../_images/923.png" class="align-center" src="../_images/923.png" />
+<img alt="../_images/922.png" class="align-center" src="../_images/922.png" />
 <ol class="arabic simple" start="10">
-<li>In the <em class="guilabel">Select By Expression</em> window, expand the <em class="guilabel">Fields and Values</em> section and double-click the <cite>pop_max</cite> label. You will notice that it is added to the expression section at the bottom. If you aren&#8217;t sure about the field values, you can click the <em class="guilabel">Load all unique values</em> to see what the attribute values are present in the dataset. For this exercise, we are looking to find all features that have a population greater than 1,000,000. So complete the expression as <cite>&#8220;pop_max&#8221; &gt; 1000000</cite> and click <em class="guilabel">Select</em>.</li>
+<li><p class="first">In het venster <em class="guilabel">Select By Expression</em>, vergroot het gedeelte <em class="guilabel">Velden en waarden</em> en dubbelklik op het label <cite>pop_max</cite>. U zult zien dat het wordt toegevoegd aan het gedeelte voor de expressie aan de onderzijde van het venster. Als u niet zeker bent van de veldwaarden, kunt u klikken op <em class="guilabel">Alle unieke waarden laden</em> om te zien welke attribuutwaarden aanwezig zijn in de gegevensset. Voor deze oefening zoeken we naar alle objecten die een populatie hebben die groter is dan 1.000.000. Completeer dus de expressie als <cite>&#8220;pop_max&#8221; &gt; 1000000</cite> en klik op <em class="guilabel">Selecteren</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1023.png" class="align-center" src="../_images/1023.png" />
 <ol class="arabic simple" start="11">
-<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. You will notice that a subset of points is now rendered in yellow. This is the result of our query and you are seeing all places from the dataset that have the <cite>pop_max</cite> attribute value greater than 1,000,000.</li>
+<li><p class="first">Klik op <em class="guilabel">Sluiten</em> en ga terug naar het hoofdvenster van QGIS. U zult merken dat nu een subset van punten in geel gerenderd is. Dat is het resultaat van onze query en u ziet alle plaatsen uit de gegevensset waarvan de waarde van het attribuut <cite>pop_max</cite> groter is dan 1.000.000.</p>
+</li>
 </ol>
 <img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
 <ol class="arabic simple" start="12">
-<li>The goal for this exercise is to find the places that are country capitals. Let’s refine our query to select only those places which are capitals. Click on the <em class="guilabel">Select feature using an expression</em> button in the attribute table.</li>
+<li><p class="first">Het doel voor deze oefening is het vinden van de plaatsen die hoofdsteden van landen zijn. Laten we onze query verfijnen om alleen die plaatsen te selecteren die ook hoofdsteden zijn. Klik op de knop <em class="guilabel">Selecteren van objecten m.b.v. reguliere expressie</em> in de attributentabel.</p>
+</li>
 </ol>
 <img alt="../_images/1223.png" class="align-center" src="../_images/1223.png" />
 <ol class="arabic simple" start="13">
-<li>The field containing this data is <cite>adm0cap</cite>. The value <cite>1</cite> indicates that the place is a capital. Enter the expression as <cite>&#8220;adm0cap&#8221; = 1</cite>. Since we want to  search only within our previous query results, select <em class="guilabel">Select within selection</em>.</li>
+<li><p class="first">Het veld dat deze gegevens bevat is <cite>adm0cap</cite>. De waarde <cite>1</cite> geeft aan dat de plaats een hoofdstad is. Voer de expressie in als <cite>&#8220;adm0cap&#8221; = 1</cite>. Omdat we alleen binnen onze eerdere query willen zoeken, selecteer <em class="guilabel">Selecteren binnen selectie</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1322.png" class="align-center" src="../_images/1322.png" />
 <ol class="arabic simple" start="14">
-<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. Now you will see a smaller subset of the points selected. This is the result of the second query and shows all places from the dataset that are country capitals as well as have population greater than 1,000,000.</li>
+<li><p class="first">Klik op <em class="guilabel">Sluiten</em> en ga terug naar het hoofdvenster van QGIS. Nu zult u een kleinere subset van punten geselecteerd zien. Dit is het resultaat van de tweede query en geeft alle plaatsen weer uit de gegevensset die hoofdsteden zijn en ook een populatie hebben die groter is dan 1,000,000.</p>
+</li>
 </ol>
 <img alt="../_images/1421.png" class="align-center" src="../_images/1421.png" />
 <ol class="arabic simple" start="15">
-<li>Let&#8217;s save these results to a separate layer. Right-click on the layer and select <em class="guilabel">Save Selection As</em>.</li>
+<li><p class="first">Laten we deze resultaten opslaan in een afzonderlijke laag. Klik met rechts op de laag en selecteer <em class="guilabel">Opslaan als</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1518.png" class="align-center" src="../_images/1518.png" />
 <ol class="arabic simple" start="16">
-<li>Keep the format selection as <cite>ESRI Shapefile</cite> and enter the output name as <cite>large_capital_cities.shp</cite>. Check the box next to <em class="guilabel">Add saved file to map</em> and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Behoud de indeling van de selectie als <cite>ESRI Shapefile</cite> en voer als naam voor de uitvoer in <cite>large_capital_cities.shp</cite>. Selecteer het vak naast <em class="guilabel">Voeg opgeslagen bestand toe aan kaart</em> en klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1618.png" class="align-center" src="../_images/1618.png" />
 <ol class="arabic simple" start="17">
-<li>The newly created shapefile will be automaticlally loaded into QGIS. Turn off the populated places layer by un-checking the box next to it. Now, you will see only the features from the newly created layer containing capital cities of the world that have population greater than 1,000,000.</li>
+<li><p class="first">Het nieuw gemaakte shapefile zal automatisch worden geladen in QGIS. Schakel de laag met bewoonde plaatsen uit door het vak ernaast te deselecteren. NU zult u alleen de objecten zien van de nieuw gemaakte laag die de hoofdsteden van de wereld bevat die een populatie hebben die groter is dan 1.000.000.</p>
+</li>
 </ol>
 <img alt="../_images/1717.png" class="align-center" src="../_images/1717.png" />
 </div>
 </div>
 
+
+
+<div class="addthis_sharing_toolbox"></div>
 
 
   <div id="disqus_thread"></div>
@@ -299,7 +310,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Jan 19, 2015.<br/>
+      Laatste aanpassing op Mar 25, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
@@ -335,7 +346,8 @@
   })();
 </script>
 
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts" async="async"></script>
 
 <!-- Script fpr language switching. Largely adapted from https://github.com/pcav/faunalia-website -->
 <script>

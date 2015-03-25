@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Digitizing Map Data &mdash; QGIS Tutorials and Tips</title>
+    <title>Оцифровка картографических данных &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -95,7 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Привязка аэрофотоснимков</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Digitizing Map Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Оцифровка картографических данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
@@ -177,55 +177,40 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><h4>Author</h4>
 <div class="g-person" data-width="250" data-href="//plus.google.com/u/0/116912222767108657277" data-showtagline="false" data-showcoverphoto="false" data-rel="author"></div>
 
-<!-- AddThis Button BEGIN -->
-<h4>Share</h4>
-<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-    <a class="addthis_button_google_plusone_share"></a>
-    <a class="addthis_button_twitter"></a>
-    <a class="addthis_button_facebook"></a>
-    <a class="addthis_button_email"></a>
-    <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-</div>
-<!-- AddThis Button END -->
+<div class="addthis_horizontal_follow_toolbox"></div>
         </div>
       </div>
     <div class="col-md-9">
       
 
   <div class="section" id="digitizing-map-data">
-<h1>Digitizing Map Data<a class="headerlink" href="#digitizing-map-data" title="Ссылка на этот заголовок">¶</a></h1>
+<h1>Оцифровка картографических данных<a class="headerlink" href="#digitizing-map-data" title="Ссылка на этот заголовок">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/digitizing_basics_a4.pdf">A4</a> <a class="reference external" href="../pdf/digitizing_basics_letter.pdf">Letter</a> ]</p>
-<p>Digitizing is one of the most common tasks that a GIS Specialist has to do.
-Often a large amount of <em>GIS time</em> is spent in digitizing raster data to create
-vector layers that you use in your analysis. QGIS has powerful on-screen
-digitizing and editing capabilities that we will explore in this tutorial.</p>
+<p>Оцифровка является одной из наиболее распространенных задач, с которыми сталкивается ГИС-специалист. Часто большая доля времени работы в ГИС тратится на оцифровку растровых данных, чтобы создать векторные слои для дальнейшего анализа. QGIS имеет мощные экранные возможности для оцифровки и редактирования, которые мы будем изучать в этой статье.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
-<p>We will use a raster topographic map and create several vector layers
-representing features around a park.</p>
+<h2>Краткий обзор задачи<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Мы будем использовать растровую топографическую карту для создания нескольких векторных слоев, отображающих объекты в окрестностях парка.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>Другие навыки, которые Вы узнаете<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
 <ul class="simple">
-<li>Building pyramids for large raster datasets to speed up zoom and pan
-operations.</li>
-<li>Working with a Spatialite database.</li>
+<li><p class="first">Построение пирамид для больших наборов растровых данных для ускорения операций масштабирования и сдвига.</p>
+</li>
+<li><p class="first">Работа с базой данных Spatialite.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Ссылка на этот заголовок">¶</a></h2>
-<p><a class="reference external" href="http://www.linz.govt.nz/">Land Information New Zealand (LINZ)</a> provides
-raster topographic maps at 1:50,000 scale for the New Zealand mainland and
-Chatham Islands.</p>
-<p>Download the <a class="reference external" href="http://topo.linz.govt.nz/Topo50_raster_images/GeoTIFFTopo50/BX24_GeoTifv1-02.tif">GeoTIFF Image file</a>
-from the <a class="reference external" href="http://www.linz.govt.nz/topography/topo-maps/map-chooser/christchurch/christchurch#digitalfile">Christchurch Topo50 map download page</a>.</p>
+<h2>Получение данных<a class="headerlink" href="#get-the-data" title="Ссылка на этот заголовок">¶</a></h2>
+<p><a href="#id1"><span class="problematic" id="id2">`</span></a>Land Information New Zealand (LINZ) &lt;<a class="reference external" href="http://www.linz.govt.nz/">http://www.linz.govt.nz/</a>&gt;`_предоставляет растровые топографические карты в масштабе 1:50000 для материка Новая Зеландия и архипелага Чатем.</p>
+<p>Скачайте <a class="reference external" href="http://topo.linz.govt.nz/Topo50_raster_images/GeoTIFFTopo50/BX24_GeoTifv1-02.tif">файл GeoTIFF</a> со страницы <a class="reference external" href="http://www.linz.govt.nz/topography/topo-maps/map-chooser/christchurch/christchurch#digitalfile">Christchurch Topo50 map download page</a>.</p>
 <p>If you are on a slow connection, you may download a clipped version of the
 original GeoTIFF which is a much smaller file size.</p>
 <p><a class="reference download internal" href="../_downloads/BX24_GeoTifv1-02-clip.tif"><tt class="xref download docutils literal"><span class="pre">BX24_GeoTifv1-02-clip.tif</span></tt></a></p>
-<p>Data Source <a class="reference internal" href="credits.html#linz" id="id1">[LINZ]</a></p>
+<p>Источник данных <a class="reference internal" href="credits.html#linz" id="id1">[LINZ]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Процедура<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
 <ol class="arabic simple">
 <li>Go to <em class="menuselection">Layer ‣ Add Raster Layer</em>. Locate the downloaded
 <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02.tif</span></tt> and click <em class="guilabel">Open</em>.</li>
@@ -497,6 +482,9 @@ data you created.</li>
 
 
 
+<div class="addthis_sharing_toolbox"></div>
+
+
   <div id="disqus_thread"></div>
   <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
   <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
@@ -515,7 +503,7 @@ data you created.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Jan 19, 2015.<br/>
+      Обновлено: Mar 25, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
@@ -551,7 +539,8 @@ data you created.</li>
   })();
 </script>
 
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts" async="async"></script>
 
 <!-- Script fpr language switching. Largely adapted from https://github.com/pcav/faunalia-website -->
 <script>
