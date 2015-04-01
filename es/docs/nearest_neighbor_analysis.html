@@ -200,6 +200,8 @@ populated place for each location where the earthquake happened.</p>
 <ul class="simple">
 <li>How to do table joins in QGIS. (See <a class="reference internal" href="performing_table_joins.html"><em>Performing Table Joins</em></a> for
 detailed instructions.)</li>
+<li>Using <em class="guilabel">Query Builder</em> to show a subset of features from a layer.</li>
+<li>Using MMQGIS plugin to create hub lines to visualize the nearest neighbors.</li>
 </ul>
 </div>
 </div>
@@ -213,15 +215,15 @@ earthquake data</a>.</p>
 dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simple (less columns) dataset</a></p>
 <p>For convenience, you may directly download a copy of both the datasets from the links
 below:</p>
-<p><a class="reference download internal" href="../_downloads/signif.txt"><tt class="xref download docutils literal"><span class="pre">signif.txt</span></tt></a></p>
-<p><a class="reference download internal" href="../_downloads/ne_10m_populated_places_simple.zip"><tt class="xref download docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt></a></p>
+<p><a class="reference external" href="../../downloads/signif.txt">signif.txt</a></p>
+<p><a class="reference external" href="../../downloads/ne_10m_populated_places_simple.zip">ne_10m_populated_places_simple.zip</a></p>
 <p>Data Sources: <a class="reference internal" href="credits.html#ngdc" id="id1">[NGDC]</a> <a class="reference internal" href="credits.html#naturalearth" id="id2">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Enlazar permanentemente con este título">¶</a></h2>
 <ol class="arabic simple">
-<li>Open <em class="menuselection">Layer ‣ Add Delimited Text Layer</em> and browse to the
-downloaded <tt class="docutils literal"><span class="pre">signif.txt</span></tt> file.</li>
+<li>Open <em class="menuselection">Layer ‣ Add Layer ‣ Add Delimited Text Layer</em> and
+browse to the downloaded <tt class="docutils literal"><span class="pre">signif.txt</span></tt> file.</li>
 </ol>
 <img alt="../_images/160.png" class="align-center" src="../_images/160.png" />
 <ol class="arabic simple" start="2">
@@ -237,42 +239,37 @@ the errors for the purpose of this tutorial.</p>
 </div>
 <img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
 <ol class="arabic simple" start="3">
-<li>As the earthquake dataset has Latitude/Longitude coordinates, choose
-<em class="guilabel">WGS 84 EPSG:436</em> as the CRS in the <em class="guilabel">Coordinate Reference System Selector</em>
-dialog.</li>
+<li>As the earthquake dataset has Latitude/Longitude coordinates, it will be
+imported with the default CRS of <tt class="docutils literal"><span class="pre">EPSG:</span> <span class="pre">4326</span></tt>. Verify that is the case in
+the bottom-right corner. Let&#8217;s also open the Populated Places layer. Go to
+<em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</em>.</li>
 </ol>
 <img alt="../_images/319.png" class="align-center" src="../_images/319.png" />
 <ol class="arabic simple" start="4">
-<li>The earthquake point layer would now be loaded and displayed in QGIS. Let&#8217;s
-also open the Populated Places layer. Go to <em class="menuselection">Layer ‣ Add
-Vector Layer</em>.</li>
+<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt> file and
+click <em class="guilabel">Open</em>.</li>
 </ol>
 <img alt="../_images/415.png" class="align-center" src="../_images/415.png" />
 <ol class="arabic simple" start="5">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt> file and
-click <em class="guilabel">Open</em>. Select the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.shp</span></tt> as
-the layer in the <em class="guilabel">Select layers to add...</em> dialog.</li>
-</ol>
-<img alt="../_images/515.png" class="align-center" src="../_images/515.png" />
-<ol class="arabic simple" start="6">
 <li>Zoom around and explore both the datasets. Each purple point represents the
 location of a significant earthquake and each blue point represents the
 location of a populated place. We need a way to find out the nearest point
 from the populated places layer for each of the points in the earthquake
 layer.</li>
 </ol>
-<img alt="../_images/614.png" class="align-center" src="../_images/614.png" />
-<ol class="arabic simple" start="7">
+<img alt="../_images/515.png" class="align-center" src="../_images/515.png" />
+<ol class="arabic simple" start="6">
 <li>Go to <em class="menuselection">Vector ‣ Analysis Tools ‣ Distance Matrix</em>.</li>
 </ol>
-<img alt="../_images/713.png" class="align-center" src="../_images/713.png" />
-<ol class="arabic simple" start="8">
-<li>Here select the earthquake layer <tt class="docutils literal"><span class="pre">signif</span></tt> as the Input point layer and the populated
-places <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> as the target layer. You also need
-to select a unique field from each of these layers which is how your results
-will be displayed. In this analysis, we are looking to get only <strong>1</strong> nearest
-point, so check the <em class="guilabel">Use only the nearest(k) target points</em>, and
-enter <em class="guilabel">1</em>. Name your output file <tt class="docutils literal"><span class="pre">matrix.csv</span></tt>, and click OK.</li>
+<img alt="../_images/614.png" class="align-center" src="../_images/614.png" />
+<ol class="arabic simple" start="7">
+<li>Here select the earthquake layer <tt class="docutils literal"><span class="pre">signif</span></tt> as the Input point layer and the
+populated places <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> as the target layer. You
+also need to select a unique field from each of these layers which is how
+your results will be displayed. In this analysis, we are looking to get only
+<tt class="docutils literal"><span class="pre">1</span></tt> nearest point, so check the <em class="guilabel">Use only the nearest(k) target
+points</em>, and enter <em class="guilabel">1</em>. Name your output file <tt class="docutils literal"><span class="pre">matrix.csv</span></tt>, and
+click OK.  Once the processing finishes, click <em class="guilabel">Close</em>.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
@@ -281,30 +278,32 @@ layer. Select the same layer as both Input and Target. The result would be a
 nearest neighbor from the same layer instead of a different layer as we have
 used here.</p>
 </div>
+<img alt="../_images/713.png" class="align-center" src="../_images/713.png" />
+<ol class="arabic simple" start="8">
+<li>Once the processing finishes, click the <em class="guilabel">Close</em> button in the
+<em class="guilabel">Distance Matrix</em> dialog. You can now view the <tt class="docutils literal"><span class="pre">matrix.csv</span></tt> file
+in Notepad or any text editor.  QGIS can import CSV files as well, so we
+will add it to QGIS and view it there. Go to <em class="menuselection">Layer ‣ Add
+Layer ‣ Add Delimited Text Layer...</em>.</li>
+</ol>
 <img alt="../_images/813.png" class="align-center" src="../_images/813.png" />
 <ol class="arabic simple" start="9">
-<li>Once your file is generated, you can view it in Notepad or any text editor.
-QGIS can import CSV files as well, so we will add it to QGIS and view it
-there. Go to <em class="menuselection">Layer ‣ Add Delimited Text Layer...</em>.</li>
-</ol>
-<img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
-<ol class="arabic simple" start="10">
 <li>Browse to the newly created <tt class="docutils literal"><span class="pre">matrix.csv</span></tt> file. Since this file is just
 text columns, select <em class="guilabel">No geometry (attribute only table)</em> as the
 <em class="guilabel">Geometry definition</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" />
-<ol class="arabic simple" start="11">
+<img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
+<ol class="arabic simple" start="10">
 <li>You will see the CSV file loaded as a table. Right-click on the table layer
 and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" />
-<ol class="arabic simple" start="12">
-<li>Now you will be able to see the content of our results. The <em class="guilabel">InputID</em>
-field contains the field name from the Earthquake layer. The <em class="guilabel">TargetID</em>
-field contains the name of the feature from the Populated Places layer that was
-the closest to the earthquake point. The <em class="guilabel">Distance</em> field is the distance
-between the 2 points.</li>
+<img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" />
+<ol class="arabic simple" start="11">
+<li>Now you will be able to see the content of our results. The
+<em class="guilabel">InputID</em> field contains the field name from the Earthquake
+layer. The <em class="guilabel">TargetID</em> field contains the name of the feature from
+the Populated Places layer that was the closest to the earthquake point.
+The <em class="guilabel">Distance</em> field is the distance between the 2 points.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
@@ -313,40 +312,122 @@ Coordinate Reference System. Here the distance will be in <em>decimal degrees</e
 units because our source layer coordinates are in degrees. If you want
 distance in meters, reproject the layers before running the tool.</p>
 </div>
-<img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" />
-<ol class="arabic simple" start="13">
+<img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" />
+<ol class="arabic simple" start="12">
 <li>This is very close to the result we were looking for. For some users, this
 table would be sufficient. However, we can also integrate this results in
-our original Earthquake layer using a <strong>Table Join</strong>. Right-click on the Earthquake
-layer, and select <em class="guilabel">Properties</em>.</li>
+our original Earthquake layer using a <strong>Table Join</strong>. Right-click on the
+Earthquake layer, and select <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" />
-<ol class="arabic simple" start="14">
+<img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" />
+<ol class="arabic simple" start="13">
 <li>Go to the <em class="guilabel">Joins</em> tab and click on the <em class="guilabel">+</em> button.</li>
 </ol>
 <img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
-<ol class="arabic simple" start="15">
-<li>We want to join the data from our analysis result (<tt class="docutils literal"><span class="pre">matrix.csv</span></tt>) to this
-layer. We need to select a field from each of the layers that has the same
-values. Select the fields as shown below.</li>
+<ol class="arabic simple" start="14">
+<li>We want to join the data from our analysis result to this layer. We need to
+select a field from each of the layers that has the same values. Select
+<tt class="docutils literal"><span class="pre">matrix</span></tt> as the <em class="guilabel">Join layer`</em> and <tt class="docutils literal"><span class="pre">InputID</span></tt> as the
+<em class="guilabel">Join field</em>. The <em class="guilabel">Target field</em> would be <tt class="docutils literal"><span class="pre">I_D</span></tt>.
+Leave other options to their default values and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1511.png" class="align-center" src="../_images/1511.png" />
-<ol class="arabic simple" start="16">
+<img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
+<ol class="arabic simple" start="15">
 <li>You will see the join appear in the <em class="guilabel">Joins</em> tab. Click
 <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1611.png" class="align-center" src="../_images/1611.png" />
-<ol class="arabic simple" start="17">
-<li>Now open the attribute table of the Earthquakes layer by right-clicking and
+<img alt="../_images/1511.png" class="align-center" src="../_images/1511.png" />
+<ol class="arabic simple" start="16">
+<li>Now open the attribute table of the <tt class="docutils literal"><span class="pre">signif</span></tt> layer by right-clicking and
 selecting <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/1710.png" class="align-center" src="../_images/1710.png" />
-<ol class="arabic simple" start="18">
+<img alt="../_images/1611.png" class="align-center" src="../_images/1611.png" />
+<ol class="arabic simple" start="17">
 <li>You will see that for every Earthquake feature, we now have an attribute
 which is the nearest neighbor (closest populated place) and the distance to
 the nearest neighbor.</li>
 </ol>
+<img alt="../_images/1710.png" class="align-center" src="../_images/1710.png" />
+<ol class="arabic simple" start="18">
+<li>We will now explore a way to visualize these results. First, we need to
+make the table join permanent by saving it to a new layer. Right-click the
+<tt class="docutils literal"><span class="pre">signif</span></tt> layer and select <em class="guilabel">Save As...</em>.</li>
+</ol>
 <img alt="../_images/1810.png" class="align-center" src="../_images/1810.png" />
+<ol class="arabic simple" start="19">
+<li>Click the <em class="guilabel">Browse</em> button next to <em class="guilabel">Save as</em> label and
+name the output layer as <tt class="docutils literal"><span class="pre">earthquake_with_places.shp</span></tt>. Make sure the
+<em class="guilabel">Add saved file to map</em> box is checked and click <em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/198.png" class="align-center" src="../_images/198.png" />
+<ol class="arabic simple" start="20">
+<li>Once the new layer is loaded, you can turn off the visibility of the
+<tt class="docutils literal"><span class="pre">signif</span></tt> layer. As our dataset is quite large, we can run our
+visualization analysis on a subset of the data. QGIS has a neat feature
+where you can load a subset of features from a layer without having to
+export it to a new layer. Right-click the <tt class="docutils literal"><span class="pre">earthquake_with_places</span></tt> layer
+and select <em class="guilabel">Properties</em>.</li>
+</ol>
+<img alt="../_images/205.png" class="align-center" src="../_images/205.png" />
+<ol class="arabic simple" start="21">
+<li>In the <em class="guilabel">General</em> tab, scroll down to the <em class="guilabel">Feature
+subset</em> section. Click <em class="guilabel">Query Builder</em>.</li>
+</ol>
+<img alt="../_images/2111.png" class="align-center" src="../_images/2111.png" />
+<ol class="arabic simple" start="22">
+<li>For this tutorial, we will visualize the earthquakes and their nearest
+populated places for Mexico. Enter the following expression in the
+<em class="guilabel">Query Builder</em> dialog.</li>
+</ol>
+<div class="highlight-none"><div class="highlight"><pre>&quot;COUNTRY&quot; = &#39;MEXICO&#39;
+</pre></div>
+</div>
+<img alt="../_images/225.png" class="align-center" src="../_images/225.png" />
+<ol class="arabic simple" start="23">
+<li>You will see that only the points falling within Mexico will be visible in
+the canvas. Let&#8217;s do the same for the populated places layer. Right-click
+on the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select
+<em class="guilabel">Properties</em>.</li>
+</ol>
+<img alt="../_images/234.png" class="align-center" src="../_images/234.png" />
+<ol class="arabic simple" start="24">
+<li>Open the <em class="guilabel">Query Builder</em> dialog from the <em class="guilabel">General</em> tab.
+Enter the following expression.</li>
+</ol>
+<div class="highlight-none"><div class="highlight"><pre>&quot;adm0name&quot; = &#39;Mexico&#39;
+</pre></div>
+</div>
+<img alt="../_images/244.png" class="align-center" src="../_images/244.png" />
+<ol class="arabic simple" start="25">
+<li>Now we are ready to create our visualization. We will use a plugin named
+<tt class="docutils literal"><span class="pre">MMQGIS</span></tt>. Find and install the plugin. See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> for more
+details on how to work with plugins. Once you have the plugin installed, go
+to <em class="menuselection">MMQGIS ‣ Create ‣ Hub Lines</em>.</li>
+</ol>
+<img alt="../_images/254.png" class="align-center" src="../_images/254.png" />
+<ol class="arabic simple" start="26">
+<li>Select <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> as the <em class="guilabel">Hub Point
+Layer</em> and <tt class="docutils literal"><span class="pre">name</span></tt> as the <em class="guilabel">Hub ID Attribute</em>. Similarly, select
+<tt class="docutils literal"><span class="pre">earthquake_with_places</span></tt> as the <em class="guilabel">Spoke Point Layer</em> and
+<tt class="docutils literal"><span class="pre">matrix_Tar</span></tt> as the <em class="guilabel">Spoke Hub ID Attribute</em>. The hub lines
+algorithm will go through each of earthquake points and create a line that
+will join it to the populated place which matches the attribute we
+specified. Click <em class="guilabel">Browse</em> and name the <em class="guilabel">Output
+Shapefile</em> as <tt class="docutils literal"><span class="pre">earthquake_hub_lines.shp</span></tt>. Click <em class="guilabel">OK</em> to start
+the processing.</li>
+</ol>
+<img alt="../_images/264.png" class="align-center" src="../_images/264.png" />
+<ol class="arabic simple" start="27">
+<li>The processsing may take a few minutes. You can see the progress on the
+bottom-left corner of the QGIS window.</li>
+</ol>
+<img alt="../_images/273.png" class="align-center" src="../_images/273.png" />
+<ol class="arabic simple" start="28">
+<li>Once the processing is done, you will see the <tt class="docutils literal"><span class="pre">earthquake_hub_lines</span></tt>
+layer loaded in QGIS. You can see that each earthquake point now has a line
+that connects it to the nearest populated place.</li>
+</ol>
+<img alt="../_images/283.png" class="align-center" src="../_images/283.png" />
 </div>
 </div>
 

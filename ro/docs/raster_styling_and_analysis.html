@@ -205,7 +205,7 @@
 <li><p class="first">Mergeți la <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density/data-download">Population Density Grid, v3 download page.</a> Alegeți formatul <em class="guilabel">.ascii</em>, rezoluția <em class="guilabel">1°</em> și anul <em class="guilabel">1990</em> pentru <em class="guilabel">Data Attributes</em>. Faceți clic pe <em class="guilabel">Download</em>. În acest moment, puteți crea un cont gratuit, apoi să vă conectați, sau să folosiți butonul <em class="guilabel">Guest Download</em> din partea de jos, pentru a descărca imediat datele. Repetați procesul pentru datele anului <em class="guilabel">2000</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1102.png" class="align-center" src="../_images/1102.png" />
+<img alt="../_images/1103.png" class="align-center" src="../_images/1103.png" />
 <p>Acum aveți descărcate 2 fișiere zip.</p>
 <p>For convenience, you can also download a copy of this data by clicking on following links:</p>
 <p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_90_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_90_ascii_one.zip</span></tt></a></p>
@@ -218,7 +218,7 @@
 <li><p class="first">Deschideți QGIS și mergeți la <em class="menuselection">Layer ‣ Add Raster Layer..</em>.</p>
 </li>
 </ol>
-<img alt="../_images/236.png" class="align-center" src="../_images/236.png" />
+<img alt="../_images/238.png" class="align-center" src="../_images/238.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Localizați fișierele zip descărcate. Țineți apăsată tasta <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> și faceți clic pe ambele fișiere zip, pentru a le selecta. Astfel, le veți putea încărca într-un singur pas.</p>
 </li>
@@ -273,7 +273,7 @@
 <li><p class="first">Pentru analiza noastră, ne dorim să găsim zonele cu cea mai mare schimbare a populației între 1990 și 2000. Acest lucru se face prin găsirea diferenței dintre valorile pixelilor din grilele celor două straturi. Selectați <em class="menuselection">Raster ‣ Raster calculator</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1318.png" class="align-center" src="../_images/1318.png" />
+<img alt="../_images/1317.png" class="align-center" src="../_images/1317.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">În secțiunea <em class="guilabel">Raster bands</em>, puteți selecta stratul efectuând dublu-clic pe numele lui. Benzile sunt denumite după numele rasterului, urmat de &#64; și de numărul benzii. Din moment ce fiecare dintre rasterele noastre au doar 1 bandă, veți vedea doar 1 intrare pe raster. Calculatorul raster poate efectua operații matematice asupra pixelilor din rastere. În acest caz, dorim să introducem o formulă simplă pentru a scădea densitatea populației anului 1990 din cea a anului 2000. Introduceți formula <tt class="docutils literal"><span class="pre">glds00ag60&#64;1</span> <span class="pre">-</span> <span class="pre">glds90ag60&#64;1</span></tt>. Denumiți stratul de ieșire ca <em class="guilabel">pop_density_change_2000_1990.tif</em> și bifați caseta de lângă <em class="guilabel">Add result to project</em>. Apoi faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
@@ -308,12 +308,12 @@
 <li><p class="first">Selectați instrumentul <em class="guilabel">Identify</em> și faceți clic pe regiunile Roșii și Albastre, pentru a vă convinge că regulile de stilizare lucrează așa cum vă așteptați.</p>
 </li>
 </ol>
-<img alt="../_images/208.png" class="align-center" src="../_images/208.png" />
+<img alt="../_images/209.png" class="align-center" src="../_images/209.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Acum, haideți să ducem această analiză cu un pas mai departe și să găsim doar zonele cu densitate <cite>negativă</cite> a populației. Deschideți <em class="menuselection">Raster ‣ Raster calculator</em>.</p>
 </li>
 </ol>
-<img alt="../_images/2112.png" class="align-center" src="../_images/2112.png" />
+<img alt="../_images/2113.png" class="align-center" src="../_images/2113.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Introduceți expresia <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990&#64;1</span> <span class="pre">&lt;</span> <span class="pre">-10</span></tt>. Această expresie va seta valoarea pixelului la 1 în cazul satisfacerii expresiei, sau la 0 în caz contrar. Asa că vom obține un raster ai căror pixeli vor avea valoarea 1 acolo unde schimbarea a fost negativă, și 0 acolo unde nu a fost negativă. Denumiți stratul de ieșire ca <tt class="docutils literal"><span class="pre">negative_pop_change_2000_1990</span></tt> și bifați caseta de lângă <em class="guilabel">Add result to project</em>. Faceți clic pe OK.</p>
 </li>
@@ -323,12 +323,12 @@
 <li><p class="first">O dată ce noul strat a fost încărcat, efectuați clic dreapta pe el și selectați <em class="guilabel">Properties</em>. În fila <em class="guilabel">Transparency</em>, adăugați 0 ca <em class="guilabel">Additional no data value</em>. De asemenea, această setare va face pixelii cu valoarea 0 transparenți. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/237.png" class="align-center" src="../_images/237.png" />
+<img alt="../_images/239.png" class="align-center" src="../_images/239.png" />
 <ol class="arabic simple" start="24">
 <li><p class="first">Veți vedea că ariile cu densitate negativă a populației sunt alcătuite din pixeli gri.</p>
 </li>
 </ol>
-<img alt="../_images/245.png" class="align-center" src="../_images/245.png" />
+<img alt="../_images/246.png" class="align-center" src="../_images/246.png" />
 </div>
 </div>
 

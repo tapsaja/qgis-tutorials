@@ -195,6 +195,8 @@
 <ul class="simple">
 <li><p class="first">QGIS에서 어떻게 테이블을 결합하는지 알아봅니다. (보다 자세한 내용은  :doc:<a href="#id1"><span class="problematic" id="id2">`</span></a>performing_table_joins`를 보기 바랍니다.)</p>
 </li>
+<li>Using <em class="guilabel">Query Builder</em> to show a subset of features from a layer.</li>
+<li>Using MMQGIS plugin to create hub lines to visualize the nearest neighbors.</li>
 </ul>
 </div>
 </div>
@@ -204,15 +206,15 @@
 <p>Natural Earth는 훌륭한 인구밀집지역 <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places</a> 데이터베이스를 가지고 있습니다. 단순 데이터셋`simple (less columns) dataset &lt;<a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip</a>&gt;`_을 다운 받으십시오.</p>
 <p>For convenience, you may directly download a copy of both the datasets from the links
 below:</p>
-<p><a class="reference download internal" href="../_downloads/signif.txt"><tt class="xref download docutils literal"><span class="pre">signif.txt</span></tt></a></p>
-<p><a class="reference download internal" href="../_downloads/ne_10m_populated_places_simple.zip"><tt class="xref download docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt></a></p>
+<p><a class="reference external" href="../../downloads/signif.txt">signif.txt</a></p>
+<p><a class="reference external" href="../../downloads/ne_10m_populated_places_simple.zip">ne_10m_populated_places_simple.zip</a></p>
 <p>데이터 출처: <a class="reference internal" href="credits.html#ngdc" id="id1">[NGDC]</a> <a class="reference internal" href="credits.html#naturalearth" id="id2">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>과정<a class="headerlink" href="#procedure" title="제목 주소">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">메뉴: 레이어 &#8211;&gt; 구분자로 분리된 텍스트 레이어를 추가...:menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Layer &#8211;&gt; Add Delimited Text Layer`를 열고 다운로드한 <a href="#id3"><span class="problematic" id="id4">``</span></a>signif.txt``파일을 찾습니다.</p>
-</li>
+<li>Open <em class="menuselection">Layer ‣ Add Layer ‣ Add Delimited Text Layer</em> and
+browse to the downloaded <tt class="docutils literal"><span class="pre">signif.txt</span></tt> file.</li>
 </ol>
 <img alt="../_images/160.png" class="align-center" src="../_images/160.png" />
 <ol class="arabic simple" start="2">
@@ -225,55 +227,60 @@ below:</p>
 </div>
 <img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
 <ol class="arabic simple" start="3">
-<li><p class="first">지진 데이터셋은 위도/경도 좌표를 갖고 있으므로 좌표계 선택 <em class="guilabel">Coordinate Reference System Selector</em> 다이알로그에서 CRS는 <em class="guilabel">WGS 84 EPSG:436</em> 를 선택합니다.</p>
-</li>
+<li>As the earthquake dataset has Latitude/Longitude coordinates, it will be
+imported with the default CRS of <tt class="docutils literal"><span class="pre">EPSG:</span> <span class="pre">4326</span></tt>. Verify that is the case in
+the bottom-right corner. Let&#8217;s also open the Populated Places layer. Go to
+<em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</em>.</li>
 </ol>
 <img alt="../_images/319.png" class="align-center" src="../_images/319.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">지진 포인트가 QGIS로 불러들여지고 나타납니다. 인구밀집지역 레이어도 열어보겠ㅅㅂ니다. 메뉴 레이어 &#8211;&gt; 레이어 추가 &#8211;&gt; 벡터레이어 추가 :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Layer &#8211;&gt; Add Vector Layer`로 갑니다.</p>
-</li>
+<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt> file and
+click <em class="guilabel">Open</em>.</li>
 </ol>
 <img alt="../_images/415.png" class="align-center" src="../_images/415.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">다운로드한 <a href="#id1"><span class="problematic" id="id2">``</span></a>ne_10m_populated_places_simple.zip``파일을 찾고 열기 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Open`를 클릭합니다. 추가할 레이어 선택 :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>Select layers to add...`다이알로그에서 <a href="#id7"><span class="problematic" id="id8">``</span></a>ne_10m_populated_places_simple.shp``를 선택합니다.</p>
+<li><p class="first">두 개의 데이터셋을 확대 및 탐색해 봅니다. 각각의 보라색 점은 중요한 지진이 발생한 위치를 나타내고, 각각의 파란색 점은 인구밀집지역을 나타냅니다. 지진레이어에서 각 점에 대해 인구밀집지역으로부터 가장 가까운 점을 찾는 방법이 필요합니다.</p>
 </li>
 </ol>
 <img alt="../_images/515.png" class="align-center" src="../_images/515.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">두 개의 데이터셋을 확대 및 탐색해 봅니다. 각각의 보라색 점은 중요한 지진이 발생한 위치를 나타내고, 각각의 파란색 점은 인구밀집지역을 나타냅니다. 지진레이어에서 각 점에 대해 인구밀집지역으로부터 가장 가까운 점을 찾는 방법이 필요합니다.</p>
+<li><p class="first">메뉴 벡터 &#8211;&gt; 분석 도구 &#8211;&gt; 거리행렬계산하기  :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Vector &#8211;&gt; Analysis Tools &#8211;&gt; Distance Matrix`로 갑니다.</p>
 </li>
 </ol>
 <img alt="../_images/614.png" class="align-center" src="../_images/614.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">메뉴 벡터 &#8211;&gt; 분석 도구 &#8211;&gt; 거리행렬계산하기  :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Vector &#8211;&gt; Analysis Tools &#8211;&gt; Distance Matrix`로 갑니다.</p>
-</li>
-</ol>
-<img alt="../_images/713.png" class="align-center" src="../_images/713.png" />
-<ol class="arabic simple" start="8">
-<li><p class="first">여기서 입력 점 레이어로써 지진 레이어 <tt class="docutils literal"><span class="pre">signif</span></tt> 를, 대상 점 레이어로써 인구밀집지역 <a href="#id1"><span class="problematic" id="id2">``</span></a>ne_10m_populated_places_simple``를 선택합니다. 또한 이러한 각 레이어로부터 결과가 어떻게 보여질지 고유필드를 선택할 필요가 있습니다. 이번 분석에서는 가까운 점으로  <a href="#id3"><span class="problematic" id="id4">**</span></a>1**만 찾으므로 최근린점만을 사용 :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>Use only the nearest(k) target points`을 체크하고  :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>1`을 입력합니다. 출력파일명으로 <a href="#id9"><span class="problematic" id="id10">``</span></a>matrix.csv``을 입력하고 OK를 클릭합니다.</p>
-</li>
+<li>Here select the earthquake layer <tt class="docutils literal"><span class="pre">signif</span></tt> as the Input point layer and the
+populated places <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> as the target layer. You
+also need to select a unique field from each of these layers which is how
+your results will be displayed. In this analysis, we are looking to get only
+<tt class="docutils literal"><span class="pre">1</span></tt> nearest point, so check the <em class="guilabel">Use only the nearest(k) target
+points</em>, and enter <em class="guilabel">1</em>. Name your output file <tt class="docutils literal"><span class="pre">matrix.csv</span></tt>, and
+click OK.  Once the processing finishes, click <em class="guilabel">Close</em>.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">주석</p>
 <p class="last">알아두면 편리한 것으로 오로지 1 레이어만 가지고 분석을 수행할 수도 있습니다. 입력 및 출력 두 개의 레이어를 동시에 선택합니다. 결과는 여기서 사용했던 것 처럼 다른 레이어 대신 같은 레이어로부터 최근린이 될 것입니다.</p>
 </div>
+<img alt="../_images/713.png" class="align-center" src="../_images/713.png" />
+<ol class="arabic simple" start="8">
+<li>Once the processing finishes, click the <em class="guilabel">Close</em> button in the
+<em class="guilabel">Distance Matrix</em> dialog. You can now view the <tt class="docutils literal"><span class="pre">matrix.csv</span></tt> file
+in Notepad or any text editor.  QGIS can import CSV files as well, so we
+will add it to QGIS and view it there. Go to <em class="menuselection">Layer ‣ Add
+Layer ‣ Add Delimited Text Layer...</em>.</li>
+</ol>
 <img alt="../_images/813.png" class="align-center" src="../_images/813.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">일단 파일이 생성되면, 노트패드 혹은 다른 어떤 텍스트 에디터에서 그것을 볼 수 있습니다. QGIS는 CSV파일을 불러들일 수 있습니다. 그래서 그것을 QGIS에 추가하고 거기서 봅니다. 메뉴 레이어 &#8211;&gt; 구분자로 분리된 텍스트 레이어 추가... :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Layer &#8211;&gt; Add Delimited Text Layer...`로 갑니다.</p>
+<li><p class="first">새롭게 만들어진 <a href="#id1"><span class="problematic" id="id2">``</span></a>matrix.csv``파일을 찾습니다. 이 파일이 텍스트 컬럼이기때문에 지오메트리 정의 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Geometry definition`에서 지오메트리가 아님 :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>No geometry (attribute only table)`를 선택합니다. :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>OK`를 클릭합니다.</p>
 </li>
 </ol>
 <img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">새롭게 만들어진 <a href="#id1"><span class="problematic" id="id2">``</span></a>matrix.csv``파일을 찾습니다. 이 파일이 텍스트 컬럼이기때문에 지오메트리 정의 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Geometry definition`에서 지오메트리가 아님 :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>No geometry (attribute only table)`를 선택합니다. :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>OK`를 클릭합니다.</p>
+<li><p class="first">테이블로 불러들여진 CSV파일을 보게 될 것입니다. 테이블 레이어를 우측클릭하고 속성테이블열기 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Open Attribute Table`를 선택합니다.</p>
 </li>
 </ol>
 <img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">테이블로 불러들여진 CSV파일을 보게 될 것입니다. 테이블 레이어를 우측클릭하고 속성테이블열기 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Open Attribute Table`를 선택합니다.</p>
-</li>
-</ol>
-<img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" />
-<ol class="arabic simple" start="12">
 <li><p class="first">이제 결과의 내용을 볼 수 있을 겁니다. <em class="guilabel">InputID</em> 필드는 지진레이어의 필드명을 담고 있습니다. <em class="guilabel">TargetID</em> 필드는 지진발생지점으로 가장 가까운 인구밀집지역으로부터의 객체명을 포함고 있습니다. :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Distance`필드는 2점간의 거리입니다.</p>
 </li>
 </ol>
@@ -281,37 +288,120 @@ below:</p>
 <p class="first admonition-title">주석</p>
 <p class="last">거리 <em>distance*의 계산은 레이어의 좌표계를 사용한 것임을 기억해야 합니다. 여기서 거리는  원 레이어 좌표가 degree이기 때문에  *decimal degrees</em> 단위가 될 것입니다. 거리의 단위로 미터를 원한다면 툴을 구동시키기 전에 레이어를 재투영해야 합니다.</p>
 </div>
-<img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" />
-<ol class="arabic simple" start="13">
+<img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" />
+<ol class="arabic simple" start="12">
 <li><p class="first">이것이 원래 찾던 결과와 가장 가까운 것입니다. 몇 사용자들에게 이 테이블은 충분할 것입니다. 그러나 이 결과를 테이블 결합 <a href="#id1"><span class="problematic" id="id2">**</span></a>Table Join**을 사용해서 원 지진레이어에 통합시킬 수 있습니다. 지진 레이어를 우측클릭하고 속성 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Properties`을 선택합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" />
-<ol class="arabic simple" start="14">
+<img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" />
+<ol class="arabic simple" start="13">
 <li><p class="first">결합 <em class="guilabel">Joins</em> 탭으로 가서 <em class="guilabel">+</em> 버튼을 클릭하십시오.</p>
 </li>
 </ol>
 <img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
+<ol class="arabic simple" start="14">
+<li>We want to join the data from our analysis result to this layer. We need to
+select a field from each of the layers that has the same values. Select
+<tt class="docutils literal"><span class="pre">matrix</span></tt> as the <em class="guilabel">Join layer`</em> and <tt class="docutils literal"><span class="pre">InputID</span></tt> as the
+<em class="guilabel">Join field</em>. The <em class="guilabel">Target field</em> would be <tt class="docutils literal"><span class="pre">I_D</span></tt>.
+Leave other options to their default values and click <em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
 <ol class="arabic simple" start="15">
-<li><p class="first">분석결과 (<tt class="docutils literal"><span class="pre">matrix.csv</span></tt>)로 부터 이 레이어를 결합하고자 합니다. 같은 값을 갖는 각 레이어로부터 필드를 선택할 필요가 있습니다. 아래와 같이 필드를 선택합니다.</p>
+<li><p class="first">결합  :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Joins`탭에서 결합이 나타날 것입니다. :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>OK`를 클릭하십시오.</p>
 </li>
 </ol>
 <img alt="../_images/1511.png" class="align-center" src="../_images/1511.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">결합  :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Joins`탭에서 결합이 나타날 것입니다. :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>OK`를 클릭하십시오.</p>
-</li>
+<li>Now open the attribute table of the <tt class="docutils literal"><span class="pre">signif</span></tt> layer by right-clicking and
+selecting <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
 <img alt="../_images/1611.png" class="align-center" src="../_images/1611.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">이제 우측클릭을 통해 지진 레이어의 속성테이블을 열고 속성테이블 열기를 선택합니다.</p>
+<li><p class="first">모든 지진 객체에 대해 최근린(인구밀집지역에 가장 가까운) 그리고 최근린 거리의 속성을 가지는 것을 볼 수 있을 것입니다.</p>
 </li>
 </ol>
 <img alt="../_images/1710.png" class="align-center" src="../_images/1710.png" />
 <ol class="arabic simple" start="18">
-<li><p class="first">모든 지진 객체에 대해 최근린(인구밀집지역에 가장 가까운) 그리고 최근린 거리의 속성을 가지는 것을 볼 수 있을 것입니다.</p>
-</li>
+<li>We will now explore a way to visualize these results. First, we need to
+make the table join permanent by saving it to a new layer. Right-click the
+<tt class="docutils literal"><span class="pre">signif</span></tt> layer and select <em class="guilabel">Save As...</em>.</li>
 </ol>
 <img alt="../_images/1810.png" class="align-center" src="../_images/1810.png" />
+<ol class="arabic simple" start="19">
+<li>Click the <em class="guilabel">Browse</em> button next to <em class="guilabel">Save as</em> label and
+name the output layer as <tt class="docutils literal"><span class="pre">earthquake_with_places.shp</span></tt>. Make sure the
+<em class="guilabel">Add saved file to map</em> box is checked and click <em class="guilabel">OK</em>.</li>
+</ol>
+<img alt="../_images/198.png" class="align-center" src="../_images/198.png" />
+<ol class="arabic simple" start="20">
+<li>Once the new layer is loaded, you can turn off the visibility of the
+<tt class="docutils literal"><span class="pre">signif</span></tt> layer. As our dataset is quite large, we can run our
+visualization analysis on a subset of the data. QGIS has a neat feature
+where you can load a subset of features from a layer without having to
+export it to a new layer. Right-click the <tt class="docutils literal"><span class="pre">earthquake_with_places</span></tt> layer
+and select <em class="guilabel">Properties</em>.</li>
+</ol>
+<img alt="../_images/205.png" class="align-center" src="../_images/205.png" />
+<ol class="arabic simple" start="21">
+<li>In the <em class="guilabel">General</em> tab, scroll down to the <em class="guilabel">Feature
+subset</em> section. Click <em class="guilabel">Query Builder</em>.</li>
+</ol>
+<img alt="../_images/2111.png" class="align-center" src="../_images/2111.png" />
+<ol class="arabic simple" start="22">
+<li>For this tutorial, we will visualize the earthquakes and their nearest
+populated places for Mexico. Enter the following expression in the
+<em class="guilabel">Query Builder</em> dialog.</li>
+</ol>
+<div class="highlight-none"><div class="highlight"><pre>&quot;COUNTRY&quot; = &#39;MEXICO&#39;
+</pre></div>
+</div>
+<img alt="../_images/225.png" class="align-center" src="../_images/225.png" />
+<ol class="arabic simple" start="23">
+<li>You will see that only the points falling within Mexico will be visible in
+the canvas. Let&#8217;s do the same for the populated places layer. Right-click
+on the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select
+<em class="guilabel">Properties</em>.</li>
+</ol>
+<img alt="../_images/234.png" class="align-center" src="../_images/234.png" />
+<ol class="arabic simple" start="24">
+<li>Open the <em class="guilabel">Query Builder</em> dialog from the <em class="guilabel">General</em> tab.
+Enter the following expression.</li>
+</ol>
+<div class="highlight-none"><div class="highlight"><pre>&quot;adm0name&quot; = &#39;Mexico&#39;
+</pre></div>
+</div>
+<img alt="../_images/244.png" class="align-center" src="../_images/244.png" />
+<ol class="arabic simple" start="25">
+<li>Now we are ready to create our visualization. We will use a plugin named
+<tt class="docutils literal"><span class="pre">MMQGIS</span></tt>. Find and install the plugin. See <a class="reference internal" href="using_plugins.html"><em>플러그인 사용하기</em></a> for more
+details on how to work with plugins. Once you have the plugin installed, go
+to <em class="menuselection">MMQGIS ‣ Create ‣ Hub Lines</em>.</li>
+</ol>
+<img alt="../_images/254.png" class="align-center" src="../_images/254.png" />
+<ol class="arabic simple" start="26">
+<li>Select <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> as the <em class="guilabel">Hub Point
+Layer</em> and <tt class="docutils literal"><span class="pre">name</span></tt> as the <em class="guilabel">Hub ID Attribute</em>. Similarly, select
+<tt class="docutils literal"><span class="pre">earthquake_with_places</span></tt> as the <em class="guilabel">Spoke Point Layer</em> and
+<tt class="docutils literal"><span class="pre">matrix_Tar</span></tt> as the <em class="guilabel">Spoke Hub ID Attribute</em>. The hub lines
+algorithm will go through each of earthquake points and create a line that
+will join it to the populated place which matches the attribute we
+specified. Click <em class="guilabel">Browse</em> and name the <em class="guilabel">Output
+Shapefile</em> as <tt class="docutils literal"><span class="pre">earthquake_hub_lines.shp</span></tt>. Click <em class="guilabel">OK</em> to start
+the processing.</li>
+</ol>
+<img alt="../_images/264.png" class="align-center" src="../_images/264.png" />
+<ol class="arabic simple" start="27">
+<li>The processsing may take a few minutes. You can see the progress on the
+bottom-left corner of the QGIS window.</li>
+</ol>
+<img alt="../_images/273.png" class="align-center" src="../_images/273.png" />
+<ol class="arabic simple" start="28">
+<li>Once the processing is done, you will see the <tt class="docutils literal"><span class="pre">earthquake_hub_lines</span></tt>
+layer loaded in QGIS. You can see that each earthquake point now has a line
+that connects it to the nearest populated place.</li>
+</ol>
+<img alt="../_images/283.png" class="align-center" src="../_images/283.png" />
 </div>
 </div>
 

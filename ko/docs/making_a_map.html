@@ -186,17 +186,15 @@
   <div class="section" id="making-a-map">
 <h1>지도만들기<a class="headerlink" href="#making-a-map" title="제목 주소">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/making_a_map_a4.pdf">A4</a> <a class="reference external" href="../pdf/making_a_map_letter.pdf">Letter</a> ]</p>
-<p>알림! 본 내용에는 동해표기가 병기되어 있지 않습니다. 이에 대해 예제의 저자는 이를 수정하겠다는 의사를 표현한 바 있습니다. 예제를 완료 한 후 저자에게 이에 대한 수정을 지속적으로 촉구해 주시기 바랍니다.
-종종 출력이나 인쇄를 해야할 지도를 만들 필요가 있습니다. QGIS는 &#8216;인쇄 구성기 Print Composer&#8217;라고 하는 강력한 툴이 있어서 GIS 레이어와 패키지를 지도로 만들 수 있습니다.</p>
+<p>종종 출력이나 인쇄를 해야할 지도를 만들 필요가 있습니다. QGIS는 인쇄 구성기 <em class="guilabel">Print Composer</em> 라고 하는 강력한 툴이 있어서 GIS 레이어와 패키지를 지도로 만들 수 있습니다.</p>
 <div class="section" id="overview-of-the-task">
 <h2>작업 개요<a class="headerlink" href="#overview-of-the-task" title="제목 주소">¶</a></h2>
-<p>The tutorial shows how to create a map of Japan with standard map elements like
-map inset, grids, north arrow, scale bar and labels.</p>
+<p>이 예제에서는 지도 끼워넣기, 그리드, 방위화살표, 스케일바 그리고 라벨과 같은 표준적인 지도 요소들을 가지고 어떻게 일본지도를 만드는 지를 보여줍니다.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="제목 주소">¶</a></h3>
+<h3>다른 스킬<a class="headerlink" href="#other-skills-you-will-learn" title="제목 주소">¶</a></h3>
 <ul class="simple">
-<li>Using &#8216;on-the-fly&#8217; CRS transformation to visualize your data in a different
-projection.</li>
+<li><p class="first">실시간 좌표계 변환 활성화  &#8216;on-the-fly&#8217;를 이용하여 다른 투영에서 데이터를 볼 수 있도록 전환하기.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -229,19 +227,8 @@ projection.</li>
 </ol>
 <img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
 <ol class="arabic simple" start="5">
-<li>You can turn off some map layers for data that we do not need for this map.
-Un-check the box next to <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> and
-<tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt> layers. Before we make a map suitable for printing, we need to choose an appropriate
-projection. This dataset comes in Geographic Coordinate System (GCS) where
-the units are degrees. This is not appropriate for a map where you want the
-distances to be in kilometers or miles. We need to use a Projected
-Coordinate System that minimizes distortions for our region of interest and
-has units in meters. Universal Transverse Mercator (UTM) is a decent choice
-for a projected coordinate system. It is also global, so it&#8217;s a good default
-that you can rely on and  choose a UTM zone that contains your area of
-interest to minimize distortions for your region. In our case, we will use
-UTM Zone 54N. Click the <em class="guilabel">CRS Status</em> button at the bottom-right of
-the QGIS window.</li>
+<li><p class="first">이 지도에서 필요가 없는 몇 지도 레이어를 끌 수 있습니다. <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> 와 <a href="#id1"><span class="problematic" id="id2">``</span></a>10m_admin_0_map_units``레이어 옆에 있는 박스를 해제하십시오. 지도를 인쇄하기 알맞게 만들기 전에, 적절한 투영을 선정할 필요가 있습니다. 이 데이터셋은 단위가 degree인 지리좌표계(GCS)입니다. 이것은 거리가 킬로미터나 마일로 표현하기에는 적절치 않습니다. 해당지역의 왜곡을 최소화하고 단위를 미터로 표현하기 위해 투영된 좌표계를 사용할 필요가 있습니다.  Universal Transverse Mercator (UTM)는 투영좌표계로 적절한 선택입니다. 이것은 전 지구적으로 사용하므로 기본적으로 사용할 수 있고, 해당 지역의 왜곡을 최소화 할 수 있는 지역을 포함하는 UTM 존을 선택할 수 있습니다. 여기에서는 UTM 존 54N을 사용할 것입니다.  QGIS 윈도창 우측 아래에 있는 좌표계 상태 <em class="guilabel">CRS Status</em> 단추를 누르십시오.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">주석</p>
@@ -254,25 +241,22 @@ the QGIS window.</li>
 </ol>
 <img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
 <ol class="arabic simple" start="7">
-<li>Now we can start to assemble our map. Go to
-<em class="menuselection">Project ‣ New Print Composer</em>.</li>
+<li><p class="first">이제 지도 조합을 시작할 수 있습니다. 메뉴 프로젝트 &#8211;&gt; 새로운 인쇄 구성기  :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Project &#8211;&gt; New Print Composer`로 가십시오.</p>
+</li>
 </ol>
 <img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
 <ol class="arabic simple" start="8">
-<li>You will be prompted to enter a title for the composer. You can leave it
-empty and click <em class="guilabel">Ok</em>.</li>
+<li><p class="first">인쇄 구성기에 새로운 제목을 넣으라는 표시가 나타납니다. 이곳을 비우고 확인 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Ok`을 누르십시오.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">주석</p>
-<p class="last">Leaving the composer name empty will assign a default name such as
-<tt class="docutils literal"><span class="pre">Composer</span> <span class="pre">1</span></tt>.</p>
+<p class="last">제목 칸을 비우면 구성기 1  <a href="#id1"><span class="problematic" id="id2">``</span></a>Composer 1``과 같이 기본적인 이름이 할당될 것입니다.</p>
 </div>
 <img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
 <ol class="arabic simple" start="10">
-<li>In the Print Composer window, click on <em class="guilabel">Zoom full</em> to display the
-full extent of the Layout. Now we would have to bring the map view that we
-see in the QGIS Canvas to the composer. Go to <em class="menuselection">Layout ‣
-Add Map</em>.</li>
+<li><p class="first">인쇄구성기 창에서 레이아웃을 최대한 확장시키기 위해 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Zoom full`를 누릅니다. 이제 QGIS 캔버스에서 보이는 지도를 구성기로 가져옵니다. 메뉴 레이아웃 &#8211;&gt; 새 지도 추가  :menuselection:<a href="#id3"><span class="problematic" id="id4">`</span></a>Layout &#8211;&gt; Add Map`로 갑니다.</p>
+</li>
 </ol>
 <img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
 <ol class="arabic simple" start="11">
