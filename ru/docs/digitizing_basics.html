@@ -106,7 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Интерполяция точечных данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Выполнение пакетных файлов с помощью среды обработки</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Использование QGIS Browser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Рассчитывающее Число Вершин в Слое</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Подсчет числа вершин в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Открытие файлов BIL, BIP или BSQ в QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Первые шаги в программировании на Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Нахождение соседних полигонов в слое</a></li>
@@ -149,6 +149,7 @@
   <option value="fr">French</option>
   <option value="ko">Korean</option>
   <option value="el">Greek</option>
+  <option value="de">German</option>
 </select>
 </form>
 
@@ -191,7 +192,7 @@
 <h2>Обзор задачи<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
 <p>Мы будем использовать растровую топографическую карту для создания нескольких векторных слоев, отображающих объекты в окрестностях парка.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Другие навыки, которые вы узнаете<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>Вы научитесь также<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
 <ul class="simple">
 <li><p class="first">Построение пирамид для больших наборов растровых данных для ускорения операций масштабирования и сдвига.</p>
 </li>
@@ -247,7 +248,7 @@ original GeoTIFF which is a much smaller file size.</p>
 </ol>
 <img alt="../_images/75.png" class="align-center" src="../_images/75.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">В диалоговом окне <em class="guilabel">New Spatialite Layer</em> нажмите кнопку <em class="guilabel">...</em> и сохраните новую базу данных Spatialite под названием <tt class="docutils literal"><span class="pre">nztopo.sqlite</span></tt>. Укажите <em class="guilabel">Layer name</em> <tt class="docutils literal"><span class="pre">Roads</span></tt> и выберите  <tt class="docutils literal"><span class="pre">Line</span></tt> как <em class="guilabel">Type</em>.</p>
+<li><p class="first">В диалоговом окне <em class="guilabel">New Spatialite Layer</em> нажмите кнопку <em class="guilabel">...</em> и сохраните новую базу данных Spatialite под названием <tt class="docutils literal"><span class="pre">nztopo.sqlite</span></tt>. Укажите <em class="guilabel">Layer name</em> <tt class="docutils literal"><span class="pre">Roads</span></tt> и выберите  <tt class="docutils literal"><span class="pre">Line</span></tt> как <em class="guilabel">Type</em>. Базовая топографическая карта находится в системе координат <tt class="docutils literal"><span class="pre">EPSG:2193</span> <span class="pre">-</span> <span class="pre">NZGD</span> <span class="pre">2000</span></tt>, так что мы должны выбрать ту же СК для нашего слоя с дорогами. Поставьте галочку в поле <em class="guilabel">Create an autoincrementing primary key</em>. Это создаст поле под названием <strong>pkuid</strong> в таблице атрибутов и присвоит уникальный числовой идентификатор автоматически каждому объекту. При создании ГИС-слоя вы должны определиться с атрибутами, которые будет иметь каждый объект. Поскольку это слой дорог, у нас будет два базовых атрибута: название и класс. Введите  <tt class="docutils literal"><span class="pre">Name</span></tt> в поле <em class="guilabel">Name</em> атрибута в секции <em class="guilabel">New attribute</em> и нажмите <em class="guilabel">Add to attribute list.</em></p>
 </li>
 </ol>
 <img alt="../_images/85.png" class="align-center" src="../_images/85.png" />
@@ -257,8 +258,8 @@ original GeoTIFF which is a much smaller file size.</p>
 </ol>
 <img alt="../_images/95.png" class="align-center" src="../_images/95.png" />
 <ol class="arabic simple" start="10">
-<li>Once the layer is loaded, click the <em class="guilabel">Toggle Editing</em> button to
-put the layer in editing mode.</li>
+<li><p class="first">После того, как слой загрузится, нажмите на кнопку <em class="guilabel">Toggle Editing</em> чтобы перевести слой в режим редактирования.</p>
+</li>
 </ol>
 <img alt="../_images/105.png" class="align-center" src="../_images/105.png" />
 <ol class="arabic simple" start="11">
@@ -329,8 +330,8 @@ You can also delete a selected vertex by clicking the <tt class="kbd docutils li
 </ol>
 <img alt="../_images/193.png" class="align-center" src="../_images/193.png" />
 <ol class="arabic simple" start="20">
-<li>Once you have finished digitizing all the roads, click the
-<em class="guilabel">Toggle Editing</em> button.</li>
+<li><p class="first">Завершив оцифровку всех дорог, нажмите на кнопку <em class="guilabel">Toggle Editing</em>.</p>
+</li>
 </ol>
 <img alt="../_images/201.png" class="align-center" src="../_images/201.png" />
 <ol class="arabic simple" start="21">
@@ -469,7 +470,7 @@ data you created.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Apr 01, 2015.<br/>
+      Обновлено: Apr 04, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

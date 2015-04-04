@@ -106,7 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Интерполяция точечных данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Выполнение пакетных файлов с помощью среды обработки</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Использование QGIS Browser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Рассчитывающее Число Вершин в Слое</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Подсчет числа вершин в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Открытие файлов BIL, BIP или BSQ в QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Первые шаги в программировании на Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Нахождение соседних полигонов в слое</a></li>
@@ -149,6 +149,7 @@
   <option value="fr">French</option>
   <option value="ko">Korean</option>
   <option value="el">Greek</option>
+  <option value="de">German</option>
 </select>
 </form>
 
@@ -186,31 +187,22 @@
   <div class="section" id="georeferencing-topo-sheets-and-scanned-maps">
 <h1>Географическая привязка топографических листов и сканированных карт<a class="headerlink" href="#georeferencing-topo-sheets-and-scanned-maps" title="Ссылка на этот заголовок">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/georeferencing_basics_a4.pdf">A4</a> <a class="reference external" href="../pdf/georeferencing_basics_letter.pdf">Letter</a> ]</p>
-<p>Most GIS projects require georeferencing some raster data. <em>Georeferencing</em> is
-the process of assigning real-world coordinates to each pixel of the raster.
-Many times these coordinates are obtained by doing field surveys - collecting
-coordinates with a GPS device for few easily identifiable features in the image
-or map. In some cases, where you are looking to digitize scanned maps, you can
-obtain the coordinates from the markings on the map image itself. Using these
-sample coordinates or GCPs ( Ground Control Points ), the image is warped and
-made to fit within the chosen coordinate system. In this tutorial I
-will discuss the concepts, strategies and tools within QGIS to achieve a high
-accuracy georeferencing.</p>
+<p>Большинство проектов ГИС требует геопривязки некоторых растровых данных. <em>Геопривязка</em> - это процесс присвоения координат из реального мира каждой точке растра. Часто эти координаты получают с помощью полевых измерений, собирая координаты с помощью GPS-приемника в нескольких легко опознаваемых точках снимка или карты. В некоторых случаях, когда вы хотите оцифровать отсканированные карты, вы можете получить координаты из маркировки на самом изображении карты. Используя эти выборочные координаты, или опорные точки (GCP), изображение деформируется и подгоняется под выбранную систему координат. В этом уроке я расскажу о концепциях, стратегиях и инструментах QGIS для достижения высокой точности привязки.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Обзор задачи<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
-<p>We will use a scanned map of southern India from 1870 and geo-reference it using QGIS.</p>
+<p>Мы будем использовать отсканированную карту юга Индии 1870 года и привяжем ее используя QGIS.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Другие навыки, которые вы узнаете<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>Вы научитесь также<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
 <ul class="simple">
-<li>How to determine datum and coordinate system for old maps.</li>
+<li><p class="first">определять датум и систему координат для старых карт.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Получение данных<a class="headerlink" href="#get-the-data" title="Ссылка на этот заголовок">¶</a></h2>
-<p><a class="reference external" href="http://www.hipkiss.org/data/maps.html">Hipkiss’s Scanned Old Maps</a> website has an excellent collection out-of-copyright
-scanned maps that one can use for research.</p>
-<p>Download the <a class="reference external" href="http://www.hipkiss.org/data/maps/william-mackenzie_gallery-of-geography_1870_southern-india_3975_3071_600.jpg">1870 map of southern India</a> and save it as a JPG image on your hard drive.</p>
+<p>Сайт <a class="reference external" href="http://www.hipkiss.org/data/maps.html">Hipkiss’s Scanned Old Maps</a> содержит замечательную коллекцию отсканированных карт без авторских прав, которые можно использовать для исследований.</p>
+<p>Загрузите <a class="reference external" href="http://www.hipkiss.org/data/maps/william-mackenzie_gallery-of-geography_1870_southern-india_3975_3071_600.jpg">карту южной Индии 1870 года</a> и сохраните ее как изображение JPG на жестком дискe.</p>
 <p>For convenience, you can directly download sample data used in this tutorial
 from the link below.</p>
 <p><a class="reference download internal" href="../_downloads/1870_southern-india.jpg"><tt class="xref download docutils literal"><span class="pre">1870_southern_india.jpg</span></tt></a></p>
@@ -253,7 +245,8 @@ old, we can bet the Everest 1830 datum would give us good results.</li>
 </ol>
 <img alt="../_images/59.png" class="align-center" src="../_images/59.png" />
 <ol class="arabic simple" start="6">
-<li>You will see the image will be loaded on the top section.</li>
+<li><p class="first">Вы увидите, что изображение загрузится в верхней части.</p>
+</li>
 </ol>
 <img alt="../_images/68.png" class="align-center" src="../_images/68.png" />
 <ol class="arabic simple" start="7">
@@ -342,7 +335,7 @@ different datum.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Apr 01, 2015.<br/>
+      Обновлено: Apr 04, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
