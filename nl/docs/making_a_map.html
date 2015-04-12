@@ -85,7 +85,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Een kaart maken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Werken met attributen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Werkbladen of CSV-bestanden importeren</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Plug-ins gebruiken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Zoeken en downloaden van gegevens van OpenStreetMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basis opmaken van vectoren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Lengten van lijnen en statistieken berekenen</a></li>
@@ -93,7 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Topobladen en gescande kaarten voorzien van geoverwijzingen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Geo-verwijzingen voor satellietbeelden</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitizing Map Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
@@ -190,13 +190,12 @@
 <p>Vaak wil men een kaart maken die kan worden afgedrukt of gepubliceerd. QGIS heeft een krachtig gereedschap, genaamd <em class="guilabel">Printomgeving</em> dat u instaat stelt uw GIS-lagen te nemen en ze te verpakken als kaarten.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Overzicht van de taak<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
-<p>The tutorial shows how to create a map of Japan with standard map elements like
-map inset, grids, north arrow, scale bar and labels.</p>
+<p>De handleiding laat zien hoe een kart van Japan kan worden gemaakt met standaard elementen voor de kaart, zoals Noordpijl, schaalbalk, legenda en label.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
+<h3>Andere vaardigheden die u zult leren<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
 <ul class="simple">
-<li>Using &#8216;on-the-fly&#8217; CRS transformation to visualize your data in a different
-projection.</li>
+<li><p class="first">Gebruiken van &#8216;Gelijktijdige CRS-transformatie gebruiken&#8217; om uw gegevens in een andere projectie te visualiseren.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -229,19 +228,8 @@ projection.</li>
 </ol>
 <img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
 <ol class="arabic simple" start="5">
-<li>You can turn off some map layers for data that we do not need for this map.
-Un-check the box next to <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> and
-<tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt> layers. Before we make a map suitable for printing, we need to choose an appropriate
-projection. This dataset comes in Geographic Coordinate System (GCS) where
-the units are degrees. This is not appropriate for a map where you want the
-distances to be in kilometers or miles. We need to use a Projected
-Coordinate System that minimizes distortions for our region of interest and
-has units in meters. Universal Transverse Mercator (UTM) is a decent choice
-for a projected coordinate system. It is also global, so it&#8217;s a good default
-that you can rely on and  choose a UTM zone that contains your area of
-interest to minimize distortions for your region. In our case, we will use
-UTM Zone 54N. Click the <em class="guilabel">CRS Status</em> button at the bottom-right of
-the QGIS window.</li>
+<li><p class="first">U kunt enkele kaartlagen uitschakelen voor gegevens die we voor deze kaart niet nodig hebben. Deselecteer het vak naast de lagen <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> en <tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt>. Vóór we een kaart geschikt maken om te worden afgedrukt, moeten we een toepasselijke projectie kiezen. Deze gegevens staan in een Geografisch Coördinaten Systeem (GCS) waar de eenheden graden zijn. Dat is niet gewenst voor een kaart waar u de afstanden in kilometers of mijlen wilt hebben. We moeten een Geprojecteerd Coördinaten Systeem gebruiken dat vervormingen voor ons interessegebied minimaliseert en eenheden in meters heeft. Universal Transverse Mercator (UTM) is een geschikte keuze voor een geprojecteerd coördinaten systeem. Het is ook globaal, dus is het een goede standaard waarop u kunt vertrouwen en een UTM-zone kunt kiezen die uw interessegebied bevat om vervormingen voor uw regio te minimaliseren. In ons geval zullen we UTM-zone 54N gebruiken. Klik op de knop <em class="guilabel">CRS-status</em> aan de rechter onderzijde van het venster van QGIS.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Notitie</p>
@@ -254,25 +242,22 @@ the QGIS window.</li>
 </ol>
 <img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
 <ol class="arabic simple" start="7">
-<li>Now we can start to assemble our map. Go to
-<em class="menuselection">Project ‣ New Print Composer</em>.</li>
+<li><p class="first">Nu kunnen we beginnen om onze kaart samen te stellen. Ga naar <em class="menuselection">Project ‣ Nieuwe  Printvormgeving</em>.</p>
+</li>
 </ol>
 <img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
 <ol class="arabic simple" start="8">
-<li>You will be prompted to enter a title for the composer. You can leave it
-empty and click <em class="guilabel">Ok</em>.</li>
+<li><p class="first">U zult worden gevraagd een titel voor de printvormgeving in te vullen. U mag die leeg laten en klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Notitie</p>
-<p class="last">Leaving the composer name empty will assign a default name such as
-<tt class="docutils literal"><span class="pre">Composer</span> <span class="pre">1</span></tt>.</p>
+<p class="last">Leeg laten van de naam van de printvormgeving zal een standaard naam, zoals <tt class="docutils literal"><span class="pre">Printvormgeving</span> <span class="pre">1</span></tt>, toewijzen.</p>
 </div>
 <img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
 <ol class="arabic simple" start="10">
-<li>In the Print Composer window, click on <em class="guilabel">Zoom full</em> to display the
-full extent of the Layout. Now we would have to bring the map view that we
-see in the QGIS Canvas to the composer. Go to <em class="menuselection">Layout ‣
-Add Map</em>.</li>
+<li><p class="first">Klik, in het venster Printvormgeving, op <em class="guilabel">Volledig zoomen</em> om het volledige bereik van de lay-out weer te geven. Nu zouden we de kaartweergave die we in het kaartvenster van QGIS zien moeten overbrengen naar de printvormgeving. Ga naar <em class="menuselection">Lay-out ‣ Kaart toevoegen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
 <ol class="arabic simple" start="11">
@@ -281,106 +266,83 @@ Add Map</em>.</li>
 </ol>
 <img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
 <ol class="arabic simple" start="12">
-<li>You will see that the rectangle window will be rendered with the map from
-the main QGIS canvas. The rendered map may not be covering the full extent
-of our interest area.  Select <em class="menuselection">Layout ‣ Move item content</em>
-to pan the map in the window and center it in the composer.</li>
+<li><p class="first">U zult zien dat het rechthoekige venster zal worden gerenderd met de kaart uit het kaartvenster van QGIS. De gerenderde kaart zou niet het gehele gebied van onze interesse kunnen bedekken. Selecteer <em class="menuselection">Lay-out ‣ Inhoud verschuiven</em> om de kaart in het venster te verschuiven en het in Printvormgeving te centreren.</p>
+</li>
 </ol>
 <img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
 <ol class="arabic simple" start="13">
-<li>Let us adjust the zoom level for the given map. Click on the
-<em class="guilabel">Item Properties</em> tab and enter <cite>7000000</cite> for <em class="guilabel">Scale</em>
-value.</li>
+<li><p class="first">Laten we het zoomniveau voor de betrokken kaart aanpassen. Klik op de tab <em class="guilabel">Item-eigenschappen</em> en voer <cite>7000000</cite> in als waarde voor <em class="guilabel">Schaal</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
 <ol class="arabic simple" start="14">
-<li>Now we will add a map inset that shows a zoomed in view for the Tokyo area.
-Before we make  any changes to the layers in the main QGIS window, check
-the <em class="guilabel">Lock layers for map item</em> and <em class="guilabel">Lock layer styles
-for map item</em> boxes. This will ensure that if we turn off some layers or
-change their styles, this view will not change.</li>
+<li><p class="first">Nu zullen we een kaartdetail toevoegen dat een ingezoomde weergave van het gebied rondom Tokio weergeeft. Selecteer, vóór we wijzigingen maken in het hoofdvenster van QGIS, de vakken <em class="guilabel">Lagen vastzetten voor kaartonderdeel</em> en <em class="guilabel">Laagstijlen vastzetten voor laagitem</em>. Dat zal er voor zorgen dat als we enkele lagen uitschakelen of hun stijlen wijzigen, deze weergave niet zal wijzigen.</p>
+</li>
 </ol>
 <img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
 <ol class="arabic simple" start="15">
-<li>Switch to the main QGIS window. Use the <em class="guilabel">Zoom In</em> button to zoom
-to the area around Tokyo.</li>
+<li><p class="first">Schakel naar het hoofdvenster van QGIS. Gebruik de knop <em class="guilabel">Inzoomen</em> om in te zoomen op het gebied rondom Tokio.</p>
+</li>
 </ol>
 <img alt="../_images/1510.png" class="align-center" src="../_images/1510.png" />
 <ol class="arabic simple" start="16">
-<li>There are some duplicate labels coming from the <tt class="docutils literal"><span class="pre">ne_10m_populated_places</span></tt>
-layer. You can turn it off for this view.</li>
+<li><p class="first">Er zijn enkele gedupliceerde labels die afkomstig zijn van de laag <tt class="docutils literal"><span class="pre">ne_10m_populated_places</span></tt>. U mag die voor deze weergave uitschakelen.</p>
+</li>
 </ol>
 <img alt="../_images/1610.png" class="align-center" src="../_images/1610.png" />
 <ol class="arabic simple" start="17">
-<li>We are now ready to add the map inset. Switch the the <em class="guilabel">Print
-Composer</em> window. Go to <em class="menuselection">Layout ‣ Add Map</em>.</li>
+<li><p class="first">We zijn nu klaar om het kaartdetail in te voegen. Schakel naar het venster <em class="guilabel">Printvormgeving</em>. Ga naar <em class="menuselection">Lay-out ‣ Kaart toevoegen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
 <ol class="arabic simple" start="18">
-<li>Drag a rectangle at the place where you want to add the map inset. You will
-now notice that we have 2 map objects in the Print Composer. When making
-changes, make sure you have the correct map selected. Select the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt>
-object that we just added from the <em class="guilabel">Items</em> panel. Select the
-<em class="guilabel">Item properties</em> tab. Scroll down to the <em class="guilabel">Frame</em> panel
-and check the box next to it. You can change the color and thickness of the
-frame border so it is easy to distinguish against the map background.</li>
+<li><p class="first">Sleep een rechthoek op de plaats waar u het kaartdetail wilt toevoegen. U zult nu merken dat u we 2 kaartobjecten in de Printvormgeving hebben. Zorg er voor dat, wanneer we wijzigingen maken, u de juiste kaart heeft geselecteerd. Selecteer het object <tt class="docutils literal"><span class="pre">Kaart</span> <span class="pre">1</span></tt> dat we zojuist hebben toegevoegd uit het paneel <em class="guilabel">Items</em>. Selecteer de tab <em class="guilabel">Item-eigenschappen</em>. Scroll naar beneden naar het paneel <em class="guilabel">Frame</em> en selecteer het vak ernaast. U kunt de kleur en dikte van de rand van het frame wijzigen zodat het eenvoudig te onderscheiden is van de achtergrond van de kaart.</p>
+</li>
 </ol>
 <img alt="../_images/189.png" class="align-center" src="../_images/189.png" />
 <ol class="arabic simple" start="19">
-<li>One neat feature of the Print Composer is that it can automatically
-highlight the area from the main map which is represented in our inset.
-Select the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> object from the <em class="guilabel">Items</em> panel. In the
-<em class="guilabel">Item properties</em> tab, scroll down to the <em class="guilabel">Overviews</em>
-section. Click the <em class="guilabel">Add a new overview</em> button.</li>
+<li><p class="first">Een handige mogelijkheid van Printvormgeving is dat het automatisch het gebied van de hoofdkaart, dat wordt weergegeven in ons kaartdetail, kan accentueren. Selecteer het object <tt class="docutils literal"><span class="pre">Kaart</span> <span class="pre">0</span></tt> uit het paneel <em class="guilabel">Items</em>. Scroll, op de tab <em class="guilabel">Item-eigenschappen</em>, naar beneden tot het gedeelte <em class="guilabel">Overzichtskaarten</em>. Klik op de knop <em class="guilabel">Een nieuw overzicht toevoegen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/197.png" class="align-center" src="../_images/197.png" />
 <ol class="arabic simple" start="20">
-<li>Select <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt> as the <em class="guilabel">Map Frame</em>. What this is telling the
-Print Composer is that it must highlight our current object <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> with
-the extent of the map shown in the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt> object.</li>
+<li><p class="first">Selecteer <tt class="docutils literal"><span class="pre">Kaart</span> <span class="pre">1</span></tt> als het <em class="guilabel">Kaartframe</em>. Wat dit aan de Printvormgeving doorgeeft is dat het ons huidige object <tt class="docutils literal"><span class="pre">Kaart</span> <span class="pre">0</span></tt> moet accentueren met het bereik van de kaart die wordt weergegeven in het object <tt class="docutils literal"><span class="pre">Kaart</span> <span class="pre">1</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/204.png" class="align-center" src="../_images/204.png" />
 <ol class="arabic simple" start="21">
-<li>Now that we have the map inset ready, we will add a grid and zebra border
-to the main map. Select the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> object from the <em class="guilabel">Items</em>
-panel. In the <em class="guilabel">Item properties</em> tab, scroll down to the
-<em class="guilabel">Grids</em> section. Click the <em class="guilabel">Add a new grid</em> button.</li>
+<li><p class="first">Nu we het kaartdetail gereed hebben, zullen we een raster en een zebra-rand aan de hoofdkaart toevoegen. Selecteer het object <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> uit het paneel <em class="guilabel">Items</em>. Scroll, op de tab <em class="guilabel">Item-eigenschappen</em>, naar beneden naar het gedeelte <em class="guilabel">Rasters</em>. Klik op de knop <em class="guilabel">Voeg een nieuw raster toe</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2110.png" class="align-center" src="../_images/2110.png" />
 <ol class="arabic simple" start="22">
-<li>By default, the grid lines use the same units and projections as the
-currently selected map projections. However, it is more common and useful
-to display grid lines in degrees. We can select a different CRS for the
-grid. Click on the <em class="guilabel">change...</em> button next to <em class="guilabel">CRS</em>.</li>
+<li><p class="first">Standaard hebben de gebruikte rasterlijnen dezelfde eenheden en projecties als de huidige geselecteerde kaartprojecties. het is echter meer algemeen en handiger om de rasterlijnen in graden weer te geven. We kunnen ene ander CRS selecteren voor het raster. Klik op de knop <em class="guilabel">wijzigen...</em> naast <em class="guilabel">CRS</em>.</p>
+</li>
 </ol>
 <img alt="../_images/224.png" class="align-center" src="../_images/224.png" />
 <ol class="arabic simple" start="23">
-<li>In the <em class="guilabel">Coordinate Reference System Selector</em> dialog, enter
-<tt class="docutils literal"><span class="pre">4326</span></tt> in the <em class="guilabel">Filter</em> box. From the results, select the
-<tt class="docutils literal"><span class="pre">WGS84</span> <span class="pre">EPSG:4326</span></tt> as the CRS. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Voer, in het dialoogvenster <em class="guilabel">Keuze Coördinaten ReferentieSysteem</em>, <tt class="docutils literal"><span class="pre">4326</span></tt> in in het vak <em class="guilabel">Filter</em>. Selecteer uit de resultaten <tt class="docutils literal"><span class="pre">WGS84</span> <span class="pre">EPSG:4326</span></tt> als het CRS. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/233.png" class="align-center" src="../_images/233.png" />
 <ol class="arabic simple" start="24">
-<li>Select the <em class="guilabel">Interval</em> values as <tt class="docutils literal"><span class="pre">5</span></tt> degrees in both
-<em class="guilabel">X</em> and <em class="guilabel">Y</em> direction. You can adjust the
-<em class="guilabel">Offset</em> to change where the grid lines appear.</li>
+<li><p class="first">Selecteer de waarden <em class="guilabel">Interval</em> als <tt class="docutils literal"><span class="pre">5</span></tt> graden in beide richtingen <em class="guilabel">X</em> en <em class="guilabel">Y</em>. U kunt de <em class="guilabel">Verschuiving</em> aanpassen om te wijzigen waar de rasterlijnen verschijnen.</p>
+</li>
 </ol>
 <img alt="../_images/243.png" class="align-center" src="../_images/243.png" />
 <ol class="arabic simple" start="25">
-<li>Scroll down to the <em class="guilabel">Grid frame</em> section and select a frame style
-that suits your taste. Also check the <em class="guilabel">Draw coordinates</em> box.</li>
+<li><p class="first">Scroll naar beneden naar het gedeelte <em class="guilabel">Grid frame</em> en selecteer een framestijl die naar uw smaak is. Selecteer ook het vak <em class="guilabel">Teken coördinaten</em>.</p>
+</li>
 </ol>
 <img alt="../_images/253.png" class="align-center" src="../_images/253.png" />
 <ol class="arabic simple" start="26">
-<li>Adjust the <em class="guilabel">Distance to map frame</em> till the coordinates are
-legible. Change the <em class="guilabel">Coordinate precision</em> to <tt class="docutils literal"><span class="pre">1</span></tt> so the
-coordinates are displayed only upto the first decimal.</li>
+<li><p class="first">Pas de <em class="guilabel">Afstand tot kaartvenster</em> zo aan dat de coördinaten leesbaar zijn. Wijzig de <em class="guilabel">Coördinaat precisie</em> naar <tt class="docutils literal"><span class="pre">1</span></tt> zodat de coördinaten worden weergegeven tot op het eerste decimale cijfer.</p>
+</li>
 </ol>
 <img alt="../_images/263.png" class="align-center" src="../_images/263.png" />
 <ol class="arabic simple" start="27">
-<li>Now we will add a North Arrow to the map. The Print Composer comes with a
-nice collection of map-related images - including many types of North
-Arrows.  Click <em class="menuselection">Layout ‣ Add Image</em>.</li>
+<li><p class="first">Nu zullen we een Noordpijl aan de kaart toevoegen Printvormgeving bevat een aardige collectie kaartgerelateerde afbeeldingen - inclusief vele typen Noordpijlen. Klik op <em class="menuselection">Lay-out ‣ Afbeelding toevoegen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/272.png" class="align-center" src="../_images/272.png" />
 <ol class="arabic simple" start="28">
@@ -394,19 +356,17 @@ Arrows.  Click <em class="menuselection">Layout ‣ Add Image</em>.</li>
 </ol>
 <img alt="../_images/292.png" class="align-center" src="../_images/292.png" />
 <ol class="arabic simple" start="30">
-<li>Click on the layout where you want the scalebar to appear.  In the
-<em class="guilabel">Item Properties</em> tab, make sure you have chosen the correct map
-element for which to display the scalebar. Choose the Style that fit your
-requirement. In the <em class="guilabel">Segments</em> panel, you can adjust the number
-of segments and their size.</li>
+<li><p class="first">Klik in de opmaak waar u de schaalbalk wilt laten verschijnen. Zorg er voor dat u, op de tab <em class="guilabel">Item-eigenschappen</em>,  het juiste kaartelement hebt gekozen dat de schaalbalk moet weergeven. Kies de stijl die aan uw eisen voldoet. In het paneel <em class="guilabel">Segmenten</em>, kunt u het aantal segmenten en hun grootte aanpassen.</p>
+</li>
 </ol>
 <img alt="../_images/302.png" class="align-center" src="../_images/302.png" />
 <ol class="arabic simple" start="31">
-<li>It is time to label our map. Click on <em class="menuselection">Layout ‣ Add Label</em>.</li>
+<li><p class="first">Nu is het tijd om onze kaart te labelen. Klik op <em class="menuselection">Lay-out ‣ Label toevoegen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/318.png" class="align-center" src="../_images/318.png" />
 <ol class="arabic simple" start="32">
-<li><p class="first">Klik op de kaart en teken een vak waar het label zou moeten komen. Vergroot, op de tab <em class="guilabel">Item-eigenschappen</em>, het gedeelte <em class="guilabel">Label</em> en voer de tekst in zoals die hieronder is vermeld. We kunnen de tekst ook als HTML invoeren. Selecteer het vak <em class="guilabel">Renderen als HTML</em> zodat printvormgeving de HTML-tags zal interpreteren.</p>
+<li><p class="first">Klik op de kaart en teken een vak waar het label zou moeten komen. Vergroot, op de tab <em class="guilabel">Item-eigenschappen</em>, het gedeelte <em class="guilabel">Label</em> en voer de tekst in zoals die hieronder is vermeld. We kunnen de tekst ook als HTML invoeren. Selecteer het vak <em class="guilabel">Renderen als HTML</em> zodat Printvormgeving de HTML-tags zal interpreteren.</p>
 </li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&lt;div align=center&gt;
@@ -416,7 +376,8 @@ of segments and their size.</li>
 </div>
 <img alt="../_images/322.png" class="align-center" src="../_images/322.png" />
 <ol class="arabic simple" start="33">
-<li>Similarly add another label to add the data and software credits.</li>
+<li><p class="first">Voeg op dezelfde wijze nog een label toe om de rechten voor gegevens en software toe te voegen.</p>
+</li>
 </ol>
 <img alt="../_images/332.png" class="align-center" src="../_images/332.png" />
 <ol class="arabic simple" start="34">
@@ -455,7 +416,7 @@ of segments and their size.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Apr 04, 2015.<br/>
+      Laatste aanpassing op Apr 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
