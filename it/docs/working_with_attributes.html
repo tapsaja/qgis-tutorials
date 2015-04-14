@@ -191,19 +191,29 @@
 <div class="section" id="overview-of-the-task">
 <h2>Descrizione dell&#8217;esercizio<a class="headerlink" href="#overview-of-the-task" title="link permanente per questa intestazione">¶</a></h2>
 <p>Il dataset che utilizzeremo in questo esercizio contiene informazioni circa le aree popolate del pianeta. Il nostro obiettivo è quello di cercare e trovare le capitali del mondo che hanno un numero di abitanti superiore a un 1000000.</p>
+<div class="section" id="other-skills-you-will-learn">
+<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="link permanente per questa intestazione">¶</a></h3>
+<ul class="simple">
+<li>Select features from a layer using expressions.</li>
+<li>Deselect features from a layer using the <em class="guilabel">Attributes</em> toolbar.</li>
+<li>Using <em class="guilabel">Query Builder</em> to show a subset of features from a layer.</li>
+</ul>
+</div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Ottenere i dati necessari<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
-<p>Useremo il dato <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places dataset</a>
-tratto da Natural Earth.</p>
-<p>Scaricate lo shapefile <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">Natural Earth Populated Places shapefile.</a></p>
+<p>Natural Earth has a nice <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places</a>
+dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simple (less columns) dataset</a></p>
+<p>For convenience, you may directly download a copy of datasets from the link
+below:</p>
+<p><a class="reference external" href="../../downloads/ne_10m_populated_places_simple.zip">ne_10m_populated_places_simple.zip</a></p>
 <p>Fonte Dati <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedimento<a class="headerlink" href="#procedure" title="link permanente per questa intestazione">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">Dopo che avete scaricato i dati, aprite QGIS. Andate su <em class="menuselection">Layer ‣ Aggiungi Vettore...</em>.</p>
-</li>
+<li>Once you have downloaded the data, open QGIS. Go to <em class="menuselection">Layer
+‣ Add Layer ‣ Add Vector Layer</em>.</li>
 </ol>
 <img alt="../_images/1108.png" class="align-center" src="../_images/1108.png" />
 <ol class="arabic simple" start="2">
@@ -218,76 +228,100 @@ Non avete bisogno di estrarre il file. QGIS, di solito, è in grado di leggere d
 </ol>
 <img alt="../_images/336.png" class="align-center" src="../_images/336.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">Apparirà una finestra di dialogo che vi chiederà di selezionare il layer da aprire. Selezionate <cite>ne_10m_populated_places_simple.shp</cite> e fate click su <em class="guilabel">OK</em>.</p>
+<li><p class="first">Il layer selezionato a questo punto verrà caricato in QGIS e vedrete comparire numerosi punti che indicano i luoghi popolati del pianeta.</p>
 </li>
 </ol>
 <img alt="../_images/426.png" class="align-center" src="../_images/426.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">Il layer selezionato a questo punto verrà caricato in QGIS e vedrete comparire numerosi punti che indicano i luoghi popolati del pianeta.</p>
-</li>
+<li>Right-click the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
 <img alt="../_images/527.png" class="align-center" src="../_images/527.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">Per esaminare gli attributi fate click con il tasto destro sul layer e selezionate <em class="guilabel">Apri Tabella degli Attributi</em>.</p>
+<li><p class="first">Esplorate i vari attributi e i relativi valori.</p>
 </li>
 </ol>
 <img alt="../_images/625.png" class="align-center" src="../_images/625.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">Esplorate i vari attributi e i relativi valori.</p>
+<li><p class="first">A noi interessa la popolazione per ciascuna geometria, quindi  <cite>pop_max</cite> è il campo che dobbiamo considerare. Potete fare due volte click sull&#8217;intestazione della colonna per ordinare la colonna in ordine discendente.</p>
 </li>
 </ol>
 <img alt="../_images/725.png" class="align-center" src="../_images/725.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">A noi interessa la popolazione per ciascuna geometria, quindi  <cite>pop_max</cite> è il campo che dobbiamo considerare. Potete fare due volte click sull&#8217;intestazione della colonna per ordinare la colonna in ordine discendente.</p>
-</li>
+<li>Now we are ready to perform our query on these attributes. QGIS uses
+SQL-like expressions to perform queries. Click <em class="guilabel">Select features
+using an expression</em>.</li>
 </ol>
 <img alt="../_images/824.png" class="align-center" src="../_images/824.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">Ora siamo pronti per effettuare le nostre interrogazioni su questi attributi. <em class="guilabel">Seleziona elementi usando un&#8217;espressione</em>.</p>
-</li>
+<li>In the <em class="guilabel">Select By Expression</em> window, expand the <em class="guilabel">Fields
+and Values</em> section and double-click the <tt class="docutils literal"><span class="pre">pop_max</span></tt> label.  You will notice
+that it is added to the expression section at the bottom.  If you aren&#8217;t
+sure about the field values, you can click the <em class="guilabel">Load all unique
+values</em> to see what the attribute values are present in the dataset. For
+this exercise, we are looking to find all features that have a population
+greater than <tt class="docutils literal"><span class="pre">1,000,000</span></tt>. So complete the expression as below and click
+<em class="guilabel">Select</em>.</li>
 </ol>
+<div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000
+</pre></div>
+</div>
 <img alt="../_images/922.png" class="align-center" src="../_images/922.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">Nella finestra <em class="guilabel">Seleziona elementi usando un&#8217;espressione</em> aprire la sezione  <em class="guilabel">Campi e Valori</em> e fare doppio click sulla voce  <cite>pop_max</cite>. Noterete che questa voce verrà aggiunta alla sezione espressioni in basso. Se non siete sicuri circa il campo dei valori potete fare click sul pulsante <em class="guilabel">Carica tutti i valori unici</em> per vedere quali valori sono presenti nel dataset. In questo esercizio vogliamo trovare tutte le feature che hanno una popolazione maggiore di 1000000. Quindi completate l&#8217;espressione come  <cite>&#8220;pop_max&#8221; &gt; 1000000</cite>  e fate click su <em class="guilabel">Seleziona</em>.</p>
-</li>
+<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. You will
+notice that a subset of points is now rendered in yellow. This is the
+result of our query and you are seeing all places from the dataset that
+have the <tt class="docutils literal"><span class="pre">pop_max</span></tt> attribute value greater than <tt class="docutils literal"><span class="pre">1,000,000</span></tt>.</li>
 </ol>
 <img alt="../_images/1023.png" class="align-center" src="../_images/1023.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">Fate click su <em class="guilabel">Chiudi</em> e tornate alla finestra principale di QGIS. Noterete che un sottoinsieme di punti viene ora visualizzato in giallo. Questo è il risultato della vostra query e quelli che vedete sono i luoghi del dataset che hanno il valore dell&#8217;attributo <cite>pop_max</cite>  maggiore di 1000000.</p>
-</li>
+<li>The goal for this exercise is to find the places that are country capitals.
+The field containing this data is <cite>adm0cap</cite>. The value <tt class="docutils literal"><span class="pre">1</span></tt> indicates that
+the place is a capital. We can add this criteria to our previous expression
+using the <tt class="docutils literal"><span class="pre">and</span></tt> operator. Let’s refine our query to select only those
+places which are capitals.  Click on the <em class="guilabel">Select feature using an
+expression</em> button in the attribute table and enter the expression as below
+and click <em class="guilabel">Select</em> and then <em class="guilabel">Close</em>.</li>
 </ol>
+<div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000 and &quot;adm0cap&quot; = 1
+</pre></div>
+</div>
 <img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">L&#8217;obiettivo dell&#8217;esercizio è quello di trovare tra questi luoghi quelli che sono capitale di una nazione. Raffiniamo la nostra query per selezionare soltanto le capitali. Fate Click sul pulsante <em class="guilabel">Seleziona elementi usando un&#8217; espressione</em> nella tabella degli attributi.</p>
-</li>
+<li>Return to the main QGIS window. Now you will see a smaller subset of the
+points selected. This is the result of the second query and shows all
+places from the dataset that are country capitals as well as have
+population greater than 1,000,000. If we wanted to do some further analysis
+on this subset of data, we can make this selection persistent. Right-click
+the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select
+<em class="guilabel">Properties</em>.</li>
 </ol>
 <img alt="../_images/1223.png" class="align-center" src="../_images/1223.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">Nel campo che contiene il dato <cite>adm0cap</cite> il valore <cite>1</cite>  indica che il posto è una capitale.
-Inserite questa espressione: <cite>&#8220;adm0cap&#8221; = 1</cite>. Dal momento che intendiamo effettuare questa ricerca all&#8217;interno dei risultati dell&#8217;interrogazione precedente, selezioniamo il pulsante <em class="guilabel">Seleziona dentro la selezione</em> con l&#8217;apposito menu a tendina e poi facciamo click su di esso.</p>
-</li>
+<li>In the <em class="guilabel">General</em> tab, scroll down to the <em class="guilabel">Feature
+subset</em> section. Click <em class="guilabel">Query Builder</em>.</li>
 </ol>
 <img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">Fate click su  <em class="guilabel">Chiudi</em> e tornate alla finestra principale di QGIS. Noterete un sottoinsieme di punti selezionati. Questo è il risultato della seconda query e mostra tutti i luoghi del nostro dataset che sono capitali di una nazione e che hanno una popolazione maggiore di 1000000.</p>
-</li>
+<li>Enter the same expression you had entered earlier and click <em class="guilabel">OK</em>.</li>
 </ol>
+<div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000 and &quot;adm0cap&quot; = 1
+</pre></div>
+</div>
 <img alt="../_images/1421.png" class="align-center" src="../_images/1421.png" />
 <ol class="arabic simple" start="15">
-<li><p class="first">Salviamo i nostri risultati in un layer separato. Tasto destro sul layer e selezionate <em class="guilabel">Salva la selezione con nome...</em>.</p>
-</li>
+<li>Back in the main QGIS window, you will see rest of the points disappear.
+You may now perform any other analysis on this layer and only the features
+that match our expression will be used. You will notice that the points
+still appear in yellow. This is because they are still selected. Find the
+<em class="guilabel">Deselect Features from All Layers</em> button under the
+<em class="guilabel">Attributes</em> toolbar and click on it.</li>
 </ol>
 <img alt="../_images/1518.png" class="align-center" src="../_images/1518.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">Il formato del file sarà <cite>ESRI Shapefile</cite> e potete inserire come nome del file di output <cite>large_capital_cities.shp</cite> Fate click sulla casella di opzione <em class="guilabel">Aggiungi il file salvato sulla mappa</em>  e poi fate click su <em class="guilabel">OK</em>.</p>
-</li>
+<li>You will see that the points are now de-selected and rendered in their
+original color.</li>
 </ol>
 <img alt="../_images/1618.png" class="align-center" src="../_images/1618.png" />
-<ol class="arabic simple" start="17">
-<li><p class="first">Lo shapefile appena creato sarà caricato automaticamente in QGIS. Spegnete il layer dei luoghi popolati deselezionando la casella accanto. Ora potrete vedere solo le geometrie del layer appena creato contentente le città del mondo che sono capitali e che hanno una popolazione maggiore di 1000000.</p>
-</li>
-</ol>
-<img alt="../_images/1717.png" class="align-center" src="../_images/1717.png" />
 </div>
 </div>
 
@@ -314,7 +348,7 @@ Inserite questa espressione: <cite>&#8220;adm0cap&#8221; = 1</cite>. Dal momento
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Apr 12, 2015.<br/>
+      Ultimo aggiornamento Apr 14, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

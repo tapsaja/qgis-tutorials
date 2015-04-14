@@ -195,8 +195,10 @@
 <ul class="simple">
 <li><p class="first">Cum să efectuați unificarea tabelelor în QGIS. (Pentru instrucțiuni detaliate, parcurgeți <a class="reference internal" href="performing_table_joins.html"><em>Unificarea tabelelor</em></a>.)</p>
 </li>
-<li>Using <em class="guilabel">Query Builder</em> to show a subset of features from a layer.</li>
-<li>Using MMQGIS plugin to create hub lines to visualize the nearest neighbors.</li>
+<li><p class="first">Folosirea <em class="guilabel">Query Builder</em> pentru a prezenta un subset de entități dintr-un strat.</p>
+</li>
+<li><p class="first">Utilizarea plugin-ului MMQGIS pentru a crea linii radiale pentru a vizualiza cei mai apropiați vecini.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -204,8 +206,7 @@
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
 <p>Vom folosi NOAA’s National Geophysical Data Center’s <a class="reference external" href="http://www.ngdc.noaa.gov/nndc/struts/form?t=101650&amp;s=1&amp;d=1">Significant Earthquake Database</a> ca strat al tuturor cutremurelor majore. Descărcați <a class="reference external" href="http://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&amp;query_0=$ID&amp;t=101650&amp;s=13&amp;d=189&amp;dfn=signif.txt">tab-delimited earthquake data</a>.</p>
 <p>Natural Earth are un set de date interesant despre`Populated Places <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/</a>&gt;`_. Descărcați <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simple (less columns) dataset</a></p>
-<p>For convenience, you may directly download a copy of both the datasets from the links
-below:</p>
+<p>Pentru comoditate, puteți descărca direct o copie a ambelor seturi de date din linkurile de mai jos:</p>
 <p><a class="reference external" href="../../downloads/signif.txt">signif.txt</a></p>
 <p><a class="reference external" href="../../downloads/ne_10m_populated_places_simple.zip">ne_10m_populated_places_simple.zip</a></p>
 <p>Surse de date: <a class="reference internal" href="credits.html#ngdc" id="id1">[NGDC]</a> <a class="reference internal" href="credits.html#naturalearth" id="id2">[NATURALEARTH]</a></p>
@@ -213,8 +214,8 @@ below:</p>
 <div class="section" id="procedure">
 <h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open <em class="menuselection">Layer ‣ Add Layer ‣ Add Delimited Text Layer</em> and
-browse to the downloaded <tt class="docutils literal"><span class="pre">signif.txt</span></tt> file.</li>
+<li><p class="first">Deschideți <em class="menuselection">Layer ‣ Add Layer ‣ Add Delimited Text Layer</em> și navigați la fișierul anterior descărcat, <tt class="docutils literal"><span class="pre">signif.txt</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/160.png" class="align-center" src="../_images/160.png" />
 <ol class="arabic simple" start="2">
@@ -227,15 +228,13 @@ browse to the downloaded <tt class="docutils literal"><span class="pre">signif.t
 </div>
 <img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
 <ol class="arabic simple" start="3">
-<li>As the earthquake dataset has Latitude/Longitude coordinates, it will be
-imported with the default CRS of <tt class="docutils literal"><span class="pre">EPSG:</span> <span class="pre">4326</span></tt>. Verify that is the case in
-the bottom-right corner. Let&#8217;s also open the Populated Places layer. Go to
-<em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Deoarece setul datelor despre cutremur are coordonate de Latitudine/Longitudine, acesta va fi importat cu CRS-ul implicit <tt class="docutils literal"><span class="pre">EPSG:4326</span></tt>. Verificați, dacă este cazul, în colțul din dreapta-jos. Să deschidem, de asemenea, stratul Locurilor Populate. Mergeți la <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</em>.</p>
+</li>
 </ol>
 <img alt="../_images/319.png" class="align-center" src="../_images/319.png" />
 <ol class="arabic simple" start="4">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt> file and
-click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Navigați la fișierul descărcat, <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt>, apoi faceți clic pe <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/415.png" class="align-center" src="../_images/415.png" />
 <ol class="arabic simple" start="5">
@@ -249,13 +248,8 @@ click <em class="guilabel">Open</em>.</li>
 </ol>
 <img alt="../_images/614.png" class="align-center" src="../_images/614.png" />
 <ol class="arabic simple" start="7">
-<li>Here select the earthquake layer <tt class="docutils literal"><span class="pre">signif</span></tt> as the Input point layer and the
-populated places <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> as the target layer. You
-also need to select a unique field from each of these layers which is how
-your results will be displayed. In this analysis, we are looking to get only
-<tt class="docutils literal"><span class="pre">1</span></tt> nearest point, so check the <em class="guilabel">Use only the nearest(k) target
-points</em>, and enter <em class="guilabel">1</em>. Name your output file <tt class="docutils literal"><span class="pre">matrix.csv</span></tt>, and
-click OK.  Once the processing finishes, click <em class="guilabel">Close</em>.</li>
+<li><p class="first">În această fereastră, alegeți stratul cutremurelor, <tt class="docutils literal"><span class="pre">signif</span></tt>, ca strat de Intrare de tip punct, iar locurile populate <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> ca strat țintă. De asemenea, trebuie să selectați un câmp unic din fiecare strat, care stabilește modul în care vor fi afișate rezultatele. În această analiză, dorim să obținem doar <tt class="docutils literal"><span class="pre">1</span></tt> dintre cele mai apropiate puncte, așa că bifați <em class="guilabel">Use only the nearest(k) target points</em>, apoi introduceți <em class="guilabel">1</em>. Denumiți fișierul de ieșire <tt class="docutils literal"><span class="pre">matrix.csv</span></tt>, și apăsați OK. O dată procesul încheiat, faceți clic pe <em class="guilabel">Close</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -263,11 +257,8 @@ click OK.  Once the processing finishes, click <em class="guilabel">Close</em>.<
 </div>
 <img alt="../_images/713.png" class="align-center" src="../_images/713.png" />
 <ol class="arabic simple" start="8">
-<li>Once the processing finishes, click the <em class="guilabel">Close</em> button in the
-<em class="guilabel">Distance Matrix</em> dialog. You can now view the <tt class="docutils literal"><span class="pre">matrix.csv</span></tt> file
-in Notepad or any text editor.  QGIS can import CSV files as well, so we
-will add it to QGIS and view it there. Go to <em class="menuselection">Layer ‣ Add
-Layer ‣ Add Delimited Text Layer...</em>.</li>
+<li><p class="first">O dată încheiată prelucrarea, faceți clic pe butonul <em class="guilabel">Close</em> din fereastra de dialog <em class="guilabel">Distance Matrix</em>. Puteți vedea fișierul <tt class="docutils literal"><span class="pre">matrix.csv</span></tt> în Notepad sau în oricare alt editor de text. QGIS poate importa fișiere CSV, de asemenea, așa că încărcați-l în QGIS și vizualizați-l acolo. Mergeți la <em class="menuselection">Layer ‣ Add Layer ‣ Add Delimited Text Layer...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/813.png" class="align-center" src="../_images/813.png" />
 <ol class="arabic simple" start="9">
@@ -300,11 +291,8 @@ Layer ‣ Add Delimited Text Layer...</em>.</li>
 </ol>
 <img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
 <ol class="arabic simple" start="14">
-<li>We want to join the data from our analysis result to this layer. We need to
-select a field from each of the layers that has the same values. Select
-<tt class="docutils literal"><span class="pre">matrix</span></tt> as the <em class="guilabel">Join layer`</em> and <tt class="docutils literal"><span class="pre">InputID</span></tt> as the
-<em class="guilabel">Join field</em>. The <em class="guilabel">Target field</em> would be <tt class="docutils literal"><span class="pre">I_D</span></tt>.
-Leave other options to their default values and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Vrem să unificăm datele rezultatelor analizelor noastre asupra acestui strat. Trebuie să selectăm un câmp din fiecare dintre straturile care au valori similare. Selectați <tt class="docutils literal"><span class="pre">matrix</span></tt> pentru <em class="guilabel">Join layer</em> și <tt class="docutils literal"><span class="pre">InputID</span></tt> pentru <em class="guilabel">Join field</em>. <em class="guilabel">Câmpul țintă</em> va fi <tt class="docutils literal"><span class="pre">I_D</span></tt>. Lăsați celelalte opțiuni la valorile implicite și faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
 <ol class="arabic simple" start="15">
@@ -313,8 +301,8 @@ Leave other options to their default values and click <em class="guilabel">OK</e
 </ol>
 <img alt="../_images/1511.png" class="align-center" src="../_images/1511.png" />
 <ol class="arabic simple" start="16">
-<li>Now open the attribute table of the <tt class="docutils literal"><span class="pre">signif</span></tt> layer by right-clicking and
-selecting <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Acum, deschideți tabela de atribute a stratului <tt class="docutils literal"><span class="pre">signif</span></tt>, făcând clic-dreapta și selectând <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1611.png" class="align-center" src="../_images/1611.png" />
 <ol class="arabic simple" start="17">
@@ -323,83 +311,64 @@ selecting <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
 <img alt="../_images/1710.png" class="align-center" src="../_images/1710.png" />
 <ol class="arabic simple" start="18">
-<li>We will now explore a way to visualize these results. First, we need to
-make the table join permanent by saving it to a new layer. Right-click the
-<tt class="docutils literal"><span class="pre">signif</span></tt> layer and select <em class="guilabel">Save As...</em>.</li>
+<li><p class="first">Vom explora acum o modalitate de a vizualiza aceste rezultate. Mai întâi, trebuie să facem îmbinarea tabelului permanentă, salvând-o într-un un nou strat. Faceți clic dreapta pe stratul <tt class="docutils literal"><span class="pre">signif</span></tt> și selectați <em class="guilabel">Save As...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1810.png" class="align-center" src="../_images/1810.png" />
 <ol class="arabic simple" start="19">
-<li>Click the <em class="guilabel">Browse</em> button next to <em class="guilabel">Save as</em> label and
-name the output layer as <tt class="docutils literal"><span class="pre">earthquake_with_places.shp</span></tt>. Make sure the
-<em class="guilabel">Add saved file to map</em> box is checked and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Faceți clic pe butonul <em class="guilabel">Browse</em> de lângă eticheta <em class="guilabel">Save as</em> și denumiți stratul de ieșire ca <tt class="docutils literal"><span class="pre">earthquake_with_places.shp</span></tt>. Asigurați-vă că ați bifat caseta <em class="guilabel">Add saved file to map</em> și faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/198.png" class="align-center" src="../_images/198.png" />
 <ol class="arabic simple" start="20">
-<li>Once the new layer is loaded, you can turn off the visibility of the
-<tt class="docutils literal"><span class="pre">signif</span></tt> layer. As our dataset is quite large, we can run our
-visualization analysis on a subset of the data. QGIS has a neat feature
-where you can load a subset of features from a layer without having to
-export it to a new layer. Right-click the <tt class="docutils literal"><span class="pre">earthquake_with_places</span></tt> layer
-and select <em class="guilabel">Properties</em>.</li>
+<li><p class="first">O dată ce noul strat este încărcat, puteți dezactiva vizibilitatea stratului <tt class="docutils literal"><span class="pre">signif</span></tt>. Deoarece setul nostru de date este destul de mare, puteți rula analiza de vizualizare asupra unui subset de date. QGIS are o caracteristică elegantă, unde se poate încărca un subset de entități dintr-un strat, fără a fi nevoie să-l exportați într-un nou strat. Faceți clic dreapta pe stratul <tt class="docutils literal"><span class="pre">earthquake_with_places</span></tt> și selectați <em class="guilabel">Properties</em>.</p>
+</li>
 </ol>
 <img alt="../_images/205.png" class="align-center" src="../_images/205.png" />
 <ol class="arabic simple" start="21">
-<li>In the <em class="guilabel">General</em> tab, scroll down to the <em class="guilabel">Feature
-subset</em> section. Click <em class="guilabel">Query Builder</em>.</li>
+<li><p class="first">În fila <em class="guilabel">General</em>, derulați până la secțiunea <em class="guilabel">Feature subset</em>. Faceți clic pe <em class="guilabel">Constructorul de Interogări</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2111.png" class="align-center" src="../_images/2111.png" />
 <ol class="arabic simple" start="22">
-<li>For this tutorial, we will visualize the earthquakes and their nearest
-populated places for Mexico. Enter the following expression in the
-<em class="guilabel">Query Builder</em> dialog.</li>
+<li><p class="first">Pentru acest tutorial, vom vizualiza cutremurele și cele mai apropiate locuri populate față de acestea, în cazul Mexicului. Introduceți următoarea expresie în fereastra de dialog <em class="guilabel">Constructorul de Interogări</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;COUNTRY&quot; = &#39;MEXICO&#39;
 </pre></div>
 </div>
 <img alt="../_images/225.png" class="align-center" src="../_images/225.png" />
 <ol class="arabic simple" start="23">
-<li>You will see that only the points falling within Mexico will be visible in
-the canvas. Let&#8217;s do the same for the populated places layer. Right-click
-on the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select
-<em class="guilabel">Properties</em>.</li>
+<li><p class="first">Veți vedea că doar punctele care intră în cadrul Mexicului vor fi vizibile în canevas. Să facem același lucru pentru stratul locurilor populate. Faceți clic dreapta pe stratul <a href="#id1"><span class="problematic" id="id2">``</span></a>ne_10m_populated_places_simple``și selectați <em class="guilabel">Properties</em>.</p>
+</li>
 </ol>
 <img alt="../_images/234.png" class="align-center" src="../_images/234.png" />
 <ol class="arabic simple" start="24">
-<li>Open the <em class="guilabel">Query Builder</em> dialog from the <em class="guilabel">General</em> tab.
-Enter the following expression.</li>
+<li><p class="first">Deschideți fereastra de dialog <em class="guilabel">Query Builder</em> din fila <em class="guilabel">General</em>. Introduceți următoarea expresie.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;adm0name&quot; = &#39;Mexico&#39;
 </pre></div>
 </div>
 <img alt="../_images/244.png" class="align-center" src="../_images/244.png" />
 <ol class="arabic simple" start="25">
-<li>Now we are ready to create our visualization. We will use a plugin named
-<tt class="docutils literal"><span class="pre">MMQGIS</span></tt>. Find and install the plugin. See <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a> for more
-details on how to work with plugins. Once you have the plugin installed, go
-to <em class="menuselection">MMQGIS ‣ Create ‣ Hub Lines</em>.</li>
+<li><p class="first">Acum suntem gata de a crea vizualizarea noastră. Vom folosi un plugin numit <tt class="docutils literal"><span class="pre">MMQGIS</span></tt>. Găsiți și instalați plugin-ul. Parcurgeți <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a> pentru mai multe detalii cu privire la modul de lucru cu plugin-uri. O dată ce ați instalat plugin-ul, mergeți la <em class="menuselection">MMQGIS ‣ Create ‣ Hub Lines</em>.</p>
+</li>
 </ol>
 <img alt="../_images/254.png" class="align-center" src="../_images/254.png" />
 <ol class="arabic simple" start="26">
-<li>Select <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> as the <em class="guilabel">Hub Point
-Layer</em> and <tt class="docutils literal"><span class="pre">name</span></tt> as the <em class="guilabel">Hub ID Attribute</em>. Similarly, select
-<tt class="docutils literal"><span class="pre">earthquake_with_places</span></tt> as the <em class="guilabel">Spoke Point Layer</em> and
-<tt class="docutils literal"><span class="pre">matrix_Tar</span></tt> as the <em class="guilabel">Spoke Hub ID Attribute</em>. The hub lines
-algorithm will go through each of earthquake points and create a line that
-will join it to the populated place which matches the attribute we
-specified. Click <em class="guilabel">Browse</em> and name the <em class="guilabel">Output
-Shapefile</em> as <tt class="docutils literal"><span class="pre">earthquake_hub_lines.shp</span></tt>. Click <em class="guilabel">OK</em> to start
-the processing.</li>
+<li><p class="first">Selectați <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> ca <em class="guilabel">Hub Pointt Layer</em> și <tt class="docutils literal"><span class="pre">name</span></tt> ca <em class="guilabel">Hub ID Attribute</em>. În mod similar, selectați <tt class="docutils literal"><span class="pre">earthquake_with_places</span></tt> ca <em class="guilabel">Spoke Point LayeLayer</em> și <tt class="docutils literal"><span class="pre">matrix_Tar</span></tt> ca <em class="guilabel">Spoke Hub ID Attribute</em>. Algoritmul liniilor radiale va trece prin fiecare dintre punctele cutremurelor și va crea o linie care le va uni cu locațiile populate care se potrivesc atributelor specificate. Faceți clic pe <em class="guilabel">Browse</em> și alegeți numele <em class="guilabel">Output Shapefile</em> pentru <tt class="docutils literal"><span class="pre">earthquake_hub_lines.shp</span></tt>. Faceți clic pe <em class="guilabel">OK</em> pentru a începe prelucrarea.</p>
+</li>
 </ol>
 <img alt="../_images/264.png" class="align-center" src="../_images/264.png" />
 <ol class="arabic simple" start="27">
-<li>The processsing may take a few minutes. You can see the progress on the
-bottom-left corner of the QGIS window.</li>
+<li><p class="first">Procesarea poate dura câteva minute. Puteți vedea progresul în colțul din stânga-jos al ferestrei QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/273.png" class="align-center" src="../_images/273.png" />
 <ol class="arabic simple" start="28">
-<li>Once the processing is done, you will see the <tt class="docutils literal"><span class="pre">earthquake_hub_lines</span></tt>
-layer loaded in QGIS. You can see that each earthquake point now has a line
-that connects it to the nearest populated place.</li>
+<li><p class="first">O dată încheiată prelucrarea, veți vedea stratul `` earthquake_hub_lines`` încărcat în QGIS. Puteți vedea că fiecare punct corespunzător unui cutremur, are acum o linie care îl conectează la cel mai apropiat loc populat.</p>
+</li>
 </ol>
 <img alt="../_images/283.png" class="align-center" src="../_images/283.png" />
 </div>
@@ -428,7 +397,7 @@ that connects it to the nearest populated place.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 12, 2015.<br/>
+      Last updated on Apr 14, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

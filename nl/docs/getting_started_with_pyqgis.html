@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Getting Started With Python Programming &mdash; QGIS Tutorials and Tips</title>
+    <title>Beginnen met programmeren in Python &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Find Neighbor Polygons in a Layer" href="find_neighbor_polygons.html" />
+    <link rel="next" title="Naburige polygonen in een laag zoeken" href="find_neighbor_polygons.html" />
     <link rel="prev" title="Open BIL, BIP or BSQ files in QGIS" href="open_bil_bip_bsq_files.html" />
 
 <meta charset='utf-8'>
@@ -102,14 +102,14 @@
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Heatmaps maken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Monsters nemen van rastergegevens met behulp van punten of polygonen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Massa verwerken met behulp van Framework Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aantal punten in een laag tellen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started With Python Programming</a></li>
-<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Beginnen met programmeren in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS Learning Resources</a></li>
@@ -128,7 +128,7 @@
     </a>
   </li>
   <li>
-    <a href="find_neighbor_polygons.html" title="Next Chapter: Find Neighbor Polygons in a Layer"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Find Neighbor Po... &raquo;</span>
+    <a href="find_neighbor_polygons.html" title="Next Chapter: Naburige polygonen in een laag zoeken"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Naburige polygon... &raquo;</span>
     </a>
   </li>
               
@@ -185,83 +185,60 @@
       
 
   <div class="section" id="getting-started-with-python-programming">
-<h1>Getting Started With Python Programming<a class="headerlink" href="#getting-started-with-python-programming" title="Permalink naar deze titel">¶</a></h1>
+<h1>Beginnen met programmeren in Python<a class="headerlink" href="#getting-started-with-python-programming" title="Permalink naar deze titel">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/getting_started_with_pyqgis_a4.pdf">A4</a> <a class="reference external" href="../pdf/getting_started_with_pyqgis_letter.pdf">Letter</a> ]</p>
-<p>QGIS has a powerful programming interface that allows you to extend the core
-functionality of the software as well as write scripts to automate your tasks.
-QGIS supports the popular Python scripting language. Even if you are a
-beginner, learning a little bit of Python and QGIS programming interface will
-allow you to be much more productive in your work. This tutorial assumes no
-prior programming knowledge and is intended to give an introduction to
-python scripting in QGIS (PyQGIS).</p>
+<p>QGIS heeft een krachtige interface voor programmeren die u in staat stelt de bron-functionaliteit van de software uit te breiden en ook om scripts te schrijven om uw taken te automatiseren. QGIS ondersteunt de populaire programmeertaal voor scripten Python. Zelfs als u een beginner bent, leer een klein beetje Python en de interface voor programmeren van QGIS zal u in staat stellen veel productiever te werk te gaan. Deze handleiding gaat er van uit dat u geen eerdere kennis van programmeren heeft en is bedoeld als introductie voor het scripten met Python in QGIS (PyQGIS).</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
-<p>We will load a vector point layer representing all major airports and use
-python scripting to create a text file with the airport name, airport code,
-latitude and longitude for each of the airport in the layer.</p>
+<h2>Overzicht van de taak<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
+<p>We zullen een vector puntlaag laden die alle belangrijke vliegvelden weergeeft en scripten in Python gebruiken om een tekstbestand te maken met de naam van het vliegveld, de code van het vliegveld en latitude en longitude voor elk vliegveld op de laag.</p>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/airports/">Airports</a>
-dataset from Natural Earth.</p>
-<p>Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip">Airports shapefile</a>.</p>
-<p>Data Source <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
+<h2>De gegevens ophalen<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
+<p>We zullen de gegevensset <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/airports/">Airports</a> van Natural Earth gebruiken.</p>
+<p>Download het <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip">shapefile Airports</a>.</p>
+<p>Gegevensbron <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink naar deze titel">¶</a></h2>
 <ol class="arabic simple">
-<li>In QGIS, go to <em class="menuselection">Layers ‣ Add Vector Layer</em>. Browse to the
-downloaded <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt> file and click <em class="guilabel">Open</em>. Select
-the <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt> layer and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Ga in QGIS naar <em class="menuselection">Kaartlagen ‣ Laag toevoegen ‣ Vectorlaag toevoegen</em>. Blader naar het gedownloade bestand <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt> en klik op <em class="guilabel">Openen</em>. Selecteer de laag <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt> en klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/130.png" class="align-center" src="../_images/130.png" />
 <ol class="arabic simple" start="2">
-<li>You will see the <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> layer loaded in QGIS.</li>
+<li><p class="first">U zult de laag <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> zien geladen in QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/214.png" class="align-center" src="../_images/214.png" />
 <ol class="arabic simple" start="3">
-<li>Select the <em class="guilabel">Identify</em> tool and click on any of the points to
-examine the available attributes. You will see that the name of the airport
-and it&#8217;s 3 digit code are contained in the attributes <tt class="docutils literal"><span class="pre">name</span></tt> and
-<tt class="docutils literal"><span class="pre">iata_code</span></tt> respectively.</li>
+<li><p class="first">Selecteer het gereedschap <em class="guilabel">Objecten identificeren</em> en klik op één van de punten om daarvan de beschikbare attributen te bekijken. U zult zien dat de naam van het vliegveld en de 3-cijferige code ervan zijn opgenomen in de respectievelijke attributen <tt class="docutils literal"><span class="pre">name</span></tt> en <tt class="docutils literal"><span class="pre">iata_code</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
 <ol class="arabic simple" start="4">
-<li>QGIS provides a built-in console where you can type python commands and get
-the result. This console is a great way to learn scripting and also to do
-quick data processing. Open the <em class="guilabel">Python Console</em> by going to
-<em class="menuselection">Plugins ‣ Python Console</em>.</li>
+<li><p class="first">QGIS verschaft een ingebouwde console waar u opdrachten voor Python kunt typen en de resultaten verkrijgt. Deze console is een fantastische manier om te leren scripten en ook om snel gegevens te verwerken. Open de <em class="guilabel">Python Console</em> door te gana naar <em class="menuselection">Plug-ins ‣ Python Console</em>.</p>
+</li>
 </ol>
 <img alt="../_images/410.png" class="align-center" src="../_images/410.png" />
 <ol class="arabic simple" start="5">
-<li>You will see a new panel open at the bottom of QGIS canvas. You will see a
-prompt like <tt class="docutils literal"><span class="pre">&gt;&gt;&gt;</span></tt> at the bottom where you can type commands. For
-interacting with the QGIS environment, we must use the <tt class="docutils literal"><span class="pre">iface</span></tt> variable.
-To access the currently active layer in QGIS, you can type the following and
-press <tt class="kbd docutils literal"><span class="pre">Enter</span></tt>. This command fetches the reference to the currently
-loaded layer and stores it in the <tt class="docutils literal"><span class="pre">layer</span></tt> variable.</li>
+<li><p class="first">U zult zien dat een nieuw paneel wordt geopend aan de onderzijde van het kaartvenster van QGIS. U zult een prompt als <tt class="docutils literal"><span class="pre">&gt;&gt;&gt;</span></tt> zien aan de onderzijde waar u opdrachten kunt typen. Voor de interactie met de omgeving van QGIS, moeten we de variabele <tt class="docutils literal"><span class="pre">iface</span></tt> gebruiken. U kunt het volgende typen en op <tt class="kbd docutils literal"><span class="pre">Enter</span></tt> drukken om toegang te krijgen tot de huidige actieve laag in QGIS. Deze opdracht haalt de verwijzing naar de huidige geladen laag op en slaat die op in de variabele <tt class="docutils literal"><span class="pre">layer</span></tt>.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">layer</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
 </pre></div>
 </div>
 <img alt="../_images/510.png" class="align-center" src="../_images/510.png" />
 <ol class="arabic simple" start="6">
-<li>There is a handy function called <tt class="docutils literal"><span class="pre">dir()</span></tt> in python that shows you all
-available methods for any object. This is useful when you are not sure
-what functions are available for the object. Run the following command to
-see what operations we can do on the <tt class="docutils literal"><span class="pre">layer</span></tt> variable.</li>
+<li><p class="first">Er bestaat een handige functie, genaamd <tt class="docutils literal"><span class="pre">dir()</span></tt>, in Python die u alle beschikbare methoden voor een object laat zien. Dat is handig als u niet precies weet welke functies beschikbaar zijn voor het object. Voer de volgende opdracht uit om te zien welke bewerkingen we kunnen doen met de variabele <tt class="docutils literal"><span class="pre">layer</span></tt>.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="nb">dir</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/69.png" class="align-center" src="../_images/69.png" />
 <ol class="arabic simple" start="7">
-<li>You will see a long list of available functions. For now, we will use a
-function called <tt class="docutils literal"><span class="pre">getFeatures()</span></tt> which will gets you the reference to all
-features of a layer. In our case, each feature will be a point representing
-an airport. You can type the following command to iterate through each of the
-features in the current layer. Make sure to add 2 spaces before typing the
-second line.</li>
+<li><p class="first">U zult ene lange lijst met beschikbare functies zien. Voor nu zullen we de functie, genaamd <tt class="docutils literal"><span class="pre">getFeatures()</span></tt>, gebruiken wat u een verwijzing zal geven naar alle objecten van een laag. In ons geval zal elk object een punt zijn dat een vliegveld weergeeft. U kunt de volgende opdracht typen om door elk van de objecten op de huidige laag te gaan. Zorg er voor dat u 2 spaties toevoegt vóórdat u de tweede regel typt.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
   <span class="k">print</span> <span class="n">f</span>
@@ -269,11 +246,8 @@ second line.</li>
 </div>
 <img alt="../_images/79.png" class="align-center" src="../_images/79.png" />
 <ol class="arabic simple" start="8">
-<li>As you will see in the output, each line contains a reference to a feature
-within the layer. The reference to the feature is stored in the <tt class="docutils literal"><span class="pre">f</span></tt>
-variable. We can use the <tt class="docutils literal"><span class="pre">f</span></tt> variable to access the attributes of each
-feature. Type the following to print the <tt class="docutils literal"><span class="pre">name</span></tt> and <tt class="docutils literal"><span class="pre">iata_code</span></tt> for each
-airport feature.</li>
+<li><p class="first">Zoals u in de uitvoer zult zien, bevat elke regel een verwijzing naar een object op de laag. De verwijzing naar het object wordt opgeslagen in de variabele <tt class="docutils literal"><span class="pre">f</span></tt>. We kunnen de variabele <tt class="docutils literal"><span class="pre">f</span></tt> gebruiken om toegang te krijgen tot de attributen van elk object. Typ het volgende om de <tt class="docutils literal"><span class="pre">name</span></tt> en <tt class="docutils literal"><span class="pre">iata_code</span></tt> voor elk object vliegveld af te drukken.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
   <span class="k">print</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;iata_code&#39;</span><span class="p">]</span>
@@ -281,15 +255,8 @@ airport feature.</li>
 </div>
 <img alt="../_images/89.png" class="align-center" src="../_images/89.png" />
 <ol class="arabic simple" start="9">
-<li>So now you know how to programatically access the attribute of each feature
-in a layer. Now, let&#8217;s see how we can access the coordinates of the feature.
-The coordinates of a vector feature can be accessed by calling the
-<tt class="docutils literal"><span class="pre">geometry()</span></tt> function. This function returns a geometry object that we can
-store in the variable <tt class="docutils literal"><span class="pre">geom</span></tt>. You can run <tt class="docutils literal"><span class="pre">asPoint()</span></tt> function on the
-geometry object to get the x and y coordinates of the point. If your feature
-is a line or a polygon, you can use <tt class="docutils literal"><span class="pre">asPolyline()</span></tt> or <tt class="docutils literal"><span class="pre">asPolygon()</span></tt>
-functions. Type the following code at the prompt and press <tt class="kbd docutils literal"><span class="pre">Enter</span></tt> to see
-the x and y coordinates of each feature.</li>
+<li><p class="first">U weet dus nu hoe u programmatisch toegang kunt krijgen tot de attributen van elk object op een laag. laten we dan nu eens zien hoe we toegang krijgen tot de coördinaten van het object. Toegang tot de coördinaten van het vectorobject kan worden verkregen door de functie <tt class="docutils literal"><span class="pre">geometry()</span></tt> aan te roepen. Deze functie geeft een object geometrie terug dat we kunnen opslaan in de variabele <tt class="docutils literal"><span class="pre">geom</span></tt>. U kunt de functie <tt class="docutils literal"><span class="pre">asPoint()</span></tt> op het object geometrie uitvoeren om de X- en Y-coördinaten van het punt te verkrijgen. Als uw object een lijn of polygoon is, kunt u de functies <tt class="docutils literal"><span class="pre">asPolyline()</span></tt> of <tt class="docutils literal"><span class="pre">asPolygon()</span></tt> gebruiken. Typ de volgende code bij de prompt en druk op <tt class="kbd docutils literal"><span class="pre">Enter</span></tt> om de X- en Y-coördinaten van elk object te bekijken.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
   <span class="n">geom</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span>
@@ -298,8 +265,8 @@ the x and y coordinates of each feature.</li>
 </div>
 <img alt="../_images/98.png" class="align-center" src="../_images/98.png" />
 <ol class="arabic simple" start="10">
-<li>What if we wanted to get only the <tt class="docutils literal"><span class="pre">x</span></tt> cordinate of the feature? You can
-call the <tt class="docutils literal"><span class="pre">x()</span></tt> function on the point object and get its x coordinate.</li>
+<li><p class="first">Wat als we alleen het <tt class="docutils literal"><span class="pre">X</span></tt>-coördinaat van het object wilden? U kunt de functie <tt class="docutils literal"><span class="pre">x()</span></tt> aanroepen voor het object punt en daarvan het X-coördinaat verkrijgen.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
   <span class="n">geom</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span>
@@ -308,10 +275,8 @@ call the <tt class="docutils literal"><span class="pre">x()</span></tt> function
 </div>
 <img alt="../_images/108.png" class="align-center" src="../_images/108.png" />
 <ol class="arabic simple" start="11">
-<li>Now we have all the pieces that we can stitch together to generate our
-desired output. Type the following code to print the name, iata_code,
-latitude and longitude of each of the airport features. The <tt class="docutils literal"><span class="pre">%s</span></tt> and
-<tt class="docutils literal"><span class="pre">%f</span></tt> notations are ways to format a string and number variables.</li>
+<li><p class="first">Nu hebben we alle stukjes die we aan elkaar kunnen naaien om de door ons gewenste uitvoer te verkrijgen. Typ de volgende code om de naam, iata_code, latitude en longitude van alle objecten vliegveld af te drukken. De notaties <tt class="docutils literal"><span class="pre">%s</span></tt> en <tt class="docutils literal"><span class="pre">%f</span></tt> zijn manieren om de string en number variabelen op te maken.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
   <span class="n">geom</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span>
@@ -321,15 +286,8 @@ latitude and longitude of each of the airport features. The <tt class="docutils 
 </div>
 <img alt="../_images/1113.png" class="align-center" src="../_images/1113.png" />
 <ol class="arabic simple" start="12">
-<li>You can see the output printed on the console. A more useful way to store
-the output would be in a file. You can type the following code to create a
-file and write the output there. Replace the file path with a path on your
-own system. Note that we add <tt class="docutils literal"><span class="pre">\n</span></tt> at the end of our line formatting. This
-is to add a newline after we add the data for each feature. You should also
-note the <tt class="docutils literal"><span class="pre">unicode_line</span> <span class="pre">=</span> <span class="pre">line.encode('utf-8')</span></tt> line. Since our layer
-contains some features with unicode characters, we can&#8217;t simply write it to
-a text file. We encode the text using the UTF-8 encoding and then write to
-the text file.</li>
+<li><p class="first">U kunt de uitvoer zien worden afgedrukt op de  console. Een meer handige manier om de uitvoer op te slaan zou een bestand zijn. U kunt de volgende code typen om een bestand te maken en de uitvoer daar naartoe weg te schrijven. vervang het bestandspad door een bestandspad op uw eigen systeem. Onthoud dat we <tt class="docutils literal"><span class="pre">\n</span></tt> toevoegen aan het einde van de opmaak van onze regel. Dat is om ene nieuwe regel toe te voegen na de gegevens voor elke object. U zou ook de regel <tt class="docutils literal"><span class="pre">unicode_line</span> <span class="pre">=</span> <span class="pre">line.encode('utf-8')</span></tt> moeten onthouden. Omdat onze laag enkele objecten bevat met tekens in Unicode, kunnen we het niet eenvoudigweg wegschrijven naar een tekstbestand. We coderen de tekst met behulp van de codering UTF-8 en schrijven dan weg naar het tekstbestand.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">output_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;c:/Users/Ujaval/Desktop/airports.txt&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
@@ -343,9 +301,8 @@ the text file.</li>
 </div>
 <img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" />
 <ol class="arabic simple" start="13">
-<li>You can go to the output file location you specified and open the text file.
-You will see the data from the airports shapefile that we extracted using
-python scripting.</li>
+<li><p class="first">U kunt naar de locatie van het uitvoerbestand gaan ie u heeft gespecificeerd en het tekstbestand openen. U zult de gegevens uit het shapefile Airports zien die we hebben uitgenomen door middle van scripten met Python.</p>
+</li>
 </ol>
 <img alt="../_images/138.png" class="align-center" src="../_images/138.png" />
 </div>
@@ -374,7 +331,7 @@ python scripting.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Apr 12, 2015.<br/>
+      Laatste aanpassing op Apr 14, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
