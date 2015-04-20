@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Primi passi con la programmazione Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Trovare i poligoni confinanti in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Realizzare mappe web leaflet con qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Usare il Google Maps Engine Connector con QGIS</a></li>
@@ -217,48 +218,48 @@ downloaded directly from the links below:</p>
 <li><p class="first">Andate su <em class="menuselection">Layer ‣Aggiungi Vettore</em></p>
 </li>
 </ol>
-<img alt="../_images/114.png" class="align-center" src="../_images/114.png" />
+<img alt="../_images/116.png" class="align-center" src="../_images/116.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Selezionate il file appena scaricato <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.zip</span></tt> e fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/23.png" class="align-center" src="../_images/23.png" />
+<img alt="../_images/28.png" class="align-center" src="../_images/28.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Nella finestra di dialogo <em class="guilabel">selezionate un layer da aggiungere...</em> scegliete il layer
 <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.shp</span></tt>.</p>
 </li>
 </ol>
-<img alt="../_images/33.png" class="align-center" src="../_images/33.png" />
+<img alt="../_images/34.png" class="align-center" src="../_images/34.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Una volta che il layer è stato caricato, non avrete difficoltà a rilevare che è costituito da linee che rappresentano le ferrovie in tutto il continente nordamericano. Dal momento che noi abbiamo intenzione di calcolare soltanto la lunghezza lineare delle autostrade degli Stati Uniti, dovremo selezionare soltanto le linee che sono collocate nel territorio degli Stati Uniti. Tasto destro su layer e selezionate <em class="guilabel">Apri tabella attributi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
+<img alt="../_images/44.png" class="align-center" src="../_images/44.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Il layer ha una colonna che si chiama <em class="guilabel">sov_a3</em>. Questo attributo fornisce  il codice di tre lettere che indica la nazione all&#8217;interno della quale si trova una data geometria. Possiamo usare il valore di questo attributo per selezionare tutte quelle geometrie che si trovano negli Stati Uniti.</p>
 </li>
 </ol>
-<img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
+<img alt="../_images/54.png" class="align-center" src="../_images/54.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Nella finestra <em class="guilabel">Tabella degli Attributi</em> fate click sul pulsante <em class="guilabel">Seleziona elementi usando un&#8217;espressione</em>.</p>
 </li>
 </ol>
-<img alt="../_images/63.png" class="align-center" src="../_images/63.png" />
+<img alt="../_images/64.png" class="align-center" src="../_images/64.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Una nuova finestra di dialogo che si chiama <em class="guilabel">Seleziona per espressione</em> verrà immediatamente aperta. Trovate l&#8217;attributo <em class="guilabel">sov_a3</em>  sotto <em class="guilabel">Campi e Valori</em> nella sezione <em class="guilabel">Lista delle funzioni</em>. Fate doppio click su SOV-a3 per passarlo nell&#8217;area di testo in basso <em class="guilabel">Espressioni</em> dedicata al calcolo delle espressioni. Completate l&#8217;espressione scrivendo <tt class="docutils literal"><span class="pre">&quot;sov_a3&quot;</span> <span class="pre">=</span> <span class="pre">'USA'</span></tt>. Fare click su <em class="guilabel">Seleziona</em> e poi su  <em class="guilabel">Chiudi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/73.png" class="align-center" src="../_images/73.png" />
+<img alt="../_images/74.png" class="align-center" src="../_images/74.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Tornate sulla finestra principale di QGIS e vedrete che tutte le linee che cadono nel territorio USA sono state selezionate e vengono rappresentate in giallo.</p>
 </li>
 </ol>
-<img alt="../_images/83.png" class="align-center" src="../_images/83.png" />
+<img alt="../_images/84.png" class="align-center" src="../_images/84.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Ora salviamo la nostra selezione in un nuovo shapefile. Fate click sul tasto destro del layer <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> e selezionate <em class="guilabel">Salva la selezione con nome...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/93.png" class="align-center" src="../_images/93.png" />
+<img alt="../_images/94.png" class="align-center" src="../_images/94.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Comparirà la finestra di dialogo <em class="guilabel">Salva i vettori come...</em> Nominate il file di output con il nome di <tt class="docutils literal"><span class="pre">usa_railroads.shp</span></tt>. Intendiamo anche modificare il sistema di riferimento delle coordinate del layer. Nella casella <em class="guilabel">sist rif</em>  fate click su  <em class="guilabel">Sfoglia</em>.</p>
 </li>
@@ -267,47 +268,47 @@ downloaded directly from the links below:</p>
 <p class="first admonition-title">Nota</p>
 <p class="last">Per default la funzione residente che utilizza le geometrie degli elementi per fare i calcoli usa le unità di misura del SR del layer su cui stiamo lavorando. Ma i Sistemi di Riferimento che usano coordinate di tipo geografico, come per esempio <em>EPSG:4326</em>,  hanno come unità di misura i <em>gradi</em>  - in tal modo la lunghezza delle polilinee verrebbe ad essere misurata in <strong>gradi</strong> e l&#8217;area in <strong>gradi quadrati</strong> -  che è un evidente non senso. Per fare un siffatto calcolo abbiamo allora bisogno di un Sistema di Riferimento che si basi su delle coordinate geografiche di tipo proiettato, tali che abbiano come unità di misura  i <strong>metri</strong> oppure i <strong>piedi</strong>.</p>
 </div>
-<img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
+<img alt="../_images/104.png" class="align-center" src="../_images/104.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Dal momento che siamo interessati a calcolare la lunghezza, andiamo a scegliere una proiezione di tipo equidistante. Nella casella di ricerca <em class="guilabel">Filtro</em> digitate il testo <em class="guilabel">north america equ</em>. Nel risultato che verrà presentato in basso selezionate <em class="guilabel">North_America_Equidistant_Conic EPSG:102010</em> come Sistema diRiferimento. Fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
+<img alt="../_images/117.png" class="align-center" src="../_images/117.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Tornati nella finestra  <em class="guilabel">Salva i vettori come...</em>  barrate la casella <em class="guilabel">Aggiungi il file salvato alla mappa</em> e fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/123.png" class="align-center" src="../_images/123.png" />
+<img alt="../_images/124.png" class="align-center" src="../_images/124.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Una volta che il processo di esportazione è concluso, vedrete un nuovo layer sa_railroads caricato in QGIS. A questo punto dovete de-selezionare la casella vicina a <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> per spegnere il relativo layer, dal momento che non ne avremo più bisogno.</p>
 </li>
 </ol>
-<img alt="../_images/133.png" class="align-center" src="../_images/133.png" />
+<img alt="../_images/134.png" class="align-center" src="../_images/134.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Fate click con il tasto destro sul layer <tt class="docutils literal"><span class="pre">usa_railroads</span></tt> e selezionate <em class="guilabel">Apri Tabella degli Attributi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/143.png" class="align-center" src="../_images/143.png" />
+<img alt="../_images/144.png" class="align-center" src="../_images/144.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">E&#8217; il momento di aggiungere una nuova colonna che fornisca la misura della lunghezza di ciascuno degli attributi. Portate il layer in modalità di  <em class="guilabel">Modifica</em> (o di editing)  facendo click sul pulsante  <em class="guilabel">Modalità Modifica</em> . Una volta entrati in modalità modifica fare click sul pulsante <em class="guilabel">Calcolatore Campi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/153.png" class="align-center" src="../_images/153.png" />
+<img alt="../_images/154.png" class="align-center" src="../_images/154.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Nella finestra <em class="guilabel">calcolatore campo`spuntate la casella :guilabel:`Cre un nuovo campo</em>.  Inserite poi il nome <strong>length_km</strong> alla voce <em class="guilabel">Nome del campo in output</em>. Scegliete <strong>Decimal number (real)</strong> come <em class="guilabel">Tipo dati in uscita</em> . Portate poi il valore della casella <em class="guilabel">Precisione</em>  a <strong>2</strong>. Sotto  <em class="guilabel">Lista funzioni</em> trovate l&#8217;attributo <em class="guilabel">$length</em> all&#8217;interno della categoria <em class="guilabel">Geometria</em>. Doppio click per aggiungere questa voce nello spazio sottostante <em class="guilabel">Espressione</em>. Completate l&#8217;espressione nel  modo seguente:  <tt class="docutils literal"><span class="pre">$length</span> <span class="pre">/</span> <span class="pre">1000</span></tt>. Questo perché il nostro sistema di riferimento ha l&#8217;unità di misura in <strong>metri</strong> e noi vogliamo il nostro output in <strong>km</strong>. Click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/163.png" class="align-center" src="../_images/163.png" />
+<img alt="../_images/164.png" class="align-center" src="../_images/164.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Tornate nella <em class="guilabel">Tabella degli Attributi</em>, e vedrete che si è aggiunta una nuova colonna  <em class="guilabel">length_km</em>. Click su <em class="guilabel">modalità di modifica</em> per uscire dalla modalità di editing e salvare i cambiamenti realizzati nella tabella degli attributi.</p>
 </li>
 </ol>
-<img alt="../_images/173.png" class="align-center" src="../_images/173.png" />
+<img alt="../_images/174.png" class="align-center" src="../_images/174.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Ora che abbiamo la lunghezza di ciascuna singola linea del layer possiamo finalmente addizionarle tutte e trovare la lunghezza <strong>Totale</strong>. <em class="menuselection">Vettore ‣ Strumenti di Analisi ‣ Statistiche di Base</em>.</p>
 </li>
 </ol>
-<img alt="../_images/183.png" class="align-center" src="../_images/183.png" />
+<img alt="../_images/184.png" class="align-center" src="../_images/184.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Selezionate come <em class="guilabel">Vettore in input</em> il layer <tt class="docutils literal"><span class="pre">usa_railroads</span></tt>. Scegliete il <em class="guilabel">Campo di destinazione</em>  come <tt class="docutils literal"><span class="pre">length_km</span></tt> e fate click su <em class="guilabel">OK</em>. Vedrete apparire vari risultati statistici.  Il valore <em class="guilabel">Somma</em>  sarà il dato che stavamo cercando, cioè la lunghezza totale delle ferrovie degli USA.</p>
 </li>
@@ -316,7 +317,7 @@ downloaded directly from the links below:</p>
 <p class="first admonition-title">Nota</p>
 <p class="last">Questo risultato può variare leggermente quando vengono scelte delle proiezioni differenti. Nella pratica, le lunghezze delle linee ferroviarie o delle strade, come altre geometrie lineari, vengono misurate direttamente sul suolo e in seguito vengono inserite come attributi nel dataset. Si ricorre al metodo usato qui solo in assenza di tali misure sul campo e solo come approssimazione generica della reale lunghezza delle linee.</p>
 </div>
-<img alt="../_images/191.png" class="align-center" src="../_images/191.png" />
+<img alt="../_images/192.png" class="align-center" src="../_images/192.png" />
 </div>
 </div>
 
@@ -343,7 +344,7 @@ downloaded directly from the links below:</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Apr 14, 2015.<br/>
+      Ultimo aggiornamento Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

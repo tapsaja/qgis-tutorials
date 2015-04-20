@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">레이어에서 버텍스 갯수 계측</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">BIL, BIP 혹은 BSQ 파일 열기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">파이썬 프로그램밍 시작</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">인접 폴리곤 찾기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">qgis2leaf로 웹 지도 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">QGIS에서 구글지도 커넥터 이용하기</a></li>
@@ -203,12 +204,12 @@
 <li><p class="first">압축을 해제하고  .bsq 파일을 추출하십시오. 윈도우상에서 .gz 파일을 일고 추출하기 위해서 훌륭한 <a href="#id1"><span class="problematic" id="id2">`</span></a>7-Zip utility &lt;<a class="reference external" href="http://www.7-zip.org/">http://www.7-zip.org/</a>&gt;`_를 사용할 수도 있습니다. <a href="#id3"><span class="problematic" id="id4">``</span></a>gl-latlong-1deg-landcover.bsq``라는 .bsq파일 하나만 있다는 것을 알게될 것입니다. hdr파일이 없습니다.</p>
 </li>
 </ol>
-<img alt="../_images/170.png" class="align-center" src="../_images/170.png" />
+<img alt="../_images/180.png" class="align-center" src="../_images/180.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">QGIS에서 <a href="#id1"><span class="problematic" id="id2">``</span></a>gl-latlong-1deg-landcover.bsq``파일을 열려고 한다면 에러 메세지를 보게될 것이라는 것을 유념하십시오.</p>
 </li>
 </ol>
-<img alt="../_images/226.png" class="align-center" src="../_images/226.png" />
+<img alt="../_images/230.png" class="align-center" src="../_images/230.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">이 에러를 없애기 위해서는 <a href="#id1"><span class="problematic" id="id2">``</span></a>.hdr``라는 확장자를 가진 헤더파일을 만들어야 합니다. 헤더 파일은 데이터셋에 관한 정보와 그것을 어떻게 정리해야하는지가 담겨있습니다. 일반적으로 이 정보는 데이터셋에 대한 메타데이터의 부분으로서 제공되어집니다. 만약 메타데이터가 없다면 실마리가되는 웹사이트 혹은 문서를 찾아보십시오. 그것을 모른다해도 정보의 일부는 추측할 수 있습니다. 이 데이터셋의 경우에는 데이터 다운로드 페이지 링크가  <a href="#id3"><span class="problematic" id="id4">`</span></a>metadata &lt;<a class="reference external" href="ftp://ftp.glcf.umd.edu/glcf/Global_Land_Cover/Global/1deg/gl-latlong-1deg-landcover.glcf">ftp://ftp.glcf.umd.edu/glcf/Global_Land_Cover/Global/1deg/gl-latlong-1deg-landcover.glcf</a>&gt;`_에 연결되어 있습니다. 메타데이터를 다운로드하고 여십시오.</p>
 </li>
@@ -233,17 +234,17 @@ byteorder &lt;byte order in which image pixel values are stored, msb or lsb&gt;
 <li><p class="first">텍스트 편집기를 열고 전 단계에서 명시한 포맷의 파일을 만듭니다. 파일명은 <a href="#id1"><span class="problematic" id="id2">``</span></a>gl-latlong-1deg-landcover.hdr``로 저장합니다. 파일의 맨 끝에 확장자로 <a href="#id3"><span class="problematic" id="id4">``</span></a>.txt``이 붙지 않았는지 학인합니다. 텍스트 파일의 몇몇 값은 이해하기 쉽습니다. 메타데이터에서 나온 <a href="#id5"><span class="problematic" id="id6">**</span></a>ncols**와 <a href="#id7"><span class="problematic" id="id8">**</span></a>nrows**는 라인수와 라인당 픽셀수입니다. <a href="#id9"><span class="problematic" id="id10">**</span></a>cellsize**는 1인데 메타데이터로부터 나온 픽셀의 해상도입니다. 왼쪽 아래 구석의 X, Y 좌표는 작업이 필요합니다. 파일이 전 세계를 커버하고 위도/경도 단위이므로 <a href="#id11"><span class="problematic" id="id12">**</span></a>xllcorner**와 <a href="#id13"><span class="problematic" id="id14">**</span></a>yllcorner**는 각각 -180와 -90입니다. 데이터값 없음에 대해서는 어떤 정보도 없습니다. 그래서 -9999로 하면 안전할 것입니다. 다시 메타데이터에서 픽셀 형식은 바이트입니다. 그래서  <a href="#id15"><span class="problematic" id="id16">**</span></a>nbits**는 8가 같아야 하고 픽셀타입은 <a href="#id17"><span class="problematic" id="id18">**</span></a>byte_unsigned**이 될 것입니다. 바이트순서에 대해서는 정보가 없으므로 msbfirst로 남겨둡니다.</p>
 </li>
 </ol>
-<img alt="../_images/516.png" class="align-center" src="../_images/516.png" />
+<img alt="../_images/517.png" class="align-center" src="../_images/517.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">이제 헤더파일이 생겼습니다.  <a href="#id1"><span class="problematic" id="id2">``</span></a>gl-latlong-1deg-landcover.bsq``파일과 같은 디렉토리에 놓습니다. 그럼 QGIS에서 메뉴 레이어 &#8211;&gt; 래스터 레이어 추가 :menuselection:<a href="#id3"><span class="problematic" id="id4">`</span></a>Layer &#8211;&gt; Add Raster Layer`로 갑니다. 입력으로 <a href="#id5"><span class="problematic" id="id6">``</span></a>gl-latlong-1deg-landcover.bsq``를 선택하고 열기 :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>Open`를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/615.png" class="align-center" src="../_images/615.png" />
+<img alt="../_images/616.png" class="align-center" src="../_images/616.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">다음 화면에서 좌표계를 선택하라는 창을 만날것입니다. 데이터가 위도/경도이므로 좌표계로 <a href="#id1"><span class="problematic" id="id2">**</span></a>WGS84 EPSG:4326**를 선택합니다. 이제 QGiS에 데이터셋이 불러들여지는 것을 보게됩니다.</p>
 </li>
 </ol>
-<img alt="../_images/714.png" class="align-center" src="../_images/714.png" />
+<img alt="../_images/715.png" class="align-center" src="../_images/715.png" />
 </div>
 </div>
 
@@ -270,7 +271,7 @@ byteorder &lt;byte order in which image pixel values are stored, msb or lsb&gt;
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      최종 업데이트: Apr 14, 2015<br/>
+      최종 업데이트: Apr 20, 2015<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

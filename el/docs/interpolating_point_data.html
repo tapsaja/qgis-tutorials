@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Μέτρηση του Aριθμού των Kορυφών σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Βρείτε Γειτονικά Πολύγωνα σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Διαδικτυακοί Χάρτες με το qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Χρήση του Google Maps Engine Connector για το QGIS</a></li>
@@ -217,12 +218,12 @@ tutorial from link below.</p>
 <li><p class="first">Ανοίξτε το QGIS. Μετάβαση σε: menuselection: <cite>Layer -&gt; Layer Προσθήκη -&gt; Προσθήκη Vector Layer..</cite></p>
 </li>
 </ol>
-<img alt="../_images/140.png" class="align-center" src="../_images/140.png" />
+<img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Αναζητήστε το `` αρχείο Shapefiles.zip`` και επιλέξτε το. Κάντε κλικ στο: guilabel: <cite>Άνοιγμα</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/216.png" class="align-center" src="../_images/216.png" />
+<img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Στο: guilabel: <cite>Επιλέξτε στρώματα για να προσθέσετε ...</cite>, κρατήστε πατημένο το: kbd: <cite>κουμπί Shift</cite> και επιλέξτε` <cite>Arlington_Soundings_2007_stpl83.shp`</cite> και` <cite>Boundary2004_550_stpl83.shp`</cite> στρώματα. Κάντε κλικ στο: guilabel: <cite>OK</cite>.</p>
 </li>
@@ -232,27 +233,27 @@ tutorial from link below.</p>
 <li><p class="first">Θα δείτε τα 2 στρώματα φορτωμένα στο QGIS. Το `` στρώμα Boundary2004_550_stpl83`` αντιπροσωπεύει το όριο της λίμνης. Ξε-επιλέξτε το πλαίσιο δίπλα στον πίνακα περιεχομένων.</p>
 </li>
 </ol>
-<img alt="../_images/412.png" class="align-center" src="../_images/412.png" />
+<img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Αυτό θα εμφανίσει τα δεδομένα από το δεύτερο στρώμα `` Arlington_Soundings_2007_stpl83``. Αν και τα δεδομένα μοιάζουν με γραμμές, είναι μια σειρά από σημεία που βρίσκονται πολύ κοντά.</p>
 </li>
 </ol>
-<img alt="../_images/512.png" class="align-center" src="../_images/512.png" />
+<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Κάντε κλικ στο εικονίδιο : guilabel: <cite>Μεγέθυνση</cite> και επιλέξτε ένα μικρό χώρο στην οθόνη. Καθώς κάνετε ζουμ πιο κοντά, θα δείτε τα σημεία. Κάθε σημείο παριστά μια ανάγνωση που λαμβάνεται από ένα * Βυθόμετρο * στη θέση που έχει καταγραφεί από τον εξοπλισμό * DGPS * .</p>
 </li>
 </ol>
-<img alt="../_images/611.png" class="align-center" src="../_images/611.png" />
+<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Επιλέξτε το εργαλείο: guilabel: <cite>Αναγνώριση</cite> και κάντε κλικ σε ένα σημείο. Θα δείτε το πίνακα : guilabel: <cite>Προσδιορισμό αποτελεσμάτων</cite> να εμφανίζονται στα αριστερά με την τιμή του χαρακτηριστικού του σημείου. Στην περίπτωση αυτή, το χαρακτηριστικό γνώρισμα  `` υψόμετρο`` περιλαμβάνει το βάθος της λίμνης στη τοποθεσία. Καθώς το καθήκον μας είναι να δημιουργήσουμε ένα προφίλ βάθους και ένα περιγράμματα ανύψωση, θα χρησιμοποιήσουμε αυτά ως τιμές εισόδου για την παρεμβολή.</p>
 </li>
 </ol>
-<img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
+<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Βεβαιωθείτε ότι έχετε το plugin`` Παρεμβολή `` ενεργοποιημένο. Δείτε: doc: <cite>using_plugins</cite> για το πώς να ενεργοποιήσετε τα πρόσθετα. Μόλις ενεργοποιηθεί, μεταβείτε στη διεύθυνση: menuselection: <cite>Raster -&gt; Παρεμβολή -&gt; Interpolation</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
+<img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Στο διάλογο : guilabel: <cite>Interpolation</cite>, επιλέξτε` <cite>Arlington_Soundings_2007_stpl83`</cite> ως: guilabel:` διανυσματικό στρώμα` στο πίνακα: guilabel: <cite>εισόδου&#8221;. Επιλέξτε `</cite> ELEVATION`` ως: guilabel: &#8220;Χαρακτηριστικό Παρεμβολής`. Κάντε κλικ στο: guilabel: <cite>Προσθήκη</cite>. Αλλάξτε το: guilabel: <cite>Cellsize x και: guilabel:&#8221;Cellsize Υ&#8221; σε  `</cite> 5``. Αυτή η τιμή είναι το μέγεθος του κάθε εικονοστοιχείου στο πλέγμα εξόδου. Μίας και τα δεδομένα πηγής μας είναι μία προβλεπόμενη CRS με ** Πόδια-ΗΠΑ ** ως μονάδες, ανάλογα με την επιλογή μας, το μέγεθος του πλέγματος θα είναι ** 5 **  πόδια. Κάντε κλικ στο: guilabel: `` ... κουμπί δίπλα στην: guilabel: <cite>file</cite> εξόδου και ονομάστε το αρχείο εξόδου ως` <cite>elevation_tin.tif`</cite>. Κάντε κλικ στο: guilabel: <cite>OK</cite>.</p>
 </li>
@@ -261,62 +262,62 @@ tutorial from link below.</p>
 <p class="first admonition-title">Note</p>
 <p class="last">Τα αποτελέσματα Παρεμβολής μπορεί να διαφέρουν σημαντικά με βάση τη μέθοδο και τις παραμέτρους που θα επιλέξετε. H παρεμβολή του QGIS υποστηρίζει <a href="#id1"><span class="problematic" id="id2">**</span></a>Triagulated Irregular Network (TIN)* and <a href="#id3"><span class="problematic" id="id4">*</span></a>Inverse Distance Weighting (IDW) μεθόδους για την παρεμβολή. Η Μέθοδος TIN  χρησιμοποιείται συνήθως για υψομετρικά δεδομένα, ενώ η μέθοδος IDW χρησιμοποιείται για την παρεμβολή άλλων τύπων δεδομένων, όπως τα ορυκτά , οι πληθυσμοί κ.λ.π. Δείτε το <a class="reference external" href="http://docs.qgis.org/2.2/en/docs/gentle_gis_introduction/spatial_analysis_interpolation.html">Ανάλυση Χωρικής</a> ενότητα της τεκμηρίωσης του QGIS για περισσότερες λεπτομέρειες.</p>
 </div>
-<img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
+<img alt="../_images/910.png" class="align-center" src="../_images/910.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Θα δείτε αργότερα  το νέο `` elevation_tin`` τοποθετημένο στο QGIS. Κάντε δεξί κλικ στο στρώμα και επιλέξτε: guilabel: <cite>Ζουμ σε επίπεδο</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
+<img alt="../_images/1010.png" class="align-center" src="../_images/1010.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Τώρα θα δείτε την πλήρη έκταση της επιφάνειας που δημιουργείται. H Παρεμβολή δεν δίνει ακριβή αποτελέσματα έξω από την περιοχή συλλογής. Ας συνδέσουμε την επιφάνεια που προκύπτει με το όριο της λίμνης. Μετάβαση σε: menuselection: <cite>Raster -&gt; Εξαγωγή -&gt; Clipper</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/1114.png" class="align-center" src="../_images/1114.png" />
+<img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Ονομάστε το: guilabel: <cite>file</cite> εξόδου ως` <cite>elevation_tin_clipped.tif`</cite>. Επιλέξτε το: guilabel: <cite>Cliiped mode</cite> ως: guilabel:` Μάσκα στρώματος`. Επιλέξτε `` Boundary2004_550_stpl83`` ως: guilabel: <cite>Μάσκα στρώματος`</cite>. Κάντε κλικ στο: guilabel: <cite>OK</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
+<img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Ένα νέο raster `` elevation_tin_clipped`` θα φορτωθεί στο QGIS. Θα μορφοποιήσουμε αυτό το στρώμα για να εμφανίζει τη διαφορά σε υψόμετρα. Σημειώστε τις τιμές min και max υψόμετρου από το `` elevation_tin`` στρώμα. Κάντε δεξί κλικ στο `` στρώμα elevation_tin_clipped`` και επιλέξτε: guilabel: <cite>Properties</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/1310.png" class="align-center" src="../_images/1310.png" />
+<img alt="../_images/1311.png" class="align-center" src="../_images/1311.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Πήγαινε στη καρτέλα : guilabel: <cite>Style</cite>. Επιλέξτε: guilabel: <cite>Render type</cite> ως` <cite>Singleband pseudocolor`</cite>. Στο: guilabel: <cite>Δημιουργία νέου χάρτη χρωμάτων `, επιλέξτε</cite> <cite>Spectral`</cite> ράμπα χρώματος . Καθώς θέλουμε να δημιουργήσουμε ένα χάρτη-βάθους, σε αντίθεση με χάρτη-ύψους, επιλέξτε το: guilabel: <cite>Invert</cite> πλαίσιο. Αυτό θα εκχωρήσει μπλε σε βαθιές περιοχές και τα κόκκινα σε ρηχές περιοχές. Κάντε κλικ στο: guilabel: <cite>Classify</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
+<img alt="../_images/1410.png" class="align-center" src="../_images/1410.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Μεταβείτε στη καρτέλα : guilabel: <cite>Tranparency</cite>. Θέλουμε να αφαιρέσετε τα μαύρα εικονοστοιχεία από την έξοδο μας. Πληκτρολογήστε `` 0`` ως: guilabel: &#8221; Πρόσθετες αξίες μή-δεδομένων&#8221;. Κάντε κλικ στο: guilabel: <cite>OK</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
+<img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Τώρα έχετε ένα ανάγλυφο υψόμετρο για την λίμνη που δημιουργείται από τις μεμονωμένες μετρήσεις βάθους. Ας δημιουργήσουμε  τα περιγράμματα τώρα. Μετάβαση σε: menuselection: <cite>Raster -&gt; Εξαγωγή -&gt; Contours</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/168.png" class="align-center" src="../_images/168.png" />
+<img alt="../_images/169.png" class="align-center" src="../_images/169.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Στο διάλογο: guilabel: <cite>Contour</cite>, εισάγετε <cite>contours`</cite> ως: guilabel:` αρχείο εξόδου για το περίγραμμα γραμμών`. Για θα δημιουργήσουμε τις γραμμές του περιγράμματος με 5ft  διαστήματα, θα εισάγουμε `` 5.00`` ως: guilabel: <cite>Διάστημα μεταξύ περίγραμμα γραμμών</cite>. Επιλέξτε πλαίσιο: guilabel: <cite>Χαρακτηριστικό όνομα</cite>. Κάντε κλικ στο: guilabel: <cite>OK</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/177.png" class="align-center" src="../_images/177.png" />
+<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Οι ισοϋψείς καμπύλες θα φορτωθούν ως στρώμα `` contours`` μόλις η επεξεργασία ολοκληρωθεί. Κάντε δεξί κλικ στο στρώμα και επιλέξτε: guilabel: <cite>Properties</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/187.png" class="align-center" src="../_images/187.png" />
+<img alt="../_images/188.png" class="align-center" src="../_images/188.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Πήγαινε στη καρτέλα: guilabel: <cite>Labels</cite>. Επιλέξτε το πλαίσιο : guilabel: <cite>Ονομάστε αυτό το πλαίσιο με&#8217; και επιλέξτε</cite> <cite>ELEV`</cite> ως τομέα. Επιλέξτε `` Curved`` ως τύπο: guilabel: <cite>Placement</cite> και κάντε κλικ στο: guilabel:` OK`.</p>
 </li>
 </ol>
-<img alt="../_images/195.png" class="align-center" src="../_images/195.png" />
+<img alt="../_images/196.png" class="align-center" src="../_images/196.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Θα δείτε ότι κάθε γραμμή του περιγράμματος είναι κατάλληλα επισημασμένοι ανάλογα με το υψόμετρο κατά μήκος της γραμμής.</p>
 </li>
 </ol>
-<img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
+<img alt="../_images/203.png" class="align-center" src="../_images/203.png" />
 </div>
 </div>
 
@@ -343,7 +344,7 @@ tutorial from link below.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 14, 2015.<br/>
+      Last updated on Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

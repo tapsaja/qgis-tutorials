@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Tason verteksien lukumäärän laskenta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -219,14 +220,14 @@ Manage and Install Plugin</em>. Note that the plugin is currently marked
 experimental plugins</em> in Plugin Settings. (See <a class="reference internal" href="using_plugins.html"><em>Liitännäisiä käyttämään</em></a> for more details on
 installing plugins in QGIS)</li>
 </ol>
-<img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
+<img alt="../_images/150.png" class="align-center" src="../_images/150.png" />
 <ol class="arabic simple" start="2">
 <li>Unzip the downloaded <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt> file. Open QGIS and go to
 <em class="menuselection">Layer ‣ Add Vector Layer</em>. Browse to the location when the
 files were extracted and select <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt>. Click
 <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
+<img alt="../_images/224.png" class="align-center" src="../_images/224.png" />
 <ol class="arabic simple" start="3">
 <li>Once the <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> layer is loaded, use the <em class="guilabel">Identify</em>
 tool to click on any feature and look at the attributes. We will create an
@@ -238,13 +239,13 @@ airport map where we classify the airports into 3 categories. The attribute
 <li>Right-click the <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> layer and select <em class="guilabel">Open
 Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
+<img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
 <ol class="arabic simple" start="5">
 <li>In the attribute table dialog, click the <em class="guilabel">Toggle Editing</em> button.
 Once the layer is in editing mode, click the <em class="guilabel">Open Field
 Calculator</em> button.</li>
 </ol>
-<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
+<img alt="../_images/514.png" class="align-center" src="../_images/514.png" />
 <ol class="arabic simple" start="6">
 <li>We want to create a new attribute called <tt class="docutils literal"><span class="pre">type_code</span></tt> where we give major
 airports a value of 3, mid-sized airports a value of 2 and all others a
@@ -261,19 +262,19 @@ the <em class="guilabel">Expression</em> window, enter the following text.</li>
 END
 </pre></div>
 </div>
-<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
+<img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
 <ol class="arabic simple" start="7">
 <li>Back in the <em class="guilabel">Attribute Table</em> window, you will see a new column at
 the end. Verify that your expression worked correctly and click the
 <em class="guilabel">Toggle Editing</em> button to save the changes.</li>
 </ol>
-<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
+<img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
 <ol class="arabic simple" start="8">
 <li>Now we will style the airports layer using the newly created <tt class="docutils literal"><span class="pre">type_code</span></tt>
 attribute. Right-click the <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> layer and select
 <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
+<img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
 <ol class="arabic simple" start="9">
 <li>Select the <em class="guilabel">Style</em> tab in the <em class="guilabel">Layer Properties</em> dialog.
 Select <em class="guilabel">Categorized</em> style from the drop-down menu and choose
@@ -281,13 +282,13 @@ Select <em class="guilabel">Categorized</em> style from the drop-down menu and c
 and click <em class="guilabel">Classify</em>. Click <em class="guilabel">OK</em> to go back to the main
 QGIS window.</li>
 </ol>
-<img alt="../_images/910.png" class="align-center" src="../_images/910.png" />
+<img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
 <ol class="arabic simple" start="10">
 <li>Here you will see a nicely styled airport map. Let&#8217;s export this to create
 an interactive web map. Go to <em class="menuselection">Web ‣ qgis2leaf ‣ Exports
 a QGIS Project to a working leaflet webmap</em>.</li>
 </ol>
-<img alt="../_images/1010.png" class="align-center" src="../_images/1010.png" />
+<img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
 <ol class="arabic simple" start="11">
 <li>In the <em class="guilabel">QGIS 2 Leaflet</em> dialog, click <em class="guilabel">Get Layers</em> to
 get the refreshed layer list. Select the <em class="guilabel">Full screen</em> option to
@@ -296,7 +297,7 @@ have a full screen web map. Choose <em class="guilabel">layer extent</em> as the
 folder</em> on your system where the plugin will write the output files. Click
 <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
+<img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
 <ol class="arabic simple" start="12">
 <li>Once the export process finishes, locate the output folder on your disk.
 Open the <tt class="docutils literal"><span class="pre">index.html</span></tt> file in a browser. You will see an interactive web
@@ -305,7 +306,7 @@ and also click on any feature to get an popup window with attribute
 information. You can copy the contents of this folder to a web server to
 have a full featured web map.</li>
 </ol>
-<img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
+<img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
 <ol class="arabic simple" start="13">
 <li>Now we will explore some advanced features of this plugin that will allow
 you to customize the map further. If you noticed, the popup contained all
@@ -315,13 +316,13 @@ own custom HTML to make it much better. This is achieved by added the
 custom HTML in a column named <tt class="docutils literal"><span class="pre">html_exp</span></tt>. Right-click the
 <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/1311.png" class="align-center" src="../_images/1311.png" />
+<img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
 <ol class="arabic simple" start="14">
 <li>In the attribute table dialog, click the <em class="guilabel">Toggle Editing</em> button.
 Once the layer is in editing mode, click the <em class="guilabel">Open Field
 Calculator</em> button.</li>
 </ol>
-<img alt="../_images/1410.png" class="align-center" src="../_images/1410.png" />
+<img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
 <ol class="arabic simple" start="15">
 <li>Check the <em class="guilabel">Create a new field</em> box and enter <tt class="docutils literal"><span class="pre">html_exp</span></tt> as the
 <em class="guilabel">Output field name</em>. Choose <em class="guilabel">Text (string)</em> as the
@@ -342,29 +343,29 @@ values from attributes <tt class="docutils literal"><span class="pre">iata_code<
 <p class="last">The shapefile format can contain a maximum of 254 characters in a field. If
 you want to store longer text in the field, choose another format.</p>
 </div>
-<img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
+<img alt="../_images/1510.png" class="align-center" src="../_images/1510.png" />
 <ol class="arabic simple" start="16">
 <li>Back in the <em class="guilabel">Attribute Table</em> window, you will see a new column at
 the end. Verify that your expression worked correctly and click the
 <em class="guilabel">Toggle Editing</em> button to save the changes.</li>
 </ol>
-<img alt="../_images/169.png" class="align-center" src="../_images/169.png" />
+<img alt="../_images/1610.png" class="align-center" src="../_images/1610.png" />
 <ol class="arabic simple" start="17">
 <li>Now export the map again using <em class="menuselection">Web ‣ qgis2leaf ‣
 Exports a QGIS Project to a working leaflet webmap</em>.</li>
 </ol>
-<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
+<img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
 <ol class="arabic simple" start="18">
 <li>Choose the options as before.</li>
 </ol>
-<img alt="../_images/188.png" class="align-center" src="../_images/188.png" />
+<img alt="../_images/189.png" class="align-center" src="../_images/189.png" />
 <ol class="arabic simple" start="19">
 <li>Go to the output folder once the export process finishes. You will have a
 subfolder with the present timestamp. Locate the <tt class="docutils literal"><span class="pre">index.html</span></tt> file inside
 it and open it in a browser. Click on any feature and look at the popup.
 You will notice that it looks a lot cleaner and informative.</li>
 </ol>
-<img alt="../_images/196.png" class="align-center" src="../_images/196.png" />
+<img alt="../_images/197.png" class="align-center" src="../_images/197.png" />
 <ol class="arabic simple" start="20">
 <li>Another useful feature of the <tt class="docutils literal"><span class="pre">qgis2leaf</span></tt> plugin is the ability to
 specify a custom icon to use with the web map. This is accomplished by
@@ -373,7 +374,7 @@ will create a new layer containing only the major airports and style using
 a custom SVG icon.  Locate the <em class="guilabel">Select features using an
 expression</em> tool from the toolbar.</li>
 </ol>
-<img alt="../_images/203.png" class="align-center" src="../_images/203.png" />
+<img alt="../_images/204.png" class="align-center" src="../_images/204.png" />
 <ol class="arabic simple" start="21">
 <li>Enter the expression below and press <em class="guilabel">Select</em> to select all major
 airports.</li>
@@ -381,18 +382,18 @@ airports.</li>
 <div class="highlight-none"><div class="highlight"><pre>&quot;type_code&quot; = 3
 </pre></div>
 </div>
-<img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
+<img alt="../_images/2110.png" class="align-center" src="../_images/2110.png" />
 <ol class="arabic simple" start="22">
 <li>Right-click the <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> airports and select <em class="guilabel">Save
 Selection As...</em>.</li>
 </ol>
-<img alt="../_images/223.png" class="align-center" src="../_images/223.png" />
+<img alt="../_images/225.png" class="align-center" src="../_images/225.png" />
 <ol class="arabic simple" start="23">
 <li>In the <em class="guilabel">Save vector layer as...</em> dialog, name the output file as
 <tt class="docutils literal"><span class="pre">major_airports.shp</span></tt>. Check the <em class="guilabel">Add saved file to map</em> and
 click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/232.png" class="align-center" src="../_images/232.png" />
+<img alt="../_images/233.png" class="align-center" src="../_images/233.png" />
 <ol class="arabic simple" start="24">
 <li>Once the <tt class="docutils literal"><span class="pre">major_airports</span></tt> layer is loaded in QGIS, right-click it and
 select <em class="guilabel">Open Attribute Table</em>.</li>
@@ -417,7 +418,7 @@ the <em class="guilabel">Expression</em> area, enter the following expression.</
 <li>Save your edits by clicking the <em class="guilabel">Toggle Editing</em> button in the
 <em class="guilabel">Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/271.png" class="align-center" src="../_images/271.png" />
+<img alt="../_images/272.png" class="align-center" src="../_images/272.png" />
 <ol class="arabic simple" start="28">
 <li>Open the <tt class="docutils literal"><span class="pre">qgis2leaf</span></tt> plugin from <em class="menuselection">Web ‣ qgis2leaf ‣ Exports
 a QGIS Project to a working leaflet webmap</em>. Click <em class="guilabel">Get Layers</em>
@@ -435,7 +436,7 @@ differ depending on your platform and install type. Locate that directory
 and choose an icon you like. For our map, we can try the
 <tt class="docutils literal"><span class="pre">amenity=airport.svg</span></tt> icon located under <tt class="docutils literal"><span class="pre">transport</span></tt> category.</li>
 </ol>
-<img alt="../_images/291.png" class="align-center" src="../_images/291.png" />
+<img alt="../_images/292.png" class="align-center" src="../_images/292.png" />
 <ol class="arabic simple" start="30">
 <li>Copy and paste this icon in the output directory you had specified when exporting
 the map. Rename it as <tt class="docutils literal"><span class="pre">airport.svg</span></tt>.</li>
@@ -480,7 +481,7 @@ width="100%" height="600px"></iframe>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 14, 2015.<br/>
+      Last updated on Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

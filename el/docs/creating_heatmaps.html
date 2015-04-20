@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Μέτρηση του Aριθμού των Kορυφών σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Βρείτε Γειτονικά Πολύγωνα σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Διαδικτυακοί Χάρτες με το qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Χρήση του Google Maps Engine Connector για το QGIS</a></li>
@@ -205,112 +206,112 @@ tutorial from link below.</p>
 <li><p class="first">Για να ξεκινήσετε,αποσυμπιέστε τα δεδομένα σε ένα φάκελο.Τα δεδομένα είναι σε μορφή CSV.Θα εισάγουμε τα δεδομένα στο QGIS. (δείτε στο <a class="reference internal" href="importing_spreadsheets_csv.html"><em>Εισαγωγή Φύλλα ή αρχεία CSV</em></a>. για περισσότερες πληροφορίες). Κάντε κλικ στο <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/117.png" class="align-center" src="../_images/117.png" />
+<img alt="../_images/119.png" class="align-center" src="../_images/119.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Αναζητήστε το αρχείο <cite>police-uk-crime-data-surrey.txt</cite> στον υπολογιστή σας και ανοίξτε το.Επιλέξτε <em class="guilabel">CSV (comma separated values)</em> ως μορφή αρχείου.Θα δείτε τις στήλες <em>Easting</em> και <em>Northing</em> να έχουν επιλεχθεί αυτόματα ως Χ και Υ πεδία. Σιγουρευτείτε ότι έχετε τσεκάρει την επιλογή  <em class="guilabel">Use spatial index</em> καθώς αυτό θα επιταχύνει τις λειτουργίες σε αυτό το επίπεδο. Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/25.png" class="align-center" src="../_images/25.png" />
+<img alt="../_images/210.png" class="align-center" src="../_images/210.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Πιθανόν να δείτε ορισμένα σφάλματα.Μπορείτε να τα αγνοήσετε για το σκοπό αυτού του tutorials. Κάντε κλικ στο <em class="guilabel">Close</em>.</p>
 </li>
 </ol>
-<img alt="../_images/35.png" class="align-center" src="../_images/35.png" />
+<img alt="../_images/36.png" class="align-center" src="../_images/36.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Στη συνέχεια,θα χρειαστεί να διαλέξετε ένα <cite>Coordinate Reference System (CRS)</cite>. Αν διαβάσετε την περιγραφή δεδομένων,θα παρατηρήσετε ότι η χωρική αναφορά για τα δεδομένα είναι <em>British National Grid</em>. Επιλέξτε το <em class="guilabel">OSGB 1936 / British National Grid</em> ως το CRS. Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/45.png" class="align-center" src="../_images/45.png" />
+<img alt="../_images/46.png" class="align-center" src="../_images/46.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Τώρα θα δείτε τα δεδομένα να έχουν φορτωθεί στο QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/55.png" class="align-center" src="../_images/55.png" />
+<img alt="../_images/56.png" class="align-center" src="../_images/56.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Κάντε Zoom-in λίγο πιο κοντά για δείτε καλύτερα τα δεδομένα.Θα παρατηρήσετε ότι τα δεδομένα είναι λίγο πυκνά και είναι δύσκολο να αντιληφθείτε που υπάρχει μεγάλη συγκέντρωση σημείων.Για κάτι τέτοιο ένας χάρτης heatmap θα ήταν εύχρηστος.</p>
 </li>
 </ol>
-<img alt="../_images/64.png" class="align-center" src="../_images/64.png" />
+<img alt="../_images/65.png" class="align-center" src="../_images/65.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Για να δημιουργήσετε ένα χάρτη heatmap,πρέπει να ενεργοποιήσετε ένα βασικό πρόσθετο που ονομάζεται <cite>Heatmap</cite>. Δείτε το <a class="reference internal" href="using_plugins.html"><em>Χρησιμοποιώντας Πρόσθετες Λειτουργίες</em></a> για να μάθετε πως να ενεργοποιήσετε τα built-in πρόσθετα.Αφού έχετε ενεργοποιήσει το πρόσθετο, πηγαίνετε στο <em class="menuselection">Raster ‣ Heatmap ‣ Heatmap</em>.</p>
 </li>
 </ol>
-<img alt="../_images/74.png" class="align-center" src="../_images/74.png" />
+<img alt="../_images/75.png" class="align-center" src="../_images/75.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Στο παράθυρο διαλόγου  <em class="guilabel">Heatmap Plugin</em>, επιλέξτε <cite>crime_heatmap</cite>  ως όνομα του <em class="guilabel">Output raster</em>. Εισάγετε <cite>1000</cite> μονάδες χάρτη στο <em class="guilabel">Radius</em>.Ακτίνα είναι η περιοχή γύρω από ένα σημείο που θα χρησιμοποιηθεί για να υπολογιστεί το <cite>heat`που δέχεται ένα pixel.Τσεκάρετε το :guilabel:`Advanced</cite> έτσι ώστε να ορίσουμε το εξαγόμενο μέγεθος του χάρτη heatmap.Εισάγετε <cite>100</cite> ως <em class="guilabel">Cell Size X</em> και <em class="guilabel">Cell Size Y</em>. Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/84.png" class="align-center" src="../_images/84.png" />
+<img alt="../_images/85.png" class="align-center" src="../_images/85.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Μόλις τελειώσει η διαδικασία, θα δείτε ένα χάρτη heatmap σε κλίμακα του γκρι να έχει φορτωθεί στον καμβά.</p>
 </li>
 </ol>
-<img alt="../_images/94.png" class="align-center" src="../_images/94.png" />
+<img alt="../_images/95.png" class="align-center" src="../_images/95.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Ας κάνουμε το χάρτη heatmap να μοιάζει περισσότερο με τον παραδοσιακό χάρτη heatmap που βλέπουμε συχνά. Δεξί-κλικ στο επίπεδο του heatmap και κλικ στο <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/104.png" class="align-center" src="../_images/104.png" />
+<img alt="../_images/105.png" class="align-center" src="../_images/105.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Στην καρτέλα <em class="guilabel">Style</em>,επιλέξτε guilabel:<cite>Singleband pseudocolor</cite> ως <em class="guilabel">Render type</em>.Έπειτα, κάτω από το τμήμα <em class="guilabel">Load min/max values</em>,επιλέξτε το <em class="guilabel">Actual (slower)</em> ως το:guilabel:<cite>Accuracy</cite> και κάντε κλικ στο <em class="guilabel">Load</em>.Αυτό θα σαρώσει το χάρτη heatmap και θα βρει τις ελάχιστες και μέγιστες τιμές pixel.Αυτές οι τιμές θα χρησιμοποιηθούν για να δημιουργηθεί μια κατάλληλη κλίμακα χρωμάτων. Στο τμήμα  <em class="guilabel">Generate new color map</em>,επιλέξτε <em class="guilabel">YlOrRd</em> (Yellow-Orange-Red) ως τη κλίμακα χρώματος και κάντε κλικ στο <em class="guilabel">Classify</em>.Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/118.png" class="align-center" src="../_images/118.png" />
+<img alt="../_images/1110.png" class="align-center" src="../_images/1110.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Τώρα θα δείτε μια πιο ελκυστική απόδοση του επιπέδου που μοιάζει με χάρτη heatmap.Μπορείτε να επιλέξετε το εργαλείο : guilabel: <cite>Identify</cite> και κάντε κλικ σε οποιοδήποτε pixel του χάρτη heatmap. Θα δείτε την τιμή του  pixel στο αναδυόμενο παράθυρο αποτελεσμάτων. Αυτή η τιμή pixel είναι ένα μέτρο του πώς πολλά σημεία από το πηγαίο επίπεδο περιέχονται εντός της καθορισμένης ακτίνας (στην περίπτωσή μας - 1000m) γύρω από το  pixel.</p>
 </li>
 </ol>
-<img alt="../_images/124.png" class="align-center" src="../_images/124.png" />
+<img alt="../_images/125.png" class="align-center" src="../_images/125.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Τώρα έχετε το χάρτη heatmap.Είναι χρήσιμο για την οπτική ερμηνεία, αλλά δεν είναι πολύ χρήσιμο αν θέλετε να χρησιμοποιήσετε αυτά τα αποτελέσματα στην ανάλυση. Πολλές φορές, θέλετε να προσδιοριστούν τα <cite>hotspots</cite> όπου υπάρχει υψηλή συγκέντρωση των σημείων. Θα προσπαθήσουμε τώρα να εντοπίσουμε αυτά τα`hotspots` χρησιμοποιώντας αυτό το χάρτη heatmap.Πηγαίνετε σε: menuselection: <cite>Raster -&gt; Raster Calculator</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/134.png" class="align-center" src="../_images/134.png" />
+<img alt="../_images/135.png" class="align-center" src="../_images/135.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Θα πρέπει να αποφασίσετε πρώτα σχετικά με μια οριακή τιμή. Όλες οι τιμές των pixel πάνω από το όριο αυτό θα θεωρούνται ως μια ομάδα. Ας χρησιμοποιήσουμε την τιμή 5 για αυτά τα δεδομένα. Στο παράθυρό διαλόγου :guilabel: <cite>Raster calculator</cite>, ονομάστε το εξαγόμενο επίπεδο ως` crime_hotspots`. Κάντε διπλό κλικ στο: guilabel: <cite>crime_heatmap &#64; 1</cite> κάτω από το  τμήμα : guilabel:<cite>Raster bands</cite> και αυτό θα προστεθεί στην περιοχή κειμένου <em class="guilabel">Raster calculator expression</em>. Συμπληρώστε την έκφραση ως <cite>&#8221; crime_heatmap &#64; 1 &#8220;&gt; 5</cite>. Τσεκάρετε το κουτάκι δίπλα στο <em class="guilabel">Add result to project</em>  και : guilabel:` OK`.</p>
 </li>
 </ol>
-<img alt="../_images/144.png" class="align-center" src="../_images/144.png" />
+<img alt="../_images/145.png" class="align-center" src="../_images/145.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Το νέο επίπεδο θα προστεθεί στο QGIS. Αυτό το επίπεδο έχει pixels με τις τιμές είτε 0 είτε 1.Όλα τα pixels στο επίπεδο εισόδου που έχουν τιμή pixel μεγαλύτερη από 5,τώρα έχει τιμή 1 και όλα τα υπόλοιπα pixels έχουν τιμή 0.Κάντε κλικ στο <em class="menuselection">Raster ‣ Conversion ‣ Polygonize (Raster to Vector)</em>.</p>
 </li>
 </ol>
-<img alt="../_images/154.png" class="align-center" src="../_images/154.png" />
+<img alt="../_images/155.png" class="align-center" src="../_images/155.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Ονομάστε το εξαγόμενο αρχείο ως <em class="guilabel">crime_hotspots_vector</em>. Τσεκάρετε το κουτάκι δίπλα στο <em class="guilabel">Field name</em> όπως και το <em class="guilabel">Load into canvas when finished</em>. Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/164.png" class="align-center" src="../_images/164.png" />
+<img alt="../_images/165.png" class="align-center" src="../_images/165.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Αφού τελειώσει η μετατροπή, θα έχετε προσθέσει ακόμα ένα επίπεδο στο QGIS. Αυτό είναι η διανυσματική αναπαράσταση των ομάδων που είχαν  δημιουργηθεί στο προηγούμενο βήμα. Τα επίπεδα περιέχουν ομάδες και με τις δύο τιμές 0 και 1. Ας φιλτράρουμε τις τιμές 0, έτσι ώστε να πάρουμε τις ομάδες των hotspots. Κάντε δεξί κλικ στο επίπεδο και επιλέξτε  <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/174.png" class="align-center" src="../_images/174.png" />
+<img alt="../_images/175.png" class="align-center" src="../_images/175.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Στο <em class="guilabel">Attribute table</em>, κάντε κλικ στο <em class="guilabel">Select feature using an expression</em>.</p>
 </li>
 </ol>
-<img alt="../_images/184.png" class="align-center" src="../_images/184.png" />
+<img alt="../_images/185.png" class="align-center" src="../_images/185.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Εισάγετε την έκφραση ως <cite>&#8220;DN&#8221; = 1</cite>  και κάντε κλικ στο <em class="guilabel">Select</em>. Στη συνέχεια, κάντε κλικ στο <em class="guilabel">Close</em>.</p>
 </li>
 </ol>
-<img alt="../_images/192.png" class="align-center" src="../_images/192.png" />
+<img alt="../_images/193.png" class="align-center" src="../_images/193.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Στο κύριο παράθυρο του QGIS,θα δείτε κάποια χαρακτηριστικά με κίτρινη επισήμανση.Αυτά είναι τα χαρακτηριστικά που ταίριαξαν στο αίτημά μας.Κάντε δεξί-κλικ στο επίπεδο και επιλέξτε <em class="guilabel">Save Selection As...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/20.png" class="align-center" src="../_images/20.png" />
+<img alt="../_images/201.png" class="align-center" src="../_images/201.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Ονομάστε το εξαγόμενο επίπεδο ως <cite>crime_clusters</cite>. Τσεκάρετε το κουτάκι δίπλα στο <em class="guilabel">Add saved file to map</em> και κάντε κλικ στο <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/211.png" class="align-center" src="../_images/211.png" />
+<img alt="../_images/212.png" class="align-center" src="../_images/212.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Ορίστε το έχετε. Το τελικό επίπεδο περιέχει τα <cite>hotspots</cite> που έχουν εξαχθεί από το χάρτη heatmap. Οι ομάδες αυτές είναι η* νοημοσύνη * που συγκεντρώθηκε από raw δεδομένα και μπορούν να προσφέρουν χρήσιμες πληροφορίες, καθώς και να χρησιμοποιηθούν ως είσοδος για περαιτέρω ενέργειες.</p>
 </li>
 </ol>
-<img alt="../_images/221.png" class="align-center" src="../_images/221.png" />
+<img alt="../_images/222.png" class="align-center" src="../_images/222.png" />
 </div>
 </div>
 
@@ -337,7 +338,7 @@ tutorial from link below.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 14, 2015.<br/>
+      Last updated on Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

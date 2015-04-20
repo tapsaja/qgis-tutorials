@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Naburige polygonen in een laag zoeken" href="find_neighbor_polygons.html" />
+    <link rel="next" title="Building a Python Plugin" href="building_a_python_plugin.html" />
     <link rel="prev" title="Open BIL, BIP or BSQ files in QGIS" href="open_bil_bip_bsq_files.html" />
 
 <meta charset='utf-8'>
@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aantal punten in een laag tellen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Beginnen met programmeren in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -128,7 +129,7 @@
     </a>
   </li>
   <li>
-    <a href="find_neighbor_polygons.html" title="Next Chapter: Naburige polygonen in een laag zoeken"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Naburige polygon... &raquo;</span>
+    <a href="building_a_python_plugin.html" title="Next Chapter: Building a Python Plugin"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Building a Pytho... &raquo;</span>
     </a>
   </li>
               
@@ -204,12 +205,12 @@
 <li><p class="first">Ga in QGIS naar <em class="menuselection">Kaartlagen ‣ Laag toevoegen ‣ Vectorlaag toevoegen</em>. Blader naar het gedownloade bestand <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt> en klik op <em class="guilabel">Openen</em>. Selecteer de laag <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt> en klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/130.png" class="align-center" src="../_images/130.png" />
+<img alt="../_images/139.png" class="align-center" src="../_images/139.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">U zult de laag <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> zien geladen in QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/214.png" class="align-center" src="../_images/214.png" />
+<img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Selecteer het gereedschap <em class="guilabel">Objecten identificeren</em> en klik op één van de punten om daarvan de beschikbare attributen te bekijken. U zult zien dat de naam van het vliegveld en de 3-cijferige code ervan zijn opgenomen in de respectievelijke attributen <tt class="docutils literal"><span class="pre">name</span></tt> en <tt class="docutils literal"><span class="pre">iata_code</span></tt>.</p>
 </li>
@@ -219,7 +220,7 @@
 <li><p class="first">QGIS verschaft een ingebouwde console waar u opdrachten voor Python kunt typen en de resultaten verkrijgt. Deze console is een fantastische manier om te leren scripten en ook om snel gegevens te verwerken. Open de <em class="guilabel">Python Console</em> door te gana naar <em class="menuselection">Plug-ins ‣ Python Console</em>.</p>
 </li>
 </ol>
-<img alt="../_images/410.png" class="align-center" src="../_images/410.png" />
+<img alt="../_images/411.png" class="align-center" src="../_images/411.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">U zult zien dat een nieuw paneel wordt geopend aan de onderzijde van het kaartvenster van QGIS. U zult een prompt als <tt class="docutils literal"><span class="pre">&gt;&gt;&gt;</span></tt> zien aan de onderzijde waar u opdrachten kunt typen. Voor de interactie met de omgeving van QGIS, moeten we de variabele <tt class="docutils literal"><span class="pre">iface</span></tt> gebruiken. U kunt het volgende typen en op <tt class="kbd docutils literal"><span class="pre">Enter</span></tt> drukken om toegang te krijgen tot de huidige actieve laag in QGIS. Deze opdracht haalt de verwijzing naar de huidige geladen laag op en slaat die op in de variabele <tt class="docutils literal"><span class="pre">layer</span></tt>.</p>
 </li>
@@ -227,7 +228,7 @@
 <div class="highlight-python"><div class="highlight"><pre><span class="n">layer</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/510.png" class="align-center" src="../_images/510.png" />
+<img alt="../_images/511.png" class="align-center" src="../_images/511.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Er bestaat een handige functie, genaamd <tt class="docutils literal"><span class="pre">dir()</span></tt>, in Python die u alle beschikbare methoden voor een object laat zien. Dat is handig als u niet precies weet welke functies beschikbaar zijn voor het object. Voer de volgende opdracht uit om te zien welke bewerkingen we kunnen doen met de variabele <tt class="docutils literal"><span class="pre">layer</span></tt>.</p>
 </li>
@@ -235,7 +236,7 @@
 <div class="highlight-python"><div class="highlight"><pre><span class="nb">dir</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/69.png" class="align-center" src="../_images/69.png" />
+<img alt="../_images/610.png" class="align-center" src="../_images/610.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">U zult ene lange lijst met beschikbare functies zien. Voor nu zullen we de functie, genaamd <tt class="docutils literal"><span class="pre">getFeatures()</span></tt>, gebruiken wat u een verwijzing zal geven naar alle objecten van een laag. In ons geval zal elk object een punt zijn dat een vliegveld weergeeft. U kunt de volgende opdracht typen om door elk van de objecten op de huidige laag te gaan. Zorg er voor dat u 2 spaties toevoegt vóórdat u de tweede regel typt.</p>
 </li>
@@ -244,7 +245,7 @@
   <span class="k">print</span> <span class="n">f</span>
 </pre></div>
 </div>
-<img alt="../_images/79.png" class="align-center" src="../_images/79.png" />
+<img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Zoals u in de uitvoer zult zien, bevat elke regel een verwijzing naar een object op de laag. De verwijzing naar het object wordt opgeslagen in de variabele <tt class="docutils literal"><span class="pre">f</span></tt>. We kunnen de variabele <tt class="docutils literal"><span class="pre">f</span></tt> gebruiken om toegang te krijgen tot de attributen van elk object. Typ het volgende om de <tt class="docutils literal"><span class="pre">name</span></tt> en <tt class="docutils literal"><span class="pre">iata_code</span></tt> voor elk object vliegveld af te drukken.</p>
 </li>
@@ -253,7 +254,7 @@
   <span class="k">print</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;iata_code&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<img alt="../_images/89.png" class="align-center" src="../_images/89.png" />
+<img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">U weet dus nu hoe u programmatisch toegang kunt krijgen tot de attributen van elk object op een laag. laten we dan nu eens zien hoe we toegang krijgen tot de coördinaten van het object. Toegang tot de coördinaten van het vectorobject kan worden verkregen door de functie <tt class="docutils literal"><span class="pre">geometry()</span></tt> aan te roepen. Deze functie geeft een object geometrie terug dat we kunnen opslaan in de variabele <tt class="docutils literal"><span class="pre">geom</span></tt>. U kunt de functie <tt class="docutils literal"><span class="pre">asPoint()</span></tt> op het object geometrie uitvoeren om de X- en Y-coördinaten van het punt te verkrijgen. Als uw object een lijn of polygoon is, kunt u de functies <tt class="docutils literal"><span class="pre">asPolyline()</span></tt> of <tt class="docutils literal"><span class="pre">asPolygon()</span></tt> gebruiken. Typ de volgende code bij de prompt en druk op <tt class="kbd docutils literal"><span class="pre">Enter</span></tt> om de X- en Y-coördinaten van elk object te bekijken.</p>
 </li>
@@ -263,7 +264,7 @@
   <span class="k">print</span> <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/98.png" class="align-center" src="../_images/98.png" />
+<img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Wat als we alleen het <tt class="docutils literal"><span class="pre">X</span></tt>-coördinaat van het object wilden? U kunt de functie <tt class="docutils literal"><span class="pre">x()</span></tt> aanroepen voor het object punt en daarvan het X-coördinaat verkrijgen.</p>
 </li>
@@ -273,7 +274,7 @@
   <span class="k">print</span> <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/108.png" class="align-center" src="../_images/108.png" />
+<img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Nu hebben we alle stukjes die we aan elkaar kunnen naaien om de door ons gewenste uitvoer te verkrijgen. Typ de volgende code om de naam, iata_code, latitude en longitude van alle objecten vliegveld af te drukken. De notaties <tt class="docutils literal"><span class="pre">%s</span></tt> en <tt class="docutils literal"><span class="pre">%f</span></tt> zijn manieren om de string en number variabelen op te maken.</p>
 </li>
@@ -284,7 +285,7 @@
          <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">(),</span> <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">())</span>
 </pre></div>
 </div>
-<img alt="../_images/1113.png" class="align-center" src="../_images/1113.png" />
+<img alt="../_images/1114.png" class="align-center" src="../_images/1114.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">U kunt de uitvoer zien worden afgedrukt op de  console. Een meer handige manier om de uitvoer op te slaan zou een bestand zijn. U kunt de volgende code typen om een bestand te maken en de uitvoer daar naartoe weg te schrijven. vervang het bestandspad door een bestandspad op uw eigen systeem. Onthoud dat we <tt class="docutils literal"><span class="pre">\n</span></tt> toevoegen aan het einde van de opmaak van onze regel. Dat is om ene nieuwe regel toe te voegen na de gegevens voor elke object. U zou ook de regel <tt class="docutils literal"><span class="pre">unicode_line</span> <span class="pre">=</span> <span class="pre">line.encode('utf-8')</span></tt> moeten onthouden. Omdat onze laag enkele objecten bevat met tekens in Unicode, kunnen we het niet eenvoudigweg wegschrijven naar een tekstbestand. We coderen de tekst met behulp van de codering UTF-8 en schrijven dan weg naar het tekstbestand.</p>
 </li>
@@ -299,12 +300,12 @@
 <span class="n">output_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" />
+<img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">U kunt naar de locatie van het uitvoerbestand gaan ie u heeft gespecificeerd en het tekstbestand openen. U zult de gegevens uit het shapefile Airports zien die we hebben uitgenomen door middle van scripten met Python.</p>
 </li>
 </ol>
-<img alt="../_images/138.png" class="align-center" src="../_images/138.png" />
+<img alt="../_images/1310.png" class="align-center" src="../_images/1310.png" />
 </div>
 </div>
 
@@ -331,7 +332,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Apr 14, 2015.<br/>
+      Laatste aanpassing op Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

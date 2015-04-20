@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Primi passi con la programmazione Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Trovare i poligoni confinanti in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Realizzare mappe web leaflet con qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Usare il Google Maps Engine Connector con QGIS</a></li>
@@ -203,12 +204,12 @@
 <li><p class="first">Fate unzip ed estraete dal file archivio il file .bsq. Su Windows, potete usare l&#8217;ottimo <cite>7-Zip utility &lt;http://www.7-zip.org/&gt;`_per leggere ed estrarre file di tipo .gz. Come vedrete disponete soltanto di un file .bsq chiamato ``gl-latlong-1deg-landcover.bsq`</cite>. .Quindi non c&#8217;è alcun file in formato hdr.</p>
 </li>
 </ol>
-<img alt="../_images/170.png" class="align-center" src="../_images/170.png" />
+<img alt="../_images/180.png" class="align-center" src="../_images/180.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Rendetevi conto del fatto che se tentate di aprire il file <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt> in QGIS così com&#8217;è, riceverete un messaggio di errore.</p>
 </li>
 </ol>
-<img alt="../_images/226.png" class="align-center" src="../_images/226.png" />
+<img alt="../_images/230.png" class="align-center" src="../_images/230.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Per superare questo problema, creeremo un file con estensione  <tt class="docutils literal"><span class="pre">.hdr</span></tt> , cioè un file header. Un file header - in italiano <tt class="docutils literal"><span class="pre">file</span> <span class="pre">intestazione</span></tt> - contiene informazioni circa il dataset e la sua organizzazione. Di solito, queste informazioni sono fornite come componenti dei metadati del dataset. Se non disponete di metadati, date un&#8217;occhiata al sito web o alla documentazione per trovare delle indicazioni. Tra l&#8217;altro alcune informazioni possono essere inferite anche quando non se ne possiede una conoscenza diretta. Nel caso di questo dataset la pagina dove si scaricano i dati fornisce un link di collegamento ai <a class="reference external" href="ftp://ftp.glcf.umd.edu/glcf/Global_Land_Cover/Global/1deg/gl-latlong-1deg-landcover.glcf">metadati</a>. Scaricate i metadati e apriteli.</p>
 </li>
@@ -235,17 +236,17 @@ The <strong>ncols</strong> and <strong>nrows</strong> si ricavano facilmente dai
 Considerando che il file copre l&#8217;intero pianeta e che l&#8217;unità di misura è in latitudine/longitudine, ne segue che <strong>xllcorner</strong> e <strong>yllcorner</strong>  saranno, rispettivamente, -180 e -90. Non abbiamo alcuna informazione riguardo il nodata_value quindi -9999 è un valore sicuro. Ancora dai metadati ricaviamo che il Pixel Format è Byte così <strong>nbits</strong> sarà uguale a 8 e il pixeltyte sarà  <strong>byte_unsigned</strong>. Non abbiamo informazioni sul byteorder e quindi lasciamo pure msbfirst.</p>
 </li>
 </ol>
-<img alt="../_images/516.png" class="align-center" src="../_images/516.png" />
+<img alt="../_images/517.png" class="align-center" src="../_images/517.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Adesso che avete il file header, mettetelo nella stessa directory in cui si trova <cite>gl-latlong-1deg-landcover.bsq`</cite>. Portatevi quindi in in QGIS, andate su <em class="menuselection">Layer ‣ Aggiungi Raster</em>,  e selezionate <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt>  come vostra scelta e fate click su <em class="guilabel">Apri</em>.</p>
 </li>
 </ol>
-<img alt="../_images/615.png" class="align-center" src="../_images/615.png" />
+<img alt="../_images/616.png" class="align-center" src="../_images/616.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Nella prossima schermata vi verrà chiesto di scegliere un SR. Dal momento che i dati sono in Lat/Long scegliete <strong>WGS84 EPSG:4326</strong> come SR. A questo punto vedrete il dataset finalmente caricato  regolarmente in QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/714.png" class="align-center" src="../_images/714.png" />
+<img alt="../_images/715.png" class="align-center" src="../_images/715.png" />
 </div>
 </div>
 
@@ -272,7 +273,7 @@ Considerando che il file copre l&#8217;intero pianeta e che l&#8217;unità di mi
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Apr 14, 2015.<br/>
+      Ultimo aggiornamento Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

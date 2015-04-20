@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Подсчет числа вершин в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Открытие файлов BIL, BIP или BSQ в QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Первые шаги в программировании на Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Нахождение соседних полигонов в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Веб-карты Leaflet с помощью qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Использование Google Maps Engine Connector для QGIS</a></li>
@@ -196,7 +197,8 @@
 <ul class="simple">
 <li><p class="first">искать и загружать бесплатно доступные пространственные данные</p>
 </li>
-<li>Exporting a vector layer as KML and viewing it in Google Earth.</li>
+<li><p class="first">Экспортировать векторный слой в формат KML и просматривать в Google Earth.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -212,12 +214,12 @@ of GTOPO30 dataset.</p>
 <em class="guilabel">Search Criteria</em> tab, search for the place name <cite>Mt. Everest</cite>.
 Click on the result to select the location.</li>
 </ol>
-<img alt="../_images/1109.png" class="align-center" src="../_images/1109.png" />
+<img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
 <ol class="arabic simple" start="2">
 <li>In the <em class="guilabel">Data Sets</em> tab, expand the <em class="guilabel">Digital Elevation</em>
 group, and check <em class="guilabel">GMTED2010</em>.</li>
 </ol>
-<img alt="../_images/258.png" class="align-center" src="../_images/258.png" />
+<img alt="../_images/260.png" class="align-center" src="../_images/260.png" />
 <ol class="arabic simple" start="3">
 <li>You can now skip to the <em class="guilabel">Results</em> tab and see the part of the
 dataset intersecting your search criteria. Click the <em class="guilabel">Download
@@ -229,7 +231,7 @@ create a free account if you do not have one.</li>
 <li>Select the <em class="guilabel">30 ARC SEC</em> option and click <em class="guilabel">Select
 Download Option</em>.</li>
 </ol>
-<img alt="../_images/427.png" class="align-center" src="../_images/427.png" />
+<img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
 <p>You will now have a file named <cite>GMTED2010N10E060_300.zip</cite>. Elevation data is
 distributed in various raster formats such as ASC, BIL, GeoTiff etc.
 QGIS supports a wide <a class="reference external" href="http://www.gdal.org/formats_list.html">variety of raster formats</a> via the GDAL library. The GMTED
@@ -243,19 +245,19 @@ data comes as GeoTiff files which are contained in this zip archive.</p>
 <li>Open <em class="menuselection">Layer ‣ Add Raster Layer</em> and browse to the
 downloaded zip file.</li>
 </ol>
-<img alt="../_images/528.png" class="align-center" src="../_images/528.png" />
+<img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
 <ol class="arabic simple" start="6">
 <li>There are many different files generated from different algorithms.
 For this tutorial, we will use the file named <cite>10n060e_20101117_gmted_mea300.tif</cite>.</li>
 </ol>
-<img alt="../_images/626.png" class="align-center" src="../_images/626.png" />
+<img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
 <ol class="arabic simple" start="7">
 <li>You will see the terrain data rendered in the QGIS Canvas. Each pixel in the
 terrain raster represents the average elevation in meters at that location.
 The dark pixels represent areas with low altitude and lighter pixels
 represent areas with high altitude.</li>
 </ol>
-<img alt="../_images/726.png" class="align-center" src="../_images/726.png" />
+<img alt="../_images/727.png" class="align-center" src="../_images/727.png" />
 <ol class="arabic simple" start="8">
 <li>Let&#8217;s find our area of interest. From <a class="reference external" href="http://en.wikipedia.org/wiki/Mount_Everest">Wikipedia</a>,
 we find that the coordinates for our area of interest - Mt. Everest - is located
@@ -267,7 +269,7 @@ centered at this coordinate. To zoom in, Enter <cite>1:1000000</cite> in the <em
 and press Enter. You will see the viewport zoom to the area around the
 Himalayas.</li>
 </ol>
-<img alt="../_images/825.png" class="align-center" src="../_images/825.png" />
+<img alt="../_images/826.png" class="align-center" src="../_images/826.png" />
 <ol class="arabic simple" start="9">
 <li>We will now crop the raster to this area of interest. Select the Clipper
 tool from <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</li>
@@ -279,32 +281,32 @@ tool from <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</li>
 the <em class="guilabel">GdalTools</em> plugin from <em class="menuselection">Plugins ‣
 Manage and install plugins ‣ Installed</em>. See <a class="reference internal" href="using_plugins.html"><em>Использование модулей расширения</em></a> for more details.</p>
 </div>
-<img alt="../_images/923.png" class="align-center" src="../_images/923.png" />
+<img alt="../_images/924.png" class="align-center" src="../_images/924.png" />
 <ol class="arabic simple" start="10">
 <li>In the <em class="guilabel">Clipper</em> window, name your output file as
 <cite>everest_gmted30.tif</cite>. Select the <em class="guilabel">Clipping mode</em> as
 <em class="guilabel">Extent</em>.</li>
 </ol>
-<img alt="../_images/1024.png" class="align-center" src="../_images/1024.png" />
+<img alt="../_images/1025.png" class="align-center" src="../_images/1025.png" />
 <ol class="arabic simple" start="11">
 <li>Keep the <em class="guilabel">Clipper</em> window open and switch to the main QGIS
 window. Hold your left mouse button and draw a rectangle covering the full
 canvas.</li>
 </ol>
-<img alt="../_images/1128.png" class="align-center" src="../_images/1128.png" />
+<img alt="../_images/1130.png" class="align-center" src="../_images/1130.png" />
 <ol class="arabic simple" start="12">
 <li>Now back in the <em class="guilabel">Clipper</em> window, you will see the coordinates
 auto-populated from your selection. Make sure the <em class="guilabel">Load into
 canvas when finished</em> option is checked, and click <em class="guilabel">OK.</em></li>
 </ol>
-<img alt="../_images/1224.png" class="align-center" src="../_images/1224.png" />
+<img alt="../_images/1225.png" class="align-center" src="../_images/1225.png" />
 <ol class="arabic simple" start="13">
 <li>Once the process finishes, you will see a new layer loaded in QGIS. This
 layer covers only the area around Mt. Everest.Now we are ready to generate
 contours. Select the contour tool from <em class="menuselection">Raster ‣ Extraction
 ‣ Contour</em>.</li>
 </ol>
-<img alt="../_images/1322.png" class="align-center" src="../_images/1322.png" />
+<img alt="../_images/1323.png" class="align-center" src="../_images/1323.png" />
 <ol class="arabic simple" start="14">
 <li>In the <em class="guilabel">Contour</em> dialog, select <cite>everest_gmted30</cite> as the
 <em class="guilabel">Input file</em>. Name the <em class="guilabel">Output file for contour lines</em>
@@ -313,7 +315,7 @@ intervals, so put 100 as the <em class="guilabel">Interval between contour lines
 Also check the <em class="guilabel">Attribute name</em> option so elevation value will be
 recorded as attribute of each contour line. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1422.png" class="align-center" src="../_images/1422.png" />
+<img alt="../_images/1423.png" class="align-center" src="../_images/1423.png" />
 <ol class="arabic simple" start="15">
 <li>Once the processing is complete, you will see contour lines loaded into the
 canvas. Each line in this layer represents a particular elevation. All
@@ -322,7 +324,7 @@ elevation. The closer the lines, the steeper the slope. Let’s inspect the
 contours a bit more. Right click on the contours layer and choose
 <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/1519.png" class="align-center" src="../_images/1519.png" />
+<img alt="../_images/1520.png" class="align-center" src="../_images/1520.png" />
 <ol class="arabic simple" start="16">
 <li>You will see that each line feature has an attribute named <em class="guilabel">ELEV</em>.
 This is the height in metres that each line represents. Click on the column header
@@ -330,22 +332,22 @@ a couple of times to sort the values in descending order. Here you will
 find the line representing the highest elevation in our data, i.e. Mt.
 Everest.</li>
 </ol>
-<img alt="../_images/1619.png" class="align-center" src="../_images/1619.png" />
+<img alt="../_images/1620.png" class="align-center" src="../_images/1620.png" />
 <ol class="arabic simple" start="17">
 <li>Select the top row, and click on the <em class="guilabel">Zoom to selection</em>
 button.</li>
 </ol>
-<img alt="../_images/1717.png" class="align-center" src="../_images/1717.png" />
+<img alt="../_images/1718.png" class="align-center" src="../_images/1718.png" />
 <ol class="arabic simple" start="18">
 <li>Switch to the main QGIS window. You will see the selected contour line
 highlighted in yellow. This is the area of the highest elevation in our dataset.</li>
 </ol>
-<img alt="../_images/1817.png" class="align-center" src="../_images/1817.png" />
+<img alt="../_images/1818.png" class="align-center" src="../_images/1818.png" />
 <ol class="arabic simple" start="19">
 <li>Now let us create a hillshade map from the raster. Select
 <em class="menuselection">Raster ‣ Analysis ‣ DEM (Terrain Models)</em>.</li>
 </ol>
-<img alt="../_images/1915.png" class="align-center" src="../_images/1915.png" />
+<img alt="../_images/1916.png" class="align-center" src="../_images/1916.png" />
 <ol class="arabic simple" start="20">
 <li>In the <em class="guilabel">DEM (Terrain Models)</em> dialog, choose <cite>everest_gmted30</cite> as
 the <em class="guilabel">Input file</em>. Name the <em class="guilabel">Output file</em> as
@@ -353,34 +355,34 @@ the <em class="guilabel">Input file</em>. Name the <em class="guilabel">Output f
 <em class="guilabel">Mode</em>. Leave all other options as is. Make sure the <em class="guilabel">Load into
 canvas when finished</em> option is checked, and click <em class="guilabel">OK.</em></li>
 </ol>
-<img alt="../_images/2012.png" class="align-center" src="../_images/2012.png" />
+<img alt="../_images/2013.png" class="align-center" src="../_images/2013.png" />
 <ol class="arabic simple" start="21">
 <li>Once the process finishes, you will see yet another raster loaded into QGIS
 canvas. Since you maybe zoomed-in near the Mt.Everest region, right click
 on the <cite>everest_hillshade</cite> layer and choose <em class="guilabel">Zoom to Layer
 Extent</em>.</li>
 </ol>
-<img alt="../_images/2116.png" class="align-center" src="../_images/2116.png" />
+<img alt="../_images/2117.png" class="align-center" src="../_images/2117.png" />
 <ol class="arabic simple" start="22">
 <li>Now you will see the full extent of the hillshade raster.</li>
 </ol>
-<img alt="../_images/2213.png" class="align-center" src="../_images/2213.png" />
+<img alt="../_images/2214.png" class="align-center" src="../_images/2214.png" />
 <ol class="arabic simple" start="23">
 <li>You can also visualize your contour layer and verify your analysis
 by exporting the contours layer as KML and viewing it in Google Earth.
 Right click on the contours layer, select <em class="guilabel">Save as..</em>.</li>
 </ol>
-<img alt="../_images/2311.png" class="align-center" src="../_images/2311.png" />
+<img alt="../_images/2312.png" class="align-center" src="../_images/2312.png" />
 <ol class="arabic simple" start="24">
 <li>Select <em class="guilabel">Keyhole Markup Language [KML]</em> as the
 <em class="guilabel">Format</em>. Name your output as <cite>contours.kml</cite> and click
 <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/2410.png" class="align-center" src="../_images/2410.png" />
+<img alt="../_images/2411.png" class="align-center" src="../_images/2411.png" />
 <ol class="arabic simple" start="25">
 <li>Browse to the output file on your disk and double-click on it to open Google Earth.</li>
 </ol>
-<img alt="../_images/259.png" class="align-center" src="../_images/259.png" />
+<img alt="../_images/2510.png" class="align-center" src="../_images/2510.png" />
 </div>
 </div>
 
@@ -407,7 +409,7 @@ Right click on the contours layer, select <em class="guilabel">Save as..</em>.</
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Apr 14, 2015.<br/>
+      Обновлено: Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

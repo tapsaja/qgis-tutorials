@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -210,12 +211,12 @@
 <li><p class="first">Descărcați și extrageți datele Natural Earth Quick Start Kit. Deschideți QGIS. Faceți clic pe <em class="menuselection">File ‣ Open Project</em>.</p>
 </li>
 </ol>
-<img alt="../_images/150.png" class="align-center" src="../_images/150.png" />
+<img alt="../_images/160.png" class="align-center" src="../_images/160.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Răsfoiți directorul în care ați extras datele Natural Earth. Ar trebui să vedeți un fișier numit <tt class="file docutils literal"><span class="pre">Natural_Earth_quick_start_for_QGIS.qgs</span></tt>. Acesta este fișierul proiect, care conține straturi stilizate, în formate specifice QGIS. Clic pe <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
+<img alt="../_images/226.png" class="align-center" src="../_images/226.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">În interiorul cuprinsului, vor apărea o mulțime de straturi, iar pe suportul de prezentare al QGIS va fi expusă o hartă stilizată a lumii. Dacă observați erori în partea de sus a ferestrei, faceți clic pe butonul de închidere.</p>
 </li>
@@ -225,7 +226,7 @@
 <li><p class="first">În acest tutorial, vom elabora o hartă a Japoniei. Faceți clic pe butonul <em class="guilabel">Zoom In</em> și desenați un dreptunghi în jurul Japoniei, pentru a mări zona respectivă.</p>
 </li>
 </ol>
-<img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
+<img alt="../_images/415.png" class="align-center" src="../_images/415.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Puteți dezactiva unele straturi ale hărții conținând datele care nu avem nevoie pentru această hartă. Debifați caseta de lângă straturile <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> și <tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt>. Înainte de a crea o hartă adecvată pentru imprimare, trebuie să alegem o proiecție corespunzătoare. Acest set de date corespunde unui Sistem de Coordonate Geografice (GCS), în care unitățile sunt date în grade. Acest lucru nu este potrivit pentru o hartă în care doriți ca distanțele să fie în kilometri sau mile. În acest caz, trebuie să utilizăm un Sistem de Coordonate Proiectate care minimizează distorsiunile pentru regiunea noastră de interes, având unitățile specificate în metri. Universal Transverse Mercator (UTM) reprezintă o alegere decentă pentru un sistem de coordonate proiectate. Este, de asemenea, global, așa că, în mod implicit, veți evita distorsiunile dacă alegeți o zonă UTM care conține zona dumneavoastră de interes. În cazul nostru, vom folosi UTM Zone 54N. Faceți clic pe butonul <em class="guilabel">CRS Status</em> din partea din dreapta-jos a ferestrei QGIS.</p>
 </li>
@@ -234,17 +235,17 @@
 <p class="first admonition-title">Note</p>
 <p class="last">Japan Plane Rectangular CSJ este un sistem de coordonate de referință (CRS) proiectat pentru distorsiuni minime. Acesta este împărțit în 18 zone, iar dacă lucrați în regiuni mai mici din Japonia, este foarte bine să folosiți acest CRS.</p>
 </div>
-<img alt="../_images/514.png" class="align-center" src="../_images/514.png" />
+<img alt="../_images/515.png" class="align-center" src="../_images/515.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Bifați <em class="guilabel">Enable on-the-fly CRS Transformation</em>. Introduceți <tt class="docutils literal"><span class="pre">Tokyo</span> <span class="pre">utm</span> <span class="pre">zone54n</span></tt> în caseta de căutare <em class="guilabel">Filter</em>. O dată ce au apărut rezultatele, selectați <em class="guilabel">Tokyo / UTM Zone 54N - EPSG:3095</em>. Clic pe <em class="guilabel">Apply</em>.</p>
 </li>
 </ol>
-<img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
+<img alt="../_images/614.png" class="align-center" src="../_images/614.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Acum putem începe să asamblăm harta. Mergeți la <em class="menuselection">Project ‣ New Print Composer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
+<img alt="../_images/713.png" class="align-center" src="../_images/713.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Vi se va solicita titlul compoziției. Îl puteți lăsa necompletat, apoi faceți clic pe <em class="guilabel">Ok</em>.</p>
 </li>
@@ -253,77 +254,77 @@
 <p class="first admonition-title">Note</p>
 <p class="last">Necompletând numele, compozitorul va aloca un nume implicit, cum ar fi <tt class="docutils literal"><span class="pre">Composer</span> <span class="pre">1</span></tt>.</p>
 </div>
-<img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
+<img alt="../_images/813.png" class="align-center" src="../_images/813.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">În fereastra Compozitorului de Hărți, faceți clic pe <em class="guilabel">Zoom full</em> pentru a afișa extinderea completă a compoziției. Acum ar trebui să aducem în Compozitor o vedere a hărții pe care o observăm pe canevasul QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
+<img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">O dată ce <em class="guilabel">Add Map</em> s-a activat, țineți apăsat butonul stâng al mouse-ului și glisați, pentru a se desena un dreptunghi în zona în care se dorește inserarea hărții.</p>
 </li>
 </ol>
-<img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
+<img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Veți vedea că aria dreptunghiului se va umple cu harta de pe canevasul QGIS. Harta renderizată ar putea să nu acopere extinderea completă a ariei noastre de interes. Selectați <em class="menuselection">Layout ‣ Move item content</em> pentru a deplasa harta în fereastră și pentru a o centra în Compozitor.</p>
 </li>
 </ol>
-<img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
+<img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Haideți să reglăm nivelul de mărire pentru harta respectivă. Accesați fila <em class="guilabel">Item Properties</em>, apoi introduceți valoarea <cite>7000000</cite> în câmpul <em class="guilabel">Scale</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
+<img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Acum vom adăuga o inserție de hartă, care prezintă o vedere a zonei Tokyo. Înainte de a face orice modificări în straturile din fereastra principală a QGIS, bifați casetele <em class="guilabel">Lock layers for map item</em> și <em class="guilabel">Lock layer styles for map item</em>. Acest lucru ne asigură că, dacă am închide unele straturi sau dacă le-am schimba stilurile, această vedere nu se va schimba.</p>
 </li>
 </ol>
-<img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
+<img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Mergeți în fereastra principală a QGIS. Utilizați butonul <em class="guilabel">Zoom In</em> pentru a viza zona din jurul Tokyo.</p>
 </li>
 </ol>
-<img alt="../_images/1510.png" class="align-center" src="../_images/1510.png" />
+<img alt="../_images/1511.png" class="align-center" src="../_images/1511.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Există unele etichete duplicate provenind din stratul <tt class="docutils literal"><span class="pre">ne_10m_populated_places</span></tt>. Puteți să le dezactivați în cazul acestei vizualizări.</p>
 </li>
 </ol>
-<img alt="../_images/1610.png" class="align-center" src="../_images/1610.png" />
+<img alt="../_images/1611.png" class="align-center" src="../_images/1611.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Suntem, acum, gata pentru a insera o hartă. Comutați în fereastra <em class="guilabel">Print Composer</em>. Mergeți la <em class="menuselection">Layout ‣ Add Map</em>.</p>
 </li>
 </ol>
-<img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
+<img alt="../_images/1710.png" class="align-center" src="../_images/1710.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Trasați un dreptunghi în locul în care doriți să adăugați harta. Veți observa acum că avem 2 obiecte de tip hartă în Compozitorul de Hărți. La efectuarea de modificări, asigurați-vă că aveți selectată harta corectă. Alegeți obiectul <tt class="docutils literal"><span class="pre">Harta</span> <span class="pre">1</span></tt> pe care tocmai l-am adaugat în panoul <em class="guilabel">Items</em>. Selectați fila <em class="guilabel">Propertietățile Itemului</em>. Derulați în jos, până la panoul <em class="guilabel">Frame</em> și bifați caseta de lângă el. Puteți schimba culoarea și lățimea marginii cadrului, astfel încât să fie mai ușor să se facă distincția față de fundalul hărții.</p>
 </li>
 </ol>
-<img alt="../_images/189.png" class="align-center" src="../_images/189.png" />
+<img alt="../_images/1810.png" class="align-center" src="../_images/1810.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">O caracteristică elegantă a Compozitorului de Hărți, este faptul că se poate evidenția în mod automat, în harta principală, zona care este reprezentată în medalion. Selectați obiectul <tt class="docutils literal"><span class="pre">Harta</span> <span class="pre">0</span></tt> din panoul <em class="guilabel">Items</em>. În fila <em class="guilabel">Proprietăți</em>, derulați până la secțiunea <em class="guilabel">Overviews</em>. Faceți clic pe butonul <em class="guilabel">Adăugați o nouă vizualizare</em>.</p>
 </li>
 </ol>
-<img alt="../_images/197.png" class="align-center" src="../_images/197.png" />
+<img alt="../_images/198.png" class="align-center" src="../_images/198.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Selectați <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt> ca <em class="guilabel">Harta Frame</em>. Acest lucru spune Compozitorului de Hărți că trebuie să evidențieze obiectul <tt class="docutils literal"><span class="pre">Harta</span> <span class="pre">0</span></tt> cu extinderea hărții prezentate în obiectul <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt>.</p>
 </li>
 </ol>
-<img alt="../_images/204.png" class="align-center" src="../_images/204.png" />
+<img alt="../_images/205.png" class="align-center" src="../_images/205.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Acum, că avem gata medalionul hărții, vom adăuga o grilă și o bordură zebra la harta principală. Selectați obiectul <tt class="docutils literal"><span class="pre">Harta</span> <span class="pre">0</span></tt> din panoul <em class="guilabel">Items</em>. În fila <em class="guilabel">Proprietăți item</em>, derulați până la secțiunea <em class="guilabel">Grids</em>. Faceți clic pe butonul <em class="guilabel">Adăugați o nouă vizualizare</em>.</p>
 </li>
 </ol>
-<img alt="../_images/2110.png" class="align-center" src="../_images/2110.png" />
+<img alt="../_images/2111.png" class="align-center" src="../_images/2111.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">În mod implicit, liniile grilei utilizează aceleași unități și proiecții ca și proiecțiile hărții selectate în prezent. Cu toate acestea, se obișnuiește, și este mai util, să afișați liniile de grilă în grade. Putem alege un alt CRS pentru grilă. Faceți clic pe butonul <em class="guilabel">schimbare...</em>   de lângă <em class="guilabel">CRS</em>.</p>
 </li>
 </ol>
-<img alt="../_images/224.png" class="align-center" src="../_images/224.png" />
+<img alt="../_images/227.png" class="align-center" src="../_images/227.png" />
 <ol class="arabic simple" start="23">
 <li><p class="first">În fereastra de selectare a <em class="guilabel">Sistemului de Coordonate de Referință</em>, introduceți <tt class="docutils literal"><span class="pre">4326</span></tt> în caseta <em class="guilabel">Filter</em>. Din rezultatele afișate, selectați CRS-ul <tt class="docutils literal"><span class="pre">WGS84</span> <span class="pre">EPSG:4326</span></tt>. Clic <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/233.png" class="align-center" src="../_images/233.png" />
+<img alt="../_images/234.png" class="align-center" src="../_images/234.png" />
 <ol class="arabic simple" start="24">
 <li><p class="first">Selectați <tt class="docutils literal"><span class="pre">5</span></tt> grade pentru valorile <em class="guilabel">Intervalului</em>, în ambele direcții, <em class="guilabel">X</em> și <em class="guilabel">Y</em>. Puteți stabili un nou <em class="guilabel">Offset</em> pentru a indica unde să apară liniile de rețea.</p>
 </li>
@@ -343,7 +344,7 @@
 <li><p class="first">Urmează adăugarea pe hartă a unei săgeți a nordului. Compozitorul de Hărți vine cu o frumoasă colecție de imagini caracteristice hărților - incluzând multe tipuri de săgeți ale nordului. Clic pe <em class="menuselection">Layout ‣ Add Image</em>.</p>
 </li>
 </ol>
-<img alt="../_images/272.png" class="align-center" src="../_images/272.png" />
+<img alt="../_images/273.png" class="align-center" src="../_images/273.png" />
 <ol class="arabic simple" start="28">
 <li><p class="first">Ținând apăsat butonul stâng al mouse-ului, trasați un dreptunghi în colțul din dreapta sus al suportului hărții. În panoul din dreapta, faceți clic pe <em class="guilabel">Item Properties</em> și expandați secțiunea <em class="guilabel">Search directories</em>, apoi selectați imaginea preferată pentru Săgeata Nordului.</p>
 </li>
@@ -353,7 +354,7 @@
 <li><p class="first">Urmează adăugarea unui indicator de scară. Faceți clic pe <em class="menuselection">Layout ‣ Add Scalebar</em>.</p>
 </li>
 </ol>
-<img alt="../_images/292.png" class="align-center" src="../_images/292.png" />
+<img alt="../_images/293.png" class="align-center" src="../_images/293.png" />
 <ol class="arabic simple" start="30">
 <li><p class="first">Faceți clic în locul în care doriți să apară indicatorul scării. În fila <em class="guilabel">Item Properties</em>, asigurați-vă că ați ales elementul de hartă corect, pentru care va fi afișată scara. Selectați stilul care se potrivește cerințelor dvs. În panoul <em class="guilabel">Segments</em>, puteți ajusta numărul de segmente și dimensiunea lor.</p>
 </li>
@@ -415,7 +416,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 14, 2015.<br/>
+      Last updated on Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

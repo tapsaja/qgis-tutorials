@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Tason verteksien lukumäärän laskenta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -210,12 +211,12 @@ of free data for New York city.</p>
 <li>Download the <a class="reference external" href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm">Borough Boundaries</a>
 zip file using the Export option on the portal.</li>
 </ol>
-<img alt="../_images/180.png" class="align-center" src="../_images/180.png" />
+<img alt="../_images/190.png" class="align-center" src="../_images/190.png" />
 <ol class="arabic simple" start="2">
 <li>Download the <a class="reference external" href="https://data.cityofnewyork.us/Health/Nursing-Homes/9tqc-rnkr">Nursing Homes</a>  zip file
 using the Export option on the portal.</li>
 </ol>
-<img alt="../_images/227.png" class="align-center" src="../_images/227.png" />
+<img alt="../_images/236.png" class="align-center" src="../_images/236.png" />
 <p>For convenience, the version of datasets used in this tutorial can be
 downloaded directly from the links below:</p>
 <p>Download <a class="reference download internal" href="../_downloads/nybb_12c.zip"><tt class="xref download docutils literal"><span class="pre">Borough</span> <span class="pre">Boundaries</span></tt></a></p>
@@ -231,25 +232,25 @@ zip file <tt class="docutils literal"><span class="pre">nybb_12c.zip</span></tt>
 <ol class="arabic simple" start="4">
 <li>Select the layer <tt class="docutils literal"><span class="pre">nybb.shp</span></tt> and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/416.png" class="align-center" src="../_images/416.png" />
+<img alt="../_images/417.png" class="align-center" src="../_images/417.png" />
 <ol class="arabic simple" start="5">
 <li>Repeat the steps 3 and 4 for the another file <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.zip</span></tt>
 and load the <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.shp</span></tt> layer. Once both the layers are
 loaded, right-click on the <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> layer and select
 <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/517.png" class="align-center" src="../_images/517.png" />
+<img alt="../_images/518.png" class="align-center" src="../_images/518.png" />
 <ol class="arabic simple" start="6">
 <li>Examine the attributes available for each feature. Since our task is to
 calculate the total nursing home capacity for each borough, we can use the
 attribute <strong>Capacity</strong> which can join to the boundaries layer.</li>
 </ol>
-<img alt="../_images/616.png" class="align-center" src="../_images/616.png" />
+<img alt="../_images/617.png" class="align-center" src="../_images/617.png" />
 <ol class="arabic simple" start="7">
 <li>Go to <em class="menuselection">Vector ‣ Data Mangement Tools ‣ Join attributes by
 location</em>.</li>
 </ol>
-<img alt="../_images/715.png" class="align-center" src="../_images/715.png" />
+<img alt="../_images/716.png" class="align-center" src="../_images/716.png" />
 <ol class="arabic simple" start="8">
 <li>The <em class="guilabel">Target vector layer</em> is the one we want to add the attributes
 to. In our case, this will be the boroughs boundary <tt class="docutils literal"><span class="pre">nybb</span></tt> layer. The
@@ -259,7 +260,7 @@ homes, select <em class="guilabel">Take summary of intersecting features</em> an
 <em class="guilabel">Sum</em>. Name the output file as <tt class="docutils literal"><span class="pre">nyc_borough_join.shp</span></tt>. In the
 <em class="guilabel">Output table</em> select <em class="guilabel">Keep all records`</em>.</li>
 </ol>
-<img alt="../_images/814.png" class="align-center" src="../_images/814.png" />
+<img alt="../_images/815.png" class="align-center" src="../_images/815.png" />
 <ol class="arabic simple" start="9">
 <li>Once the process finishes, select <em class="guilabel">Yes</em> when asked if you want to
 add the layer to TOC. The new layer <tt class="docutils literal"><span class="pre">nyc_borough_join</span></tt> would have the
@@ -267,36 +268,36 @@ features from <tt class="docutils literal"><span class="pre">nybb</span></tt> la
 <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> layer. Right-click on the layer and select
 <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/912.png" class="align-center" src="../_images/912.png" />
+<img alt="../_images/913.png" class="align-center" src="../_images/913.png" />
 <ol class="arabic simple" start="10">
 <li>You will see a column <strong>SUMCapacit</strong> in the attribute table. This is the
 sum of the <strong>Capacity</strong> attribute for the nursing homes that fall within
 each borough feature.</li>
 </ol>
-<img alt="../_images/1013.png" class="align-center" src="../_images/1013.png" />
+<img alt="../_images/1014.png" class="align-center" src="../_images/1014.png" />
 <ol class="arabic simple" start="11">
 <li>This is the answer we are looking for. But there are extra columns that we
 do not need in our output. Let&#8217;s clean up our output. Click on the
 <em class="guilabel">Toggle editing</em> button and then the <em class="guilabel">Delete column</em>
 button.</li>
 </ol>
-<img alt="../_images/1118.png" class="align-center" src="../_images/1118.png" />
+<img alt="../_images/1119.png" class="align-center" src="../_images/1119.png" />
 <ol class="arabic simple" start="12">
 <li>Press <tt class="kbd docutils literal"><span class="pre">Control-A</span></tt> to select all columns in the <em class="guilabel">Delete
 Attributes</em> dialog. Next hold the <tt class="kbd docutils literal"><span class="pre">Control</span></tt> key and de-select the
 columns you want to keep. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1215.png" class="align-center" src="../_images/1215.png" />
+<img alt="../_images/1216.png" class="align-center" src="../_images/1216.png" />
 <ol class="arabic simple" start="13">
 <li>In the attribute table, click <em class="guilabel">Toggle editing</em> button again to
 save the changes.</li>
 </ol>
-<img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" />
+<img alt="../_images/1314.png" class="align-center" src="../_images/1314.png" />
 <ol class="arabic simple" start="14">
 <li>Back in the QGIS Canvas, use the <em class="guilabel">Identify</em> tool to verify that
 the output file has the desired attributes for each burough feature.</li>
 </ol>
-<img alt="../_images/1413.png" class="align-center" src="../_images/1413.png" />
+<img alt="../_images/1414.png" class="align-center" src="../_images/1414.png" />
 </div>
 </div>
 
@@ -323,7 +324,7 @@ the output file has the desired attributes for each burough feature.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 14, 2015.<br/>
+      Last updated on Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

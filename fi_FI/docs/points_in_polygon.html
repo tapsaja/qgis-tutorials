@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Tason verteksien lukumäärän laskenta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -207,7 +208,7 @@ below:</p>
 <li><p class="first">Avaa <em class="menuselection">Layer ‣ Add Delimited Text Layer</em> ja selaile ladattuun <tt class="docutils literal"><span class="pre">signif.txt</span></tt> tiedostoon.</p>
 </li>
 </ol>
-<img alt="../_images/1101.png" class="align-center" src="../_images/1101.png" />
+<img alt="../_images/1102.png" class="align-center" src="../_images/1102.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Koska tämä on <em>tab-eroteltu tiedosto</em>, valitse <em class="guilabel">Tab</em> <em class="guilabel">Tiedostomuoto</em> tietoon. <em class="guilabel">X tieto</em> ja <em class="guilabel">Y tieto</em> täytetään automaattisesti. Klikkaa <em class="guilabel">OK</em>.</p>
 </li>
@@ -216,7 +217,7 @@ below:</p>
 <p class="first admonition-title">Muista</p>
 <p class="last">Voit nähdä joitakin virheita kun QGIS yrittää tuoda tiedostoa. Nämä ovat hyväksyttäviä virheitä ja joitakin rivejä ei tuoda laisinkaan. Voit ohittaa nämä virheet oppaan tarkoitusta vastaavasti.</p>
 </div>
-<img alt="../_images/236.png" class="align-center" src="../_images/236.png" />
+<img alt="../_images/240.png" class="align-center" src="../_images/240.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Maanjäristys tietojoukossa on latituudi/longituudi koordinaatit, valitse  <em class="guilabel">WGS 84 EPSG:436 koordinaattijärjestelmäksi :guilabel:`Koordinaattijärjestelmän valinta</em> ikkunassa.</p>
 </li>
@@ -226,12 +227,12 @@ below:</p>
 <li><p class="first">Maanjäristysten pistetaso ladataan nyt ja näytetään QGIS:ssä. Avtaan myös maataso. Mene <em class="menuselection">Tasot ‣ Lisää vektoritaso  Selaile ladattuun ``ne_10m_admin_0_countries.zip`</em> tiedostoon ja klikkaa <em class="guilabel">Avaa</em>. Valitse <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt> tasoksi <em class="guilabel">Valitse lisättävä taso</em>  ikkunassa.</p>
 </li>
 </ol>
-<img alt="../_images/419.png" class="align-center" src="../_images/419.png" />
+<img alt="../_images/420.png" class="align-center" src="../_images/420.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Klikkaa <em class="menuselection">Vectori ‣ Analyysityökalut ‣ Pisteitä monikulmiossa</em></p>
 </li>
 </ol>
-<img alt="../_images/520.png" class="align-center" src="../_images/520.png" />
+<img alt="../_images/521.png" class="align-center" src="../_images/521.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Pop-up ikkunassa, anna monikulmiotaso ja vastaava pisteetaso. Anna tulostasolle <a href="#id1"><span class="problematic" id="id2">``</span></a>earthquake_per_coutry.shp``nimi ja klikkaa</p>
 </li>
@@ -244,27 +245,27 @@ below:</p>
 <li><p class="first">Kun kysytään haluatko lisätä tason sisällysluetteloon, klikkaa</p>
 </li>
 </ol>
-<img alt="../_images/718.png" class="align-center" src="../_images/718.png" />
+<img alt="../_images/719.png" class="align-center" src="../_images/719.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Näe uuden tason lisätyn sisällysluetteloon. Avaa attribuuttitaulu tason oikealla klikkauksella ja valitse <em class="guilabel">Avaa attribuuttitaulu</em>.</p>
 </li>
 </ol>
-<img alt="../_images/817.png" class="align-center" src="../_images/817.png" />
+<img alt="../_images/818.png" class="align-center" src="../_images/818.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Huomaat uuden tiedon nimen attribuuttitaulussa -  <tt class="docutils literal"><span class="pre">PNTCNT</span></tt>. Tämä on pisteiden laskettu lukumäärä maanjäsristystasolla jotka osuvat kuhunkin monikulmioon.</p>
 </li>
 </ol>
-<img alt="../_images/915.png" class="align-center" src="../_images/915.png" />
+<img alt="../_images/916.png" class="align-center" src="../_images/916.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Saadaksesi vastauksen, teemme yksinkertaisesti lajittelun tauluun <tt class="docutils literal"><span class="pre">PNTCNT</span></tt> tiedolla. ja maa jolla suurin lukumäärä on vastauksemma. Klikkaa tuplasti  <tt class="docutils literal"><span class="pre">PNTCNT</span></tt> sarakeessa saadaksesi taulukon laskevaan järjestykseen. Klikkaa ensimmäistä riviä valitaksesi sen ja sulje attribuuttitaulu.</p>
 </li>
 </ol>
-<img alt="../_images/1016.png" class="align-center" src="../_images/1016.png" />
+<img alt="../_images/1017.png" class="align-center" src="../_images/1017.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Takaisin QGIS pääikkunassa, näet yhden ominaisuuden korostettuna keltaisella värillä. Tämä ominaisuus on linkattu valittuun riviin attribuuttitaulussa jossa on korkein pisteiden lukumäärä. Valitse <em class="guilabel">Tunnista</em> työkalu ja klikkaa tuossa minikulmiossa. Voit nähdä että maa jossa on suurin  lukumäärä merkittäviä maanjäristyksiä on Kiina.</p>
 </li>
 </ol>
-<img alt="../_images/1121.png" class="align-center" src="../_images/1121.png" />
+<img alt="../_images/1122.png" class="align-center" src="../_images/1122.png" />
 <p>Päättelimme yksinkertaisella analyysillä 2:ssta tietojoukosta että Kiinala on korkein lukumäärä vakavampia maanjäristyksiä Voit tarkentaa tätä analyysia ottamalla huomioon esimerkiksi väestämääärän samoin kuin maan pinta-alan ja päätellä mihin maahan ovat maanjäristykset vaikuttaneet eniten.</p>
 </div>
 </div>
@@ -292,7 +293,7 @@ below:</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 14, 2015.<br/>
+      Last updated on Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

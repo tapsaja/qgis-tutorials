@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -217,12 +218,12 @@ tutorial from link below.</p>
 <li><p class="first">Deschideți QGIS. Mergeți la <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer..</em></p>
 </li>
 </ol>
-<img alt="../_images/140.png" class="align-center" src="../_images/140.png" />
+<img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Navigați la fișierul descărcat, <tt class="docutils literal"><span class="pre">Shapefiles.zip</span></tt>, apoi selectați-l. Clic pe <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/216.png" class="align-center" src="../_images/216.png" />
+<img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">În fereastra de dialog <em class="guilabel">Select layers to add...</em>, țineți apăsată tasta <tt class="kbd docutils literal"><span class="pre">Shift</span></tt>, apoi selectați straturile <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83.shp</span></tt> și <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83.shp</span></tt>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
@@ -232,27 +233,27 @@ tutorial from link below.</p>
 <li><p class="first">Veți vedea 2 straturi încărcate în QGIS. Stratul <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83</span></tt> reprezintă limitele lacului. În Cuprins, debifați căsuța de lângă acesta.</p>
 </li>
 </ol>
-<img alt="../_images/412.png" class="align-center" src="../_images/412.png" />
+<img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">În acest fel, veți putea observa datele celui de-al doilea strat <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></tt>. Ceea ce se vede arată similar unor linii, dar de fapt este doar o serie de puncte foarte apropiate.</p>
 </li>
 </ol>
-<img alt="../_images/512.png" class="align-center" src="../_images/512.png" />
+<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Efectuați clic pe pictograma <em class="guilabel">Zoom</em> și selectați o mică arie de pe ecran. Pe măsură ce veți mări imaginea, veți observa punctele. Fiecare punct reprezintă o citire luată de o <em>Sondă de Adâncime</em> într-o locație înregistrată de un echipament <em>DGPS</em>.</p>
 </li>
 </ol>
-<img alt="../_images/611.png" class="align-center" src="../_images/611.png" />
+<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Selectați instrumentul <em class="guilabel">Identify</em> și faceți clic pe un punct. Veți vedea panoul cu <em class="guilabel">Rezultatele Identificării</em> apărând în partea stângă, alături de valoarea atributului punctului. În acest caz, atributul <tt class="docutils literal"><span class="pre">ELEVAȚIE</span></tt> conține adâncimea lacului la acea locație. Deoarece sarcina noastră este de a crea un profil de adâncime și curbele de nivel, vom folosi aceste valori ca intrare pentru interpolare.</p>
 </li>
 </ol>
-<img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
+<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Asigurați-vă că <tt class="docutils literal"><span class="pre">Plugin-ul</span> <span class="pre">Interpolare</span></tt> a fost activat. Parcurgeți <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a> pentru a vedea cum se activează plugin-urile. După activare, mergeți la <em class="menuselection">Raster ‣ Interpolation ‣ Interpolation</em>.</p>
 </li>
 </ol>
-<img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
+<img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">În fereastra de dialog <em class="guilabel">Interpolation</em>, selectați <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></tt> pentru <em class="guilabel">Vector layers</em> în panoul <em class="guilabel">Input</em>. Selectați <tt class="docutils literal"><span class="pre">ELEVATION</span></tt> ca <em class="guilabel">Interpolation attribute</em>. Apăsați <em class="guilabel">Add</em>. Schimbați valorile <em class="guilabel">Cellsize X</em> și <em class="guilabel">Cellsize Y</em> la <tt class="docutils literal"><span class="pre">5</span></tt>. Această valoare este dimensiunea fiecărui pixel din grila de ieșire. Deoarece datele noastre sursă sunt într-un CRS proiectat, cu unități <strong>Feet-US</strong>, pe baza selecției noastre, dimensiunea grilei va fi de <strong>5 metri</strong>. Faceți clic pe butonul <em class="guilabel">...</em> de lângă <em class="guilabel">Output file</em> și denumiți fișierul de ieșire ca <tt class="docutils literal"><span class="pre">elevation_tin.tif</span></tt>. Faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
@@ -261,62 +262,62 @@ tutorial from link below.</p>
 <p class="first admonition-title">Note</p>
 <p class="last">Rezultatele interpolării pot varia semnificativ în funcție de metoda și parametrii pe care îi specificați. QGIS acceptă metodele de interpolare <em>(TIN) Rețele Neregulate Triangulate</em> și <em>(IDW) Distanța inversă ponderată</em>. Metoda TIN este frecvent utilizată pentru datele de elevație, în timp ce metoda IDW este folosită la interpolarea altor tipuri de date, cum ar fi concentrațiile de minerale, populațiile etc. Parcurgeți documentația modulului de <a class="reference external" href="http://docs.qgis.org/2.2/en/docs/gentle_gis_introduction/spatial_analysis_interpolation.html">Analiză Spațială din QGIS</a> pentru mai multe detalii.</p>
 </div>
-<img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
+<img alt="../_images/910.png" class="align-center" src="../_images/910.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Veți vedea noul strat, <tt class="docutils literal"><span class="pre">elevation_tin</span></tt>, încărcat în QGIS. Efectuați clic-dreapta pe strat, apoi selectați <em class="guilabel">Zoom to layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
+<img alt="../_images/1010.png" class="align-center" src="../_images/1010.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Acum, veți vedea extinderea completă a suprafeței create. Interpolarea nu dă rezultate precise în afara zonei de colectare. Haideți să decupăm suprafața rezultată după limitele lacului. Mergeți la <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1114.png" class="align-center" src="../_images/1114.png" />
+<img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Alegeți <tt class="docutils literal"><span class="pre">elevation_tin_clipped.tif</span></tt> pentru <em class="guilabel">Output file</em>. Selectați <em class="guilabel">Mask layer</em> pentru <em class="guilabel">Cliiped mode</em>. Selectați <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83</span></tt> ca <em class="guilabel">Mask layer`</em>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
+<img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Un nou raster, <tt class="docutils literal"><span class="pre">elevation_tin_clipped``va</span> <span class="pre">fi</span> <span class="pre">încărcat</span> <span class="pre">în</span> <span class="pre">QGIS.</span> <span class="pre">Vom</span> <span class="pre">stiliza</span> <span class="pre">acum</span> <span class="pre">acest</span> <span class="pre">strat,</span> <span class="pre">pentru</span> <span class="pre">a</span> <span class="pre">reprezenta</span> <span class="pre">diferența</span> <span class="pre">între</span> <span class="pre">elevații.</span> <span class="pre">Notați</span> <span class="pre">valorile</span> <span class="pre">minime</span> <span class="pre">și</span> <span class="pre">maxime</span> <span class="pre">ale</span> <span class="pre">elevației</span> <span class="pre">pentru</span> <span class="pre">stratul</span> <span class="pre">``elevation_tin</span></tt>. Faceți clic dreapta pe stratul <tt class="docutils literal"><span class="pre">elevation_tin_clipped</span></tt>, apoi selectați <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1310.png" class="align-center" src="../_images/1310.png" />
+<img alt="../_images/1311.png" class="align-center" src="../_images/1311.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Deschideți fila <em class="guilabel">Style</em>. Selectați <tt class="docutils literal"><span class="pre">Singleband</span> <span class="pre">pseudocolor</span></tt> pentru <em class="guilabel">Render type</em>. În secțiunea <em class="guilabel">Generate new color map</em>, selectați rampa de culoare <tt class="docutils literal"><span class="pre">Spectral</span></tt>. Deoarece dorim să creăm o hartă a adâncimilor, nu una a înălțimilor, bifați caseta <em class="guilabel">Invert</em>. Acest lucru va atribui nuanțe de albastru zonelor de profunzime și nuanțe de roșu pentru zonele de mică adâncime. Faceți clic pe <em class="guilabel">Classify</em>.</p>
 </li>
 </ol>
-<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
+<img alt="../_images/1410.png" class="align-center" src="../_images/1410.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Treceți la fila <em class="guilabel">Tranparency</em>. Vrem să eliminăm pixelii negri din rezultatul nostru. Introduceți <tt class="docutils literal"><span class="pre">0</span></tt> pentru <em class="guilabel">Additional no data value</em>. Faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
+<img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Acum aveți o hartă a elevației reliefului pentru lac, generată din citirile individuale ale adâncimilor. Haideți să generăm curbele de nivel. Mergeți la <em class="menuselection">Raster ‣ Extraction ‣ Contours</em>.</p>
 </li>
 </ol>
-<img alt="../_images/168.png" class="align-center" src="../_images/168.png" />
+<img alt="../_images/169.png" class="align-center" src="../_images/169.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">În fereastra de dialog <em class="guilabel">Contour</em>, introduceți <tt class="docutils literal"><span class="pre">contours</span></tt> pentru <em class="guilabel">Output file for contour lines</em>. Vom genera curbele de nivel la intervale de 5ft, astfel ca veti introduce <tt class="docutils literal"><span class="pre">5.00</span></tt> pentru <em class="guilabel">Interval between contour lines</em>. Bifați caseta <em class="guilabel">Attribute name</em>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/177.png" class="align-center" src="../_images/177.png" />
+<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Curbele de nivel vor fi încărcate din stratul <tt class="docutils literal"><span class="pre">contours</span></tt> o dată ce prelucrarea este încheiată. Faceți clic dreapta pe strat si selectați <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/187.png" class="align-center" src="../_images/187.png" />
+<img alt="../_images/188.png" class="align-center" src="../_images/188.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Mergeți la fila <em class="guilabel">Labels</em>. Bifați caseta <em class="guilabel">Label this layer with</em> și selectați câmpul <tt class="docutils literal"><span class="pre">ELEV</span></tt>. Selectați <tt class="docutils literal"><span class="pre">Curved</span></tt> pentru tipul <em class="guilabel">Plasamentului</em> și efectuați clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/195.png" class="align-center" src="../_images/195.png" />
+<img alt="../_images/196.png" class="align-center" src="../_images/196.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Veți vedea că fiecare curbă de nivel va fi etichetată în mod corespunzător, afișând cota de-a lungul liniei.</p>
 </li>
 </ol>
-<img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
+<img alt="../_images/203.png" class="align-center" src="../_images/203.png" />
 </div>
 </div>
 
@@ -343,7 +344,7 @@ tutorial from link below.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 14, 2015.<br/>
+      Last updated on Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

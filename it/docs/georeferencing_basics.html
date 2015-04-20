@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Primi passi con la programmazione Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Trovare i poligoni confinanti in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Realizzare mappe web leaflet con qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Usare il Google Maps Engine Connector con QGIS</a></li>
@@ -210,12 +211,12 @@ from the link below.</p>
 <div class="section" id="procedure">
 <h2>Procedimento<a class="headerlink" href="#procedure" title="link permanente per questa intestazione">¶</a></h2>
 <p>Georeferenziare in QGIS significa in molti casi utilizzare il plugin ‘Georeferencer GDAL’. Si tratta di un plugin interno, cioè già residente nella vostra installazione. Dovete soltanto attivarlo. Andate sul menu  <em class="menuselection">Plugins ‣ Gestisti e Installa Plugins</em>  e attivate il plugin <em class="guilabel">Georeferenziatore Raster GDAL</em> nella scheda <em class="guilabel">Installato</em> . Per una descrizione accurata del funzionamento dei plugin andate sulla pagina <a class="reference internal" href="using_plugins.html"><em>Usare i Plugins</em></a>.</p>
-<img alt="../_images/128.png" class="align-center" src="../_images/128.png" />
+<img alt="../_images/130.png" class="align-center" src="../_images/130.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Il plugin è ora installato nel menu Raster. Fate click su <em class="menuselection">Raster ‣ Georeferencer ‣ Georeferencer</em> per aprire il plugin.</p>
 </li>
 </ol>
-<img alt="../_images/213.png" class="align-center" src="../_images/213.png" />
+<img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">La finestra del plugin è suddivisa in 2 sezioni. La sezione in alto, quella dove il raster verrà visualizzato e quella in basso, dove verrà visualizzata una scheda con il vostro GCP.
 Che potrebbe essere tradotto in italiano con &#8220;Punto di Controllo al Suolo&#8221;. N.d.T.</p>
@@ -226,67 +227,67 @@ Che potrebbe essere tradotto in italiano con &#8220;Punto di Controllo al Suolo&
 <li><p class="first">Ora apriremo la nostra immagine JPG. Andate su <em class="menuselection">File ‣ Apri Raster</em>. Individuate l&#8217;immagine della carta geografica che avete appena salvato e fate click su <em class="guilabel">Apri</em>.</p>
 </li>
 </ol>
-<img alt="../_images/49.png" class="align-center" src="../_images/49.png" />
+<img alt="../_images/410.png" class="align-center" src="../_images/410.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Nella schermata successiva vi verrà chiesto di scegliere il sistema di riferimento delle coordinate (SR). Si tratta di specificare la proiezione e il datum dei vostri punti di controllo.  Qualora aveste raccolto i vostri punti usando un dispositivo GPS, sarebbe stato necessario usare un CRS WGS84. Visto che invece  state geo-referenziando una carta geografica digitalizzata allo scanner,  potete individuare il sistema di riferimento cercandolo nella mappa stessa. Esaminando la nostra immagine vediamo intanto che le coordinate sono in Latidudine/Longitudine. Non sono fornite informazioni specifiche riguardo il datum e dunque toccherà a noi individuarne uno adeguato. Visto che si tratta dell&#8217;India e che la mappa è piuttosto antica, possiamo ipotizzare che il datum Everest 1830 sia quello che fa al caso nostro.</p>
 </li>
 </ol>
-<img alt="../_images/59.png" class="align-center" src="../_images/59.png" />
+<img alt="../_images/510.png" class="align-center" src="../_images/510.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">A questo punto vedrete l&#8217;immagine caricata nella sezione in alto.</p>
 </li>
 </ol>
-<img alt="../_images/68.png" class="align-center" src="../_images/68.png" />
+<img alt="../_images/69.png" class="align-center" src="../_images/69.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Potete utilizzare lo strumento zoom (ingrandisci) e lo strumento pan (sposta) nella barra degli strumenti per esplorare meglio la carta.</p>
 </li>
 </ol>
-<img alt="../_images/78.png" class="align-center" src="../_images/78.png" />
+<img alt="../_images/79.png" class="align-center" src="../_images/79.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Adesso dobbiamo assegnare le coordinate ad alcuni punti di questa mappa. Se ingrandite a sufficienza potrete vedere le coordinate della griglia con i relativi contrassegni. Usando la griglia potete determinare le coordinate X e Y nei punti in cui la griglia fa un&#8217;intersezione. Fate click su <em class="guilabel">Aggiungi punto</em>  nella barra degli strumenti.</p>
 </li>
 </ol>
-<img alt="../_images/88.png" class="align-center" src="../_images/88.png" />
+<img alt="../_images/89.png" class="align-center" src="../_images/89.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Nella finestra di pop-up aggiungete le coordinate ricordando che  X =  longitudine  e Y = latitudine. Click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/97.png" class="align-center" src="../_images/97.png" />
+<img alt="../_images/98.png" class="align-center" src="../_images/98.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Noterete adesso che la tabella GCP  ha una riga con i dettagli del vostro primo GCP.</p>
 </li>
 </ol>
-<img alt="../_images/107.png" class="align-center" src="../_images/107.png" />
+<img alt="../_images/108.png" class="align-center" src="../_images/108.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">In modo del tutto analogo aggiungete almeno 4 GCPs per coprire l&#8217;intera immagine. Tanto più numerosi saranno i punti di controllo al suolo che registrerete tanto più accurata sarà la riproiezione dell&#8217;immagine sul sistema di coordinate che abbiamo scelto.</p>
 </li>
 </ol>
-<img alt="../_images/1112.png" class="align-center" src="../_images/1112.png" />
+<img alt="../_images/1113.png" class="align-center" src="../_images/1113.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Una volta che avete individuato un numero sufficiente di punti andate su <em class="menuselection">Preferenze -&gt; Impostazioni di Trasformazione</em>.</p>
 </li>
 </ol>
-<img alt="../_images/129.png" class="align-center" src="../_images/129.png" />
+<img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Nella finestra di dialogo <em class="guilabel">Impostazioni di trasformazione</em> , scegliete nella casella  <em class="guilabel">Tipo di trasformazione</em>  il tipo <em class="guilabel">Thin Plate Spline</em> e poi chiamate il vostro raster in uscita con il nome di <em class="guilabel">1870_southern_india_modified.tif</em>. Scegliete <em class="guilabel">EPSG:4326</em> come SR di destinazione in modo che l&#8217;immagine risultante sia collocata in un datum ampiamente compatibile. Assicuratevi che l&#8217;opzione <em class="guilabel">Carica in QGIS una volta eseguito</em>  sia spuntata.</p>
 </li>
 </ol>
-<img alt="../_images/137.png" class="align-center" src="../_images/137.png" />
+<img alt="../_images/138.png" class="align-center" src="../_images/138.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Tornate sulla finestra di georeferenziazione, andate su <em class="menuselection">File ‣ Inizia georeferenziazione</em>. Questo darà inizio al processo di deformazione dell&#8217;immagine usando i punti di controllo al suolo e quindi alla creazione del raster che georeferenziato che volevamo ottenere.</p>
 </li>
 </ol>
-<img alt="../_images/147.png" class="align-center" src="../_images/147.png" />
+<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Una volta che il processo è concluso vedrete il layer georeferenziato in QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/157.png" class="align-center" src="../_images/157.png" />
+<img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">La georeferenziazione a questo punto è stata completa. Ma, come sempre, è buona pratica verificare la bontà del nostro lavoro. Come possiamo verificare che la nostra georeferenziazione sia sufficientemente accurata ? In questo caso, possiamo caricare i confini amministrativi del paese da una fonte certa come il dataset di Natural Earth e confrontare con essa i nostri risultati. Noterete che le due mappe si sovrappongono piuttosto bene. Ci sono alcuni errori che potrebbero essere ridotti prendendo un numero maggiore di punti di controllo, cambiando i parametri di trasformazione oppure provando con un diverso tipo di datum.</p>
 </li>
 </ol>
-<img alt="../_images/167.png" class="align-center" src="../_images/167.png" />
+<img alt="../_images/168.png" class="align-center" src="../_images/168.png" />
 </div>
 </div>
 
@@ -313,7 +314,7 @@ Che potrebbe essere tradotto in italiano con &#8220;Punto di Controllo al Suolo&
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Apr 14, 2015.<br/>
+      Ultimo aggiornamento Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

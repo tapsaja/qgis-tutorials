@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Подсчет числа вершин в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Открытие файлов BIL, BIP или BSQ в QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Первые шаги в программировании на Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Нахождение соседних полигонов в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Веб-карты Leaflet с помощью qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Использование Google Maps Engine Connector для QGIS</a></li>
@@ -198,12 +199,12 @@
 <li><p class="first">Мы будем использовать 2 модуля для выполнения задачи. Убедитесь, что вы установили модули <strong>OSM Place Search</strong> и <strong>OpenLayers</strong>. См. инструкции по загрузке модулей: <a class="reference internal" href="using_plugins.html"><em>Использование модулей расширения</em></a>.</p>
 </li>
 </ol>
-<img alt="../_images/120.png" class="align-center" src="../_images/120.png" />
+<img alt="../_images/127.png" class="align-center" src="../_images/127.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Модуль <strong>OSM Place Search</strong> устанавливается в виде <em>панели</em> QGIS. Вы увидите новую панель под названием <em class="guilabel">OSM place search...</em> в окне QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/28.png" class="align-center" src="../_images/28.png" />
+<img alt="../_images/215.png" class="align-center" src="../_images/215.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Модуль <strong>OpenLayers</strong> устанавливается в меню <em>Модули</em>. Этот модуль позволяет вам получить доступ к базовым картам от различных поставщиков в QGIS. Загрузим базовую карту OpenStreetMap в QGIS, выбрав <em class="menuselection">Модули ‣ OpenLayers plugin ‣ Add OpenStreetMap layer</em>.</p>
 </li>
@@ -217,27 +218,27 @@
 <p class="first admonition-title">Примечание</p>
 <p class="last">Если вы не видите никаких данных, убедитесь, что вы в сети, так как фрагменты базовой карты загружаются из Интернета. Вы также можете использовать инструмент <em>Прокрутка карты</em> для незначительного перемещения по карте, что приведет к обновлению базовой карты.</p>
 </div>
-<img alt="../_images/47.png" class="align-center" src="../_images/47.png" />
+<img alt="../_images/48.png" class="align-center" src="../_images/48.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Теперь найдем <em>Лондон</em>. Введите запрос в строку <em class="guilabel">Name contains...</em> на панели <strong>OSM Place Search</strong>. При наведении курсора на результат, соответствующее место будет выделено на карте. Выберите первый результат - город Лондон в Великобритании - и нажмите кнопку <em class="guilabel">Zoom</em>.</p>
 </li>
 </ol>
-<img alt="../_images/57.png" class="align-center" src="../_images/57.png" />
+<img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Вы увидите, что базовый слой сдвигается и центрируется над Лондоном. Вы можете приблизить его с помощью инструмента <em class="guilabel">Zoom</em> и выбрать конкретную область, которая вас интересует. Для этого урока вы можете приблизить центр города, как показано ниже.</p>
 </li>
 </ol>
-<img alt="../_images/66.png" class="align-center" src="../_images/66.png" />
+<img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Теперь мы можем загрузить отображенные на карте данные. Перейдите к пункту <em class="menuselection">Vector ‣ OpenStreetMap ‣ Download data</em>.</p>
 </li>
 </ol>
-<img alt="../_images/76.png" class="align-center" src="../_images/76.png" />
+<img alt="../_images/77.png" class="align-center" src="../_images/77.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">В диалоговом окне  <em class="guilabel">Download OpenStreetMap data</em> выберите пункт <em class="guilabel">From map canvas</em> в разделе <em class="guilabel">Extent</em>. Выберите путь и назовите выходной файл <tt class="docutils literal"><span class="pre">london.osm</span></tt>.</p>
 </li>
 </ol>
-<img alt="../_images/86.png" class="align-center" src="../_images/86.png" />
+<img alt="../_images/87.png" class="align-center" src="../_images/87.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Загруженный файл с расширением <tt class="docutils literal"><span class="pre">.osm</span></tt> - это текстовый файл в формате <a class="reference external" href="http://wiki.openstreetmap.org/wiki/OSM_XML">OSM XML</a>. Сперва нам нужно преобразовать его в подходящий формат, что легко можно сделать в QGIS. Выберите пункт <em class="menuselection">Vector ‣ OpenStreetMap ‣ Import topology from XML</em>.</p>
 </li>
@@ -246,57 +247,57 @@
 <p class="first admonition-title">Примечание</p>
 <p class="last">Теперь, поскольку нам больше не нужны функции <strong>OSM Place Search</strong>, вы можете щелкнуть по кнопке &#8220;Закрыть&#8221;, чтобы убрать эту панель из главного окна. Если она вам вновь понадобится, вы можете активировать ее из <em class="menuselection">View ‣ Panels ‣ OSM place search...</em> (Windows) или <em class="menuselection">Settings ‣ Panels ‣ OSM place search...</em> (Linux).</p>
 </div>
-<img alt="../_images/96.png" class="align-center" src="../_images/96.png" />
+<img alt="../_images/97.png" class="align-center" src="../_images/97.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Выберите загруженный файл <tt class="docutils literal"><span class="pre">london.osm</span></tt> в качестве <em class="guilabel">Input XML file</em>. Назовите <em class="guilabel">Output SpatiaLite DB file</em> <tt class="docutils literal"><span class="pre">london.osm.db</span></tt>. Убедитесь, что флажок <em class="guilabel">Create connection (SpatiaLite) after import</em> отмечен.</p>
 </li>
 </ol>
-<img alt="../_images/106.png" class="align-center" src="../_images/106.png" />
+<img alt="../_images/107.png" class="align-center" src="../_images/107.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Теперь последний шаг. Нам нужно создать слои геометрии SpatialLite, которые можно просматривать и анализировать в QGIS. Это делается с помощью <em class="menuselection">Vector ‣ OpenStreetMap ‣ Export topology to SpatialLite</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1111.png" class="align-center" src="../_images/1111.png" />
+<img alt="../_images/1112.png" class="align-center" src="../_images/1112.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Файл <tt class="docutils literal"><span class="pre">london.osm.db</span></tt> содержит все типы объектов в базе данных OSM - точки, линии и многоугольники. Слои ГИС обычно содержат только один тип объектов, так что вы должны выбрать один из них. Так как мы заинтересованы в точечных местоположениях пабов, следует выбрать: guilabel:<cite>Point (nodes)</cite> в качестве <em class="guilabel">Export type</em>. Если бы вам нужна была дорожная сеть, стоило бы выбрать <em class="guilabel">Polylines (open ways)</em>. Назовите <em class="guilabel">Output layer name</em> <tt class="docutils literal"><span class="pre">london_points</span></tt>. Данные ГИС имеют 2 составляющие - местоположение и атрибуты. Помимо расположения паба, нас также интересует его <strong>имя</strong>, так что мы должны также экспортировать эту информацию. Нажмите на пункт <em class="guilabel">Load from DB</em> в разделе <em class="guilabel">Exported tags</em>. При этом будут извлечены все атрибуты из файла <tt class="docutils literal"><span class="pre">london.osm.db</span></tt>. Проверьте тэги <em class="guilabel">name</em> и <em class="guilabel">amenity</em>. См. <a class="reference external" href="http://wiki.openstreetmap.org/wiki/Tags">OSM Tags</a>, чтобы узнать больше о том, что означает каждый атрибут. Убедитесь, что отмечен пункт <em class="guilabel">Load into canvas when finished</em>, и нажмите <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/126.png" class="align-center" src="../_images/126.png" />
+<img alt="../_images/128.png" class="align-center" src="../_images/128.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Вы увидите, что новый точечный слой под названием <tt class="docutils literal"><span class="pre">london_points</span></tt> загружен в QGIS. Обратите внимание, что в нем содержатся <strong>ВСЕ</strong> точки базы данных OSM из области просмотра. Поскольку нас интересуют только пабы, мы должны написать запрос, чтобы выбрать только их. Щелкните правой кнопкой мыши на слое <tt class="docutils literal"><span class="pre">london_points</span></tt> слоя и выберите <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/136.png" class="align-center" src="../_images/136.png" />
+<img alt="../_images/137.png" class="align-center" src="../_images/137.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Вы заметите, что некоторые объекты в колонке <em class="guilabel">amenity</em> имеют значение атрибута <strong>pub</strong>. Нажмите кнопку <em class="guilabel">Select features using an expression</em>.</p>
 </li>
 </ol>
-<img alt="../_images/146.png" class="align-center" src="../_images/146.png" />
+<img alt="../_images/147.png" class="align-center" src="../_images/147.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Введите выражение <cite>&#8220;amenity&#8221; = &#8216;pub&#8217;</cite> и нажмите <em class="guilabel">Select</em>.</p>
 </li>
 </ol>
-<img alt="../_images/156.png" class="align-center" src="../_images/156.png" />
+<img alt="../_images/157.png" class="align-center" src="../_images/157.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Вернувшись к окну карты QGIS, вы увидите, что некоторые точки выделены желтым цветом. Это результат нашего запроса. Щелкните правой кнопкой мыши на слое <tt class="docutils literal"><span class="pre">london_points</span></tt> и выберите <em class="guilabel">Save Selection As...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/166.png" class="align-center" src="../_images/166.png" />
+<img alt="../_images/167.png" class="align-center" src="../_images/167.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">В диалоговом окне <em class="guilabel">Save vector layer as...</em> введите имя выходного файла: <tt class="docutils literal"><span class="pre">london_pubs.shp</span></tt>. Оставьте все другие параметры без изменения и убедитесь, что флажок <em class="guilabel">Add saved file to map</em> установлен. Нажмите <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/176.png" class="align-center" src="../_images/176.png" />
+<img alt="../_images/177.png" class="align-center" src="../_images/177.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Вы увидите новый слой с названием <tt class="docutils literal"><span class="pre">london_pubs</span></tt> в окне QGIS. Снимите отметку со слоя <tt class="docutils literal"><span class="pre">london_points</span></tt>, так как он нам больше не нужен.</p>
 </li>
 </ol>
-<img alt="../_images/186.png" class="align-center" src="../_images/186.png" />
+<img alt="../_images/187.png" class="align-center" src="../_images/187.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Извлечение shape-файла с пабами завершено. Вы можете использовать инструмент <em class="guilabel">Identify</em>, чтобы нажать на любую точку и посмотреть её атрибуты.</p>
 </li>
 </ol>
-<img alt="../_images/194.png" class="align-center" src="../_images/194.png" />
+<img alt="../_images/195.png" class="align-center" src="../_images/195.png" />
 </div>
 </div>
 
@@ -323,7 +324,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Apr 14, 2015.<br/>
+      Обновлено: Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

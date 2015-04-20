@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Μέτρηση του Aριθμού των Kορυφών σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Βρείτε Γειτονικά Πολύγωνα σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Διαδικτυακοί Χάρτες με το qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Χρήση του Google Maps Engine Connector για το QGIS</a></li>
@@ -206,7 +207,7 @@
 <li><p class="first">Πηγαίνετε στο  <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density/data-download">Population Density Grid, v3 download page.</a> .Επιλέξτε το  <em class="guilabel">Data Attributes</em> ως  <em class="guilabel">.ascii format</em>, <em class="guilabel">1° resolution</em> και <em class="guilabel">1990 year</em>.Κάντε κλικ στο <em class="guilabel">Download</em>.Σε αυτό το σημείο,μπορείτε να δημιουργήσετε έναν δωρεάν λογαριασμό και να εισέλθετε ή να χρησιμοποιήσετε το κουμπί <em class="guilabel">Guest Download</em> που βρίσκεται κάτω για να κατεβάσετε απευθείας τα δεδομένα.Επαναλάβετε τη διαδικασία για τα δεδομένα <em class="guilabel">2000 year</em> .</p>
 </li>
 </ol>
-<img alt="../_images/1103.png" class="align-center" src="../_images/1103.png" />
+<img alt="../_images/1104.png" class="align-center" src="../_images/1104.png" />
 <p>Τώρα θα έχετε κατεβάσει 2 αρχεία zip.</p>
 <p>For convenience, you can also download a copy of this data by clicking on following links:</p>
 <p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_90_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_90_ascii_one.zip</span></tt></a></p>
@@ -219,7 +220,7 @@
 <li><p class="first">Ανοίξτε το QGIS και πηγαίνετε στο <em class="menuselection">Layer ‣ Add Raster Layer..</em>.</p>
 </li>
 </ol>
-<img alt="../_images/238.png" class="align-center" src="../_images/238.png" />
+<img alt="../_images/247.png" class="align-center" src="../_images/247.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Εντοπίστε τα κατεβασμένα zip αρχεία.Κρατώντας πατημένο το <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> key και κάντε κλικ πάνω και στα δύο αρχεία zip για να τα επιλέξετε.Με αυτόν τον τρόπο μπορείτε να φορτώσετε και τα δύο αρχεία με ένα μόνο βήμα.</p>
 </li>
@@ -229,108 +230,108 @@
 <li><p class="first">Κάθε αρχείο zip περιέχει 2 αρχεία grid.Το `` a`` στο όνομα του αρχείου δείχνει ότι οι μετρήσεις του πληθυσμού προσαρμόστηκαν για να ταιριάζουν με τα σύνολα των Ηνωμένων Εθνών. Θα χρησιμοποιήσουμε τα προσαρμοσμένα πλέγματα για αυτό το σεμινάριο. Επιλέξτε `` glds00ag60.asc`` ως το στρώμα για να tutorial. Κάντε κλικ στο: guilabel: <cite>OK</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/421.png" class="align-center" src="../_images/421.png" />
+<img alt="../_images/422.png" class="align-center" src="../_images/422.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Για το επίπεδο δεν έχει οριστεί ένα CRS, και δεδομένου ότι τα grids είναι σε  lat/long,επιλέξτε <cite>EPSG: 4326</cite> ως σύστημα αναφοράς συντεταγμένων.</p>
 </li>
 </ol>
-<img alt="../_images/522.png" class="align-center" src="../_images/522.png" />
+<img alt="../_images/523.png" class="align-center" src="../_images/523.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Αφού έχουμε επιλέξει και τα δύο αρχεία zip ,θα δείτε παρόμοιους διαλόγους για άλλη μια φορά.Επαναλάβετε τη διαδικασία και επιλέξτε το grid <tt class="docutils literal"><span class="pre">glds90ag60.asc</span></tt> ως επίπεδο για το προσθέσετε.</p>
 </li>
 </ol>
-<img alt="../_images/620.png" class="align-center" src="../_images/620.png" />
+<img alt="../_images/621.png" class="align-center" src="../_images/621.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Άλλη μια φορά,επιλέξτε το <cite>EPSG:4326</cite> ως το CRS.</p>
 </li>
 </ol>
-<img alt="../_images/720.png" class="align-center" src="../_images/720.png" />
+<img alt="../_images/721.png" class="align-center" src="../_images/721.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Τώρα θα δείτε και τα δύο πλέγματα φορτωμένα στο QGIS.Το πλέγμα αποδίδεται σε κλίμακα του γκρι, όπου τα πιο σκούρα pixels υποδηλώνουν
 χαμηλότερες τιμές και τα πιο ανοιχτόχρωμα pixels υποδηλώνουν υψηλότερες τιμές.</p>
 </li>
 </ol>
-<img alt="../_images/819.png" class="align-center" src="../_images/819.png" />
+<img alt="../_images/820.png" class="align-center" src="../_images/820.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Για κάθε pixel  του πλέγματος έχει ανατεθεί μια τιμή.Αυτή η τιμή είναι η πυκνότητα του πληθυσμού για αυτό το grid.Κάντε κλικ στο κουμπί <em class="guilabel">Identify Features</em> για να επιλέξετε το εργαλείο και κάντε κλικ οπουδήποτε πάνω στο πλέγμα για να δείτε την τιμή αυτού του pixel.</p>
 </li>
 </ol>
-<img alt="../_images/917.png" class="align-center" src="../_images/917.png" />
+<img alt="../_images/918.png" class="align-center" src="../_images/918.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Για να οπτικοποιήσετε καλύτερα το μοτίβο της πυκνότητας του πληθυσμού,θα χρειαστεί να το διαμορφώσουμε.Κάντε δεξί-κλικ στο όνομα του επιπέδου και επιλέξτε <em class="guilabel">Properties</em>.Μπορείτε επίσης να κάνετε διπλό κλικ στο όνομα του επιπέδου στον πίνακα περιεχομένων για να εμφανίσετε το παράθυρο διαλόγου Layer Properties.</p>
 </li>
 </ol>
-<img alt="../_images/1018.png" class="align-center" src="../_images/1018.png" />
+<img alt="../_images/1019.png" class="align-center" src="../_images/1019.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Κάτω από την καρτέλα <em class="guilabel">Style</em> tab,αλλάξτε το guilabel:<cite>Render type</cite> to <em class="guilabel">Singleband pseudocolor</em>. Έπειτα,κάντε κλικ στο <em class="guilabel">Classify</em> κάτω από το <em class="guilabel">Generate a new color map</em>. Θα δείτε να έχουν δημιουργηθεί 5 νέες τιμές χρωμάτων.Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1123.png" class="align-center" src="../_images/1123.png" />
+<img alt="../_images/1124.png" class="align-center" src="../_images/1124.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Πίσω στον καμβά του QGIS,θα δείτε μια απόδοση του πλέγματος που μοιάζει με χάρτη heatmap.Ομοίως,επαναλάβετε την ίδια διαδικασία για το άλλο πλέγμα.</p>
 </li>
 </ol>
-<img alt="../_images/1219.png" class="align-center" src="../_images/1219.png" />
+<img alt="../_images/1220.png" class="align-center" src="../_images/1220.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Για την ανάλυσή μας,θα θέλαμε να βρούμε τις περιοχές με τη μεγαλύτερη αλλαγή σε πληθυσμό ανάμεσα στα έτη 1990 και 2000.Αυτό θα το πετύχουμε βρίσκοντας της διαφορά ανάμεσα σε κάθε τιμή pixel του grid και στα δύο επίπεδα.Επιλέξτε το <em class="menuselection">Raster ‣ Raster calculator</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1317.png" class="align-center" src="../_images/1317.png" />
+<img alt="../_images/1318.png" class="align-center" src="../_images/1318.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Στο τμήμα : guilabel: <cite>Raster bands</cite>, μπορείτε να επιλέξετε το επίπεδο κάνοντας διπλό κλικ πάνω του. Οι ζώνες έχουν το όνομά του πλέγματος ακολουθούμενο από το &#64; και τον αριθμό ζώνης. Δεδομένου ότι κάθε πλέγμα μας έχει μόνο 1 ζώνη, θα δείτε μόνο 1 καταχώρηση ανά πλέγμα. Η αριθμομηχανή ράστερ μπορεί να εφαρμόσει μαθηματικές πράξεις για τα pixels πλέγματος. Σε αυτήν την περίπτωση θέλουμε να περάσουμε έναν απλό τύπο για να αφαιρέσει την πυκνότητα του πληθυσμού του 1990 από το 2000. Πληκτρολογήστε `` glds00ag60 &#64; 1 - glds90ag60 &#64; 1`` ως τον τύπο.Ονομάστε το εξαγόμενο επίπεδό σας ως : guilabel: <cite>pop_density_change_2000_1990.tif</cite> και τσεκάρετε το κουτάκι δίπλα στο : guilabel:<cite>Add result to project</cite>.  Κάντε κλικ στο: guilabel: <cite>OK</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/1417.png" class="align-center" src="../_images/1417.png" />
+<img alt="../_images/1418.png" class="align-center" src="../_images/1418.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Μόλις ολοκληρωθεί η λειτουργία,θα δείτε το νέο επίπεδο να φορτώνει στο QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/1515.png" class="align-center" src="../_images/1515.png" />
+<img alt="../_images/1516.png" class="align-center" src="../_images/1516.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Αυτή η απεικόνιση σε κλίμακα του γκρι είναι χρήσιμη, αλλά μπορούμε να δημιουργήσουμε μια πολύ πιο κατατοπιστική έξοδο.Κάντε δεξί κλικ στο επίπεδο  <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990</span></tt> και επιλέξτε: guilabel: <cite>Properties</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/1615.png" class="align-center" src="../_images/1615.png" />
+<img alt="../_images/1616.png" class="align-center" src="../_images/1616.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Θέλουμε να διαμορφώσουμε το επίπεδο έτσι ώστε οι τιμές pixel με συγκεκριμένο εύρος να έχουν το ίδιο χρώμα.Πριν κάνουμε κάτι τέτοιο,πηγαίνετε στην καρτέλα <em class="guilabel">Metadata</em> και δείτε τις ιδιότητες του πλέγματος.Παρατηρήστε τις ελάχιστες και μέγιστες τιμές αυτού του επιπέδου.</p>
 </li>
 </ol>
-<img alt="../_images/1714.png" class="align-center" src="../_images/1714.png" />
+<img alt="../_images/1715.png" class="align-center" src="../_images/1715.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Τώρα πηγαίνετε στην καρτέλα <em class="guilabel">Style</em>.Επιλέξτε <em class="guilabel">Singleband pseudocolor</em>  ως <em class="guilabel">Render type</em>  κάτω από το <em class="guilabel">Band Rendering</em>. Ρυθμίστε το <em class="guilabel">Color interpolation</em> σε <em class="guilabel">Discrete</em>.Κάντε κλικ 4 φορές στο κουμπί  <em class="guilabel">Add entry</em> για δημιουργήσετε 4 ξεχωριστές κατηγορίες.Κάντε κλικ σε μια καταχώρηση για να αλλάξετε τις τιμές.Ο τρόπος με τον οποίο δουλεύει η το χρώμα του χάρτη είναι ότι όλες οι τιμές χαμηλότερες από την τιμή που έχει εισαχθεί θα δοθεί το χρώμα της για αυτήν την καταχώρηση. Δεδομένου ότι η ελάχιστη αξία στο πλέγμα μας είναι ακριβώς πάνω από -2000, επιλέγουμε -2000 ως την πρώτη καταχώρηση. Αυτό θα ισχύει για τις τιμές No Data. Εισάγετε τις τιμές και τις ετικέτες για άλλες καταχωρήσεις όπως παρακάτω και κάντε κλικ στο: guilabel: <cite>OK</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/1814.png" class="align-center" src="../_images/1814.png" />
+<img alt="../_images/1815.png" class="align-center" src="../_images/1815.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Τώρα θα δείτε μια πολύ πιο ισχυρή απεικόνιση, όπου μπορείτε να δείτε τις περιοχές που έχουν σημειώσει θετικές και αρνητικές αλλαγές στην πυκνότητα του πληθυσμού. Κάντε κλικ στο κουμπί  : guilabel: <cite>Zoom In</cite> και σχεδιάστε ένα ορθογώνιο γύρω από την Ευρώπη για να εξερευνήσετε την περιοχή σε περισσότερη λεπτομέρεια.</p>
 </li>
 </ol>
-<img alt="../_images/1912.png" class="align-center" src="../_images/1912.png" />
+<img alt="../_images/1913.png" class="align-center" src="../_images/1913.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Επιλέξτε το εργαλείο <em class="guilabel">Identify</em> και κάντε κλικ στις Κόκκινες και Μπλε περιοχές για να επιβεβαιώσετε ότι οι κανόνες διαμόρφωσης λειτούργησαν όπως θα έπρεπε.</p>
 </li>
 </ol>
-<img alt="../_images/209.png" class="align-center" src="../_images/209.png" />
+<img alt="../_images/2010.png" class="align-center" src="../_images/2010.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Τώρα ας προχωρήσουμε αυτήν την ανάλυση ένα βήμα παραπέρα και να βρούμε τις περιοχές που έχουν σημειώσει μόνο &#8216;αρνητική&#8217; αλλαγή στην πυκνότητα του πληθυσμού. Ανοίξτε το <em class="menuselection">Raster ‣ Raster calculator</em>.</p>
 </li>
 </ol>
-<img alt="../_images/2113.png" class="align-center" src="../_images/2113.png" />
+<img alt="../_images/2114.png" class="align-center" src="../_images/2114.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Εισάγετε την έκφραση <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990&#64;1</span> <span class="pre">&lt;</span> <span class="pre">-10</span></tt>. Αυτό που θα κάνει αυτή η έκφραση είναι να ρυθμίσει την τιμή του pixel σε 1 αν ταιριάζει η έκφραση και 0 αν δεν ταιριάζει.Έτσι,θα πάρουμε ένα πλέγμα με τιμή pixel 1 όπου υπάρχει αρνητική αλλαγή και 0 όπου δεν υπάρχει.Ονομάστε το εξαγόμενο επίπεδο ως <a href="#id1"><span class="problematic" id="id2">``</span></a>negative_pop_change_2000_1990``και τσεκάρετε το κουτάκι δίπλα στο  <em class="guilabel">Add result to project</em>.Κάντε κλικ στο ΟΚ.</p>
 </li>
 </ol>
-<img alt="../_images/2210.png" class="align-center" src="../_images/2210.png" />
+<img alt="../_images/2211.png" class="align-center" src="../_images/2211.png" />
 <ol class="arabic simple" start="23">
 <li><p class="first">Μόλις φορτώσει το νέο επίπεδο,κάντε δεξί-κλικ πάνω του και επιλέξτε <em class="guilabel">Properties</em>. Στην καρτέλα <em class="guilabel">Transparency</em> ,προσθέστε 0 ως <em class="guilabel">Additional no data value</em>.Αυτή η ρύθμιση θα κάνει τα pixel με τιμές 0 διαφανή. Κάντε κλικ στο: guilabel: <cite>OK</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/239.png" class="align-center" src="../_images/239.png" />
+<img alt="../_images/2310.png" class="align-center" src="../_images/2310.png" />
 <ol class="arabic simple" start="24">
 <li><p class="first">Τώρα θα δείτε τις περιοχές της αρνητικής αλλαγής στην πυκνότητας του πληθυσμού,ως γκρι pixels.</p>
 </li>
 </ol>
-<img alt="../_images/246.png" class="align-center" src="../_images/246.png" />
+<img alt="../_images/248.png" class="align-center" src="../_images/248.png" />
 </div>
 </div>
 
@@ -357,7 +358,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 14, 2015.<br/>
+      Last updated on Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

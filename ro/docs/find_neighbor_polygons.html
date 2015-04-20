@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Crearea Hărților Web Leaflet cu ajutorul qgis2leaf" href="leaflet_maps_with_qgis2leaf.html" />
-    <link rel="prev" title="Noțiuni de bază despre programarea în Python" href="getting_started_with_pyqgis.html" />
+    <link rel="prev" title="Building a Python Plugin" href="building_a_python_plugin.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -123,7 +124,7 @@
               
                 
   <li>
-    <a href="getting_started_with_pyqgis.html" title="Previous Chapter: Noțiuni de bază despre programarea în Python"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Noțiuni de bază ...</span>
+    <a href="building_a_python_plugin.html" title="Previous Chapter: Building a Python Plugin"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Building a Pytho...</span>
     </a>
   </li>
   <li>
@@ -207,12 +208,12 @@
 <li><p class="first">Încărcați stratul <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> mergând la <em class="menuselection">Layer ‣ Add Vector Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/127.png" class="align-center" src="../_images/127.png" />
+<img alt="../_images/129.png" class="align-center" src="../_images/129.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Script-ul folosește 2 câmpuri pentru a efectua acțiunea. Un câmp pentru nume, și un câmp pe care doriți să-l însumați. Utilizați instrumentul <em class="guilabel">Identify</em> pentru a face clic pe orice element, pentru a-i examina atributele. În acest caz, câmpul pentru nume este <strong>NAME</strong>, și dorim să însumăm estimările de populație din câmpul <strong>POP_EST</strong>.</p>
 </li>
 </ol>
-<img alt="../_images/210.png" class="align-center" src="../_images/210.png" />
+<img alt="../_images/216.png" class="align-center" src="../_images/216.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Mergeți la <em class="menuselection">Plugins ‣ Python Console</em>.</p>
 </li>
@@ -222,27 +223,27 @@
 <li><p class="first">În fereastra <em class="guilabel">Python Console</em>, faceți clic pe butonul <em class="guilabel">Show Editor</em>.</p>
 </li>
 </ol>
-<img alt="../_images/48.png" class="align-center" src="../_images/48.png" />
+<img alt="../_images/49.png" class="align-center" src="../_images/49.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">În panoul <em class="guilabel">Editor</em>, faceți clic pe butonul <em class="guilabel">Open file</em>, navigați la script-ul descărcat <tt class="docutils literal"><span class="pre">neighbors.py</span></tt> și apăsați <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
+<img alt="../_images/59.png" class="align-center" src="../_images/59.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">O dată ce script-ul este încărcat, este posibil să doriți să schimbați valorile <tt class="docutils literal"><span class="pre">_NAME_FIELD</span></tt> și <tt class="docutils literal"><span class="pre">_SUM_FIELD</span></tt> pentru a se potrivi cu atributele din propriul strat. Dacă lucrați cu stratul  <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt>, le puteți lăsa așa cum sunt. Faceți clic pe butonul <em class="guilabel">Save</em> din panoul <em class="guilabel">Editor</em>, dacă ați făcut vreo schimbare. Apoi apăsați butonul <em class="guilabel">Run script</em> pentru a rula script-ul.</p>
 </li>
 </ol>
-<img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
+<img alt="../_images/68.png" class="align-center" src="../_images/68.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">O dată ce script-ul se încheie, faceți clic-dreapta pe stratul <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt>, apoi selectați <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/77.png" class="align-center" src="../_images/77.png" />
+<img alt="../_images/78.png" class="align-center" src="../_images/78.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Veți observa 2 noi atribute, numite <tt class="docutils literal"><span class="pre">NEIGHBORS</span></tt> și <tt class="docutils literal"><span class="pre">SUM</span></tt>. Acestea au fost adăugate de către script.</p>
 </li>
 </ol>
-<img alt="../_images/87.png" class="align-center" src="../_images/87.png" />
+<img alt="../_images/88.png" class="align-center" src="../_images/88.png" />
 <p>Pentru referință, mai jos este script-ul complet. Îl puteți modifica pentru a se potrivi cerințelor dumneavoastră.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c">################################################################################</span>
 <span class="c"># Copyright 2014 Ujaval Gandhi</span>
@@ -353,7 +354,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 14, 2015.<br/>
+      Last updated on Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

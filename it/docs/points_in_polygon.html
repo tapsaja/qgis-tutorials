@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Primi passi con la programmazione Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Trovare i poligoni confinanti in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Realizzare mappe web leaflet con qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Usare il Google Maps Engine Connector con QGIS</a></li>
@@ -208,7 +209,7 @@ below:</p>
 <li><p class="first">Aprite il menu <em class="menuselection">Layer ‣ Aggiungi Layer testo delimitato</em>  Nella finestra di dialogo che compare  individuate il file appena scaricato <tt class="docutils literal"><span class="pre">signif.txt</span></tt> .</p>
 </li>
 </ol>
-<img alt="../_images/1101.png" class="align-center" src="../_images/1101.png" />
+<img alt="../_images/1102.png" class="align-center" src="../_images/1102.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Dal momento che si tratta di un <em>tab-delimited file</em>, cioè di un file in cui le colonne sono separate dal tabulatore (tasto tab), scegliete <em class="guilabel">Tab</em> come <em class="guilabel">Formato File</em> . Il campo  <em class="guilabel">X</em>  e il campo <em class="guilabel">Y</em>  verranno compilati in modo automatico. Fate click su <em class="guilabel">OK</em>.</p>
 </li>
@@ -217,7 +218,7 @@ below:</p>
 <p class="first admonition-title">Nota</p>
 <p class="last">Vedrete comparire dei messaggi di errore mentre QGIS sta importando il file. Si tratta di errori di incolonnamento e  alcune righe del file non saranno importate. Per quelli che sono gli scopi di questo esercizio questi errori possono essere trascurati senza conseguenze. Chiudete.</p>
 </div>
-<img alt="../_images/236.png" class="align-center" src="../_images/236.png" />
+<img alt="../_images/240.png" class="align-center" src="../_images/240.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Considerando che il dataset dei terremoti ha coordinate geografiche basate su Latitudine e Longitudine scegliete <em class="guilabel">WGS 84 EPSG:436</em> nella finestra <em class="guilabel">Selettore di Sistema di Riferimento (SR)</em>.</p>
 </li>
@@ -227,12 +228,12 @@ below:</p>
 <li><p class="first">A questo punto il layer dei punti del terremoto dovrebbe essere stato caricato e reso visibile in QGIS. Apriamo allora il layer dei paesi. Andate su <em class="menuselection">Layer ‣ Aggiungi Vettore</em>. Individuate il file appena scaricato <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt> e fate click su <em class="guilabel">Apri</em>.Selezionate il file <a href="#id1"><span class="problematic" id="id2">``</span></a>ne_10m_admin_0_countries.shp``come layer nella finestra di dialogo &#8220;Selezionare il layer da aggiungere...&#8221;.</p>
 </li>
 </ol>
-<img alt="../_images/419.png" class="align-center" src="../_images/419.png" />
+<img alt="../_images/420.png" class="align-center" src="../_images/420.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Click sul menu <em class="menuselection">Vettore ‣ Strumenti di Analisi ‣ Punti nel Poligono</em>.</p>
 </li>
 </ol>
-<img alt="../_images/520.png" class="align-center" src="../_images/520.png" />
+<img alt="../_images/521.png" class="align-center" src="../_images/521.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Nella finestra di dialogo che compare selezionate nell&#8217;ordine il layer poligonale e quello puntuale. Chiamiamo il layer in uscita <tt class="docutils literal"><span class="pre">earthquake_per_coutry.shp</span></tt> e facciamo click su <em class="guilabel">OK</em>.</p>
 </li>
@@ -245,29 +246,29 @@ below:</p>
 <li><p class="first">Quando vi viene chiesto se volete aggiungere il nuovo layer alla TOC rispondete affermativamente <em class="guilabel">Sì</em>.</p>
 </li>
 </ol>
-<img alt="../_images/718.png" class="align-center" src="../_images/718.png" />
+<img alt="../_images/719.png" class="align-center" src="../_images/719.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Vedrete il nuovo layer aggiungersi alla tavola dei contenuti (TOC). Aprite la relativa tabella degli attributi facendo click con il tasto destro sul layer e selezionando <em class="guilabel">Apri Tabella Attributi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/817.png" class="align-center" src="../_images/817.png" />
+<img alt="../_images/818.png" class="align-center" src="../_images/818.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Nella tavola degli attributi troverete la colonna <tt class="docutils literal"><span class="pre">PNTCNT</span></tt>. Questo è il contatore del numero dei punti del terremoto che cadono all&#8217;interno di ciascuno dei poligoni.</p>
 </li>
 </ol>
-<img alt="../_images/915.png" class="align-center" src="../_images/915.png" />
+<img alt="../_images/916.png" class="align-center" src="../_images/916.png" />
 <ol class="arabic simple" start="10">
 <li>To get our answer, we can simply sort the table by <tt class="docutils literal"><span class="pre">PNTCNT</span></tt> field and the
 country with highest count will be our answer. Click 2-times on the <tt class="docutils literal"><span class="pre">PNTCNT</span></tt>
 column to get it sorted in descending order. Click on the first row to
 select it and close the Attribute Table.</li>
 </ol>
-<img alt="../_images/1016.png" class="align-center" src="../_images/1016.png" />
+<img alt="../_images/1017.png" class="align-center" src="../_images/1017.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Torniamo adesso nella finestra principale di QGIS e vedrete un poligono evidenziato in giallo. Questo è il poligono relativo alla riga che abbiamo appena selezionato nella tavola degli attributi perché detiene al suo interno il più alto numero di punti. Usate lo strumento:guilabel:<cite>Informazione elementi</cite> e fate click sul poligono in giallo. Potete finalmente vedere che il paese con il numero maggiore di terremoti significativi è la <strong>China</strong>.</p>
 </li>
 </ol>
-<img alt="../_images/1121.png" class="align-center" src="../_images/1121.png" />
+<img alt="../_images/1122.png" class="align-center" src="../_images/1122.png" />
 <p>Con una semplice analisi di 2 dataset abbiamo dimostrato che la Cina è il paese che ha avuto il maggior numero di terremoti. Potreste approfondire questa indagine prendendo in considerazione sia la popolazione che le dimensioni dei diversi paesi per determinare qual è il paese più gravemente colpito dai principali terremoti.</p>
 </div>
 </div>
@@ -295,7 +296,7 @@ select it and close the Attribute Table.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Apr 14, 2015.<br/>
+      Ultimo aggiornamento Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

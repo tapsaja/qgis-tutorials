@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -222,12 +223,12 @@ tutorial from link below.</p>
 <ol class="arabic simple">
 <li>Open QGIS. Go to <em class="menuselection">Layer ‣ Add Layer  ‣ Add Vector Layer..</em></li>
 </ol>
-<img alt="../_images/140.png" class="align-center" src="../_images/140.png" />
+<img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
 <ol class="arabic simple" start="2">
 <li>Browse to the downloaded <tt class="docutils literal"><span class="pre">Shapefiles.zip</span></tt> file and select it. Click
 <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/216.png" class="align-center" src="../_images/216.png" />
+<img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
 <ol class="arabic simple" start="3">
 <li>In the <em class="guilabel">Select layers to add...</em> dialog, hold the <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> key
 and select <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83.shp</span></tt> and
@@ -239,19 +240,19 @@ and select <tt class="docutils literal"><span class="pre">Arlington_Soundings_20
 layer represents the boundary of the lake. Un-check the box next to it in
 the Table of Contents.</li>
 </ol>
-<img alt="../_images/412.png" class="align-center" src="../_images/412.png" />
+<img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
 <ol class="arabic simple" start="5">
 <li>This will reveal the data from the second layer
 <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></tt>. Though the data looks like lines, it is
 a series of points that are very close.</li>
 </ol>
-<img alt="../_images/512.png" class="align-center" src="../_images/512.png" />
+<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
 <ol class="arabic simple" start="6">
 <li>Click the <em class="guilabel">Zoom</em> icon and select a small area on the screen. As
 you zoom closer, you will see the points. Each point represents a reading
 taken by a <em>Depth Sounder</em> at the location recorded by a <em>DGPS</em> equipment.</li>
 </ol>
-<img alt="../_images/611.png" class="align-center" src="../_images/611.png" />
+<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
 <ol class="arabic simple" start="7">
 <li>Select the <em class="guilabel">Identify</em> tool and click on a point. You will see the
 <em class="guilabel">Identify Results</em> panel show up on the left with the attribute
@@ -260,13 +261,13 @@ depth of the lake at the location. As our task is to create a depth profile
 and elevation contours, we will use this values as input for the
 interpolation.</li>
 </ol>
-<img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
+<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
 <ol class="arabic simple" start="8">
 <li>Make sure you have the <tt class="docutils literal"><span class="pre">Interpolation</span> <span class="pre">plugin</span></tt> enabled. See
 <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> for how to enable plugins. Once enabled, go to
 <em class="menuselection">Raster ‣ Interpolation ‣ Interpolation</em>.</li>
 </ol>
-<img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
+<img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
 <ol class="arabic simple" start="9">
 <li>In the <em class="guilabel">Interpolation</em> dialog, select
 <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></tt> as the <em class="guilabel">Vector layers</em> in the
@@ -289,33 +290,33 @@ for interpolating other types of data such as mineral concentrations,
 populations etc. See the <a class="reference external" href="http://docs.qgis.org/2.2/en/docs/gentle_gis_introduction/spatial_analysis_interpolation.html">Spatial Analysis</a>
 module of the QGIS documentation for more details.</p>
 </div>
-<img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
+<img alt="../_images/910.png" class="align-center" src="../_images/910.png" />
 <ol class="arabic simple" start="10">
 <li>You will see the new later <tt class="docutils literal"><span class="pre">elevation_tin</span></tt> loaded in QGIS. Right-click
 the layer and select <em class="guilabel">Zoom to layer</em>.</li>
 </ol>
-<img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
+<img alt="../_images/1010.png" class="align-center" src="../_images/1010.png" />
 <ol class="arabic simple" start="11">
 <li>Now you will see the full extent of the created surface. Interpolation does
 not give accurate results outside the collection area. Let&#8217;s clip the
 resulting surface with the lake boundary. Go to <em class="menuselection">Raster ‣
 Extraction ‣ Clipper</em>.</li>
 </ol>
-<img alt="../_images/1114.png" class="align-center" src="../_images/1114.png" />
+<img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
 <ol class="arabic simple" start="12">
 <li>Name the <em class="guilabel">Output file</em> as <tt class="docutils literal"><span class="pre">elevation_tin_clipped.tif</span></tt>. Select the
 <em class="guilabel">Cliiped mode</em> as <em class="guilabel">Mask layer</em>. Select
 <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83</span></tt> as the <em class="guilabel">Mask layer`</em>. Click
 <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
+<img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
 <ol class="arabic simple" start="13">
 <li>A new raster <tt class="docutils literal"><span class="pre">elevation_tin_clipped</span></tt> will be loaded in QGIS. We will now
 style this layer to show the difference in elevations. Note the min and max
 elevation values from the <tt class="docutils literal"><span class="pre">elevation_tin</span></tt> layer. Right-click the
 <tt class="docutils literal"><span class="pre">elevation_tin_clipped</span></tt> layer and select <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/1310.png" class="align-center" src="../_images/1310.png" />
+<img alt="../_images/1311.png" class="align-center" src="../_images/1311.png" />
 <ol class="arabic simple" start="14">
 <li>Go to the <em class="guilabel">Style</em> tab. Select <em class="guilabel">Render type</em> as
 <tt class="docutils literal"><span class="pre">Singleband</span> <span class="pre">pseudocolor</span></tt>. In the <em class="guilabel">Generate new color map</em>
@@ -323,19 +324,19 @@ panel, select <tt class="docutils literal"><span class="pre">Spectral</span></tt
 opposed to a height-map, check the <em class="guilabel">Invert</em> box. This will assign
 blues to deep areas and reds to shallow areas. Click <em class="guilabel">Classify</em>.</li>
 </ol>
-<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
+<img alt="../_images/1410.png" class="align-center" src="../_images/1410.png" />
 <ol class="arabic simple" start="15">
 <li>Switch to the <em class="guilabel">Tranparency</em> tab. We want to remove the
 black-pixels from our output. Enter <tt class="docutils literal"><span class="pre">0</span></tt> as the <em class="guilabel">Additional no
 data value</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
+<img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
 <ol class="arabic simple" start="16">
 <li>Now you have a elevation relief map for the lake generated from the
 individual depth readings. Let&#8217;s generate contours now. Go to
 <em class="menuselection">Raster ‣ Extraction ‣ Contours</em>.</li>
 </ol>
-<img alt="../_images/168.png" class="align-center" src="../_images/168.png" />
+<img alt="../_images/169.png" class="align-center" src="../_images/169.png" />
 <ol class="arabic simple" start="17">
 <li>In the <em class="guilabel">Contour</em> dialog, enter <tt class="docutils literal"><span class="pre">contours</span></tt> as the
 <em class="guilabel">Output  file for contour lines</em>. We will generate contour lines
@@ -343,23 +344,23 @@ at 5ft intervals, so enter <tt class="docutils literal"><span class="pre">5.00</
 contour lines</em>. Check the <em class="guilabel">Attribute name</em> box. Click
 <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/177.png" class="align-center" src="../_images/177.png" />
+<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
 <ol class="arabic simple" start="18">
 <li>The contour lines will be loaded as <tt class="docutils literal"><span class="pre">contours</span></tt> layer once the processing
 is finished. Right-click the layer and select <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/187.png" class="align-center" src="../_images/187.png" />
+<img alt="../_images/188.png" class="align-center" src="../_images/188.png" />
 <ol class="arabic simple" start="19">
 <li>Go to the <em class="guilabel">Labels</em> tab. Check the <em class="guilabel">Label this layer
 with</em> box and select <tt class="docutils literal"><span class="pre">ELEV</span></tt> as the field. Select <tt class="docutils literal"><span class="pre">Curved</span></tt> as the
 <em class="guilabel">Placement</em> type and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/195.png" class="align-center" src="../_images/195.png" />
+<img alt="../_images/196.png" class="align-center" src="../_images/196.png" />
 <ol class="arabic simple" start="20">
 <li>You will see that each contour line will be appropriately labeled with the
 elevation along the line.</li>
 </ol>
-<img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
+<img alt="../_images/203.png" class="align-center" src="../_images/203.png" />
 </div>
 </div>
 
@@ -386,7 +387,7 @@ elevation along the line.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Última atualização em Apr 14, 2015.<br/>
+      Última atualização em Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Primi passi con la programmazione Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Trovare i poligoni confinanti in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Realizzare mappe web leaflet con qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Usare il Google Maps Engine Connector con QGIS</a></li>
@@ -218,12 +219,12 @@ tutorial from link below.</p>
 <li><p class="first">Aprite QGIS e andate su <em class="menuselection">Layer ‣ Aggiungi vettore..</em>.</p>
 </li>
 </ol>
-<img alt="../_images/140.png" class="align-center" src="../_images/140.png" />
+<img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Individuate lo shapefile appena scaricato <tt class="docutils literal"><span class="pre">Shapefiles.zip</span></tt> e selezionatelo. Fate click su <em class="guilabel">Apri</em>.</p>
 </li>
 </ol>
-<img alt="../_images/216.png" class="align-center" src="../_images/216.png" />
+<img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Nella finestra di dialogo <em class="guilabel">Seleziona layer da aggiungere...</em>  tenete premuto il tasto <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> e selezionate i layer <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83.shp</span></tt> e <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83.shp</span></tt>. Fate click su <em class="guilabel">OK</em>.</p>
 </li>
@@ -233,27 +234,27 @@ tutorial from link below.</p>
 <li><p class="first">Vedrete due layer caricati in QGIS. Il layer <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83</span></tt> layer rappresenta i confini del lago. Deselezionate la relativa casella nella TOC.</p>
 </li>
 </ol>
-<img alt="../_images/412.png" class="align-center" src="../_images/412.png" />
+<img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Questo rivelerà la composizione dei dati del secondo layer, quello che si chiama <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></tt>. Sebbene a prima vista paiano delle linee, si tratta in realtà di una serie di punti molto ravvicinati.</p>
 </li>
 </ol>
-<img alt="../_images/512.png" class="align-center" src="../_images/512.png" />
+<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Fate click sull&#8217;icona <em class="guilabel">Ingrandisci</em> e selezionate una piccola area sulla schermo. Via via che vi avvicinate iniziarete a veder comparire i punti. Ciascuno dei punti rappresenta l&#8217;esito di una rilevazione effettuata sul campo con una  <em>Sonda di profondità</em>  e quindi registrata attraverso un disposito <em>DGPS</em> .</p>
 </li>
 </ol>
-<img alt="../_images/611.png" class="align-center" src="../_images/611.png" />
+<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Slezionate lo strumento <em class="guilabel">Informazioni elementi</em> e fate click su un punto. Vedrete  comparire il pannello <em class="guilabel">Informazioni sui risultati</em> che mostra i valori assegnati al punto. In questo caso l&#8217;attributo <cite>ELEVATION`</cite> indica la profondità del lago in quel punto. Dal momento che ci siamo proposti di creare un mappa della profondità e un disegno delle curve di livello, useremo questi punteggi come degli input per l&#8217;interpolazione.</p>
 </li>
 </ol>
-<img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
+<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Assicuratevi di avere il plugin <tt class="docutils literal"><span class="pre">Interpolation</span> <span class="pre">plugin</span></tt> attivo. Qualora fosse necessario, andatevi a vedere <a class="reference internal" href="using_plugins.html"><em>Usare i Plugins</em></a> per attivarlo. Una volta attivato, andate su  <em class="menuselection">Raster ‣ Interpolazione ‣ Interpolazione</em>.</p>
 </li>
 </ol>
-<img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
+<img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Nella finestra di dialogo  <em class="guilabel">Plugin di Interpolazione</em> selezionate, sotto a guilabel:<cite>Input</cite>, il file <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></tt> alla voce <em class="guilabel">Vettore</em>. Selezionate quindi <tt class="docutils literal"><span class="pre">ELEVATION`</span> <span class="pre">come</span> <span class="pre">:guilabel:`attributo</span> <span class="pre">di</span> <span class="pre">interpolazione`.</span> <span class="pre">Fate</span> <span class="pre">quindi</span> <span class="pre">click</span> <span class="pre">su</span> <span class="pre">:guilabel:`Aggiungi`</span> <span class="pre">nel</span> <span class="pre">pannello</span> <span class="pre">sottostante.</span> <span class="pre">Modificate</span> <span class="pre">poi</span> <span class="pre">i</span> <span class="pre">valori</span> <span class="pre">di</span> <span class="pre">:guilabel:`Dimensione</span> <span class="pre">cella</span> <span class="pre">X`</span> <span class="pre">e</span> <span class="pre">:guilabel:`</span> <span class="pre">Dimensione</span> <span class="pre">cella</span> <span class="pre">Y`</span>&nbsp; <span class="pre">portandoli</span> <span class="pre">a</span> <span class="pre">``5</span></tt>. Questo valore è la misura di ciascun pixel nella griglia di output. Considerato che la nostra fonte di dati è stata misurata in un sistema di riferimento (SR) proiettato avente i  <strong>piedi americani</strong> (Feet-US) come unità di misura, basandoci sulla nostra selezione la misura della griglia sarà di <strong>5 piedi</strong>. Ora fate click sul pulsante <em class="guilabel">...</em>  poi su <em class="guilabel">file di output</em>  e chiamate il file con il nome di <tt class="docutils literal"><span class="pre">elevation_tin.tif</span></tt>. Fate click su <em class="guilabel">OK</em>.</p>
 </li>
@@ -262,62 +263,62 @@ tutorial from link below.</p>
 <p class="first admonition-title">Nota</p>
 <p class="last">I risultati dell&#8217;interpolazione variano significativamente sulla base del motodo e dei parametri che voi scegliete. QGIS supporta due metodi di interpolazione chiamati  <em>Triagulated Irregular Network (TIN)</em> e <em>Inverse Distance Weighting (IDW)</em>. Il metodo TIN è usato comunemente per i dati di elevazione mentre IDW viene usato per dati di interpolazione di altro genere, per esempio le concentrazioni di minerale, la popolazione e così via. Vedetevi il modulo relativo alla the <a class="reference external" href="http://docs.qgis.org/2.2/en/docs/gentle_gis_introduction/spatial_analysis_interpolation.html">Spatial Analysis</a> nella documentazione ufficiale di QGIS per ulteriori dettagli.</p>
 </div>
-<img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
+<img alt="../_images/910.png" class="align-center" src="../_images/910.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Vedrete il nuovo layer <tt class="docutils literal"><span class="pre">elevation_tin</span></tt>  caricato in QGIS. Fate click sul layer e scegliete <em class="guilabel">Zoom all&#8217;estensione del layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
+<img alt="../_images/1010.png" class="align-center" src="../_images/1010.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">State vedendo l&#8217;estensione completa della superficie. Ma l&#8217;interpolazione non dà risultati accurati al di fuori dell&#8217;area di raccolta dei dati. Andiamo allora a clippare la superficie ottenuta con il layer dei confini del lago.  Andate su <em class="menuselection">Raster ‣ Estrazione ‣ Clipper</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1114.png" class="align-center" src="../_images/1114.png" />
+<img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Date al <em class="guilabel">file di output</em> il nome <tt class="docutils literal"><span class="pre">elevation_tin_clipped.tif</span></tt>. Selezionate come <em class="guilabel">Modo di clip</em> la casella <em class="guilabel">strato per la maschera</em>. Quindi selezionate sotto <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83</span></tt> come <em class="guilabel">strato per la maschera`</em>. Click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
+<img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Un nuovo raster <tt class="docutils literal"><span class="pre">elevation_tin_clipped</span></tt>  sarà caricato in QGIS. Ora potremo finalmente tematizzare questo layer per mostrare i diversi livelli di altezza. Osservate i livelli minimi e massimi del layer <tt class="docutils literal"><span class="pre">elevation_tin</span></tt>. Fate click con il tasto destro sul layer  <tt class="docutils literal"><span class="pre">elevation_tin_clipped</span></tt> e selezionate <em class="guilabel">Proprietà</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1310.png" class="align-center" src="../_images/1310.png" />
+<img alt="../_images/1311.png" class="align-center" src="../_images/1311.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Andate sulla scheda <em class="guilabel">Stile</em> . Selezionate <cite>Falso colore banda singola``e  come   :guilabel:`tipo di visualizzazione</cite>. In <em class="guilabel">Genera nuova mappa di colore</em> selezionate <tt class="docutils literal"><span class="pre">Spectral</span></tt> dalla scala dei colori. Dal momento che vogliamo creare una mappa di profondità opposta a una mappa di altezza, barrate la casella <em class="guilabel">Inverti</em> . Questo ci permetterà di assegnare il blu alle zone profonde e il rosso a quelle superficiali. Fate click su <em class="guilabel">Classifica</em>.</p>
 </li>
 </ol>
-<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
+<img alt="../_images/1410.png" class="align-center" src="../_images/1410.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Adesso passate sulla scheda <em class="guilabel">Tranparenza</em> . Vogliamo togliere i pixel neri dal nostro output. Inserite <tt class="docutils literal"><span class="pre">0</span></tt>  in <em class="guilabel">valori nulli aggiuntivi</em>. Fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
+<img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Adesso avete una mappa dei rilievi di elevazione del lago ricavata dal rilevamento delle singole profondità. A questo punto andremo a creare le curve di livello. Andiamo su <em class="menuselection">Raster ‣ Estrazione ‣ Curve di livello</em>.</p>
 </li>
 </ol>
-<img alt="../_images/168.png" class="align-center" src="../_images/168.png" />
+<img alt="../_images/169.png" class="align-center" src="../_images/169.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Nella finestra di dialogo <em class="guilabel">curve di livello</em>  inserite <tt class="docutils literal"><span class="pre">contours</span></tt> come <em class="guilabel">File di output per le curve di livello</em>. Andremo a generare delle curve di livello con intervalli di 5 piedi, perciò inseriamo <tt class="docutils literal"><span class="pre">5.00</span></tt> alla voce <em class="guilabel">Intervallo fra curve di livello</em>. Barrate la casella <em class="guilabel">nome attributo</em> .  Fate click  su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/177.png" class="align-center" src="../_images/177.png" />
+<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Le curve di livello saranno caricate come layer <tt class="docutils literal"><span class="pre">contours</span></tt> quando il processo sarà terminato. Fate click con il tasto destro su layer e selezionate <em class="guilabel">Proprietà</em>.</p>
 </li>
 </ol>
-<img alt="../_images/187.png" class="align-center" src="../_images/187.png" />
+<img alt="../_images/188.png" class="align-center" src="../_images/188.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Andate sulla scheda <em class="guilabel">etichette</em>. Sbarrate la casella <em class="guilabel">etichetta questo vettore con ...</em> e selezionate <tt class="docutils literal"><span class="pre">ELEV</span></tt> come campo . Selezionate <tt class="docutils literal"><span class="pre">intorno</span> <span class="pre">al</span> <span class="pre">punto</span></tt> come  <em class="guilabel">Posizionamento</em> e fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/195.png" class="align-center" src="../_images/195.png" />
+<img alt="../_images/196.png" class="align-center" src="../_images/196.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Vedrete che ciascuna curva di livello sarà opportunamente etichettata con la relativa altezza lungo la linea.</p>
 </li>
 </ol>
-<img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
+<img alt="../_images/203.png" class="align-center" src="../_images/203.png" />
 </div>
 </div>
 
@@ -344,7 +345,7 @@ tutorial from link below.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Apr 14, 2015.<br/>
+      Ultimo aggiornamento Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

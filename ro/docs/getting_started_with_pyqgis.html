@@ -29,7 +29,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Găsirea Poligoanelor Învecinate Dintr-un Strat" href="find_neighbor_polygons.html" />
+    <link rel="next" title="Building a Python Plugin" href="building_a_python_plugin.html" />
     <link rel="prev" title="Fișierele Open BIL, BIP sau BSQ în QGIS" href="open_bil_bip_bsq_files.html" />
 
 <meta charset='utf-8'>
@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Noțiuni de bază despre programarea în Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -127,7 +128,7 @@
     </a>
   </li>
   <li>
-    <a href="find_neighbor_polygons.html" title="Next Chapter: Găsirea Poligoanelor Învecinate Dintr-un Strat"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Găsirea Poligoan... &raquo;</span>
+    <a href="building_a_python_plugin.html" title="Next Chapter: Building a Python Plugin"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Building a Pytho... &raquo;</span>
     </a>
   </li>
               
@@ -203,12 +204,12 @@
 <li><p class="first">În QGIS, mergeți la <em class="menuselection">Layers ‣ Add Vector Layer</em>. Navigați la fișierul descărcat <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt> și faceți clic pe <em class="guilabel">Open</em>. Selectați stratul <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt> și faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/130.png" class="align-center" src="../_images/130.png" />
+<img alt="../_images/139.png" class="align-center" src="../_images/139.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Veți vedea stratul <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> încărcat în QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/214.png" class="align-center" src="../_images/214.png" />
+<img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Selectați instrumentul <em class="guilabel">Identify</em> și faceți clic pe oricare dintre puncte, pentru a examina atributele disponibile. Veți vedea că numele aeroportului, precum și codul de 3 cifre al acestuia, sunt conținute în atributele <tt class="docutils literal"><span class="pre">name</span></tt>, respectiv <tt class="docutils literal"><span class="pre">iata_code</span></tt>.</p>
 </li>
@@ -218,7 +219,7 @@
 <li><p class="first">QGIS oferă o consolă încorporată, în care puteți introduce comenzi Python și să obțineți rezultatul. Această consolă este foarte bună pentru a învăța scriptarea și, de asemenea, pentru a procesa rapid datele. Deschideți <em class="guilabel">Python Console</em> din <em class="menuselection">Plugins ‣ Python Console</em>.</p>
 </li>
 </ol>
-<img alt="../_images/410.png" class="align-center" src="../_images/410.png" />
+<img alt="../_images/411.png" class="align-center" src="../_images/411.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Veți vedea un nou panou, deschis în partea de jos a suportului de hărți al QGIS. Veți vedea un prompt cum ar fi <tt class="docutils literal"><span class="pre">&gt;&gt;&gt;</span></tt>, în care aveți posibilitatea să tastați comenzi. Interacțiunea cu mediul QGIS, se face folosind variabila <tt class="docutils literal"><span class="pre">iface</span></tt>. Pentru a accesa stratul din QGIS, activ în mod curent, aveți posibilitatea să tastați următoarele, apoi să apăsați <tt class="kbd docutils literal"><span class="pre">Enter</span></tt>. Această comandă obține referința către stratul încărcat și o stochează în variabila <tt class="docutils literal"><span class="pre">layer</span></tt>.</p>
 </li>
@@ -226,7 +227,7 @@
 <div class="highlight-python"><div class="highlight"><pre><span class="n">layer</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/510.png" class="align-center" src="../_images/510.png" />
+<img alt="../_images/511.png" class="align-center" src="../_images/511.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Există în Python o funcție utilă, numită <tt class="docutils literal"><span class="pre">dir()</span></tt>, care afișează toate metodele disponibile pentru orice obiect. Acest lucru este folositor atunci când nu știți precis care funcții sunt disponibile pentru un anumit obiect. Executați următoarea comandă pentru a vedea ce operații putem executa cu variabila <tt class="docutils literal"><span class="pre">layer</span></tt>.</p>
 </li>
@@ -234,7 +235,7 @@
 <div class="highlight-python"><div class="highlight"><pre><span class="nb">dir</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/69.png" class="align-center" src="../_images/69.png" />
+<img alt="../_images/610.png" class="align-center" src="../_images/610.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Veți vedea o listă lungă de funcții disponibile. Pentru moment, vom folosi o funcție numită <tt class="docutils literal"><span class="pre">getFeatures()</span></tt>, care va obține referința către toate entitățile unui strat. În cazul nostru, fiecare entitate va fi un punct, reprezentând un aeroport. Puteți tasta următoarea comandă, pentru a parcurge fiecare dintre entitățile stratului curent. Asigurați-vă că ați adăugat 2 spații, înainte de a introduce a doua linie.</p>
 </li>
@@ -243,7 +244,7 @@
   <span class="k">print</span> <span class="n">f</span>
 </pre></div>
 </div>
-<img alt="../_images/79.png" class="align-center" src="../_images/79.png" />
+<img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">După cum veți vedea în rezultat, fiecare linie conține o referire la o entitate din cadrul stratului. Referința către entitate este stocată în variabila <tt class="docutils literal"><span class="pre">f`</span></tt>. Putem folosi variabila <tt class="docutils literal"><span class="pre">f`</span></tt> pentru a accesa atributele fiecărei entități. Introduceți următoarele, pentru a obține <tt class="docutils literal"><span class="pre">name</span></tt> și <tt class="docutils literal"><span class="pre">iata_code</span></tt> pentru fiecare entitate de tip aeroport.</p>
 </li>
@@ -252,7 +253,7 @@
   <span class="k">print</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;iata_code&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<img alt="../_images/89.png" class="align-center" src="../_images/89.png" />
+<img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Deci, acum știți cum să accesați programatic atributul fiecărei entități dintr-un strat. În continuare, să vedem cum putem accesa coordonatele entităților. Coordonatele unei entități vectoriale pot fi accesate prin apelarea funcției <tt class="docutils literal"><span class="pre">geometry()</span></tt>. Această funcție returnează un obiect de tip geometrie, pe care îl putem stoca în variabila <tt class="docutils literal"><span class="pre">geom</span></tt>. Puteți rula funcția <tt class="docutils literal"><span class="pre">asPoint()</span></tt> pe obiectul respectiv, pentru a obține coordonatele x și y ale punctului. În cazul în care entitatea este o linie sau un poligon, puteți folosi funcțiile <tt class="docutils literal"><span class="pre">asPolyline()</span></tt> sau <tt class="docutils literal"><span class="pre">asPolygon()</span></tt>. Introduceți următorul cod în linia de comandă și apăsați <tt class="kbd docutils literal"><span class="pre">Enter</span></tt>, pentru a vedea coordonatele x și y ale fiecărei entități.</p>
 </li>
@@ -262,7 +263,7 @@
   <span class="k">print</span> <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/98.png" class="align-center" src="../_images/98.png" />
+<img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Cum procedăm dacă vrem să obținem numai coordonata <tt class="docutils literal"><span class="pre">x</span></tt> a entității? Vom apela funcția <tt class="docutils literal"><span class="pre">x()</span></tt> pentru obiectul punct, și îi vom obține coordonata x.</p>
 </li>
@@ -272,7 +273,7 @@
   <span class="k">print</span> <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/108.png" class="align-center" src="../_images/108.png" />
+<img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Acum avem toate piesele, pe care le putem îmbina pentru a genera rezultatul dorit. Introduceți codul de mai jos pentru a obține numele, iata_code, latitudinea și longitudinea fiecăreia dintre entitățile aeroport. Notațiile <tt class="docutils literal"><span class="pre">%s</span></tt> and <tt class="docutils literal"><span class="pre">%f</span></tt> sunt moduri de a formata șirurile și variabilele numerice.</p>
 </li>
@@ -283,7 +284,7 @@
          <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">(),</span> <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">())</span>
 </pre></div>
 </div>
-<img alt="../_images/1113.png" class="align-center" src="../_images/1113.png" />
+<img alt="../_images/1114.png" class="align-center" src="../_images/1114.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Puteți vedea rezultatul afișat în consolă. Un mod mai util de a stoca rezultatul ar fi un fișier. Puteți tasta codul de mai jos, pentru a crea un fișier în care veți înregistra rezultatul. Înlocuiți calea fișierului cu cea de pe sistemul propriu. Rețineți că vom adăuga <tt class="docutils literal"><span class="pre">\n</span></tt> în încheierea formatării liniei noastre. În acest mod, se va trece la o linie nouă, după adăugarea datelor pentru o entitate. De asemenea, trebuie să rețineți linia <tt class="docutils literal"><span class="pre">unicode_line</span> <span class="pre">=</span> <span class="pre">line.encode('utf-8')</span></tt>. Deoarece stratul nostru conține unele entități cu caractere Unicode, nu putem face o simplă scriere într-un fișier text. Vom codifica textul folosind codificarea UTF-8 și apoi îl vom scrie în fișierul text.</p>
 </li>
@@ -298,12 +299,12 @@
 <span class="n">output_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" />
+<img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Puteți merge la locația fișierului de ieșire specificat, pentru a deschide fișierul text. Veți vedea datele din fișierul shape de aeroporturi, pe care le-am extras folosind scriptarea Python.</p>
 </li>
 </ol>
-<img alt="../_images/138.png" class="align-center" src="../_images/138.png" />
+<img alt="../_images/1310.png" class="align-center" src="../_images/1310.png" />
 </div>
 </div>
 
@@ -330,7 +331,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 14, 2015.<br/>
+      Last updated on Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

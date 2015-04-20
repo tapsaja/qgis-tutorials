@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Primi passi con la programmazione Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Trovare i poligoni confinanti in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Realizzare mappe web leaflet con qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Usare il Google Maps Engine Connector con QGIS</a></li>
@@ -206,111 +207,111 @@ tutorial from link below.</p>
 <li><p class="first">Per iniziare, estraiamo i dati compressi del file zip in una cartella. I dati sono forniti in formato CSV. Importeremo questi dati all&#8217;interno di QGIS. (vedete <tt class="xref doc docutils literal"><span class="pre">importare_fogli_elettronici_o_</span> <span class="pre">csv</span></tt>. per maggiori dettagli). Click <em class="menuselection">Layer ‣ Aggiungi layer testo delimitato...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/117.png" class="align-center" src="../_images/117.png" />
+<img alt="../_images/119.png" class="align-center" src="../_images/119.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Individuate il file  <cite>police-uk-crime-data-surrey.txt</cite>  e apritelo. Nella finestra di dialogo selezionate <em class="guilabel">CSV (valori separati da virgola)</em> come formato. Vedrete formarsi automaticamente le colonne relative al Campo X e al Campo Y come <em>Easting</em>  e <em>Northing</em>. Accertatevi che la casella <em class="guilabel">Usa indice spaziale</em>  sia spuntata perché questo renderà più veloci le operazioni su questo layer. Fate click <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/25.png" class="align-center" src="../_images/25.png" />
+<img alt="../_images/210.png" class="align-center" src="../_images/210.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Potrebbero comparire alcuni messaggi di errore. Per quelli che sono gli obiettivi di questo tutorial potete ignorarli. Fate click su <em class="guilabel">Close</em>.</p>
 </li>
 </ol>
-<img alt="../_images/35.png" class="align-center" src="../_images/35.png" />
+<img alt="../_images/36.png" class="align-center" src="../_images/36.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Il prossimo passo è quello di scegliere il <cite>Sistema di Riferimento (SR)</cite>. . Se leggete la descrizione dei dati, noterete che il riferimento spaziale è <em>British National Grid</em>. Scegliete  <em class="guilabel">OSGB 1936/British National Grid</em> come SR. Click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/45.png" class="align-center" src="../_images/45.png" />
+<img alt="../_images/46.png" class="align-center" src="../_images/46.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Adesso potrete vedere i dati caricati in QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/55.png" class="align-center" src="../_images/55.png" />
+<img alt="../_images/56.png" class="align-center" src="../_images/56.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Fate uno zoom per vedere i dati più da vicino. Noterete che i dati sono molto densi ed è molto difficile immaginare dove possa essere situata un&#8217;alta concentrazione di punti. Ed è proprio in questi frangenti che una mappa di concentrazione risulta utile.</p>
 </li>
 </ol>
-<img alt="../_images/64.png" class="align-center" src="../_images/64.png" />
+<img alt="../_images/65.png" class="align-center" src="../_images/65.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Per creare una mappa di concentrazione avete bisogno di attivare un plugin interno chiamato <cite>Mappa di Concentrazione</cite>. Vedi <a class="reference internal" href="using_plugins.html"><em>Usare i Plugins</em></a>  per sapere come attivare un plugin residente. Una volta che avete attivato il plugin, andate su <em class="menuselection">Raster ‣ Mappa di Concentrazione ‣ Mappa di Concentrazione</em>.</p>
 </li>
 </ol>
-<img alt="../_images/74.png" class="align-center" src="../_images/74.png" />
+<img alt="../_images/75.png" class="align-center" src="../_images/75.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Nelle finestra  <em class="guilabel">Plugin per la mappa di concentrazione</em>  scegliete <cite>crime_heatmap</cite>  come nome per il <em class="guilabel">Raster di output</em>.Inserite  <cite>1000</cite>  e poi scegliete unità di mappa nelle due caselle accanto alla voce <em class="guilabel">Raggio</em>. Il raggio definisce l&#8217;area intorno ciascun punto in base alla quale verrà calcolata la densità per ciascun pixel. Spuntate la casella <em class="guilabel">Avanzato</em> in modo che sia possibile specificare la dimensione di uscita della nostra mappa di concentrazione. Inserite  <cite>100</cite>  come <em class="guilabel">Dimensione cella X</em> e   <cite>100</cite> come <em class="guilabel">Dimensione cella Y</em>. Click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/84.png" class="align-center" src="../_images/84.png" />
+<img alt="../_images/85.png" class="align-center" src="../_images/85.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Quando il processo sarà concluso, vedrete una mappa di concentrazione in scala di grigi caricata nella finestra principale.</p>
 </li>
 </ol>
-<img alt="../_images/94.png" class="align-center" src="../_images/94.png" />
+<img alt="../_images/95.png" class="align-center" src="../_images/95.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Rendiamo la nostra mappa di concentrazione più simile a quelle che siamo abituati a vedere solitamente. Click sul tasto destro del del layer della mappa di concentrazione e quindi click su <em class="guilabel">Proprietà</em>.</p>
 </li>
 </ol>
-<img alt="../_images/104.png" class="align-center" src="../_images/104.png" />
+<img alt="../_images/105.png" class="align-center" src="../_images/105.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Nella scheda <em class="guilabel">Stile</em> selezionate  <em class="guilabel">Falso colore banda singola</em> come <em class="guilabel">tipo di visualizzazione</em>. Poi, nella sezione <em class="guilabel">Carica i valori min/max</em>, selezionate la voce <em class="guilabel">Attuale (più lento))</em> sotto la voce <em class="guilabel">Accuratezza</em> e fate click su <em class="guilabel">Carica</em>. Questo comando esaminerà la densità e troverà i valori minimi e massimi del pixel. Questi valori saranno usati per generare una scala di colore appropriata. Nella sezione <em class="guilabel">Genera nuova mappa di colore</em> selezionate <em class="guilabel">YlOrRd</em>  (Yellow-Orange-Red) come scala di colore e fate click su <em class="guilabel">Classifica</em>. Click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/118.png" class="align-center" src="../_images/118.png" />
+<img alt="../_images/1110.png" class="align-center" src="../_images/1110.png" />
 <ol class="arabic simple" start="12">
 <li>Now you will see a more appealing heatmap-like rendering of the layer. You can select the <em class="guilabel">Identify</em> tool and click on any pixel of the heatmap. You will see the pixel value in the resulting pop-up. This pixel-value is a measure of how many points from the source layer are contained within the specified radius ( in our case - 1000m) around the pixel.</li>
 </ol>
-<img alt="../_images/124.png" class="align-center" src="../_images/124.png" />
+<img alt="../_images/125.png" class="align-center" src="../_images/125.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Ora avete dunque la vostra mappa di concentrazione. Essa è molto utile come strumento per un&#8217;interpretazione visiva, ma non proprio utilissima se è vostra intenzione utilizzare questi risultati in qualche tipo di analisi. In molti casi ci interessa soprattutto identificare gli <cite>hotspot</cite>, i punti caldi in cui la concentrazione di punti è più elevata. Ora, cercheremo di identificare questi punti caldi usando questa mappa di concentrazione. Andate su  <em class="menuselection">Raster ‣ Calcolatore Raster</em>.</p>
 </li>
 </ol>
-<img alt="../_images/134.png" class="align-center" src="../_images/134.png" />
+<img alt="../_images/135.png" class="align-center" src="../_images/135.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Per prima cosa occorre decidere un valore di soglia. Ciascun pixel dentro questo limite verrà considerato all&#8217;interno di un cluster. Usiamo un valore 5 per questi dati. Nella finestra di dialogo <em class="guilabel">Calcolatore Raster</em>, chiamiamo il layer di output con il nome di <cite>crime_hotspots</cite>. Fate doppio click su <em class="guilabel">crime_heatmap&#64;1</em> ed essa verrà portata automaticamente nell&#8217;area sottostante chiamata <em class="guilabel">Espressione del Calcolatore Raster</em> . Completate l&#8217;espressione con la formula <cite>&#8220;crime_heatmap&#64;1&#8221; &gt; 5</cite>. Assicuratevi che la casella <em class="guilabel">Aggiungi al progetto</em>  sia barrata. Fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/144.png" class="align-center" src="../_images/144.png" />
+<img alt="../_images/145.png" class="align-center" src="../_images/145.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Un nuovo layer sarà aggiunto a QGIS. Questo layer ha pixel  con valori alternativamente di 0 o di 1. Tutti i pixel nel layer di origine, in cui il valore di pixel è maggiore di 5, hanno valore 1, mentre tutti gli altri hanno valore 0. Fate click su <em class="menuselection">Raster ‣ Conversione ‣ Poligonizzazione ( da Raster a Vettore)</em>.</p>
 </li>
 </ol>
-<img alt="../_images/154.png" class="align-center" src="../_images/154.png" />
+<img alt="../_images/155.png" class="align-center" src="../_images/155.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Chiamate il file di output con il nome di <em class="guilabel">crime_hotspots_vector</em>. Barrate la casella vicino alla voce <em class="guilabel">Nome Campo</em> e quella vicino alla voce guilabel:<cite>Carica sulla mappa quando finito</cite>. Fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/164.png" class="align-center" src="../_images/164.png" />
+<img alt="../_images/165.png" class="align-center" src="../_images/165.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Una volta finita la conversione, avrete ancora un altro layer aggiunto a QGIS. Questa è la rappresentazione vettoriale dei cluster che sono stati creati nel passaggio precedente. Questo layer contiene clusters con valore 0 e valore 1. Togliamo via i valori 0, così avremo finalmente i clusters degli hotspot. Click sul tasto destro del layer e selezionate <em class="guilabel">Apri tabella attributi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/174.png" class="align-center" src="../_images/174.png" />
+<img alt="../_images/175.png" class="align-center" src="../_images/175.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Nella <em class="guilabel">Tabella degli Attributi</em>, fate click su <em class="guilabel">Seleziona elemento usando un espressione</em>.</p>
 </li>
 </ol>
-<img alt="../_images/184.png" class="align-center" src="../_images/184.png" />
+<img alt="../_images/185.png" class="align-center" src="../_images/185.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Inserite l&#8217;espressione <cite>&#8220;DN&#8221; = 1</cite>  e fate click su  <em class="guilabel">Seleziona</em>. Poi fate click su <em class="guilabel">Chiudi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/192.png" class="align-center" src="../_images/192.png" />
+<img alt="../_images/193.png" class="align-center" src="../_images/193.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Nella finestra principale, vedrete alcune geometrie colorarsi di giallo. Queste sono le geometrie che rispondono alla nostra query. Fate click sul layer e selezionate <em class="guilabel">Salva la selezione con nome...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/20.png" class="align-center" src="../_images/20.png" />
+<img alt="../_images/201.png" class="align-center" src="../_images/201.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Chiamate il file di output con il nome di  <cite>crime_clusters</cite>. Fate click sulla casella <em class="guilabel">Aggiungi il file salvato alla mappa</em>  e fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/211.png" class="align-center" src="../_images/211.png" />
+<img alt="../_images/212.png" class="align-center" src="../_images/212.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Adesso avete il risultato. Il nostro layer finale contiene i punti caldi estratti dalla mappa di concentrazione. Questi cluster sono  <em>significato</em> estratto da dati grezzi.  Fornisce utili suggerimenti e può funzionare da input per ulteriori indagini.</p>
 </li>
 </ol>
-<img alt="../_images/221.png" class="align-center" src="../_images/221.png" />
+<img alt="../_images/222.png" class="align-center" src="../_images/222.png" />
 </div>
 </div>
 
@@ -337,7 +338,7 @@ tutorial from link below.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Apr 14, 2015.<br/>
+      Ultimo aggiornamento Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

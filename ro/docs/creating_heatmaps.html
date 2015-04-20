@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -205,112 +206,112 @@ tutorial from link below.</p>
 <li><p class="first">Pentru a începe, dezarhivați datele într-un folder. Datele se află în format CSV. Vom importa aceste date în QGIS. (Pentru mai multe detalii, parcurgeți <a class="reference internal" href="importing_spreadsheets_csv.html"><em>Importul Foilor de Calcul sau a Fișierelor CSV</em></a>). Clic pe <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/117.png" class="align-center" src="../_images/117.png" />
+<img alt="../_images/119.png" class="align-center" src="../_images/119.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Navigați către fișierul <cite>police-uk-crime-data-surrey.txt</cite> de pe computerul dvs, apoi deschideți-l. Selectați <em class="guilabel">CSV (comma separated values)</em> ca format de fișier. Veți vedea coloanele <em>Easting</em> și <em>Northing</em> selectate automat în dreptul câmpurilor X și Y. Asigurați-vă că ați bifat opțiunea <em class="guilabel">Use spatial index</em> care va accelera operațiunile efectuate asupra acestui strat. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/25.png" class="align-center" src="../_images/25.png" />
+<img alt="../_images/210.png" class="align-center" src="../_images/210.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Puteți vedea unele erori. Pentru scopul acestui tutorial le puteți ignora. Apăsați <em class="guilabel">Close</em>.</p>
 </li>
 </ol>
-<img alt="../_images/35.png" class="align-center" src="../_images/35.png" />
+<img alt="../_images/36.png" class="align-center" src="../_images/36.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">În continuare, este nevoie să alegem un <cite>Coordinate Reference System (CRS)</cite>. Dacă ați citit descrierea datelor, veți observa că referința spațială a acestora este <em>British National Grid</em>. Alegeți <em class="guilabel">OSGB 1936 / British National Grid</em> ca CRS. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/45.png" class="align-center" src="../_images/45.png" />
+<img alt="../_images/46.png" class="align-center" src="../_images/46.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Acum, veți vedea că datele sunt încărcate în QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/55.png" class="align-center" src="../_images/55.png" />
+<img alt="../_images/56.png" class="align-center" src="../_images/56.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Măriți un pic, pentru a vedea mai bine datele. Veți observa că acestea sunt destul de dense, fiind foarte greu să vă dați seama unde ar exista o concentrare mare de puncte. Acesta este momentul când ar fi bine să aveți o hartă calorică.</p>
 </li>
 </ol>
-<img alt="../_images/64.png" class="align-center" src="../_images/64.png" />
+<img alt="../_images/65.png" class="align-center" src="../_images/65.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Pentru a crea o hartă calorică, e nevoie de activarea unui plugin numit <cite>Heatmap</cite>. Pentru a activa plugin-urile interne, parcurgeți <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a>. O dată ce ați activat plugin-ul, mergeți la <em class="menuselection">Raster ‣ Heatmap ‣ Heatmap</em>.</p>
 </li>
 </ol>
-<img alt="../_images/74.png" class="align-center" src="../_images/74.png" />
+<img alt="../_images/75.png" class="align-center" src="../_images/75.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">În fereastra de dialog <em class="guilabel">Heatmap Plugin</em>, alegeți <cite>crime_heatmap</cite> ca nume pentru <em class="guilabel">Output raster</em>. Introduceți <cite>1000</cite> unități de hartă pentru <em class="guilabel">Radius</em>. Raza determină acea arie din jurul fiecărui punct, care va fi folosită în calculul <cite>căldurii</cite> pe care o primește un pixel. Bifați <em class="guilabel">Advanced</em> pentru a putea specifica dimensiunea hărții. Întroduceți <cite>100</cite> pentru <em class="guilabel">Cell Size X</em> și <em class="guilabel">Cell Size Y</em>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/84.png" class="align-center" src="../_images/84.png" />
+<img alt="../_images/85.png" class="align-center" src="../_images/85.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">O dată ce prelucrarea este terminată, veți vedea o hartă calorică, în tonuri de gri, încărcată pe suportul hărții.</p>
 </li>
 </ol>
-<img alt="../_images/94.png" class="align-center" src="../_images/94.png" />
+<img alt="../_images/95.png" class="align-center" src="../_images/95.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Pentru a face harta noastră să semene cât mai mult cu hărțile calorice tradiționale, pe care le-ați  văzut adesea. Faceți clic dreapta pe stratul zonelor și faceți clic pe <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/104.png" class="align-center" src="../_images/104.png" />
+<img alt="../_images/105.png" class="align-center" src="../_images/105.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">În fila <em class="guilabel">Style</em>, selectați <em class="guilabel">Singleband pseudocolor</em> ca <em class="guilabel">Render type</em>. Mai departe, în secțiunea <em class="guilabel">Load min/max values</em>, selectați <em class="guilabel">Actual (slower)</em> pentru <em class="guilabel">Accuracy</em> și faceți clic pe <em class="guilabel">Load</em>. În acest mod, harta va fi scanată și se vor găsi valorile minime și maxime ale pixelilor. Valorile respective vor fi folosite în generarea unei game de culori corespunzătoare. În secțiunea <em class="guilabel">Generate new color map</em>, selectați gama de culori <em class="guilabel">YlOrRd</em> (Yellow-Orange-Red) și apăsați <em class="guilabel">Classify</em>. Click pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/118.png" class="align-center" src="../_images/118.png" />
+<img alt="../_images/1110.png" class="align-center" src="../_images/1110.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">În continuare, veți vedea o redare mult mai aspectuoasă a zonelor fierbinți ale stratului. Puteți selecta instrumentul <em class="guilabel">Identify</em> și să faceți clic pe oricare pixel al hărții calorice. O valoare va fi afișată într-o fereastră de tip pop-up. Această valoare indică numărul de puncte din stratul sursă, conținute în raza specificată (în cazul nostru 1000m), având în centru pixelul respectiv.</p>
 </li>
 </ol>
-<img alt="../_images/124.png" class="align-center" src="../_images/124.png" />
+<img alt="../_images/125.png" class="align-center" src="../_images/125.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Acum aveți propria hartă calorică. Aceasta este utilă în interpretarea vizuală, dar nu și atunci când doriți să folosiți aceste rezultate în analiză. De multe ori, este necesară identificarea <cite>punctelor fierbinți</cite>, în care există o mare concentrare de puncte. Pentru depistarea lor, vom folosi această hartă. Mergeți la <em class="menuselection">Raster ‣ Raster Calculator</em>.</p>
 </li>
 </ol>
-<img alt="../_images/134.png" class="align-center" src="../_images/134.png" />
+<img alt="../_images/135.png" class="align-center" src="../_images/135.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Mai întâi, va trebui să stabiliți o valoare de prag. Toate valorile pixelilor care depășesc acest prag, vor fi considerate ca făcând parte dintr-o aglomerare. Să folosim o valoare de 5 pentru aceste date. În fereastra de dialog <em class="guilabel">Raster calculator</em>, denumiți stratul de ieșire ca <cite>crime_hotspots</cite>. Dublu-clic pe <em class="guilabel">crime_heatmap&#64;1</em> din secțiunea <em class="guilabel">Raster bands</em>, pentru a-l adăuga în zona de text <em class="guilabel">Raster calculator expression</em>. Introduceți expresia <cite>&#8220;crime_heatmap&#64;1&#8221; &gt; 5</cite>. Bifați caseta de lângă <em class="guilabel">Add result to project</em> și apăsați <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/144.png" class="align-center" src="../_images/144.png" />
+<img alt="../_images/145.png" class="align-center" src="../_images/145.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Un nou strat va fi adăugat în QGIS. Acest strat are pixeli cu valori de 0 sau 1. Toți pixelii din stratul de intrare a căror valoare a fost mai mare de 5, au acum valoarea 1, ceilalți pixeli având valoarea 0. Faceți clic pe <em class="menuselection">Raster ‣ Conversion ‣ Polygonize (Raster to Vector)</em>.</p>
 </li>
 </ol>
-<img alt="../_images/154.png" class="align-center" src="../_images/154.png" />
+<img alt="../_images/155.png" class="align-center" src="../_images/155.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Alegeți ca nume, pentru fișierul de ieșire, <em class="guilabel">crime_hotspots_vector</em>. Bifați casetele din dreptul <em class="guilabel">Field name</em> și <em class="guilabel">Load into canvas when finished</em>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/164.png" class="align-center" src="../_images/164.png" />
+<img alt="../_images/165.png" class="align-center" src="../_images/165.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">O dată ce conversia se termină, veți avea încă un strat suplimentar în QGIS. În acesta sunt reprezentate vectorial aglomerările create în etapa anterioară. Straturile conțin grupări atât cu valorile 0 cât și cu 1. Haideți să filtrăm valorile 0, pentru a obține aglomerări de zone fierbinți. Faceți clic-dreapta pe strat și selectați <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/174.png" class="align-center" src="../_images/174.png" />
+<img alt="../_images/175.png" class="align-center" src="../_images/175.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">În <em class="guilabel">Attribute table</em>, faceți clic pe <em class="guilabel">Select feature using an expression</em>.</p>
 </li>
 </ol>
-<img alt="../_images/184.png" class="align-center" src="../_images/184.png" />
+<img alt="../_images/185.png" class="align-center" src="../_images/185.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Introduceți expresia <cite>&#8220;DN&#8221; = 1</cite> și faceți clic pe <em class="guilabel">Select</em>. Apoi, apăsați <em class="guilabel">Close</em>.</p>
 </li>
 </ol>
-<img alt="../_images/192.png" class="align-center" src="../_images/192.png" />
+<img alt="../_images/193.png" class="align-center" src="../_images/193.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">În fereastra principală a QGIS, veți observa unele entități evidențiate în galben. Acestea sunt entitățile care se potrivesc interogării noastre. Faceți clic dreapta pe strat și selectați <em class="guilabel">Save Selection As...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/20.png" class="align-center" src="../_images/20.png" />
+<img alt="../_images/201.png" class="align-center" src="../_images/201.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Alegeți numele <cite>crime_clusters</cite> pentru stratul de ieșire. Bifați caseta din dreptul <em class="guilabel">Add saved file to map</em> și faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/211.png" class="align-center" src="../_images/211.png" />
+<img alt="../_images/212.png" class="align-center" src="../_images/212.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Și iată-l! Stratul final conține <cite>zonele fierbinți</cite> extrase din harta calorică. Aceste aglomerări reprezintă <em>informaţiile inteligente</em> extrase din datele inițiale, ele oferind o mai bună înțelegere, și servind drept bază de plecare pentru acțiunile viitoare.</p>
 </li>
 </ol>
-<img alt="../_images/221.png" class="align-center" src="../_images/221.png" />
+<img alt="../_images/222.png" class="align-center" src="../_images/222.png" />
 </div>
 </div>
 
@@ -337,7 +338,7 @@ tutorial from link below.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 14, 2015.<br/>
+      Last updated on Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -108,6 +108,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Μέτρηση του Aριθμού των Kορυφών σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Βρείτε Γειτονικά Πολύγωνα σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Διαδικτυακοί Χάρτες με το qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Χρήση του Google Maps Engine Connector για το QGIS</a></li>
@@ -214,12 +215,12 @@
 <li><p class="first">Θα φορτώσουμε αρχικά το shapefile της απογραφής εκτάσεων. Πηγαίνετε στο <em class="menuselection">Layer ‣ Add Vector Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1100.png" class="align-center" src="../_images/1100.png" />
+<img alt="../_images/1101.png" class="align-center" src="../_images/1101.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Περιηγηθείτε στον κατεβασμένο zip φάκελο  <cite>tl_2013_06_tract.zip</cite> και επιλέξτε τον. Το QGIS μπορεί να ανοίξει zip αρχεία κατευθείαν έτσι δεν χρειάζεται να το αποσυμπιέσετε πρώτα.</p>
 </li>
 </ol>
-<img alt="../_images/230.png" class="align-center" src="../_images/230.png" />
+<img alt="../_images/239.png" class="align-center" src="../_images/239.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Επιλέξτε το <cite>tl_2013_06_tract.shp</cite> επίπεδο και κάντε κλικ <em class="guilabel">OK</em>.</p>
 </li>
@@ -229,87 +230,87 @@
 <li><p class="first">Θα δείτε την απογραφή εκτάσεων να φορτώνεται στο QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/418.png" class="align-center" src="../_images/418.png" />
+<img alt="../_images/419.png" class="align-center" src="../_images/419.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Κάντε δεξί-κλικ στο επίπεδο και επιλέξτε <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/519.png" class="align-center" src="../_images/519.png" />
+<img alt="../_images/520.png" class="align-center" src="../_images/520.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Εξετάστε τις ιδιότητες του shapefile των εκτάσεων. Για να συγχωνευθεί ένας πίνακας με αυτό το shapefile, χρειαζόμαστε μια μοναδική και κοινή ιδιότητα για κάθε ένα χαρακτηριστικό. Σε αυτήν την περίπτωση, το <strong>GEOID</strong> πεδίο είναι ένα μοναδικό γνώρισμα για κάθε έκταση και μπορεί να χρησιμοποιηθεί για να <cite>link</cite> το shapefile με οποιοδήποτε άλλο πίνακα που περιέχει το ίδιο ID.</p>
 </li>
 </ol>
-<img alt="../_images/618.png" class="align-center" src="../_images/618.png" />
+<img alt="../_images/619.png" class="align-center" src="../_images/619.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Ανοίξτε το CSV αρχείο <cite>ca_tracts_pop.csv</cite> στον επεξεργαστή κειμένου. Θα παρατηρήσατε ότι κάθε σειρά του αρχείου περιέχει πληροφορίες για την έκταση κατά μήκος με το μοναδικό αναγνωριστικό που είδαμε στο προηγούμενο βήμα. Σημειώστε ότι αυτό το πεδίο ονομάζεται <strong>GEO.id2</strong> στο CSV. Θα σημειώσατε επίσης ότι η στήλη <strong>D001</strong> έχει τιμή πληθυσμού για κάθε απογραφή έκτασης.</p>
 </li>
 </ol>
-<img alt="../_images/717.png" class="align-center" src="../_images/717.png" />
+<img alt="../_images/718.png" class="align-center" src="../_images/718.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Θα μπορούσαμε να εισάγουμε αυτό το αρχείο csv χωρίς επιπλέον ενέργεια και θα έπρεπε να εισαχθεί. Όμως, ο προεπιλεγμένος τύπος της κάθε στήλης θα ήταν <em>String</em> (κείμενο). Αυτό είναι εντάξει εκτός από το πεδίο <cite>D001</cite> που περιέχει τους αριθμούς για τον πληθυσμό. Έχοντας αυτά που εισήχθησαν ως κείμενο δε θα μας επιτρέψει να τρέξουμε οποιεδήποτε μαθηματικές πράξεις σε αυτή τη στήλη. Για να εισάγουμε στο QGIS το πεδίο ως αριθμό, χρειάζεται να δημιουργήσουμε ένα φάκελο <cite>sidecar</cite> με επέκταση <cite>.csvt</cite>. Αυτός ο φάκελος θα έχει μόνο 1 σειρά για τον προσδιορισμό τύπων για κάθε στήλη. Αποθηκεύστε αυτό το αρχείο ως <cite>ca_tracts_pop.csvt</cite> στην ίδια διεύθυνση με το αρχικό <cite>.csv</cite> αρχείο. Μπορείτε επίσης  <a class="reference download internal" href="../_downloads/ca_tracts_pop.csvt"><tt class="xref download docutils literal"><span class="pre">download</span> <span class="pre">the</span> <span class="pre">csvt</span> <span class="pre">file</span> <span class="pre">from</span> <span class="pre">here.</span></tt></a></p>
 </li>
 </ol>
-<img alt="../_images/816.png" class="align-center" src="../_images/816.png" />
+<img alt="../_images/817.png" class="align-center" src="../_images/817.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Τώρα είμαστε έτοιμοι να εισάγουμε το CSV αρχείο στο QGIS. Πηγαίνετε στο <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/914.png" class="align-center" src="../_images/914.png" />
+<img alt="../_images/915.png" class="align-center" src="../_images/915.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Μεταβείτε στο φάκελο που περιέχει το CSV αρχείο και επιλέξτε το. Βεβαιωθείτε ότι έχετε επιλέξει <em class="guilabel">File format</em> ως <em class="guilabel">CSV (comma separated values)</em>. Από τη στιγμή που το εισάγουμε αυτό ως πίνακα, πρέπει να προσδιορίσουμε ότι ο φάκελός μας δεν περιέχει γεωμετρία. Επιλέξτε την επιλογή <em class="guilabel">No geometry (attribute only table)</em>. Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1015.png" class="align-center" src="../_images/1015.png" />
+<img alt="../_images/1016.png" class="align-center" src="../_images/1016.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Το CSV δε θα εισαχθεί σαν πίνακας στο QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/1120.png" class="align-center" src="../_images/1120.png" />
+<img alt="../_images/1121.png" class="align-center" src="../_images/1121.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Επιλέξτε το <cite>tl_2013_06_tract</cite> επίπεδο. Κάντε δεξί-κλικ σε αυτό και επιλέξτε <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1217.png" class="align-center" src="../_images/1217.png" />
+<img alt="../_images/1218.png" class="align-center" src="../_images/1218.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Στο <em class="guilabel">Layer Properties</em> παράθυρο διαλόγου, επιλέξτε την καρτέλα <em class="guilabel">Joins</em>. Κάντε κλικ στο κουμπί <cite>+</cite> στο κάτω μέρος για να δημιουργήσετε μια νέα συγχώνευση πίνακα.</p>
 </li>
 </ol>
-<img alt="../_images/1315.png" class="align-center" src="../_images/1315.png" />
+<img alt="../_images/1316.png" class="align-center" src="../_images/1316.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Στο παράθυρο διαλόγου <em class="guilabel">Add vector join</em>, επιλέξτε <cite>ca_tracts_pop</cite> as the <em class="guilabel">Join layer</em>. Στη συνέχεια θα πρέπει να επιλέξετε το πεδίο με μοναδικές ids και στο shapefile και στο CSV. Επιλέξτε <cite>GEO.id2</cite> και <cite>GEOID</cite> από τα <em class="guilabel">Join field</em> και <em class="guilabel">Target field</em> αντίστοιχα. Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1415.png" class="align-center" src="../_images/1415.png" />
+<img alt="../_images/1416.png" class="align-center" src="../_images/1416.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Κλείστε το παράθυρο διαλόγου <em class="guilabel">Layer Properties</em> και επιστρέψτε στο κυρίως παράθυρο του QGIS. Σε αυτό το σημείο, τα πεδία από το φάκελο CSV συγχωνεύονται με το shapefile. Κάντε δεξί-κλικ στο <cite>tl_2013_06_tract</cite> στρώμα και επιλέξτε <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1513.png" class="align-center" src="../_images/1513.png" />
+<img alt="../_images/1514.png" class="align-center" src="../_images/1514.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Τώρα μπορείτε να δείτε μια σειρά από πεδία συμπεριλαμβανομένου το πεδίο <em class="guilabel">ca_tracts_pop_D001</em> που προστέθηκε σε κάθε χαρακτηριστικό. Τώρα έχετε πρόσβαση στην τιμή του πληθυσμού για κάθε περιοχή από το φάκελο CSV. Κλείστε τον πίνακα χαρακτηριστικών και επιστρέψτε στο κυρίως παράθυρο του QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/1613.png" class="align-center" src="../_images/1613.png" />
+<img alt="../_images/1614.png" class="align-center" src="../_images/1614.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Κάντε δεξί-κλικ στο <cite>tl_2013_06_tract</cite> επίπεδο και επιλέξτε <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1712.png" class="align-center" src="../_images/1712.png" />
+<img alt="../_images/1713.png" class="align-center" src="../_images/1713.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Επιλέξτε την καρτέλα <em class="guilabel">Style</em> tab. Επιλέξτε το <em class="guilabel">Graduated</em> από το αναδυόμενο μενού. Καθώς ψάχνουμε να δημιουργήσουμε έναν πληθυσμιακό χάρτη, θέλουμε να ορίσουμε διαφορετικό χρώμα για κάθε χαρακτηριστικό περιοχής απογραφής σύμφωνα με τον υπολογισμό του πληθυσμού. Επιλέξτε <em class="guilabel">ca_tracts_pop_D001</em> από το <em class="guilabel">Column</em>. Επιλέξτε μια απόχρωση χρώματος της αρεσκείας σας από το <em class="guilabel">Color ramp</em> drop-down. Στο  <em class="guilabel">Mode</em>, επιλέξτε select <em class="guilabel">Quantile (Equal Count)</em>. Στη συνέχεια κάντε κλικ στο <em class="guilabel">Classify</em>. Θα δείτε να αποδίδεται ένα διαφορετικό χρώμα σε συγκεκριμένες περιοχές του πληθυσμού. Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1812.png" class="align-center" src="../_images/1812.png" />
+<img alt="../_images/1813.png" class="align-center" src="../_images/1813.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Θα δείτε τώρα μια ωραία απεικόνιση της καταγραφής των εκτάσεων όπως διαμορφώνονται με τις τιμές του πληθυσμού. Χρησιμοποιήστε το εργαλείο <em class="guilabel">Zoom in</em> για να επιλέξετε την μικρότερη περιοχή από το επίπεδο.</p>
 </li>
 </ol>
-<img alt="../_images/1910.png" class="align-center" src="../_images/1910.png" />
+<img alt="../_images/1911.png" class="align-center" src="../_images/1911.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Έχετε ένα λεπτομερή και ακριβή χάρτη της Καλιφόρνια. Μπορείτε να χρησιμοποιήσετε την ίδια τεχνική για να δημιουργήσετε χάρτες που βασίζονται στην ποικιλία των στοιχείων της απογραφής.</p>
 </li>
 </ol>
-<img alt="../_images/207.png" class="align-center" src="../_images/207.png" />
+<img alt="../_images/208.png" class="align-center" src="../_images/208.png" />
 </div>
 </div>
 
@@ -336,7 +337,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 14, 2015.<br/>
+      Last updated on Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

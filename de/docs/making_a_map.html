@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -211,12 +212,12 @@
 <li><p class="first">Laden und entpacken Sie das Natural Earth Quick Start Kit. Öffnen Sie QGIS. Klicken Sie auf <em class="menuselection">Projekt ‣ Öffnen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/150.png" class="align-center" src="../_images/150.png" />
+<img alt="../_images/160.png" class="align-center" src="../_images/160.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Navigieren Sie zum Verzeichnis, wo Sie die Natrual Earth Daten entpackt haben. Sie sollten eine Datei sehen, die <tt class="file docutils literal"><span class="pre">Natural_Earth_quick_start_for_QGIS.qgs</span></tt> benannt ist. Das ist die Projektdatei, die die vordefinierten Layer im QGIS Dokumentformt enthält. Klicke <em class="guilabel">Öffnen</em></p>
 </li>
 </ol>
-<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
+<img alt="../_images/226.png" class="align-center" src="../_images/226.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Sie sollten eine ganze Anzahl an Layern in der Legende sehen und eine gestaltete Weltkarte im QGIS Kartenfenster</p>
 </li>
@@ -226,7 +227,7 @@
 <li><p class="first">In diesem Tutorial erstellen wir eine Karte von Japan. Klicke die <em class="guilabel">Hineinzoomen</em> Schaltfläche und zeichnen Sie ein Rechteck um Japan, um auf den Ausschnitt zu vergrössern.</p>
 </li>
 </ol>
-<img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
+<img alt="../_images/415.png" class="align-center" src="../_images/415.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Sie können mehrere Kartenlayer ausschalten, die wir für diese Karte nicht benötigen. Deaktivieren Sie die Checkbox neben dem <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> und <tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt> Layer. Bevor wir eine taugliche Karte für den Druck erstellen, müssen wir eine geeignete Projektion auswählen. Die verwendeten Daten kommen in einem Koordinatenbezugssystem (KBS), in dem die Einheiten in Bogengrad verwendet werden. Dies ist für eine Karte ungeeignet, wenn man Distanzen in Kilometern oder Meilen verwenden möchte. Dazu benötigen wir ein projiziertes Koordinatensystem, das die Verzerrungen für unser Interessensgebiet minimiert und Meter als Einheit verwendet. Universal Transverse Mercator (UTM) ist eine gute Wahl für ein solches projiziertes Koordinatensystem. Es ist ebenso global gültig, so dass es ein guter verwendbarer Standard ist. Verwenden Sie die UTM-Zone, in der Ihr Interessensgebiet liegt, um die Verzerrung für den Breich zu minimieren. In unserem Fall werden wir die UTM-Zone 54N benutzen. Klicke den <em class="guilabel">KBS Status</em> Button unten rechts im QGIS-Fenster.</p>
 </li>
@@ -235,17 +236,17 @@
 <p class="first admonition-title">Bemerkung</p>
 <p class="last">Für Japan ist das Japan Plane Rectangular CS ein projiziertes Koordinatenbezugssystem (KBS), das für minimale Verzerrungen gedacht ist. Es ist in 18 Zonen unterteilt. Wenn Sie in kleineren Regionen Japans arbeiten, ist es besser dieses KBS zu verwenden.</p>
 </div>
-<img alt="../_images/514.png" class="align-center" src="../_images/514.png" />
+<img alt="../_images/515.png" class="align-center" src="../_images/515.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Aktivieren Sie <em class="guilabel">Spontan-KBS-Transformation aktivieren</em>. Geben Sie <tt class="docutils literal"><span class="pre">Tokyo</span> <span class="pre">utm</span> <span class="pre">zone54n</span></tt> im <em class="guilabel">Filter</em> Suchfeld ein. Wenn Sie die Ergebnisse sehen, wählen Sie  <em class="guilabel">Tokyo / UTM Zone 54N - EPSG:3095</em>. Klicke <em class="guilabel">Anwenden</em>.</p>
 </li>
 </ol>
-<img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
+<img alt="../_images/614.png" class="align-center" src="../_images/614.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Nun können wir beginnen, unsere Karte zusammen zu stellen. Gehen Sie zu <em class="menuselection">Projekt ‣ Neue Druckzusammenstellung</em>.</p>
 </li>
 </ol>
-<img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
+<img alt="../_images/713.png" class="align-center" src="../_images/713.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Sie werden aufgefordert einen Titel für die Zusammenstellung einzugeben. Sie können es auch leer lassen und mit <em class="guilabel">Ok</em> bestätigen.</p>
 </li>
@@ -254,77 +255,77 @@
 <p class="first admonition-title">Bemerkung</p>
 <p class="last">Wird kein Titel eingegeben, wird automatisch eine Name vergeben wie <tt class="docutils literal"><span class="pre">Composer</span> <span class="pre">1</span></tt>.</p>
 </div>
-<img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
+<img alt="../_images/813.png" class="align-center" src="../_images/813.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Im Zusammenstellungsfenster klicken Sie <em class="guilabel">Volle Ausdehnung</em>, die gesamte Fläche des Layouts darzustellen. Nun möchten wir die Kartenansicht, die wir in der QGIS Arbeitsfläche sehen in den Composer bringen. Gehen Sie zu <em class="menuselection">Anordnung‣ Karte hinzufügen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
+<img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Sobald der Button <em class="guilabel">Neue Karte hinzufügen</em> aktiv ist, halten Sie die linke Maustaste  gedrückt und ziehen ein Rechteck auf, wo Sie die Karte einfügen möchten.</p>
 </li>
 </ol>
-<img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
+<img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Das Rechteck wird mit dem Inhalt der QGIS Arbeitsfläche gerendert. Dabei kann möglicher Weise der Kartenauschnitt nicht den kompletten Bereich abdecken. Wählen Sie <em class="menuselection">Anordnung ‣ Inhalt verschieben</em>, um die Karte im Fenster anzupassen und zu zentrieren.</p>
 </li>
 </ol>
-<img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
+<img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Wir korrigieren den Zoom-Level für die dargestellte Karte. Klick <em class="guilabel">Elementeigenschaften</em> Tab und geben Sie <cite>7000000</cite> für den <em class="guilabel">Maßstab</em> ein.</p>
 </li>
 </ol>
-<img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
+<img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Nun ergänzen wir eine Detailansicht für den Bereich von Tokyo. Bevor wir irgenwelche Änderungen bei den Layern des QGIS-Hauptfensters vornehmen, aktivieren Sie <em class="guilabel">Layer des Kartenelements festhalten</em> und <em class="guilabel">Stile des Kartenelements festhalten</em>. Dies stellt sicher, dass -falls wir Layer deaktivieren oder deren Darstellung ändern- diese Ansicht sich nicht ändert.</p>
 </li>
 </ol>
-<img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
+<img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Wechseln Sie in das QGIS-Hauptfenster. Verwenden Sie guilabel:<cite>Hineinzoomen</cite>, um auf den Bereich um Tokyo zu zoomen.</p>
 </li>
 </ol>
-<img alt="../_images/1510.png" class="align-center" src="../_images/1510.png" />
+<img alt="../_images/1511.png" class="align-center" src="../_images/1511.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Es gibt ein paar doppelte Label durch den Layer <tt class="docutils literal"><span class="pre">ne_10m_populated_places</span></tt>. Diesen können wir für diese Ansicht ausschalten.</p>
 </li>
 </ol>
-<img alt="../_images/1610.png" class="align-center" src="../_images/1610.png" />
+<img alt="../_images/1611.png" class="align-center" src="../_images/1611.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Wir können jetzt die Detaikarte hinzufügen. Wechseln Sie in das Fenster der <em class="guilabel">Druckzusammenstellung</em>. Gehen Sie zu <em class="menuselection">Anordnung ‣ Karte hinzufügen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
+<img alt="../_images/1710.png" class="align-center" src="../_images/1710.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Ziehen Sie ein Rechteck an der Stelle auf, an der Sie die Übersichtskarte hinzufügen möchten. Sie werden feststellen, dass es nun 2 Kartenobjekte in der Druckzusammenstellung gibt. Stellen Sie sicher, dass Sie die richtige Karte ausgewählt haben, wenn Sie Änderungen vornehmen. Selektieren Sie das Objekt <tt class="docutils literal"><span class="pre">Karte</span> <span class="pre">1</span></tt>, welches wir gerade im <em class="guilabel">Elemente</em> Panel hinzugefügt haben. Wählen Sie den <em class="guilabel">Elementeigenschaften</em> Reiter. Scrollen Sie zum Eintrag <em class="guilabel">Rahmen</em> und Aktivieren Sie die Checkbox. Sie können die Farbe und Randbreite des Rahmens ändern, so dass dieser sich vom Kartenhintergrund abhebt.</p>
 </li>
 </ol>
-<img alt="../_images/189.png" class="align-center" src="../_images/189.png" />
+<img alt="../_images/1810.png" class="align-center" src="../_images/1810.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Eine schöne Funktion der Druckzusammenstellung ist, dass sie automatisch den Bereich der Hauptkarte hervorheben kann, der in unserem Ausschnitt dargestellt wird. Wählen Sie <tt class="docutils literal"><span class="pre">Karte</span> <span class="pre">0</span></tt> im <em class="guilabel">Element</em> Bereich. Scrollen Sie im <em class="guilabel">Elementeigenschaften</em> Reiter zu <em class="guilabel">Übersichten</em>. Klicke <em class="guilabel">Eine neue Übersicht hinzufügen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/197.png" class="align-center" src="../_images/197.png" />
+<img alt="../_images/198.png" class="align-center" src="../_images/198.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Wählen Sie <tt class="docutils literal"><span class="pre">Karte</span> <span class="pre">1</span></tt> als <em class="guilabel">Kartenrahmen</em>. Damit hebt die Druckzusammenstellung den Bereich im aktuellen Objekt <tt class="docutils literal"><span class="pre">Karte</span> <span class="pre">0</span></tt> hervor, der der Ausdehnung von <tt class="docutils literal"><span class="pre">Karte</span> <span class="pre">1</span></tt> entspricht.</p>
 </li>
 </ol>
-<img alt="../_images/204.png" class="align-center" src="../_images/204.png" />
+<img alt="../_images/205.png" class="align-center" src="../_images/205.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Nun ist unser Kartenausschnitt soweit fertig und wir fügen ein Raster und einen Zebra-Rand zur Hauptkarte hinzu. Wählen Sie das <tt class="docutils literal"><span class="pre">Karte</span> <span class="pre">0</span></tt> Objekt im <em class="guilabel">Elemente</em> Reiter. Im <em class="guilabel">Elementeigenschaften</em> Bereich scrollen Sie zu <em class="guilabel">Gitter</em>. Klicke <em class="guilabel">Neues Gitter hinzufügen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/2110.png" class="align-center" src="../_images/2110.png" />
+<img alt="../_images/2111.png" class="align-center" src="../_images/2111.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Standardmässig werden die selben Maßeinheiten und Projektionen verwendet, wie die derzeit gewählte Kartenprojektion. Wie auch immmer ist es üblich und nützlich, Gitterlinien in Bogengrad darzustellen. Wir können ein eigenes KBS für das Gitter auswählen. Klicke auf <em class="guilabel">ändern...</em> neben dem Eintrag <em class="guilabel">KBS</em>.</p>
 </li>
 </ol>
-<img alt="../_images/224.png" class="align-center" src="../_images/224.png" />
+<img alt="../_images/227.png" class="align-center" src="../_images/227.png" />
 <ol class="arabic simple" start="23">
 <li><p class="first">Im <em class="guilabel">Koordinatenbezugssystem-Auswahl</em> Fenster geben Sie im <em class="guilabel">Filter</em> <tt class="docutils literal"><span class="pre">4326</span></tt> ein. In der Trefferliste wählen Sie <tt class="docutils literal"><span class="pre">WGS84</span> <span class="pre">EPSG:4326</span></tt> als KBS. Klicken Sie <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/233.png" class="align-center" src="../_images/233.png" />
+<img alt="../_images/234.png" class="align-center" src="../_images/234.png" />
 <ol class="arabic simple" start="24">
 <li><p class="first">Geben Sie als <em class="guilabel">Interval</em> den Wert <tt class="docutils literal"><span class="pre">5</span></tt> Grad in den beiden Feldern <em class="guilabel">X</em> und <em class="guilabel">Y</em> ein. Sie können den <em class="guilabel">Versatz</em> anpassen, um zu definieren, wo die Gitterlinien dargestellt werden.</p>
 </li>
@@ -344,7 +345,7 @@
 <li><p class="first">Nun fügen wir einen Nordpfeil hinzu. Die Druckzusammenstellung hat eine schöne Auswahl von kartenbezogenen Grafiken, die einige Nordpfeile beinhalten. Klicken Sie <em class="menuselection">Anordnung ‣ Bild hinzufügen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/272.png" class="align-center" src="../_images/272.png" />
+<img alt="../_images/273.png" class="align-center" src="../_images/273.png" />
 <ol class="arabic simple" start="28">
 <li><p class="first">Zeichnen Sie mit gedrückter linker Maustaste ein Rechteck in der oberen rechten Ecke der Karte. Im rechtsseitgen Panel erweitern Sie im Bereich <em class="guilabel">Bild</em> den Eintrag <em class="guilabel">Verzeichnisse durchsuchen</em> und wählen einen geeigneten Nordpfeil.</p>
 </li>
@@ -354,7 +355,7 @@
 <li><p class="first">Jetzt fügen wir eine Maßstableiste hinzu. Klicke <em class="menuselection">Anordnung ‣ Maßstab hinzufügen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/292.png" class="align-center" src="../_images/292.png" />
+<img alt="../_images/293.png" class="align-center" src="../_images/293.png" />
 <ol class="arabic simple" start="30">
 <li><p class="first">Klicken Sie im Layout an die Position, wo der Maßstab dargestellt werden soll. Im <em class="guilabel">Elementeigenschaften</em> Bereich stellen Sie sicher, dass Sie das richtige Kartenelement ausgewählt haben, für das der Maßstab angezeigt werden soll. Wählen Sie den Stil der Ihren Anforderungen genügt. Im Bereich <em class="guilabel">Segmente</em> können Sie Anzahl der Segmente und deren Grösse anpassen.</p>
 </li>
@@ -416,7 +417,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Zuletzt aktualisiert am Apr 14, 2015.<br/>
+      Zuletzt aktualisiert am Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

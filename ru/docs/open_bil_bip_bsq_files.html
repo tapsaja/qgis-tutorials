@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Подсчет числа вершин в слое</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Открытие файлов BIL, BIP или BSQ в QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Первые шаги в программировании на Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Нахождение соседних полигонов в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Веб-карты Leaflet с помощью qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Использование Google Maps Engine Connector для QGIS</a></li>
@@ -187,11 +188,7 @@
   <div class="section" id="open-bil-bip-or-bsq-files-in-qgis">
 <h1>Открытие файлов BIL, BIP или BSQ в QGIS<a class="headerlink" href="#open-bil-bip-or-bsq-files-in-qgis" title="Ссылка на этот заголовок">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/open_bil_bip_bsq_files_a4.pdf">A4</a> <a class="reference external" href="../pdf/open_bil_bip_bsq_files_letter.pdf">Letter</a> ]</p>
-<p>When dealing with remote sensing and scientific datasets, one often comes
-across data in formats like <strong>BIL</strong>, <strong>BIP</strong> or <strong>BSQ</strong>. <a class="reference external" href="http://www.gdal.org">The GDAL library</a> - which is used by QGIS to read raster files - has
-support for these formats, but it cannot open these files by itself. We will go
-through the process of creating support files so these formats can be read by
-QGIS.</p>
+<p>При работе с данными дистанционного зондирования и другими научными данными, часто попадаются данные в форматах типа  <strong>BIL</strong>, <strong>BIP</strong> or <strong>BSQ</strong>. <a class="reference external" href="http://www.gdal.org">Библиотека GDAL</a>, которая используется QGIS для чтения растровых файлов, имеет поддержку для этих форматов, но она не может открыть эти файлы сама по себе. Мы пройдем через процесс создания файлов поддержки, так что эти форматы могут быть прочитаны QGIS.</p>
 <p>Band interleaved by line (BIL), band interleaved by pixel (BIP), and band
 sequential (BSQ) are common methods of organizing image data for multiband
 images. (<a class="reference external" href="http://webhelp.esri.com/arcgisdesktop/9.2/index.cfm?TopicName=BIL,_BIP,_and_BSQ_raster_files">Read more about these formats</a>)</p>
@@ -221,12 +218,12 @@ dataset.</p>
 will see that you only have a .bsq file named <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt>.
 There is no hdr file.</li>
 </ol>
-<img alt="../_images/170.png" class="align-center" src="../_images/170.png" />
+<img alt="../_images/180.png" class="align-center" src="../_images/180.png" />
 <ol class="arabic simple" start="2">
 <li>Note that if you try to open the <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt> file in
 QGIS as it is, you will get an error message.</li>
 </ol>
-<img alt="../_images/226.png" class="align-center" src="../_images/226.png" />
+<img alt="../_images/230.png" class="align-center" src="../_images/230.png" />
 <ol class="arabic simple" start="3">
 <li>To overcome this error, we will create a header file with <tt class="docutils literal"><span class="pre">.hdr</span></tt> extension.
 The header file contains information about the dataset and how it is organized.
@@ -267,20 +264,20 @@ is a safe bet. From metadata again, Pixel Format is Byte, so <strong>nbits</stro
 equal to 8 and pixeltype will be <strong>byte_unsigned</strong>. We do not have
 information about the byteorder, so leave it as msbfirst.</li>
 </ol>
-<img alt="../_images/516.png" class="align-center" src="../_images/516.png" />
+<img alt="../_images/517.png" class="align-center" src="../_images/517.png" />
 <ol class="arabic simple" start="6">
 <li>Now that you have the header file, put it in the same directory as
 <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt>. Then in QGIS, go to
 <em class="menuselection">Layer ‣ Add Raster Layer</em>. Select
 <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt> as your input and click <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/615.png" class="align-center" src="../_images/615.png" />
+<img alt="../_images/616.png" class="align-center" src="../_images/616.png" />
 <ol class="arabic simple" start="7">
 <li>In the next screen, you may be prompted to choose a CRS. Since the data is
 in Lat/Long, choose <strong>WGS84 EPSG:4326</strong> as your CRS. Now you will see the
 dataset loaded in QGIS.</li>
 </ol>
-<img alt="../_images/714.png" class="align-center" src="../_images/714.png" />
+<img alt="../_images/715.png" class="align-center" src="../_images/715.png" />
 </div>
 </div>
 
@@ -307,7 +304,7 @@ dataset loaded in QGIS.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Apr 14, 2015.<br/>
+      Обновлено: Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

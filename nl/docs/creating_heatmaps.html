@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aantal punten in een laag tellen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Beginnen met programmeren in Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -206,112 +207,112 @@ tutorial from link below.</p>
 <li><p class="first">Pak, om te beginnen, de gegevens uit in een map. De gegevens staan in de indeling CSV. We zullen deze gegevens in QGIS importeren. (bekijk <a class="reference internal" href="importing_spreadsheets_csv.html"><em>Werkbladen of CSV-bestanden importeren</em></a>. voor meer details). Klik op <em class="menuselection">Kaartlagen ‣ Tekstgescheiden kaartlaag toevoegen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/117.png" class="align-center" src="../_images/117.png" />
+<img alt="../_images/119.png" class="align-center" src="../_images/119.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Blader naar het bestand <cite>police-uk-crime-data-surrey.txt</cite> op uw computer en open het. Selecteer <em class="guilabel">CSV (comma separated values)</em> als de bestandsindeling. U zult zien dat de kolommen <em>Easting</em> en <em>Northing</em> automatisch wordne geselecteerd als X- en Y-velden. Zorg er voor dat u de optie <em class="guilabel">Ruimtelijke index gebruiken</em> is geselecteerd omdat dat de bewerkingen op deze laag versneld. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/25.png" class="align-center" src="../_images/25.png" />
+<img alt="../_images/210.png" class="align-center" src="../_images/210.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">U zou enkele fouten kunnen zien. Voor het doel van deze handleiding kunt u die negeren. Klik op <em class="guilabel">Sluiten</em>.</p>
 </li>
 </ol>
-<img alt="../_images/35.png" class="align-center" src="../_images/35.png" />
+<img alt="../_images/36.png" class="align-center" src="../_images/36.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Vervolgens dient u een <cite>Coordinate Reference System (CRS)</cite> te kiezen. Als u de beschrijving voor de gegevens leest zult u zien dat de ruimtelijke verwijzing voor deze gegevens is <em>British National Grid</em>. Kies <em class="guilabel">OSGB 1936 / British National Grid</em> als het CRS. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/45.png" class="align-center" src="../_images/45.png" />
+<img alt="../_images/46.png" class="align-center" src="../_images/46.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Nu zult u de gegevens zien die zijn geladen in QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/55.png" class="align-center" src="../_images/55.png" />
+<img alt="../_images/56.png" class="align-center" src="../_images/56.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Zoom een beetje in om de gegevens beter te zien. U zult zien dat de gegevens vrij dicht zijn en het moeilijk is om een idee te krijgen waar een hoge concentratie punten is. Dit is waar een heatmap handig zou kunnen zijn.</p>
 </li>
 </ol>
-<img alt="../_images/64.png" class="align-center" src="../_images/64.png" />
+<img alt="../_images/65.png" class="align-center" src="../_images/65.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">U dient een plug-in van de bron, genaamd <cite>Heatmap</cite> in te schakelen om de heatmap te kunnen maken. Bekijk <a class="reference internal" href="using_plugins.html"><em>Plug-ins gebruiken</em></a> om te weten te komen hoe ingebouwde plug-ins moeten worden ingeschakeld. Als u de plug-in eenmaal hebt ingeschakeld, ga dan naar <em class="menuselection">Raster ‣ Heatmap ‣ Heatmap</em>.</p>
 </li>
 </ol>
-<img alt="../_images/74.png" class="align-center" src="../_images/74.png" />
+<img alt="../_images/75.png" class="align-center" src="../_images/75.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Kies, in het dialoogvenster <em class="guilabel">Heatmap Plugin</em>, <cite>crime_heatmap</cite> als de naam in <em class="guilabel">Uitvoer raster</em>. Voer <cite>1000</cite> kaarteenheden in als de <em class="guilabel">Straal</em>. Straal is het gebied rondom elk punt dat zal wordne gebruikt om de <cite>heat</cite> te berekenen die een pixel ontvangt. Selecteer <em class="guilabel">Geavanceerd</em> om de grootte van de uitvoer van onze heatmap te specificeren. Voer <cite>100</cite> in als <em class="guilabel">Celgrootte X</em> en <em class="guilabel">Celgrootte Y</em>. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/84.png" class="align-center" src="../_images/84.png" />
+<img alt="../_images/85.png" class="align-center" src="../_images/85.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Als proces eenmaal is voltooid, zult u een heatmap in grijswaarden zien worden geladen in het kaartvenster.</p>
 </li>
 </ol>
-<img alt="../_images/94.png" class="align-center" src="../_images/94.png" />
+<img alt="../_images/95.png" class="align-center" src="../_images/95.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Laten we onze heatmap er eens meer laten uitzien als een traditionele heatmap zoals u die vaker ziet. Klik met rechts op laag van de heatmap en klik op <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/104.png" class="align-center" src="../_images/104.png" />
+<img alt="../_images/105.png" class="align-center" src="../_images/105.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Selecteer, op de tab <em class="guilabel">Stijl</em>, <em class="guilabel">Enkelbands pseudokleur</em> als het <em class="guilabel">Rendertype</em>. Selecteer vervolgens, onder het gedeelte <em class="guilabel">Min/max waarden laden</em>, <em class="guilabel">Actueel (langzamer)</em> als de <em class="guilabel">Nauwkeurigheid</em> en klik op <em class="guilabel">Laden</em>. Dit xal de heatmap scannen en de minimale en maximale pixelwaarden vinden. Deze waarden zullen worden gebruikt om een toepasselijk kleurbereik te genereren. Selecteer, in het gedeelte <em class="guilabel">Genereer nieuw kleurenpalet</em>, <em class="guilabel">YlOrRd</em> (Yellow-Orange-Red) als het kleurbereik en klik op <em class="guilabel">Classificeren</em>. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/118.png" class="align-center" src="../_images/118.png" />
+<img alt="../_images/1110.png" class="align-center" src="../_images/1110.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Nu zult een meer aantrekkelijke heatmap-achtige rendering van de laag zien. U kunt het gereedschap <em class="guilabel">Objecten identificeren</em> gebruiken en klikken op ene willekeurige pixel in de heatmap. U zult de pixelwaarde in het resulterende pop-upvenster zien. Deze pixelwaarde is een meting van hoeveel punten uit de bronlaag binnen de gespecificeerde straal liggen ( in ons geval - 1000m) rondom de pixel.</p>
 </li>
 </ol>
-<img alt="../_images/124.png" class="align-center" src="../_images/124.png" />
+<img alt="../_images/125.png" class="align-center" src="../_images/125.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Nu heeft u uw heatmap. Hij is bruikbaar voor visuele interpretatie, maar niet erg bruikbaar als u de resultaten wilt gebruiken voor analyses. Vaak zult u de <cite>hotspots</cite> willen identificeren waar een hoge concentratie van punten is. We zullen nu proberen dergelijke <cite>hotspots</cite> te identificeren met behulp van deze heatmap. Ga naar <em class="menuselection">Raster ‣ Rasterberekeningen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/134.png" class="align-center" src="../_images/134.png" />
+<img alt="../_images/135.png" class="align-center" src="../_images/135.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">U zult eerst een drempelwaarde moeten bepalen. Alle pixelwaarden boven die drempelwaarde zullen worden geacht zich in een cluster te bevinden. Laten we de waarde 5 gebruiken voor deze gegevens. In het dialoogvenster <em class="guilabel">Rasterberekeningen</em>, noem de Resultaatlaag <cite>crime_hotspots</cite>. Dubbelklik op <em class="guilabel">crime_heatmap&#64;1</em> onder het gedeelte <em class="guilabel">Raster banden</em> en het zal worden toegevoegd aan het tekstgebied <em class="guilabel">Rasterberekening expressie</em>. Voltooi de expressie als <cite>&#8220;crime_heatmap&#64;1&#8221; &gt; 5</cite>. Selecteer het vak naast <em class="guilabel">Voeg resultaat toe aan project</em> en <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/144.png" class="align-center" src="../_images/144.png" />
+<img alt="../_images/145.png" class="align-center" src="../_images/145.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">een nieuwe laag zal worden toegevoegd aan QGIS. Deze laag heeft pixels met de waarden van ofwel 0 of 1. Alle pixels in de invoerlaag waar de pixelwaarde groter was dan 5 heeft nu de waarde 1 en alle resterende pixels zijn 0. Klik op <em class="menuselection">Raster ‣ Conversie ‣ Vectoriseren (Raster naar Vector)</em>.</p>
 </li>
 </ol>
-<img alt="../_images/154.png" class="align-center" src="../_images/154.png" />
+<img alt="../_images/155.png" class="align-center" src="../_images/155.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Noem het uitvoerbestand <em class="guilabel">crime_hotspots_vector</em>. Selecteer het vak naast <em class="guilabel">Veldnaam</em> en ook <em class="guilabel">Na afloop in kaartvenster laden</em>. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/164.png" class="align-center" src="../_images/164.png" />
+<img alt="../_images/165.png" class="align-center" src="../_images/165.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Als de conversie is voltooid zal er nog een andere laag zijn toegevoegd aan QGIS. Dit is de vector-weergave van de clusters die werden gemaakt in de vorige stap. De laag bevat clusters met zowel de waarden 0 als 1. Laten we de waarden 0 er uit filteren om de clusters van de hotspots te krijgen. Klik met rechts op de laag en selecteer <em class="guilabel">Open attributentabel</em>.</p>
 </li>
 </ol>
-<img alt="../_images/174.png" class="align-center" src="../_images/174.png" />
+<img alt="../_images/175.png" class="align-center" src="../_images/175.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Klik, in de <em class="guilabel">Attributentabel</em>, op <em class="guilabel">Selecteer objecten m.b.v. reguliere expressie</em>.</p>
 </li>
 </ol>
-<img alt="../_images/184.png" class="align-center" src="../_images/184.png" />
+<img alt="../_images/185.png" class="align-center" src="../_images/185.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Voer de expressie in als <cite>&#8220;DN&#8221; = 1</cite> en klik op <em class="guilabel">Selecteren</em>. Klik vervolgens op <em class="guilabel">Sluiten</em>.</p>
 </li>
 </ol>
-<img alt="../_images/192.png" class="align-center" src="../_images/192.png" />
+<img alt="../_images/193.png" class="align-center" src="../_images/193.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">In het hoofdvenster van QGIS zult u enige, in geel, geaccentueerde objecten zien. Dat zijn de objecten die overeenkomen met onze query. Klik met rechts op de laag en selecteer <em class="guilabel">Selectie opslaan als...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/20.png" class="align-center" src="../_images/20.png" />
+<img alt="../_images/201.png" class="align-center" src="../_images/201.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Noem de uitvoerlaag <cite>crime_clusters</cite>. Selecteer het vak naast <em class="guilabel">Voeg opgeslagen bestand toe aan kaart</em> en klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/211.png" class="align-center" src="../_images/211.png" />
+<img alt="../_images/212.png" class="align-center" src="../_images/212.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Daar zijn ze. De laatste laag bevat de <cite>hotspots</cite> die zijn geëxtraheerd vanuit de heatmap. Deze clusters is de <em>intelligence</em> die is verzameld vanuit de ruwe gegevens en bruikbare inzichten kan verschaffen en ook kunnen dienen als invoer voor verdere acties.</p>
 </li>
 </ol>
-<img alt="../_images/221.png" class="align-center" src="../_images/221.png" />
+<img alt="../_images/222.png" class="align-center" src="../_images/222.png" />
 </div>
 </div>
 
@@ -338,7 +339,7 @@ tutorial from link below.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Apr 14, 2015.<br/>
+      Laatste aanpassing op Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

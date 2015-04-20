@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Primi passi con la programmazione Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Trovare i poligoni confinanti in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Realizzare mappe web leaflet con qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Usare il Google Maps Engine Connector con QGIS</a></li>
@@ -215,12 +216,12 @@ Scaricate il <a class="reference external" href="http://www2.census.gov/geo/tige
 <li><p class="first">Andate su <em class="menuselection">Layer ‣ Aggiungi raster</em>  selezionate il file appena scaricato <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float.tif</span></tt>  e fate click su <em class="guilabel">Apri</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1104.png" class="align-center" src="../_images/1104.png" />
+<img alt="../_images/1105.png" class="align-center" src="../_images/1105.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Una volta che il layer raster è stato caricato, selezionate lo strumento  <em class="guilabel">informazioni elemento</em>  e fate click in un punto qulsiasi del layer. Vedrete immediatamente il valore della temperatura in gradi celsius indicato come valore di Banda 1 per quella località.</p>
 </li>
 </ol>
-<img alt="../_images/240.png" class="align-center" src="../_images/240.png" />
+<img alt="../_images/249.png" class="align-center" src="../_images/249.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">A questo punto, estraete sul vostro disco il contenuto del file archivio <a href="#id1"><span class="problematic" id="id2">``</span></a>2013_Gaz_ua_national.zip``che avete appena scaricato. Quindi andate su <em class="menuselection">Layer ‣ Aggiungi layer testo delimitato</em>.</p>
 </li>
@@ -230,97 +231,97 @@ Scaricate il <a class="reference external" href="http://www2.census.gov/geo/tige
 <li><p class="first">Nella finestra di dialogo <em class="guilabel">Crea un vettore da un file di testo delimitato</em>. Individuate il file appena estratto <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national.txt</span></tt> e apritelo. Scegliete <em class="guilabel">Tab</em> dopo aver sbarrato  <em class="guilabel">Delimitatori personalizzati</em>. I punti delle coordinate sono in Latitudine e Longitudine quindi selezionate le INTPTLONG come campo X e INTPTLAT come campo Y.</p>
 </li>
 </ol>
-<img alt="../_images/422.png" class="align-center" src="../_images/422.png" />
+<img alt="../_images/423.png" class="align-center" src="../_images/423.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Ora sia pronti ad estrarre i valori delle temperature dal layer raster. Installare il plugin  <tt class="docutils literal"><span class="pre">Point</span> <span class="pre">Sampling</span> <span class="pre">Tool</span></tt>. Vedete <a class="reference internal" href="using_plugins.html"><em>Usare i Plugins</em></a> per i dettagli su come installare un plugin.</p>
 </li>
 </ol>
-<img alt="../_images/523.png" class="align-center" src="../_images/523.png" />
+<img alt="../_images/524.png" class="align-center" src="../_images/524.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Aprite la finestra di dialogo da <em class="menuselection">Plugins ‣ Analyses ‣ Point sampling tool</em>.</p>
 </li>
 </ol>
-<img alt="../_images/621.png" class="align-center" src="../_images/621.png" />
+<img alt="../_images/622.png" class="align-center" src="../_images/622.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Nella finestra di dialogo <em class="guilabel">Point Sampling Tool</em>  selezionate <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt> come il <em class="guilabel">Layer che contiene i punti campione</em>. Dobbiamo scegliere esplicitamente quali sono i campi del layer di input che intendiamo portare nel layer di output. Scegliete i campi <tt class="docutils literal"><span class="pre">GEOID</span></tt> e <tt class="docutils literal"><span class="pre">NAME</span></tt> dal layer <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt>. Possiamo campionare i valori di differenti bande raster simultaneamente, ma considerato il fatto che il nostro raster ha una sola banda, scegliete <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float:</span> <span class="pre">Band</span> <span class="pre">1</span></tt>. Chiamate il vettore di output con il nome di <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations.shp</span></tt>. Fate click su <em class="guilabel">OK</em> per avviare il processo di campionamento. Fate click su <em class="guilabel">Close</em> quanto il processo sarà concluso.</p>
 </li>
 </ol>
-<img alt="../_images/721.png" class="align-center" src="../_images/721.png" />
+<img alt="../_images/722.png" class="align-center" src="../_images/722.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Ora vedrete un nuovo layer <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations</span></tt> caricato in QGIS. Usate lo strumento <em class="guilabel">Informazioni elemento</em> per fare click in qualsiasi punto per vedere i relativi attributi. Vedrete the us.tmax_no field - che contiene i valori dei pixel raster nella posizione del punto. Vedrete il campo <tt class="docutils literal"><span class="pre">us.tmax_no</span></tt>, che contiene il valore del pixel raster comparire nella posizione del punto.</p>
 </li>
 </ol>
-<img alt="../_images/820.png" class="align-center" src="../_images/820.png" />
+<img alt="../_images/821.png" class="align-center" src="../_images/821.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">La prima parte della nostra analisi è fatta. Possiamo rimuovere i layer che non sono più necessari. Tenete premuto il pulsante <tt class="kbd docutils literal"><span class="pre">Shift</span></tt>  della tastiera e selezionate con il mouse il layer <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations</span></tt> e <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt> <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt> . Click con il tasto destro e selezionate <em class="guilabel">Rimuovi</em> per eliminarli dalla TOC di QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/918.png" class="align-center" src="../_images/918.png" />
+<img alt="../_images/919.png" class="align-center" src="../_images/919.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Andate su <em class="menuselection">Layer ‣ Aggiungi Vettore</em>. Individuate il file scaricato <tt class="docutils literal"><span class="pre">tl_2013_us_county.zip</span></tt> e fate click su <em class="guilabel">Open</em>. Selezionate il file <tt class="docutils literal"><span class="pre">tl_2013_us_county.shp</span></tt> come layer e fate click su  <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1019.png" class="align-center" src="../_images/1019.png" />
+<img alt="../_images/1020.png" class="align-center" src="../_images/1020.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Il layer <tt class="docutils literal"><span class="pre">tl_2013_us_county`</span> <span class="pre">verrà</span> <span class="pre">aggiunto</span> <span class="pre">a</span> <span class="pre">QGIS.</span> <span class="pre">Questo</span> <span class="pre">layer</span> <span class="pre">ci</span> <span class="pre">giunge</span> <span class="pre">in</span> <span class="pre">una</span> <span class="pre">proiezione</span> <span class="pre">``EPSG:4269</span> <span class="pre">NAD83</span></tt> che non si integra con la proiezione del raster. Pertanto ri-proietteremo questo layer in una proiezione EPSG:4326 WGS84.</p>
 </li>
 </ol>
-<img alt="../_images/1124.png" class="align-center" src="../_images/1124.png" />
+<img alt="../_images/1125.png" class="align-center" src="../_images/1125.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Click con il tasto destro del mouse sul layer <tt class="docutils literal"><span class="pre">tl_2013_us_county</span></tt> e selezionate <em class="guilabel">Salva con nome..</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1220.png" class="align-center" src="../_images/1220.png" />
+<img alt="../_images/1221.png" class="align-center" src="../_images/1221.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Nella finestra di dialogo <em class="guilabel">Salva i vettori come ...</em> fate click su  <em class="guilabel">Sfoglia</em> e chiamate il file di output <tt class="docutils literal"><span class="pre">counties.shp</span></tt>.  Scegliete <em class="guilabel">SR selezionato</em> nell&#8217;apposito menu a discesa che si trova alla voce <em class="guilabel">Sist rif</em>. Fate click su <em class="guilabel">Sfoglia</em> e selezionate  <tt class="docutils literal"><span class="pre">WGS</span> <span class="pre">84</span></tt> come SR. Spuntate la casella :<em class="guilabel">Aggiungi il file salvato alla mappa</em> e fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1318.png" class="align-center" src="../_images/1318.png" />
+<img alt="../_images/1319.png" class="align-center" src="../_images/1319.png" />
 <ol class="arabic simple" start="14">
 <li>A new layer named <tt class="docutils literal"><span class="pre">counties</span></tt> will be add to QGIS.</li>
 </ol>
-<img alt="../_images/1418.png" class="align-center" src="../_images/1418.png" />
+<img alt="../_images/1419.png" class="align-center" src="../_images/1419.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Attivate il plugin che si chiama  <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">di</span> <span class="pre">statistica</span> <span class="pre">zonale</span></tt>. Questo è un plugin interno, per cui è già installato.  Vedete <a class="reference internal" href="using_plugins.html"><em>Usare i Plugins</em></a> come attivare un plugin interno.</p>
 </li>
 </ol>
-<img alt="../_images/1516.png" class="align-center" src="../_images/1516.png" />
+<img alt="../_images/1517.png" class="align-center" src="../_images/1517.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Andate su  <em class="menuselection">Raster ‣ Statistiche zonali ‣ Statistiche zonali</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1616.png" class="align-center" src="../_images/1616.png" />
+<img alt="../_images/1617.png" class="align-center" src="../_images/1617.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Selezionate il file <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float</span></tt> come  <em class="guilabel">Raster</em>   <tt class="docutils literal"><span class="pre">counties``alla</span> <span class="pre">voce</span>&nbsp;&nbsp; <span class="pre">:guilabel:`Vettore</span> <span class="pre">di</span> <span class="pre">poligoni</span> <span class="pre">che</span> <span class="pre">contiene</span> <span class="pre">le</span> <span class="pre">zone`.</span> <span class="pre">Digitate</span> <span class="pre">ZS_</span> <span class="pre">come</span> <span class="pre">&quot;prefisso</span> <span class="pre">colonna</span> <span class="pre">di</span> <span class="pre">output&quot;.</span> <span class="pre">Digitate</span> <span class="pre">``ZS_</span></tt> come  <em class="guilabel">Prefisso colonna di output</em>. Click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1715.png" class="align-center" src="../_images/1715.png" />
+<img alt="../_images/1716.png" class="align-center" src="../_images/1716.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">L&#8217;analisi prenderà un quantitativo di tempo variabile che dipende principalmente dalle dimensioni del dataset.</p>
 </li>
 </ol>
-<img alt="../_images/1815.png" class="align-center" src="../_images/1815.png" />
+<img alt="../_images/1816.png" class="align-center" src="../_images/1816.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Una volta che il processo è finito selezionate il layer <tt class="docutils literal"><span class="pre">counties</span></tt>. Usate lo strumento <em class="guilabel">Informazioni elemento</em> e fate click sui poligoni delle divisioni amministrative. Vedrete tre nuovi attributi aggiungersi al layer:  <tt class="docutils literal"><span class="pre">ZS_count</span></tt>, <tt class="docutils literal"><span class="pre">ZS_mean</span></tt> and <tt class="docutils literal"><span class="pre">ZS_sum</span></tt>. Questi attributi contengono, nell&#8217;ordine, il conteggio dei pixel del raster, la media dei pixel del raster e la somma dei valori dei pixel del raster. Considerando che abbiamo detto di essere interessati alla temperatura media, il campo <tt class="docutils literal"><span class="pre">ZS_mean</span></tt> sarà quello che fa al caso nostro.</p>
 </li>
 </ol>
-<img alt="../_images/1913.png" class="align-center" src="../_images/1913.png" />
+<img alt="../_images/1914.png" class="align-center" src="../_images/1914.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Andiamo a tematizzare questo layer e creiamo una carta delle temperature. Click sul tasto destro del layer <a href="#id1"><span class="problematic" id="id2">``</span></a>counties` e selezionate <em class="guilabel">Proprietà</em>.</p>
 </li>
 </ol>
-<img alt="../_images/2010.png" class="align-center" src="../_images/2010.png" />
+<img alt="../_images/2011.png" class="align-center" src="../_images/2011.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Passate sulla scheda  <em class="guilabel">Stile</em>. Scegliete <em class="guilabel">Graduato</em>  e selezionate come <em class="guilabel">Column`</em> il campo  <tt class="docutils literal"><span class="pre">ZS_mean</span></tt> . Scegliete una <em class="guilabel">Scala di colori`e un  :guilabel:`Modeo  a vostra libera scelta. Fate click su :guilabel:`Classifica</em>  per creare delle classi di valori. Fate click su <em class="guilabel">OK</em>.
 (Andate a vedere <tt class="xref doc docutils literal"><span class="pre">Raster,</span> <span class="pre">elementi</span> <span class="pre">base:</span> <span class="pre">tematizzazione</span> <span class="pre">ed</span> <span class="pre">analisi</span></tt> per maggiori dettagli sulle tematizzazioni.)</p>
 </li>
 </ol>
-<img alt="../_images/2114.png" class="align-center" src="../_images/2114.png" />
+<img alt="../_images/2115.png" class="align-center" src="../_images/2115.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Vedrete i poligoni delle divisioni amministrative tematizzati sulla base delle temperature medie ricavate dalla griglia raster.</p>
 </li>
 </ol>
-<img alt="../_images/2211.png" class="align-center" src="../_images/2211.png" />
+<img alt="../_images/2212.png" class="align-center" src="../_images/2212.png" />
 </div>
 </div>
 
@@ -347,7 +348,7 @@ Scaricate il <a class="reference external" href="http://www2.census.gov/geo/tige
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Apr 14, 2015.<br/>
+      Ultimo aggiornamento Apr 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

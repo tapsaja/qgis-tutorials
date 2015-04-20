@@ -109,6 +109,7 @@
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">레이어에서 버텍스 갯수 계측</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">BIL, BIP 혹은 BSQ 파일 열기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">파이썬 프로그램밍 시작</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">인접 폴리곤 찾기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">qgis2leaf로 웹 지도 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">QGIS에서 구글지도 커넥터 이용하기</a></li>
@@ -206,12 +207,12 @@
 <li><p class="first">포털에서 내보내기 옵션을 이용하여 자치구 경계 <a class="reference external" href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm">Borough Boundaries</a> 압축파일을 다운로드합니다.</p>
 </li>
 </ol>
-<img alt="../_images/180.png" class="align-center" src="../_images/180.png" />
+<img alt="../_images/190.png" class="align-center" src="../_images/190.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">포털에서 내보내기 옵션을 이용하여 요양원  <a class="reference external" href="https://data.cityofnewyork.us/Health/Nursing-Homes/9tqc-rnkr">Nursing Homes</a> 압축파일을 다운로드 합니다.</p>
 </li>
 </ol>
-<img alt="../_images/227.png" class="align-center" src="../_images/227.png" />
+<img alt="../_images/236.png" class="align-center" src="../_images/236.png" />
 <p>For convenience, the version of datasets used in this tutorial can be
 downloaded directly from the links below:</p>
 <p>Download <a class="reference download internal" href="../_downloads/nybb_12c.zip"><tt class="xref download docutils literal"><span class="pre">Borough</span> <span class="pre">Boundaries</span></tt></a></p>
@@ -227,22 +228,22 @@ downloaded directly from the links below:</p>
 <ol class="arabic simple" start="4">
 <li>Select the layer <tt class="docutils literal"><span class="pre">nybb.shp</span></tt> and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/416.png" class="align-center" src="../_images/416.png" />
+<img alt="../_images/417.png" class="align-center" src="../_images/417.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">또다른 압축파일인  <a href="#id1"><span class="problematic" id="id2">``</span></a>OEM_NursingHomes_001.zip``에 대해 3번과 4번 단계를 되풀이하고 <a href="#id3"><span class="problematic" id="id4">``</span></a>OEM_NursingHomes_001.shp``레이어를 불러옵니다. 일단 두개의 레이어가 불러들여지면 <a href="#id5"><span class="problematic" id="id6">``</span></a>OEM_NursingHomes_001``레이어를 우측클릭하고 속성 테이블 열기  :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>Open Attribute Table`를 선택합니다.</p>
 </li>
 </ol>
-<img alt="../_images/517.png" class="align-center" src="../_images/517.png" />
+<img alt="../_images/518.png" class="align-center" src="../_images/518.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">각 객체에서 사용가능한 속성을 살펴봅니다. 각 자치구에서 전체 요양원의 수용력을 계산하는 것이 과업이므로  경계 레이어와 결합할 수 있는 <strong>Capacity</strong> 속성 을 사용할 수 있습니다.</p>
 </li>
 </ol>
-<img alt="../_images/616.png" class="align-center" src="../_images/616.png" />
+<img alt="../_images/617.png" class="align-center" src="../_images/617.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">메뉴 벡터 &#8211;&gt; 데이터 관리 도구 &#8211;&gt; 위치에 따라 속성 결합 :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Vector &#8211;&gt; Data Mangement Tools &#8211;&gt; Join attributes by location`으로 갑니다.</p>
 </li>
 </ol>
-<img alt="../_images/715.png" class="align-center" src="../_images/715.png" />
+<img alt="../_images/716.png" class="align-center" src="../_images/716.png" />
 <ol class="arabic simple" start="8">
 <li>The <em class="guilabel">Target vector layer</em> is the one we want to add the attributes
 to. In our case, this will be the boroughs boundary <tt class="docutils literal"><span class="pre">nybb</span></tt> layer. The
@@ -252,37 +253,37 @@ homes, select <em class="guilabel">Take summary of intersecting features</em> an
 <em class="guilabel">Sum</em>. Name the output file as <tt class="docutils literal"><span class="pre">nyc_borough_join.shp</span></tt>. In the
 <em class="guilabel">Output table</em> select <em class="guilabel">Keep all records`</em>.</li>
 </ol>
-<img alt="../_images/814.png" class="align-center" src="../_images/814.png" />
+<img alt="../_images/815.png" class="align-center" src="../_images/815.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">일단 과정이 종료되면 레이어를 TOC에 추가하고자 묻는다면 <em class="guilabel">Yes</em> 를 선택합니다. 새로운 레이어 <a href="#id1"><span class="problematic" id="id2">``</span></a>nyc_borough_join``는 <a href="#id3"><span class="problematic" id="id4">``</span></a>OEM_NursingHomes_001``레이어로부터 공간적으로 결합된 속성을 따라  <a href="#id5"><span class="problematic" id="id6">``</span></a>nybb``레이어로 부터 객체를 갖게 됩니다. 레이어를 우측클릭하고 속성 테이블 열기  :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>Open Attribute Table`를 선택합니다.</p>
 </li>
 </ol>
-<img alt="../_images/912.png" class="align-center" src="../_images/912.png" />
+<img alt="../_images/913.png" class="align-center" src="../_images/913.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">속성 테이블에서  <strong>SUMCapacit</strong> 열을 보게될 것입니다. 이것은 각 자치구 객체내에 해당하는 요양원의 <a href="#id1"><span class="problematic" id="id2">**</span></a>Capacity**속성의 총합입니다.</p>
 </li>
 </ol>
-<img alt="../_images/1013.png" class="align-center" src="../_images/1013.png" />
+<img alt="../_images/1014.png" class="align-center" src="../_images/1014.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">이것이 찾고자하는 답입니다. 그러나 결과에서 원하지 않는 여분의 열이 있습니다. 결과를 깔끔하게 정리하십시오. 편집 전환  :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Toggle editing`단추와 칼럼삭제 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Delete column`단추를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1118.png" class="align-center" src="../_images/1118.png" />
+<img alt="../_images/1119.png" class="align-center" src="../_images/1119.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">속성삭제  :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Delete Attributes`다이알로그에서 모든 칼럼을 선택하기 위하여 :kbd:<a href="#id3"><span class="problematic" id="id4">`</span></a>Control-A`른 누릅니다. 다음 :kbd:<a href="#id5"><span class="problematic" id="id6">`</span></a>Control`키를 누른 채 유지하고자 하는 칼럼을 선택해제합니다.  :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>OK`를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1215.png" class="align-center" src="../_images/1215.png" />
+<img alt="../_images/1216.png" class="align-center" src="../_images/1216.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">속성 테이블에서 변경된 내용을 저장하기 위하여 다시 편집전환  :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Toggle editing`을 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" />
+<img alt="../_images/1314.png" class="align-center" src="../_images/1314.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">QGIS 캔버스로 되돌아 가서, 결과 파일이 각 자치구 객체에서 원하던 속성을 갖고 있는지 객체확인 <em class="guilabel">Identify</em> 툴을 이용합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1413.png" class="align-center" src="../_images/1413.png" />
+<img alt="../_images/1414.png" class="align-center" src="../_images/1414.png" />
 </div>
 </div>
 
@@ -309,7 +310,7 @@ homes, select <em class="guilabel">Take summary of intersecting features</em> an
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      최종 업데이트: Apr 14, 2015<br/>
+      최종 업데이트: Apr 20, 2015<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
