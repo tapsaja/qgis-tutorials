@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Digitizing Map Data &mdash; QGIS Tutorials and Tips</title>
+    <title>Kaartgegevens digitaliseren &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -95,7 +95,7 @@
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Topobladen en gescande kaarten voorzien van geoverwijzingen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Geo-verwijzingen voor satellietbeelden</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Digitizing Map Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Kaartgegevens digitaliseren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
@@ -180,66 +180,54 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><h4>Author</h4>
 <div class="g-person" data-width="250" data-href="//plus.google.com/u/0/116912222767108657277" data-showtagline="false" data-showcoverphoto="false" data-rel="author"></div>
 
-<div class="addthis_horizontal_follow_toolbox"></div>
+<h4>Share</h4>
+<div class="addthis_sharing_toolbox"></div>
         </div>
       </div>
     <div class="col-md-9">
       
 
   <div class="section" id="digitizing-map-data">
-<h1>Digitizing Map Data<a class="headerlink" href="#digitizing-map-data" title="Permalink naar deze titel">¶</a></h1>
+<h1>Kaartgegevens digitaliseren<a class="headerlink" href="#digitizing-map-data" title="Permalink naar deze titel">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/digitizing_basics_a4.pdf">A4</a> <a class="reference external" href="../pdf/digitizing_basics_letter.pdf">Letter</a> ]</p>
-<p>Digitizing is one of the most common tasks that a GIS Specialist has to do.
-Often a large amount of <em>GIS time</em> is spent in digitizing raster data to create
-vector layers that you use in your analysis. QGIS has powerful on-screen
-digitizing and editing capabilities that we will explore in this tutorial.</p>
+<p>Digitaliseren is één van de meest voorkomende taken die een specialist in GIS moet uitvoeren. Vaak wordt een groot gedeelte van <em>GIS-tijd</em> gebruikt voor het digitaliseren van rastergegevens naar het maken van vectorlagen die u gebruikt in uw analyses. QGIS heeft krachtige mogelijkheden voor het digitaliseren en bewerken op het scherm, die we in deze handleiding zullen verkennen.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
-<p>We will use a raster topographic map and create several vector layers
-representing features around a park.</p>
+<h2>Overzicht van de taak<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
+<p>We zullen een raster topografische kaart gebruiken en verschillende vectorlagen maken die objecten rondom een park weergeven.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
+<h3>Andere vaardigheden die u zult leren<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
 <ul class="simple">
-<li>Building pyramids for large raster datasets to speed up zoom and pan
-operations.</li>
-<li>Working with a Spatialite database.</li>
+<li><p class="first">Piramiden bouwen voor grote raster-gegevenssets om bewerkingen voor zoomen en verschuiven te versnellen.</p>
+</li>
+<li><p class="first">Werken met een database van Spatialite.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
-<p><a class="reference external" href="http://www.linz.govt.nz/">Land Information New Zealand (LINZ)</a> provides
-raster topographic maps at 1:50,000 scale for the New Zealand mainland and
-Chatham Islands.</p>
-<p>Download the <a class="reference external" href="http://topo.linz.govt.nz/Topo50_raster_images/GeoTIFFTopo50/BX24_GeoTifv1-02.tif">GeoTIFF Image file</a>
-from the <a class="reference external" href="http://www.linz.govt.nz/topography/topo-maps/map-chooser/christchurch/christchurch#digitalfile">Christchurch Topo50 map download page</a>.</p>
+<h2>De gegevens ophalen<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
+<p><a class="reference external" href="http://www.linz.govt.nz/">Land Information New Zealand (LINZ)</a> verschaft raster topografische kaarten op de schaal 1:50,000 voor het vasteland van Nieuw Zeeland en de Chatham Islands.</p>
+<p>Download het <a class="reference external" href="http://topo.linz.govt.nz/Topo50_raster_images/GeoTIFFTopo50/BX24_GeoTifv1-03.tif">GeoTIFF afbeeldingenbestand</a> vanaf de <a class="reference external" href="http://www.linz.govt.nz/topography/topo-maps/map-chooser/christchurch/christchurch#digitalfile">Christchurch Topo50 map download page</a>.</p>
 <p>If you are on a slow connection, you may download a clipped version of the
 original GeoTIFF which is a much smaller file size.</p>
 <p><a class="reference download internal" href="../_downloads/BX24_GeoTifv1-02-clip.tif"><tt class="xref download docutils literal"><span class="pre">BX24_GeoTifv1-02-clip.tif</span></tt></a></p>
-<p>Data Source <a class="reference internal" href="credits.html#linz" id="id1">[LINZ]</a></p>
+<p>Gegevensbron <a class="reference internal" href="credits.html#linz" id="id1">[LINZ]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink naar deze titel">¶</a></h2>
 <ol class="arabic simple">
-<li>Go to <em class="menuselection">Layer ‣ Add Raster Layer</em>. Locate the downloaded
-<tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02.tif</span></tt> and click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Ga naar <em class="menuselection">Kaartlagen ‣ Laag toevoegen ‣ Rasterlaag toevoegen</em>. Zoek het gedownloade <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-03.tif</span></tt> op en klik op <em class="guilabel">Openen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/120.png" class="align-center" src="../_images/120.png" />
 <ol class="arabic simple" start="2">
-<li>This is a large raster file and you may notice that when you zoom or pan
-around the map, the map takes a little time to render the image. QGIS offers
-a simple solution to make rasters load much faster by using <strong>Image
-Pyramids</strong>. QGIS creates pre-rendered tiles at different resolutions and
-these are presented to you instead of the full raster. This makes map
-navigation snappy and responsive. Right-click the <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02</span></tt> layer
-and choose <em class="guilabel">Properties</em>.</li>
+<li><p class="first">Dit is een groot rasterbestand en het zou u kunnen opvallen dat wanneer u op de kaart inzoomt of die verschuift, dat het enige tijd vergt voor de afbeelding is gerenderd. QGIS biedt een eenvoudige oplossing om rasters veel sneller te laden door <strong>Afbeeldingspiramiden</strong> te gebruiken. QGIS maakt vooraf gerenderde tegels in verschillende resoluties en deze worden aan u gepresenteerd in plaats van het volledige raster. Dat maakt het navigeren over de kaart snel en responsief. Klik met rechts op de laag <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-03</span></tt> en kies <em class="guilabel">Eigenschappen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/213.png" class="align-center" src="../_images/213.png" />
 <ol class="arabic simple" start="3">
-<li>Choose the <em class="guilabel">Pyramids</em> tab. Hold the <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> key and select all
-the resolutios offered in the <em class="guilabel">Resolutions</em> panel. Leave other
-options to defaults and click <em class="guilabel">Build pyramids</em>. Once the process
-finishes, click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Kies de tab <em class="guilabel">Piramiden</em>. Houdt de <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>-toets ingedrukt en selecteer alle aangeboden resoluties in het paneel <em class="guilabel">Resoluties</em>. Laat de andere opties op hun standaarden staan en klik op <em class="guilabel">Piramiden bouwen</em>. Als het proces voltooid is, klik dan op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/37.png" class="align-center" src="../_images/37.png" />
 <ol class="arabic simple" start="4">
@@ -249,33 +237,18 @@ digitizing.</li>
 </ol>
 <img alt="../_images/47.png" class="align-center" src="../_images/47.png" />
 <ol class="arabic simple" start="5">
-<li>Before we start, we need to set default <strong>Digitizing Options</strong>. Go to
-<em class="menuselection">Settings ‣ Options...</em>.</li>
+<li><p class="first">Voor we beginnen moeten we de standaard opties voor <strong>Digitaliseren</strong> instellen. Ga naar <em class="menuselection">Extra ‣ Opties...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/57.png" class="align-center" src="../_images/57.png" />
 <ol class="arabic simple" start="6">
-<li>Select the <em class="guilabel">Digitizing</em> tab in the <em class="guilabel">Options</em> dialog.
-Set the <em class="guilabel">Default snap mode</em> to <em class="guilabel">To vertex and segment</em>.
-This will allow you to snap to the nearest vertex or line segment. I also
-prefer to set the <em class="guilabel">Default snapping tolerance</em> and
-<em class="guilabel">Search radius for vertex edits</em> in pixels instead of map units.
-This will ensure that the snapping distance remains constant regardless of
-zoom level. Depending on your computer screen resolution, you
-may choose an appropriate value. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Selecteer de tab <em class="guilabel">Digitaliseren</em> in het dialoogvenster <em class="guilabel">Opties</em>. Stel de <em class="guilabel">Default snap mode</em> in op <em class="guilabel">Naar hoekpunt en segment</em>. Dit stelt u in staat te snappen aan het dichtstbijzijnde hoekpunt of lijnsegment. Ik heb zelf de voorkeur om de <em class="guilabel">Standaard &#8216;snapping&#8217;-tolerantie</em> en <em class="guilabel">Zoekradius voor hoekpuntaanpassingen</em> in te stellen op pixels in plaats van op kaarteenheden. Dat zal er voor zorgen dat de afstand voor snappen hetzelfde blijft, ongeacht het zoomniveau. Afhankelijk van de resolutie van uw computerscherm, kunt u een toepasselijke waarde kiezen. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/66.png" class="align-center" src="../_images/66.png" />
 <ol class="arabic simple" start="7">
-<li>Now we are ready to start digitizing. We will first create a roads layer and
-digitize the roads around the park area. Select <em class="menuselection">Layer ‣ New
-‣ New Spatialite Layer...</em>. You may also choose to create a <em class="guilabel">New
-Shapefile Layer...</em> instead if you prefer. Spatialite is an open database
-format similar to ESRI&#8217;s geodatabase format. Spatialite database is
-contained within a single file on your hard drive and can contain diferent
-types of spatial (point, line, polygon) as well as non-spatial layers. This
-makes is much easier to move it around instead of a bunch of shapefiles. In
-this tutorial, we are creating a couple of polygon layers and a line layer,
-so a Spatialite database will be better suited. You can always load a
-spatialite layer and save it as a shapefile or any other format you want.</li>
+<li><p class="first">Nu zijn we klaar om te beginnen met digitaliseren. We zullen eerst een wegenlaag maken en de wegen rondom het gebied van het park digitaliseren. Selecteer <em class="menuselection">KaartLagen ‣ Laag maken ‣ Nieuwe Spatialite-laag...</em>. Als u dat liever doet kunt u in plaats daarvan ook kiezen voor <em class="guilabel">Nieuwe Shapefile-laag...</em>. Spatialite is een open database-indeling, soortgelijk aan de indeling van ESRI&#8217;s geodatabase. Spatialite-database is opgenomen in één bestand op uw harde schijf en kan verschillende ruimtelijke typen (punt, lijn, polygoon) als ook niet-ruimtelijke lagen bevatten. Dat maakt het veel eenvoudiger om te verplaatsen dan een stapel shapefiles. In deze handleiding maken we een aantal polygoonlagen en een lijnlaag, dus is een Spatialite-database meer geschikt. U kunt altijd nog een Spatialite-laag laden en die opslaan als een shapefile of enige andere indeling die u wilt.</p>
+</li>
 </ol>
 <img alt="../_images/76.png" class="align-center" src="../_images/76.png" />
 <ol class="arabic simple" start="8">
@@ -295,64 +268,52 @@ of the attribute in the <em class="guilabel">New attribute</em> section and clic
 </ol>
 <img alt="../_images/86.png" class="align-center" src="../_images/86.png" />
 <ol class="arabic simple" start="9">
-<li>Similarly create a new attribute <tt class="docutils literal"><span class="pre">Class</span></tt> of the type <em class="guilabel">Text data</em>.
-Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Maak op soortgelijke wijze een nieuw attribuut <tt class="docutils literal"><span class="pre">Klasse</span></tt> van het type <em class="guilabel">Text data</em>. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/96.png" class="align-center" src="../_images/96.png" />
 <ol class="arabic simple" start="10">
-<li>Once the layer is loaded, click the <em class="guilabel">Toggle Editing</em> button to
-put the layer in editing mode.</li>
+<li><p class="first">Klik, als de laag eenmaal is geladen, op de knop <em class="guilabel">Bewerken aan-/uitzetten</em> om de laag in de modus Berwerken te zetten.</p>
+</li>
 </ol>
 <img alt="../_images/106.png" class="align-center" src="../_images/106.png" />
 <ol class="arabic simple" start="11">
-<li>Click the <em class="guilabel">Add feature</em> button. Click on the map canvas to add a
-new vertex. Add new vertices along the road feature. Once you have digitized
-a road segment, right-click to end the feature.</li>
+<li><p class="first">Klik op de knop <em class="guilabel">Object toevoegen</em>. Klik op het kaartvenster om een nieuw punt toe te voegen. Voeg nieuwe punten toe langs het wegobject. Als u eenmaal een segment van de weg hebt gedigitaliseerd, klik met rechts om het object te beëindigen.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Notitie</p>
-<p class="last">You can use the scroll wheel of the mouse to zoom in or out while digitizing.
-You can also hold the scroll button and move the mouse to pan around.</p>
+<p class="last">U kunt het wieltje van de muis gebruiken om in- of uit te zoomen tijdens het digitaliseren. U kunt ook het muiswiel ingedrukt houden en de muis verplaatsen om te verschuiven.</p>
 </div>
 <img alt="../_images/1111.png" class="align-center" src="../_images/1111.png" />
 <ol class="arabic simple" start="12">
-<li>After you right-click to end the feature, you will get a pop-up dialog
-called <em class="guilabel">Attributes</em>. Here you can enter attributes of the newly
-created feature. Since the <strong>pkuid</strong> is an auto-incrementing field, you
-will not be able to enter a value manually. Leave it blank and enter the
-road name as it appears on the topo map. Optionally, assign a Road Class
-value as well. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Nadat u met rechts heeft geklikt om het object te beëindigen, zult u een pop-up dialoogvenster krijgen, genaamd <em class="guilabel">Attributen</em>. Hier kunt u attributen invoeren voor het nieuw gemaakte object. Omdat <strong>pkuid</strong> een automatisch ophogend veld is, zult u niet in staat zijn daar handmatig een waarde in te geven. Laat het leeg en voer de naam van de weg in zoals die verschijnt op de topografische kaart. Wijs ook, optioneel, een waarde voor Klasse toe. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/126.png" class="align-center" src="../_images/126.png" />
 <ol class="arabic simple" start="13">
-<li>The default style of the new line layer is a thin line. Let&#8217;s change it so
-we can better see the digitized features on the canvas. Right click the
-<tt class="docutils literal"><span class="pre">Roads</span></tt> layer and select <em class="guilabel">Properties</em>.</li>
+<li><p class="first">De standaard stijl voor de nieuwe lijnlaag is een dunne lijn. Laten we die wijzigen zodat we de gedigitaliseerde objecten in het kaartvenster beter kunnen zien. Klik met rechts op de laag <tt class="docutils literal"><span class="pre">Roads</span></tt> en selecteer <em class="guilabel">Eigenschappen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/136.png" class="align-center" src="../_images/136.png" />
 <ol class="arabic simple" start="14">
-<li>Select the <em class="guilabel">Style</em> tab in the <em class="guilabel">Layer Properties</em>
-dialog. Choose a thicker line style such as <em class="guilabel">Primary</em> from the
-predefined styles. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Selecteer de tab <em class="guilabel">Stijl</em> in het dialoogvenster <em class="guilabel">Laag-eigenschappen</em>. Kies een dikkere lijnstijl zoals <em class="guilabel">Primary</em> uit de vooraf gedefinieerde stijlen. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/146.png" class="align-center" src="../_images/146.png" />
 <ol class="arabic simple" start="15">
-<li>Now you will see the digitized road feature clearly. Click <em class="guilabel">Save
-Layer Edits</em> to commit the new feature to disk.</li>
+<li><p class="first">Nu zult u het gedigitaliseerde wegobject duidelijk zien. Klik op <em class="guilabel">Opslaan voor geselecteerde laag/lagen</em> om het nieuwe object op schijf te bewaren.</p>
+</li>
 </ol>
 <img alt="../_images/156.png" class="align-center" src="../_images/156.png" />
 <ol class="arabic simple" start="16">
-<li>Before we digitize remaining roads, it is important to update some other
-settings that are important to create an error free layer. Go to
-<em class="menuselection">Settings ‣ Snapping Options...</em>.</li>
+<li><p class="first">Voor we de resterende wegen gaan digitaliseren, is het belangrijk om enkele andere instellingen bij te werken die belangrijk zijn om een foutenvrije laag te maken. Ga naar <em class="menuselection">Extra ‣ Opties voor Snappen...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/166.png" class="align-center" src="../_images/166.png" />
 <ol class="arabic simple" start="17">
-<li>In the <em class="guilabel">Snapping Options</em> dialog, check the <em class="guilabel">Enable
-topological editing</em>. This option will ensure that the common boundaries
-are maintained correctly in polygon layers. Also check the
-<em class="guilabel">Enable snapping on intersection</em> which allows you to snap on an
-intersection of a background layer.</li>
+<li><p class="first">Selecteer, in het dialoogvenster <em class="guilabel">Snapping-opties</em>, <em class="guilabel">&#8216;Topologie bewerken&#8217; aanzetten</em>. Deze optie zorgt er voor dat de algemene grenzen juist wordne behouden in polygoonlagen. Selecteer ook <em class="guilabel">Snappen op snijpunten aanzetten</em> wat u in staat stelt te snappen op een kruising van een achtergrondlaag.</p>
+</li>
 </ol>
 <img alt="../_images/176.png" class="align-center" src="../_images/176.png" />
 <ol class="arabic simple" start="18">
@@ -491,7 +452,6 @@ data you created.</li>
 
 
 
-<div class="addthis_sharing_toolbox"></div>
 
 
   <div id="disqus_thread"></div>

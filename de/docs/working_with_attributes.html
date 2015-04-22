@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Mit Attributen arbeiten &mdash; QGIS Tutorials and Tips</title>
+    <title>Working with Attributes &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,8 +30,8 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Import von Tabellen oder CSV Dateien" href="importing_spreadsheets_csv.html" />
-    <link rel="prev" title="Erzeugen einer Karte" href="making_a_map.html" />
+    <link rel="next" title="Importing Spreadsheets or CSV files" href="importing_spreadsheets_csv.html" />
+    <link rel="prev" title="Making a Map" href="making_a_map.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -81,10 +81,10 @@
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Einleitung</a></li>
-<li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Erzeugen einer Karte</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Mit Attributen arbeiten</a></li>
-<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Import von Tabellen oder CSV Dateien</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Making a Map</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Working with Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Importing Spreadsheets or CSV files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Using Plugins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
@@ -126,11 +126,11 @@
               
                 
   <li>
-    <a href="making_a_map.html" title="Previous Chapter: Erzeugen einer Karte"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Erzeugen einer K...</span>
+    <a href="making_a_map.html" title="Previous Chapter: Making a Map"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Making a Map</span>
     </a>
   </li>
   <li>
-    <a href="importing_spreadsheets_csv.html" title="Next Chapter: Import von Tabellen oder CSV Dateien"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Import von Tabel... &raquo;</span>
+    <a href="importing_spreadsheets_csv.html" title="Next Chapter: Importing Spreadsheets or CSV files"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Importing Spread... &raquo;</span>
     </a>
   </li>
               
@@ -180,19 +180,24 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><h4>Author</h4>
 <div class="g-person" data-width="250" data-href="//plus.google.com/u/0/116912222767108657277" data-showtagline="false" data-showcoverphoto="false" data-rel="author"></div>
 
-<div class="addthis_horizontal_follow_toolbox"></div>
+<h4>Share</h4>
+<div class="addthis_sharing_toolbox"></div>
         </div>
       </div>
     <div class="col-md-9">
       
 
   <div class="section" id="working-with-attributes">
-<h1>Mit Attributen arbeiten<a class="headerlink" href="#working-with-attributes" title="Permalink zu dieser Überschrift">¶</a></h1>
+<h1>Working with Attributes<a class="headerlink" href="#working-with-attributes" title="Permalink zu dieser Überschrift">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/working_with_attributes_a4.pdf">A4</a> <a class="reference external" href="../pdf/working_with_attributes_letter.pdf">Letter</a> ]</p>
-<p>GIS Daten bestehen aus zwei Teilen - Features und Attribute. Attribute sind strukturierte Inhalte über jedes Feature. Dieses Tutorial zeigt, wie Attribute angezeigt  und einfache Abfragen auf diese in QGIS durchgeführt werden können.</p>
+<p>GIS data has two parts - features and attributes. Attributes are structured
+data about each feature. This tutorial shows how to view the attributes and do
+basic queries on them in QGIS.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Übersicht der Aufgabe<a class="headerlink" href="#overview-of-the-task" title="Permalink zu dieser Überschrift">¶</a></h2>
-<p>Der Datensatz in dieser Anleitung beinhaltet Informationen über besiedelte Orte der Welt. Die Aufgabe besteht darin, in einer Abfrage alles Hauptstädte der Welt zu finden, die mehr als 1.000.000 Einwohner haben.</p>
+<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink zu dieser Überschrift">¶</a></h2>
+<p>The dataset for this tutorial contains information about populated places of
+the world. The task is to query and find all the capital cities in the world
+that have a population greater than 1,000,000.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink zu dieser Überschrift">¶</a></h3>
 <ul class="simple">
@@ -203,34 +208,35 @@
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Daten besorgen<a class="headerlink" href="#get-the-data" title="Permalink zu dieser Überschrift">¶</a></h2>
+<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink zu dieser Überschrift">¶</a></h2>
 <p>Natural Earth has a nice <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places</a>
 dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simple (less columns) dataset</a></p>
 <p>For convenience, you may directly download a copy of datasets from the link
 below:</p>
 <p><a class="reference external" href="../../downloads/ne_10m_populated_places_simple.zip">ne_10m_populated_places_simple.zip</a></p>
-<p>Datenquelle <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
+<p>Data Source <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Arbeitsablauf<a class="headerlink" href="#procedure" title="Permalink zu dieser Überschrift">¶</a></h2>
+<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink zu dieser Überschrift">¶</a></h2>
 <ol class="arabic simple">
 <li>Once you have downloaded the data, open QGIS. Go to <em class="menuselection">Layer
 ‣ Add Layer ‣ Add Vector Layer</em>.</li>
 </ol>
 <img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
 <ol class="arabic simple" start="2">
-<li><p class="first">Klicken Sie auf <em class="guilabel">Durchsuchen</em> und gehen Sie zum Ordner, wo sich die geladenen Daten befinden.</p>
-</li>
+<li>Click on <em class="guilabel">Browse</em> and navigate to the folder where you downloaded
+the data.</li>
 </ol>
 <img alt="../_images/268.png" class="align-center" src="../_images/268.png" />
 <ol class="arabic simple" start="3">
-<li><p class="first">Finden Sie die ZIP-Datei <cite>ne_10m_populated_places_simple.zip</cite>. Sie brauchen diese nicht zu entpacken. QGIS kann direkt ZIP-Dateien lesen. Selektieren Sie die Datei und klicken <em class="guilabel">Öffnen</em>.</p>
-</li>
+<li>Locate the downloaded zip file <cite>ne_10m_populated_places_simple.zip</cite>. You do
+not need to unzip the file. QGIS has the ability to read zip files directly.
+Select the file and click <em class="guilabel">Open</em>.</li>
 </ol>
 <img alt="../_images/337.png" class="align-center" src="../_images/337.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">Die Auswahl wird nun in QGIS geladen und Sie sehen viele Punkte, die die besiedelten Orte der Welt repräsentieren.</p>
-</li>
+<li>The selected layer will now be loaded in QGIS and you will see many points
+representing the populated places of the world.</li>
 </ol>
 <img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
 <ol class="arabic simple" start="5">
@@ -238,13 +244,13 @@ below:</p>
 </ol>
 <img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">Erkunden Sie die unterschiedlichen Attribute und deren Werte.</p>
-</li>
+<li>Explore the various attributes and their values.</li>
 </ol>
 <img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">Uns interessiert die Population von jedem Feature, so dass wir uns auf das Feld <cite>pop_max</cite> konzentrieren. Sie können zweifach auf die Überschrift klicken, um die Tabelle in absteigender Reihenfolge zu sortieren.</p>
-</li>
+<li>We are interested in the population of each feature, so <cite>pop_max</cite> is the
+field we are looking for. You can click twice on the field header to sort
+the column in descending order.</li>
 </ol>
 <img alt="../_images/727.png" class="align-center" src="../_images/727.png" />
 <ol class="arabic simple" start="8">
@@ -328,7 +334,6 @@ original color.</li>
 
 
 
-<div class="addthis_sharing_toolbox"></div>
 
 
   <div id="disqus_thread"></div>
