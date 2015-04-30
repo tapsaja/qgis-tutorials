@@ -105,12 +105,13 @@
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Отбор проб растровых данных с помощью точек или полигонов</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Интерполяция точечных данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Выполнение пакетных файлов с помощью среды обработки</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Автоматизация сложных рабочих процессов с помощью Редактора моделей</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Использование QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Подсчет числа вершин в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Открытие файлов BIL, BIP или BSQ в QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Первые шаги в программировании на Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Создание модуля на Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Нахождение соседних полигонов в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Веб-карты Leaflet с помощью qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Использование Google Maps Engine Connector для QGIS</a></li>
@@ -209,52 +210,52 @@ tutorial from link below.</p>
 <li><p class="first">Для начинания, расстегивают данные к папке. Data находится в формате CSV. Мы импортируем это data в QGIS. (посмотрите <a class="reference internal" href="importing_spreadsheets_csv.html"><em>Импорт таблиц или CSV-файлов</em></a>. для более конкретной информации). Щелкните <em class="menuselection">Layer ‣ Добавляют Отграниченный Слой</em> Text.</p>
 </li>
 </ol>
-<img alt="../_images/119.png" class="align-center" src="../_images/119.png" />
+<img alt="../_images/126.png" class="align-center" src="../_images/126.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Рассматривайте к файлу <cite>Police-uk-crime-data-surrey.txt</cite> на вашем компьютере и открывайте это. Выберите <em class="guilabel">CSV (запятая отделенные значения)</em> как формат файла. Вы будете видеть, что <em>Easting</em> и <em>Northing</em> колонки автоматически выбрали, как X и поля Y. Убедитесь, что вы проверяете <em class="guilabel">Use пространственный индексный</em> выбор, так как это будет развивать скорость ваши действия над этим слоем. Щелкните <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/210.png" class="align-center" src="../_images/210.png" />
+<img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Вы, возможно, видите некоторые ошибки. Вы можете пренебречь теми с целью из этого консультации. Щелкните <em class="guilabel">Close</em>.</p>
 </li>
 </ol>
-<img alt="../_images/36.png" class="align-center" src="../_images/36.png" />
+<img alt="../_images/310.png" class="align-center" src="../_images/310.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Потом, вам нужно выбрать Систему <cite>Координатной Ссылки (CRS)</cite>. Если вы читаете описание данных, вы заметите, что пространственная ссылка для данных - <em>British Соотечественник Grid</em>. Выберите <em class="guilabel">OSGB 1936 / Британская Национальная Решетка</em> как CRS. Щелкните <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/46.png" class="align-center" src="../_images/46.png" />
+<img alt="../_images/47.png" class="align-center" src="../_images/47.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Сейчас вы будете видеть данные загруженными в QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/56.png" class="align-center" src="../_images/56.png" />
+<img alt="../_images/57.png" class="align-center" src="../_images/57.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Zoom-in немного поближе, чтобы получить лучший взгляд на данные. Вы заметите, что data абсолютно плотный и трудно получить идею того, где есть высокая концентрация пунктов. Это, где heatmap станет удобным.</p>
 </li>
 </ol>
-<img alt="../_images/65.png" class="align-center" src="../_images/65.png" />
+<img alt="../_images/66.png" class="align-center" src="../_images/66.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Чтобы создать heatmap, вам нужно разрешить основное дополнение к программе, названное <cite>Heatmap</cite>. Посмотрите <a class="reference internal" href="using_plugins.html"><em>Использование модулей расширения</em></a> чтобы знать, как разрешить встроенные дополнения к программе. Как только вы разрешили дополнение к программе, идут к <em class="menuselection">Raster ‣ Heatmap ‣ Heatmap</em>.</p>
 </li>
 </ol>
-<img alt="../_images/75.png" class="align-center" src="../_images/75.png" />
+<img alt="../_images/76.png" class="align-center" src="../_images/76.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">В <em class="guilabel">Heatmap Вставной</em> диалог, выбирают <cite>crime_heatmap</cite> как имя <em class="guilabel">Output растр</em>. Введите <cite>1000</cite> единиц карты как <em class="guilabel">Radius</em>. Радиус - область вокруг каждого пункта, который будет использоваться, чтобы вычислить <cite>Тепло</cite>, который пиксель получил. Проверьте <em class="guilabel">Advanced</em> так мы можем конкретизировать output размер нашего heatmap. Введите <cite>100</cite> как <em class="guilabel">Cell Размер X</em> и <em class="guilabel">Cell Размер Y</em>. Щелкните <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/85.png" class="align-center" src="../_images/85.png" />
+<img alt="../_images/86.png" class="align-center" src="../_images/86.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Как только обработка закончена, вы будете видеть, что grayscale heatmap загрузился в холсте.</p>
 </li>
 </ol>
-<img alt="../_images/95.png" class="align-center" src="../_images/95.png" />
+<img alt="../_images/96.png" class="align-center" src="../_images/96.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Давайте вынуждать наш heatmap напоминать больше традиционный heatmap, который вы часто видите. Щелкните правой кнопкой по heatmap слою и щелканию : guilabel:<cite>Свойства</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/105.png" class="align-center" src="../_images/105.png" />
+<img alt="../_images/106.png" class="align-center" src="../_images/106.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">В <em class="guilabel">Style</em> таблица, выбирают <em class="guilabel">Singleband pseudocolor</em> как <em class="guilabel">Render тип</em>. Потом, согласно разделу <em class="guilabel">Load min/максимум значения</em>, выбирают <em class="guilabel">Actual (медленнее)</em> как <em class="guilabel">Accuracy</em> и щелкают <em class="guilabel">Load</em>. Это просмотрит heatmap и найдет значения минимального и максимального пикселя. Эти значения будут использоваться, чтобы производить соответствующую цветную наклонную плоскость. В секции <em class="guilabel">Generate новая цветная карта</em>, выбирают <em class="guilabel">YlOrRd</em> (Красный для Yellow-orange) как цветная наклонная плоскость, и щелкают <em class="guilabel">Classify</em>. Щелкните <em class="guilabel">OK</em>.</p>
 </li>
@@ -264,27 +265,27 @@ tutorial from link below.</p>
 <li><p class="first">Сейчас вы будете видеть больше привлекательной heatmap-like передачи слоя. Вы можете выбрать <em class="guilabel">Identify</em> инструмент и щелкают по любому пикселю heatmap. Вы будете видеть значение пикселя в результирующем pop-up. Это значение пикселя - мероприятие скольких пунктов от исходного слоя содержатся в пределах указанного радиуса ( в нашем случае - 1000m) вокруг пикселя.</p>
 </li>
 </ol>
-<img alt="../_images/125.png" class="align-center" src="../_images/125.png" />
+<img alt="../_images/127.png" class="align-center" src="../_images/127.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Сейчас вы имеете свой heatmap. Это полезно для визуальной интерпретации, но не очень полезный, если вы хотите использовать эти результаты в анализе. Много раз, вы хотите идентифицировать <cite>Горячие точки</cite>, где там высококонцентрационный от пунктов. Мы будем сейчас пробовать идентифицировать такие горячие <cite>точки</cite>, используя это heatmap. Идите к <em class="menuselection">Raster Калькулятор</em> &#8211;&gt; Растра.</p>
 </li>
 </ol>
-<img alt="../_images/135.png" class="align-center" src="../_images/135.png" />
+<img alt="../_images/136.png" class="align-center" src="../_images/136.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Вам придется выбрать пороговое значение сначала. Выше этого порога полагается, что все значения пикселя есть в кластере. Давайте использовать значение 5 для этого data. В <em class="guilabel">Raster диалог калькулятора</em>, называют output слой как <cite>crime_hotspots</cite>. Щелкните дважды на <em class="guilabel">crime_heatmap&#64;1</em> под <em class="guilabel">Raster секция групп</em> и это будет добавлено <em class="guilabel">Raster выражение</em> калькулятора textarea. Завершите выражение, как <cite>&#8220;crime_heatmap&#64;1&#8221; &gt; 5</cite>. Проверьте коробку рядом с <em class="guilabel">Add кончитесь, чтобы проектировать</em> и <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/145.png" class="align-center" src="../_images/145.png" />
+<img alt="../_images/146.png" class="align-center" src="../_images/146.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Новый слой будет добавлен QGIS. Этот слой имеет пиксели со значениями или 0, или 1. Все пиксели во входном слое, где значение пикселя было больше, чем 5 сейчас имеют значение 1 и все remianing пиксели составляют 0. Щелкните по <em class="menuselection">Raster ‣ Конверсия ‣ Polygonize (Растр к Вектору)</em>.</p>
 </li>
 </ol>
-<img alt="../_images/155.png" class="align-center" src="../_images/155.png" />
+<img alt="../_images/156.png" class="align-center" src="../_images/156.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Назовите выходной файл как <em class="guilabel">crime_hotspots_vector</em>. Проверьте коробку рядом с <em class="guilabel">Field имя</em> также как и <em class="guilabel">Load в холсте, когда закончено</em>. Щелкните <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/165.png" class="align-center" src="../_images/165.png" />
+<img alt="../_images/166.png" class="align-center" src="../_images/166.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Однажды конверсионные окончания, вы будете иметь все же другой слой добавил QGIS. Это векторное представление кластеров, которые были созданы в предыдущем шаге. Слои содержат кластеры как 0, так и 1 значение. Позвольте нам filter 0 значений, так мы получаем кластеры горячих точек. Щелкните правой кнопкой по слою и выберите <em class="guilabel">Open Припишите Таблицу</em>.</p>
 </li>
@@ -294,22 +295,22 @@ tutorial from link below.</p>
 <li><p class="first">В <em class="guilabel">Свойство стол</em>, щелкают по <em class="guilabel">Select изображайте использование выражения</em>.</p>
 </li>
 </ol>
-<img alt="../_images/185.png" class="align-center" src="../_images/185.png" />
+<img alt="../_images/186.png" class="align-center" src="../_images/186.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Введите выражение, как <cite>&#8220;ОТЛИЧИТЕЛЬНОЕ ИМЯ&#8221; = 1</cite> и щелкают <em class="guilabel">Выберите</em>. Потом, щелкните по <em class="guilabel">Близко</em>.</p>
 </li>
 </ol>
-<img alt="../_images/193.png" class="align-center" src="../_images/193.png" />
+<img alt="../_images/194.png" class="align-center" src="../_images/194.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">В главном окне QGIS, вы будете видеть некоторые особенности выделенными в yellow. Они - особенности, которые соответствовали нашему запросу. Щелкните правой кнопкой по слою и выберите <em class="guilabel">Save Выделение, Как...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/201.png" class="align-center" src="../_images/201.png" />
+<img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Назовите output слой как <cite>crime_clusters</cite>. Проверьте коробку рядом с <em class="guilabel">Add сохраненный файл, чтобы нанести</em> на карту и щелкнуть <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/212.png" class="align-center" src="../_images/212.png" />
+<img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Там вы имеете это. Заключительный слой содержит <cite>Горячие точки</cite>, извлеченный от heatmap. Эти кластеры - <em>intelligence</em>, собранный от необработанных данных, и может обеспечить полезные интуиции также как и служить входом для дальнейшего действия.</p>
 </li>
@@ -340,7 +341,7 @@ tutorial from link below.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Apr 22, 2015.<br/>
+      Обновлено: May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

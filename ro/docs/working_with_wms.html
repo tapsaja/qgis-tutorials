@@ -105,11 +105,12 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolarea Datelor de tip Punct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea în serie, folosind cadrul de procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Utilizarea QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Construirea unui Plugin Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -201,22 +202,22 @@
 <li><p class="first">Deschideți QGIS și mergeți la <em class="menuselection">Layer ‣ Add WMS Layer...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1133.png" class="align-center" src="../_images/1133.png" />
+<img alt="../_images/1135.png" class="align-center" src="../_images/1135.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">În fila <em class="guilabel">Layers</em> efectuați clic pe <em class="guilabel">New</em>.</p>
 </li>
 </ol>
-<img alt="../_images/270.png" class="align-center" src="../_images/270.png" />
+<img alt="../_images/287.png" class="align-center" src="../_images/287.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Dați un nume conexiunii. Acesta nu reprezintă numele stratului ci numele serviciului care pune la dispoziție stratul WMS. Un singur serviciu oferă, de obicei, accesul la o serie de straturi, care pot fi adăugate proiectului dumneavoastră. URL-ul de care aveți nevoie pentru accesarea unui strat WMS este numit <em>GetCapabilities</em>. Când accesați un server WMS cu acest parametru în URL, vi se returnează o listă de straturi disponibile, împreună cu diverse metadate. În acest caz, denumiți conexiunea ca <tt class="docutils literal"><span class="pre">http://mrdata.usgs.gov/services/ca?request=getcapabilities&amp;service=WMS&amp;version=1.1.1&amp;</span></tt>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/339.png" class="align-center" src="../_images/339.png" />
+<img alt="../_images/345.png" class="align-center" src="../_images/345.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Mai departe, efectuați clic pe butonul <em class="guilabel">Connect</em> pentru a obține lista straturilor disponibile. În dreptul straturilor sunt afișate diverse ID-uri. ID-ul <tt class="docutils literal"><span class="pre">0</span></tt> semnifică faptul aveți o hartă a tuturor straturilor. Dacă nu doriți toate straturile, puteți să extindeți lista, făcând clic pe pictograma <em class="guilabel">+</em> și selectând stratul de interes. Pentru acest tutorial, selectați stratul <tt class="docutils literal"><span class="pre">0</span></tt> .</p>
 </li>
 </ol>
-<img alt="../_images/430.png" class="align-center" src="../_images/430.png" />
+<img alt="../_images/431.png" class="align-center" src="../_images/431.png" />
 <ol class="arabic" start="5">
 <li><p class="first">În secțiunea <em class="guilabel">Image encoding</em>, trebuie să alegeți un format de imagine. Formatele de imagine contează foarte mult, iar cel pe care-l veți alege depinde de cazul dumneavoastră de utilizare. Iată câteva explicații:</p>
 <ul class="simple">
@@ -232,22 +233,22 @@
 <p>Pentru acest tutorial, alegeți <em class="guilabel">JPEG</em> ca format. Dacă doriți, schimbați <em class="guilabel">Layer name</em>, apoi faceți clic pe <em class="guilabel">Add</em>.</p>
 </li>
 </ol>
-<img alt="../_images/531.png" class="align-center" src="../_images/531.png" />
+<img alt="../_images/532.png" class="align-center" src="../_images/532.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Veți vedea stratul încărcat în suportul de hartă al QGIS. Puteți efectua operații de mărire/deplasare la fel ca în oricare alt strat. Serviciul WMS funcționează în așa fel încât, de fiecare dată când măriți/deplasați, coordonatele ferestrei de vizualizare vor fi transmise la server, care va crea o imagine pentru acea fereastră, după care o va returna clientului. Așadar, va exista o întârziere înainte de a vedea imaginea zonei, în urma unei operațiuni de mărire. De asemenea, din moment ce datele pe care le vedeți reprezintă o imagine, nu există nici o modalitate de a îi interoga atributele, așa cum procedați într-un strat obișnuit vectorial/raster.</p>
 </li>
 </ol>
-<img alt="../_images/629.png" class="align-center" src="../_images/629.png" />
+<img alt="../_images/630.png" class="align-center" src="../_images/630.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Puteți, însă, să vedeți unele metadate despre strat. Faceți clic dreapta pe layer și alegeți <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/729.png" class="align-center" src="../_images/729.png" />
+<img alt="../_images/730.png" class="align-center" src="../_images/730.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Veți observa că fereastra de dialog <em class="guilabel">Properties</em> arată diferit și are mai puține file. Puteți merge la fila <em class="guilabel">Metadata</em> pentru a afla mai multe despre serviciul WMS și despre straturi.</p>
 </li>
 </ol>
-<img alt="../_images/828.png" class="align-center" src="../_images/828.png" />
+<img alt="../_images/829.png" class="align-center" src="../_images/829.png" />
 </div>
 </div>
 
@@ -273,7 +274,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 22, 2015.<br/>
+      Last updated on May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

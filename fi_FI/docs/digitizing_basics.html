@@ -105,6 +105,7 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Eräkäsittely käyttäen Processing toimintoja</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Käytämme QGIS selainta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Tason verteksien lukumäärän laskenta</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
@@ -218,52 +219,52 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Mene <em class="menuselection">Tasot ‣ Lisää rasteritaso...</em>. Etsi ladattu <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02.tif</span></tt> ja klikkaa <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/120.png" class="align-center" src="../_images/120.png" />
+<img alt="../_images/128.png" class="align-center" src="../_images/128.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Tämä on suuri rasterikartta ja voit huomata zoomatessasi tai panoroidessasi karttaa kestää hieman aikaa kun kartta hahmottuu näytölle. QGIS tarjoaa yksinkertaisen ratkaisun tehdä rastereista paljon nopeammin latautuvia käyttäen <strong>Kuva pyramideja</strong>. QGIS luo esihahmotettuja kuvakkeita eri resoluutioilla jotka sitten esitetään koko rasterin sijasta. Tämä tekee kartalla suunnistamisesta näppärää ja herkästi reagoivaa. Klikkaa oikealla <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02</span></tt> tasoa ja valitse <em class="guilabel">Ominaisuudet</em>.</p>
 </li>
 </ol>
-<img alt="../_images/213.png" class="align-center" src="../_images/213.png" />
+<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Valitse <em class="guilabel">Pyramidit</em> välilehti. Pidä  <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> näppäin alhaalla ja valitse kaikki resoluutiot jotka ovat <em class="guilabel">Resoluutiot</em> paneelissä. Jätä muut vaihtoehdot oletusarvoihinsa ja klikkaa  <em class="guilabel">Rakenna pyramidit</em>. Kun prosessi on valmis klikkaa</p>
 </li>
 </ol>
-<img alt="../_images/37.png" class="align-center" src="../_images/37.png" />
+<img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Takaisin QGIS pääikkunassa, käytä <em class="guilabel">Lähennä</em> työkalua löytääksesi <em>Hagley Park</em> alueen Christchurchissä. Tämä puistoalueen tulemme digitoimaan.</p>
 </li>
 </ol>
-<img alt="../_images/47.png" class="align-center" src="../_images/47.png" />
+<img alt="../_images/48.png" class="align-center" src="../_images/48.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Ennen kuin aloitamme, tulee meidän asettaa oletusarvot <strong>Digitoinnin asetukset</strong>. Mene <em class="menuselection">Asetukset ‣ Asetukset...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/57.png" class="align-center" src="../_images/57.png" />
+<img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Valitse välilehti <em class="guilabel">Digitointi</em> <em class="guilabel">Asetukset</em> ikkunassa. Aseta <em class="guilabel">Oletus kohdistustila</em> arvoon <em class="guilabel">verteksi ja segmentti</em>. Tämä avulla voit kohdistaa lähimpään verteksiin tai viivasegmenttiin. Suosittelen asetukseksi myös <em class="guilabel">Oletus kohdistustilan toleranssi</em> ja <em class="guilabel">Hakusäde kärkipisteiden muokkaukseen</em> asettamista pikseleihin karttayksiköiden sijasta. Tämä varmistaa että kohdistusetäisyys sailyy samana huolimatta zoomauksen asteesta. Tietokoneesi näytön resoluutiosta riippuen voit valita sopivan arvon. Klikkaa <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/66.png" class="align-center" src="../_images/66.png" />
+<img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Nyt olemme valmiit aloittamaan digitoinnin. Luomme ensin teiden tason puistoalueelta. Valitse  <em class="menuselection">Tasot ‣ Uusi ‣ Uusi Spatialite taso...</em>. Voi valita myös <em class="guilabel">Uusi Shapefile taso...</em> jos haluat. Spatialite on avoin tietokanta formaatti ja samnlainen kuin ESRIn geodatabase formaatti. Spatialite tietokanta sisältyy yhteen tiedostoon kovalevylläsi ja voi sisältää eri tyyppisiä spatiaalisia (piste,viiva,monikulmio) ja ei-spatiaalisia tasoja. Tämä tekee sen siirtelyn paikasta toiseen plajon helpommaksi kuin shapefile joukolla. Tässä oppaassa luomme pari monikulmio tasoa ja viivatason, joten Spatialite sopii paremmin. Voit aina ladata spatialite tason ja tallentaa sen shapefile tai missä tahansa muodossa haluatkin.</p>
 </li>
 </ol>
-<img alt="../_images/76.png" class="align-center" src="../_images/76.png" />
+<img alt="../_images/77.png" class="align-center" src="../_images/77.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Ikkunassa <em class="guilabel">Uusi Spatialite taso</em>, klikkaa <em class="guilabel">...</em> näppäint ja tallenna uusi spatialite tietokannan nimeltään <tt class="docutils literal"><span class="pre">nztopo.sqlite</span></tt>. Valitse <em class="guilabel">Tason nimi</em> arvoksi <tt class="docutils literal"><span class="pre">Roads</span></tt> ja valitse <tt class="docutils literal"><span class="pre">Viiva</span></tt> <em class="guilabel">Tyyppi</em> tiedon arvoksi. Pohjan topografinen kartta on <tt class="docutils literal"><span class="pre">EPSG:2193</span> <span class="pre">-</span> <span class="pre">NZGD</span> <span class="pre">2000</span></tt> CRS, joten voimme valita saman teiden tasolle. Merkkaa <em class="guilabel">Luo automaattisesti lisääntyvä primääriavain</em> laatikko. Tämä luo tiedon <strong>pkuid</strong> attribuuttitauluun ja antaa jokaiselle ominaisuudelle automaattisesti yksilöllisen numeerisen id:n. GIS tasoa perustettaessa tulee päättää attribuuteista joita jokaisessa ominaisuudessa tulee olemaan. Koska tämä on teiden taso haluamme 2 perusattribuuttia - Nimi ja Luokka. Anna <tt class="docutils literal"><span class="pre">Nimi</span></tt>  attribuutin <em class="guilabel">Nimi</em> tietoon kappaleessa <em class="guilabel">Uusi ominaisuustieto</em> ja klikkaa <em class="guilabel">Lisää ominaisuustietolistaan.</em></p>
 </li>
 </ol>
-<img alt="../_images/86.png" class="align-center" src="../_images/86.png" />
+<img alt="../_images/87.png" class="align-center" src="../_images/87.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Samalla tavalla luo attribuutti &#8220;Luokka&#8221; tyyppiä <em class="guilabel">Teksti data</em>. Klikkaa <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/96.png" class="align-center" src="../_images/96.png" />
+<img alt="../_images/97.png" class="align-center" src="../_images/97.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Kun taso on ladattu, klikkaa <em class="guilabel">Vaihda muokkauksen toimintatilaa</em> näppäintä asettaaksesi tason muokkaustilaan.</p>
 </li>
 </ol>
-<img alt="../_images/106.png" class="align-center" src="../_images/106.png" />
+<img alt="../_images/107.png" class="align-center" src="../_images/107.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Klikkaa <em class="guilabel">Lisää kohde</em> näppäintä. Klikkaa karttapohjalla lisätäksesi uuden verteksin. Lisää uusia verteksejä tie ominaisuutta pitkin. Kun olet digitoinut tiesegmentin, klikka oikealla ominaisuuden päättämiseksi.</p>
 </li>
@@ -277,27 +278,27 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Klikaatuasi oikealla ominaisuuden päättämiseksi aukeaa pop-up ikkuna <em class="guilabel">Ominaisuuden attribuutit</em>. Ikkunassa voit antaa uuden juuri luodun ominaisuuden attribuutit. Koska <strong>pkuid</strong> on automaattisesti lisääntyvä ei sinun tarvitse antaa sille arvoa. Jätä se tyhjäksi ja anna tien nimi kuten se on topokartalla. Valinnaisesti anna tien luokka arvo. Klikkaa</p>
 </li>
 </ol>
-<img alt="../_images/126.png" class="align-center" src="../_images/126.png" />
+<img alt="../_images/129.png" class="align-center" src="../_images/129.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Oletustyyli uudelle viivatasolle on ohut viiva. Muuttakaamme se jotta näemme helpommin digitoidut ominaisuudet karttapohjalla. Klikkaa oikealla <tt class="docutils literal"><span class="pre">Roads</span></tt> tasoa ja valitse <em class="guilabel">Ominaisuudet</em>.</p>
 </li>
 </ol>
-<img alt="../_images/136.png" class="align-center" src="../_images/136.png" />
+<img alt="../_images/137.png" class="align-center" src="../_images/137.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Valitse:guilabel:<cite>Tyyli</cite> välilehti <em class="guilabel">Tason ominaisuudet</em> ikkunassa. Valitse paksumpi viivatyyli kuten <em class="guilabel">Primary</em> ennalta määritellyistä tyyleistä. Klikkaa</p>
 </li>
 </ol>
-<img alt="../_images/146.png" class="align-center" src="../_images/146.png" />
+<img alt="../_images/147.png" class="align-center" src="../_images/147.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Nyt näet digitoidun tieominaisuuden helpommin. Klikkaa <em class="guilabel">Tallenna tason muokkaukset</em> tallettaaksesi uuden ominaisuuden levylle.</p>
 </li>
 </ol>
-<img alt="../_images/156.png" class="align-center" src="../_images/156.png" />
+<img alt="../_images/157.png" class="align-center" src="../_images/157.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Ennenkuin digitoimme lopt tiet, on tärkeää päivittää eräitä muita asetuksia jotka ovat tärkeitä luotaessa virheetöntä tasoa. Mene <em class="menuselection">Asetukset ‣ Kohdistusvaihtoehdot...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/166.png" class="align-center" src="../_images/166.png" />
+<img alt="../_images/167.png" class="align-center" src="../_images/167.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Ikkunassa <em class="guilabel">Kohdistus asetukset</em>, merkkaa <em class="guilabel">Mahdollista topologian muokkaus</em>. Tämä valinta monikulmioiden tasojen yleisten rajojen oikeellisen hallinnan. Merkkaa myös <em class="guilabel">Ota kohdistaminen käyttöön risteyksessä</em> joka sallii kohdistamisen taustatason risteyksessä.</p>
 </li>
@@ -307,22 +308,22 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Nyt voi klikata <em class="guilabel">Lisää kohde</em> näppäintä ja digitoida muut tiet puiston alueella. Muista klikata <em class="guilabel">Tallenna tason muokkaukset</em> kun olet lisännyt ominaisuuden työsi tallentamiseksi. Käyttökelpoinen työkalu helpottamaan digitointia on <strong>Solmutyökalu</strong>. Klikkaa <em class="guilabel">Solmutyökalu</em> näppäintä.</p>
 </li>
 </ol>
-<img alt="../_images/186.png" class="align-center" src="../_images/186.png" />
+<img alt="../_images/187.png" class="align-center" src="../_images/187.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Kun solmutyökalu on aktivoitu klikkaa jotain ominaisuuksista nähdäksesi verteksit. Klikkaa jotain verteksiä valitaksesi sen. Verteksin väri muuttuu kun se on valittu. Voit liikuttaa verteksiä klikkaamalla ja pitämällä hiiren näppäintä. Tämä on hyödyllistä kun haluat tehdä korjauksia kun ominaisuus on luotu. Voit myös poistaa valitun verteksin klikkamalla ja <tt class="kbd docutils literal"><span class="pre">Delete</span></tt> näppäimellä.  (<tt class="kbd docutils literal"><span class="pre">Option+Delete</span></tt> mac:ssä)</p>
 </li>
 </ol>
-<img alt="../_images/194.png" class="align-center" src="../_images/194.png" />
+<img alt="../_images/195.png" class="align-center" src="../_images/195.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Kun olet lopettanut kaikkien teiden digitoinnin, klikkaa <em class="guilabel">Vaihda muokkauksen toimintatilaa</em> näppäintä.</p>
 </li>
 </ol>
-<img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
+<img alt="../_images/203.png" class="align-center" src="../_images/203.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Nyt perustamme monikulmiotason jossa puiston rajat. Siirry valikossa <em class="menuselection">Tasot ‣ Uusi ‣ Uusi Spatialite taso...</em>. Valitse <tt class="docutils literal"><span class="pre">nztopo.sqlite</span></tt> tietokanta alasvetolistasta. Nimeä uusi taso <tt class="docutils literal"><span class="pre">Parks</span></tt>. Valitse  <tt class="docutils literal"><span class="pre">Monikulmio</span></tt> <em class="guilabel">Tyyppi</em> tietoon. Luo uusi attribuutti <tt class="docutils literal"><span class="pre">Nimi</span></tt>. Klikkaa <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/214.png" class="align-center" src="../_images/214.png" />
+<img alt="../_images/2110.png" class="align-center" src="../_images/2110.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Klikkaa <em class="guilabel">Lisää kohde</em> näppäintä ja klikkaa karttapohjaa lisätäksesi monikulmion verteksin. Digitoi monikulmio joka esittää puistoa. Varmista että kohdistat teiden vertekseihin niin ettei synny välejä puistomonikulmion ja tieviivojen väliin. Klikkaa oikealla päätääksesi monikulmion digitoinnin.</p>
 </li>
@@ -337,27 +338,27 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Monikulmiotasoille on eräs erittäin hyödyllinen asetus jota kutsutaan nimeltään <strong>Vältä risteämiä uusissa monikulmioissa</strong>. Mene <em class="menuselection">Asetukset ‣ Kohdistusvaihtoehdot...</em>.  Merkkaa laatikko <em class="guilabel">Vältä risteämiä</em> sarakkeessa tason <tt class="docutils literal"><span class="pre">Parks</span></tt>  rivillä. Klikkaa <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/241.png" class="align-center" src="../_images/241.png" />
+<img alt="../_images/242.png" class="align-center" src="../_images/242.png" />
 <ol class="arabic simple" start="25">
 <li><p class="first">Nyt klikkaa <em class="guilabel">Lisää kohde</em> lisätäksesi monikulmion. Käyttäen  <strong>Vältä risteämiä uusissa monikulmioissa</strong> voit nopeasti digitoida uuden monikulmion ilman huolta kohdistuksen onnistumisesta viereiseen monikulmioon.</p>
 </li>
 </ol>
-<img alt="../_images/251.png" class="align-center" src="../_images/251.png" />
+<img alt="../_images/252.png" class="align-center" src="../_images/252.png" />
 <ol class="arabic simple" start="26">
 <li><p class="first">Klikkaa oikealla päättääksesi monikulmion digitoinnin ja attribuuttien antamisen. Maagisesti uusi monikulmio on kutistettu ja kohdistettu tarkasti viereisen monikulmion rajoihin! Tämä on erittäin käyttökelpoista kun digitoidaan monimutkaisia rajoja jollin sinun ei tarvitse olla erityisen täsmällinen ja silti saat topologisesti oikean monikulmion. Klikkaa <em class="guilabel">Vaihda muokkauksen toimintatilaa</em> päättääksesi <tt class="docutils literal"><span class="pre">Parks</span></tt> tason muokkaukseen.</p>
 </li>
 </ol>
-<img alt="../_images/261.png" class="align-center" src="../_images/261.png" />
+<img alt="../_images/262.png" class="align-center" src="../_images/262.png" />
 <ol class="arabic simple" start="27">
 <li><p class="first">Nyt on aika digitoida rakennusten taso. Luo uusi monikulmiotaso``Buildings`` menemällä <em class="menuselection">Tasot ‣ Uusi ‣ Uusi Spatialite taso</em>.</p>
 </li>
 </ol>
-<img alt="../_images/271.png" class="align-center" src="../_images/271.png" />
+<img alt="../_images/272.png" class="align-center" src="../_images/272.png" />
 <ol class="arabic simple" start="28">
 <li><p class="first">Kun <tt class="docutils literal"><span class="pre">Buildings</span></tt> taso on lisätty, sammuta <tt class="docutils literal"><span class="pre">Parks</span></tt> ja <tt class="docutils literal"><span class="pre">Roads</span></tt> tasot siten että pelkkä perus topokartta näkyy. Valitse <tt class="docutils literal"><span class="pre">Buildings</span></tt> taso ja klikkaa <em class="guilabel">Vaihda muokkauksen toimintatilaa</em>.</p>
 </li>
 </ol>
-<img alt="../_images/261.png" class="align-center" src="../_images/261.png" />
+<img alt="../_images/262.png" class="align-center" src="../_images/262.png" />
 <ol class="arabic simple" start="29">
 <li><p class="first">Rakennusten digitointi voi olla työteliäs tehtävä. Voi olla myös vaikeaa lisätä verteksejä käsin siten että reunat olisivat kohtisuorassa ja muodostaisivat suorakulmion. Käytämme liitännäistä nimeltään <strong>Rectangles Ovals Digitizing</strong> auttamaan tässä tehtävässä. Katso <a class="reference internal" href="using_plugins.html"><em>Liitännäisiä käyttämään</em></a> tutustuaksesi kuinka etsiä ja asentaa liitännäisiä, Kun <strong>Rectangles Ovals Digitizing</strong> liitännäinen on asennettu näet uuden työkalurivin ilmestyvän kasttapohjan ylle.</p>
 </li>
@@ -367,12 +368,12 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Lähennä alueelle jossa rakennuksia ja klikkaa  <em class="guilabel">Rectangle by Extent</em> näppäintä. Klikka ja vedä hiirellä piirtääksesi täydellisen suorakulmion. Samalla tavoin lisää loputkin rakennukset.</p>
 </li>
 </ol>
-<img alt="../_images/30.png" class="align-center" src="../_images/30.png" />
+<img alt="../_images/301.png" class="align-center" src="../_images/301.png" />
 <ol class="arabic simple" start="31">
 <li><p class="first">Huomaat etteivät kaikki rakennukset ole pystysuorassa: Meidän tulee piirtää suorakulmio kulmassa joka vastaa rakennuksen pohjaa. Klikkaa</p>
 </li>
 </ol>
-<img alt="../_images/311.png" class="align-center" src="../_images/311.png" />
+<img alt="../_images/313.png" class="align-center" src="../_images/313.png" />
 <ol class="arabic simple" start="32">
 <li><p class="first">Klikkaa rakennuksen keskellä ja vedä hiirellä piirtääksesi pystysuoran suorakulmion.</p>
 </li>
@@ -428,7 +429,7 @@ original GeoTIFF which is a much smaller file size.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 22, 2015.<br/>
+      Last updated on May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

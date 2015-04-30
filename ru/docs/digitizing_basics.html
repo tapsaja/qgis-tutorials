@@ -105,12 +105,13 @@
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Отбор проб растровых данных с помощью точек или полигонов</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Интерполяция точечных данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Выполнение пакетных файлов с помощью среды обработки</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Автоматизация сложных рабочих процессов с помощью Редактора моделей</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Использование QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Подсчет числа вершин в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Открытие файлов BIL, BIP или BSQ в QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Первые шаги в программировании на Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Создание модуля на Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Нахождение соседних полигонов в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Веб-карты Leaflet с помощью qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Использование Google Maps Engine Connector для QGIS</a></li>
@@ -219,52 +220,52 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Выберите пункт <em class="menuselection">Layer ‣ Add Raster Layer</em>. Найдите загруженный файл <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02.tif</span></tt> и нажмите кнопку <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/120.png" class="align-center" src="../_images/120.png" />
+<img alt="../_images/128.png" class="align-center" src="../_images/128.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Это большой растровый файл, и можно заметить, что при масштабировании или сдвиге отрисовка карты занимает некоторое время. QGIS предлагает простое решение для существенного ускорения загрузки растров, используя <strong>пирамиды изображений</strong>. QGIS создает предобработанные фрагменты изображения в разных разрешениях, и они используются вместо полного растра. Благодаря этому навигация по карте становится быстрой и отзывчивой. Щелкните правой кнопкой мыши на слое <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02</span></tt> и выберите пункт <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/213.png" class="align-center" src="../_images/213.png" />
+<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Выберите вкладку <em class="guilabel">Pyramids</em>. Удерживая клавишу <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>, выберите все разрешения, предложенные на панели <em class="guilabel">Resolutions</em>. Оставьте остальные опции без изменения и нажмите <em class="guilabel">Build pyramids</em>. Когда процесс будет завершен, нажмите <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/37.png" class="align-center" src="../_images/37.png" />
+<img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Вернувшись в главное окно QGIS, используйте инструмент <em class="guilabel">Zoom</em>, чтобы найти район <em>Хэгли-парк</em> в городе Крайстчерч. Это парк, который мы будем оцифровывать.</p>
 </li>
 </ol>
-<img alt="../_images/47.png" class="align-center" src="../_images/47.png" />
+<img alt="../_images/48.png" class="align-center" src="../_images/48.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Перед началом работы нам нужно установить <strong>настройки оцифровки</strong>. Перейдите к пункту <em class="menuselection">Settings ‣ Options...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/57.png" class="align-center" src="../_images/57.png" />
+<img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Выберите вкладку <em class="guilabel">Digitizing</em> в диалоговом окне <em class="guilabel">Options</em>. Установите для режима прилипания <em class="guilabel">Default snap mode</em> значение <em class="guilabel">To vertex and segment</em>. Это позволит прилипать к ближайшей вершине или сегменту. Я также предпочитаю устанавливать порог прилипания <em class="guilabel">Default snapping tolerance</em> и радиус поиска для редактирования вершин <em class="guilabel">Search radius for vertex edits</em> в пикселях, а не в единицах карты. Это гарантирует, что расстояние прилипания не будет зависеть от масштаба. В зависимости от разрешения вашего монитора, вы можете указать подходящее значение. Нажмите <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/66.png" class="align-center" src="../_images/66.png" />
+<img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Теперь мы готовы приступить к оцифровке. Сначала мы создадим слой дорог и оцифруем дороги вокруг парковой зоны. Выберите <em class="menuselection">Layer ‣ New ‣ New Spatialite Layer...</em>. Вместо этого вы можете выбрать для создания <em class="guilabel">New Shapefile Layer...</em>, если вы предпочитаете этот формат. Spatialite - это открытый формат базы данных, аналогичный базе геоданных ESRI. База данных Spatialite хранится в одном файле на вашем жестком диске и может содержать разные типы пространственных (точечных, линейных, полигональных) слоев, а также не-пространственные слои. Это позволяет гораздо проще перемещать данные, по сравнению с кучей shape-файлов. В этом руководстве мы создадим пару полигональных слоев и линейный слой, так что база данных Spatialite подойдет лучше. Вы всегда можете загрузить слой Spatialite и сохранить его как shape-файл или в любом другом желаемом формате.</p>
 </li>
 </ol>
-<img alt="../_images/76.png" class="align-center" src="../_images/76.png" />
+<img alt="../_images/77.png" class="align-center" src="../_images/77.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">В диалоговом окне <em class="guilabel">New Spatialite Layer</em> нажмите кнопку <em class="guilabel">...</em> и сохраните новую базу данных Spatialite под названием <tt class="docutils literal"><span class="pre">nztopo.sqlite</span></tt>. Укажите <em class="guilabel">Layer name</em> <tt class="docutils literal"><span class="pre">Roads</span></tt> и выберите  <tt class="docutils literal"><span class="pre">Line</span></tt> как <em class="guilabel">Type</em>. Базовая топографическая карта находится в системе координат <tt class="docutils literal"><span class="pre">EPSG:2193</span> <span class="pre">-</span> <span class="pre">NZGD</span> <span class="pre">2000</span></tt>, так что мы должны выбрать ту же СК для нашего слоя с дорогами. Поставьте галочку в поле <em class="guilabel">Create an autoincrementing primary key</em>. Это создаст поле под названием <strong>pkuid</strong> в таблице атрибутов и присвоит уникальный числовой идентификатор автоматически каждому объекту. При создании ГИС-слоя вы должны определиться с атрибутами, которые будет иметь каждый объект. Поскольку это слой дорог, у нас будет два базовых атрибута: название и класс. Введите  <tt class="docutils literal"><span class="pre">Name</span></tt> в поле <em class="guilabel">Name</em> атрибута в секции <em class="guilabel">New attribute</em> и нажмите <em class="guilabel">Add to attribute list.</em></p>
 </li>
 </ol>
-<img alt="../_images/86.png" class="align-center" src="../_images/86.png" />
+<img alt="../_images/87.png" class="align-center" src="../_images/87.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Аналогично, создайте новый атрибут &#8220;Class&#8221; типа <em class="guilabel">Text data</em>. Нажмите <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/96.png" class="align-center" src="../_images/96.png" />
+<img alt="../_images/97.png" class="align-center" src="../_images/97.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">После того, как слой загрузится, нажмите на кнопку <em class="guilabel">Toggle Editing</em> чтобы перевести слой в режим редактирования.</p>
 </li>
 </ol>
-<img alt="../_images/106.png" class="align-center" src="../_images/106.png" />
+<img alt="../_images/107.png" class="align-center" src="../_images/107.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Нажмите кнопку <em class="guilabel">Add feature</em>. Щелкните на карте для добавления новой вершины. Добавляйте новые вершины вдоль участков дорог. Завершив оцифровку участка дороги, щелкните правой кнопкой мыши для завершения объекта.</p>
 </li>
@@ -278,27 +279,27 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">После того, как вы нажмете правую кнопку мыши для завершения объекта, возникнет всплывающее диалоговое окно <em class="guilabel">Attributes</em>. В нем вы можете ввести атрибуты только что созданного объекта. Так как поле <strong>pkuid</strong>  является автоматически возрастающим, вам не удастся ввести его значение вручную. Оставьте его пустым и введите название дороги так, как оно отображается на топографической карте. Вы также можете ввести значение класса дороги. Нажмите <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/126.png" class="align-center" src="../_images/126.png" />
+<img alt="../_images/129.png" class="align-center" src="../_images/129.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Стиль по умолчанию для нового линейного слоя - тонкая линия. Давайте изменим его для того, чтобы мы могли лучше видеть оцифрованные объекты на карте. Щелкните правой кнопкой мыши на слое с дорогами и выберите <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/136.png" class="align-center" src="../_images/136.png" />
+<img alt="../_images/137.png" class="align-center" src="../_images/137.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Выберите вкладку <em class="guilabel">Style</em> в диалоговом окне <em class="guilabel">Layer Properties</em>. Выберите стиль с более толстыми линиями, такой как <em class="guilabel">Primary</em> из предопределенных стилей. Нажмите <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/146.png" class="align-center" src="../_images/146.png" />
+<img alt="../_images/147.png" class="align-center" src="../_images/147.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Теперь вы явно увидите оцифрованный участок дороги. Нажмите <em class="guilabel">Save Layer Edits</em> чтобы сохранить новый объект на диск.</p>
 </li>
 </ol>
-<img alt="../_images/156.png" class="align-center" src="../_images/156.png" />
+<img alt="../_images/157.png" class="align-center" src="../_images/157.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Перед тем как мы будем оцифровывать оставшиеся дороги, важно обновить некоторые другие настройки, которые важны для создания слоя без ошибок. Перейдите в меню <em class="menuselection">Settings ‣ Snapping Options...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/166.png" class="align-center" src="../_images/166.png" />
+<img alt="../_images/167.png" class="align-center" src="../_images/167.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">В диалоговом окне <em class="guilabel">Snapping Options</em> включите опцию <em class="guilabel">Enable topological editing</em>. Эта опция гарантирует, что общие границы в полигональных слоях будут сохранены корректно. Также отметьте пункт <em class="guilabel">Enable snapping on intersection</em>, который позволяет вам примыкать к пересечениям фонового слоя.</p>
 </li>
@@ -308,22 +309,22 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Теперь вы можете нажать кнопку <em class="guilabel">Add feature</em> и оцифровать остальные дороги вокруг парка. Не забудьте нажать кнопку <em class="guilabel">Save Edits</em> после добавления нового объекта чтобы сохранить вашу работу. Полезным инструментом, который поможет вам с оцифровкой, является <strong>Node Tool</strong>. Нажмите кнопку <em class="guilabel">Node Tool</em>.</p>
 </li>
 </ol>
-<img alt="../_images/186.png" class="align-center" src="../_images/186.png" />
+<img alt="../_images/187.png" class="align-center" src="../_images/187.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">После того, как инструмент узлов активируется, нажмите на любом объекте, чтобы показать его вершины. Нажмите на любой вершине, чтобы выбрать ее. Выбранная вершина изменит цвет. Теперь вы можете перетащить мышь, чтобы переместить вершину. Это бывает полезно, когда вы хотите внести корректировку после создания объекта. Вы также можете удалить выбранную вершину, нажав клавишу <tt class="kbd docutils literal"><span class="pre">Delete</span></tt>. (<tt class="kbd docutils literal"><span class="pre">Option+Delete</span></tt> на Mac)</p>
 </li>
 </ol>
-<img alt="../_images/194.png" class="align-center" src="../_images/194.png" />
+<img alt="../_images/195.png" class="align-center" src="../_images/195.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Завершив оцифровку всех дорог, нажмите на кнопку <em class="guilabel">Toggle Editing</em>.</p>
 </li>
 </ol>
-<img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
+<img alt="../_images/203.png" class="align-center" src="../_images/203.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Теперь мы создадим полигональный слой, отображающий границы парка. Перейдите к <em class="menuselection">Layer ‣ New ‣ New Spatialite Layer...</em>. Выберите базу данных <tt class="docutils literal"><span class="pre">nztopo.sqlite</span></tt> из выпадающего списка. Назовите новый слой <tt class="docutils literal"><span class="pre">Parks</span></tt>. Выберите <tt class="docutils literal"><span class="pre">Polygon</span></tt> как <em class="guilabel">Type</em>. Создайте новый атрибут под названием <tt class="docutils literal"><span class="pre">Name</span></tt>. Нажмите <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/214.png" class="align-center" src="../_images/214.png" />
+<img alt="../_images/2110.png" class="align-center" src="../_images/2110.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Нажмите кнопку <em class="guilabel">Add feature</em> и щелкните по карте, чтобы добавить вершины полигона. Оцифруйте полигон, изображающий парк. Убедитесь, что оцифрованные вершины примыкают к узлам дорог, так что нет пробелов между полигонами парка и линиями дорожной сети. Щелкните правой кнопкой мыши, чтобы завершить полигон.</p>
 </li>
@@ -338,27 +339,27 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Полигональные слои предлоагают еще один очень полезный параметр, называемый <strong>Избегать пересечения новых полигонов</strong>. Перейдите к <em class="menuselection">Settings ‣ Snapping Options...</em>. Установите флажок в колонке <em class="guilabel">Avoid Int</em> в строке для слоя <tt class="docutils literal"><span class="pre">Parks</span></tt>. Нажмите <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/241.png" class="align-center" src="../_images/241.png" />
+<img alt="../_images/242.png" class="align-center" src="../_images/242.png" />
 <ol class="arabic simple" start="25">
 <li><p class="first">Теперь нажмите на <em class="guilabel">Add feature</em> для добавления многоугольника. С опцией <strong>Избегать пересечения новых полигонов</strong>, вы сможете быстро оцифровать новый полигон, не беспокоясь о точном примыкании к соседним полигонам.</p>
 </li>
 </ol>
-<img alt="../_images/251.png" class="align-center" src="../_images/251.png" />
+<img alt="../_images/252.png" class="align-center" src="../_images/252.png" />
 <ol class="arabic simple" start="26">
 <li><p class="first">Щелкните правой кнопкой мыши, чтобы закончить полигон, и введите атрибуты. Волшебным образом новый полигон сокращается и прилипает точно к границе соседних полигонов! Это очень полезно при оцифровке сложных границ, так как можно быть не очень точным, но по-прежнему получить топологически правильные многоугольники. Нажмите  <em class="guilabel">Toggle Editing</em>, чтобы закончить редактирование слоя <tt class="docutils literal"><span class="pre">Parks</span></tt>.</p>
 </li>
 </ol>
-<img alt="../_images/261.png" class="align-center" src="../_images/261.png" />
+<img alt="../_images/262.png" class="align-center" src="../_images/262.png" />
 <ol class="arabic simple" start="27">
 <li><p class="first">Настало время оцифровать слой зданий. создайте новый полигональный слой под названием <tt class="docutils literal"><span class="pre">Buildings</span></tt> перейдя к меню <em class="menuselection">Layer ‣ New ‣ New Spatialite Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/271.png" class="align-center" src="../_images/271.png" />
+<img alt="../_images/272.png" class="align-center" src="../_images/272.png" />
 <ol class="arabic simple" start="28">
 <li><p class="first">После того, как слой <tt class="docutils literal"><span class="pre">Buildings</span></tt> будет добавлен, выключите слои <tt class="docutils literal"><span class="pre">Parks</span></tt> и <tt class="docutils literal"><span class="pre">Roads</span></tt> так, чтобы базовая топографическая карта была видна. Выберите слой <tt class="docutils literal"><span class="pre">Buildings</span></tt> и нажмите <em class="guilabel">Toggle Editing</em>.</p>
 </li>
 </ol>
-<img alt="../_images/261.png" class="align-center" src="../_images/261.png" />
+<img alt="../_images/262.png" class="align-center" src="../_images/262.png" />
 <ol class="arabic simple" start="29">
 <li><p class="first">Оцифровка зданий может быть трудоемкой задачей. Кроме того, трудно добавлять вершины вручную так, чтобы края были перпендикулярны и образовывали прямоугольник. Мы будем использовать модуль под названием <strong>Rectangles Ovals Digitizing</strong>, чтобы помочь в этой задаче. См <a class="reference internal" href="using_plugins.html"><em>Использование модулей расширения</em></a>  чтобы посмотреть, как искать и устанавливать модули. После того, как модуль <strong>Rectangles Ovals Digitizing</strong> установлен, вы увидите, что над картой появилась новая панель инструментов.</p>
 </li>
@@ -368,12 +369,12 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Приблизьте участок со зданиями и нажмите кнопку <em class="guilabel">Rectangle by Extent</em>. Щелкните и перетащите мышь, чтобы нарисовать идеальный прямоугольник. Аналогичным образом добавьте оставшиеся здания.</p>
 </li>
 </ol>
-<img alt="../_images/30.png" class="align-center" src="../_images/30.png" />
+<img alt="../_images/301.png" class="align-center" src="../_images/301.png" />
 <ol class="arabic simple" start="31">
 <li><p class="first">Вы заметите, что некоторые здания не вертикальны. Нам нужно будет нарисовать прямоугольник под углом, чтобы соответствовать отпечаткам зданий. Нажмите <em class="guilabel">Rectangle from center</em>.</p>
 </li>
 </ol>
-<img alt="../_images/311.png" class="align-center" src="../_images/311.png" />
+<img alt="../_images/313.png" class="align-center" src="../_images/313.png" />
 <ol class="arabic simple" start="32">
 <li><p class="first">Нажмите в центре здания и перетащите мышь, чтобы нарисовать вертикальный прямоугольник.</p>
 </li>
@@ -429,7 +430,7 @@ original GeoTIFF which is a much smaller file size.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Apr 22, 2015.<br/>
+      Обновлено: May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

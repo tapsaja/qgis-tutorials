@@ -99,13 +99,14 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Realizzare unioni tabellari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Realizzare unioni spaziali (Spatial Joins)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Analisi Punti nel Poligono</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Realizzare delle mappe di concentrazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Realizzare Heatmaps (mappe di concentrazione)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Utilizzare le interrogazioni spaziali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analisi di prossimità</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Campionare i dati di un raster usando punti o poligoni</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolazione di dati puntuali</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Elaborazioni &#8220;batch&#8221; usando il Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Usare il browser di QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
@@ -220,22 +221,22 @@
 <li><p class="first">Andate su <em class="menuselection">Layer ‣ Aggiungi Vettore</em>.</p>
 </li>
 </ol>
-<img alt="../_images/112.png" class="align-center" src="../_images/112.png" />
+<img alt="../_images/114.png" class="align-center" src="../_images/114.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Individuate lo shapefile 0 Countries appena scaricato  <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt> e fate click su  <em class="guilabel">Apri</em>.</p>
 </li>
 </ol>
-<img alt="../_images/22.png" class="align-center" src="../_images/22.png" />
+<img alt="../_images/212.png" class="align-center" src="../_images/212.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Considerando il fatto che il nostro obiettivo è quello di ritagliare i layer globali sui confini dell&#8217;Africa, dobbiamo prima di tutto preparare un layer costituito da un solo poligono per l&#8217;intero continente. I layer delle diverse nazioni hanno un attributo che si chiama <strong>CONTINENT</strong>. Possiamo utilizzare un metodo di geoprocessing chiamato <em>Dissolvenza</em> per unire tutti i paesi che hanno il medesimo attributo di continente e trasformarli in un solo poligono.</p>
 </li>
 </ol>
-<img alt="../_images/32.png" class="align-center" src="../_images/32.png" />
+<img alt="../_images/36.png" class="align-center" src="../_images/36.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Aprite lo strumento <em class="guilabel">Dissolvenza</em> da <em class="menuselection">Vettore ‣ Strumenti di Geoprocessing ‣ Dissolvenza</em>.</p>
 </li>
 </ol>
-<img alt="../_images/42.png" class="align-center" src="../_images/42.png" />
+<img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Nella finestra di dialogo selezionate il file <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt>  come  <em class="guilabel">Vettore di input</em>. Il <em class="guilabel">Campo di dissolvenza</em>  sarà <tt class="docutils literal"><span class="pre">CONTINENT`.</span> <span class="pre">Chiamiamo</span> <span class="pre">lo</span> <span class="pre">shapefile</span> <span class="pre">in</span> <span class="pre">output</span> <span class="pre">``continents.shp</span></tt>  e spuntiamo la casella  <em class="guilabel">Aggiungi il risultato alla mappa</em>.</p>
 </li>
@@ -244,62 +245,62 @@
 <p class="first admonition-title">Nota</p>
 <p class="last">Se voi voleste unire <strong>TUTTI</strong> i poligoni, indipendentemente dai loro attributi, potreste farlo selezionando <em class="guilabel">&#8211; Dissolve Tutto &#8211;</em> alla voce <em class="guilabel">Campo di dissolvenza</em>. In questa circostanza il geoprocesso unirebbe insieme tutti i poligoni del layer restituendo un singolo poligono aggregato.</p>
 </div>
-<img alt="../_images/52.png" class="align-center" src="../_images/52.png" />
+<img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Il processo di dissolvenza prenderà un certo quantitativo di tempo. Una volta che è finito, vedrete il nuovo layer <tt class="docutils literal"><span class="pre">continents</span></tt> aggiungersi a QGIS. Usate lo strumento <em class="guilabel">Seleziona il singolo elemento</em>  dalla barra degli strumenti e fate click sull&#8217;Africa per selezionare il poligono che rappresenta il continente.</p>
 </li>
 </ol>
-<img alt="../_images/62.png" class="align-center" src="../_images/62.png" />
+<img alt="../_images/63.png" class="align-center" src="../_images/63.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Click con il tasto destro sul layer  <tt class="docutils literal"><span class="pre">continents</span></tt> e selezionate <em class="guilabel">Salva la selezione con nome...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/72.png" class="align-center" src="../_images/72.png" />
+<img alt="../_images/73.png" class="align-center" src="../_images/73.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Diamo al file di output il nome di <tt class="docutils literal"><span class="pre">africa.shp</span></tt>.  Tenendo conto del fatto che siamo interessati alla forma del continente e non a specifici attributi, potete spuntare la casella <em class="guilabel">Salta la creazione degli attributi</em>. Assicuratevi anche che la casella <em class="guilabel">Aggiungi il file salvato alla mappa</em> sia spuntata.</p>
 </li>
 </ol>
-<img alt="../_images/82.png" class="align-center" src="../_images/82.png" />
+<img alt="../_images/83.png" class="align-center" src="../_images/83.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Ora avrete il layer africa caricato in QGIS, esso è costituito da un unico poligono per l&#8217;intero continente. Adesso è arrivato il momento di partire con il nostro geoprocesso di ritaglio e allineamento seriale <tt class="docutils literal"><span class="pre">batch</span></tt>. Aprite  <em class="menuselection">Processing ‣ strumenti</em>.</p>
 </li>
 </ol>
-<img alt="../_images/92.png" class="align-center" src="../_images/92.png" />
+<img alt="../_images/93.png" class="align-center" src="../_images/93.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Esaminate gli algoritmi a disposizione e trovate lo strumento <em class="guilabel">Clip</em> seguendo il percorso  <em class="menuselection">QGIS geoalgorithms ‣ Vector overlay tools ‣ Clip</em>. Per trovare più rapidamente gli algoritmi di geoprocessing potete anche usare la casella <em class="guilabel">Cerca</em>.</p>
 </li>
 </ol>
-<img alt="../_images/102.png" class="align-center" src="../_images/102.png" />
+<img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Tasto destro del mouse su <em class="guilabel">Clip</em>  e selezionate <em class="guilabel">Esegui come processo batch</em>.</p>
 </li>
 </ol>
-<img alt="../_images/113.png" class="align-center" src="../_images/113.png" />
+<img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Nella finestra di dialogo  <em class="guilabel">Batch Processing</em>  la prima scheda si chiama <em class="guilabel">Parameters</em> e lì andremo a definire i layer in input. Fate click sul pulsante con i puntini  <em class="guilabel">...</em> dopo la riga della colonna <em class="guilabel">Input layer</em> .</p>
 </li>
 </ol>
-<img alt="../_images/122.png" class="align-center" src="../_images/122.png" />
+<img alt="../_images/123.png" class="align-center" src="../_images/123.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Individuate la cartella che contiene i layer del trasporto globale che avete scaricato. Tenete premuto il tasto  <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>  della tastiera e selezionate tutti i layer che volete allineare. Potete usare anche <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> o <tt class="kbd docutils literal"><span class="pre">Ctrl-A</span></tt> per fare selezioni multiple. Fate click <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/132.png" class="align-center" src="../_images/132.png" />
+<img alt="../_images/133.png" class="align-center" src="../_images/133.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Noterete che la colonna  <em class="guilabel">Input layer</em> sarà automaticamente riempita con tutti i layer che avete selezionato. Ricordate che il pulsante <em class="guilabel">Add row</em> in basso vi permette di aggiungere nuove righe e quindi nuovi file di input. Come prossimo passo abbiamo bisogno di selezionare il layer contenente i confini intorno i quali ritaglieremo i nostri file di input. Fate click sul pulsante con i puntini <em class="guilabel">...</em>  e aggiungete alla prima riga della colonna <em class="guilabel">Clip layer</em>.  il file <tt class="docutils literal"><span class="pre">africa.shp</span></tt> . Dato che il clip layer sarà lo stesso per tutti i layer di input, potete fare doppio click sull&#8217;intestazione di colonna <em class="guilabel">Clip layer</em> e lo stesso layer verrà caricato automaticamente su tutte le righe. A questo punto si tratta di definire i nostri output. Facciamo click su pulsante con i puntini  <em class="guilabel">...</em> alla prima riga della colonna <em class="guilabel">Clipped</em> .</p>
 </li>
 </ol>
-<img alt="../_images/142.png" class="align-center" src="../_images/142.png" />
+<img alt="../_images/143.png" class="align-center" src="../_images/143.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Individuate la cartella in cui volete creare i vostri layer di output. Digitate il nome del file come  <tt class="docutils literal"><span class="pre">output_</span></tt>  e fate click su <em class="guilabel">Salva</em>.</p>
 </li>
 </ol>
-<img alt="../_images/152.png" class="align-center" src="../_images/152.png" />
+<img alt="../_images/153.png" class="align-center" src="../_images/153.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Comparirà una nuova finestra di dialogo. Secegliete guilabel:<cite>Fill with parameter values</cite> come <em class="guilabel">Autofill mode</em>. Selezionate poi <em class="guilabel">Parameter to use</em>  con la voce <em class="guilabel">Input layer</em>. Questo settaggio accoderà il nome del file di input a quello del file di output, cioè alla stringa <a href="#id2"><span class="problematic" id="id3">output_</span></a> che abbiamo indicato come nome del file di output. Questo ci garantisce che tutti i file di output avranno un nome specifico e riconoscibile e non si sovrascriveranno l&#8217;un l&#8217;altro.</p>
 </li>
 </ol>
-<img alt="../_images/162.png" class="align-center" src="../_images/162.png" />
+<img alt="../_images/163.png" class="align-center" src="../_images/163.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Ora siamo pronti per avviare il processo batch. Click su <em class="guilabel">Run</em>.</p>
 </li>
@@ -309,7 +310,7 @@
 <li><p class="first">L&#8217;algoritmo di clip partirà per ciascuno degli input e creerà dei file di output nel modo che abbiamo definito. Una volta che il processo batch sarà terminato vedrete i vari layer aggiungersi alla finestra principale di QGIS. Come potrete notare, tutti i layer globali sono stati tagliati sui confini del continente nel modo da noi specificato.</p>
 </li>
 </ol>
-<img alt="../_images/182.png" class="align-center" src="../_images/182.png" />
+<img alt="../_images/183.png" class="align-center" src="../_images/183.png" />
 </div>
 </div>
 
@@ -335,7 +336,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Apr 22, 2015.<br/>
+      Ultimo aggiornamento May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

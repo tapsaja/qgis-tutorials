@@ -105,12 +105,13 @@
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Отбор проб растровых данных с помощью точек или полигонов</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Интерполяция точечных данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Выполнение пакетных файлов с помощью среды обработки</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Автоматизация сложных рабочих процессов с помощью Редактора моделей</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Использование QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Подсчет числа вершин в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Открытие файлов BIL, BIP или BSQ в QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Первые шаги в программировании на Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Создание модуля на Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Нахождение соседних полигонов в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Веб-карты Leaflet с помощью qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Использование Google Maps Engine Connector для QGIS</a></li>
@@ -206,11 +207,12 @@
 <ol class="arabic simple">
 <li>Examine your tabular data source. To import this data to QGIS, you will have to save it as a text file and need at least 2 columns which contain the X and Y coordinates. If you have a spreadsheet, use <cite>Save As</cite> function in your program to save it as a <cite>Tab Delimited File</cite> or a <cite>Comma Separated Values (CSV)</cite> file. Once you have the data exported this way, you can open it in a text editor such as Notepad to view the contents. In case of the Significant Earthquake Database, the data already comes as a text file which contains latitude and longitude of the earthquake centers along with other related attributes. You will see that each field is separated by a TAB.</li>
 </ol>
-<img alt="../_images/140.png" class="align-center" src="../_images/140.png" />
+<img alt="../_images/160.png" class="align-center" src="../_images/160.png" />
 <ol class="arabic simple" start="2">
-<li>Open QGIS. Click on <em class="menuselection">Layers ‣ Add Delimited Text Layer</em>.</li>
+<li><p class="first">Откройте QGIS. Нажмите на <em class="menuselection">Layers ‣ Add Delimited Text Layer</em>.</p>
+</li>
 </ol>
-<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
+<img alt="../_images/227.png" class="align-center" src="../_images/227.png" />
 <ol class="arabic simple" start="3">
 <li>In the <em class="guilabel">Create a Layer from a Delimited Text File</em> dialog, click on <em class="guilabel">Browse</em> and specify the path to the text file you downloaded. In the <em class="guilabel">File format</em> section, select <em class="guilabel">Custom delimiters</em> and check <em class="guilabel">Tab</em>. The <em class="guilabel">Geometry definition</em> secction will be auto-populated if it finds a suitable X and Y coordinate fields. In our case they are <em>LONGITUDE</em> and <em>LATITUDE</em>. You may change it if the import selects the wrong fields. Click <em class="guilabel">OK</em>.</li>
 </ol>
@@ -218,19 +220,19 @@
 <p class="first admonition-title">Примечание</p>
 <p class="last">It is easy to confuse X and Y coordinates. Latitude specifies the north-south position of a point and hence it is a <strong>Y</strong> coordinate. Similarly Longitude specifies the east-west position of a point and it is a <strong>X</strong> coordinate.</p>
 </div>
-<img alt="../_images/313.png" class="align-center" src="../_images/313.png" />
+<img alt="../_images/318.png" class="align-center" src="../_images/318.png" />
 <ol class="arabic simple" start="4">
 <li>You may see some errors displayed in the next dialog. The erros in this file are mainly due to missing X or Y fields. You may examine these errors and fix the problems in your source file. For this tutorial, you may ignore these errors.</li>
 </ol>
-<img alt="../_images/412.png" class="align-center" src="../_images/412.png" />
+<img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
 <ol class="arabic simple" start="5">
 <li>Next, a <em class="guilabel">Coordinate Reference System Selector</em> will ask you to select a coordinate reference system. Since the earthquake coordinates are in latitudes and longitudes, you should select <cite>WGS 84</cite>. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/512.png" class="align-center" src="../_images/512.png" />
+<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
 <ol class="arabic simple" start="6">
 <li>You will now see that the data will be imported and displayed in the QGIS canvas.</li>
 </ol>
-<img alt="../_images/611.png" class="align-center" src="../_images/611.png" />
+<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
 </div>
 </div>
 
@@ -256,7 +258,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Apr 22, 2015.<br/>
+      Обновлено: May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -99,13 +99,14 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Realizzare unioni tabellari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Realizzare unioni spaziali (Spatial Joins)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Analisi Punti nel Poligono</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Realizzare delle mappe di concentrazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Realizzare Heatmaps (mappe di concentrazione)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Utilizzare le interrogazioni spaziali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analisi di prossimità</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Campionare i dati di un raster usando punti o poligoni</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolazione di dati puntuali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Elaborazioni &#8220;batch&#8221; usando il Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Usare il browser di QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
@@ -201,17 +202,17 @@
 <li><p class="first">Useremo 2 plugin per realizzare questo esercizio. Assicuratevi di avere installato il plugin <strong>OSM Place Search</strong> e il plugin <strong>OpenLayers</strong>. Qualora fosse necessario, potete consultare <a class="reference internal" href="using_plugins.html"><em>Usare i Plugins</em></a> per avere informazioni sullo scaricamento e l&#8217;installazione dei plugin.</p>
 </li>
 </ol>
-<img alt="../_images/127.png" class="align-center" src="../_images/127.png" />
+<img alt="../_images/130.png" class="align-center" src="../_images/130.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Il plugin <strong>OSM Place Search</strong> si installerà automaticamente costruendosi un <em>pannello</em> in QGIS. Vedrete comparire quindi un nuovo pannello in QGIS, che si chiamerà <em class="guilabel">OSM place search...</em></p>
 </li>
 </ol>
-<img alt="../_images/215.png" class="align-center" src="../_images/215.png" />
+<img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Il plugin <strong>Open Layers</strong> è installato sotto il menu  <em>Plugin</em> . Questo plugin vi permette di accedere da QGIS alle mappe di base fornite da vari fornitori di servizi. Carichiamo the OpenStreetMap basemap in QGIS andando su <em class="menuselection">Plugins ‣ OpenLayers plugin ‣ Add OpenStreetMap layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/38.png" class="align-center" src="../_images/38.png" />
+<img alt="../_images/314.png" class="align-center" src="../_images/314.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Vedrete una mappa del pianeta nella finestra principale di QGIS.</p>
 </li>
@@ -220,28 +221,28 @@
 <p class="first admonition-title">Nota</p>
 <p class="last">Se non vedete alcun dato  assicuratevi di essere connessi  mentre le &#8220;piastrelle&#8221; della mappa di base vengono progressivamente importate da Internet. Potete anche usare lo strumento <em>Sposta Mappa</em> (pan) per muovere la mappa leggermente, cosa che provocherà un refresh della mappa stessa.</p>
 </div>
-<img alt="../_images/48.png" class="align-center" src="../_images/48.png" />
+<img alt="../_images/49.png" class="align-center" src="../_images/49.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Adesso impostiamo la ricerca per individuare Londra. Digitate l&#8217;interrogazione nella casella <em class="guilabel">Name contains...</em>  all&#8217;interno del pannello <strong>OSM Place Search</strong>. Digitate <em>London</em>.
 Ora potrete esaminare il risultato. La zona che avete scelto verrà evidenziata sulla mappa. Scegliete il primo risultato - che è la città di Londra nel Regno Unito - e cliccate sul pulsante <em class="guilabel">Zoom</em> al di sotto del pannello.</p>
 </li>
 </ol>
-<img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
+<img alt="../_images/59.png" class="align-center" src="../_images/59.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Vedrete il layer di base muoversi e centrarsi intorno alla città di Londra. Potete usare lo <em class="guilabel">Zoom</em> (ingrandisci) per ingrandire e selezionare l&#8217;area di vostro interesse. Per questa esercitazione potete selezionare il centro della city, proprio come nell&#8217;immagine seguente.</p>
 </li>
 </ol>
-<img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
+<img alt="../_images/68.png" class="align-center" src="../_images/68.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Ora possiamo scaricare i dati presenti nella mappa. Andate su <em class="menuselection">Vettore ‣ OpenStreetMap ‣ Download dati</em>.</p>
 </li>
 </ol>
-<img alt="../_images/77.png" class="align-center" src="../_images/77.png" />
+<img alt="../_images/78.png" class="align-center" src="../_images/78.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Nella finestra di dialogo <em class="guilabel">Scarica dati OpenStreetMap</em>   spuntate la casella circolare <em class="guilabel">Dalla mappa</em> nella scheda <em class="guilabel">Estensione</em>.  Scegliete liberamente il percorso in cui salvare il file, che chiameremo <tt class="docutils literal"><span class="pre">london.osm</span></tt>.</p>
 </li>
 </ol>
-<img alt="../_images/87.png" class="align-center" src="../_images/87.png" />
+<img alt="../_images/88.png" class="align-center" src="../_images/88.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Il file appena scaricato ha l&#8217;estensione <tt class="docutils literal"><span class="pre">.osm</span></tt> ed  è un file di testo in formato <a class="reference external" href="http://wiki.openstreetmap.org/wiki/OSM_XML">OSM XML</a> Noi, tanto per cominciare, dobbiamo convertirlo in un formato che possa essere letto da QGIS. Andate su  <em class="menuselection">Vettore ‣ OpenStreetMap ‣ Importa topologia XML</em>.</p>
 </li>
@@ -250,12 +251,12 @@ Ora potrete esaminare il risultato. La zona che avete scelto verrà evidenziata 
 <p class="first admonition-title">Nota</p>
 <p class="last">Adesso che non abbiamo più bisogno del plugin <strong>OSM Place Search</strong> , potete fare click sul pulsante di chiusura per rimuoverlo dalla finestra principale. Quando ne avrete bisogno di nuovo potrete chiamarlo da <em class="menuselection">Visualizza ‣ Pannelli ‣ OSM place search...</em> (Windows) o <em class="menuselection">Settings ‣ Panels ‣ OSM place search...</em> (Linux).</p>
 </div>
-<img alt="../_images/97.png" class="align-center" src="../_images/97.png" />
+<img alt="../_images/98.png" class="align-center" src="../_images/98.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Scegliete il file <tt class="docutils literal"><span class="pre">london.osm</span></tt> come <em class="guilabel">file XML in input</em>. Chiamate quindi il file  <em class="guilabel">DB SpatiaLite in output</em> con il nome di <tt class="docutils literal"><span class="pre">london.osm.db</span></tt>. Assicuratevi che la checkbox <em class="guilabel">Crea connessione (SpatiaLite) dopo la importazione</em> sia barrata.</p>
 </li>
 </ol>
-<img alt="../_images/107.png" class="align-center" src="../_images/107.png" />
+<img alt="../_images/108.png" class="align-center" src="../_images/108.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Ed eccoci arrivati all&#8217;ultimo passo. A questo punto dobbiamo creare dei layers con geometrie SpatialLite che possano essere visualizzati e analizzati in QGIS. Otteniamo questo risultato eseguendo <em class="menuselection">Vettori ‣ OpenStreetMap ‣ Esporta topologia SpatialLite</em>.</p>
 </li>
@@ -266,27 +267,27 @@ Ora potrete esaminare il risultato. La zona che avete scelto verrà evidenziata 
 Assicuratevi che la checkbox <em class="guilabel">Carica sulla mappa quando finito</em> sia spuntata e fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/128.png" class="align-center" src="../_images/128.png" />
+<img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Vedrete un nuovo layer puntuale chiamato <tt class="docutils literal"><span class="pre">london_points</span></tt>  caricato in QGIS. Notate che questo contiene <strong>TUTTI</strong> i punti presenti nel database OSM contenuti all&#8217;interno di quella inquadratura. Dal momento che noi siamo interessati soltanto ai pub, dovremo effettuare una query di selezione che ci restituisca come risultato soltanto i pub. Click con il tasto destro sul layer <tt class="docutils literal"><span class="pre">london_points</span></tt> e selezionate <em class="guilabel">Apri tabella attributi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/137.png" class="align-center" src="../_images/137.png" />
+<img alt="../_images/138.png" class="align-center" src="../_images/138.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Noterete che alcune geometrie hanno un valore dell&#8217;attributo che si chiama <strong>pubs</strong> tra quelli allineati sotto la colonna <em class="guilabel">amenity</em>. Fate click sul pulsante <em class="guilabel">Seleziona elemento usando un&#8217;espressione</em>.</p>
 </li>
 </ol>
-<img alt="../_images/147.png" class="align-center" src="../_images/147.png" />
+<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Inserite l&#8217;espressione <cite>&#8220;amenity&#8221; = &#8216;pub&#8217;</cite>  e fate click su <em class="guilabel">Select</em>.</p>
 </li>
 </ol>
-<img alt="../_images/157.png" class="align-center" src="../_images/157.png" />
+<img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Torniamo nella finestra di QGIS. Vedrete alcuni punti colorati in giallo. Sono il risultato della nostra query. Fate click con il tasto destro sul layer <tt class="docutils literal"><span class="pre">london_points</span></tt> e scegliete <em class="guilabel">Salva Selezione con nome...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/167.png" class="align-center" src="../_images/167.png" />
+<img alt="../_images/168.png" class="align-center" src="../_images/168.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Nella finestra di dialogo :<cite>Salva la selezione con nome... ` inserite il nome del file di output come ``london_pubs.shp`</cite>. Lasciate tutte le altre opzioni come sono e assicuratevi che la casella <em class="guilabel">aggiungi il file salvato alla mappa</em> sia spuntata. Click su <em class="guilabel">OK</em>.</p>
 </li>
@@ -296,12 +297,12 @@ Assicuratevi che la checkbox <em class="guilabel">Carica sulla mappa quando fini
 <li><p class="first">Vedrete un nuovo layer chiamato <tt class="docutils literal"><span class="pre">london_pubs</span></tt> nella finestra principale di QGIS. Spegnete il layer <tt class="docutils literal"><span class="pre">london_points</span></tt> di cui non abbiamo più bisogno.</p>
 </li>
 </ol>
-<img alt="../_images/187.png" class="align-center" src="../_images/187.png" />
+<img alt="../_images/188.png" class="align-center" src="../_images/188.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">La creazione dello shapefile dei pub a questo punto è completa. Potete usare lo strumento <em class="guilabel">Informazioni elemento</em>  per fare click su uno qualsiasi dei punti e vederne gli attributi.</p>
 </li>
 </ol>
-<img alt="../_images/195.png" class="align-center" src="../_images/195.png" />
+<img alt="../_images/196.png" class="align-center" src="../_images/196.png" />
 </div>
 </div>
 
@@ -327,7 +328,7 @@ Assicuratevi che la checkbox <em class="guilabel">Carica sulla mappa quando fini
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Apr 22, 2015.<br/>
+      Ultimo aggiornamento May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

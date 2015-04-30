@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Building a Python Plugin &mdash; QGIS Tutorials and Tips</title>
+    <title>Создание модуля на Python &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -105,12 +105,13 @@
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Отбор проб растровых данных с помощью точек или полигонов</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Интерполяция точечных данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Выполнение пакетных файлов с помощью среды обработки</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Автоматизация сложных рабочих процессов с помощью Редактора моделей</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Использование QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Подсчет числа вершин в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Открытие файлов BIL, BIP или BSQ в QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Первые шаги в программировании на Python</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Building a Python Plugin</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Создание модуля на Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Нахождение соседних полигонов в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Веб-карты Leaflet с помощью qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Использование Google Maps Engine Connector для QGIS</a></li>
@@ -188,124 +189,75 @@
       
 
   <div class="section" id="building-a-python-plugin">
-<h1>Building a Python Plugin<a class="headerlink" href="#building-a-python-plugin" title="Ссылка на этот заголовок">¶</a></h1>
+<h1>Создание модуля на Python<a class="headerlink" href="#building-a-python-plugin" title="Ссылка на этот заголовок">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/building_a_python_plugin_a4.pdf">A4</a> <a class="reference external" href="../pdf/building_a_python_plugin_letter.pdf">Letter</a> ]</p>
-<p>Plugins are a great way to extend the functionality of QGIS. You can write
-plugins using Python that can range from adding a simple button to
-sohpisticated toolkits. This tutorial will outline the process involved in
-setting up your development environment, designing the user interface for a
-plugin and writing code to interact with QGIS. Please review the
-<a class="reference internal" href="getting_started_with_pyqgis.html"><em>Первые шаги в программировании на Python</em></a> tutorial to get familiar with the basics.</p>
+<p>Модули - это отличный способ расширить функциональность QGIS. Вы можете создавать модули на Python, от добавления простой кнопки до сложных наборов инструментов. Этот урок в общих чертах покажет процесс, связанный с настройкой среды разработки, проектированием пользовательского интерфейса для модуля и написанием кода для взаимодействия с QGIS. Пожалуйста, просмотрите урок <a class="reference internal" href="getting_started_with_pyqgis.html"><em>Первые шаги в программировании на Python</em></a>, чтобы ознакомиться с основами.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the Task<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
-<p>We will develop a simple plugin called <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></tt> that will allow
-users to pick a vector layer and write its attributes to a CSV file.</p>
+<h2>Обзор задачи<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Мы разработаем простой модуль под названием <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></tt>, который позволит пользователям выбрать векторный слой и записать его атрибуты в CSV-файл.</p>
 </div>
 <div class="section" id="get-the-tools">
-<h2>Get the Tools<a class="headerlink" href="#get-the-tools" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Получение инструментов<a class="headerlink" href="#get-the-tools" title="Ссылка на этот заголовок">¶</a></h2>
 <div class="section" id="qt-creator">
 <h3>Qt Creator<a class="headerlink" href="#qt-creator" title="Ссылка на этот заголовок">¶</a></h3>
-<p><a class="reference external" href="http://www.qt.io/">Qt</a> is a software development framework that is used to
-develop applications that run on Windows, Mac, Linux as well as various mobile
-operating systems. QGIS itself is written using the Qt framework. For plugin
-development, we will use an application called <a class="reference external" href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a> to design the interface for our
-plugin.</p>
-<p>Download and install the Qt Creator software from <a class="reference external" href="http://sourceforge.net/projects/qtcreator.mirror/files/latest/download">SourgeForge</a></p>
+<p><a class="reference external" href="http://www.qt.io/">Qt</a> это фреймворк для разработки программного обеспечения, который используется для разработки приложений, работающих на Windows, Mac, Linux, а также на различных мобильных операционных системах. Сам QGIS написан с использованием Qt. Для разработки модулей мы будем использовать приложение под названием <a class="reference external" href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a>, чтобы разработать интерфейс для нашего модуля.</p>
+<p>Загрузите и установите приложение Qt Creator с <a class="reference external" href="http://sourceforge.net/projects/qtcreator.mirror/files/latest/download">SourgeForge</a></p>
 </div>
 <div class="section" id="python-bindings-for-qt">
-<h3>Python Bindings for Qt<a class="headerlink" href="#python-bindings-for-qt" title="Ссылка на этот заголовок">¶</a></h3>
-<p>Since we are developing the plugin in Python, we need to install the python
-bindings for Qt. The method for installing these will depend on the platform
-you are using. For building plugins we need the <tt class="docutils literal"><span class="pre">pyrcc4</span></tt> command-line tool.</p>
+<h3>Связки Python для Qt<a class="headerlink" href="#python-bindings-for-qt" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Так как мы разрабатываем модуль на Python, нам необходимо установить расширение Python для Qt. Способ его установки будут зависеть от платформы, которую вы используете. Для создания модулей нам нужен инструмент командной строки <tt class="docutils literal"><span class="pre">pyrcc4</span></tt>.</p>
 <p><strong>Windows</strong></p>
-<p>Download the <a class="reference external" href="http://trac.osgeo.org/osgeo4w/">OSGeo4W network installer</a> and choose <em class="guilabel">Express Desktop
-Install</em>. Install the package <tt class="docutils literal"><span class="pre">QGIS</span></tt>. After installation, you will be able to access the
-<tt class="docutils literal"><span class="pre">pyrcc4</span></tt> tool via the <em class="guilabel">OSGeo4W Shell</em>.</p>
+<p>Скачайте <a class="reference external" href="http://trac.osgeo.org/osgeo4w/">установочный файл OSGeo4W</a> и выберите <em class="guilabel">Express Desktop Install</em>. Установите пакет <tt class="docutils literal"><span class="pre">QGIS</span></tt>. После установки вы сможете получить доступ к инструменту <tt class="docutils literal"><span class="pre">pyrcc4</span></tt> через <em class="guilabel">OSGeo4W Shell</em>.</p>
 <p><strong>Mac</strong></p>
-<p>Install the <a class="reference external" href="http://brew.sh">Homebrew</a> package manager. Install <tt class="docutils literal"><span class="pre">PyQt</span></tt>
-package by running the following command:</p>
+<p>Установите менеджер пакетов <a class="reference external" href="http://brew.sh">Homebrew</a> . Установите пакет <tt class="docutils literal"><span class="pre">PyQt</span></tt>, выполнив следующую команду:</p>
 <div class="highlight-none"><div class="highlight"><pre>brew install pyqt
 </pre></div>
 </div>
 <p><strong>Linux</strong></p>
-<p>Depending on your distribution, find and install the <tt class="docutils literal"><span class="pre">python-qt4</span></tt> package. On
-Ubuntu and Debian-based distributions, you can run the following command:</p>
+<p>В зависимости от вашего дистрибутива, найдите и установите пакет <tt class="docutils literal"><span class="pre">python-qt4</span></tt>. В дистрибутивах, основанных на Ubuntu и Debian, вы можете запустить следующую команду:</p>
 <div class="highlight-none"><div class="highlight"><pre>sudo apt-get install python-qt4
 </pre></div>
 </div>
 </div>
 <div class="section" id="a-text-editor-or-a-python-ide">
-<h3>A Text Editor or a Python IDE<a class="headerlink" href="#a-text-editor-or-a-python-ide" title="Ссылка на этот заголовок">¶</a></h3>
-<p>Any kind of software development requires a good text editor. If you already
-have a favorite text editor or an IDE (Integrated Development Environment), you
-may use it for this tutorial. Otherwise, each platform offers a wide variety of
-free or paid options for text editros. Choose the one that fits your needs.</p>
-<p>This tutorial uses Notepad++ editor on Windows.</p>
+<h3>Текстовый редактор или интегрированная среда разработки Python<a class="headerlink" href="#a-text-editor-or-a-python-ide" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Для любой разработки программного обеспечения требуется хороший текстовый редактор. Если у вас уже есть любимый текстовый редактор или IDE (Integrated Development Environment, интегрированная среда разработки), вы можете использовать его для этого урока. В противном случае, каждая платформа предлагает широкий выбор бесплатных или платных вариантов текстовых редакторов. Выберите тот, который соответствует вашим потребностям.</p>
+<p>В этом уроке используется редактор Notepad ++ на Windows.</p>
 <p><strong>Windows</strong></p>
-<p><a class="reference external" href="http://notepad-plus-plus.org/">Notepad++</a> is a good free editor for windows.
-Download and install the <a class="reference external" href="http://notepad-plus-plus.org/repository/6.x/6.7.5/npp.6.7.5.Installer.exe">Notepad++ editor</a>.</p>
+<p><a class="reference external" href="http://notepad-plus-plus.org/">Notepad++</a> - это хороший бесплатный редактор для Windows. Скачайте и установите <a class="reference external" href="http://notepad-plus-plus.org/repository/6.x/6.7.5/npp.6.7.5.Installer.exe">редактор Notepad++</a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Примечание</p>
-<p class="last">If you are using Notepad++, makes sure to check <em class="guilabel">Replace by space</em>
-at  <em class="menuselection">Settings ‣ Preferences ‣ Tab Settings</em>. Python is
-very sensitive about whitespace and this setting will ensure tabs and spaces
-are treated properly.</p>
+<p class="last">Если вы используете Notepad++, убедитесь, что отмечена настройка <em class="guilabel">Replace by space</em> в меню  <em class="menuselection">Settings ‣ Preferences ‣ Tab Settings</em>. Python очень чувствителен к пробелам, и эта настройка гарантирует, что табуляции и пробелы обрабатываются корректно.</p>
 </div>
 </div>
 <div class="section" id="plugin-builder-plugin">
-<h3>Plugin Builder plugin<a class="headerlink" href="#plugin-builder-plugin" title="Ссылка на этот заголовок">¶</a></h3>
-<p>There is a helpful QGIS plugin named <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> which creates all the
-neccesary files and the boilerplate code for a plugin. Find and install the
-<tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> plugin. See <a class="reference internal" href="using_plugins.html"><em>Использование модулей расширения</em></a> for more details on how to
-install plugins.</p>
+<h3>Модуль Plugin Builder<a class="headerlink" href="#plugin-builder-plugin" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Существует полезный модуль QGIS под названием <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt>, который создает все необходимые файлы и типовой код для модуля. Найдите и установите модуль <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt>. Подробнее об установке модулей можно прочитать тут: <a class="reference internal" href="using_plugins.html"><em>Использование модулей расширения</em></a>.</p>
 </div>
 <div class="section" id="plugins-reloader-plugin">
-<h3>Plugins Reloader plugin<a class="headerlink" href="#plugins-reloader-plugin" title="Ссылка на этот заголовок">¶</a></h3>
-<p>This is another helper plugin which allows iterative development of plugins.
-Using this plugin, you can change your plugin code and have it reflected in
-QGIS without having to restart QGIS every time. Find and install the <tt class="docutils literal"><span class="pre">Plugin</span>
-<span class="pre">Reloader</span></tt> plugin. See <a class="reference internal" href="using_plugins.html"><em>Использование модулей расширения</em></a> for more details on how to install
-plugins.</p>
+<h3>Модуль Plugins Reloader<a class="headerlink" href="#plugins-reloader-plugin" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Это еще один полезный модуль, который позволяет разрабатывать модули итеративно. Используя этот модуль, вы можете изменять код своего модуля, и перемены будут отражены в QGIS без необходимости перезагружать QGIS каждый раз. Найдите и установите модуль <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Reloader</span></tt>. Подробнее об установке модулей можно прочитать тут: <a class="reference internal" href="using_plugins.html"><em>Использование модулей расширения</em></a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Примечание</p>
-<p class="last">Plugin Reloader is an experimental plugin. Make sure you have checked
-<em class="guilabel">Show also experimental plugins</em> in <em class="guilabel">Plugin Manager</em>
-settings if you cannot find it.</p>
+<p class="last">Plugin Reloader является экспериментальным модулем. Убедитесь, что вы отметили галочкой опцию <em class="guilabel">Show also experimental plugins</em> в настройках <em class="guilabel">Plugin Manager</em>, если вы не можете его найти.</p>
 </div>
 </div>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Методика<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS. Go to <em class="menuselection">Plugins ‣ Plugin Builder ‣ Plugin
-Builder</em>.</li>
+<li><p class="first">Откройте QGIS. Перейдите к меню <em class="menuselection">Plugins ‣ Plugin Builder ‣ Plugin Builder</em>.</p>
+</li>
 </ol>
-<img alt="../_images/114.png" class="align-center" src="../_images/114.png" />
+<img alt="../_images/116.png" class="align-center" src="../_images/116.png" />
 <ol class="arabic simple" start="2">
-<li>You will see the <em class="guilabel">QGIS Plugin Builder</em> dialog with a form. You can
-fill the form with details relating to our plugin. The <em class="guilabel">Class
-name</em> will be the name of the Python Class containing the logic of the
-plugin. This will also be the name of the folder containing all the plugin
-files. Enter <tt class="docutils literal"><span class="pre">SaveAttributes</span></tt> as the class name. The <em class="guilabel">Plugin
-name</em> is the name under which your plugin will appear in the
-<em class="guilabel">Plugin Manager</em>. Enter the name as <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></tt>. Add a
-description in the <em class="guilabel">Description</em> field. The <em class="guilabel">Module
-name</em> will be the name of the main python file for the plugin. Enter it as
-<tt class="docutils literal"><span class="pre">save_attributes</span></tt>. Leave the version numbers as they are. The
-<em class="guilabel">Text for menu item</em> value will be how the users will find your
-plugin in QGIS menu. Enter it as <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span> <span class="pre">as</span> <span class="pre">CSV</span></tt>. Enter your name
-and email address in the appropriate fields. The <em class="guilabel">Menu</em>  field
-will decide where your plugin item is added in QGIS. Since our plugin is for
-vector data, select <tt class="docutils literal"><span class="pre">Vector</span></tt>. Check the <em class="guilabel">Flag the plugin as
-experimental</em> box at the bottom. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Вы увидите диалоговое окно <em class="guilabel">QGIS Plugin Builder</em> с формой. Вы можете заполнить форму, указав детали, касающиеся нашего модуля. В поле <em class="guilabel">Class name</em> нужно указать имя класса Python, содержащего логику модуля. Это также будет имя папки, содержащей все файлы модуля. Введите строку <tt class="docutils literal"><span class="pre">SaveAttributes</span></tt> в качестве имени класса. <em class="guilabel">Plugin name</em> - это имя, под которым ваш плагин появится в меню <em class="guilabel">Plugin Manager</em>. Введите `` Save Attributes``. Добавьте описание в поле <em class="guilabel">Description</em>. <em class="guilabel">Module name</em> - это имя основного файла Python для модуля. Укажите его как <tt class="docutils literal"><span class="pre">safe_attributes</span></tt>. Оставьте номер версии без изменения. Строка <em class="guilabel">Text for menu item</em> указывает, как пользователи будут видеть ваш плагин в меню QGIS. Введите <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span> <span class="pre">as</span> <span class="pre">CSV</span></tt>. Введите свое имя и адрес электронной почты в соответствующих полях. Поле <em class="guilabel">Menu</em> показывает, в какое меню QGIS будет добавлен ваш модуль. Так как наш плагин предназначен для векторных данных, выберите <tt class="docutils literal"><span class="pre">Vector</span></tt>. Отметьте галочкой поле <em class="guilabel">Flag the plugin as experimental</em> в нижней части. Нажмите <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
-<img alt="../_images/23.png" class="align-center" src="../_images/23.png" />
+<img alt="../_images/213.png" class="align-center" src="../_images/213.png" />
 <ol class="arabic simple" start="3">
-<li>Next, you will be prompted to choose a directory for your plugin. You need
-to browse to the QGIS python plugin directory on your computer and select
-<em class="guilabel">Select Folder</em>. Typically, a <tt class="docutils literal"><span class="pre">.qgis2/</span></tt> directory is located in
-your home directory. The <tt class="docutils literal"><span class="pre">plugin</span></tt> folder location will depend on your
-platform as follows: (Replace <tt class="docutils literal"><span class="pre">username</span></tt> with your login name)</li>
+<li><p class="first">Далее вам будет предложено выбрать каталог для вашего модуля. Вы должны перейти к папке модулей QGIS на вашем компьютере и нажать <em class="guilabel">Select Folder</em>. Как правило, папка <tt class="docutils literal"><span class="pre">.qgis2/</span></tt> находится в вашей домашнем каталоге. Местоположение папки <tt class="docutils literal"><span class="pre">plugin</span></tt> будет зависеть от вашей платформы следующим образом: (Замените <tt class="docutils literal"><span class="pre">username</span></tt> на ваше имя пользователя)</p>
+</li>
 </ol>
 <p><strong>Windows</strong></p>
 <div class="highlight-none"><div class="highlight"><pre>c:\Users\username\.qgis2\python\plugins
@@ -319,106 +271,91 @@ platform as follows: (Replace <tt class="docutils literal"><span class="pre">use
 <div class="highlight-none"><div class="highlight"><pre>/home/username/.qgis2/python/plugins
 </pre></div>
 </div>
-<img alt="../_images/33.png" class="align-center" src="../_images/33.png" />
+<img alt="../_images/37.png" class="align-center" src="../_images/37.png" />
 <ol class="arabic simple" start="4">
-<li>You will see a confirmation dialog once your plugin template is created.
-Note the path to the plugin folder.</li>
+<li><p class="first">Вы увидите диалоговое окно подтверждения при создании шаблона вашего модуля. Обратите внимание на путь к папке с модулем.</p>
+</li>
 </ol>
-<img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
+<img alt="../_images/44.png" class="align-center" src="../_images/44.png" />
 <ol class="arabic simple" start="5">
-<li>Before we can use the newly created plugin, we need to compile the
-<tt class="docutils literal"><span class="pre">resources.qrc</span></tt> file that was created by Plugin Builder. Launch the
-<em class="guilabel">OSGeo4W Shell</em> on windows or a terminal on Mac or Linux.</li>
+<li><p class="first">Прежде чем мы сможем использовать вновь созданный плагин, мы должны скомпилировать файл <tt class="docutils literal"><span class="pre">resources.qrc</span></tt>, который был создан модулем Plugin Builder. Запустите <em class="guilabel">OSGeo4W Shell</em> под Windows или в терминале на Mac или Linux.</p>
+</li>
 </ol>
-<img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
+<img alt="../_images/54.png" class="align-center" src="../_images/54.png" />
 <ol class="arabic simple" start="6">
-<li>Browse to the plugin directory where the output of <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> was
-created. You can use the <tt class="docutils literal"><span class="pre">cd</span></tt> command followed by the path to the
-directory.</li>
+<li><p class="first">Перейдите к папке модуля, в которой были созданы файлы с помощью модуля <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt>. Вы можете использовать команду <tt class="docutils literal"><span class="pre">cd</span></tt> с последующим указанием пути к директории.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>cd c:\Users\username\.qgis2\python\plugins\SaveAttributes
 </pre></div>
 </div>
-<img alt="../_images/63.png" class="align-center" src="../_images/63.png" />
+<img alt="../_images/64.png" class="align-center" src="../_images/64.png" />
 <ol class="arabic simple" start="7">
-<li>Once you are in the directory, type <tt class="docutils literal"><span class="pre">make</span></tt>. This will run the <tt class="docutils literal"><span class="pre">pyrcc4</span></tt>
-command that we had installed as part of Qt bindings for Python.</li>
+<li><p class="first">Оказавшись в каталоге, напечатайте <tt class="docutils literal"><span class="pre">make</span></tt>. Это запустит команду <tt class="docutils literal"><span class="pre">pyrcc4</span></tt>, которую мы установили, как часть расширения Qt для Python.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>make
 </pre></div>
 </div>
-<img alt="../_images/73.png" class="align-center" src="../_images/73.png" />
+<img alt="../_images/74.png" class="align-center" src="../_images/74.png" />
 <ol class="arabic simple" start="8">
-<li>Now we are ready to have a first look at the brand new plugin we created.
-Close QGIS and launch it again. You will notice that there is a new icon in
-the toolbar and a new menu entry under <em class="menuselection">Vector ‣ Save
-Attributes ‣ Save Attributes as CSV`</em>. Select it to launch the plugin
-dialog.</li>
+<li><p class="first">Теперь мы готовы ознакомиться с модулем, который мы создали. Закройте QGIS и запустите его снова. Вы заметите, что появился новый значок на панели инструментов и новая запись в меню <em class="menuselection">Vector ‣ Save Attributes ‣ Save Attributes as CSV`</em>. Выберите ее, чтобы запустить диалоговое окно модуля.</p>
+</li>
 </ol>
-<img alt="../_images/83.png" class="align-center" src="../_images/83.png" />
+<img alt="../_images/84.png" class="align-center" src="../_images/84.png" />
 <ol class="arabic simple" start="9">
-<li>You will notice a new blank dialog named <em class="guilabel">Save Attributes</em>. Close
-this dialog.</li>
+<li><p class="first">Вы заметите новое пустое диалоговое окно под названием <em class="guilabel">Save Attributes</em>. Закройте это окно.</p>
+</li>
 </ol>
-<img alt="../_images/93.png" class="align-center" src="../_images/93.png" />
+<img alt="../_images/94.png" class="align-center" src="../_images/94.png" />
 <ol class="arabic simple" start="10">
-<li>We will not design our dialog box and add some user interface elements to
-it. Open the <tt class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator</span></tt> program and to to <em class="guilabel">File &#8211;&gt; Open File
-or Project...</em>.</li>
+<li><p class="first">Теперь спроектируем наше диалоговое окно и добавим на него некоторые элементы пользовательского интерфейса. Откройте программу <tt class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator</span></tt> и перейдите к <em class="guilabel">File &#8211;&gt; Open File or Project...</em>.</p>
+</li>
 </ol>
-<img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
+<img alt="../_images/104.png" class="align-center" src="../_images/104.png" />
 <ol class="arabic simple" start="11">
-<li>Browse to the plugin directory and select the
-<tt class="docutils literal"><span class="pre">save_attributes_dialog_base.ui</span></tt> file. Click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Перейдите к папке с модулем и выберите файл <tt class="docutils literal"><span class="pre">save_attributes_dialog_base.ui</span></tt>. Нажмите <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
-<img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
+<img alt="../_images/117.png" class="align-center" src="../_images/117.png" />
 <ol class="arabic simple" start="12">
-<li>You will see the blank dialog from the plugin. You can drag-and-drop
-elements from the left-hand panel on the dialog. We will add a
-<em class="guilabel">Combo Box</em> type of <em class="guilabel">Input Widget</em>. Drag it to the
-plugin dialog.</li>
+<li><p class="first">Вы увидите пустое диалоговое окно модуля. Вы можете перетаскивать элементы из панели слева в диалоговое окно. Мы добавим <em class="guilabel">Input Widget</em> вида <em class="guilabel">Combo Box</em>. Перетащите его в диалоговое окно модуля.</p>
+</li>
 </ol>
-<img alt="../_images/123.png" class="align-center" src="../_images/123.png" />
+<img alt="../_images/124.png" class="align-center" src="../_images/124.png" />
 <ol class="arabic simple" start="13">
-<li>Resize the combo box and adjust its size. Now drag a <em class="guilabel">Label</em> type
-<em class="guilabel">Display Widget</em> on the dialog.</li>
+<li><p class="first">Настройте подходящий размер поля со списком. Теперь перетащите элемент <em class="guilabel">Display Widget</em> типа <em class="guilabel">Label</em> в диалоговое окно.</p>
+</li>
 </ol>
-<img alt="../_images/133.png" class="align-center" src="../_images/133.png" />
+<img alt="../_images/134.png" class="align-center" src="../_images/134.png" />
 <ol class="arabic simple" start="14">
-<li>Click on the label text and enter <tt class="docutils literal"><span class="pre">Select</span> <span class="pre">a</span> <span class="pre">layer</span></tt>.</li>
+<li><p class="first">Щелкните на тексте и введите <tt class="docutils literal"><span class="pre">Select</span> <span class="pre">a</span> <span class="pre">layer</span></tt>.</p>
+</li>
 </ol>
-<img alt="../_images/143.png" class="align-center" src="../_images/143.png" />
+<img alt="../_images/144.png" class="align-center" src="../_images/144.png" />
 <ol class="arabic simple" start="15">
-<li>Save this file by going to <em class="menuselection">File ‣ Save
-save_attributes_dialog_base.ui</em>. Note the name of the combo box object is
-<tt class="docutils literal"><span class="pre">comboBox</span></tt>. To interact with this object using python code, we will have
-to refer to it by this name.</li>
+<li><p class="first">Сохраните этот файл, перейдя в <em class="menuselection">File ‣ Save save_attributes_dialog_base.ui</em>. Заметьте, что имя объекта поля со списком - <tt class="docutils literal"><span class="pre">comboBox</span></tt>. Для взаимодействия с этим объектом через код Python, мы должны обратиться к нему по этому имени.</p>
+</li>
 </ol>
-<img alt="../_images/153.png" class="align-center" src="../_images/153.png" />
+<img alt="../_images/154.png" class="align-center" src="../_images/154.png" />
 <ol class="arabic simple" start="16">
-<li>Let&#8217;s reload our plugin so we can see the changes in the dialog
-window. Go to <em class="menuselection">Plugin ‣ Plugin Reloader ‣ Choose a
-plugin to be reloaded</em>.</li>
+<li><p class="first">Давайте перезагрузим наш модуль, чтобы мы могли видеть изменения в диалоговом окне. Перейдите к <em class="menuselection">Plugin ‣ Plugin Reloader ‣ Choose a plugin to be reloaded</em>.</p>
+</li>
 </ol>
-<img alt="../_images/163.png" class="align-center" src="../_images/163.png" />
+<img alt="../_images/164.png" class="align-center" src="../_images/164.png" />
 <ol class="arabic simple" start="17">
-<li>Select <tt class="docutils literal"><span class="pre">SaveAttributes</span></tt> in the <em class="guilabel">Configure Plugin reloader</em>
-dialog.</li>
+<li><p class="first">Выберите <tt class="docutils literal"><span class="pre">SaveAttributes</span></tt> в диалоговом окне <em class="guilabel">Configure Plugin reloader</em>.</p>
+</li>
 </ol>
 <img alt="../_images/173.png" class="align-center" src="../_images/173.png" />
 <ol class="arabic simple" start="18">
-<li>Now click the <em class="guilabel">Save Attributes as CSV</em> button. You will see the
-newly designed dialog box.</li>
+<li><p class="first">Теперь нажмите кнопку <em class="guilabel">Save Attributes as CSV</em>. Вы увидите только что созданное диалоговое окно.</p>
+</li>
 </ol>
-<img alt="../_images/183.png" class="align-center" src="../_images/183.png" />
+<img alt="../_images/184.png" class="align-center" src="../_images/184.png" />
 <ol class="arabic simple" start="19">
-<li>Let&#8217;s add some logic to the plugin that will populate the combo box with
-the layers loaded in QGIS. Go to the plugin directory and load the file
-<tt class="docutils literal"><span class="pre">save_attributes.py</span></tt> in a text editor. Scroll down and find the
-<tt class="docutils literal"><span class="pre">run(self)</span></tt> method. This method will be called when you click the toolbar
-button or select the plugin menu item. Add the following code at the
-beginning of the method. This code gets the layers loaded in QGIS and adds
-it to the <tt class="docutils literal"><span class="pre">comboBox</span></tt> object from the plugin dialog.</li>
+<li><p class="first">Давайте добавим в модуль алгоритм, заполняющий выпадающий список слоями, загружаенными в QGIS. Перейдите в папку модуля и откройте файл <tt class="docutils literal"><span class="pre">save_attributes.py</span></tt> в текстовом редакторе. Прокрутите вниз и найдите метод <tt class="docutils literal"><span class="pre">run(self)</span></tt>. Этот метод будет вызываться, когда вы нажмете кнопку на панели инструментов или выберете пункт меню модуля. Добавьте следующий код в начале метода. Этот код получает слои, загруженные в QGIS, и добавляет их в объект <tt class="docutils literal"><span class="pre">comboBox</span></tt> из диалогового окна модуля.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">layers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">legendInterface</span><span class="p">()</span><span class="o">.</span><span class="n">layers</span><span class="p">()</span>
 <span class="n">layer_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -427,76 +364,54 @@ it to the <tt class="docutils literal"><span class="pre">comboBox</span></tt> ob
      <span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">comboBox</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">layer_list</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/191.png" class="align-center" src="../_images/191.png" />
+<img alt="../_images/192.png" class="align-center" src="../_images/192.png" />
 <ol class="arabic simple" start="20">
-<li>Back in the main QGIS window, reload the plugin by going to
-<em class="menuselection">Plugins ‣ Plugin Reloader ‣  Reload plugin:
-SaveAttributes</em>. Alternatively, you can just press <tt class="kbd docutils literal"><span class="pre">F5</span></tt>. To test this
-new functionality, we must load some layers in QGIS. After you load some
-data, launch the plugin by going to <em class="menuselection">Vector ‣ Save
-Attributes ‣ Save Attributes as CSV</em>.</li>
+<li><p class="first">Вернитесь в главное окно QGIS, перезагрузите модуль, перейдя к <em class="menuselection">Plugins ‣ Plugin Reloader ‣ Reload plugin: SaveAttributes</em>. Либо вы можете просто нажать <tt class="kbd docutils literal"><span class="pre">F5</span></tt>. Чтобы проверить эту новую функциональность, мы должны загрузить какие-то слои в QGIS. После того как вы загрузите данные, запустите модуль, перейдя к <em class="menuselection">Vector ‣ Save Attributes ‣ Save Attributes as CSV</em>.</p>
+</li>
 </ol>
-<img alt="../_images/20.png" class="align-center" src="../_images/20.png" />
+<img alt="../_images/201.png" class="align-center" src="../_images/201.png" />
 <ol class="arabic simple" start="21">
-<li>You will see that our combo box is now populated with the layer names that
-are loaded in QGIS.</li>
+<li><p class="first">Вы увидите, что наш список теперь заполнен именами слоев, загруженных в QGIS.</p>
+</li>
 </ol>
-<img alt="../_images/211.png" class="align-center" src="../_images/211.png" />
+<img alt="../_images/214.png" class="align-center" src="../_images/214.png" />
 <ol class="arabic simple" start="22">
-<li>Let&#8217;s add remaining user interface elements. Switch back to <tt class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator</span></tt>
-and load the <tt class="docutils literal"><span class="pre">save_attributes_dialog_base.ui</span></tt> file. Add a <tt class="docutils literal"><span class="pre">Label</span></tt>
-<em class="guilabel">Display Widget</em> and change the text to <tt class="docutils literal"><span class="pre">Select</span> <span class="pre">output</span> <span class="pre">file</span></tt>.
-Add a <tt class="docutils literal"><span class="pre">LineEdit</span></tt> type <em class="guilabel">Input Widget</em> that will show the output
-file path that the user has chosen. Next, add a <tt class="docutils literal"><span class="pre">Push</span> <span class="pre">Button</span></tt> type
-<em class="guilabel">Button</em> and chage the button label to <tt class="docutils literal"><span class="pre">...</span></tt>. Note the object
-names of the widgets that we will have to use to interact with them. Save
-the file.</li>
+<li><p class="first">Давайте добавим оставшиеся элементы пользовательского интерфейса. Вернитесь к <tt class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator</span></tt> и загрузите файл <tt class="docutils literal"><span class="pre">save_attributes_dialog_base.ui</span></tt>. Добавьте элемент <em class="guilabel">Display Widget</em> типа <tt class="docutils literal"><span class="pre">Label</span></tt> и измените текст на <tt class="docutils literal"><span class="pre">Select</span> <span class="pre">output</span> <span class="pre">file</span></tt>. Добавьте элемент <em class="guilabel">Input Widget</em> типа <tt class="docutils literal"><span class="pre">LineEdit</span></tt>, который покажет путь к итоговому файлу, выбранный пользователем. Затем добавьте элемент <tt class="docutils literal"><span class="pre">Push</span> <span class="pre">Button</span></tt> типа <em class="guilabel">Button</em> и измените текст кнопки на <tt class="docutils literal"><span class="pre">...</span></tt>. Обратите внимание на названия объектов виджетов, которые мы будем использовать для взаимодействия с ними. Сохраните файл.</p>
+</li>
 </ol>
 <img alt="../_images/221.png" class="align-center" src="../_images/221.png" />
 <ol class="arabic simple" start="23">
-<li>We will now add python code to open a file browser when the user clicks the
-<tt class="docutils literal"><span class="pre">...</span></tt> push button and show the select path in the line edit widget. Open
-the <tt class="docutils literal"><span class="pre">save_attributes.py</span></tt> file in a text editor. Add <tt class="docutils literal"><span class="pre">QFileDialog</span></tt> to
-our list of imports at the top of the file.</li>
+<li><p class="first">Теперь мы добавим код Python, который откроет файловый браузер, когда пользователь нажимает на кнопку  <tt class="docutils literal"><span class="pre">...</span></tt>, и покажет выбранный путь в строке редактирования. Откройте файл <tt class="docutils literal"><span class="pre">save_attributes.py</span></tt> в текстовом редакторе. Добавьте <tt class="docutils literal"><span class="pre">QFileDialog</span></tt> в наш список импорта в верхней части файла.</p>
+</li>
 </ol>
 <img alt="../_images/231.png" class="align-center" src="../_images/231.png" />
 <ol class="arabic simple" start="24">
-<li>Add a new method called <tt class="docutils literal"><span class="pre">select_output_file</span></tt> with the following code.
-This code will open a file browser and populate the line edit widget with
-the path of the file that the user chose.</li>
+<li><p class="first">Добавьте новый метод под названием <tt class="docutils literal"><span class="pre">select_output_file</span></tt> со следующим кодом. Этот код откроет файловый браузер и вставит в строку редактирования путь к файлу, выбранный пользователем.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">select_output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">QFileDialog</span><span class="o">.</span><span class="n">getSaveFileName</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="p">,</span> <span class="s">&quot;Select output file &quot;</span><span class="p">,</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&#39;*.txt&#39;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">lineEdit</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/24.png" class="align-center" src="../_images/24.png" />
+<img alt="../_images/241.png" class="align-center" src="../_images/241.png" />
 <ol class="arabic simple" start="25">
-<li>Now we need to add code so that when the <cite>...</cite> button is clicked,
-<tt class="docutils literal"><span class="pre">select_output_file</span></tt> method is called. Scroll up to the <tt class="docutils literal"><span class="pre">__init__</span></tt>
-method and add the following lines at the botton. This code will clear the
-previously loaded text (if any) in the line edit widget and also connect
-the <tt class="docutils literal"><span class="pre">select_output_file</span></tt> method to the <tt class="docutils literal"><span class="pre">clicked</span></tt> signal of the push
-button widget.</li>
+<li><p class="first">Теперь нам нужно добавить код, чтобы при нажатии кнопки <cite>...</cite> вызывался метод <tt class="docutils literal"><span class="pre">select_output_file</span></tt>. Промотайте до метода <tt class="docutils literal"><span class="pre">__init__</span></tt> и добавьте следующие строки снизу. Этот код очистит предварительно загруженный текст (если таковой имеется) в строке редактирования, а также подключит метод <tt class="docutils literal"><span class="pre">select_output_file</span></tt> к сигналу <tt class="docutils literal"><span class="pre">нажатие</span></tt> кнопки.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">lineEdit</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">pushButton</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">select_output_file</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/25.png" class="align-center" src="../_images/25.png" />
+<img alt="../_images/251.png" class="align-center" src="../_images/251.png" />
 <ol class="arabic simple" start="26">
-<li>Back in QGIS, reload the plugin and open the <em class="guilabel">Save Attributes`</em>
-dialog. If all went fine, you will be able to click the <tt class="docutils literal"><span class="pre">...</span></tt> button and
-select an output text file from your disk.</li>
+<li><p class="first">Вернитесь в QGIS, перезагрузите плагин и откройте <em class="guilabel">Save Attributes`</em> dialog. Если все прошло нормально, вы сможете нажать на кнопку `` ... `` и выбрать текстовый файл вывода с вашего диска.</p>
+</li>
 </ol>
-<img alt="../_images/26.png" class="align-center" src="../_images/26.png" />
+<img alt="../_images/261.png" class="align-center" src="../_images/261.png" />
 <ol class="arabic simple" start="27">
-<li>When you click <em class="guilabel">OK</em> on the plugin dialog, nothing happens. That
-is because we have not added the logic to pull attribute information from
-the layer and write it to the text file. We now have all the pieces in
-place to do just that. Find the place in the <tt class="docutils literal"><span class="pre">run</span></tt> method where it says
-<tt class="docutils literal"><span class="pre">pass</span></tt>.  Replace it with the code below. The explanation for this code
-can be found in <a class="reference internal" href="getting_started_with_pyqgis.html"><em>Первые шаги в программировании на Python</em></a>.</li>
+<li><p class="first">При нажатии <em class="guilabel">OK</em> в диалоговом окне модуля ничего не происходит. Это потому, что мы не добавили алгоритм для извлечения атрибутов из слоя и записи его в текстовый файл. Теперь у нас есть все, чтобы сделать это. Найдите место в методе <tt class="docutils literal"><span class="pre">run</span></tt>, где написано <tt class="docutils literal"><span class="pre">pass</span></tt>. Замените его на код ниже. Объяснение этого кода можно найти в уроке <a class="reference internal" href="getting_started_with_pyqgis.html"><em>Первые шаги в программировании на Python</em></a>.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">lineEdit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
 <span class="n">output_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
@@ -513,22 +428,16 @@ can be found in <a class="reference internal" href="getting_started_with_pyqgis.
 <span class="n">output_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/27.png" class="align-center" src="../_images/27.png" />
+<img alt="../_images/271.png" class="align-center" src="../_images/271.png" />
 <ol class="arabic simple" start="28">
-<li>Now our plugin is ready. Reload the plugin and try it out. You will find
-that the output text file you chose will have the attributes from the
-vector layer. You can zip the plugin directory and share it with your
-users. They can unzip the contents to their plugin directory and try out
-your plugin. If this was a real plugin, you would upload it to the <a class="reference external" href="https://plugins.qgis.org/">QGIS
-Plugin Repository</a> so that all QGIS users will
-be able to find and download your plugin.</li>
+<li><p class="first">Теперь наша модуль готов. Перезагрузите модуль и испробуйте его. Вы увидите, что выходной текстовый файл, который вы выбрали, будет иметь атрибуты из векторного слоя. Вы можете заархивировать папку с модулем и поделиться им с другими пользователями. Они смогут распаковать содержимое в их папку с модулями и попробовать ваш модуль. Если бы это был реальный модуль, вы бы загрузили его на <cite>QGIS Plugin Repository &lt;https://plugins.qgis.org/&gt;</cite> _, чтобы все пользователи QGIS смогли найти и скачать ваш модуль.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Примечание</p>
-<p class="last">This plugin is for demonstration purpose only. Do not publish this plugin or
-upload it to the QGIS plugin repository.</p>
+<p class="last">Этот модуль предназначен только для демонстрационных целей. Не публикуйте этот модуль и не загружайте его в репозиторий модулей QGIS.</p>
 </div>
-<p>Below is the full <tt class="docutils literal"><span class="pre">save_attributes.py</span></tt> file as a reference.</p>
+<p>Ниже приводится полный текст файла <tt class="docutils literal"><span class="pre">save_attributes.py</span></tt>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">/***************************************************************************</span>
@@ -773,7 +682,7 @@ upload it to the QGIS plugin repository.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Обновлено: Apr 22, 2015.<br/>
+      Обновлено: May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

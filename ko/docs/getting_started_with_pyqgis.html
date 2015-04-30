@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Building a Python Plugin" href="building_a_python_plugin.html" />
+    <link rel="next" title="파이썬 플러그인 만들기" href="building_a_python_plugin.html" />
     <link rel="prev" title="BIL, BIP 혹은 BSQ 파일 열기" href="open_bil_bip_bsq_files.html" />
 
 <meta charset='utf-8'>
@@ -106,11 +106,12 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">점 데이터 보간법</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">프로세싱 프레임을 이용한 일괄처리과정</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">QGIS 탐색기 이용</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">레이어에서 버텍스 갯수 계측</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">BIL, BIP 혹은 BSQ 파일 열기</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">파이썬 프로그램밍 시작</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">파이썬 플러그인 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">인접 폴리곤 찾기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">qgis2leaf로 웹 지도 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">QGIS에서 구글지도 커넥터 이용하기</a></li>
@@ -130,7 +131,7 @@
     </a>
   </li>
   <li>
-    <a href="building_a_python_plugin.html" title="Next Chapter: Building a Python Plugin"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Building a Pytho... &raquo;</span>
+    <a href="building_a_python_plugin.html" title="Next Chapter: 파이썬 플러그인 만들기"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">파이썬 플러그인 만들기 &raquo;</span>
     </a>
   </li>
               
@@ -207,22 +208,22 @@
 <li><p class="first">QGIS에서 메뉴 레이어 &#8211;&gt; 레이어 추가 &#8211;&gt; 벡터 레이어 추가  :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Layers &#8211;&gt; Add Vector Layer`로 가십시오. 다운로드한 <a href="#id3"><span class="problematic" id="id4">``</span></a>ne_10m_airports.zip``파일을 찾고 열기 :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>Open`를 누릅니다. <a href="#id7"><span class="problematic" id="id8">``</span></a>ne_10m_airports.shp``레이어를 선택하고 확인 :guilabel:<a href="#id9"><span class="problematic" id="id10">`</span></a>OK`을 누릅니다.</p>
 </li>
 </ol>
-<img alt="../_images/139.png" class="align-center" src="../_images/139.png" />
+<img alt="../_images/150.png" class="align-center" src="../_images/150.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">QGIS에 <a href="#id1"><span class="problematic" id="id2">``</span></a>ne_10m_airports``레이어가 불러들여질 것입니다.</p>
 </li>
 </ol>
-<img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
+<img alt="../_images/226.png" class="align-center" src="../_images/226.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">객체 확인 <em class="guilabel">Identify</em> 툴을 선택하고 사용가능한 속성을 확인하기 위해 아무 점이나 누릅니다. 공항이름과 공항의 3자리수 코드가 속성의 <a href="#id1"><span class="problematic" id="id2">``</span></a>name``과 <a href="#id3"><span class="problematic" id="id4">``</span></a>iata_code``로 각각 포함되어 있는 것을 보게됩니다.</p>
 </li>
 </ol>
-<img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
+<img alt="../_images/317.png" class="align-center" src="../_images/317.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">QGIS는 파이썬 명령어를 입력할 수 있고 결과를 얻을 수 있는 콘솔을 기본적으로 제공합니다. 이 콘솔은 스크립팅을 배울 수 있는 가장 좋은 방법이고 또한 데이터를 빠르게 처리할 수 있습니다. 메뉴 플러그인 &#8211;&gt; Python 콘솔  :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Plugins &#8211;&gt; Python Console`로 가서 Python 콘솔 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Python Console`을 엽니다.</p>
 </li>
 </ol>
-<img alt="../_images/411.png" class="align-center" src="../_images/411.png" />
+<img alt="../_images/412.png" class="align-center" src="../_images/412.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">QGIS 캔버스 아랫쪽에 새로운 패널이 열리는 것이 보일 것입니다. 명령어를 입력할 수 있는 아랫쪽에 <tt class="docutils literal"><span class="pre">&gt;&gt;&gt;``과</span> <span class="pre">같은</span> <span class="pre">프롬프터를</span> <span class="pre">보게될</span> <span class="pre">것입니다.</span> <span class="pre">QGIS환경의</span> <span class="pre">인터페이스에서</span> <span class="pre">``iface</span></tt> 변수를 사용해야만 합니다. QGIS에서 현재 활성화된 레이어에 접근하기 위해서 다음과 같이 타이핑하고 엔터 <tt class="kbd docutils literal"><span class="pre">Enter`를</span> <span class="pre">누릅니다.</span> <span class="pre">이</span> <span class="pre">명령어는</span> <span class="pre">레퍼런스를</span> <span class="pre">현재</span> <span class="pre">활성화된</span> <span class="pre">레이어로</span> <span class="pre">가져오고</span> <span class="pre">``layer`</span></tt> 변수에 저장합니다.</p>
 </li>
@@ -230,7 +231,7 @@
 <div class="highlight-python"><div class="highlight"><pre><span class="n">layer</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/511.png" class="align-center" src="../_images/511.png" />
+<img alt="../_images/512.png" class="align-center" src="../_images/512.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">파이썬에는 <a href="#id1"><span class="problematic" id="id2">``</span></a>dir()``라고 하는 편리한 기능이 있는데 어떤 객체에 대한 모든 가용한 방법을 보여줍니다. 이것은 어떤 함수가 객체에 사용가능한 지 확실하지 않을 때 유용합니다. <a href="#id3"><span class="problematic" id="id4">``</span></a>layer``변수에 대해 어떤 것을 할 수 있는지 알아보기위해 다음의 명령어를 실행합니다.</p>
 </li>
@@ -238,7 +239,7 @@
 <div class="highlight-python"><div class="highlight"><pre><span class="nb">dir</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/610.png" class="align-center" src="../_images/610.png" />
+<img alt="../_images/611.png" class="align-center" src="../_images/611.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">긴 목록의 사용가능한 함수를 보게될 것입니다. 이제 레이어의 모든 객체의 레퍼런스를 보여주는 <a href="#id1"><span class="problematic" id="id2">``</span></a>getFeatures()``라는 함수를 사용할 것입니다. 이 경우 각 객체는 공항을 나타내는 점이 될 것입니다. 현재의 레이어에서 각 객체를 통해 반복하는 다음의 명령을 입력할 수 있습니다. 두번째 줄에 입력을 하기 전에 두칸의 스페이스를 추가하는 것을 잊지마십시오.</p>
 </li>
@@ -247,7 +248,7 @@
   <span class="k">print</span> <span class="n">f</span>
 </pre></div>
 </div>
-<img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
+<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">결과에서 보게되는 것 처럼 각 입력줄은 레이어 내의 객체의 레퍼런스를 포함하고 있습니다. 객체의 레퍼런스는 <a href="#id1"><span class="problematic" id="id2">``</span></a>f``변수에 저장됩니다. 각 객체의 속성에 접근하기 위해 <a href="#id3"><span class="problematic" id="id4">``</span></a>f``변수를 사용할 수 있습니다. 각 공항 객체에 대한 <a href="#id5"><span class="problematic" id="id6">``</span></a>name``과 <a href="#id7"><span class="problematic" id="id8">``</span></a>iata_code``를 출력하기 위해 다음과 같이 입력합니다.</p>
 </li>
@@ -256,7 +257,7 @@
   <span class="k">print</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;iata_code&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
+<img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">그러면 이제 레이어에서 각 객체의 속성에 어떻게 체계적으로 접근하는 지 알게됩니다. 이제 객체의 좌표에 어떻게 접근할 수 있는지 알아보겠습니다. 벡터 객체의 좌표는 <tt class="docutils literal"><span class="pre">geometry()``함수를</span> <span class="pre">불러서</span> <span class="pre">접근할</span> <span class="pre">수</span> <span class="pre">있습니다.</span> <span class="pre">이</span> <span class="pre">함수는</span> <span class="pre">지오메트리</span> <span class="pre">객체를</span> <span class="pre">되돌리는데</span>&nbsp; <span class="pre">``geom``변수에</span> <span class="pre">저장할</span> <span class="pre">수</span> <span class="pre">있습니다.</span> <span class="pre">점의</span> <span class="pre">x,</span> <span class="pre">y좌표를</span> <span class="pre">얻기</span> <span class="pre">위해</span> <span class="pre">지오메트리</span> <span class="pre">객체에</span> <span class="pre">대해</span> <span class="pre">``asPoint()``함수를</span> <span class="pre">실행할</span> <span class="pre">수</span> <span class="pre">있습니다.</span> <span class="pre">만약</span> <span class="pre">객체가</span> <span class="pre">선</span> <span class="pre">혹은</span> <span class="pre">폴리곤이면</span> <span class="pre">``asPolyline()</span></tt> 혹은 <tt class="docutils literal"><span class="pre">asPolygon()</span></tt> 함수를 사용할 수 있습니다. 각 객체의 x, y좌표를 보기 위해 프롬프트에 다음의 코드를 입력하고 엔터 :kbd:<a href="#id1"><span class="problematic" id="id2">`</span></a>Enter`를 누릅니다.</p>
 </li>
@@ -266,7 +267,7 @@
   <span class="k">print</span> <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
+<img alt="../_images/910.png" class="align-center" src="../_images/910.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">객체의 <tt class="docutils literal"><span class="pre">x</span></tt> 좌표만 얻고자 한다면 어떨까요? 점 객체에 대해 <a href="#id1"><span class="problematic" id="id2">``</span></a>x()``함수를 불러 x좌표을 얻을 수 있습니다.</p>
 </li>
@@ -276,7 +277,7 @@
   <span class="k">print</span> <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
+<img alt="../_images/1010.png" class="align-center" src="../_images/1010.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">이제 원하는 결과를 만들어 내기 위해 함께 조합을 할 수 있는 모든 명령어 조각을 확보했습니다. 각 공항 객체의 이름, 공항코드, 위도 그리고 경도를 출력하려면 다음의 코드를 입력하십시오.  <a href="#id1"><span class="problematic" id="id2">``</span></a>%s``와 <a href="#id3"><span class="problematic" id="id4">``</span></a>%f``표시는 문자와 숫자변수를 포맷하는 방법입니다.</p>
 </li>
@@ -302,12 +303,12 @@
 <span class="n">output_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
+<img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">명시한 위치의 결과 파일로 가서 텍스트 파일을 열 수 있습니다. 파이썬 스크립팅을 이용해서 공항 shapefile에서 추출한 데이터를 볼 수 있을 것입니다.</p>
 </li>
 </ol>
-<img alt="../_images/1310.png" class="align-center" src="../_images/1310.png" />
+<img alt="../_images/1311.png" class="align-center" src="../_images/1311.png" />
 </div>
 </div>
 
@@ -333,7 +334,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      최종 업데이트: Apr 22, 2015<br/>
+      최종 업데이트: May 01, 2015<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

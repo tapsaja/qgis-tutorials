@@ -99,13 +99,14 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Realizzare unioni tabellari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Realizzare unioni spaziali (Spatial Joins)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Analisi Punti nel Poligono</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Realizzare delle mappe di concentrazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Realizzare Heatmaps (mappe di concentrazione)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Utilizzare le interrogazioni spaziali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analisi di prossimità</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Campionare i dati di un raster usando punti o poligoni</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolazione di dati puntuali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Elaborazioni &#8220;batch&#8221; usando il Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Usare il browser di QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
@@ -207,23 +208,23 @@
 <li><p class="first">Aprite QGIS andate su <em class="menuselection">Layers ‣ Aggiungi vettore</em>. Individuate il file scaricato <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt> e fate click su <em class="guilabel">Apri</em>. Selezionate il layer <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt> e fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/139.png" class="align-center" src="../_images/139.png" />
+<img alt="../_images/150.png" class="align-center" src="../_images/150.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Ora vedrete il layer <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt>  caricato in QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
+<img alt="../_images/226.png" class="align-center" src="../_images/226.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Selezionate lo strumento <em class="guilabel">Identifica elemento</em>  e fate click su uno dei punti per esaminare gli attributi che abbiamo a disposizione. Vedrete che il nome dell&#8217;aeroporto e il suo codice di 3 lettere sono contenuti, rispettivamente,  negli attributi <tt class="docutils literal"><span class="pre">name</span></tt> e <tt class="docutils literal"><span class="pre">iata_code</span></tt>.</p>
 </li>
 </ol>
-<img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
+<img alt="../_images/317.png" class="align-center" src="../_images/317.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">QGIS fornisce una console residente dove potete scrivere comandi in Python e verificare il risultato. Questa console è una strada privilegiata per apprendere a scrivere gli script e per effettuare delle rapide elaborazioni di dati.
 Apriamo la <em class="guilabel">Python Console</em>  andando su <em class="menuselection">Plugins ‣ Console Python</em>.</p>
 </li>
 </ol>
-<img alt="../_images/411.png" class="align-center" src="../_images/411.png" />
+<img alt="../_images/412.png" class="align-center" src="../_images/412.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Vedrete comparire un nuovo pannello che si aprirà alla base della finestra principale di QGIS. Noterete un prompt fatto così <tt class="docutils literal"><span class="pre">&gt;&gt;&gt;</span></tt> alla base del pannello, dove si digitano i comandi. Per interagire con l&#8217;ambiente QGIS dobbiamo usare la variabile <tt class="docutils literal"><span class="pre">iface</span></tt>.  Per avere accesso al layer attualmente attivo in QGIS, dovete digitare la riga di codice che segue e quindi premere il tasto <tt class="kbd docutils literal"><span class="pre">Enter</span></tt>. Questo comando porta il controllo sul layer corrente e lo memorizza nella varabile <a href="#id1"><span class="problematic" id="id2">``</span></a>layer`.</p>
 </li>
@@ -231,7 +232,7 @@ Apriamo la <em class="guilabel">Python Console</em>  andando su <em class="menus
 <div class="highlight-python"><div class="highlight"><pre><span class="n">layer</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/511.png" class="align-center" src="../_images/511.png" />
+<img alt="../_images/512.png" class="align-center" src="../_images/512.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Esiste in Python una comoda funzione chiamata <tt class="docutils literal"><span class="pre">dir()</span></tt> che vi mostra tutti i metodi a disposizione per ciascun oggetto. Questo è  utile quando non avete chiaro quali funzioni sono a disposizione per un dato oggetto. Lanciate il comando che segue per vedere quali operazioni possiamo fare sulla variabile  <tt class="docutils literal"><span class="pre">layer</span></tt> .</p>
 </li>
@@ -239,7 +240,7 @@ Apriamo la <em class="guilabel">Python Console</em>  andando su <em class="menus
 <div class="highlight-python"><div class="highlight"><pre><span class="nb">dir</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/610.png" class="align-center" src="../_images/610.png" />
+<img alt="../_images/611.png" class="align-center" src="../_images/611.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Vedrete una lunga lista di funzioni disponibili. Per ora, useremo una funzione chiamata <tt class="docutils literal"><span class="pre">getFeatures()</span></tt> che vi darà il controllo su tutte le geometrie del layer. Nel nostro caso, ciscun elemento sarà un punto che rappresenta un areoporto. Potete digitare il comando che segue per realizzare un&#8217;iterazione di ciascuna delle geometrie presenti nel layer corrente. Assicuratevi di aver battuto 2 spazi prima di digitare la seconda linea di codice.</p>
 </li>
@@ -248,7 +249,7 @@ Apriamo la <em class="guilabel">Python Console</em>  andando su <em class="menus
   <span class="k">print</span> <span class="n">f</span>
 </pre></div>
 </div>
-<img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
+<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Come potete vedere nell&#8217;output, ciascuna linea contiene un riferimento ad una geometria presente all&#8217;interno del layer. Il riferimento all&#8217;elemento è contenuto nella variabile <tt class="docutils literal"><span class="pre">f</span></tt>. Possiamo quindi usare la variabile <tt class="docutils literal"><span class="pre">f</span></tt> per accedere agli attributi di ciascun elemento. Digitate il comando seguente per stampare il <tt class="docutils literal"><span class="pre">name</span></tt>  e lo <tt class="docutils literal"><span class="pre">iata_code</span></tt>  per ciascuna geometria rappresentata da un areoporto.</p>
 </li>
@@ -257,7 +258,7 @@ Apriamo la <em class="guilabel">Python Console</em>  andando su <em class="menus
   <span class="k">print</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;iata_code&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
+<img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Così, adesso sapete come accedere agli attributi di ciascuna geometria di un layer. Adesso vediamo come possiamo accedere alle coordinate della  geometria. Le coordinate di un elemento vettoriale possono essere ottenute con una chiamata alla funzione  <tt class="docutils literal"><span class="pre">geometry()</span></tt> . Questa funzione restituisce un oggetto geometrico che noi possiamo depositare nella variabile  <tt class="docutils literal"><span class="pre">geom</span></tt>. Potete lanciare la funzione <tt class="docutils literal"><span class="pre">asPoint()</span></tt> per quegli oggetti che restituiscono le coordinate X e Y di un punto. Nel caso in cui la geometria fosse una linea o un poligono, dovreste usare, rispettivamente, le funzioni <tt class="docutils literal"><span class="pre">asPolyline()</span></tt> e <tt class="docutils literal"><span class="pre">asPolygon()</span></tt>. Scrivete il codice seguente al prompt e premete <tt class="kbd docutils literal"><span class="pre">Enter</span></tt>  per vedere le coordinate X e Y di ciascun elemento.</p>
 </li>
@@ -267,7 +268,7 @@ Apriamo la <em class="guilabel">Python Console</em>  andando su <em class="menus
   <span class="k">print</span> <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
+<img alt="../_images/910.png" class="align-center" src="../_images/910.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Che fare nel caso in cui desiderassimo conoscere la sola coordinata  <tt class="docutils literal"><span class="pre">x</span></tt>  del punto?
 Possiamo chiamare la funzione <tt class="docutils literal"><span class="pre">x()</span></tt> sull&#8217;oggetto punto e ottenere la sua coordinata X.</p>
@@ -278,7 +279,7 @@ Possiamo chiamare la funzione <tt class="docutils literal"><span class="pre">x()
   <span class="k">print</span> <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
+<img alt="../_images/1010.png" class="align-center" src="../_images/1010.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Adesso abbiamo tutti gli elementi che occorre cucire insieme per produrre l&#8217;output desiderato. Digitate il codice seguente per stampare il nome, lo iata_code la latitudine e la longitudine di ciascuna delle geometrie areoporto presenti in questo layer. I simboli <tt class="docutils literal"><span class="pre">%s</span></tt> e <tt class="docutils literal"><span class="pre">%f</span></tt>  sono metodi per formattare variabili stringa e variabili numeriche.</p>
 </li>
@@ -304,12 +305,12 @@ Possiamo chiamare la funzione <tt class="docutils literal"><span class="pre">x()
 <span class="n">output_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
+<img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Ora potete andare sul file di output nella cartella che avete specificato e aprire finalmente il file di testo. Vedrete i dati provenienti dallo shapefile degli aeroporti, cioè quelli che abbiamo potuto estrarre grazie all&#8217;uso dello scrpting python.</p>
 </li>
 </ol>
-<img alt="../_images/1310.png" class="align-center" src="../_images/1310.png" />
+<img alt="../_images/1311.png" class="align-center" src="../_images/1311.png" />
 </div>
 </div>
 
@@ -335,7 +336,7 @@ Possiamo chiamare la funzione <tt class="docutils literal"><span class="pre">x()
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Apr 22, 2015.<br/>
+      Ultimo aggiornamento May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

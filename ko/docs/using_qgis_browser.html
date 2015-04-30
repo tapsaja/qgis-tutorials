@@ -31,7 +31,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="레이어에서 버텍스 갯수 계측" href="counting_vertices.html" />
-    <link rel="prev" title="Automating Complex Workflows using Processing Modeler" href="processing_graphical_modeler.html" />
+    <link rel="prev" title="Automating Map Creation with Print Composer Atlas" href="automating_map_creation.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -106,11 +106,12 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">점 데이터 보간법</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">프로세싱 프레임을 이용한 일괄처리과정</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">QGIS 탐색기 이용</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">레이어에서 버텍스 갯수 계측</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">BIL, BIP 혹은 BSQ 파일 열기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">파이썬 프로그램밍 시작</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">파이썬 플러그인 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">인접 폴리곤 찾기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">qgis2leaf로 웹 지도 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">QGIS에서 구글지도 커넥터 이용하기</a></li>
@@ -126,7 +127,7 @@
               
                 
   <li>
-    <a href="processing_graphical_modeler.html" title="Previous Chapter: Automating Complex Workflows using Processing Modeler"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Automating Compl...</span>
+    <a href="automating_map_creation.html" title="Previous Chapter: Automating Map Creation with Print Composer Atlas"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Automating Map C...</span>
     </a>
   </li>
   <li>
@@ -218,32 +219,32 @@
 <li><p class="first">이제 QGIS 탐색기의 몇 객체를 탐색해 봅시다. 독립 QGIS 탐색기 어플리케이션으로 전환합니다. GIS 데이터가 있는 시스템상의 디렉토리를 탐색합니다. 그러면 곧 탐색기를 사용하는 것의 이점을 바로 알게 될 것입니다. 모든 지원파일과 비공간데이터 대신 QGIS가 지원하는 공간 레이어만 보게 됩니다. 선택을 위해서 레이어를 누릅니다.</p>
 </li>
 </ol>
-<img alt="../_images/1109.png" class="align-center" src="../_images/1109.png" />
+<img alt="../_images/1130.png" class="align-center" src="../_images/1130.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">레이어를 선택함에 따라 오른쪽 패널의 첫번째 탭에서 메타데이터를 보게될 것입니다. 이 패널에서 데이터셋에 대한 기초 정보 즉, 객체의 수, 투영 등을 빠르게 얻을 수 있습니다.</p>
 </li>
 </ol>
-<img alt="../_images/260.png" class="align-center" src="../_images/260.png" />
+<img alt="../_images/270.png" class="align-center" src="../_images/270.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">미리보기 탭으로 전환하면 데이터셋을 미리 볼 수 있을 것입니다. 이것은 QGIS를 열기전에 데이터셋을 어떻게 볼 것인지를 빠르게 결정할 수 있는 방법입니다.</p>
 </li>
 </ol>
-<img alt="../_images/336.png" class="align-center" src="../_images/336.png" />
+<img alt="../_images/339.png" class="align-center" src="../_images/339.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">마지막 탭은 속성 탭입니다. 여기서 필드활용에 대한 아이디어와 그 값을 얻기 위해  테이터셋의 속성테이블을 볼 수 있습니다.</p>
 </li>
 </ol>
-<img alt="../_images/427.png" class="align-center" src="../_images/427.png" />
+<img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">QGIS 탐색기는 시스템상의 벡터와 이미지 레이어 뿐만 아니라 데이터셋과 네트워크 자원에 접근할 수 있게 해 줍니다. WMS를 경유하여 온라인 데이터를 사용하고자 한다면 탐색기 안에서 빠르게 미리보기를 할 수 있습니다. 단순히 WMS 위치를 확장하고 설치하고자 하는 자원을 볼 수 있을 것입니다. 마찬가지로 PostGIS, SpatialLite 혹은 MSSQL를 사용하고 싶다면 그것들에 접근할 수 있습니다.</p>
 </li>
 </ol>
-<img alt="../_images/528.png" class="align-center" src="../_images/528.png" />
+<img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">QGIS 탐색기는 압축파일을 직접 탐색하고 열 수 있는 기능을 가지고 있습니다. 압축파일이 포함된 아무 폴더나 찾아가십시오. 압축파일 또한 지원 데이터셋처럼 나타나는 것을 알 수 있게되고 다른 데이터셋처럼 미리보기를 할 수 있습니다.</p>
 </li>
 </ol>
-<img alt="../_images/626.png" class="align-center" src="../_images/626.png" />
+<img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">또다른 유용한 특징은 <em class="guilabel">Favorites</em> 처럼 시스템에서 어떤 폴더를 추가하는 것입니다. 어떤 폴더를 우측클릭하고  :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Add as a favorite`를 선택합니다.</p>
 </li>
@@ -252,22 +253,22 @@
 <p class="first admonition-title">주석</p>
 <p class="last">QGIS의 탐색기 패널로부터 현재 작업용 선호목록에 폴더를 추가하십시오. 이 특징은 독립 어플리케이션에서는 작동하지 않습니다.</p>
 </div>
-<img alt="../_images/726.png" class="align-center" src="../_images/726.png" />
+<img alt="../_images/727.png" class="align-center" src="../_images/727.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">선호목록에 추가를 해 놓으면 탐색기의 <em class="guilabel">Favorites</em> 폴더에서 빠르게 접근할 수 있습니다.</p>
 </li>
 </ol>
-<img alt="../_images/825.png" class="align-center" src="../_images/825.png" />
+<img alt="../_images/826.png" class="align-center" src="../_images/826.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">일단 레이어를 선택했다면 더블클릭해서 QGIS 캔버스에 추가할 수 있습니다. QGIS 캔버스에 레이어를 끌어다 놓을 수도 있습니다.</p>
 </li>
 </ol>
-<img alt="../_images/923.png" class="align-center" src="../_images/923.png" />
+<img alt="../_images/924.png" class="align-center" src="../_images/924.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">추가된 레이어를 보기 위해서 QGIS의 왼쪽 패널의 아랫쪽으로부터 <em class="guilabel">Layers</em> 패널로 전환할 수 있습니다.</p>
 </li>
 </ol>
-<img alt="../_images/1024.png" class="align-center" src="../_images/1024.png" />
+<img alt="../_images/1025.png" class="align-center" src="../_images/1025.png" />
 </div>
 </div>
 
@@ -293,7 +294,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      최종 업데이트: Apr 22, 2015<br/>
+      최종 업데이트: May 01, 2015<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

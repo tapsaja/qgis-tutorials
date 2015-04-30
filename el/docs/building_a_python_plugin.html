@@ -105,6 +105,7 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Παρεμβάλλοντας τα σημεία δεδομένων</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Μαζική επεξεργασία χρησιμοποιώντας το πλαίσιο επεξεργασίας</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Χρησιμοποιώντας το QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Μέτρηση του Aριθμού των Kορυφών σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
@@ -279,7 +280,7 @@ settings if you cannot find it.</p>
 <li>Open QGIS. Go to <em class="menuselection">Plugins ‣ Plugin Builder ‣ Plugin
 Builder</em>.</li>
 </ol>
-<img alt="../_images/114.png" class="align-center" src="../_images/114.png" />
+<img alt="../_images/116.png" class="align-center" src="../_images/116.png" />
 <ol class="arabic simple" start="2">
 <li>You will see the <em class="guilabel">QGIS Plugin Builder</em> dialog with a form. You can
 fill the form with details relating to our plugin. The <em class="guilabel">Class
@@ -298,7 +299,7 @@ will decide where your plugin item is added in QGIS. Since our plugin is for
 vector data, select <tt class="docutils literal"><span class="pre">Vector</span></tt>. Check the <em class="guilabel">Flag the plugin as
 experimental</em> box at the bottom. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/23.png" class="align-center" src="../_images/23.png" />
+<img alt="../_images/213.png" class="align-center" src="../_images/213.png" />
 <ol class="arabic simple" start="3">
 <li>Next, you will be prompted to choose a directory for your plugin. You need
 to browse to the QGIS python plugin directory on your computer and select
@@ -318,18 +319,18 @@ platform as follows: (Replace <tt class="docutils literal"><span class="pre">use
 <div class="highlight-none"><div class="highlight"><pre>/home/username/.qgis2/python/plugins
 </pre></div>
 </div>
-<img alt="../_images/33.png" class="align-center" src="../_images/33.png" />
+<img alt="../_images/37.png" class="align-center" src="../_images/37.png" />
 <ol class="arabic simple" start="4">
 <li>You will see a confirmation dialog once your plugin template is created.
 Note the path to the plugin folder.</li>
 </ol>
-<img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
+<img alt="../_images/44.png" class="align-center" src="../_images/44.png" />
 <ol class="arabic simple" start="5">
 <li>Before we can use the newly created plugin, we need to compile the
 <tt class="docutils literal"><span class="pre">resources.qrc</span></tt> file that was created by Plugin Builder. Launch the
 <em class="guilabel">OSGeo4W Shell</em> on windows or a terminal on Mac or Linux.</li>
 </ol>
-<img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
+<img alt="../_images/54.png" class="align-center" src="../_images/54.png" />
 <ol class="arabic simple" start="6">
 <li>Browse to the plugin directory where the output of <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> was
 created. You can use the <tt class="docutils literal"><span class="pre">cd</span></tt> command followed by the path to the
@@ -338,7 +339,7 @@ directory.</li>
 <div class="highlight-none"><div class="highlight"><pre>cd c:\Users\username\.qgis2\python\plugins\SaveAttributes
 </pre></div>
 </div>
-<img alt="../_images/63.png" class="align-center" src="../_images/63.png" />
+<img alt="../_images/64.png" class="align-center" src="../_images/64.png" />
 <ol class="arabic simple" start="7">
 <li>Once you are in the directory, type <tt class="docutils literal"><span class="pre">make</span></tt>. This will run the <tt class="docutils literal"><span class="pre">pyrcc4</span></tt>
 command that we had installed as part of Qt bindings for Python.</li>
@@ -346,7 +347,7 @@ command that we had installed as part of Qt bindings for Python.</li>
 <div class="highlight-none"><div class="highlight"><pre>make
 </pre></div>
 </div>
-<img alt="../_images/73.png" class="align-center" src="../_images/73.png" />
+<img alt="../_images/74.png" class="align-center" src="../_images/74.png" />
 <ol class="arabic simple" start="8">
 <li>Now we are ready to have a first look at the brand new plugin we created.
 Close QGIS and launch it again. You will notice that there is a new icon in
@@ -354,52 +355,52 @@ the toolbar and a new menu entry under <em class="menuselection">Vector ‣ Save
 Attributes ‣ Save Attributes as CSV`</em>. Select it to launch the plugin
 dialog.</li>
 </ol>
-<img alt="../_images/83.png" class="align-center" src="../_images/83.png" />
+<img alt="../_images/84.png" class="align-center" src="../_images/84.png" />
 <ol class="arabic simple" start="9">
 <li>You will notice a new blank dialog named <em class="guilabel">Save Attributes</em>. Close
 this dialog.</li>
 </ol>
-<img alt="../_images/93.png" class="align-center" src="../_images/93.png" />
+<img alt="../_images/94.png" class="align-center" src="../_images/94.png" />
 <ol class="arabic simple" start="10">
 <li>We will not design our dialog box and add some user interface elements to
 it. Open the <tt class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator</span></tt> program and to to <em class="guilabel">File &#8211;&gt; Open File
 or Project...</em>.</li>
 </ol>
-<img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
+<img alt="../_images/104.png" class="align-center" src="../_images/104.png" />
 <ol class="arabic simple" start="11">
 <li>Browse to the plugin directory and select the
 <tt class="docutils literal"><span class="pre">save_attributes_dialog_base.ui</span></tt> file. Click <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
+<img alt="../_images/117.png" class="align-center" src="../_images/117.png" />
 <ol class="arabic simple" start="12">
 <li>You will see the blank dialog from the plugin. You can drag-and-drop
 elements from the left-hand panel on the dialog. We will add a
 <em class="guilabel">Combo Box</em> type of <em class="guilabel">Input Widget</em>. Drag it to the
 plugin dialog.</li>
 </ol>
-<img alt="../_images/123.png" class="align-center" src="../_images/123.png" />
+<img alt="../_images/124.png" class="align-center" src="../_images/124.png" />
 <ol class="arabic simple" start="13">
 <li>Resize the combo box and adjust its size. Now drag a <em class="guilabel">Label</em> type
 <em class="guilabel">Display Widget</em> on the dialog.</li>
 </ol>
-<img alt="../_images/133.png" class="align-center" src="../_images/133.png" />
+<img alt="../_images/134.png" class="align-center" src="../_images/134.png" />
 <ol class="arabic simple" start="14">
 <li>Click on the label text and enter <tt class="docutils literal"><span class="pre">Select</span> <span class="pre">a</span> <span class="pre">layer</span></tt>.</li>
 </ol>
-<img alt="../_images/143.png" class="align-center" src="../_images/143.png" />
+<img alt="../_images/144.png" class="align-center" src="../_images/144.png" />
 <ol class="arabic simple" start="15">
 <li>Save this file by going to <em class="menuselection">File ‣ Save
 save_attributes_dialog_base.ui</em>. Note the name of the combo box object is
 <tt class="docutils literal"><span class="pre">comboBox</span></tt>. To interact with this object using python code, we will have
 to refer to it by this name.</li>
 </ol>
-<img alt="../_images/153.png" class="align-center" src="../_images/153.png" />
+<img alt="../_images/154.png" class="align-center" src="../_images/154.png" />
 <ol class="arabic simple" start="16">
 <li>Let&#8217;s reload our plugin so we can see the changes in the dialog
 window. Go to <em class="menuselection">Plugin ‣ Plugin Reloader ‣ Choose a
 plugin to be reloaded</em>.</li>
 </ol>
-<img alt="../_images/163.png" class="align-center" src="../_images/163.png" />
+<img alt="../_images/164.png" class="align-center" src="../_images/164.png" />
 <ol class="arabic simple" start="17">
 <li>Select <tt class="docutils literal"><span class="pre">SaveAttributes</span></tt> in the <em class="guilabel">Configure Plugin reloader</em>
 dialog.</li>
@@ -409,7 +410,7 @@ dialog.</li>
 <li>Now click the <em class="guilabel">Save Attributes as CSV</em> button. You will see the
 newly designed dialog box.</li>
 </ol>
-<img alt="../_images/183.png" class="align-center" src="../_images/183.png" />
+<img alt="../_images/184.png" class="align-center" src="../_images/184.png" />
 <ol class="arabic simple" start="19">
 <li>Let&#8217;s add some logic to the plugin that will populate the combo box with
 the layers loaded in QGIS. Go to the plugin directory and load the file
@@ -426,7 +427,7 @@ it to the <tt class="docutils literal"><span class="pre">comboBox</span></tt> ob
      <span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">comboBox</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">layer_list</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/191.png" class="align-center" src="../_images/191.png" />
+<img alt="../_images/192.png" class="align-center" src="../_images/192.png" />
 <ol class="arabic simple" start="20">
 <li>Back in the main QGIS window, reload the plugin by going to
 <em class="menuselection">Plugins ‣ Plugin Reloader ‣  Reload plugin:
@@ -435,12 +436,12 @@ new functionality, we must load some layers in QGIS. After you load some
 data, launch the plugin by going to <em class="menuselection">Vector ‣ Save
 Attributes ‣ Save Attributes as CSV</em>.</li>
 </ol>
-<img alt="../_images/20.png" class="align-center" src="../_images/20.png" />
+<img alt="../_images/201.png" class="align-center" src="../_images/201.png" />
 <ol class="arabic simple" start="21">
 <li>You will see that our combo box is now populated with the layer names that
 are loaded in QGIS.</li>
 </ol>
-<img alt="../_images/211.png" class="align-center" src="../_images/211.png" />
+<img alt="../_images/214.png" class="align-center" src="../_images/214.png" />
 <ol class="arabic simple" start="22">
 <li>Let&#8217;s add remaining user interface elements. Switch back to <tt class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator</span></tt>
 and load the <tt class="docutils literal"><span class="pre">save_attributes_dialog_base.ui</span></tt> file. Add a <tt class="docutils literal"><span class="pre">Label</span></tt>
@@ -469,7 +470,7 @@ the path of the file that the user chose.</li>
     <span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">lineEdit</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/24.png" class="align-center" src="../_images/24.png" />
+<img alt="../_images/241.png" class="align-center" src="../_images/241.png" />
 <ol class="arabic simple" start="25">
 <li>Now we need to add code so that when the <cite>...</cite> button is clicked,
 <tt class="docutils literal"><span class="pre">select_output_file</span></tt> method is called. Scroll up to the <tt class="docutils literal"><span class="pre">__init__</span></tt>
@@ -482,13 +483,13 @@ button widget.</li>
 <span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">pushButton</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">select_output_file</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/25.png" class="align-center" src="../_images/25.png" />
+<img alt="../_images/251.png" class="align-center" src="../_images/251.png" />
 <ol class="arabic simple" start="26">
 <li>Back in QGIS, reload the plugin and open the <em class="guilabel">Save Attributes`</em>
 dialog. If all went fine, you will be able to click the <tt class="docutils literal"><span class="pre">...</span></tt> button and
 select an output text file from your disk.</li>
 </ol>
-<img alt="../_images/26.png" class="align-center" src="../_images/26.png" />
+<img alt="../_images/261.png" class="align-center" src="../_images/261.png" />
 <ol class="arabic simple" start="27">
 <li>When you click <em class="guilabel">OK</em> on the plugin dialog, nothing happens. That
 is because we have not added the logic to pull attribute information from
@@ -512,7 +513,7 @@ can be found in <a class="reference internal" href="getting_started_with_pyqgis.
 <span class="n">output_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/27.png" class="align-center" src="../_images/27.png" />
+<img alt="../_images/271.png" class="align-center" src="../_images/271.png" />
 <ol class="arabic simple" start="28">
 <li>Now our plugin is ready. Reload the plugin and try it out. You will find
 that the output text file you chose will have the attributes from the
@@ -772,7 +773,7 @@ upload it to the QGIS plugin repository.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 22, 2015.<br/>
+      Last updated on May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

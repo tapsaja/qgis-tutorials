@@ -89,9 +89,9 @@
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Zoeken en downloaden van gegevens van OpenStreetMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basis opmaken van vectoren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Lengten van lijnen en statistieken berekenen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basis opmaken en analyses van rasters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Rasters mozaieken en clippen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Werken met gegevens over het terrein</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Topobladen en gescande kaarten voorzien van geoverwijzingen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Geo-verwijzingen voor satellietbeelden</a></li>
@@ -106,6 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Massa verwerken met behulp van Framework Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aantal punten in een laag tellen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
@@ -114,7 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS bronnen om te leren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Lesgeven in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Gebruik van gegevens</a></li>
 </ul>
@@ -221,22 +222,22 @@
 <li><p class="first">Ga naar <em class="menuselection">Kaartl;agen ‣ Vectorlaag toevoegen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/112.png" class="align-center" src="../_images/112.png" />
+<img alt="../_images/114.png" class="align-center" src="../_images/114.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Blader naar het gedownloade shapefile Admin 0 Countries <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt> en klik op <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/22.png" class="align-center" src="../_images/22.png" />
+<img alt="../_images/212.png" class="align-center" src="../_images/212.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Omdat onze taak is om de globale lagen te verkleinen tot de grenzen van Afrika, moeten we eerste en laag voorbereiden die een polygoon bevat voor het gehele continent. De laag countries heeft een attribuut genamd <strong>CONTINENT</strong>. We kunnen een concept voor geoverwerking gebruiken dat <em>Dissolve</em> heet om alle landen die dezelfde waarde voor het continent hebben samen te voegen en dat samen te voegen tot één enkele polygoon.</p>
 </li>
 </ol>
-<img alt="../_images/32.png" class="align-center" src="../_images/32.png" />
+<img alt="../_images/36.png" class="align-center" src="../_images/36.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Open het gereedschap <em class="guilabel">Dissolve</em> via <em class="menuselection">Vector ‣ Geoprocessing gereedschap ‣ Dissolve</em>.</p>
 </li>
 </ol>
-<img alt="../_images/42.png" class="align-center" src="../_images/42.png" />
+<img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Selecteer <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> als de <em class="guilabel">Invoer vectorlaag</em>. Het <em class="guilabel">Veld voor &#8220;Dissolve&#8221;-aktie</em> zou <tt class="docutils literal"><span class="pre">CONTINENT</span></tt> moeten zijn. Noem het uitvoerbestand <tt class="docutils literal"><span class="pre">continents.shp</span></tt> en selecteer het vak naast <em class="guilabel">Resultaat aan kaartvenster toevoegen</em>.</p>
 </li>
@@ -245,62 +246,62 @@
 <p class="first admonition-title">Notitie</p>
 <p class="last">Als u <strong>ALLE</strong> polygonen wilt samenvoegen, ongeacht hun attributes, kunt u <em class="guilabel">&#8211; Dissolve All &#8211;</em> selecteren als het <em class="guilabel">Veld voor de &#8220;Dissolve&#8221;-aktie</em>. Dit zal alle polygonen in de laag samenvoegen en u één enkele samengevoegde polygoon geven.</p>
 </div>
-<img alt="../_images/52.png" class="align-center" src="../_images/52.png" />
+<img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Het proces van samenvoegen kan enige tijd vergen. Als het proces eenmaal is voltooid, zult u de nieuwe laag <tt class="docutils literal"><span class="pre">continents</span></tt> zien toegevoegd aan QGIS. Gebruik het gereedschap <em class="guilabel">Eén object selecteren</em>  uit de werkbalk en klik op Afrika om de polygoon te selecteren die het continent weergeeft.</p>
 </li>
 </ol>
-<img alt="../_images/62.png" class="align-center" src="../_images/62.png" />
+<img alt="../_images/63.png" class="align-center" src="../_images/63.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Klik met rechts op de laag <tt class="docutils literal"><span class="pre">continents</span></tt> en selecteer <em class="guilabel">Selectie opslaan als...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/72.png" class="align-center" src="../_images/72.png" />
+<img alt="../_images/73.png" class="align-center" src="../_images/73.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Noem het uitvoerbestand <tt class="docutils literal"><span class="pre">africa.shp</span></tt>. Omdat we alleen zijn geïnteresseerd in de vorm van het continent en niet in de attributen, kunt u het vak <em class="guilabel">Geen attributen aanmaken</em>. Zorg er voor dat het vak <em class="guilabel">Voeg opgeslagen bestand toe aan kaart</em> is geselecteerd en klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/82.png" class="align-center" src="../_images/82.png" />
+<img alt="../_images/83.png" class="align-center" src="../_images/83.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Nu zal de laag <tt class="docutils literal"><span class="pre">africa</span></tt> zijn geladen in QGIS die één enkele polygoon bevat voor het gehele continent. Nu is het tijd om ons massa verkleiningsproces te starten. Open <em class="menuselection">Processing ‣ Toolbox</em>.</p>
 </li>
 </ol>
-<img alt="../_images/92.png" class="align-center" src="../_images/92.png" />
+<img alt="../_images/93.png" class="align-center" src="../_images/93.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Blader door alle beschikbare algoritmen en zoek naar het gereedschap <em class="guilabel">Clip</em> via <em class="menuselection">Geoalgorithms ‣ Vector ‣ Overlay ‣ Clip</em>. U kunt ook het vak <em class="guilabel">Zoek...</em> gebruiken om eenvoudig het algoritme te vinden.</p>
 </li>
 </ol>
-<img alt="../_images/102.png" class="align-center" src="../_images/102.png" />
+<img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Klik met rechts op het algoritme <em class="guilabel">Clip</em> en selecteer <em class="guilabel">Uitvoeren als batch-proces</em>.</p>
 </li>
 </ol>
-<img alt="../_images/113.png" class="align-center" src="../_images/113.png" />
+<img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">In het dialoogvenster <em class="guilabel">Batch Processing</em>, is de eerste tab <em class="guilabel">Parameters</em> waar we onze invoer definiëren. Klik op <em class="guilabel">...</em> naast de eerste rij in de kolom <em class="guilabel">Input layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/122.png" class="align-center" src="../_images/122.png" />
+<img alt="../_images/123.png" class="align-center" src="../_images/123.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Blader naar de map die de globale lagen voor transport bevat die u heeft gedownload. Houd de toets <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> ingedrukt en selecteer alle lagen die u wilt verkleinen. U kunt ook <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> of <tt class="kbd docutils literal"><span class="pre">Ctrl-A</span></tt> gebruiken om een meervoudige selectie te maken. Klik op <em class="guilabel">Openen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/132.png" class="align-center" src="../_images/132.png" />
+<img alt="../_images/133.png" class="align-center" src="../_images/133.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">U zult zien dat de kolommen :<cite>Input layer</cite> automatisch zijn ingevuld met alle lagen die u had geselecteerd. U kunt de knop <em class="guilabel">Add row</em> gebruiken om meer rijen toe te voegen en meer invoer te definiëren. Vervolgens moeten we de laag selecteren die de grenzen bevat waarnaar we onze invoerlagen willen verkleinen. Klik op de knop <em class="guilabel">...</em> voor de eerste rij en voeg de laag <tt class="docutils literal"><span class="pre">africa.shp</span></tt> toe aan <em class="guilabel">Clip layer</em>. Omdat de verkleiningslaag voor alle invoer hetzelfde is, kunt u dubbelklikken op de kolomkop <em class="guilabel">Clip layer</em> en dezelfde laag zal automatisch worden ingevuld voor alle rijen. Hierna moeten we onze uitvoerbestanden definiëren. Klikop de knop <em class="guilabel">...</em> naast de eerste rij in de kolom <em class="guilabel">Clipped</em>.</p>
 </li>
 </ol>
-<img alt="../_images/142.png" class="align-center" src="../_images/142.png" />
+<img alt="../_images/143.png" class="align-center" src="../_images/143.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Blader naar de map waar u uw uitvoerlagen wilt opslaan. Typ de bestandsnaam in als <tt class="docutils literal"><span class="pre">output_</span></tt> en klik op <em class="guilabel">Opslaan</em>.</p>
 </li>
 </ol>
-<img alt="../_images/152.png" class="align-center" src="../_images/152.png" />
+<img alt="../_images/153.png" class="align-center" src="../_images/153.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">U zult een nieuw dialoogvenster <em class="guilabel">Instelling automatisch vullen</em> zien verschijnen. Selecteer <em class="guilabel">Vullen met parameterwaarden</em> als the <em class="guilabel">Modus Automatisch vullen</em>. Selecteer <em class="guilabel">Input layer</em> als <em class="guilabel">Parameter om te gebruiken</em>. Deze instelling zal de naam van het invoerbestand toevoegen aan het uitvoerbestand samen met het gespecificeerde <tt class="docutils literal"><span class="pre">output_</span></tt>. Dit is belangrijk om er voor te zorgen dat alle uitvoerbestanden unieke namen hebben en zij elkaar niet overschrijven.</p>
 </li>
 </ol>
-<img alt="../_images/162.png" class="align-center" src="../_images/162.png" />
+<img alt="../_images/163.png" class="align-center" src="../_images/163.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Nu kunnen we het proces van massa-verwerking starten. Klik op <em class="guilabel">Run</em>.</p>
 </li>
@@ -310,7 +311,7 @@
 <li><p class="first">Het algoritme voor de verkleining zal worden uitgevoerd vor elk van de invoerbestanden en de uitvoerbestanden maken die we hebben gespecificeerd. Als het batch-proces is voltooid zult u zien dat de lagen zijn toegevoegd aan het kaartvenster van QGIS. Zoals u zult zien zijn alle globale lagen netjes verkleind tot de grens van het continent dat we hadden gespecificeerd.</p>
 </li>
 </ol>
-<img alt="../_images/182.png" class="align-center" src="../_images/182.png" />
+<img alt="../_images/183.png" class="align-center" src="../_images/183.png" />
 </div>
 </div>
 
@@ -336,7 +337,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Apr 22, 2015.<br/>
+      Laatste aanpassing op May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

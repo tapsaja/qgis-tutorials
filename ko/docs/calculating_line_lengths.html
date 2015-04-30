@@ -106,11 +106,12 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">점 데이터 보간법</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">프로세싱 프레임을 이용한 일괄처리과정</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">QGIS 탐색기 이용</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">레이어에서 버텍스 갯수 계측</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">BIL, BIP 혹은 BSQ 파일 열기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">파이썬 프로그램밍 시작</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">파이썬 플러그인 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">인접 폴리곤 찾기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">qgis2leaf로 웹 지도 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">QGIS에서 구글지도 커넥터 이용하기</a></li>
@@ -220,47 +221,47 @@ downloaded directly from the links below:</p>
 <li><p class="first">메뉴에서  :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Layer &#8211;&gt; Add Vector Layer`로 가십시오.</p>
 </li>
 </ol>
-<img alt="../_images/116.png" class="align-center" src="../_images/116.png" />
+<img alt="../_images/118.png" class="align-center" src="../_images/118.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first"><a href="#id1"><span class="problematic" id="id2">``</span></a>ne_10m_railroads_north_america.zip``파일을 찾아서  :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>OK`를 클릭하십시오.</p>
 </li>
 </ol>
-<img alt="../_images/28.png" class="align-center" src="../_images/28.png" />
+<img alt="../_images/215.png" class="align-center" src="../_images/215.png" />
 <ol class="arabic simple" start="3">
 <li>In the <em class="guilabel">Select layers to add...</em> dialog, choose
 <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.shp</span></tt> layer.</li>
 </ol>
-<img alt="../_images/34.png" class="align-center" src="../_images/34.png" />
+<img alt="../_images/38.png" class="align-center" src="../_images/38.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">일단 레이어가 나타나면 북미지역의 모든 철도 노선이 포함되어 있는 것을 알게될 것입니다. 이 예제에서는 미국의 철도 길이만 계산할 것이므로, 미국영역에 있는 노선만 선택을 합니다. 레이어에서 마우스 오른쪽 버튼을 클릭하고   :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Open Attribute Table`을 선택하십시오.</p>
 </li>
 </ol>
-<img alt="../_images/44.png" class="align-center" src="../_images/44.png" />
+<img alt="../_images/45.png" class="align-center" src="../_images/45.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">레이어에는  :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>sov_a3`라는 속성이 포함되어 있습니다. 이것은 철자 3개로 이뤄진 국가 코드로 노선이 어느 영역인지를 알려주는 특별 피처입니다. 이 속성값을 이용해서 미국지역의 피처를 선택할 수 있습니다.</p>
 </li>
 </ol>
-<img alt="../_images/54.png" class="align-center" src="../_images/54.png" />
+<img alt="../_images/55.png" class="align-center" src="../_images/55.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">속성 테이블  <em class="guilabel">Attribute Table`창에서 표현식을 이용한 객체선택 :guilabel:`Select features using an expression</em> 단추를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/64.png" class="align-center" src="../_images/64.png" />
+<img alt="../_images/65.png" class="align-center" src="../_images/65.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">새로 <em class="guilabel">Select By Expression</em> 다이알로그가 열릴 것입니다. 함수목록  <em class="guilabel">Functions list</em> 부분에서 필드와 값 <em class="guilabel">Fields and Values</em> 을 확장하여 <em class="guilabel">sov_a3`속성을 찾으십시오. 그리고 그것을 더블클릭하면 표현식 :guilabel:`Expression`텍스트 부분 속성이 포함됩니다.  `</em>&#8220;sov_a3&#8221; = &#8216;USA&#8217;<a href="#id1"><span class="problematic" id="id2">``</span></a>라고 표현식을 완성하십시오. 선택 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Select`에 이어 닫기 :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>Close`를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/74.png" class="align-center" src="../_images/74.png" />
+<img alt="../_images/75.png" class="align-center" src="../_images/75.png" />
 <ol class="arabic simple" start="8">
 <li>Back in the main QGIS window, you will see that all lines that fall in USA
 are selected and appear in yellow.</li>
 </ol>
-<img alt="../_images/84.png" class="align-center" src="../_images/84.png" />
+<img alt="../_images/85.png" class="align-center" src="../_images/85.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">이제 선택된 것만 새로운 쉐입파일로 저장하도록 하겠습니다. <a href="#id1"><span class="problematic" id="id2">``</span></a>ne_10m_railroads_north_america``레이어를 오른쪽 클릭하고 선택된 객체만 저장 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Save Selection As...`를 선택합니다. 최신 버전에서는 다른 이름으로 저장을 클릭한 후 옵션 중 선택된 객체만 저장을 체크해야 합니다.</p>
 </li>
 </ol>
-<img alt="../_images/94.png" class="align-center" src="../_images/94.png" />
+<img alt="../_images/95.png" class="align-center" src="../_images/95.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">탐색 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Browse`을 클릭하고 결과 파일명으로  <a href="#id3"><span class="problematic" id="id4">``</span></a>usa_railroads.shp``를 입력합니다. 레이어의 CRS도 바꿔야 합니다.  :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>CRS`에 이어서  :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>Browse`를 클릭합니다.</p>
 </li>
@@ -269,37 +270,37 @@ are selected and appear in yellow.</li>
 <p class="first admonition-title">주석</p>
 <p class="last">계산을 위해 피처의 지오메트리를 사용하는 내장 기능은 레이어의 CRS의 단위를 사용합니다.  <em>EPSG:4326*와 같은 지리좌표체계(CRS)는 단위로  **degrees**를 사용합니다. 그래서 피처의 길이는 **degrees*</em> 이고, 면적은  <strong>square degrees**인데 의미는 없습니다. 여기서 계산을 하기 위해서는 **meters</strong> 혹은 <a href="#id1"><span class="problematic" id="id2">**</span></a>feet**의 단위를 가진 투영좌표체계를 사용할 필요가 있습니다.</p>
 </div>
-<img alt="../_images/104.png" class="align-center" src="../_images/104.png" />
+<img alt="../_images/105.png" class="align-center" src="../_images/105.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">길이를 계산해야 하므로 등거리 투영을 선택합니다.  필터 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Filter`의 찾기 상자에 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>north america equ`를 입력합니다. 아래쪽 결과창에서 CRS로 :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>North_America_Equidistant_Conic EPSG:102010`을 선택하고  :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>OK`를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/117.png" class="align-center" src="../_images/117.png" />
+<img alt="../_images/119.png" class="align-center" src="../_images/119.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">새 이름으로 벡터 레이어 저장하기 <em class="guilabel">Save vector layer as...</em> 다이알로그에서 저장된 파일을 지도에 추가 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Add saved file to map`에 체크하고 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>OK`를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/124.png" class="align-center" src="../_images/124.png" />
+<img alt="../_images/125.png" class="align-center" src="../_images/125.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">일단 내보내기 과정이 종료되면 새로운 <tt class="docutils literal"><span class="pre">usa_railroads``레이어가</span> <span class="pre">QGIS에</span> <span class="pre">생깁니다.</span>&nbsp; <span class="pre">더이상</span> <span class="pre">``ne_10m_railroads_north_america</span></tt> 레이어가 필요하지 않으므로 레이어 박스의 체크를 해제하면 객체가 꺼지게 됩니다.</p>
 </li>
 </ol>
-<img alt="../_images/134.png" class="align-center" src="../_images/134.png" />
+<img alt="../_images/135.png" class="align-center" src="../_images/135.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first"><a href="#id1"><span class="problematic" id="id2">``</span></a>usa_railroads``레이어를 마우스 오른쪽 클릭하고 속성 테이블 열기  :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Open Attribute Table`을 선택합니다.</p>
 </li>
 </ol>
-<img alt="../_images/144.png" class="align-center" src="../_images/144.png" />
+<img alt="../_images/145.png" class="align-center" src="../_images/145.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">이제 각 피처의 폭을 가진 컬럼을 추가합니다.  편집모드전환 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Toggle editing`단추를 클릭하여 레이어를 편집모드로 바꿉니다. 일단 편집모드에서 필드계산기열기 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Open field calculator&#8217; 단추를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/154.png" class="align-center" src="../_images/154.png" />
+<img alt="../_images/155.png" class="align-center" src="../_images/155.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">필드계산기  <em class="guilabel">Field Calculator`에서 새 필드 생성  :guilabel:`Create a new field`을 체크합니다. 출력필드이름 :guilabel:`Output field name`에 **length_km**를 입력합니다. 출력 필드 유형 :guilabel:`Output field type`에 십진수 **Decimal number (real)** 를 선택합니다. 출력 정확도 :guilabel:`Precision`를  **2**로 바꿉니다. 함수목록 :guilabel:`Function list`에서, 지오메트리  :guilabel:`Geometry</em> 하위에서 폭 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>$length`을 찾습니다. 그것을 더블클릭하여 표현식  :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Expression`에 추가합니다. 레이어의 CRS가  <strong>meters</strong> 단위이고 출력을  <a href="#id5"><span class="problematic" id="id6">**</span></a>km**로 해야하므로 <a href="#id7"><span class="problematic" id="id8">``</span></a>$length / 1000``와 같이 식을 완성합니다. OK  :guilabel:<a href="#id9"><span class="problematic" id="id10">`</span></a>OK`를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/164.png" class="align-center" src="../_images/164.png" />
+<img alt="../_images/165.png" class="align-center" src="../_images/165.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">속성테이블  <em class="guilabel">Attribute Table`로 돌아가면 새로운 컬럼  :guilabel:`length_km`이 나타나게 됩니다. 편집모드전환 :guilabel:`Toggle editing</em> 단추를 클릭하여 변경된 내용을 저장합니다.</p>
 </li>
@@ -309,7 +310,7 @@ are selected and appear in yellow.</li>
 <li><p class="first">이제 레이어에서 각 개별 라인의 길이값을 갖게되었습니다. 이 값을 모두 더해서 손쉽게  <strong>Total</strong> 길이값을 찾게됩니다. 메뉴에서 벡터 &#8211;&gt; 분석도구 &#8211;&gt; 기본통계  :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Vector &#8211;&gt; Analysis Tools &#8211;&gt; Basic Statistics`로 갑니다.</p>
 </li>
 </ol>
-<img alt="../_images/184.png" class="align-center" src="../_images/184.png" />
+<img alt="../_images/185.png" class="align-center" src="../_images/185.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">입력벡터레이어 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Input Vector layer`로  <a href="#id3"><span class="problematic" id="id4">``</span></a>usa_railroads``를 선택합니다. 대상필드  :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>Target field`로 <a href="#id7"><span class="problematic" id="id8">``</span></a>length_km``를 선택하고  :guilabel:<a href="#id9"><span class="problematic" id="id10">`</span></a>OK`를 클릭합니다. 합계  :guilabel:<a href="#id11"><span class="problematic" id="id12">`</span></a>Sum`값은 계산해낸 철로의 전체 길이입니다.</p>
 </li>
@@ -318,7 +319,7 @@ are selected and appear in yellow.</li>
 <p class="first admonition-title">주석</p>
 <p class="last">여기서 얻어진 답은 만약 다른 프로젝션이 선택되었다면 조금 다르게 나타날 것입니다. 연습에서 도로와 다른 선형 피처의 길이는 지표면에서 측정된 것이고 데이터셋에서 속성으로 제공된 것입니다. 이 방법은 그런 속성이 없을때 그리고 실제 선의 길이의 대략값으로서 사용됩니다.</p>
 </div>
-<img alt="../_images/192.png" class="align-center" src="../_images/192.png" />
+<img alt="../_images/193.png" class="align-center" src="../_images/193.png" />
 </div>
 </div>
 
@@ -344,7 +345,7 @@ are selected and appear in yellow.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      최종 업데이트: Apr 22, 2015<br/>
+      최종 업데이트: May 01, 2015<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -105,11 +105,12 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolarea Datelor de tip Punct</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Procesarea în serie, folosind cadrul de procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Utilizarea QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Construirea unui Plugin Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -223,22 +224,22 @@
 <li><p class="first">Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/112.png" class="align-center" src="../_images/112.png" />
+<img alt="../_images/114.png" class="align-center" src="../_images/114.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Navigați la fișierul shape descărcat, Admin 0 Țări, <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt>, apoi faceți clic pe <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/22.png" class="align-center" src="../_images/22.png" />
+<img alt="../_images/212.png" class="align-center" src="../_images/212.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Atât timp cât sarcina noastră este de a tăia straturile globale după granițele Africii, trebuie să pregătim mai întâi un strat care să conțină un poligon pentru întregul continent. Stratul țărilor are un atribut numit <strong>CONTINENT</strong>. Putem folosi un concept de geoprocesare numit <em>Dissolve</em>, pentru a uni toate țările care au aceeași valoare a continentului, după care le vom contopi într-un singur poligon.</p>
 </li>
 </ol>
-<img alt="../_images/32.png" class="align-center" src="../_images/32.png" />
+<img alt="../_images/36.png" class="align-center" src="../_images/36.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Deschideți instrumentul <em class="guilabel">Dissolve</em> din <em class="menuselection">Vector ‣ Geoprocessing Tools ‣ Dissolve</em>.</p>
 </li>
 </ol>
-<img alt="../_images/42.png" class="align-center" src="../_images/42.png" />
+<img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Alegeți <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> pentru <em class="guilabel">Input vector layer</em>. În <em class="guilabel">Dissolve field</em> alegeți <tt class="docutils literal"><span class="pre">CONTINENT</span></tt>. Denumiți fișierul de ieșire <tt class="docutils literal"><span class="pre">continents.shp</span></tt> și bifați caseta de lângă <em class="guilabel">Add result to convas</em>.</p>
 </li>
@@ -247,62 +248,62 @@
 <p class="first admonition-title">Note</p>
 <p class="last">Dacă doriți să îmbinați <strong>TOATE</strong> poligoanele, indiferent de atributele lor, puteți selecta <em class="guilabel">&#8211; Dissolve All &#8211;</em> ca <em class="guilabel">Dissolve field</em>. Acest lucru va combina toate poligoanele din strat și vă va oferi un singur poligon agregat.</p>
 </div>
-<img alt="../_images/52.png" class="align-center" src="../_images/52.png" />
+<img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Procesul de dizolvare poate dura ceva timp. O dată procesul terminat, veți vedea noul strat  <tt class="docutils literal"><span class="pre">continent</span></tt> suplimentar, adăugat în QGIS. Utilizați instrumentul <em class="guilabel">Select Single Feature</em> din bara de instrumente și faceți clic pe Africa, pentru a selecta poligonul reprezentând continentul.</p>
 </li>
 </ol>
-<img alt="../_images/62.png" class="align-center" src="../_images/62.png" />
+<img alt="../_images/63.png" class="align-center" src="../_images/63.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Clic-dreapta pe stratul <tt class="docutils literal"><span class="pre">continente</span></tt> și selectați <em class="guilabel">Save Selection As...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/72.png" class="align-center" src="../_images/72.png" />
+<img alt="../_images/73.png" class="align-center" src="../_images/73.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Denumiți fișierul de ieșire ca <tt class="docutils literal"><span class="pre">africa.shp</span></tt>. Din moment ce suntem interesați numai de forma continentului și nu de toate atributele, puteți bifa <em class="guilabel">Skip attribute creation</em>. Asigurați-vă că ați bifat caseta <em class="guilabel">Add saved file to map</em> și că ați efectuat clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/82.png" class="align-center" src="../_images/82.png" />
+<img alt="../_images/83.png" class="align-center" src="../_images/83.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Acum, aveți stratul <tt class="docutils literal"><span class="pre">Africa</span></tt> încărcat în QGIS, și conținând un singur poligon pentru întregul continent. A venit momentul procesării comenzii de decupare în serie. Deschideți <em class="menuselection">Processing ‣ Toolbox</em>.</p>
 </li>
 </ol>
-<img alt="../_images/92.png" class="align-center" src="../_images/92.png" />
+<img alt="../_images/93.png" class="align-center" src="../_images/93.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Răsfoiți algoritmii disponibili și găsiți instrumentul <em class="guilabel">Clip</em> din <em class="menuselection">QGIS geoalgorithms ‣ Vector overlay tools ‣ Clip</em>. Puteți folosi, de asemenea, câmpul <em class="guilabel">Search</em> pentru a identifica ușor algoritmul.</p>
 </li>
 </ol>
-<img alt="../_images/102.png" class="align-center" src="../_images/102.png" />
+<img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Faceți clic-dreapta pe algoritmul <em class="guilabel">Clip</em>, apoi selectați <em class="guilabel">Execure as batch process</em>.</p>
 </li>
 </ol>
-<img alt="../_images/113.png" class="align-center" src="../_images/113.png" />
+<img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">În fereastra de dialog <em class="guilabel">Batch Processing</em>, prima filă este <em class="guilabel">Parameters</em>, care definește intrările. Clic pe <em class="guilabel">...</em> din dreptul primului rând al coloanei <em class="guilabel">Input layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/122.png" class="align-center" src="../_images/122.png" />
+<img alt="../_images/123.png" class="align-center" src="../_images/123.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Navigați la directorul care conține straturile de transport global, pe care le-ați descărcat. Mențineți apăsată tasta <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> și selectați toate straturile pe care doriți să le decupați. De asemenea, puteți folosi <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> sau <tt class="kbd docutils literal"><span class="pre">Ctrl-A</span></tt> pentru a face selecții multiple. Clic pe <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/132.png" class="align-center" src="../_images/132.png" />
+<img alt="../_images/133.png" class="align-center" src="../_images/133.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Veți observa că se vor auto-popula coloanele <em class="guilabel">Input layer</em>, cu toate straturile pe care le-ați selectat. Puteți folosi butonul <em class="guilabel">Add row</em> pentru a adăuga mai multe rânduri și pentru a defini mai multe intrări. Apoi, trebuie să selectați stratul care conține limita de decupare a straturilor de intrare. Faceți clic pe butonul <em class="guilabel">...</em> din primul rând și adăugați <tt class="docutils literal"><span class="pre">africa.shp</span></tt> în <em class="guilabel">Clip layer</em>. Deoarece stratul de tăiere este același pentru toate intrările, puteți face dublu-clic pe antetul coloanei <em class="guilabel">Clip layer</em>, pentru ca stratul să se auto-completeze pentru toate rândurile. Apoi, trebuie să ne definim rezultatele. Faceți clic pe butonul <em class="guilabel">...</em> de lângă primul rând din coloana <em class="guilabel">Clipped</em>.</p>
 </li>
 </ol>
-<img alt="../_images/142.png" class="align-center" src="../_images/142.png" />
+<img alt="../_images/143.png" class="align-center" src="../_images/143.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Răsfoiți directorul în care doriți straturile de ieșire. Tastați numele fișierului ca <tt class="docutils literal"><span class="pre">output_</span></tt>  și faceți clic pe <em class="guilabel">Save</em>.</p>
 </li>
 </ol>
-<img alt="../_images/152.png" class="align-center" src="../_images/152.png" />
+<img alt="../_images/153.png" class="align-center" src="../_images/153.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Veți vedea o nouă fereastră de dialog, de tip pop-up, <em class="guilabel">Autofill settings</em>. Alegeți <em class="guilabel">Fill with parameter values</em> pentru <em class="guilabel">Autofill mode</em>. Selectați <em class="guilabel">Input layer</em> pentru <em class="guilabel">Parameter to use</em>. Această setare va adăuga numele fișierului de intrare la cel de ieșire, împreună cu numele fișierului <tt class="docutils literal"><span class="pre">output_</span></tt> specificat. Acest lucru este important, pentru a ne asigura că toate fișierele de ieșire au nume unice și nu se suprascriu reciproc.</p>
 </li>
 </ol>
-<img alt="../_images/162.png" class="align-center" src="../_images/162.png" />
+<img alt="../_images/163.png" class="align-center" src="../_images/163.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Acum suntem gata să începem procesarea în serie. Clic pe <em class="guilabel">Run</em>.</p>
 </li>
@@ -312,7 +313,7 @@
 <li><p class="first">Algoritmul de tăiere va rula pentru fiecare intrare și va crea fișierele de ieșire, așa cum s-a specificat. O dată ce procesarea în serie se încheie, veți vedea straturile adăugate la suportul QGIS. După cum veți observa, toate straturile globale sunt tăiate în mod adecvat, la limita continentului specificat.</p>
 </li>
 </ol>
-<img alt="../_images/182.png" class="align-center" src="../_images/182.png" />
+<img alt="../_images/183.png" class="align-center" src="../_images/183.png" />
 </div>
 </div>
 
@@ -338,7 +339,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 22, 2015.<br/>
+      Last updated on May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

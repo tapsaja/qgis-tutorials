@@ -106,6 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
@@ -225,12 +226,12 @@ layers. Download the following layers</p>
 <ol class="arabic simple">
 <li>Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
 </ol>
-<img alt="../_images/112.png" class="align-center" src="../_images/112.png" />
+<img alt="../_images/114.png" class="align-center" src="../_images/114.png" />
 <ol class="arabic simple" start="2">
 <li>Browse to the downloaded Admin 0 Countries shapefile
 <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt> and click <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/22.png" class="align-center" src="../_images/22.png" />
+<img alt="../_images/212.png" class="align-center" src="../_images/212.png" />
 <ol class="arabic simple" start="3">
 <li>As our task is to clip the global layers to the boundary of Africa, we need
 to first prepare a layer containg a polygon for the entire continent. The
@@ -238,12 +239,12 @@ countries layer has an attribute called <strong>CONTINENT</strong>. We can use a
 geoprocessing concept called <em>Dissolve</em> to merge all countries that have the
 same continent value and merge them to a single polygon.</li>
 </ol>
-<img alt="../_images/32.png" class="align-center" src="../_images/32.png" />
+<img alt="../_images/36.png" class="align-center" src="../_images/36.png" />
 <ol class="arabic simple" start="4">
 <li>Open the <em class="guilabel">Dissolve</em> tool from <em class="menuselection">Vector ‣
 Geoprocessing Tools ‣ Dissolve</em>.</li>
 </ol>
-<img alt="../_images/42.png" class="align-center" src="../_images/42.png" />
+<img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
 <ol class="arabic simple" start="5">
 <li>Select <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> as the <em class="guilabel">Input vector layer</em>.
 The <em class="guilabel">Dissolve field</em> would be <tt class="docutils literal"><span class="pre">CONTINENT</span></tt>. Name the output file
@@ -257,57 +258,57 @@ can select <em class="guilabel">&#8211; Dissolve All &#8211;</em> as the <em cla
 This will combine all polygons in the layer and give you a single aggregate
 polygon.</p>
 </div>
-<img alt="../_images/52.png" class="align-center" src="../_images/52.png" />
+<img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
 <ol class="arabic simple" start="6">
 <li>The dissolve processing may take a while. Once the process finishes, you
 will see the new <tt class="docutils literal"><span class="pre">continent</span></tt> layer added to QGIS. Use the
 <em class="guilabel">Select Single Feature</em> tool from the toolbar and click on Africa
 to select the polygon representing the continent.</li>
 </ol>
-<img alt="../_images/62.png" class="align-center" src="../_images/62.png" />
+<img alt="../_images/63.png" class="align-center" src="../_images/63.png" />
 <ol class="arabic simple" start="7">
 <li>Right-click the <tt class="docutils literal"><span class="pre">continents</span></tt> layer and select <em class="guilabel">Save Selection
 As...</em>.</li>
 </ol>
-<img alt="../_images/72.png" class="align-center" src="../_images/72.png" />
+<img alt="../_images/73.png" class="align-center" src="../_images/73.png" />
 <ol class="arabic simple" start="8">
 <li>Name the output file as <tt class="docutils literal"><span class="pre">africa.shp</span></tt>. Since we are only interested in the
 shape of the continent and not any attributes, you may check the
 <em class="guilabel">Skip attribute creation</em>. Make sure the <em class="guilabel">Add saved file
 to map</em> box is checked and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/82.png" class="align-center" src="../_images/82.png" />
+<img alt="../_images/83.png" class="align-center" src="../_images/83.png" />
 <ol class="arabic simple" start="9">
 <li>Now you will have the <tt class="docutils literal"><span class="pre">africa</span></tt> layer loaded in QGIS containing a single
 polygon for the entire continent. Now, it&#8217;s time to start our batch clip
 process. Open <em class="menuselection">Processing ‣ Toolbox</em>.</li>
 </ol>
-<img alt="../_images/92.png" class="align-center" src="../_images/92.png" />
+<img alt="../_images/93.png" class="align-center" src="../_images/93.png" />
 <ol class="arabic simple" start="10">
 <li>Browse all available algorithms and find the <em class="guilabel">Clip</em> tool from
 <em class="menuselection">QGIS geoalgorithms ‣ Vector overlay tools ‣ Clip</em>. You
 may also use the <em class="guilabel">Search</em> box to easily find the algorithm as
 well.</li>
 </ol>
-<img alt="../_images/102.png" class="align-center" src="../_images/102.png" />
+<img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
 <ol class="arabic simple" start="11">
 <li>Right-click the <em class="guilabel">Clip</em> algorithm and select <em class="guilabel">Execure as
 batch process</em>.</li>
 </ol>
-<img alt="../_images/113.png" class="align-center" src="../_images/113.png" />
+<img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
 <ol class="arabic simple" start="12">
 <li>In the <em class="guilabel">Batch Processing</em> dialog, the first tab is
 <em class="guilabel">Parameters</em> where we define out inputs. Click the
 <em class="guilabel">...</em> next to the first row in the <em class="guilabel">Input layer</em> column.</li>
 </ol>
-<img alt="../_images/122.png" class="align-center" src="../_images/122.png" />
+<img alt="../_images/123.png" class="align-center" src="../_images/123.png" />
 <ol class="arabic simple" start="13">
 <li>Browse to the directory containing the global transportation layers that
 you had downloaded. Hold the <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> key and select all the layers that
 you want to clip. You may also use <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> or <tt class="kbd docutils literal"><span class="pre">Ctrl-A</span></tt> to make
 multiple selection. Click <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/132.png" class="align-center" src="../_images/132.png" />
+<img alt="../_images/133.png" class="align-center" src="../_images/133.png" />
 <ol class="arabic simple" start="14">
 <li>You will notice that the <em class="guilabel">Input layer</em> columns will be
 auto-populated with all layers you had selected. You may use <em class="guilabel">Add
@@ -320,12 +321,12 @@ layer will be auto-filled for all the rows. Next, we need to define our
 outputs.  Click the <em class="guilabel">...</em> buton next to the first row in the
 <em class="guilabel">Clipped</em> column.</li>
 </ol>
-<img alt="../_images/142.png" class="align-center" src="../_images/142.png" />
+<img alt="../_images/143.png" class="align-center" src="../_images/143.png" />
 <ol class="arabic simple" start="15">
 <li>Browse the the directory where you want your output layers. Type the
 filename as <tt class="docutils literal"><span class="pre">output_</span></tt> and click <em class="guilabel">Save</em>.</li>
 </ol>
-<img alt="../_images/152.png" class="align-center" src="../_images/152.png" />
+<img alt="../_images/153.png" class="align-center" src="../_images/153.png" />
 <ol class="arabic simple" start="16">
 <li>You will see a new <em class="guilabel">Autofill settings</em> dialog pop up. Select
 <em class="guilabel">Fill with parameter values</em> as the <em class="guilabel">Autofill mode</em>.
@@ -334,7 +335,7 @@ setting will add the input file name to the output along with the specified
 <tt class="docutils literal"><span class="pre">output_</span></tt> filename. This is important to ensure all the output files have
 unique names and they do not overwrite each other.</li>
 </ol>
-<img alt="../_images/162.png" class="align-center" src="../_images/162.png" />
+<img alt="../_images/163.png" class="align-center" src="../_images/163.png" />
 <ol class="arabic simple" start="17">
 <li>Now we are ready to start the batch procesing. Click <em class="guilabel">Run</em>.</li>
 </ol>
@@ -345,7 +346,7 @@ are we have specified. Once the batch process finishes, you will see the
 layers added to QGIS canvas. As you will notice, all the global layers are
 properly clipped to the continent boundary that we had specified.</li>
 </ol>
-<img alt="../_images/182.png" class="align-center" src="../_images/182.png" />
+<img alt="../_images/183.png" class="align-center" src="../_images/183.png" />
 </div>
 </div>
 
@@ -371,7 +372,7 @@ properly clipped to the continent boundary that we had specified.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Actualizado por última vez en Apr 22, 2015.<br/>
+      Actualizado por última vez en May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

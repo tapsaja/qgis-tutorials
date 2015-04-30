@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Building a Python Plugin &mdash; QGIS Tutorials and Tips</title>
+    <title>파이썬 플러그인 만들기 &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -106,11 +106,12 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">점 데이터 보간법</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">프로세싱 프레임을 이용한 일괄처리과정</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">QGIS 탐색기 이용</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">레이어에서 버텍스 갯수 계측</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">BIL, BIP 혹은 BSQ 파일 열기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">파이썬 프로그램밍 시작</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Building a Python Plugin</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">파이썬 플러그인 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">인접 폴리곤 찾기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">qgis2leaf로 웹 지도 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">QGIS에서 구글지도 커넥터 이용하기</a></li>
@@ -188,99 +189,70 @@
       
 
   <div class="section" id="building-a-python-plugin">
-<h1>Building a Python Plugin<a class="headerlink" href="#building-a-python-plugin" title="제목 주소">¶</a></h1>
+<h1>파이썬 플러그인 만들기<a class="headerlink" href="#building-a-python-plugin" title="제목 주소">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/building_a_python_plugin_a4.pdf">A4</a> <a class="reference external" href="../pdf/building_a_python_plugin_letter.pdf">Letter</a> ]</p>
-<p>Plugins are a great way to extend the functionality of QGIS. You can write
-plugins using Python that can range from adding a simple button to
-sohpisticated toolkits. This tutorial will outline the process involved in
-setting up your development environment, designing the user interface for a
-plugin and writing code to interact with QGIS. Please review the
-<a class="reference internal" href="getting_started_with_pyqgis.html"><em>파이썬 프로그램밍 시작</em></a> tutorial to get familiar with the basics.</p>
+<p>플러그인은 QGIS의 기능을 확장시키는데 있어 훌륭한 방법입니다. 단순히 명령어버튼을 추가하는 것에서 부터 정교한 툴킷까지 폭넓은 범위를 파이썬을 이용하여 플러그인을 작성할 수 있습니다. 이 예제에서는 개발환경을 포함하는 과정, 플러그인에 대한 사용자 인터페이스 설계 그리고 QGIS와 상호작용하는 코드 작성의 전체적인 윤곽을 보여줄 것입니다. 기본적인 내용은  <a class="reference internal" href="getting_started_with_pyqgis.html"><em>파이썬 프로그램밍 시작</em></a> 예제를 살펴보시기 바랍니다.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the Task<a class="headerlink" href="#overview-of-the-task" title="제목 주소">¶</a></h2>
-<p>We will develop a simple plugin called <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></tt> that will allow
-users to pick a vector layer and write its attributes to a CSV file.</p>
+<h2>작업 개요<a class="headerlink" href="#overview-of-the-task" title="제목 주소">¶</a></h2>
+<p>이 예제에서는 사용자가 벡터레이어를 선택할 수 있고, CSV 포맷의 파일로 속성을 쓸 수 있는 속성 저장 <a href="#id1"><span class="problematic" id="id2">``</span></a>Save Attributes``이라고 하는 간단한 플러그인을 개발할 것입니다.</p>
 </div>
 <div class="section" id="get-the-tools">
-<h2>Get the Tools<a class="headerlink" href="#get-the-tools" title="제목 주소">¶</a></h2>
+<h2>도구 획득<a class="headerlink" href="#get-the-tools" title="제목 주소">¶</a></h2>
 <div class="section" id="qt-creator">
 <h3>Qt Creator<a class="headerlink" href="#qt-creator" title="제목 주소">¶</a></h3>
-<p><a class="reference external" href="http://www.qt.io/">Qt</a> is a software development framework that is used to
-develop applications that run on Windows, Mac, Linux as well as various mobile
-operating systems. QGIS itself is written using the Qt framework. For plugin
-development, we will use an application called <a class="reference external" href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a> to design the interface for our
-plugin.</p>
-<p>Download and install the Qt Creator software from <a class="reference external" href="http://sourceforge.net/projects/qtcreator.mirror/files/latest/download">SourgeForge</a></p>
+<p><a href="#id1"><span class="problematic" id="id2">`</span></a>Qt &lt;<a class="reference external" href="http://www.qt.io/">http://www.qt.io/</a>&gt;`_는 윈도우, 맥, 리눅스에서 구동되는 어플리케이션뿐 아니라 다양한 모바일 구동 시스템을 개발하는데 사용되는 소프트웨어 개발 프레임웤입니다. QGIS  그 자체는 Qt 프레임웤을 사용해서 만들어졌습니다. 플러그인 개발을 위해서는 플러그인 인터페이스을 설계하기 위해 <a href="#id3"><span class="problematic" id="id4">`</span></a>Qt Creator &lt;<a class="reference external" href="http://doc.qt.io/qtcreator/index.html">http://doc.qt.io/qtcreator/index.html</a>&gt;`_라고 하는 어플리케이션을 사용할 것입니다.</p>
+<p>Qt Creator 소프트웨어를 <a href="#id1"><span class="problematic" id="id2">`</span></a>SourgeForge &lt;<a class="reference external" href="http://sourceforge.net/projects/qtcreator.mirror/files/latest/download">http://sourceforge.net/projects/qtcreator.mirror/files/latest/download</a>&gt;`_에서 다운로드하고 설치하십시오.</p>
 </div>
 <div class="section" id="python-bindings-for-qt">
-<h3>Python Bindings for Qt<a class="headerlink" href="#python-bindings-for-qt" title="제목 주소">¶</a></h3>
-<p>Since we are developing the plugin in Python, we need to install the python
-bindings for Qt. The method for installing these will depend on the platform
-you are using. For building plugins we need the <tt class="docutils literal"><span class="pre">pyrcc4</span></tt> command-line tool.</p>
-<p><strong>Windows</strong></p>
+<h3>Qt를 위한 파이썬 만들기<a class="headerlink" href="#python-bindings-for-qt" title="제목 주소">¶</a></h3>
+<p>파이썬에서 플러그인을 개발해야 하므로 Qt를 위한 파이썬 바인딩을 설치할 필요가 있습니다. 이것들을 설치하는 방법은 사용하는 플랫폼에 달려 있습니다. 플러그인을 만들기위해서는 <tt class="docutils literal"><span class="pre">pyrcc4</span></tt> 명령어-라인 툴이 필요합니다.</p>
+<p><strong>윈도우</strong></p>
 <p>Download the <a class="reference external" href="http://trac.osgeo.org/osgeo4w/">OSGeo4W network installer</a> and choose <em class="guilabel">Express Desktop
 Install</em>. Install the package <tt class="docutils literal"><span class="pre">QGIS</span></tt>. After installation, you will be able to access the
 <tt class="docutils literal"><span class="pre">pyrcc4</span></tt> tool via the <em class="guilabel">OSGeo4W Shell</em>.</p>
-<p><strong>Mac</strong></p>
+<p><strong>맥</strong></p>
 <p>Install the <a class="reference external" href="http://brew.sh">Homebrew</a> package manager. Install <tt class="docutils literal"><span class="pre">PyQt</span></tt>
 package by running the following command:</p>
 <div class="highlight-none"><div class="highlight"><pre>brew install pyqt
 </pre></div>
 </div>
-<p><strong>Linux</strong></p>
-<p>Depending on your distribution, find and install the <tt class="docutils literal"><span class="pre">python-qt4</span></tt> package. On
-Ubuntu and Debian-based distributions, you can run the following command:</p>
+<p><strong>리눅스</strong></p>
+<p>배포판에 따라  <a href="#id1"><span class="problematic" id="id2">``</span></a>python-qt4``패키지를 찾아 설치하십시오. 우분투와 데비안 배포판에 대해서는 다음의 명령어를 따라 구동시킬 수 있습니다.</p>
 <div class="highlight-none"><div class="highlight"><pre>sudo apt-get install python-qt4
 </pre></div>
 </div>
 </div>
 <div class="section" id="a-text-editor-or-a-python-ide">
-<h3>A Text Editor or a Python IDE<a class="headerlink" href="#a-text-editor-or-a-python-ide" title="제목 주소">¶</a></h3>
-<p>Any kind of software development requires a good text editor. If you already
-have a favorite text editor or an IDE (Integrated Development Environment), you
-may use it for this tutorial. Otherwise, each platform offers a wide variety of
-free or paid options for text editros. Choose the one that fits your needs.</p>
-<p>This tutorial uses Notepad++ editor on Windows.</p>
-<p><strong>Windows</strong></p>
-<p><a class="reference external" href="http://notepad-plus-plus.org/">Notepad++</a> is a good free editor for windows.
-Download and install the <a class="reference external" href="http://notepad-plus-plus.org/repository/6.x/6.7.5/npp.6.7.5.Installer.exe">Notepad++ editor</a>.</p>
+<h3>텍스트 편집기 또는 파이썬 IDE<a class="headerlink" href="#a-text-editor-or-a-python-ide" title="제목 주소">¶</a></h3>
+<p>어떤 종류의 소프트웨어 개발이든 좋은 텍스트 편집기가 필요합니다. 이미 선호하는 텍스트 편집기 혹은  IDE (Integrated Development Environment)를 가지고 있다며 이 예제에서 그것을 사용하면 될 것입니다. 그렇지 않으면 각 플랫폼이 폭넓게 다양한 무료 혹은 지불 옵션의 편집기를 제공합니다. 각자의 요구에 맞는 것을 선택하십시오.</p>
+<p>이 예제에서는 위도우상에서 노트패드 ++  편집기를 사용합니다.</p>
+<p><strong>윈도우</strong></p>
+<p><a href="#id1"><span class="problematic" id="id2">`</span></a>노트패드++ &lt;<a class="reference external" href="http://notepad-plus-plus.org/">http://notepad-plus-plus.org/</a>&gt;`_는 윈도우에서 사용하기 좋은 무료 편집기 입니다. 노트패드++  <a href="#id3"><span class="problematic" id="id4">`</span></a>Notepad++ editor &lt;<a class="reference external" href="http://notepad-plus-plus.org/repository/6.x/6.7.5/npp.6.7.5.Installer.exe">http://notepad-plus-plus.org/repository/6.x/6.7.5/npp.6.7.5.Installer.exe</a>&gt;`_를 다운로드하여 설치하십시오.</p>
 <div class="admonition note">
 <p class="first admonition-title">주석</p>
-<p class="last">If you are using Notepad++, makes sure to check <em class="guilabel">Replace by space</em>
-at  <em class="menuselection">Settings ‣ Preferences ‣ Tab Settings</em>. Python is
-very sensitive about whitespace and this setting will ensure tabs and spaces
-are treated properly.</p>
+<p class="last">노트패드++를 사용하고 있다면 :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Settings &#8211;&gt; Preferences &#8211;&gt; Tab Settings`에서  :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Replace by space`를 체크했는지 확인하십시오. 파이썬은 여백에 매우 민감하고 이러한 세팅이 탭과 스페이스가 적절하게 처리되는 것을 확인시켜줄 것입니다.</p>
 </div>
 </div>
 <div class="section" id="plugin-builder-plugin">
-<h3>Plugin Builder plugin<a class="headerlink" href="#plugin-builder-plugin" title="제목 주소">¶</a></h3>
-<p>There is a helpful QGIS plugin named <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> which creates all the
-neccesary files and the boilerplate code for a plugin. Find and install the
-<tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> plugin. See <a class="reference internal" href="using_plugins.html"><em>플러그인 사용하기</em></a> for more details on how to
-install plugins.</p>
+<h3>플러그인 빌더 플러그인<a class="headerlink" href="#plugin-builder-plugin" title="제목 주소">¶</a></h3>
+<p>플러그인 빌더 <a href="#id1"><span class="problematic" id="id2">``</span></a>Plugin Builder``라는 QGIS 플러그인이 있는데 필요한 모든 파일과 보일러플레이트 코드를 만듭니다. <a href="#id3"><span class="problematic" id="id4">``</span></a>Plugin Builder``플러그인을 찾아서 설치하십시오. 플러그인을 어떻게 설치하는 지에 대한 상세한 내용은  :doc:<a href="#id5"><span class="problematic" id="id6">`</span></a>using_plugins`를 보십시오.</p>
 </div>
 <div class="section" id="plugins-reloader-plugin">
-<h3>Plugins Reloader plugin<a class="headerlink" href="#plugins-reloader-plugin" title="제목 주소">¶</a></h3>
-<p>This is another helper plugin which allows iterative development of plugins.
-Using this plugin, you can change your plugin code and have it reflected in
-QGIS without having to restart QGIS every time. Find and install the <tt class="docutils literal"><span class="pre">Plugin</span>
-<span class="pre">Reloader</span></tt> plugin. See <a class="reference internal" href="using_plugins.html"><em>플러그인 사용하기</em></a> for more details on how to install
-plugins.</p>
+<h3>플러그인 리로더 플러그인<a class="headerlink" href="#plugins-reloader-plugin" title="제목 주소">¶</a></h3>
+<p>이것은 또다른 유용한 플러그인으로 플러그인의 반복개발을 가능하게 해줍니다. 이 플러그인을 사용하여 플러그인 코드를 변경할 수 있고, 매번 QGIS를 재시작하지 않고 QGIS에 반영할 수 있게 해줍니다. <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Reloader</span></tt> 플러그인을 찾아 설치하십시오. 플러그인을 어떻게 설치하는 지에 대한 상세한 내용은  :doc:<a href="#id1"><span class="problematic" id="id2">`</span></a>using_plugins`를 보십시오.</p>
 <div class="admonition note">
 <p class="first admonition-title">주석</p>
-<p class="last">Plugin Reloader is an experimental plugin. Make sure you have checked
-<em class="guilabel">Show also experimental plugins</em> in <em class="guilabel">Plugin Manager</em>
-settings if you cannot find it.</p>
+<p class="last">플러그인 리로더는 실험적인 플러그인입니다. 이 플러그인을 찾을 수 없다면  <em class="guilabel">Plugin Manager</em> 세팅에서 <em class="guilabel">Show also experimental plugins</em> 가 체크되어 있는지 확인하십시오.</p>
 </div>
 </div>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="제목 주소">¶</a></h2>
+<h2>과정<a class="headerlink" href="#procedure" title="제목 주소">¶</a></h2>
 <ol class="arabic simple">
 <li>Open QGIS. Go to <em class="menuselection">Plugins ‣ Plugin Builder ‣ Plugin
 Builder</em>.</li>
 </ol>
-<img alt="../_images/114.png" class="align-center" src="../_images/114.png" />
+<img alt="../_images/116.png" class="align-center" src="../_images/116.png" />
 <ol class="arabic simple" start="2">
 <li>You will see the <em class="guilabel">QGIS Plugin Builder</em> dialog with a form. You can
 fill the form with details relating to our plugin. The <em class="guilabel">Class
@@ -299,7 +271,7 @@ will decide where your plugin item is added in QGIS. Since our plugin is for
 vector data, select <tt class="docutils literal"><span class="pre">Vector</span></tt>. Check the <em class="guilabel">Flag the plugin as
 experimental</em> box at the bottom. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/23.png" class="align-center" src="../_images/23.png" />
+<img alt="../_images/213.png" class="align-center" src="../_images/213.png" />
 <ol class="arabic simple" start="3">
 <li>Next, you will be prompted to choose a directory for your plugin. You need
 to browse to the QGIS python plugin directory on your computer and select
@@ -307,30 +279,30 @@ to browse to the QGIS python plugin directory on your computer and select
 your home directory. The <tt class="docutils literal"><span class="pre">plugin</span></tt> folder location will depend on your
 platform as follows: (Replace <tt class="docutils literal"><span class="pre">username</span></tt> with your login name)</li>
 </ol>
-<p><strong>Windows</strong></p>
+<p><strong>윈도우</strong></p>
 <div class="highlight-none"><div class="highlight"><pre>c:\Users\username\.qgis2\python\plugins
 </pre></div>
 </div>
-<p><strong>Mac</strong></p>
+<p><strong>맥</strong></p>
 <div class="highlight-none"><div class="highlight"><pre>/Users/username/.qgis2/python/plugins
 </pre></div>
 </div>
-<p><strong>Linux</strong></p>
+<p><strong>리눅스</strong></p>
 <div class="highlight-none"><div class="highlight"><pre>/home/username/.qgis2/python/plugins
 </pre></div>
 </div>
-<img alt="../_images/33.png" class="align-center" src="../_images/33.png" />
+<img alt="../_images/37.png" class="align-center" src="../_images/37.png" />
 <ol class="arabic simple" start="4">
 <li>You will see a confirmation dialog once your plugin template is created.
 Note the path to the plugin folder.</li>
 </ol>
-<img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
+<img alt="../_images/44.png" class="align-center" src="../_images/44.png" />
 <ol class="arabic simple" start="5">
 <li>Before we can use the newly created plugin, we need to compile the
 <tt class="docutils literal"><span class="pre">resources.qrc</span></tt> file that was created by Plugin Builder. Launch the
 <em class="guilabel">OSGeo4W Shell</em> on windows or a terminal on Mac or Linux.</li>
 </ol>
-<img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
+<img alt="../_images/54.png" class="align-center" src="../_images/54.png" />
 <ol class="arabic simple" start="6">
 <li>Browse to the plugin directory where the output of <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> was
 created. You can use the <tt class="docutils literal"><span class="pre">cd</span></tt> command followed by the path to the
@@ -339,7 +311,7 @@ directory.</li>
 <div class="highlight-none"><div class="highlight"><pre>cd c:\Users\username\.qgis2\python\plugins\SaveAttributes
 </pre></div>
 </div>
-<img alt="../_images/63.png" class="align-center" src="../_images/63.png" />
+<img alt="../_images/64.png" class="align-center" src="../_images/64.png" />
 <ol class="arabic simple" start="7">
 <li>Once you are in the directory, type <tt class="docutils literal"><span class="pre">make</span></tt>. This will run the <tt class="docutils literal"><span class="pre">pyrcc4</span></tt>
 command that we had installed as part of Qt bindings for Python.</li>
@@ -347,7 +319,7 @@ command that we had installed as part of Qt bindings for Python.</li>
 <div class="highlight-none"><div class="highlight"><pre>make
 </pre></div>
 </div>
-<img alt="../_images/73.png" class="align-center" src="../_images/73.png" />
+<img alt="../_images/74.png" class="align-center" src="../_images/74.png" />
 <ol class="arabic simple" start="8">
 <li>Now we are ready to have a first look at the brand new plugin we created.
 Close QGIS and launch it again. You will notice that there is a new icon in
@@ -355,52 +327,52 @@ the toolbar and a new menu entry under <em class="menuselection">Vector ‣ Save
 Attributes ‣ Save Attributes as CSV`</em>. Select it to launch the plugin
 dialog.</li>
 </ol>
-<img alt="../_images/83.png" class="align-center" src="../_images/83.png" />
+<img alt="../_images/84.png" class="align-center" src="../_images/84.png" />
 <ol class="arabic simple" start="9">
 <li>You will notice a new blank dialog named <em class="guilabel">Save Attributes</em>. Close
 this dialog.</li>
 </ol>
-<img alt="../_images/93.png" class="align-center" src="../_images/93.png" />
+<img alt="../_images/94.png" class="align-center" src="../_images/94.png" />
 <ol class="arabic simple" start="10">
 <li>We will not design our dialog box and add some user interface elements to
 it. Open the <tt class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator</span></tt> program and to to <em class="guilabel">File &#8211;&gt; Open File
 or Project...</em>.</li>
 </ol>
-<img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
+<img alt="../_images/104.png" class="align-center" src="../_images/104.png" />
 <ol class="arabic simple" start="11">
 <li>Browse to the plugin directory and select the
 <tt class="docutils literal"><span class="pre">save_attributes_dialog_base.ui</span></tt> file. Click <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
+<img alt="../_images/117.png" class="align-center" src="../_images/117.png" />
 <ol class="arabic simple" start="12">
 <li>You will see the blank dialog from the plugin. You can drag-and-drop
 elements from the left-hand panel on the dialog. We will add a
 <em class="guilabel">Combo Box</em> type of <em class="guilabel">Input Widget</em>. Drag it to the
 plugin dialog.</li>
 </ol>
-<img alt="../_images/123.png" class="align-center" src="../_images/123.png" />
+<img alt="../_images/124.png" class="align-center" src="../_images/124.png" />
 <ol class="arabic simple" start="13">
 <li>Resize the combo box and adjust its size. Now drag a <em class="guilabel">Label</em> type
 <em class="guilabel">Display Widget</em> on the dialog.</li>
 </ol>
-<img alt="../_images/133.png" class="align-center" src="../_images/133.png" />
+<img alt="../_images/134.png" class="align-center" src="../_images/134.png" />
 <ol class="arabic simple" start="14">
 <li>Click on the label text and enter <tt class="docutils literal"><span class="pre">Select</span> <span class="pre">a</span> <span class="pre">layer</span></tt>.</li>
 </ol>
-<img alt="../_images/143.png" class="align-center" src="../_images/143.png" />
+<img alt="../_images/144.png" class="align-center" src="../_images/144.png" />
 <ol class="arabic simple" start="15">
 <li>Save this file by going to <em class="menuselection">File ‣ Save
 save_attributes_dialog_base.ui</em>. Note the name of the combo box object is
 <tt class="docutils literal"><span class="pre">comboBox</span></tt>. To interact with this object using python code, we will have
 to refer to it by this name.</li>
 </ol>
-<img alt="../_images/153.png" class="align-center" src="../_images/153.png" />
+<img alt="../_images/154.png" class="align-center" src="../_images/154.png" />
 <ol class="arabic simple" start="16">
 <li>Let&#8217;s reload our plugin so we can see the changes in the dialog
 window. Go to <em class="menuselection">Plugin ‣ Plugin Reloader ‣ Choose a
 plugin to be reloaded</em>.</li>
 </ol>
-<img alt="../_images/163.png" class="align-center" src="../_images/163.png" />
+<img alt="../_images/164.png" class="align-center" src="../_images/164.png" />
 <ol class="arabic simple" start="17">
 <li>Select <tt class="docutils literal"><span class="pre">SaveAttributes</span></tt> in the <em class="guilabel">Configure Plugin reloader</em>
 dialog.</li>
@@ -410,7 +382,7 @@ dialog.</li>
 <li>Now click the <em class="guilabel">Save Attributes as CSV</em> button. You will see the
 newly designed dialog box.</li>
 </ol>
-<img alt="../_images/183.png" class="align-center" src="../_images/183.png" />
+<img alt="../_images/184.png" class="align-center" src="../_images/184.png" />
 <ol class="arabic simple" start="19">
 <li>Let&#8217;s add some logic to the plugin that will populate the combo box with
 the layers loaded in QGIS. Go to the plugin directory and load the file
@@ -427,7 +399,7 @@ it to the <tt class="docutils literal"><span class="pre">comboBox</span></tt> ob
      <span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">comboBox</span><span class="o">.</span><span class="n">addItems</span><span class="p">(</span><span class="n">layer_list</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/191.png" class="align-center" src="../_images/191.png" />
+<img alt="../_images/192.png" class="align-center" src="../_images/192.png" />
 <ol class="arabic simple" start="20">
 <li>Back in the main QGIS window, reload the plugin by going to
 <em class="menuselection">Plugins ‣ Plugin Reloader ‣  Reload plugin:
@@ -436,12 +408,12 @@ new functionality, we must load some layers in QGIS. After you load some
 data, launch the plugin by going to <em class="menuselection">Vector ‣ Save
 Attributes ‣ Save Attributes as CSV</em>.</li>
 </ol>
-<img alt="../_images/20.png" class="align-center" src="../_images/20.png" />
+<img alt="../_images/201.png" class="align-center" src="../_images/201.png" />
 <ol class="arabic simple" start="21">
 <li>You will see that our combo box is now populated with the layer names that
 are loaded in QGIS.</li>
 </ol>
-<img alt="../_images/211.png" class="align-center" src="../_images/211.png" />
+<img alt="../_images/214.png" class="align-center" src="../_images/214.png" />
 <ol class="arabic simple" start="22">
 <li>Let&#8217;s add remaining user interface elements. Switch back to <tt class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator</span></tt>
 and load the <tt class="docutils literal"><span class="pre">save_attributes_dialog_base.ui</span></tt> file. Add a <tt class="docutils literal"><span class="pre">Label</span></tt>
@@ -470,7 +442,7 @@ the path of the file that the user chose.</li>
     <span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">lineEdit</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/24.png" class="align-center" src="../_images/24.png" />
+<img alt="../_images/241.png" class="align-center" src="../_images/241.png" />
 <ol class="arabic simple" start="25">
 <li>Now we need to add code so that when the <cite>...</cite> button is clicked,
 <tt class="docutils literal"><span class="pre">select_output_file</span></tt> method is called. Scroll up to the <tt class="docutils literal"><span class="pre">__init__</span></tt>
@@ -483,13 +455,13 @@ button widget.</li>
 <span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">pushButton</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">select_output_file</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/25.png" class="align-center" src="../_images/25.png" />
+<img alt="../_images/251.png" class="align-center" src="../_images/251.png" />
 <ol class="arabic simple" start="26">
 <li>Back in QGIS, reload the plugin and open the <em class="guilabel">Save Attributes`</em>
 dialog. If all went fine, you will be able to click the <tt class="docutils literal"><span class="pre">...</span></tt> button and
 select an output text file from your disk.</li>
 </ol>
-<img alt="../_images/26.png" class="align-center" src="../_images/26.png" />
+<img alt="../_images/261.png" class="align-center" src="../_images/261.png" />
 <ol class="arabic simple" start="27">
 <li>When you click <em class="guilabel">OK</em> on the plugin dialog, nothing happens. That
 is because we have not added the logic to pull attribute information from
@@ -513,7 +485,7 @@ can be found in <a class="reference internal" href="getting_started_with_pyqgis.
 <span class="n">output_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/27.png" class="align-center" src="../_images/27.png" />
+<img alt="../_images/271.png" class="align-center" src="../_images/271.png" />
 <ol class="arabic simple" start="28">
 <li>Now our plugin is ready. Reload the plugin and try it out. You will find
 that the output text file you chose will have the attributes from the
@@ -773,7 +745,7 @@ upload it to the QGIS plugin repository.</p>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      최종 업데이트: Apr 22, 2015<br/>
+      최종 업데이트: May 01, 2015<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -105,6 +105,7 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Παρεμβάλλοντας τα σημεία δεδομένων</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Μαζική επεξεργασία χρησιμοποιώντας το πλαίσιο επεξεργασίας</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Χρησιμοποιώντας το QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Μέτρηση του Aριθμού των Kορυφών σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
@@ -217,42 +218,42 @@ below:</p>
 <li>Once you have downloaded the data, open QGIS. Go to <em class="menuselection">Layer
 ‣ Add Layer ‣ Add Vector Layer</em>.</li>
 </ol>
-<img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
+<img alt="../_images/1131.png" class="align-center" src="../_images/1131.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Κάντε κλικ στο <em class="guilabel">Browse</em> και μεταβείτε στο φάκελο όπου έχετε κατεβάσει τα δεδομένα.</p>
 </li>
 </ol>
-<img alt="../_images/268.png" class="align-center" src="../_images/268.png" />
+<img alt="../_images/279.png" class="align-center" src="../_images/279.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Εντοπίστε το κατεβασμένο αρχείο zip <cite>ne_10m_populated_places_simple.zip</cite>. Δεν χρειάζεται να αποσυμπιέσετε το αρχείο. Το QGIS έχει τη δυνατότητα να διαβάσει απευθείας τα αρχεία zip. Επιλέξτε το αρχείο και κάντε κλικ στο κουμπί <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/337.png" class="align-center" src="../_images/337.png" />
+<img alt="../_images/340.png" class="align-center" src="../_images/340.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Η επιλεγμένη στρώση θα πρέπει τώρα να τοποθετηθεί στο QGIS και θα εμφανιστούν πολλά σημεία που αντιπροσωπεύουν τις κατοικημένες περιοχές του κόσμου.</p>
 </li>
 </ol>
-<img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
+<img alt="../_images/429.png" class="align-center" src="../_images/429.png" />
 <ol class="arabic simple" start="5">
 <li>Right-click the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
+<img alt="../_images/530.png" class="align-center" src="../_images/530.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Εξερευνήστε τα διάφορα χαρακτηριστικά και τις αξίες τους.</p>
 </li>
 </ol>
-<img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
+<img alt="../_images/628.png" class="align-center" src="../_images/628.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Ενδιαφερόμαστε για τον πληθυσμό του κάθε χαρακτηριστικού, έτσι <cite>pop_max</cite> είναι το πεδίο που ψάχνουμε. Μπορείτε να κάνετε κλικ δύο φορές στο πεδίο κεφαλίδας για να ταξινομήσετε τη στήλη με φθίνουσα σειρά.</p>
 </li>
 </ol>
-<img alt="../_images/727.png" class="align-center" src="../_images/727.png" />
+<img alt="../_images/728.png" class="align-center" src="../_images/728.png" />
 <ol class="arabic simple" start="8">
 <li>Now we are ready to perform our query on these attributes. QGIS uses
 SQL-like expressions to perform queries. Click <em class="guilabel">Select features
 using an expression</em>.</li>
 </ol>
-<img alt="../_images/826.png" class="align-center" src="../_images/826.png" />
+<img alt="../_images/827.png" class="align-center" src="../_images/827.png" />
 <ol class="arabic simple" start="9">
 <li>In the <em class="guilabel">Select By Expression</em> window, expand the <em class="guilabel">Fields
 and Values</em> section and double-click the <tt class="docutils literal"><span class="pre">pop_max</span></tt> label.  You will notice
@@ -266,14 +267,14 @@ greater than <tt class="docutils literal"><span class="pre">1,000,000</span></tt
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000
 </pre></div>
 </div>
-<img alt="../_images/924.png" class="align-center" src="../_images/924.png" />
+<img alt="../_images/925.png" class="align-center" src="../_images/925.png" />
 <ol class="arabic simple" start="10">
 <li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. You will
 notice that a subset of points is now rendered in yellow. This is the
 result of our query and you are seeing all places from the dataset that
 have the <tt class="docutils literal"><span class="pre">pop_max</span></tt> attribute value greater than <tt class="docutils literal"><span class="pre">1,000,000</span></tt>.</li>
 </ol>
-<img alt="../_images/1025.png" class="align-center" src="../_images/1025.png" />
+<img alt="../_images/1026.png" class="align-center" src="../_images/1026.png" />
 <ol class="arabic simple" start="11">
 <li>The goal for this exercise is to find the places that are country capitals.
 The field containing this data is <cite>adm0cap</cite>. The value <tt class="docutils literal"><span class="pre">1</span></tt> indicates that
@@ -286,7 +287,7 @@ and click <em class="guilabel">Select</em> and then <em class="guilabel">Close</
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000 and &quot;adm0cap&quot; = 1
 </pre></div>
 </div>
-<img alt="../_images/1130.png" class="align-center" src="../_images/1130.png" />
+<img alt="../_images/1132.png" class="align-center" src="../_images/1132.png" />
 <ol class="arabic simple" start="12">
 <li>Return to the main QGIS window. Now you will see a smaller subset of the
 points selected. This is the result of the second query and shows all
@@ -296,12 +297,12 @@ on this subset of data, we can make this selection persistent. Right-click
 the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select
 <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/1225.png" class="align-center" src="../_images/1225.png" />
+<img alt="../_images/1226.png" class="align-center" src="../_images/1226.png" />
 <ol class="arabic simple" start="13">
 <li>In the <em class="guilabel">General</em> tab, scroll down to the <em class="guilabel">Feature
 subset</em> section. Click <em class="guilabel">Query Builder</em>.</li>
 </ol>
-<img alt="../_images/1323.png" class="align-center" src="../_images/1323.png" />
+<img alt="../_images/1324.png" class="align-center" src="../_images/1324.png" />
 <ol class="arabic simple" start="14">
 <li>Enter the same expression you had entered earlier and click <em class="guilabel">OK</em>.</li>
 </ol>
@@ -317,12 +318,12 @@ still appear in yellow. This is because they are still selected. Find the
 <em class="guilabel">Deselect Features from All Layers</em> button under the
 <em class="guilabel">Attributes</em> toolbar and click on it.</li>
 </ol>
-<img alt="../_images/1520.png" class="align-center" src="../_images/1520.png" />
+<img alt="../_images/1521.png" class="align-center" src="../_images/1521.png" />
 <ol class="arabic simple" start="16">
 <li>You will see that the points are now de-selected and rendered in their
 original color.</li>
 </ol>
-<img alt="../_images/1620.png" class="align-center" src="../_images/1620.png" />
+<img alt="../_images/1621.png" class="align-center" src="../_images/1621.png" />
 </div>
 </div>
 
@@ -348,7 +349,7 @@ original color.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 22, 2015.<br/>
+      Last updated on May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

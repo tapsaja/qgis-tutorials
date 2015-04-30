@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Basic Raster Styling and Analysis &mdash; QGIS Tutorials and Tips</title>
+    <title>Basis opmaken en analyses van rasters &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Raster Mosaicing and Clipping" href="raster_mosaicing_and_clipping.html" />
+    <link rel="next" title="Rasters mozaieken en clippen" href="raster_mosaicing_and_clipping.html" />
     <link rel="prev" title="Lengten van lijnen en statistieken berekenen" href="calculating_line_lengths.html" />
 
 <meta charset='utf-8'>
@@ -89,9 +89,9 @@
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Zoeken en downloaden van gegevens van OpenStreetMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basis opmaken van vectoren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Lengten van lijnen en statistieken berekenen</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Basic Raster Styling and Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Basis opmaken en analyses van rasters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Rasters mozaieken en clippen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Werken met gegevens over het terrein</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Topobladen en gescande kaarten voorzien van geoverwijzingen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Geo-verwijzingen voor satellietbeelden</a></li>
@@ -106,6 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Massa verwerken met behulp van Framework Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aantal punten in een laag tellen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
@@ -114,7 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS bronnen om te leren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Lesgeven in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Gebruik van gegevens</a></li>
 </ul>
@@ -130,7 +131,7 @@
     </a>
   </li>
   <li>
-    <a href="raster_mosaicing_and_clipping.html" title="Next Chapter: Raster Mosaicing and Clipping"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Raster Mosaicing... &raquo;</span>
+    <a href="raster_mosaicing_and_clipping.html" title="Next Chapter: Rasters mozaieken en clippen"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Rasters mozaieke... &raquo;</span>
     </a>
   </li>
               
@@ -188,195 +189,150 @@
       
 
   <div class="section" id="basic-raster-styling-and-analysis">
-<h1>Basic Raster Styling and Analysis<a class="headerlink" href="#basic-raster-styling-and-analysis" title="Permalink naar deze titel">¶</a></h1>
+<h1>Basis opmaken en analyses van rasters<a class="headerlink" href="#basic-raster-styling-and-analysis" title="Permalink naar deze titel">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/raster_styling_and_analysis_a4.pdf">A4</a> <a class="reference external" href="../pdf/raster_styling_and_analysis_letter.pdf">Letter</a> ]</p>
-<p>A lot of scientific observations and research produces raster datasets. Rasters
-are essentially grids of pixels that have a specific value assigned to them. By
-doing mathematical operations on these values, one can do some interesting
-analysis. QGIS has some basic analysis capabilities built-in via <cite>Raster
-Calculator</cite>. In this tutorial, we will explore basics on using <cite>Raster Calculator</cite>
-and options available for styling rasters.</p>
+<p>Veel wetenschappelijke waarnemingen en onderzoek produceren gegevenssets als rasters. Rasters zijn in essentie rasters van pixels die een specifieke waarde hebben toegewezen gekregen. Door rekenkundige bewerkingen op deze waarden uit te voeren, kan men enkele interessante analyses uitvoeren. QGIS heeft enkele ingebouwde mogelijkheden voor basisanalyses via <cite>Rasterberekeningen</cite>. In deze handleiding zullen we de basis voor het gebruiken van <cite>Rasterberekeningen</cite> verkennen en beschikbare opties voor het opmaken van rasters.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
-<p>We will use population density grid data to find and visualize areas of the world
-that have seen dramatic population density change between year 1990 and 2000.</p>
+<h2>Overzicht van de taak<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
+<p>We zullen rastergegevens voor bevolkingsdichtheid gebruiken om gebieden in de wereld te zoeken en te visualiseren die een dramatische wijziging in de bevolkingsdichtheid hebben gezien tussen de jaren 1990 en 2000.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
+<h3>Andere vaardigheden die u zult leren<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
 <ul class="simple">
-<li>Selecting and loading multiple datasets in a single step in QGIS.</li>
+<li><p class="first">Meerdere gegevenssets in één stap in QGIS selecteren en laden.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/collection/gpw-v3">Gridded Population of the World (GPW) v3</a>
-dataset from Columbia University. Specifically, we need the Population Density Grid for the entire globe in ASCII format and for the year 1990 and 2000.</p>
-<p>Here is how to search and download the revelant data.</p>
+<h2>De gegevens ophalen<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
+<p>We zullen de gegevensset <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/collection/gpw-v3">Gridded Population of the World (GPW) v3</a> van de Columbia University gebruiken. Specifiek hebben we de Population Density Grid voor de gehele wereld nodig in de indeling ASCII en voor de jaren 1990 en 2000.</p>
+<p>Hier ziet u hoe u de relevante gegevens zoekt en downloadt.</p>
 <ol class="arabic simple">
-<li>Go to the <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density/data-download">Population Density Grid, v3 download page.</a>
-Select the <em class="guilabel">Data Attributes</em> as <em class="guilabel">.ascii format</em>,
-<em class="guilabel">1° resolution</em> and <em class="guilabel">1990 year</em>. Click
-<em class="guilabel">Download</em>. At this point, you may create a free account and
-login, or use the <em class="guilabel">Guest Download</em> button at the bottom to
-immediately download the data. Repeat the process for <em class="guilabel">2000 year</em>
-data.</li>
+<li><p class="first">Ga naar de downloadpagina <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density/data-download">Population Density Grid, v3 download page.</a> Selecteer de <em class="guilabel">Data Attributes</em> als <em class="guilabel">.ascii format</em>, <em class="guilabel">1° resolution</em> en <em class="guilabel">1990 year</em>. Klik op <em class="guilabel">Download</em>. Op dit punt zou u een gratis account en inlog aan kunnen maken, of de knop <em class="guilabel">Guest Download</em> aan de onderzijde gebruiken om de gegevens direct downloaden. Herhaal het proces voor de gegevens van <em class="guilabel">2000 year</em>.</p>
+</li>
 </ol>
-<img alt="../_images/1105.png" class="align-center" src="../_images/1105.png" />
-<p>You will now have 2 zip files downloaded.</p>
+<img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
+<p>U zult nu 2 zip-bestanden hebben gedownload.</p>
 <p>For convenience, you can also download a copy of this data by clicking on following links:</p>
 <p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_90_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_90_ascii_one.zip</span></tt></a></p>
 <p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_00_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_00_ascii_one.zip</span></tt></a></p>
-<p>Data Source <a class="reference internal" href="credits.html#gpw3" id="id1">[GPW3]</a></p>
+<p>Gegevensbron <a class="reference internal" href="credits.html#gpw3" id="id1">[GPW3]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink naar deze titel">¶</a></h2>
 <ol class="arabic simple" start="2">
-<li>Open QGIS and go to <em class="menuselection">Layer ‣ Add Raster Layer..</em>.</li>
+<li><p class="first">Open QGIS en ga naar <em class="menuselection">Kaartlagen ‣ Laag maken ‣ Rasterlaag toevoegen..</em>.</p>
+</li>
 </ol>
-<img alt="../_images/249.png" class="align-center" src="../_images/249.png" />
+<img alt="../_images/258.png" class="align-center" src="../_images/258.png" />
 <ol class="arabic simple" start="3">
-<li>Locate the downloaded zip files. Hold down the <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> key and click on both
-the zip files to select them. This way you are able to load both the files
-in a single step.</li>
+<li><p class="first">Lokaliseer de downloade zip-bestanden. Houd de <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>-toets ingedrukt en klik op beide zip-bestanden om ze allebei te selecteren. Op deze manier bent u in staat om beide bestanden in één stap te laden.</p>
+</li>
 </ol>
-<img alt="../_images/329.png" class="align-center" src="../_images/329.png" />
+<img alt="../_images/334.png" class="align-center" src="../_images/334.png" />
 <ol class="arabic simple" start="4">
-<li>Each zip file contain 2 grid files. The <tt class="docutils literal"><span class="pre">a</span></tt> in the filename
-suggests that the population counts were adjusted to match the UN totals. We
-will use the adjusted grids for this tutorial. Select <tt class="docutils literal"><span class="pre">glds00ag60.asc</span></tt> as
-the layer to add. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Elk zip-bestand bevat 2 rasterbestanden. De <tt class="docutils literal"><span class="pre">a</span></tt> in de bestandsnaam geeft aan dat de tellingen van de bevolking werd aangepast om overeen te komen met de totalen van de UN. We zullen voor deze handleiding de aangepaste rasters gebruiken. Selecteer <tt class="docutils literal"><span class="pre">glds00ag60.asc</span></tt> als de laag om toe te voegen. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
-<img alt="../_images/423.png" class="align-center" src="../_images/423.png" />
+<img alt="../_images/424.png" class="align-center" src="../_images/424.png" />
 <ol class="arabic simple" start="5">
-<li>The layer doesn’t have a CRS defined, and since the grids are in lat/long,
-choose <cite>EPSG:4326</cite> as the coordinate reference system.</li>
+<li><p class="first">De laag heeft geen CRS gedefinieerd, en omdat de rasters in lat/long zijn, kies <cite>EPSG:4326</cite> als het coórdinaten referentiesysteem.</p>
+</li>
 </ol>
-<img alt="../_images/524.png" class="align-center" src="../_images/524.png" />
+<img alt="../_images/525.png" class="align-center" src="../_images/525.png" />
 <ol class="arabic simple" start="6">
-<li>Since we selected both the zip files, you will see similar dialogs once
-again. Repeat the process and select <tt class="docutils literal"><span class="pre">glds90ag60.asc</span></tt> grid as the layer to
-add.</li>
+<li><p class="first">U zult soortgelijke dialoogvensters tweemaal zien langskomen, omdat we beide zip-bestanden hebben geselecteerd. Herhaal het proces en selecteer het raster <tt class="docutils literal"><span class="pre">glds90ag60.asc</span></tt> als de laag om toe te voegen.</p>
+</li>
 </ol>
-<img alt="../_images/622.png" class="align-center" src="../_images/622.png" />
+<img alt="../_images/623.png" class="align-center" src="../_images/623.png" />
 <ol class="arabic simple" start="7">
-<li>Once again, choose <cite>EPSG:4326</cite> as the CRS.</li>
+<li><p class="first">Kies nogmaals <cite>EPSG:4326</cite> als het CRS.</p>
+</li>
 </ol>
-<img alt="../_images/722.png" class="align-center" src="../_images/722.png" />
+<img alt="../_images/723.png" class="align-center" src="../_images/723.png" />
 <ol class="arabic simple" start="8">
-<li>Now you will see both the rasters loaded in QGIS. The raster is rendered as
-in grayscale, where darker pixels indicate lower values and lighter pixels
-indicate higher values.</li>
+<li><p class="first">Nu zult u beide rasters zien geladen in QGIS. Het raster is gerenderd in grijswaarden, waar donkere pixels lagere waarden aangeven en lichtere pixels hogere waarden aangeven.</p>
+</li>
 </ol>
-<img alt="../_images/821.png" class="align-center" src="../_images/821.png" />
+<img alt="../_images/822.png" class="align-center" src="../_images/822.png" />
 <ol class="arabic simple" start="9">
-<li>Each pixel in the raster has a value assigned. This value is the population
-density for that grid. Click on <em class="guilabel">Identify Features</em> button to select the
-tool and click anywhere on the raster to see the value of that pixel.</li>
+<li><p class="first">Elke pixel in het raster heeft een toegewezen waarde. Die waarde is de bevolkingsdichtheid voor dat raster. Klik op de knop <em class="guilabel">Objecten identificeren</em> om het gereedschap te selecteren en klik ergens in het raster om de waarde van die pixel te zien.</p>
+</li>
 </ol>
-<img alt="../_images/919.png" class="align-center" src="../_images/919.png" />
+<img alt="../_images/920.png" class="align-center" src="../_images/920.png" />
 <ol class="arabic simple" start="10">
-<li>To better visualize the pattern of population density, we would need to
-style it. Right-click on the layer name and select <em class="guilabel">Properties</em>. You can also
-double-click on the layer name in the TOC to bring up the Layer
-Properties dialog.</li>
+<li><p class="first">We zouden het moeten opmaken om het patroon van de bevolkingsdichtheid beter te visualiseren. klik met rechts op de laagnaam en selecteer <em class="guilabel">Eigenschappen</em>. U kunt ook dubbelkkikken op de naam in de inhoudsopgave om het dialoogvenster Laag-eigenschappen op te roepen.</p>
+</li>
 </ol>
-<img alt="../_images/1020.png" class="align-center" src="../_images/1020.png" />
+<img alt="../_images/1021.png" class="align-center" src="../_images/1021.png" />
 <ol class="arabic simple" start="11">
-<li>Under the <em class="guilabel">Style</em> tab, change the <em class="guilabel">Render type</em>
-to <em class="guilabel">Singleband pseudocolor</em>. Next, click <em class="guilabel">Classify</em>
-under <em class="guilabel">Generate a new color map</em>. You will see 5 new color
-values created. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Wijzig, op de tab <em class="guilabel">Stijl</em>, het <em class="guilabel">Rendertype</em> naar <em class="guilabel">Enkelbands pseudokleur</em>. Klik vervolgens op <em class="guilabel">Classificeren</em> onder <em class="guilabel">Genereer nieuw kleurenpalet</em>. U zult zien dat er 5 nieuwe kleurenwaarden worden gemaakt. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1125.png" class="align-center" src="../_images/1125.png" />
 <ol class="arabic simple" start="12">
-<li>Back in the QGIS Canvas, you will see a heatmap-like rendering of the
-raster. Repeat the same process for the other raster as well.</li>
+<li><p class="first">Terug in het kaartvenster van QGIS zult u een als een heatmap gerenderde weergave van het raster zien. Herhaal het proces ook voor het andere raster.</p>
+</li>
 </ol>
-<img alt="../_images/1221.png" class="align-center" src="../_images/1221.png" />
+<img alt="../_images/1222.png" class="align-center" src="../_images/1222.png" />
 <ol class="arabic simple" start="13">
-<li>For our analysis, we would like to find areas with largest population
-change between 1990 and 2000. The way to accomplish this is by finding the
-difference between each grid’s pixel value in both the layers. Select
-<em class="menuselection">Raster ‣ Raster calculator</em>.</li>
+<li><p class="first">Voor onze analyse willen we zoeken naar de gebieden met de grootste wijziging in de bevolking tussen 1990 en 2000. De manier om dit te bereiken is door te zoeken naar het verschil tussen de waarde van elke pixel voor het raster in beide lagen. Selecteer <em class="menuselection">Raster ‣ Rasterberekeningen</em>.</p>
+</li>
 </ol>
-<img alt="../_images/1319.png" class="align-center" src="../_images/1319.png" />
+<img alt="../_images/1320.png" class="align-center" src="../_images/1320.png" />
 <ol class="arabic simple" start="14">
-<li>In the <em class="guilabel">Raster bands</em> section, you can select the layer by double-clicking
-on them. The bands are named after the raster name followed by &#64; and band
-number. Since each of our rasters have only 1 band, you will see only 1
-entry per raster. The raster calculator can apply mathematical operations
-on the raster pixels. In this case we want to enter a simple formula to
-subtract the 1990 population density from 2000. Enter <tt class="docutils literal"><span class="pre">glds00ag60&#64;1</span> <span class="pre">-</span> <span class="pre">glds90ag60&#64;1</span></tt>
-as the formula. Name your output layer as <em class="guilabel">pop_density_change_2000_1990.tif</em>
-and check the box next to <em class="guilabel">Add result to project</em>. Click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">In het gedeelte <em class="guilabel">Rasterbanden</em> kunt u de laag selecteren door er op te dubbelklikken. De banden zijn vernoemd naar de naam van het raster, gevolgd door &#64; en het nummer van de band. Omdat onze rasters slechts 1 band hebben, zult u slechts 1 item per band zien. Rasterberekeningen kan rekenkundige bewerkingen toepassen op de pixels van de rasters. In dit geval willen we een eenvoudige formule invoeren om de bevolkingsdichtheid van 1990 af te trekken van die van 2000. Voer <tt class="docutils literal"><span class="pre">glds00ag60&#64;1</span> <span class="pre">-</span> <span class="pre">glds90ag60&#64;1</span></tt> in als de formule. Noem uw uitvoerlaag <em class="guilabel">pop_density_change_2000_1990.tif</em> en selecteer het vak naast <em class="guilabel">Voeg resultaat toe aan project</em>. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1419.png" class="align-center" src="../_images/1419.png" />
 <ol class="arabic simple" start="15">
-<li>Once the operation is complete, you will see the new layer load in QGIS.</li>
+<li><p class="first">Als de bewerking voltooid is ziet u de nieuwe laag geladen in QGIS</p>
+</li>
 </ol>
-<img alt="../_images/1517.png" class="align-center" src="../_images/1517.png" />
+<img alt="../_images/1518.png" class="align-center" src="../_images/1518.png" />
 <ol class="arabic simple" start="16">
-<li>This grayscale visualization is useful, but we can create a much more informative
-output. Right-click on the <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990</span></tt> layer and
-select <em class="guilabel">Properties</em>.</li>
+<li><p class="first">Deze visualisatie in grijswaarden is nuttig, maar we kunnen een veel meer informatieve uitvoer maken. Klik met rechts op de laag <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990</span></tt> en selecteer <em class="guilabel">Eigenschappen</em>.</p>
+</li>
 </ol>
-<img alt="../_images/1617.png" class="align-center" src="../_images/1617.png" />
+<img alt="../_images/1618.png" class="align-center" src="../_images/1618.png" />
 <ol class="arabic simple" start="17">
-<li>We want to style the layer so pixel values in certain ranges get the same
-color. Before we dive in to that, go to the <em class="guilabel">Metadata</em> tab and look at the
-properties of the raster. Note the minimum and maximum values of this layer.</li>
+<li><p class="first">We willen de laag zo opmaken dat waarden van pixels in bepaalde bereiken dezelfde kleur krijgen. Ga, vóór we daar verder mee gaan, naar de tab <em class="guilabel">Metadata</em> en bekijk de eigenschappen van het raster. Bekijk de minimum en maximum waarden van deze laag.</p>
+</li>
 </ol>
-<img alt="../_images/1716.png" class="align-center" src="../_images/1716.png" />
+<img alt="../_images/1717.png" class="align-center" src="../_images/1717.png" />
 <ol class="arabic simple" start="18">
-<li>Now go to the <em class="guilabel">Style</em> tab. Select <em class="guilabel">Singleband
-pseudocolor</em> as the <em class="guilabel">Render type</em> under <em class="guilabel">Band
-Rendering</em>. Set the <em class="guilabel">Color interpolation</em> to
-<em class="guilabel">Discrete</em>.  Click the <em class="guilabel">Add entry</em> button 4 times to create 4
-unique classes. Click on an entry to change the values. The way color map
-works is that all values lower than the value entered will be given the
-color of that entry. Since the minmum value in our raster is just above
--2000, we choose -2000 as the first entry. This will be for the No Data
-values. Enter the values and Labels for other entries as below and click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Ga nu naar de tab <em class="guilabel">Stijl</em>. Selecteer <em class="guilabel">Enkelbands pseudokleur</em> als het <em class="guilabel">Rendertype</em> onder <em class="guilabel">Rendering van banden</em>. Stel <em class="guilabel">Kleurinterpolatie</em> in op <em class="guilabel">Discreet</em>. Klik 4 keer op de knop <em class="guilabel">Voeg handmatig waarden in</em> om 4 unieke klassen te maken. Klik op een item om de waarden te wijzigen. De manier waarop kleurkaarten werken is dat alle waarden die lager zijn dan de opgegeven waarde zullen de kleur krijgen van dat item. Omdat de minimumwaarde in ons raster net boven -2000 ligt, kiezen we -2000 als het eerste item. Dit zal voor de waarden geen gegevens zijn. Voer de waarden en labels voor de andere items in zoals hieronder en klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
-<img alt="../_images/1816.png" class="align-center" src="../_images/1816.png" />
+<img alt="../_images/1817.png" class="align-center" src="../_images/1817.png" />
 <ol class="arabic simple" start="19">
-<li>Now you will see a much more powerful visualization where you can see areas
-which has seen positive and negative population density changes. Click on
-<em class="guilabel">Zoom In</em> button and draw a rectangle around Europe to
-explore the region in more detail.</li>
+<li><p class="first">Nu zult u een veel krachtiger visualisatie zien waar u gebieden kunt zien met positieve en negatieve wijzigingen in de dichtheid van de bevolking. Klik op de knop <em class="guilabel">Inzoomen</em> en teken een rechthoek rondom Europa om die regio meer in detail te verkennen.</p>
+</li>
 </ol>
-<img alt="../_images/1914.png" class="align-center" src="../_images/1914.png" />
+<img alt="../_images/1915.png" class="align-center" src="../_images/1915.png" />
 <ol class="arabic simple" start="20">
-<li>Select the <em class="guilabel">Identify</em> tool and click on the Red and Blue regions
-to verify that your styling rules worked as intended.</li>
+<li><p class="first">Selecteer het gereedschap <em class="guilabel">Objecten identificeren</em> en klik op de rode en blauwe regio&#8217;s om te verifiëren dat uw regels voor opmaak werken zoals bedoeld.</p>
+</li>
 </ol>
-<img alt="../_images/2011.png" class="align-center" src="../_images/2011.png" />
+<img alt="../_images/2012.png" class="align-center" src="../_images/2012.png" />
 <ol class="arabic simple" start="21">
-<li>Now let’s take this analysis one-step further and find areas with only
-<cite>negative</cite> population density change. Open <em class="menuselection">Raster ‣ Raster calculator</em>.</li>
+<li><p class="first">Laten we nu in deze analyse één stap verder gaan en gebieden zoeken met alleen <cite>negatieve</cite> wijzigingen in de bevolkingsdichtheid. Open <em class="menuselection">Raster ‣ Rasterberekeningen</em>.</p>
+</li>
 </ol>
-<img alt="../_images/2115.png" class="align-center" src="../_images/2115.png" />
+<img alt="../_images/2116.png" class="align-center" src="../_images/2116.png" />
 <ol class="arabic simple" start="22">
-<li>Enter the expression <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990&#64;1</span> <span class="pre">&lt;</span> <span class="pre">-10</span></tt>. What this
-expression will do is set the value of the pixel to 1 is if matches the
-expression and 0 if it doesn&#8217;t.  So we will get a raster with pixel value
-of 1 where there was negative change and 0 where there wasn&#8217;t. Name the
-output layer as <tt class="docutils literal"><span class="pre">negative_pop_change_2000_1990</span></tt> and check the box next to
-<em class="guilabel">Add result to project</em>. Click OK.</li>
+<li><p class="first">Voer de expressie <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990&#64;1</span> <span class="pre">&lt;</span> <span class="pre">-10</span></tt> in. Wat deze expressie zal doen is de waarde van de pixel op 1 zetten als die voldoet aan de expressie en op 0 als dat niet zo is. Zo zullen we een raster krijgen met een pixelwaarde van 1 waar een negatieve wijziging was en 0 waar dat niet zo was. Noem de uitvoerlaag <tt class="docutils literal"><span class="pre">negative_pop_change_2000_1990</span></tt> en selecteer het vak naast <em class="guilabel">Voeg resultaat toe aan project</em>. Klik op OK.</p>
+</li>
 </ol>
-<img alt="../_images/2212.png" class="align-center" src="../_images/2212.png" />
+<img alt="../_images/2215.png" class="align-center" src="../_images/2215.png" />
 <ol class="arabic simple" start="23">
-<li>Once the new layer is loaded, right-click on it and select
-<em class="guilabel">Properties</em>. In the <em class="guilabel">Transparency</em> tab, add 0 as the
-<em class="guilabel">Additional no data value</em>. This setting will make the pixels
-with 0 values also transparent. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Klik met rechts, als de nieuwe laag eenmaal is geladen, op de nieuwe laag en selecteer <em class="guilabel">Eigenschappen</em>. Op de tab <em class="guilabel">Transparantie</em>, voeg 0 toe als de <em class="guilabel">Aanvullende &#8216;no data&#8217; waarde</em>. Deze instelling zal de pixels met de waarden 0 ook transparant maken. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
-<img alt="../_images/2311.png" class="align-center" src="../_images/2311.png" />
+<img alt="../_images/2312.png" class="align-center" src="../_images/2312.png" />
 <ol class="arabic simple" start="24">
-<li>Now you will see the areas of negative population density change as gray
-pixels.</li>
+<li><p class="first">Nu zult u de gebieden met een negatieve wijziging in de bevolkingsdichtheid als grijze pixels zien.</p>
+</li>
 </ol>
 <img alt="../_images/2410.png" class="align-center" src="../_images/2410.png" />
 </div>
@@ -404,7 +360,7 @@ pixels.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Apr 22, 2015.<br/>
+      Laatste aanpassing op May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

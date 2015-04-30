@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Raster Mosaicing and Clipping &mdash; QGIS Tutorials and Tips</title>
+    <title>Rasters mozaieken en clippen &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,8 +30,8 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Working with Terrain Data" href="working_with_terrain.html" />
-    <link rel="prev" title="Basic Raster Styling and Analysis" href="raster_styling_and_analysis.html" />
+    <link rel="next" title="Werken met gegevens over het terrein" href="working_with_terrain.html" />
+    <link rel="prev" title="Basis opmaken en analyses van rasters" href="raster_styling_and_analysis.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -89,9 +89,9 @@
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Zoeken en downloaden van gegevens van OpenStreetMap</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basis opmaken van vectoren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Lengten van lijnen en statistieken berekenen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Raster Mosaicing and Clipping</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basis opmaken en analyses van rasters</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Rasters mozaieken en clippen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Werken met gegevens over het terrein</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Working with WMS Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Topobladen en gescande kaarten voorzien van geoverwijzingen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Geo-verwijzingen voor satellietbeelden</a></li>
@@ -106,6 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Massa verwerken met behulp van Framework Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aantal punten in een laag tellen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
@@ -114,7 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS Learning Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS bronnen om te leren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Lesgeven in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Gebruik van gegevens</a></li>
 </ul>
@@ -126,11 +127,11 @@
               
                 
   <li>
-    <a href="raster_styling_and_analysis.html" title="Previous Chapter: Basic Raster Styling and Analysis"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Basic Raster Sty...</span>
+    <a href="raster_styling_and_analysis.html" title="Previous Chapter: Basis opmaken en analyses van rasters"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Basis opmaken en...</span>
     </a>
   </li>
   <li>
-    <a href="working_with_terrain.html" title="Next Chapter: Working with Terrain Data"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Working with Ter... &raquo;</span>
+    <a href="working_with_terrain.html" title="Next Chapter: Werken met gegevens over het terrein"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Werken met gegev... &raquo;</span>
     </a>
   </li>
               
@@ -188,167 +189,145 @@
       
 
   <div class="section" id="raster-mosaicing-and-clipping">
-<h1>Raster Mosaicing and Clipping<a class="headerlink" href="#raster-mosaicing-and-clipping" title="Permalink naar deze titel">¶</a></h1>
+<h1>Rasters mozaieken en clippen<a class="headerlink" href="#raster-mosaicing-and-clipping" title="Permalink naar deze titel">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/raster_mosaicing_and_clipping_a4.pdf">A4</a> <a class="reference external" href="../pdf/raster_mosaicing_and_clipping_letter.pdf">Letter</a> ]</p>
-<p>This tutorial explores some basic raster operations in QGIS such as viewing, mosaicing
-and subsetting.</p>
+<p>Deze handleiding verkent enkele basis rasterbewerkingen in QGIS zoals weergeven, mozaïeken en subinstellingen.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
-<p>We will download some public domain raster data for Brazil and view it in QGIS. Next, we
-will merge these into a single mosaic and clip it using a country boundary to
-get a single seamless dataset for the country.</p>
+<h2>Overzicht van de taak<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
+<p>We zullen enkele publieke domein rastergegevens voor Brazilië downloaden en die bekijken in QGIS. Vervolgens zullen we deze samenvoegen in één enkele mozaïek en die clippen met behulp van de grens van een land om één naadloze gegevensset voor het land te krijgen.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
+<h3>Andere vaardigheden die u zult leren<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
 <ul class="simple">
-<li>Searcing and downloading near real-time public domain satellite imagery.</li>
-<li>Selecting a single feature from a vector layer and saving it to a new
-shapefile.</li>
+<li><p class="first">Bijna real-time publieke domein satellietafbeeldingen zoeken en downloaden</p>
+</li>
+<li><p class="first">Eén enkel object uit een vectorlaag selecteren en die opslaan naar een nieuw shapefile.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
-<p>We need Brazil country boundary to clip our raster. You can get the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - Countries</a> shapefile
-from Natural Earth.</p>
-<p><a class="reference external" href="https://earthdata.nasa.gov/data/near-real-time-data/rapid-response/modis-subsets">NASA/GSFC, Rapid Response site</a>
-has a good collection of near real-time satellite imagery. A good regional product is <a class="reference external" href="http://lance-modis.eosdis.nasa.gov/imagery/subsets/?project=fas">USDA Foreign Agricultural Service (FAS) subsets.</a>. We will
-use 2km resolution FAS subsets for Brazil for this tutorial.</p>
-<p>Here is how to search and download the revelant data.</p>
+<h2>De gegevens verkrijgen<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
+<p>We hebben de grenzen van het land Brazilië nodig om ons raster te clippen. U kunt het shapefile <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - Countries</a> verkrijgen vanaf Natural Earth.</p>
+<p><a class="reference external" href="https://earthdata.nasa.gov/data/near-real-time-data/rapid-response/modis-subsets">NASA/GSFC, Rapid Response site</a> heeft een goede verzameling bij bijna real-time satellietafbeeldingen. Een goed regionaal product zijn de subsets <a class="reference external" href="http://lance-modis.eosdis.nasa.gov/imagery/subsets/?project=fas">USDA Foreign Agricultural Service (FAS).</a>. We zullen 2km resolutie FAS-subsets voor Brazilië gebruiken voor deze handleiding.</p>
+<p>Hier is hoe te zoeken naar de relevante gegevens en die te downloaden.</p>
 <ol class="arabic simple">
-<li>Open the <a class="reference external" href="http://lance-modis.eosdis.nasa.gov/imagery/subsets/?area=sa">South America region subsets</a>. Find the
-Brazil subsets shown in the <em class="guilabel">FAS Subsets</em> section. Click on any
-one of them.</li>
+<li><p class="first">Open de <a class="reference external" href="http://lance-modis.eosdis.nasa.gov/imagery/subsets/?area=sa">South America regio subsets</a>. Zoek naar de subsets voor Brazil die zijn weergegeven in het gedeelte <em class="guilabel">FAS Subsets</em>. Klik op één ervan.</p>
+</li>
 </ol>
-<img alt="../_images/1104.png" class="align-center" src="../_images/1104.png" />
+<img alt="../_images/1106.png" class="align-center" src="../_images/1106.png" />
 <ol class="arabic simple" start="2">
-<li>In the details page, click the <em class="guilabel">2km</em> link under the product of
-your choice. Here we will download the <em class="guilabel">NDVI</em> product. <a class="reference external" href="http://en.wikipedia.org/wiki/Normalized_Difference_Vegetation_Index">Learn more
-about NDVI</a>.</li>
+<li><p class="first">Op de detailpagina, klik op de koppeling <em class="guilabel">2km</em> onder het product van uw keuze. Hier zullen we het product <em class="guilabel">NDVI</em> downloaden. <a class="reference external" href="http://en.wikipedia.org/wiki/Normalized_Difference_Vegetation_Index">Meer informatie over NDVI</a>.</p>
+</li>
 </ol>
-<img alt="../_images/248.png" class="align-center" src="../_images/248.png" />
+<img alt="../_images/250.png" class="align-center" src="../_images/250.png" />
 <ol class="arabic simple" start="3">
-<li>Click the <em class="guilabel">Download GeoTIFF file</em> link to download the raster
-image.</li>
+<li><p class="first">Klik op de koppeling <em class="guilabel">Download GeoTIFF file</em> om de rasterafbeelding te downloaden.</p>
+</li>
 </ol>
-<img alt="../_images/328.png" class="align-center" src="../_images/328.png" />
-<p>Repeat the process for all 7 FAS subsets for Brazil.</p>
+<img alt="../_images/333.png" class="align-center" src="../_images/333.png" />
+<p>Herhaal het proces voor alle 7 FAS-subsets voor Brazilië.</p>
 <p>For convenience, you can directly download sample data used in this tutorial from links below.</p>
-<p><a class="reference download internal" href="../_downloads/ne_10m_admin_0_countries1.zip"><tt class="xref download docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt></a>
-<a class="reference download internal" href="../_downloads/FAS_Brazil1.2013363.aqua.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil1.2013363.aqua.ndvi.2km.tif</span></tt></a>
-<a class="reference download internal" href="../_downloads/FAS_Brazil2.2013363.terra.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil2.2013363.terra.ndvi.2km.tif</span></tt></a>
-<a class="reference download internal" href="../_downloads/FAS_Brazil3.2013363.aqua.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil3.2013363.aqua.ndvi.2km.tif</span></tt></a>
-<a class="reference download internal" href="../_downloads/FAS_Brazil4.2013363.aqua.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil4.2013363.aqua.ndvi.2km.tif</span></tt></a>
-<a class="reference download internal" href="../_downloads/FAS_Brazil5.2013363.aqua.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil5.2013363.aqua.ndvi.2km.tif</span></tt></a>
-<a class="reference download internal" href="../_downloads/FAS_Brazil6.2013363.terra.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil6.2013363.terra.ndvi.2km.tif</span></tt></a>
-<a class="reference download internal" href="../_downloads/FAS_Brazil7.2013363.aqua.ndvi.2km.tif"><tt class="xref download docutils literal"><span class="pre">FAS_Brazil7.2013363.aqua.ndvi.2km.tif</span></tt></a></p>
-<p>Data Sources: <a class="reference internal" href="credits.html#lance" id="id1">[LANCE]</a> <a class="reference internal" href="credits.html#naturalearth" id="id2">[NATURALEARTH]</a></p>
+<p><a class="reference external" href="../../downloads/ne_10m_admin_0_countries.zip">ne_10m_admin_0_countries.zip</a></p>
+<p><a class="reference external" href="../../downloads/FAS_Brazil1.2013363.aqua.ndvi.2km.tif">FAS_Brazil1.2013363.aqua.ndvi.2km.tif</a></p>
+<p><a class="reference external" href="../../downloads/FAS_Brazil2.2013363.terra.ndvi.2km.tif">FAS_Brazil2.2013363.terra.ndvi.2km.tif</a></p>
+<p><a class="reference external" href="../../downloads/FAS_Brazil3.2013363.aqua.ndvi.2km.tif">FAS_Brazil3.2013363.aqua.ndvi.2km.tif</a></p>
+<p><a class="reference external" href="../../downloads/FAS_Brazil4.2013363.aqua.ndvi.2km.tif">FAS_Brazil4.2013363.aqua.ndvi.2km.tif</a></p>
+<p><a class="reference external" href="../../downloads/FAS_Brazil5.2013363.aqua.ndvi.2km.tif">FAS_Brazil5.2013363.aqua.ndvi.2km.tif</a></p>
+<p><a class="reference external" href="../../downloads/FAS_Brazil6.2013363.terra.ndvi.2km.tif">FAS_Brazil6.2013363.terra.ndvi.2km.tif</a></p>
+<p><a class="reference external" href="../../downloads/FAS_Brazil7.2013363.aqua.ndvi.2km.tif">FAS_Brazil7.2013363.aqua.ndvi.2km.tif</a></p>
+<p>Gegevensbronnen: <a class="reference internal" href="credits.html#lance" id="id1">[LANCE]</a> <a class="reference internal" href="credits.html#naturalearth" id="id2">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink naar deze titel">¶</a></h2>
 <ol class="arabic simple" start="4">
-<li>Open QGIS and go to <em class="menuselection">Layer ‣ Add Raster Layer..</em>.</li>
+<li><p class="first">Open QGIS en ga naar <em class="menuselection">Kaartlagen ‣ Laag toevoegen ‣ Rasterlaag toevoegen..</em>.</p>
+</li>
 </ol>
-<img alt="../_images/422.png" class="align-center" src="../_images/422.png" />
+<img alt="../_images/423.png" class="align-center" src="../_images/423.png" />
 <ol class="arabic simple" start="5">
-<li>Browse to the directory with the individual images. Hold down the <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>
-key and click on the image files to make a multiple selection. Click
-<em class="guilabel">Open</em>.</li>
+<li><p class="first">Blader naar de map met de individuele afbeeldingen. Houd de <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>-toets ingedrukt en klik op de afbeeldingsbestanden om een meervoudige selectie te maken. Klik op <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
-<img alt="../_images/523.png" class="align-center" src="../_images/523.png" />
+<img alt="../_images/524.png" class="align-center" src="../_images/524.png" />
 <ol class="arabic simple" start="6">
-<li>You will see the images load up in the Table of Content on the left panel.
-Now let us create a single <cite>Mosaic</cite> image from all these individual images.
-Click on <em class="menuselection">Raster ‣ Miscellaneous ‣ Merge</em>.</li>
+<li><p class="first">U zult de afbeeldingen worden geladen in de inhoudsopgave in het paneel links. Laten we nu één enkele afbeelding <cite>Mosaic</cite> maken uit al deze individuele afbeeldingen. Klik op <em class="menuselection">Raster ‣ Allerlei ‣ Samenvoegen</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Notitie</p>
-<p class="last">The <em class="guilabel">Raster</em> menu in QGIS comes from a core plugin called
-<em class="guilabel">GdalTools</em>. If you do not see the <em class="guilabel">Raster</em> menu,
-enable the <em class="guilabel">GdalTools</em> plugin from <em class="menuselection">Plugins ‣
-Manage and install plugins ‣ Installed</em>. See <a class="reference internal" href="using_plugins.html"><em>Plug-ins gebruiken</em></a> for more details.</p>
+<p class="last">Het menu <em class="guilabel">Raster</em> in QGIS komt uit een bronplug-in, genaamd <em class="guilabel">GdalTools</em>. Als u het menu <em class="guilabel">Raster</em> niet ziet, schakel dan de plug-in <em class="guilabel">GdalTools</em> in via <em class="menuselection">Plug-ins ‣ Plug-ins beheren en installeren ‣ Geïnstalleerd</em>. Zie <a class="reference internal" href="using_plugins.html"><em>Plug-ins gebruiken</em></a> voor meer details.</p>
 </div>
-<img alt="../_images/621.png" class="align-center" src="../_images/621.png" />
+<img alt="../_images/622.png" class="align-center" src="../_images/622.png" />
 <ol class="arabic simple" start="7">
-<li>In the <em class="guilabel">Merge</em> dialog, click <em class="guilabel">Select...</em> next to
-<em class="guilabel">Input files</em> and browse to the directory containing all
-the individual geotiffs. Keep holding <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> key and select all the.
-subsets. Now click <em class="guilabel">Select...</em> next to <em class="guilabel">Output file</em>
-and name the output as <tt class="docutils literal"><span class="pre">Brazil_mosaic.tif</span></tt>. At the bottom, check the box next to
-<em class="guilabel">Load into canvas when finished</em>. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Klik, in het dialoogvenster <em class="guilabel">Samenvoegen</em>, op <em class="guilabel">Selecteren...</em> naast <em class="guilabel">Invoerbestanden</em> en blader naar de map die alle individuele geotiffs bevat. Houd de <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>-toets ingedrukt en selecteer alle subsets. Klik nu op <em class="guilabel">Selecteren...</em> naast <em class="guilabel">Uitvoerbestand</em> en noem het uitvoerbestand <tt class="docutils literal"><span class="pre">Brazil_mosaic.tif</span></tt>. Selecteer, onder in het venster, het vak naast <em class="guilabel">Na afloop in kaartvenster laden</em>. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
-<img alt="../_images/721.png" class="align-center" src="../_images/721.png" />
+<img alt="../_images/722.png" class="align-center" src="../_images/722.png" />
 <ol class="arabic simple" start="8">
-<li>You will get a pop-up message saying <cite>Processing complete</cite>, once the mosaic is
-created and loaded to the QGIS Canvas. You will see that the individual
-images and now combined and mosaiced into a single layer. You can now turn
-off individual layers by un-checking the box next to them.</li>
+<li><p class="first">U zult een pop-upbericht zien dat zegt <cite>Verwerking afgerond</cite>, als het mozaïek is gemaakt en geladen in het kaartvenster van QGIS. U zult zien dat de individuele afbeeldingen nu zijn gecombineerd en als mozaïek in één enkele laag. U kunt nu de individuele lagen uitschakelen door het vak ernaast te deselecteren.</p>
+</li>
 </ol>
-<img alt="../_images/820.png" class="align-center" src="../_images/820.png" />
+<img alt="../_images/821.png" class="align-center" src="../_images/821.png" />
 <ol class="arabic simple" start="9">
-<li>Another Raster operation you can do is to subset or <cite>crop</cite> an image. We can
-use a polygon from a vector layer to crop the raster to the exact shape.
-Let&#8217;s load the country polygons shapefile we downloaded from Natural Earth.
-Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Een andere rasterbewerking die u kunt uitvoeren is een subset te maken of <cite>croppen</cite> van een afbeelding. We kunnen een polygoon uit een vectorlaag gebruiken om het raster bij te snijden tot de exacte vorm. Laten we het shapefile met polygonen van landen laden dat we downloaden van Natural Earth. Ga naar <em class="menuselection">Kaartlagen ‣ Laag toevoegen ‣ Vectorlaag toevoegen</em>.</p>
+</li>
 </ol>
-<img alt="../_images/918.png" class="align-center" src="../_images/918.png" />
+<img alt="../_images/919.png" class="align-center" src="../_images/919.png" />
 <ol class="arabic simple" start="10">
-<li>Select the <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt> file and click
-<em class="guilabel">Open</em>. When prompted to select the layer within the zip file,
-select <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt>.</li>
+<li><p class="first">Selecteer het zip-bestand <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt> en klik op <em class="guilabel">Openen</em>. Indien gevraagd om de laag binnen het zip-bestand te selecteren, selecteer dan <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt>.</p>
+</li>
 </ol>
-<img alt="../_images/1019.png" class="align-center" src="../_images/1019.png" />
+<img alt="../_images/1020.png" class="align-center" src="../_images/1020.png" />
 <ol class="arabic simple" start="11">
-<li>Once the vector layer is loaded, we want to select and extract the polygon
-for Brazil. Select the <em class="guilabel">Select Single Feature</em> tool from the
-toolbar.</li>
+<li><p class="first">Als de vectorlaag eenmaal is geladen, willen we de polygoon voor Brazilië selecteren en uitnemen. Selecteer het gereedschap <em class="guilabel">Object(en) selecteren</em> op de werkbalk.</p>
+</li>
 </ol>
 <img alt="../_images/1124.png" class="align-center" src="../_images/1124.png" />
 <ol class="arabic simple" start="12">
-<li>Click anywhere on the Brazil polygon and it will be selected.</li>
+<li><p class="first">Klik ergens in de polygoon van Brazilië en die zal worden geselecteerd.</p>
+</li>
 </ol>
-<img alt="../_images/1220.png" class="align-center" src="../_images/1220.png" />
+<img alt="../_images/1221.png" class="align-center" src="../_images/1221.png" />
 <ol class="arabic simple" start="13">
-<li>Right-click the <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> layer and select
-<em class="guilabel">Save Selection As...</em>.</li>
+<li><p class="first">Klik met rechts op de laag <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> en selecteer <em class="guilabel">Opslaan als...</em>.</p>
+</li>
 </ol>
-<img alt="../_images/1318.png" class="align-center" src="../_images/1318.png" />
+<img alt="../_images/1319.png" class="align-center" src="../_images/1319.png" />
 <ol class="arabic simple" start="14">
-<li>Name your output as <tt class="docutils literal"><span class="pre">brazil_boundary.shp</span></tt> and make sure <em class="guilabel">Add
-saved file to map</em> box is checked. click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Noem uw uitvoer <tt class="docutils literal"><span class="pre">brazil_boundary.shp</span></tt> and make sure <em class="guilabel">Add saved file to map</em> box is checked. click <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1418.png" class="align-center" src="../_images/1418.png" />
 <ol class="arabic simple" start="15">
-<li>You will see the Brazil boundary polygon now loaded in QGIS.</li>
+<li><p class="first">U zult zien dat de polygoon met de grenzen van Brazilië nu wordt geladen in QGIS.</p>
+</li>
 </ol>
-<img alt="../_images/1516.png" class="align-center" src="../_images/1516.png" />
+<img alt="../_images/1517.png" class="align-center" src="../_images/1517.png" />
 <ol class="arabic simple" start="16">
-<li>Now go to <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</li>
+<li><p class="first">Ga nu naar <em class="menuselection">Raster ‣ Extractie ‣ Clipper</em>.</p>
+</li>
 </ol>
-<img alt="../_images/1616.png" class="align-center" src="../_images/1616.png" />
+<img alt="../_images/1617.png" class="align-center" src="../_images/1617.png" />
 <ol class="arabic simple" start="17">
-<li>Select the <em class="guilabel">input file (raster)</em> as <tt class="docutils literal"><span class="pre">Brazil_mosaic</span></tt>. Name the
-<em class="guilabel">Output file</em> as <tt class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></tt>. In the
-<em class="guilabel">Clipping mode</em> section, choose <em class="guilabel">Mask layer</em>. Select
-the newly created <tt class="docutils literal"><span class="pre">brazil_boundary</span></tt> as the mask layer. Check the box next
-to <em class="guilabel">Load into canvas when finished</em>. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Selecteer <em class="guilabel">invoerbestand (raster)</em> als <tt class="docutils literal"><span class="pre">Brazil_mosaic</span></tt>. Noem het <em class="guilabel">Uitvoerbestand</em> <tt class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></tt>. Kies, in het gedeelte <em class="guilabel">Clipping modus</em>, <em class="guilabel">Maskeerlaag</em>. Selecteer de nieuw gemaakte <tt class="docutils literal"><span class="pre">brazil_boundary</span></tt> als de maskeerlaag. Selecteer het vak naast <em class="guilabel">Na afloop in kaartvenster laden</em>. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
-<img alt="../_images/1715.png" class="align-center" src="../_images/1715.png" />
+<img alt="../_images/1716.png" class="align-center" src="../_images/1716.png" />
 <ol class="arabic simple" start="18">
-<li>The new cropped layer will be loaded into QGIS. You will notice the black
-pixels surrounding the actual mosaic. Let&#8217;s remove that. Right-click on the
-<tt class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></tt> layer and select <em class="guilabel">Properties</em>.</li>
+<li><p class="first">De nieuw gecropte laag zal worden geladen in QGIS. U zult de zwarte pixels opmerken die de actuele mozaïek omsluiten. Laten we die verwijderen. Klik met rechts op de laag <tt class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></tt> en selecteer <em class="guilabel">Eigenschappen</em>.</p>
+</li>
 </ol>
-<img alt="../_images/1815.png" class="align-center" src="../_images/1815.png" />
+<img alt="../_images/1816.png" class="align-center" src="../_images/1816.png" />
 <ol class="arabic simple" start="19">
-<li>Go to the <em class="guilabel">Transparency</em> tab, and add <cite>0</cite> as an
-<em class="guilabel">Additional no data value</em>.</li>
+<li><p class="first">Ga naar de tab <em class="guilabel">Transparantie</em> en voeg <cite>0</cite> toe als een <em class="guilabel">Aanvullende &#8216;no data&#8217;-waarde</em>.</p>
+</li>
 </ol>
-<img alt="../_images/1913.png" class="align-center" src="../_images/1913.png" />
+<img alt="../_images/1914.png" class="align-center" src="../_images/1914.png" />
 <ol class="arabic simple" start="20">
-<li>Now you have a nice mosaic cropped to a country boundary that you can use
-in your project as a background layer or do further analysis on.</li>
+<li><p class="first">Nu heeft u een mooi mozaiek, bijgesneden tot een landsgrens die u in uw project kunt gebruiken als achtergrond of waarop u verder analyses kunt uitvoeren.</p>
+</li>
 </ol>
-<img alt="../_images/2010.png" class="align-center" src="../_images/2010.png" />
+<img alt="../_images/2011.png" class="align-center" src="../_images/2011.png" />
 </div>
 </div>
 
@@ -374,7 +353,7 @@ in your project as a background layer or do further analysis on.</li>
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Apr 22, 2015.<br/>
+      Laatste aanpassing op May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

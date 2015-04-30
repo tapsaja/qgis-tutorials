@@ -99,13 +99,14 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Realizzare unioni tabellari</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Realizzare unioni spaziali (Spatial Joins)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Analisi Punti nel Poligono</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Realizzare delle mappe di concentrazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Realizzare Heatmaps (mappe di concentrazione)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Utilizzare le interrogazioni spaziali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analisi di prossimità</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Campionare i dati di un raster usando punti o poligoni</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolazione di dati puntuali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Elaborazioni &#8220;batch&#8221; usando il Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Usare il browser di QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
@@ -209,12 +210,12 @@
 <li><p class="first">Scaricate il file .zip dei confini amministrativi dei quartieri di New York <a class="reference external" href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm">Borough Boundaries</a> usando l&#8217;opzione Export sul portale.</p>
 </li>
 </ol>
-<img alt="../_images/190.png" class="align-center" src="../_images/190.png" />
+<img alt="../_images/1101.png" class="align-center" src="../_images/1101.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Scaricare il file .zip <a class="reference external" href="https://data.cityofnewyork.us/Health/Nursing-Homes/9tqc-rnkr">Nursing Homes</a>  (case di cura) usando l&#8217;opzione export del portale.</p>
 </li>
 </ol>
-<img alt="../_images/236.png" class="align-center" src="../_images/236.png" />
+<img alt="../_images/238.png" class="align-center" src="../_images/238.png" />
 <p>For convenience, the version of datasets used in this tutorial can be
 downloaded directly from the links below:</p>
 <p>Download <a class="reference download internal" href="../_downloads/nybb_12c.zip"><tt class="xref download docutils literal"><span class="pre">Borough</span> <span class="pre">Boundaries</span></tt></a></p>
@@ -226,27 +227,27 @@ downloaded directly from the links below:</p>
 <li><p class="first">Andate su <em class="menuselection">Layer ‣ Aggiungi Vettore</em>. Cercate il file .zip scaricato  <a href="#id1"><span class="problematic" id="id2">``</span></a>nybb_12c.zip` e selezionatre <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/323.png" class="align-center" src="../_images/323.png" />
+<img alt="../_images/326.png" class="align-center" src="../_images/326.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Selezionate il layer <tt class="docutils literal"><span class="pre">nybb.shp</span></tt> e fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/417.png" class="align-center" src="../_images/417.png" />
+<img alt="../_images/418.png" class="align-center" src="../_images/418.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Ripetete i passi 3 e 4 per l&#8217;altro file <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.zip</span></tt> e caricate il layer <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.shp</span></tt>. Quando entrambi i file sono stati caricati fate click con il tasto destro del mouse sul layer  <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> e selezionate <em class="guilabel">Apri la tabella degli Attributi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/518.png" class="align-center" src="../_images/518.png" />
+<img alt="../_images/519.png" class="align-center" src="../_images/519.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Esaminiamo gli attributi che sono disponibili per ciascuna geometria. Stante che il nostro obiettivo è quello di calcolare il numero totale di posti nelle case di cura per ciascun quartiere, si potrebbe utilizzare l&#8217;attributo <strong>Capacity</strong>, che indica i posti letto disponibili per ciascuna casa di cura, per unirlo al layer dei confini amministrativi dei quartieri di New York.</p>
 </li>
 </ol>
-<img alt="../_images/617.png" class="align-center" src="../_images/617.png" />
+<img alt="../_images/618.png" class="align-center" src="../_images/618.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Andate dunque sul menu  <em class="menuselection">Vettore ‣ Strumenti di gestione dati ‣ Unisci attributi per posizione</em>.</p>
 </li>
 </ol>
-<img alt="../_images/716.png" class="align-center" src="../_images/716.png" />
+<img alt="../_images/717.png" class="align-center" src="../_images/717.png" />
 <ol class="arabic simple" start="8">
 <li>The <em class="guilabel">Target vector layer</em> is the one we want to add the attributes
 to. In our case, this will be the boroughs boundary <tt class="docutils literal"><span class="pre">nybb</span></tt> layer. The
@@ -256,17 +257,17 @@ homes, select <em class="guilabel">Take summary of intersecting features</em> an
 <em class="guilabel">Sum</em>. Name the output file as <tt class="docutils literal"><span class="pre">nyc_borough_join.shp</span></tt>. In the
 <em class="guilabel">Output table</em> select <em class="guilabel">Keep all records`</em>.</li>
 </ol>
-<img alt="../_images/815.png" class="align-center" src="../_images/815.png" />
+<img alt="../_images/816.png" class="align-center" src="../_images/816.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Una volta terminato il processo, selezionate <em class="guilabel">Si</em> quando vi verrà chiesto se intendete aggiungere il layer alla TOC. Il nuovo <tt class="docutils literal"><span class="pre">nyc_borough_join</span></tt>  dovrebbe avere le geometrie prese dal layer  <tt class="docutils literal"><span class="pre">nybb</span></tt> unite spazialmente con gli attributi provenienti dal layer <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt>. Click con il tasto destro sul nuovo layer e selezionate <em class="guilabel">Apri Tabella degli Attributi</em> .</p>
 </li>
 </ol>
-<img alt="../_images/913.png" class="align-center" src="../_images/913.png" />
+<img alt="../_images/914.png" class="align-center" src="../_images/914.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Vedrete una colonna <strong>SUMCapacit**nella tabella degli attributi. Questa è la sommatoria dell&#8217;attributo **Capacity</strong> per le case di cura che cadono in ciascuna delle geometrie dei limiti amministrativi dei quartieri di New York.</p>
 </li>
 </ol>
-<img alt="../_images/1014.png" class="align-center" src="../_images/1014.png" />
+<img alt="../_images/1015.png" class="align-center" src="../_images/1015.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">E questa è la risposta che stavamo cercando. Ci sono tuttavia alcune colonne di cui non abbiamo bisogno. Puliamo il nostro risultato. Facciamo click sul pulsante <em class="guilabel">Modalità di Modifica</em>   e quindi sul pulsante <em class="guilabel">Elimina colonna</em>.</p>
 </li>
@@ -276,12 +277,12 @@ homes, select <em class="guilabel">Take summary of intersecting features</em> an
 <li><p class="first">Premete <tt class="kbd docutils literal"><span class="pre">Control-A</span></tt> per selezionare tutte le colonne nella casella di dialogo  <em class="guilabel">Rimuovi Attributi</em>. Poi tenete premuto il tasto <tt class="kbd docutils literal"><span class="pre">Control</span></tt> e de-selezionate le colonne che volete conservare. Click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1216.png" class="align-center" src="../_images/1216.png" />
+<img alt="../_images/1217.png" class="align-center" src="../_images/1217.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Nella tavola degli attributi fate di nuovo click sul pulsante <em class="guilabel">Modalità di modifica</em> per salvare i cambiamenti.</p>
 </li>
 </ol>
-<img alt="../_images/1314.png" class="align-center" src="../_images/1314.png" />
+<img alt="../_images/1315.png" class="align-center" src="../_images/1315.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Tornate nella finestra principale e usate lo strumento <em class="guilabel">Informazione elementi</em> per verificare che il file di output ha gli attributi desiderati per ogni geometria di quartiere.</p>
 </li>
@@ -312,7 +313,7 @@ homes, select <em class="guilabel">Take summary of intersecting features</em> an
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Apr 22, 2015.<br/>
+      Ultimo aggiornamento May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

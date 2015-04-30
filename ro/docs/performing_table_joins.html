@@ -105,11 +105,12 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolarea Datelor de tip Punct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea în serie, folosind cadrul de procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Utilizarea QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Construirea unui Plugin Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -217,52 +218,52 @@
 <li><p class="first">Mai întâi vom încărca fișierele shape ale zonelor de recenzare. Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1101.png" class="align-center" src="../_images/1101.png" />
+<img alt="../_images/1103.png" class="align-center" src="../_images/1103.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Navigați la  fișierul descărcat <cite>tl_2013_06_tract.zip</cite> și selectați-l. QGIS poate deschide direct fișierele zip, așa că nu este necesară decomprimarea prealabilă.</p>
 </li>
 </ol>
-<img alt="../_images/239.png" class="align-center" src="../_images/239.png" />
+<img alt="../_images/240.png" class="align-center" src="../_images/240.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Selectați stratul <cite>tl_2013_06_tract.shp</cite> și efectuați clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/325.png" class="align-center" src="../_images/325.png" />
+<img alt="../_images/328.png" class="align-center" src="../_images/328.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Veți vedea zonele recensământului încărcate în QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/419.png" class="align-center" src="../_images/419.png" />
+<img alt="../_images/420.png" class="align-center" src="../_images/420.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Faceți clic-dreapta pe layer și selectați <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/520.png" class="align-center" src="../_images/520.png" />
+<img alt="../_images/521.png" class="align-center" src="../_images/521.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Examinați atributele fișierele shape ale zonelor de recenzare. Pentru a uni un tabel cu acest fișier shape, avem nevoie de un atribut unic, comun, pentru fiecare entitate. În acest caz, câmpul <strong>GEOID</strong> reprezintă un identificator unic pentru fiecare zonă, și poate fi folosit pentru a <cite>lega</cite> acest fișier shape de orice alt tabel conținând același ID.</p>
 </li>
 </ol>
-<img alt="../_images/619.png" class="align-center" src="../_images/619.png" />
+<img alt="../_images/620.png" class="align-center" src="../_images/620.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Deschideți fișierul CSV <cite>ca_tracts_pop.csv</cite> într-un editor de texte. Veți observa că fiecare rând din fișier conține informații despre un zona de recenzie, alături de codul unic de identificare pe care l-am văzut în etapa anterioară. Rețineți că acest câmp este denumit <strong>GEO.id2</strong> în CSV. Observați, de asemenea, că în coloana <strong>D001</strong> este specificată cifra populației corespunzatoare fiecărei zone de recenzie.</p>
 </li>
 </ol>
-<img alt="../_images/718.png" class="align-center" src="../_images/718.png" />
+<img alt="../_images/719.png" class="align-center" src="../_images/719.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Am putea importa acest fișier csv, fără alte acțiuni suplimentare. Însă, tipul implicit al fiecarei coloane va <em>String</em> (text). Acest lucru este ok, cu excepția câmpului <cite>D001</cite> care conține cifrele referitoare la populație. Această coloană fiind de format text, nu am putea executa operațiunile matematice dorite. Pentru a indica aplicației QGIS că acest câmp este de tip numeric, trebuie să creăm un fișier <cite>companion</cite> cu extensia <cite>. csvt</cite>. Acest fișier va avea doar un singur rând, în care se va specifica tipul datelor pentru fiecare coloană. Salvați acest fișier sub denumirea <cite>ca_tracts_pop.csvt</cite>, în același director ca și fișierul <cite>.csv</cite> original. De asemenea, puteți <a class="reference download internal" href="../_downloads/ca_tracts_pop.csvt"><tt class="xref download docutils literal"><span class="pre">descărca</span> <span class="pre">fișierul</span> <span class="pre">csvt</span> <span class="pre">de</span> <span class="pre">aici.</span></tt></a></p>
 </li>
 </ol>
-<img alt="../_images/817.png" class="align-center" src="../_images/817.png" />
+<img alt="../_images/818.png" class="align-center" src="../_images/818.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Acum suntem gata pentru a importa fișierul CSV în QGIS. Mergeți la <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/915.png" class="align-center" src="../_images/915.png" />
+<img alt="../_images/916.png" class="align-center" src="../_images/916.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Navigați la folderul care conține fișierul CSV și selectați-l. Asigurați-vă că ați selectat <em class="guilabel">File format</em> ca <em class="guilabel">CSV (comma separated values)</em>. Din moment ce importăm acest lucru ca pe un tabel, trebuie să precizăm că dosarul nostru nu conține nici o geometrie. Selectați opțiunea <em class="guilabel">No geometry (attribute only table)</em>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1016.png" class="align-center" src="../_images/1016.png" />
+<img alt="../_images/1017.png" class="align-center" src="../_images/1017.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">CSV-ul va fi importat ca tabel în QGIS.</p>
 </li>
@@ -272,12 +273,12 @@
 <li><p class="first">Selectați <cite>stratul de tl_2013_06_tract</cite>. Faceți clic-dreapta pe el și selectați <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1218.png" class="align-center" src="../_images/1218.png" />
+<img alt="../_images/1219.png" class="align-center" src="../_images/1219.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">În fereastra de dialog <em class="guilabel">Layer Properties</em> selectați fila <em class="guilabel">Joins</em>. Faceți clic pe butonul <cite>+</cite> din partea de jos, pentru a adăuga o nouă uniune cu un tabel.</p>
 </li>
 </ol>
-<img alt="../_images/1316.png" class="align-center" src="../_images/1316.png" />
+<img alt="../_images/1317.png" class="align-center" src="../_images/1317.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">În fereastra de dialog <em class="guilabel">Add vector join</em>, selectați <cite>ca_tracts_pop</cite> pentru <em class="guilabel">Join layer</em>. Apoi, trebuie să selectăm câmpul cu id-uri unice atât din fișierul ​​shape cât și din fișierul CSV. Selectați <cite>GEO.id2</cite> și <cite>GEOID</cite> pentru <em class="guilabel">Join field</em> și respectiv <em class="guilabel">Target field</em>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
@@ -287,32 +288,32 @@
 <li><p class="first">Închideți fereastra de dialog <em class="guilabel">Layer Properties</em> și întoarceți-vă în principala fereastră a QGIS. În acest moment, câmpurile din fișierul CSV sunt urcate în fișierul shape. Faceți clic-dreapta pe stratul <cite>tl_2013_06_tract</cite> și selectați <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1514.png" class="align-center" src="../_images/1514.png" />
+<img alt="../_images/1515.png" class="align-center" src="../_images/1515.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Puteți observa acum un nou set de câmpuri, inclusiv câmpul <em class="guilabel">ca_tracts_pop_D001</em> adăugat fiecărei entități. Acum aveți acces la valoarea populației fiecărei zone de recenzie din fișierul CSV. Închideți tabela de atribute și reveniți la fereastra principală a QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/1614.png" class="align-center" src="../_images/1614.png" />
+<img alt="../_images/1615.png" class="align-center" src="../_images/1615.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Faceți clic dreapta pe stratul <cite>tl_2013_06_tract</cite> și selectați <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1713.png" class="align-center" src="../_images/1713.png" />
+<img alt="../_images/1714.png" class="align-center" src="../_images/1714.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Selectați fila <em class="guilabel">Style</em>. Selectați <em class="guilabel">Graduated</em> din meniul drop-down. Având în vedere că dorim să creăm o hartă a populației, vrem să atribuim diferite culori pentru fiecare entitate a zonelor de recenzie, în funcție de numărul populației. Selectați <em class="guilabel">ca_tracts_pop_D001</em> ca și <em class="guilabel">Column</em>. Selectați o gamă de culori pe placul dvs. din caseta <em class="guilabel">Color ramp</em>. În <em class="guilabel">Mode</em>, selectați <em class="guilabel">Quantile (Equal Count)</em>. Apoi, efectuați clic pe <em class="guilabel">Classify</em>. Veți vedea asignată o culoare diferită pentru anumite intervale de valori ale populației. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1813.png" class="align-center" src="../_images/1813.png" />
+<img alt="../_images/1814.png" class="align-center" src="../_images/1814.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Veți vedea acum o prezentare frumoasă a ariilor recensământului, stilizată cu ajutorul valorilor populației. Utilizați instrumentul <em class="guilabel">Zoom in</em> pentru a selecta o suprafață mai mică din strat.</p>
 </li>
 </ol>
-<img alt="../_images/1911.png" class="align-center" src="../_images/1911.png" />
+<img alt="../_images/1912.png" class="align-center" src="../_images/1912.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Aveți o hartă detaliată și precisă a populației din California. Puteți folosi aceeași tehnică pentru a crea hărți bazate pe diverse date ale recensămintelor.</p>
 </li>
 </ol>
-<img alt="../_images/208.png" class="align-center" src="../_images/208.png" />
+<img alt="../_images/209.png" class="align-center" src="../_images/209.png" />
 </div>
 </div>
 
@@ -338,7 +339,7 @@
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on Apr 22, 2015.<br/>
+      Last updated on May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

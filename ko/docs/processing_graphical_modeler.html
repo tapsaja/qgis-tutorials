@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="QGIS 탐색기 이용" href="using_qgis_browser.html" />
+    <link rel="next" title="Automating Map Creation with Print Composer Atlas" href="automating_map_creation.html" />
     <link rel="prev" title="프로세싱 프레임을 이용한 일괄처리과정" href="batch_processing.html" />
 
 <meta charset='utf-8'>
@@ -106,11 +106,12 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">점 데이터 보간법</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">프로세싱 프레임을 이용한 일괄처리과정</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">QGIS 탐색기 이용</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">레이어에서 버텍스 갯수 계측</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">BIL, BIP 혹은 BSQ 파일 열기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">파이썬 프로그램밍 시작</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">파이썬 플러그인 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">인접 폴리곤 찾기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">qgis2leaf로 웹 지도 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">QGIS에서 구글지도 커넥터 이용하기</a></li>
@@ -130,7 +131,7 @@
     </a>
   </li>
   <li>
-    <a href="using_qgis_browser.html" title="Next Chapter: QGIS 탐색기 이용"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">QGIS 탐색기 이용 &raquo;</span>
+    <a href="automating_map_creation.html" title="Next Chapter: Automating Map Creation with Print Composer Atlas"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Automating Map C... &raquo;</span>
     </a>
   </li>
               
@@ -229,19 +230,19 @@ and run it on the downloaded datasets.</p>
 <ol class="arabic simple">
 <li>Launch QGIS and go to <em class="menuselection">Processing ‣ Graphical Modeler...</em>.</li>
 </ol>
-<img alt="../_images/1103.png" class="align-center" src="../_images/1103.png" />
+<img alt="../_images/1105.png" class="align-center" src="../_images/1105.png" />
 <ol class="arabic simple" start="2">
 <li>The <em class="guilabel">Processing modeler</em> dialog contains a left-hand panel and a
 main canvas. Select the <em class="guilabel">Inputs</em> tab in the left-hand panel and
 drag the <em class="guilabel">+ Raster layer</em> to the canvas.</li>
 </ol>
-<img alt="../_images/246.png" class="align-center" src="../_images/246.png" />
+<img alt="../_images/248.png" class="align-center" src="../_images/248.png" />
 <ol class="arabic simple" start="3">
 <li>A <em class="guilabel">Parameter definition</em> dialog will pop-up. Enter <tt class="docutils literal"><span class="pre">Input</span></tt> as
 the <em class="guilabel">Parameter name</em> and mark <tt class="docutils literal"><span class="pre">Yes</span></tt> to <em class="guilabel">Required</em>.
 Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/327.png" class="align-center" src="../_images/327.png" />
+<img alt="../_images/330.png" class="align-center" src="../_images/330.png" />
 <ol class="arabic simple" start="4">
 <li>You will see a box with the name <em class="guilabel">Input</em> appear in the canvas.
 This represents the landconver raster that we will use as input. Next step
@@ -258,12 +259,12 @@ applications</a>
 for instructions on how to install SAGA. If you cannot install SAGA, you may
 skip this step entirely.</p>
 </div>
-<img alt="../_images/421.png" class="align-center" src="../_images/421.png" />
+<img alt="../_images/422.png" class="align-center" src="../_images/422.png" />
 <ol class="arabic simple" start="5">
 <li>A configuration dialog for <em class="guilabel">Majority Filter</em> will be presented.
 Leave the values to their default and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/522.png" class="align-center" src="../_images/522.png" />
+<img alt="../_images/523.png" class="align-center" src="../_images/523.png" />
 <ol class="arabic simple" start="6">
 <li>You will note that there is now a new box named <em class="guilabel">Majority Filter</em>
 in the canvas and it is connected to the <em class="guilabel">Input</em> box. This is
@@ -278,18 +279,18 @@ algorithm and drag it to the canvas.</li>
 holding the left mouse button. You can also use the scroll-wheel to zoom in
 and out in the model cavas.</p>
 </div>
-<img alt="../_images/620.png" class="align-center" src="../_images/620.png" />
+<img alt="../_images/621.png" class="align-center" src="../_images/621.png" />
 <ol class="arabic simple" start="7">
 <li>Select &#8216;Filtered Grid&#8217; from algorithm &#8216;Majority Filter&#8217; as the value for
 <em class="guilabel">Input layer</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/720.png" class="align-center" src="../_images/720.png" />
+<img alt="../_images/721.png" class="align-center" src="../_images/721.png" />
 <ol class="arabic simple" start="8">
 <li>The final step in the workflow is to query for a class value and create a
 new layer from the matching features. Search for the <tt class="docutils literal"><span class="pre">Extract</span> <span class="pre">by</span>
 <span class="pre">attribute</span></tt> algorithm and drag it the canvas.</li>
 </ol>
-<img alt="../_images/819.png" class="align-center" src="../_images/819.png" />
+<img alt="../_images/820.png" class="align-center" src="../_images/820.png" />
 <ol class="arabic simple" start="9">
 <li>Select &#8216;Vectorized&#8217; from algorithm &#8216;Polygonize (raster to vector) as the
 <em class="guilabel">Input Layer</em>. We want to extract the pixels that represent
@@ -299,12 +300,12 @@ Croplands. The corresponding pixel value for this class will be 12. (see
 output of this operation will be the final result, we need to name the
 output. Enter <tt class="docutils literal"><span class="pre">vectorized</span> <span class="pre">class</span></tt> as the <em class="guilabel">Output</em>.</li>
 </ol>
-<img alt="../_images/917.png" class="align-center" src="../_images/917.png" />
+<img alt="../_images/918.png" class="align-center" src="../_images/918.png" />
 <ol class="arabic simple" start="10">
 <li>Enter the <em class="guilabel">Model name</em> as <tt class="docutils literal"><span class="pre">vectorize</span></tt> and <em class="guilabel">Group
 name</em> as <tt class="docutils literal"><span class="pre">raster</span></tt>. Click the <em class="guilabel">Save</em> button.</li>
 </ol>
-<img alt="../_images/1018.png" class="align-center" src="../_images/1018.png" />
+<img alt="../_images/1019.png" class="align-center" src="../_images/1019.png" />
 <ol class="arabic simple" start="11">
 <li>Name the model <tt class="docutils literal"><span class="pre">vectorize</span></tt> and click <em class="guilabel">Save</em>.</li>
 </ol>
@@ -314,13 +315,13 @@ name</em> as <tt class="docutils literal"><span class="pre">raster</span></tt>. 
 QGIS window. Go to <em class="menuselection">Layer ‣ Add Layer ‣ Add Raster
 Layer...</em>.</li>
 </ol>
-<img alt="../_images/1219.png" class="align-center" src="../_images/1219.png" />
+<img alt="../_images/1220.png" class="align-center" src="../_images/1220.png" />
 <ol class="arabic simple" start="13">
 <li>Browse to the downloaded <tt class="docutils literal"><span class="pre">LC_hd_global_2001.tif.gz</span></tt> file and click
 <em class="guilabel">Open</em>. Once the raster is loaded, go to
 <em class="menuselection">Processing ‣ Toolbox</em>.</li>
 </ol>
-<img alt="../_images/1317.png" class="align-center" src="../_images/1317.png" />
+<img alt="../_images/1318.png" class="align-center" src="../_images/1318.png" />
 <ol class="arabic simple" start="14">
 <li>Find the newly created model under <em class="menuselection">Models ‣ raster ‣
 vectorize</em>. Double-click to launch the model.</li>
@@ -330,80 +331,80 @@ vectorize</em>. Double-click to launch the model.</li>
 <li>Select <tt class="docutils literal"><span class="pre">LC_hd_global_2001</span></tt> as the <em class="guilabel">Input</em> and click
 <em class="guilabel">Run</em>.</li>
 </ol>
-<img alt="../_images/1515.png" class="align-center" src="../_images/1515.png" />
+<img alt="../_images/1516.png" class="align-center" src="../_images/1516.png" />
 <ol class="arabic simple" start="16">
 <li>You will see all the steps being executed without any user input. Once the
 processing finishes, a new layer <tt class="docutils literal"><span class="pre">vectorized_class</span></tt> will be added to
 QGIS. Let&#8217;s improve the model a little bit. Right-click on the
 <tt class="docutils literal"><span class="pre">vectorize</span></tt> model and select <em class="guilabel">Edit model</em>.</li>
 </ol>
-<img alt="../_images/1615.png" class="align-center" src="../_images/1615.png" />
+<img alt="../_images/1616.png" class="align-center" src="../_images/1616.png" />
 <ol class="arabic simple" start="17">
 <li>In Step 12, we hard-coded the value <tt class="docutils literal"><span class="pre">12</span></tt> as the class value. Instead, we
 can specify it as a input parameter which the user can change. To add this,
 switch to the <em class="guilabel">Inputs</em> tab and drag the <em class="guilabel">+ String</em> to
 the model.</li>
 </ol>
-<img alt="../_images/1714.png" class="align-center" src="../_images/1714.png" />
+<img alt="../_images/1715.png" class="align-center" src="../_images/1715.png" />
 <ol class="arabic simple" start="18">
 <li>Enter the <em class="guilabel">Parameter Name</em> as <tt class="docutils literal"><span class="pre">Class</span></tt>. Enter <tt class="docutils literal"><span class="pre">12</span></tt> as the
 <em class="guilabel">Default value</em>.</li>
 </ol>
-<img alt="../_images/1814.png" class="align-center" src="../_images/1814.png" />
+<img alt="../_images/1815.png" class="align-center" src="../_images/1815.png" />
 <ol class="arabic simple" start="19">
 <li>We will now change the <tt class="docutils literal"><span class="pre">Extract</span> <span class="pre">by</span> <span class="pre">attribute</span></tt> algorithm to use this input
 instead of the hard-coded value. Click the <em class="guilabel">Edit</em> button next to
 the <em class="guilabel">Extract by attribute</em> box.</li>
 </ol>
-<img alt="../_images/1912.png" class="align-center" src="../_images/1912.png" />
+<img alt="../_images/1913.png" class="align-center" src="../_images/1913.png" />
 <ol class="arabic simple" start="20">
 <li>Click the dropdown arrow for <em class="guilabel">Value</em> and select <tt class="docutils literal"><span class="pre">Class</span></tt>. Click
 <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/209.png" class="align-center" src="../_images/209.png" />
+<img alt="../_images/2010.png" class="align-center" src="../_images/2010.png" />
 <ol class="arabic simple" start="21">
 <li>You will see from the model diagram that the <em class="guilabel">Extract by
 attribute</em> algorithm now uses 2 inputs. The modeler has a shortcut to
 launch the model and test it. Click the <em class="guilabel">Run</em> button from the
 toolbar.</li>
 </ol>
-<img alt="../_images/2114.png" class="align-center" src="../_images/2114.png" />
+<img alt="../_images/2115.png" class="align-center" src="../_images/2115.png" />
 <ol class="arabic simple" start="22">
 <li>Notice that the model dialog has a new editable field called
 <em class="guilabel">Class</em>. Enter <tt class="docutils literal"><span class="pre">16</span></tt> as the <em class="guilabel">Class</em> value and click
 <em class="guilabel">Run</em>.</li>
 </ol>
-<img alt="../_images/2211.png" class="align-center" src="../_images/2211.png" />
+<img alt="../_images/2214.png" class="align-center" src="../_images/2214.png" />
 <ol class="arabic simple" start="23">
 <li>Once the processing finishes, you will see that with just a click of a
 button we were able to run a complex workflow and extract the area for
 class 16.</li>
 </ol>
-<img alt="../_images/2310.png" class="align-center" src="../_images/2310.png" />
+<img alt="../_images/2311.png" class="align-center" src="../_images/2311.png" />
 <ol class="arabic simple" start="24">
 <li>Now that our model is ready, we can run it just as easily on a new raster
 layer. Load the <tt class="docutils literal"><span class="pre">LC_hd_global_2012.tif.gz</span></tt> file by going to
 <em class="menuselection">Layer ‣ Add Layer ‣ Add Raster Layer...</em>. Click the
 <em class="guilabel">vectorize`</em> model from the <em class="guilabel">Processing Toolbox</em> panel.</li>
 </ol>
-<img alt="../_images/247.png" class="align-center" src="../_images/247.png" />
+<img alt="../_images/249.png" class="align-center" src="../_images/249.png" />
 <ol class="arabic simple" start="25">
 <li>Pick the <tt class="docutils literal"><span class="pre">LC_hd_global_2012</span></tt> layer as the <em class="guilabel">Input</em> and click
 <em class="guilabel">Run</em>.</li>
 </ol>
-<img alt="../_images/256.png" class="align-center" src="../_images/256.png" />
+<img alt="../_images/257.png" class="align-center" src="../_images/257.png" />
 <ol class="arabic simple" start="26">
 <li>Once the new output is loaded, you can compare the changes in the Croplands
 from 2001 to 2012.</li>
 </ol>
-<img alt="../_images/266.png" class="align-center" src="../_images/266.png" />
+<img alt="../_images/267.png" class="align-center" src="../_images/267.png" />
 <ol class="arabic simple" start="27">
 <li>It is always a good idea to add documentation to your model. The modeler
 has a built-in <em class="guilabel">Help editor</em> that allows you to embed help
 directly in the model. Right-click the <tt class="docutils literal"><span class="pre">vectorize</span></tt> model and select
 <em class="guilabel">Edit model</em>.</li>
 </ol>
-<img alt="../_images/276.png" class="align-center" src="../_images/276.png" />
+<img alt="../_images/277.png" class="align-center" src="../_images/277.png" />
 <ol class="arabic simple" start="28">
 <li>Click the <em class="guilabel">Edit model help</em> button from the toolbar.</li>
 </ol>
@@ -459,7 +460,7 @@ directory location will depend on the platform as follows: (Replace
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      최종 업데이트: Apr 22, 2015<br/>
+      최종 업데이트: May 01, 2015<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

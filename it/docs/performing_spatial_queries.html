@@ -31,7 +31,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Analisi di prossimità" href="nearest_neighbor_analysis.html" />
-    <link rel="prev" title="Realizzare delle mappe di concentrazione" href="creating_heatmaps.html" />
+    <link rel="prev" title="Realizzare Heatmaps (mappe di concentrazione)" href="creating_heatmaps.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -99,13 +99,14 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Realizzare unioni tabellari</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Realizzare unioni spaziali (Spatial Joins)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Analisi Punti nel Poligono</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Realizzare delle mappe di concentrazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Realizzare Heatmaps (mappe di concentrazione)</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Utilizzare le interrogazioni spaziali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analisi di prossimità</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Campionare i dati di un raster usando punti o poligoni</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolazione di dati puntuali</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Elaborazioni &#8220;batch&#8221; usando il Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Usare il browser di QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Calcolare il numero dei vertici in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
@@ -126,7 +127,7 @@
               
                 
   <li>
-    <a href="creating_heatmaps.html" title="Previous Chapter: Realizzare delle mappe di concentrazione"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Realizzare delle...</span>
+    <a href="creating_heatmaps.html" title="Previous Chapter: Realizzare Heatmaps (mappe di concentrazione)"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Realizzare Heatm...</span>
     </a>
   </li>
   <li>
@@ -225,42 +226,42 @@
 <li><p class="first">Dopo che avete scaricato i dati, aprite QGIS. Andate su <em class="menuselection">Layer ‣ Aggiungi Vettore...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1100.png" class="align-center" src="../_images/1100.png" />
+<img alt="../_images/1102.png" class="align-center" src="../_images/1102.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Fate Click su <em class="guilabel">Sfoglia</em> e portatevi nella cartella dove avete scaricato i file .zip.</p>
 </li>
 </ol>
-<img alt="../_images/237.png" class="align-center" src="../_images/237.png" />
+<img alt="../_images/239.png" class="align-center" src="../_images/239.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Trovate i file .zip scaricati. Tenete premuto il tasto <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> e fate click su entrambi i file zip per selezionarli. Click su <em class="guilabel">Apri</em>.</p>
 </li>
 </ol>
-<img alt="../_images/324.png" class="align-center" src="../_images/324.png" />
+<img alt="../_images/327.png" class="align-center" src="../_images/327.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Apparirà una finestra di dialogo che vi chiederà di selezionare il layer da aprire tra i file zip. Selezionate <tt class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines.shp</span></tt> e fate click su  <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/418.png" class="align-center" src="../_images/418.png" />
+<img alt="../_images/419.png" class="align-center" src="../_images/419.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Visto che avete operato una selezione multipla, ripetete l&#8217;operazione per il file successivo. Selezionate  10m_populated_places_simple.shp  e fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/519.png" class="align-center" src="../_images/519.png" />
+<img alt="../_images/520.png" class="align-center" src="../_images/520.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Potrete vedere ora entrambi gli shapefile caricati in QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/618.png" class="align-center" src="../_images/618.png" />
+<img alt="../_images/619.png" class="align-center" src="../_images/619.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Genereremo dei buffer sia nel  layer puntuale che in quello lineare. Lo strumento di geoprecessing per il <cite>Buffer</cite> in QGIS usa la numerazione metrico decimale ordinaria per calcolare la misura del buffer. Ma i layer con cui stiamo lavorando sono in un <cite>Sistema di Riferimento (SR) basato su Coordinate Geografiche</cite> che, com&#8217;è noto, vengono calcolate in  <cite>gradi</cite>. . Questo non soddisfa le esigenze delle nostre analisi che prevedono invece l&#8217;uso di unità di misura come i <cite>metri</cite> o i <cite>chilometri</cite>.  Per risolvere questo problema dobbiamo allora ri-proiettare i nostri layer su un <cite>Sistema di Coordinate Proiettare (SR)</cite>. Click sul tasto destro del mouse sul layer  <tt class="docutils literal"><span class="pre">10m_populated_places_simple</span> <span class="pre">layer</span></tt>  e quindi scegliete  <em class="guilabel">Salva con Nome</em>.</p>
 </li>
 </ol>
-<img alt="../_images/717.png" class="align-center" src="../_images/717.png" />
+<img alt="../_images/718.png" class="align-center" src="../_images/718.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Nella finestra di dialogo <em class="guilabel">Salva i vettori come...</em> scegliete il tasto <em class="guilabel">Sfoglia</em> accanto alla voce <em class="guilabel">Salva con Nome</em> e assegnate al nuovo file il nome di <tt class="docutils literal"><span class="pre">populated_places_reprojected.shp</span></tt> . Ora fate click sul successivo tasto <em class="guilabel">Sfoglia</em> vicino alla voce  <em class="guilabel">Sist Rif</em>.</p>
 </li>
 </ol>
-<img alt="../_images/816.png" class="align-center" src="../_images/816.png" />
+<img alt="../_images/817.png" class="align-center" src="../_images/817.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Ora dobbiamo scegliere un Sistema di Riferimento (SR) che sia adeguato ai nostri scopi. Per creare dei buffer una proiezione Azimutale Equidistante dovrebbe essere la scelta migliore. Nel nostro caso, considerato che il dataset è globale, sceglieremo una proiezione planetaria. Nella finestra di dialogo <em class="guilabel">Selettore di sistema di riferimento</em> avviate la ricerca digitando  <cite>world az..</cite> e vedrete comparire immediatamente il risultato.
 Selezionate <cite>World_Azimuthal_Equidistant</cite>  e fate click su <em class="guilabel">OK</em>.</p>
@@ -270,12 +271,12 @@ Selezionate <cite>World_Azimuthal_Equidistant</cite>  e fate click su <em class=
 <p class="first admonition-title">Nota</p>
 <p class="last">La Proiezione Mondiale Equdistante Azimutale misura 90 gradi dall&#8217;origine. Qui, essendo l&#8217;origine a 0 gradi di longitudine, saranno convertiti soltanto i valori compresi tra +/- 90 gradi di longitudine.</p>
 </div>
-<img alt="../_images/914.png" class="align-center" src="../_images/914.png" />
+<img alt="../_images/915.png" class="align-center" src="../_images/915.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Tornate nella finestra di dialogo <em class="guilabel">Salva i vettori come ...</em>  e spuntate la casella <em class="guilabel">Aggiungi il file salvato sulla mappa</em> quindi fate click su  <cite>OK</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/1015.png" class="align-center" src="../_images/1015.png" />
+<img alt="../_images/1016.png" class="align-center" src="../_images/1016.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Adesso ripetete l&#8217;operazione di ri-proiezione per il file <tt class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines</span></tt>  e salvate il nuovo layer di laghi e fiumi con il nome di <tt class="docutils literal"><span class="pre">rivers_lake_reprojected.shp</span></tt>.</p>
 </li>
@@ -285,12 +286,12 @@ Selezionate <cite>World_Azimuthal_Equidistant</cite>  e fate click su <em class=
 <li><p class="first">Adesso avete 4 layer nel vostro:guilabel:<cite>Pannello dei Layer</cite>. Deselezionate i layer originali per vedere soltanto i layer sui quali sono state effettuate le riproiezioni. I layer riproiettati sono ancora rappresentati nei CRS di tipo Geografico per via delle impostazioni di default. Vediamo di annullarle. Facciamo click sul tasto <em class="guilabel">Stato del SR</em>  in basso a destra. Questa finestra può essere raggiunta anche da menu <em class="menuselection">Progetto ‣ Proprietà del Progetto</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1217.png" class="align-center" src="../_images/1217.png" />
+<img alt="../_images/1218.png" class="align-center" src="../_images/1218.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Nella scheda Sistema di Riferimento (SR) della finestra di dialogo <em class="guilabel">Proprietà del progetto</em>  disattivate la casella <em class="guilabel">Abilita la riproiezione al volo</em>. Click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1315.png" class="align-center" src="../_images/1315.png" />
+<img alt="../_images/1316.png" class="align-center" src="../_images/1316.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Torniamo adesso nella finestra principale di QGIS, click su uno dei layer riproiettati e click su &#8221; <em class="guilabel">Zoom all&#8217;estensione del Layer</em>.</p>
 </li>
@@ -300,67 +301,67 @@ Selezionate <cite>World_Azimuthal_Equidistant</cite>  e fate click su <em class=
 <li><p class="first">Adesso vedremo finalmente  nostri dati nel Sistema di Riferimento che abbiamo scelto per i nostri layer. Adesso dobbiamo creare dei buffer per entrambi i dataset. Click su <em class="menuselection">Vettore ‣ Strumenti di Geoprocessing ‣ Buffer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1513.png" class="align-center" src="../_images/1513.png" />
+<img alt="../_images/1514.png" class="align-center" src="../_images/1514.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Nello strumento Buffer scegliete come file di input <tt class="docutils literal"><span class="pre">populated_places_reprojected</span></tt> . Inserite una distanza di buffer pari a <cite>10000</cite>. Notate che vogliamo un buffer di 10 chilometri e, considerato che le unità del sistema di riferimento sono i metri, dobbiamo inserire 10.000. Inserite come nome del file in uscita <tt class="docutils literal"><span class="pre">populated_places_buffer.shp</span></tt>. E fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1613.png" class="align-center" src="../_images/1613.png" />
+<img alt="../_images/1614.png" class="align-center" src="../_images/1614.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Una volta che il processo di buffering è finito, fate click su  <em class="guilabel">Yes</em> quando vi verrà chiesto se volete aggiungere il nuovo vettore alla TOC.</p>
 </li>
 </ol>
-<img alt="../_images/1712.png" class="align-center" src="../_images/1712.png" />
+<img alt="../_images/1713.png" class="align-center" src="../_images/1713.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Ripetete lo stesso processo di buffer per il file <tt class="docutils literal"><span class="pre">rivers_lake_reprojected</span></tt>  e create un file di output che chiameremo <tt class="docutils literal"><span class="pre">rivers_lake_buffer.shp</span></tt>.</p>
 </li>
 </ol>
-<img alt="../_images/1812.png" class="align-center" src="../_images/1812.png" />
+<img alt="../_images/1813.png" class="align-center" src="../_images/1813.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Il problema è che il nuovo layer <tt class="docutils literal"><span class="pre">rivers_lake_buffer</span></tt>  contiene geometria che riguardano tanto i fiumi quanto i laghi. La nostra ricerca è interessata esclusivamente alle geometrie dei fiumi, Allora facciamo ricorso ad un&#8217;interrogazione che ci permetta di selezionare esclusivamente le geometrie dei fiumi. Click con il tasto destro su <tt class="docutils literal"><span class="pre">rivers_lake_buffer</span></tt>  e selezioniamo <em class="guilabel">Apri tabella attributi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1910.png" class="align-center" src="../_images/1910.png" />
+<img alt="../_images/1911.png" class="align-center" src="../_images/1911.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Come potete notare gli attributi della colonna &#8220;featurecla&#8221; contengono informazioni che possiamo usare per separare le geometrie dei fiumi da quelle dei laghi. Fate click sul tasto <cite>Seleziona elementi usando un espressione</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/207.png" class="align-center" src="../_images/207.png" />
+<img alt="../_images/208.png" class="align-center" src="../_images/208.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Inserite l&#8217;espressione  <cite>&#8220;featurecla&#8221; = &#8220;River&#8221;</cite>  fate click su <em class="guilabel">Seleziona</em>  e infine click su <em class="guilabel">Chiudi</em> per tornare alla finestra principale di QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/2113.png" class="align-center" src="../_images/2113.png" />
+<img alt="../_images/2114.png" class="align-center" src="../_images/2114.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Ora siamo pronti per realizzare l&#8217;interrogazione spaziale. Dovete aver attivato il Plugin <cite>Interrogazione spaziale</cite> per utilizzare queste funzionalità. Vedetevi <tt class="xref doc docutils literal"><span class="pre">Usare</span> <span class="pre">i</span> <span class="pre">plugin</span></tt> per maggiori dettagli. Quando il plugin è attivo fate click su <em class="menuselection">Vettore ‣ Interrogazione Spaziale ‣ Interrogazione Spaziale</em>.</p>
 </li>
 </ol>
-<img alt="../_images/2210.png" class="align-center" src="../_images/2210.png" />
+<img alt="../_images/2213.png" class="align-center" src="../_images/2213.png" />
 <ol class="arabic simple" start="23">
 <li><p class="first">A noi interessa selezionare con la nostra interrogazione tutte le geometrie bufferizzate delle città che intersecano le linee bufferizzate dei fiumi. Assicuratevi che la casella vicino alla dicitura &#8220;geometrie selezionate&#8221; sia spuntata e indichi il numero dei fiumi selezionati. Questo ci assicura che la nostra interrogazione interesserà esclusivamente le geometrie dei fiumi che abbiamo precedentemente selezionato. Fate click su <em class="guilabel">Apply</em>.</p>
 </li>
 </ol>
-<img alt="../_images/238.png" class="align-center" src="../_images/238.png" />
+<img alt="../_images/2310.png" class="align-center" src="../_images/2310.png" />
 <ol class="arabic simple" start="24">
 <li><p class="first">Una volta che la nostra interrogazione è completa vedrete aggiungersi alla finestra di dialogo una nuova scheda chiamata <em class="guilabel">Oggetti Selezionati</em>.  Fate click sul pulsante  <em class="guilabel">Crea layer con quello selezionato</em>. Un nuovo layer si aggiungerà al pannello dei layer.  Fate click su  <em class="guilabel">Chiudi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/245.png" class="align-center" src="../_images/245.png" />
+<img alt="../_images/246.png" class="align-center" src="../_images/246.png" />
 <ol class="arabic simple" start="25">
 <li><p class="first">Usate lo strumento ingrandisci (zoom in) in alcune aree per verificare i risultati. Noterete che il nuovo layer contiene solo le geometrie delle città che intersecano il buffer dei fiumi.</p>
 </li>
 </ol>
-<img alt="../_images/255.png" class="align-center" src="../_images/255.png" />
+<img alt="../_images/256.png" class="align-center" src="../_images/256.png" />
 <ol class="arabic simple" start="26">
 <li><p class="first">Dobbiamo sempre verificare che i nostri risultati siano validi. Un modo per verificare il risultato è esportare questo layer come un file KML e caricarlo in Google Earth. Così potrete vedere se le aree che abbiamo identificato sono realmente dentro i dieci chilometri dal fiume. Tasto destro del mouse sul layer e fate click su <em class="guilabel">Salva con nome</em>.</p>
 </li>
 </ol>
-<img alt="../_images/265.png" class="align-center" src="../_images/265.png" />
+<img alt="../_images/266.png" class="align-center" src="../_images/266.png" />
 <ol class="arabic simple" start="27">
 <li><p class="first">ella finestra <em class="guilabel">Salva i vettori come...</em>,scegliete <cite>WGS84</cite> come SR. Questo perché il formato KML vuole che le coordinate siano in questo specifico sistema di riferimento. Chiamate il vostro file KML <tt class="docutils literal"><span class="pre">cities_near_river.kml</span></tt>.</p>
 </li>
 </ol>
-<img alt="../_images/275.png" class="align-center" src="../_images/275.png" />
+<img alt="../_images/276.png" class="align-center" src="../_images/276.png" />
 <ol class="arabic simple" start="28">
 <li><p class="first">Aprite Google Earth e verificate che le città rappresentate con questi buffer siano effettivamente vicine ai fiumi.</p>
 </li>
@@ -391,7 +392,7 @@ Selezionate <cite>World_Azimuthal_Equidistant</cite>  e fate click su <em class=
     </p>
     <p>
         &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Apr 22, 2015.<br/>
+      Ultimo aggiornamento May 01, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
