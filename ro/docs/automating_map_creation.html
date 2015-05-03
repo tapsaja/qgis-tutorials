@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Automating Map Creation with Print Composer Atlas &mdash; QGIS Tutorials and Tips</title>
+    <title>Automatizarea Creării Hărților cu ajutorul Atlasului Compozitorului de Hărți &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Utilizarea QGIS Browser" href="using_qgis_browser.html" />
-    <link rel="prev" title="Automating Complex Workflows using Processing Modeler" href="processing_graphical_modeler.html" />
+    <link rel="prev" title="Automatizarea Fluxurilor de Lucru Complexe utilizând Modelatorul de Procese" href="processing_graphical_modeler.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -104,8 +104,8 @@
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Eșantionarea datelor raster, folosind puncte sau poligoane</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolarea Datelor de tip Punct</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Procesarea în serie, folosind cadrul de procesare</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Automating Map Creation with Print Composer Atlas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automatizarea Fluxurilor de Lucru Complexe utilizând Modelatorul de Procese</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Automatizarea Creării Hărților cu ajutorul Atlasului Compozitorului de Hărți</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Utilizarea QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aflarea numărului de noduri dintr-un strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
@@ -126,7 +126,7 @@
               
                 
   <li>
-    <a href="processing_graphical_modeler.html" title="Previous Chapter: Automating Complex Workflows using Processing Modeler"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Automating Compl...</span>
+    <a href="processing_graphical_modeler.html" title="Previous Chapter: Automatizarea Fluxurilor de Lucru Complexe utilizând Modelatorul de Procese"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Automatizarea Fl...</span>
     </a>
   </li>
   <li>
@@ -188,7 +188,7 @@
       
 
   <div class="section" id="automating-map-creation-with-print-composer-atlas">
-<h1>Automating Map Creation with Print Composer Atlas<a class="headerlink" href="#automating-map-creation-with-print-composer-atlas" title="Permalink to this headline">¶</a></h1>
+<h1>Automatizarea Creării Hărților cu ajutorul Atlasului Compozitorului de Hărți<a class="headerlink" href="#automating-map-creation-with-print-composer-atlas" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/automating_map_creation_a4.pdf">A4</a> <a class="reference external" href="../pdf/automating_map_creation_letter.pdf">Letter</a> ]</p>
 <p>If your organization publishes printed or online maps, you often would need to
 create many maps with the same template - usually one for each administrative
@@ -199,17 +199,12 @@ easily publish a large number of maps for different geographic regions. If you
 are not familiar with the basics of Print Composer, please go through the
 <a class="reference internal" href="making_a_map.html"><em>Crearea unei Hărți</em></a> tutorial.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>This tutorial shows how to create wetlands map for each county in the state of
-Hawaii.</p>
+<h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>Acest tutorial vă arată cum să creați harta zonelor mlăștinoase pentru fiecare regiune din statul Hawaii.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<h3>Alte competențe pe care le veți dobândi<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>How to use the <tt class="docutils literal"><span class="pre">Inverted</span> <span class="pre">Polygons</span></tt> style renderer to fill areas outside of</li>
-</ul>
-<blockquote>
-<div>polygons.</div></blockquote>
-<ul class="simple">
+<li>How to use the <tt class="docutils literal"><span class="pre">Inverted</span> <span class="pre">Polygons</span></tt> style renderer to fill areas outside of polygons.</li>
 <li>How to use an expression in the <tt class="docutils literal"><span class="pre">Rule</span> <span class="pre">Based</span></tt> style renderer to show only
 the current feature in Atlas.</li>
 <li>Apply expressions to create dynamic labels in Print Composer.</li>
@@ -217,7 +212,7 @@ the current feature in Atlas.</li>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
 <p>We will use the <a class="reference external" href="http://planning.hawaii.gov/gis/download-gis-data/">GIS Data Layers</a> from <a class="reference external" href="http://planning.hawaii.gov/">State of Hawaii -
 Office of Planning</a></p>
 <p>Download the <a class="reference external" href="http://files.hawaii.gov/dbedt/op/gis/data/HI_Wetlands.shp.zip">Wetlands</a> layer from
@@ -228,10 +223,10 @@ Cultural and Demographic category.</p>
 below:</p>
 <p><a class="reference external" href="../../downloads/HI_Wetlands.shp.zip">HI_Wetlands.shp.zip</a></p>
 <p><a class="reference external" href="../../downloads/county10.shp.zip">county10.shp.zip</a></p>
-<p>Data Source <a class="reference internal" href="credits.html#hawaii" id="id1">[HAWAII]</a></p>
+<p>Sursa de date: <a class="reference internal" href="credits.html#hawaii" id="id1">[HAWAII]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li>Launch QGIS and go to <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector
 Layer</em>.</li>
@@ -242,7 +237,8 @@ Layer</em>.</li>
 </ol>
 <img alt="../_images/21.png" class="align-center" src="../_images/21.png" />
 <ol class="arabic simple" start="3">
-<li>Select the <tt class="docutils literal"><span class="pre">HI_Wetlands_Poly</span></tt> layer and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Selectați stratul <tt class="docutils literal"><span class="pre">HI_Wetlands_Poly</span></tt>, apoi faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/31.png" class="align-center" src="../_images/31.png" />
 <ol class="arabic simple" start="4">
@@ -262,7 +258,8 @@ file. Click <em class="guilabel">Open</em>.</li>
 </ol>
 <img alt="../_images/61.png" class="align-center" src="../_images/61.png" />
 <ol class="arabic simple" start="7">
-<li>Go to <em class="menuselection">Layout ‣ Add Map</em>.</li>
+<li><p class="first">Mergeți la <em class="menuselection">Layout ‣ Add Map</em>.</p>
+</li>
 </ol>
 <img alt="../_images/71.png" class="align-center" src="../_images/71.png" />
 <ol class="arabic simple" start="8">
@@ -466,8 +463,8 @@ see the images in the directory once the process completes.</li>
       
     </p>
     <p>
-        &copy; Copyright 2013, Ujaval Gandhi.<br/>
-      Last updated on May 01, 2015.<br/>
+        &copy; Copyright 2015, Ujaval Gandhi.<br/>
+      Last updated on May 03, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
