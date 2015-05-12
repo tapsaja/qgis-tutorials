@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">BIL, BIP 혹은 BSQ 파일 열기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">파이썬 프로그램밍 시작</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">파이썬 플러그인 만들기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">인접 폴리곤 찾기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">qgis2leaf로 웹 지도 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">QGIS에서 구글지도 커넥터 이용하기</a></li>
@@ -218,7 +219,7 @@
 <li><p class="first">메뉴 &#8211;&gt; 래스터 데이터 추가  :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Layer &#8211;&gt; Add Raster Layer`로 가서 다운로드한 <a href="#id3"><span class="problematic" id="id4">``</span></a>us.tmax_nohads_ll_{YYYYMMDD}_float.tif``파일을 찾고 열기 :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>Open`를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1108.png" class="align-center" src="../_images/1108.png" />
+<img alt="../_images/1109.png" class="align-center" src="../_images/1109.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">일단 레이어가 올라오면 객체확인 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Identify`툴을 선택하고 레이어 아무 곳이나 클릭을 합니다. 온도값이 섭씨로 나타나는 것 혹은 그 위치에서 밴드 1을 보게 됩니다.</p>
 </li>
@@ -228,67 +229,67 @@
 <li><p class="first">이제 다운로드한 파일  <a href="#id1"><span class="problematic" id="id2">``</span></a>2013_Gaz_ua_national.zip``을 압축해제하고 <a href="#id3"><span class="problematic" id="id4">``</span></a>2013_Gaz_ua_national.txt``를 추출합니다. 메뉴 레이어 &#8211;&gt; 레이어 추가 &#8211;&gt; 구분자로 분리된 텍스트 레이어를 추가  :menuselection:<a href="#id5"><span class="problematic" id="id6">`</span></a>Layer &#8211;&gt; Add Delimited Text Layer`로 갑니다.</p>
 </li>
 </ol>
-<img alt="../_images/335.png" class="align-center" src="../_images/335.png" />
+<img alt="../_images/336.png" class="align-center" src="../_images/336.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">구분자로 분리된 텍스트 레이어 파일 추가  <em class="guilabel">Create a Layer from Delimited Text File</em> 다이알로그에서 탐색 <em class="guilabel">Browse</em> 을 클릭하고  <a href="#id1"><span class="problematic" id="id2">``</span></a>2013_Gaz_ua_national.txt``을 여십시오. 구분자 정의 <em class="guilabel">Custom delimiters`에서 탭 :guilabel:`Tab</em> 을 선택하십시오. 점 좌표는 위도와 경도입니다. 그래서 X필드로 <em class="guilabel">INTPTLONG</em>, Y필드로  :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>INTPTLAT`를 선택합니다. 공간 인덱스 사용 :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>Use spatial index`을 체크하고 확인  :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>OK`을 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/425.png" class="align-center" src="../_images/425.png" />
+<img alt="../_images/426.png" class="align-center" src="../_images/426.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">이제 래스터 레이어에서 온도값을 추출할 준비가 되었습니다.  <a href="#id1"><span class="problematic" id="id2">``</span></a>Point Sampling Tool``플러그인을 설치하십시오. 플러그인을 어떻게 설치하는지는  <a class="reference internal" href="using_plugins.html"><em>플러그인 사용하기</em></a> 를 보시기 바랍니다.</p>
 </li>
 </ol>
-<img alt="../_images/526.png" class="align-center" src="../_images/526.png" />
+<img alt="../_images/527.png" class="align-center" src="../_images/527.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">메뉴 :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Plugins &#8211;&gt; Analyses &#8211;&gt; Point sampling tool`를 엽니다.</p>
 </li>
 </ol>
-<img alt="../_images/624.png" class="align-center" src="../_images/624.png" />
+<img alt="../_images/625.png" class="align-center" src="../_images/625.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first"><em class="guilabel">Point Sampling Tool</em> 다이알로그에서 <em class="guilabel">Layer containing sampling points`로 ``2013_Gaz_ua_national``를 선택합니다. 입력레이어에서 출력 레이어에포함될 수 있도록 반드시 명확하게 필드를 선택해야 합니다. ``2013_Gaz_ua_national``레이어에서  ``GEOID`</em> 와 <a href="#id1"><span class="problematic" id="id2">``</span></a>NAME``를 선택합니다. 한번에 여러개의 래스터 밴드에서 표본 값을 추출할 수 있습니다. 그러나 래스터가 하나의 밴드만 가지므로  <a href="#id3"><span class="problematic" id="id4">``</span></a>us.tmax_nohads_ll_{YYYYMMDD}_float: Band 1``를 선택합니다.  <a href="#id5"><span class="problematic" id="id6">``</span></a>max_temparature_at_urban_locations.shp``로 출력 벡터 레이어 이름을 입력합니다. 표본추출과정을 시작하기 위해 확인 :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>OK`를 클릭합니다. 과정이 종료되면 닫기 :guilabel:<a href="#id9"><span class="problematic" id="id10">`</span></a>Close`를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/724.png" class="align-center" src="../_images/724.png" />
+<img alt="../_images/725.png" class="align-center" src="../_images/725.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">QGIS에 새롭게 불러들여진  <a href="#id1"><span class="problematic" id="id2">``</span></a>max_temparature_at_urban_locations``레이어가 보일 것입니다. 객체 확인:guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Identify`을 이용하여 아무 점이나 클릭하여 속성을 봅니다. 그 점의 위치에서 래스터 픽셀값이 담긴 <a href="#id5"><span class="problematic" id="id6">``</span></a>us.tmax_no``필드를 볼 것입니다.</p>
 </li>
 </ol>
-<img alt="../_images/823.png" class="align-center" src="../_images/823.png" />
+<img alt="../_images/824.png" class="align-center" src="../_images/824.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">분석의 첫번째 부분이 완료되었습니다. 이제 불필요한 레이어를 제거해 봅시다. 쉬프트키  <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> 를 누른 채  <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations</span></tt> 와 <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt> 레이어를 선택합니다. 우측 클릭을 하고 QGIS TOC에서 제거하기 위해 삭제 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Remove`를 선택합니다.</p>
 </li>
 </ol>
-<img alt="../_images/921.png" class="align-center" src="../_images/921.png" />
+<img alt="../_images/922.png" class="align-center" src="../_images/922.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">메뉴 레이어 &#8211;&gt; 벡터 레이어 추가 <em class="menuselection">Layer ‣ Add Vector Layer`로 갑니다. 다운로드한 ``tl_2013_us_county.zip``파일을 찾고 열기 :guilabel:`Open`를 클릭합니다.  ``tl_2013_us_county.shp`</em> 레이어를 선택하고 확인 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>OK`을 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1022.png" class="align-center" src="../_images/1022.png" />
+<img alt="../_images/1023.png" class="align-center" src="../_images/1023.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">QGIS에 <tt class="docutils literal"><span class="pre">tl_2013_us_county``가</span> <span class="pre">추가될</span> <span class="pre">것입니다.</span> <span class="pre">이</span> <span class="pre">레이어는</span>&nbsp; <span class="pre">``EPSG:4269</span> <span class="pre">NAD83</span></tt> 투영입니다. 이것은 래스터레이어의 투영과 맞지 않습니다. 그래서 이 레이어를  <tt class="docutils literal"><span class="pre">EPSG:4326</span> <span class="pre">WGS84</span></tt> 투영으로 재투영할 것입니다.</p>
 </li>
 </ol>
-<img alt="../_images/1126.png" class="align-center" src="../_images/1126.png" />
+<img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first"><tt class="docutils literal"><span class="pre">tl_2013_us_county</span></tt> 레이어를 우측클릭하고 새 이름으로 저장 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Save As..`을 선택합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1223.png" class="align-center" src="../_images/1223.png" />
+<img alt="../_images/1224.png" class="align-center" src="../_images/1224.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">새 이름으로 벡터 레이어 저장하기 <em class="guilabel">Save Vector layer as..</em> 다이알로그에서 탐색 <em class="guilabel">Browse`을 클릭하고 출력 파일로 ``counties.shp``를 입력합니다. 좌표계 :guilabel:`CRS</em> 드롭다운 메뉴에서 선택된 좌표계 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Selected CRS`를 선택합니다. 탐색  :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Browse`을 클릭하고 CRS로 <a href="#id5"><span class="problematic" id="id6">``</span></a>WGS 84``를 선택합니다. 저장된 파일을 지도에 추가  :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>Add saved file to map`에 체크하고 확인 :guilabel:<a href="#id9"><span class="problematic" id="id10">`</span></a>OK`을 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
+<img alt="../_images/1322.png" class="align-center" src="../_images/1322.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">새로운 레이어가 <a href="#id1"><span class="problematic" id="id2">``</span></a>counties``라는 이름으로 QGiS에 추가될 것입니다.</p>
 </li>
 </ol>
-<img alt="../_images/1420.png" class="align-center" src="../_images/1420.png" />
+<img alt="../_images/1421.png" class="align-center" src="../_images/1421.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">구역 통계 플러그인 <a href="#id1"><span class="problematic" id="id2">``</span></a>Zonal Statistics Plugins``을 활성화 합니다. 이것은 핵심 플러그인으로 이미 설치가 되어 있습니다. 핵심플러그인을 어떻게 활성화하는 가를 알려면 :doc:<a href="#id3"><span class="problematic" id="id4">`</span></a>using_plugins`를 보기 바랍니다.</p>
 </li>
 </ol>
-<img alt="../_images/1519.png" class="align-center" src="../_images/1519.png" />
+<img alt="../_images/1520.png" class="align-center" src="../_images/1520.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">메뉴 래스터 &#8211;&gt; 구역 통계 &#8211;&gt; 구역 통계 :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Raster &#8211;&gt; Zonal statistics &#8211;&gt; Zonal statistics`로 갑니다.</p>
 </li>
@@ -349,7 +350,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      최종 업데이트: May 05, 2015<br/>
+      최종 업데이트: May 12, 2015<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

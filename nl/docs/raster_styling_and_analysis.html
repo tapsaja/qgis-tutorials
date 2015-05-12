@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Beginnen met programmeren in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -211,7 +212,7 @@
 <li><p class="first">Ga naar de downloadpagina <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density/data-download">Population Density Grid, v3 download page.</a> Selecteer de <em class="guilabel">Data Attributes</em> als <em class="guilabel">.ascii format</em>, <em class="guilabel">1° resolution</em> en <em class="guilabel">1990 year</em>. Klik op <em class="guilabel">Download</em>. Op dit punt zou u een gratis account en inlog aan kunnen maken, of de knop <em class="guilabel">Guest Download</em> aan de onderzijde gebruiken om de gegevens direct downloaden. Herhaal het proces voor de gegevens van <em class="guilabel">2000 year</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
+<img alt="../_images/1108.png" class="align-center" src="../_images/1108.png" />
 <p>U zult nu 2 zip-bestanden hebben gedownload.</p>
 <p>For convenience, you can also download a copy of this data by clicking on following links:</p>
 <p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_90_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_90_ascii_one.zip</span></tt></a></p>
@@ -229,67 +230,67 @@
 <li><p class="first">Lokaliseer de downloade zip-bestanden. Houd de <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>-toets ingedrukt en klik op beide zip-bestanden om ze allebei te selecteren. Op deze manier bent u in staat om beide bestanden in één stap te laden.</p>
 </li>
 </ol>
-<img alt="../_images/334.png" class="align-center" src="../_images/334.png" />
+<img alt="../_images/335.png" class="align-center" src="../_images/335.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Elk zip-bestand bevat 2 rasterbestanden. De <tt class="docutils literal"><span class="pre">a</span></tt> in de bestandsnaam geeft aan dat de tellingen van de bevolking werd aangepast om overeen te komen met de totalen van de UN. We zullen voor deze handleiding de aangepaste rasters gebruiken. Selecteer <tt class="docutils literal"><span class="pre">glds00ag60.asc</span></tt> als de laag om toe te voegen. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/424.png" class="align-center" src="../_images/424.png" />
+<img alt="../_images/425.png" class="align-center" src="../_images/425.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">De laag heeft geen CRS gedefinieerd, en omdat de rasters in lat/long zijn, kies <cite>EPSG:4326</cite> als het coórdinaten referentiesysteem.</p>
 </li>
 </ol>
-<img alt="../_images/525.png" class="align-center" src="../_images/525.png" />
+<img alt="../_images/526.png" class="align-center" src="../_images/526.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">U zult soortgelijke dialoogvensters tweemaal zien langskomen, omdat we beide zip-bestanden hebben geselecteerd. Herhaal het proces en selecteer het raster <tt class="docutils literal"><span class="pre">glds90ag60.asc</span></tt> als de laag om toe te voegen.</p>
 </li>
 </ol>
-<img alt="../_images/623.png" class="align-center" src="../_images/623.png" />
+<img alt="../_images/624.png" class="align-center" src="../_images/624.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Kies nogmaals <cite>EPSG:4326</cite> als het CRS.</p>
 </li>
 </ol>
-<img alt="../_images/723.png" class="align-center" src="../_images/723.png" />
+<img alt="../_images/724.png" class="align-center" src="../_images/724.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Nu zult u beide rasters zien geladen in QGIS. Het raster is gerenderd in grijswaarden, waar donkere pixels lagere waarden aangeven en lichtere pixels hogere waarden aangeven.</p>
 </li>
 </ol>
-<img alt="../_images/822.png" class="align-center" src="../_images/822.png" />
+<img alt="../_images/823.png" class="align-center" src="../_images/823.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Elke pixel in het raster heeft een toegewezen waarde. Die waarde is de bevolkingsdichtheid voor dat raster. Klik op de knop <em class="guilabel">Objecten identificeren</em> om het gereedschap te selecteren en klik ergens in het raster om de waarde van die pixel te zien.</p>
 </li>
 </ol>
-<img alt="../_images/920.png" class="align-center" src="../_images/920.png" />
+<img alt="../_images/921.png" class="align-center" src="../_images/921.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">We zouden het moeten opmaken om het patroon van de bevolkingsdichtheid beter te visualiseren. klik met rechts op de laagnaam en selecteer <em class="guilabel">Eigenschappen</em>. U kunt ook dubbelkkikken op de naam in de inhoudsopgave om het dialoogvenster Laag-eigenschappen op te roepen.</p>
 </li>
 </ol>
-<img alt="../_images/1021.png" class="align-center" src="../_images/1021.png" />
+<img alt="../_images/1022.png" class="align-center" src="../_images/1022.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Wijzig, op de tab <em class="guilabel">Stijl</em>, het <em class="guilabel">Rendertype</em> naar <em class="guilabel">Enkelbands pseudokleur</em>. Klik vervolgens op <em class="guilabel">Classificeren</em> onder <em class="guilabel">Genereer nieuw kleurenpalet</em>. U zult zien dat er 5 nieuwe kleurenwaarden worden gemaakt. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1125.png" class="align-center" src="../_images/1125.png" />
+<img alt="../_images/1126.png" class="align-center" src="../_images/1126.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Terug in het kaartvenster van QGIS zult u een als een heatmap gerenderde weergave van het raster zien. Herhaal het proces ook voor het andere raster.</p>
 </li>
 </ol>
-<img alt="../_images/1222.png" class="align-center" src="../_images/1222.png" />
+<img alt="../_images/1223.png" class="align-center" src="../_images/1223.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Voor onze analyse willen we zoeken naar de gebieden met de grootste wijziging in de bevolking tussen 1990 en 2000. De manier om dit te bereiken is door te zoeken naar het verschil tussen de waarde van elke pixel voor het raster in beide lagen. Selecteer <em class="menuselection">Raster ‣ Rasterberekeningen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1320.png" class="align-center" src="../_images/1320.png" />
+<img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">In het gedeelte <em class="guilabel">Rasterbanden</em> kunt u de laag selecteren door er op te dubbelklikken. De banden zijn vernoemd naar de naam van het raster, gevolgd door &#64; en het nummer van de band. Omdat onze rasters slechts 1 band hebben, zult u slechts 1 item per band zien. Rasterberekeningen kan rekenkundige bewerkingen toepassen op de pixels van de rasters. In dit geval willen we een eenvoudige formule invoeren om de bevolkingsdichtheid van 1990 af te trekken van die van 2000. Voer <tt class="docutils literal"><span class="pre">glds00ag60&#64;1</span> <span class="pre">-</span> <span class="pre">glds90ag60&#64;1</span></tt> in als de formule. Noem uw uitvoerlaag <em class="guilabel">pop_density_change_2000_1990.tif</em> en selecteer het vak naast <em class="guilabel">Voeg resultaat toe aan project</em>. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1419.png" class="align-center" src="../_images/1419.png" />
+<img alt="../_images/1420.png" class="align-center" src="../_images/1420.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Als de bewerking voltooid is ziet u de nieuwe laag geladen in QGIS</p>
 </li>
 </ol>
-<img alt="../_images/1518.png" class="align-center" src="../_images/1518.png" />
+<img alt="../_images/1519.png" class="align-center" src="../_images/1519.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Deze visualisatie in grijswaarden is nuttig, maar we kunnen een veel meer informatieve uitvoer maken. Klik met rechts op de laag <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990</span></tt> en selecteer <em class="guilabel">Eigenschappen</em>.</p>
 </li>
@@ -334,7 +335,7 @@
 <li><p class="first">Nu zult u de gebieden met een negatieve wijziging in de bevolkingsdichtheid als grijze pixels zien.</p>
 </li>
 </ol>
-<img alt="../_images/2410.png" class="align-center" src="../_images/2410.png" />
+<img alt="../_images/2411.png" class="align-center" src="../_images/2411.png" />
 </div>
 </div>
 
@@ -360,7 +361,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op May 05, 2015.<br/>
+      Laatste aanpassing op May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

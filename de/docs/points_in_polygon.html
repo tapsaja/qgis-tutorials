@@ -85,9 +85,9 @@
 <li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Erstellen einer Karte</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Mit Attributen arbeiten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Import von Tabellen oder CSV Dateien</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Verwenden von Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Verwenden von Erweiterungen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Einfache Vektor Gestaltung</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calculating Line Lengths and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -222,7 +223,7 @@ below:</p>
 <li>Open <em class="menuselection">Layer ‣ Add Delimited Text Layer</em> and browse to the
 downloaded <tt class="docutils literal"><span class="pre">signif.txt</span></tt> file.</li>
 </ol>
-<img alt="../_images/1104.png" class="align-center" src="../_images/1104.png" />
+<img alt="../_images/1105.png" class="align-center" src="../_images/1105.png" />
 <ol class="arabic simple" start="2">
 <li>Since this is a <em>tab-delimited file</em>, choose <em class="guilabel">Tab</em> as the
 <em class="guilabel">File format</em>. The <em class="guilabel">X field</em> and <em class="guilabel">Y field</em>
@@ -234,13 +235,13 @@ would be auto-populated. Click <em class="guilabel">OK</em>.</li>
 valid errors and some rows from the file will not be imported. You can ignore
 the errors for the purpose of this tutorial.</p>
 </div>
-<img alt="../_images/247.png" class="align-center" src="../_images/247.png" />
+<img alt="../_images/248.png" class="align-center" src="../_images/248.png" />
 <ol class="arabic simple" start="3">
 <li>As the earthquake dataset has Latitude/Longitude coordinates, choose
 <em class="guilabel">WGS 84 EPSG:436</em> as the CRS in the <em class="guilabel">Coordinate Reference System Selector</em>
 dialog.</li>
 </ol>
-<img alt="../_images/329.png" class="align-center" src="../_images/329.png" />
+<img alt="../_images/330.png" class="align-center" src="../_images/330.png" />
 <ol class="arabic simple" start="4">
 <li>The earthquake point layer would now be loaded and displayed in QGIS. Let&#8217;s
 also open the Countries layer. Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.
@@ -248,11 +249,11 @@ Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10m_a
 click <em class="guilabel">Open</em>. Select the <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt> as
 the layer in the <em class="guilabel">Select layers to add...</em> dialog.</li>
 </ol>
-<img alt="../_images/421.png" class="align-center" src="../_images/421.png" />
+<img alt="../_images/422.png" class="align-center" src="../_images/422.png" />
 <ol class="arabic simple" start="5">
 <li>Click on <em class="menuselection">Vector ‣ Analysis Tools ‣ Point in Polygon</em></li>
 </ol>
-<img alt="../_images/522.png" class="align-center" src="../_images/522.png" />
+<img alt="../_images/523.png" class="align-center" src="../_images/523.png" />
 <ol class="arabic simple" start="6">
 <li>In the pop-up window, select the polygon layer and point layer respectively.
 Name the output layer as <tt class="docutils literal"><span class="pre">earthquake_per_coutry.shp</span></tt> and Click <em class="guilabel">OK</em>.</li>
@@ -265,26 +266,26 @@ results.</p>
 <ol class="arabic simple" start="7">
 <li>When asked whether you want to add the layer to TOC, click <em class="guilabel">Yes</em>.</li>
 </ol>
-<img alt="../_images/720.png" class="align-center" src="../_images/720.png" />
+<img alt="../_images/721.png" class="align-center" src="../_images/721.png" />
 <ol class="arabic simple" start="8">
 <li>You will see a new layer is added to the table of content. Open the
 attribute table by right-clicking on the layer and selecting <em class="guilabel">Open
 Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/819.png" class="align-center" src="../_images/819.png" />
+<img alt="../_images/820.png" class="align-center" src="../_images/820.png" />
 <ol class="arabic simple" start="9">
 <li>In the attribute table, you will notice a new field named <tt class="docutils literal"><span class="pre">PNTCNT</span></tt>. This is
 the count of number of points from the earthquakes layer that fall within
 each polygon.</li>
 </ol>
-<img alt="../_images/917.png" class="align-center" src="../_images/917.png" />
+<img alt="../_images/918.png" class="align-center" src="../_images/918.png" />
 <ol class="arabic simple" start="10">
 <li>To get our answer, we can simply sort the table by <tt class="docutils literal"><span class="pre">PNTCNT</span></tt> field and the
 country with highest count will be our answer. Click 2-times on the <tt class="docutils literal"><span class="pre">PNTCNT</span></tt>
 column to get it sorted in descending order. Click on the first row to
 select it and close the Attribute Table.</li>
 </ol>
-<img alt="../_images/1018.png" class="align-center" src="../_images/1018.png" />
+<img alt="../_images/1019.png" class="align-center" src="../_images/1019.png" />
 <ol class="arabic simple" start="11">
 <li>Back in  the main QGIS window, you will see one feature highlighted in
 yellow. This is the feature linked to the selected row in the attribute
@@ -292,7 +293,7 @@ table which had the highest number of points. Select the
 <em class="guilabel">Identify</em> tool and click on that polygon. You can see that the
 country with the highest number of Significant earthquakes is <strong>China</strong>.</li>
 </ol>
-<img alt="../_images/1122.png" class="align-center" src="../_images/1122.png" />
+<img alt="../_images/1123.png" class="align-center" src="../_images/1123.png" />
 <p>We determined from the simple analysis of 2 datasets that China has had
 the highest number of major earthquakes. You may refine this analysis further
 by taking into consideration the population as well as the size of the country
@@ -323,7 +324,7 @@ earthquakes.</p>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Zuletzt aktualisiert am May 05, 2015.<br/>
+      Zuletzt aktualisiert am May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -111,6 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -219,52 +220,52 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Mene <em class="menuselection">Tasot ‣ Lisää rasteritaso...</em>. Etsi ladattu <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02.tif</span></tt> ja klikkaa <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/128.png" class="align-center" src="../_images/128.png" />
+<img alt="../_images/130.png" class="align-center" src="../_images/130.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Tämä on suuri rasterikartta ja voit huomata zoomatessasi tai panoroidessasi karttaa kestää hieman aikaa kun kartta hahmottuu näytölle. QGIS tarjoaa yksinkertaisen ratkaisun tehdä rastereista paljon nopeammin latautuvia käyttäen <strong>Kuva pyramideja</strong>. QGIS luo esihahmotettuja kuvakkeita eri resoluutioilla jotka sitten esitetään koko rasterin sijasta. Tämä tekee kartalla suunnistamisesta näppärää ja herkästi reagoivaa. Klikkaa oikealla <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02</span></tt> tasoa ja valitse <em class="guilabel">Ominaisuudet</em>.</p>
 </li>
 </ol>
-<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
+<img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Valitse <em class="guilabel">Pyramidit</em> välilehti. Pidä  <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> näppäin alhaalla ja valitse kaikki resoluutiot jotka ovat <em class="guilabel">Resoluutiot</em> paneelissä. Jätä muut vaihtoehdot oletusarvoihinsa ja klikkaa  <em class="guilabel">Rakenna pyramidit</em>. Kun prosessi on valmis klikkaa</p>
 </li>
 </ol>
-<img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
+<img alt="../_images/313.png" class="align-center" src="../_images/313.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Takaisin QGIS pääikkunassa, käytä <em class="guilabel">Lähennä</em> työkalua löytääksesi <em>Hagley Park</em> alueen Christchurchissä. Tämä puistoalueen tulemme digitoimaan.</p>
 </li>
 </ol>
-<img alt="../_images/48.png" class="align-center" src="../_images/48.png" />
+<img alt="../_images/49.png" class="align-center" src="../_images/49.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Ennen kuin aloitamme, tulee meidän asettaa oletusarvot <strong>Digitoinnin asetukset</strong>. Mene <em class="menuselection">Asetukset ‣ Asetukset...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
+<img alt="../_images/59.png" class="align-center" src="../_images/59.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Valitse välilehti <em class="guilabel">Digitointi</em> <em class="guilabel">Asetukset</em> ikkunassa. Aseta <em class="guilabel">Oletus kohdistustila</em> arvoon <em class="guilabel">verteksi ja segmentti</em>. Tämä avulla voit kohdistaa lähimpään verteksiin tai viivasegmenttiin. Suosittelen asetukseksi myös <em class="guilabel">Oletus kohdistustilan toleranssi</em> ja <em class="guilabel">Hakusäde kärkipisteiden muokkaukseen</em> asettamista pikseleihin karttayksiköiden sijasta. Tämä varmistaa että kohdistusetäisyys sailyy samana huolimatta zoomauksen asteesta. Tietokoneesi näytön resoluutiosta riippuen voit valita sopivan arvon. Klikkaa <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
+<img alt="../_images/68.png" class="align-center" src="../_images/68.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Nyt olemme valmiit aloittamaan digitoinnin. Luomme ensin teiden tason puistoalueelta. Valitse  <em class="menuselection">Tasot ‣ Uusi ‣ Uusi Spatialite taso...</em>. Voi valita myös <em class="guilabel">Uusi Shapefile taso...</em> jos haluat. Spatialite on avoin tietokanta formaatti ja samnlainen kuin ESRIn geodatabase formaatti. Spatialite tietokanta sisältyy yhteen tiedostoon kovalevylläsi ja voi sisältää eri tyyppisiä spatiaalisia (piste,viiva,monikulmio) ja ei-spatiaalisia tasoja. Tämä tekee sen siirtelyn paikasta toiseen plajon helpommaksi kuin shapefile joukolla. Tässä oppaassa luomme pari monikulmio tasoa ja viivatason, joten Spatialite sopii paremmin. Voit aina ladata spatialite tason ja tallentaa sen shapefile tai missä tahansa muodossa haluatkin.</p>
 </li>
 </ol>
-<img alt="../_images/77.png" class="align-center" src="../_images/77.png" />
+<img alt="../_images/78.png" class="align-center" src="../_images/78.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Ikkunassa <em class="guilabel">Uusi Spatialite taso</em>, klikkaa <em class="guilabel">...</em> näppäint ja tallenna uusi spatialite tietokannan nimeltään <tt class="docutils literal"><span class="pre">nztopo.sqlite</span></tt>. Valitse <em class="guilabel">Tason nimi</em> arvoksi <tt class="docutils literal"><span class="pre">Roads</span></tt> ja valitse <tt class="docutils literal"><span class="pre">Viiva</span></tt> <em class="guilabel">Tyyppi</em> tiedon arvoksi. Pohjan topografinen kartta on <tt class="docutils literal"><span class="pre">EPSG:2193</span> <span class="pre">-</span> <span class="pre">NZGD</span> <span class="pre">2000</span></tt> CRS, joten voimme valita saman teiden tasolle. Merkkaa <em class="guilabel">Luo automaattisesti lisääntyvä primääriavain</em> laatikko. Tämä luo tiedon <strong>pkuid</strong> attribuuttitauluun ja antaa jokaiselle ominaisuudelle automaattisesti yksilöllisen numeerisen id:n. GIS tasoa perustettaessa tulee päättää attribuuteista joita jokaisessa ominaisuudessa tulee olemaan. Koska tämä on teiden taso haluamme 2 perusattribuuttia - Nimi ja Luokka. Anna <tt class="docutils literal"><span class="pre">Nimi</span></tt>  attribuutin <em class="guilabel">Nimi</em> tietoon kappaleessa <em class="guilabel">Uusi ominaisuustieto</em> ja klikkaa <em class="guilabel">Lisää ominaisuustietolistaan.</em></p>
 </li>
 </ol>
-<img alt="../_images/87.png" class="align-center" src="../_images/87.png" />
+<img alt="../_images/88.png" class="align-center" src="../_images/88.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Samalla tavalla luo attribuutti &#8220;Luokka&#8221; tyyppiä <em class="guilabel">Teksti data</em>. Klikkaa <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/97.png" class="align-center" src="../_images/97.png" />
+<img alt="../_images/98.png" class="align-center" src="../_images/98.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Kun taso on ladattu, klikkaa <em class="guilabel">Vaihda muokkauksen toimintatilaa</em> näppäintä asettaaksesi tason muokkaustilaan.</p>
 </li>
 </ol>
-<img alt="../_images/107.png" class="align-center" src="../_images/107.png" />
+<img alt="../_images/108.png" class="align-center" src="../_images/108.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Klikkaa <em class="guilabel">Lisää kohde</em> näppäintä. Klikkaa karttapohjalla lisätäksesi uuden verteksin. Lisää uusia verteksejä tie ominaisuutta pitkin. Kun olet digitoinut tiesegmentin, klikka oikealla ominaisuuden päättämiseksi.</p>
 </li>
@@ -273,27 +274,27 @@ original GeoTIFF which is a much smaller file size.</p>
 <p class="first admonition-title">Muista</p>
 <p class="last">Voi käyttää hiiren pyörää lähentääksesi tai loitontaaksesi ssamalla kun digitoit. Voi myös pitää hiiren pyörää painettuna ja liikuttaa hiirtä panoroidaksesi karttapohjaa.</p>
 </div>
-<img alt="../_images/1111.png" class="align-center" src="../_images/1111.png" />
+<img alt="../_images/1112.png" class="align-center" src="../_images/1112.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Klikaatuasi oikealla ominaisuuden päättämiseksi aukeaa pop-up ikkuna <em class="guilabel">Ominaisuuden attribuutit</em>. Ikkunassa voit antaa uuden juuri luodun ominaisuuden attribuutit. Koska <strong>pkuid</strong> on automaattisesti lisääntyvä ei sinun tarvitse antaa sille arvoa. Jätä se tyhjäksi ja anna tien nimi kuten se on topokartalla. Valinnaisesti anna tien luokka arvo. Klikkaa</p>
 </li>
 </ol>
-<img alt="../_images/129.png" class="align-center" src="../_images/129.png" />
+<img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Oletustyyli uudelle viivatasolle on ohut viiva. Muuttakaamme se jotta näemme helpommin digitoidut ominaisuudet karttapohjalla. Klikkaa oikealla <tt class="docutils literal"><span class="pre">Roads</span></tt> tasoa ja valitse <em class="guilabel">Ominaisuudet</em>.</p>
 </li>
 </ol>
-<img alt="../_images/137.png" class="align-center" src="../_images/137.png" />
+<img alt="../_images/138.png" class="align-center" src="../_images/138.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Valitse:guilabel:<cite>Tyyli</cite> välilehti <em class="guilabel">Tason ominaisuudet</em> ikkunassa. Valitse paksumpi viivatyyli kuten <em class="guilabel">Primary</em> ennalta määritellyistä tyyleistä. Klikkaa</p>
 </li>
 </ol>
-<img alt="../_images/147.png" class="align-center" src="../_images/147.png" />
+<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Nyt näet digitoidun tieominaisuuden helpommin. Klikkaa <em class="guilabel">Tallenna tason muokkaukset</em> tallettaaksesi uuden ominaisuuden levylle.</p>
 </li>
 </ol>
-<img alt="../_images/157.png" class="align-center" src="../_images/157.png" />
+<img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Ennenkuin digitoimme lopt tiet, on tärkeää päivittää eräitä muita asetuksia jotka ovat tärkeitä luotaessa virheetöntä tasoa. Mene <em class="menuselection">Asetukset ‣ Kohdistusvaihtoehdot...</em>.</p>
 </li>
@@ -373,7 +374,7 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Huomaat etteivät kaikki rakennukset ole pystysuorassa: Meidän tulee piirtää suorakulmio kulmassa joka vastaa rakennuksen pohjaa. Klikkaa</p>
 </li>
 </ol>
-<img alt="../_images/313.png" class="align-center" src="../_images/313.png" />
+<img alt="../_images/314.png" class="align-center" src="../_images/314.png" />
 <ol class="arabic simple" start="32">
 <li><p class="first">Klikkaa rakennuksen keskellä ja vedä hiirellä piirtääksesi pystysuoran suorakulmion.</p>
 </li>
@@ -429,7 +430,7 @@ original GeoTIFF which is a much smaller file size.</p>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on May 05, 2015.<br/>
+      Last updated on May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

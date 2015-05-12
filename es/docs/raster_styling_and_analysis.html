@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -222,7 +223,7 @@ login, or use the <em class="guilabel">Guest Download</em> button at the bottom 
 immediately download the data. Repeat the process for <em class="guilabel">2000 year</em>
 data.</li>
 </ol>
-<img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
+<img alt="../_images/1108.png" class="align-center" src="../_images/1108.png" />
 <p>You will now have 2 zip files downloaded.</p>
 <p>For convenience, you can also download a copy of this data by clicking on following links:</p>
 <p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_90_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_90_ascii_one.zip</span></tt></a></p>
@@ -240,67 +241,67 @@ data.</li>
 the zip files to select them. This way you are able to load both the files
 in a single step.</li>
 </ol>
-<img alt="../_images/334.png" class="align-center" src="../_images/334.png" />
+<img alt="../_images/335.png" class="align-center" src="../_images/335.png" />
 <ol class="arabic simple" start="4">
 <li>Each zip file contain 2 grid files. The <tt class="docutils literal"><span class="pre">a</span></tt> in the filename
 suggests that the population counts were adjusted to match the UN totals. We
 will use the adjusted grids for this tutorial. Select <tt class="docutils literal"><span class="pre">glds00ag60.asc</span></tt> as
 the layer to add. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/424.png" class="align-center" src="../_images/424.png" />
+<img alt="../_images/425.png" class="align-center" src="../_images/425.png" />
 <ol class="arabic simple" start="5">
 <li>The layer doesn’t have a CRS defined, and since the grids are in lat/long,
 choose <cite>EPSG:4326</cite> as the coordinate reference system.</li>
 </ol>
-<img alt="../_images/525.png" class="align-center" src="../_images/525.png" />
+<img alt="../_images/526.png" class="align-center" src="../_images/526.png" />
 <ol class="arabic simple" start="6">
 <li>Since we selected both the zip files, you will see similar dialogs once
 again. Repeat the process and select <tt class="docutils literal"><span class="pre">glds90ag60.asc</span></tt> grid as the layer to
 add.</li>
 </ol>
-<img alt="../_images/623.png" class="align-center" src="../_images/623.png" />
+<img alt="../_images/624.png" class="align-center" src="../_images/624.png" />
 <ol class="arabic simple" start="7">
 <li>Once again, choose <cite>EPSG:4326</cite> as the CRS.</li>
 </ol>
-<img alt="../_images/723.png" class="align-center" src="../_images/723.png" />
+<img alt="../_images/724.png" class="align-center" src="../_images/724.png" />
 <ol class="arabic simple" start="8">
 <li>Now you will see both the rasters loaded in QGIS. The raster is rendered as
 in grayscale, where darker pixels indicate lower values and lighter pixels
 indicate higher values.</li>
 </ol>
-<img alt="../_images/822.png" class="align-center" src="../_images/822.png" />
+<img alt="../_images/823.png" class="align-center" src="../_images/823.png" />
 <ol class="arabic simple" start="9">
 <li>Each pixel in the raster has a value assigned. This value is the population
 density for that grid. Click on <em class="guilabel">Identify Features</em> button to select the
 tool and click anywhere on the raster to see the value of that pixel.</li>
 </ol>
-<img alt="../_images/920.png" class="align-center" src="../_images/920.png" />
+<img alt="../_images/921.png" class="align-center" src="../_images/921.png" />
 <ol class="arabic simple" start="10">
 <li>To better visualize the pattern of population density, we would need to
 style it. Right-click on the layer name and select <em class="guilabel">Properties</em>. You can also
 double-click on the layer name in the TOC to bring up the Layer
 Properties dialog.</li>
 </ol>
-<img alt="../_images/1021.png" class="align-center" src="../_images/1021.png" />
+<img alt="../_images/1022.png" class="align-center" src="../_images/1022.png" />
 <ol class="arabic simple" start="11">
 <li>Under the <em class="guilabel">Style</em> tab, change the <em class="guilabel">Render type</em>
 to <em class="guilabel">Singleband pseudocolor</em>. Next, click <em class="guilabel">Classify</em>
 under <em class="guilabel">Generate a new color map</em>. You will see 5 new color
 values created. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1125.png" class="align-center" src="../_images/1125.png" />
+<img alt="../_images/1126.png" class="align-center" src="../_images/1126.png" />
 <ol class="arabic simple" start="12">
 <li>Back in the QGIS Canvas, you will see a heatmap-like rendering of the
 raster. Repeat the same process for the other raster as well.</li>
 </ol>
-<img alt="../_images/1222.png" class="align-center" src="../_images/1222.png" />
+<img alt="../_images/1223.png" class="align-center" src="../_images/1223.png" />
 <ol class="arabic simple" start="13">
 <li>For our analysis, we would like to find areas with largest population
 change between 1990 and 2000. The way to accomplish this is by finding the
 difference between each grid’s pixel value in both the layers. Select
 <em class="menuselection">Raster ‣ Raster calculator</em>.</li>
 </ol>
-<img alt="../_images/1320.png" class="align-center" src="../_images/1320.png" />
+<img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
 <ol class="arabic simple" start="14">
 <li>In the <em class="guilabel">Raster bands</em> section, you can select the layer by double-clicking
 on them. The bands are named after the raster name followed by &#64; and band
@@ -312,11 +313,11 @@ as the formula. Name your output layer as <em class="guilabel">pop_density_chang
 and check the box next to <em class="guilabel">Add result to project</em>. Click
 <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1419.png" class="align-center" src="../_images/1419.png" />
+<img alt="../_images/1420.png" class="align-center" src="../_images/1420.png" />
 <ol class="arabic simple" start="15">
 <li>Once the operation is complete, you will see the new layer load in QGIS.</li>
 </ol>
-<img alt="../_images/1518.png" class="align-center" src="../_images/1518.png" />
+<img alt="../_images/1519.png" class="align-center" src="../_images/1519.png" />
 <ol class="arabic simple" start="16">
 <li>This grayscale visualization is useful, but we can create a much more informative
 output. Right-click on the <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990</span></tt> layer and
@@ -379,7 +380,7 @@ with 0 values also transparent. Click <em class="guilabel">OK</em>.</li>
 <li>Now you will see the areas of negative population density change as gray
 pixels.</li>
 </ol>
-<img alt="../_images/2410.png" class="align-center" src="../_images/2410.png" />
+<img alt="../_images/2411.png" class="align-center" src="../_images/2411.png" />
 </div>
 </div>
 
@@ -405,7 +406,7 @@ pixels.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Actualizado por última vez en May 05, 2015.<br/>
+      Actualizado por última vez en May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

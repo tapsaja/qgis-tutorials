@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Leaflet Διαδικτυακοί Χάρτες με το qgis2leaf" href="leaflet_maps_with_qgis2leaf.html" />
-    <link rel="prev" title="Building a Python Plugin" href="building_a_python_plugin.html" />
+    <link rel="prev" title="Using Custom Python Expression Functions" href="custom_python_functions.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -111,6 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Βρείτε Γειτονικά Πολύγωνα σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Διαδικτυακοί Χάρτες με το qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Χρήση του Google Maps Engine Connector για το QGIS</a></li>
@@ -126,7 +127,7 @@
               
                 
   <li>
-    <a href="building_a_python_plugin.html" title="Previous Chapter: Building a Python Plugin"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Building a Pytho...</span>
+    <a href="custom_python_functions.html" title="Previous Chapter: Using Custom Python Expression Functions"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Using Custom Pyt...</span>
     </a>
   </li>
   <li>
@@ -211,42 +212,42 @@
 <li><p class="first">Τοποθετήστε το <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> layer πηγαίνοντας στο <em class="menuselection">Layer ‣ Add Vector Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/139.png" class="align-center" src="../_images/139.png" />
+<img alt="../_images/140.png" class="align-center" src="../_images/140.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Το σενάριο χρησιμοποιεί 2 πεδία για να εκτελέσει την ενέργεια. Ένα πεδίο όνομα και ένα πεδίο που θέλετε να συνοψίσω . Χρησιμοποιήστε το : guilabel : ` εργαλείο Identify`, κάνετε κλικ σε οποιοδήποτε στοιχείο και εξετάστε τα χαρακτηριστικά. Στην περίπτωση αυτή, το πεδίο όνομα είναι <strong>NAME</strong>  και θέλουμε να συνοψίσουμε τις εκτιμήσεις για τον πληθυσμό από το <a href="#id1"><span class="problematic" id="id2">**</span></a>POP_EST **  πεδίο .</p>
 </li>
 </ol>
-<img alt="../_images/224.png" class="align-center" src="../_images/224.png" />
+<img alt="../_images/225.png" class="align-center" src="../_images/225.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Μετάβαση σε: menuselection:<cite>Plugins &#8211;&gt; Python Console</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/315.png" class="align-center" src="../_images/315.png" />
+<img alt="../_images/316.png" class="align-center" src="../_images/316.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Στο παράθυρο <em class="guilabel">Python Console</em> , κάντε κλικ στο κουμπί <em class="guilabel">Show Editor</em>.</p>
 </li>
 </ol>
-<img alt="../_images/410.png" class="align-center" src="../_images/410.png" />
+<img alt="../_images/411.png" class="align-center" src="../_images/411.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Στον πίνακα: guilabel:<cite>Editor</cite> , κάντε κλικ στο κουμπί <em class="guilabel">Open file</em> και αναζητήστε στο script  <tt class="docutils literal"><span class="pre">neighbors.py</span></tt> που έχετε κατεβάσει και κάντε κλικ στο <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/510.png" class="align-center" src="../_images/510.png" />
+<img alt="../_images/511.png" class="align-center" src="../_images/511.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Όταν φορτωθεί το script, μπορεί να θέλετε να αλλάξετε το <tt class="docutils literal"><span class="pre">_NAME_FIELD</span></tt> και <tt class="docutils literal"><span class="pre">_SUM_FIELD</span></tt> για να ταιριάζει με τα χαρακτηριστικά από το δικό σας επίπεδο. Εάν εργάζεστε με το επίπεδο <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> , μπορείτε να αφήσετε αυτά  όπως είναι. Κάντε κλικ στο κουμπκί : guilabel : ` Save` στον πίνακα : guilabel : ` Editor` , αν έχετε κάνει οποιεσδήποτε αλλαγές . Τώρα κάντε κλικ στο κουμπί : guilabel : <cite>Run script</cite>, για να εκτελέσει το script .</p>
 </li>
 </ol>
-<img alt="../_images/69.png" class="align-center" src="../_images/69.png" />
+<img alt="../_images/610.png" class="align-center" src="../_images/610.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Μόλις το script τερματιστεί, κάντε δεξί κλικ στο επίπεδο `` ne_10m_admin_0_countries`` και επιλέξτε: guilabel : <cite>Open Attribute Table</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/79.png" class="align-center" src="../_images/79.png" />
+<img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Θα παρατηρήσετε 2 νέα χαρακτηριστικά που ονομάζονται `` NEIGHBORS`` και `` SUM``. Αυτά προστέθηκαν από το script.</p>
 </li>
 </ol>
-<img alt="../_images/89.png" class="align-center" src="../_images/89.png" />
+<img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
 <p>Παρακάτω είναι το πλήρες script για την αναφορά. Μπορείτε να το τροποποιήσετε ώστε να ταιριάζει στις ανάγκες σας .</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c">################################################################################</span>
 <span class="c"># Copyright 2014 Ujaval Gandhi</span>
@@ -356,7 +357,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on May 05, 2015.<br/>
+      Last updated on May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

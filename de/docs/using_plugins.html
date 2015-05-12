@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Verwenden von Plugins &mdash; QGIS Tutorials and Tips</title>
+    <title>Verwenden von Erweiterungen &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -85,9 +85,9 @@
 <li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Erstellen einer Karte</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Mit Attributen arbeiten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Import von Tabellen oder CSV Dateien</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Verwenden von Plugins</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Verwenden von Erweiterungen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Einfache Vektor Gestaltung</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calculating Line Lengths and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -189,90 +190,100 @@
       
 
   <div class="section" id="using-plugins">
-<h1>Verwenden von Plugins<a class="headerlink" href="#using-plugins" title="Permalink zu dieser Überschrift">¶</a></h1>
+<h1>Verwenden von Erweiterungen<a class="headerlink" href="#using-plugins" title="Permalink zu dieser Überschrift">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/using_plugins_a4.pdf">A4</a> <a class="reference external" href="../pdf/using_plugins_letter.pdf">Letter</a> ]</p>
-<p>Plugins erweitern QGIS mit nützlichen Funktionen. Sie werden von QGIS Entwicklern und anderen unabhängigen Nutzern geschrieben, die die Kernfunktionen des Programms erweitern möchten. Diese Plugins sind für alle Anwender über QGIS verfügbar.</p>
+<p>Erweiterungen fügen QGIS nützlichen Funktionen hinzu. Sie werden von QGIS Entwicklern und anderen unabhängigen Nutzern geschrieben, die die Kernfunktionen des Programms erweitern möchten. Diese Plug-ins sind für alle Anwender innerhalb von QGIS verfügbar.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Übersicht der Aufgabe<a class="headerlink" href="#overview-of-the-task" title="Permalink zu dieser Überschrift">¶</a></h2>
-<p>In dieser Anleitung lernen Sie, wie man <em>Kernplugins</em> aktiviert sowie <em>externe Plugins</em> herunterlädt und installiert. Sie werden ebenso angeleitet, wie man nach Installation das Plugin über das QGIS Menü auffindet.</p>
+<p>In dieser Anleitung lernen Sie, wie man <em>Kernfunktionen</em> aktiviert sowie <em>externe Plug-ins</em> herunterlädt und installiert. Sie werden ebenso lernen, wie man nach der Installation das Plug-in über das QGIS Menü auffindet.</p>
 </div>
 <div class="section" id="procedure">
 <h2>Arbeitsablauf<a class="headerlink" href="#procedure" title="Permalink zu dieser Überschrift">¶</a></h2>
 <div class="section" id="core-plugins">
-<h3>Kernplugins<a class="headerlink" href="#core-plugins" title="Permalink zu dieser Überschrift">¶</a></h3>
-<p>Kernplugins sind bereits Teil der Standardinstallation von QGIS. Um diese zu verwenden, müssen Sie sie lediglich aktivieren.</p>
+<h3>Kern Erweiterungen<a class="headerlink" href="#core-plugins" title="Permalink zu dieser Überschrift">¶</a></h3>
+<p>Kern Erweiterungen sind bereits Teil der Standardinstallation von QGIS. Um diese zu verwenden, müssen Sie sie lediglich aktivieren.</p>
 <ol class="arabic simple">
 <li><p class="first">Öffnen Sie QGIS. Klicken Sie auf <em class="menuselection">Erweiterungen ‣ Erweiterungen verwalten und installieren</em>, um das <em class="guilabel">Erweiterungen</em> Fenster zu öffnen.</p>
 </li>
 </ol>
-<img alt="../_images/1128.png" class="align-center" src="../_images/1128.png" />
+<img alt="../_images/1130.png" class="align-center" src="../_images/1130.png" />
 <ol class="arabic simple" start="2">
-<li><p class="first">Auch wenn Sie zum ersten Mal QGIS verwenden, werden Sie einige Plugins unter <em class="guilabel">Installiert</em> sehen. Diese sind Kernplugins und wurden bei der QGIS-Installation mitinstalliert.</p>
+<li><p class="first">Auch wenn Sie zum ersten Mal QGIS verwenden, werden Sie einige Plug-ins unter <em class="guilabel">Installiert</em> sehen. Diese sind Kern Plug-ins und wurden bei der QGIS-Installation mitinstalliert.</p>
 </li>
 </ol>
 <img alt="../_images/269.png" class="align-center" src="../_images/269.png" />
 <ol class="arabic simple" start="3">
-<li><p class="first">Lassen Sie uns ein Plugin einschalten. Haken Sie die Checkbox neben <em class="guilabel">Räumliche Abfrageerweiterung</em> an. Dadurch wird es aktiviert und Sie können es verwenden. Zu beachten ist, dass Plugins Menüeinträge an unterschiedlichen Stellen einfügen und neue Felder und Werkzeuge erzeugen können. Manchmal ist es schwer zu wissen, wie man das neue Werkzeug findet. Ein Anhaltspunkt ist die Pluginbeschreibung. In diesem Fall ist der Hinweis <em>Kategorie: Vektor</em>. Es deutet darauf hin, dass man das Plugin unter dem Menü <em class="guilabel">Vektor</em> finden kann. Klicken Sie <em class="guilabel">Schließen</em>.</p>
+<li><p class="first">Lassen Sie uns ein Plug-in einschalten. Haken Sie die Checkbox neben <em class="guilabel">Räumliche Abfrageerweiterung</em> an. Dadurch wird es aktiviert und Sie können es verwenden. Zu beachten ist, dass Plug-ins Menüeinträge an unterschiedlichen Stellen einfügen und neue Felder und Werkzeuge erzeugen können. Manchmal ist es schwer zu wissen, wie man das neue Werkzeug findet. Ein Anhaltspunkt ist die Plug-in Beschreibung. In diesem Fall ist der Hinweis <em>Kategorie: Vektor</em>. Es deutet darauf hin, dass man das Plug-in unter dem Menü <em class="guilabel">Vektor</em> finden kann. Klicken Sie <em class="guilabel">Schließen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/338.png" class="align-center" src="../_images/338.png" />
+<img alt="../_images/339.png" class="align-center" src="../_images/339.png" />
 <ol class="arabic simple" start="4">
-<li>Now that the <em class="guilabel">Spatial Query Plugin</em> is enabled, you can go to the <em class="menuselection">Vector ‣ Spatial Query</em> to use the functionality added by the plugin.</li>
+<li><p class="first">Jetzt, wo die <em class="guilabel">Räumliche Abfrageerweiterung</em> aktiviert ist, können Sie zu <em class="menuselection">Vektor ‣ Räumliche Abfrage</em> gehen und die Funktion verwenden, die durch das Plug-in gerade hinzugefügt wurde.</p>
+</li>
 </ol>
-<img alt="../_images/427.png" class="align-center" src="../_images/427.png" />
+<img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
 </div>
 <div class="section" id="external-plugins">
-<h3>External Plugins<a class="headerlink" href="#external-plugins" title="Permalink zu dieser Überschrift">¶</a></h3>
-<p>External plugins are available in the <a class="reference external" href="http://plugins.qgis.org/">QGIS Plugins Repository</a> and need to be installed by the users before using them. An easy way to browse and install these plugins is by using the <em class="guilabel">Plugin Manager</em> tool.</p>
+<h3>Externe Erweiterungen<a class="headerlink" href="#external-plugins" title="Permalink zu dieser Überschrift">¶</a></h3>
+<p>Externe Erweiterungen sind über das <a class="reference external" href="http://plugins.qgis.org/">QGIS Plugins Repository</a> verfügbar und müssen installiert werden, bevor man sie verwenden kann. Ein einfacher Weg, diese zu durchsuchen und zu installieren, ist das <em class="guilabel">Erweiterungen</em> Werkzeug zu verwenden.</p>
 <ol class="arabic simple">
 <li><p class="first">Öffnen Sie QGIS. Klicken Sie auf <em class="menuselection">Erweiterungen ‣ Erweiterungen verwalten und installieren</em>, um das <em class="guilabel">Erweiterungen</em> Fenster zu öffnen.</p>
 </li>
 </ol>
-<img alt="../_images/528.png" class="align-center" src="../_images/528.png" />
+<img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
 <ol class="arabic simple" start="2">
-<li>Click on <em class="guilabel">Get more</em> tab. Here you will see a list of plugins listed.</li>
+<li><p class="first">Klicken Sie, sofern nicht aktiv, auf <em class="guilabel">Alle</em> (neu in QGIS 2.8.1). Hier sehen Sie eine Liste der verfügbaren Plug-ins.</p>
+</li>
 </ol>
-<img alt="../_images/626.png" class="align-center" src="../_images/626.png" />
+<img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
 <ol class="arabic simple" start="3">
-<li>For this tutorial, let&#8217;s find and install a plugin called &#8216;QuickQKT&#8217;. As you start typing <em>qui</em> in the <em class="guilabel">search</em> box, you will see the search results below. Click on the <em class="guilabel">QuickWKT</em>. Next, click on <em class="guilabel">Install plugin</em> button to install it.</li>
+<li><p class="first">In diesem Beispiel, suchen und installieren wir das Plug-in &#8216;QuickWKT&#8217;. Während Sie im Feld <em class="guilabel">Suchen</em> <em>qui</em> eingeben, sehen Sie unten die Suchergebnisse. Klicke auf <em class="guilabel">QuickWKT</em>. Als nächstes klicken Sie <em class="guilabel">Erweiterung installieren</em>.</p>
+</li>
 </ol>
-<img alt="../_images/726.png" class="align-center" src="../_images/726.png" />
+<img alt="../_images/727.png" class="align-center" src="../_images/727.png" />
 <ol class="arabic simple" start="4">
-<li>Once the plugin is downloaded and installed, you will see a confirmation dialog.</li>
+<li><p class="first">Sobald das Plug-in heruntergeladen und installiert ist, sehen Sie einen Bestätigungsdialog.</p>
+</li>
 </ol>
-<img alt="../_images/825.png" class="align-center" src="../_images/825.png" />
+<img alt="../_images/826.png" class="align-center" src="../_images/826.png" />
 <ol class="arabic simple" start="5">
-<li>If you noticed, there was no mention of the plugin category in the description. That makes it hard to determine how to access the newly installed plugin. Most external plugins are installed under the <em class="guilabel">Plugins</em> menu itself in QGIS. Click on <em class="menuselection">Plugins ‣ QuickWKT</em> and you will see the newly installed plugin. Usually, external plugins also install a  button in the <em class="guilabel">Plugins</em> toolbar also. You may also use that button to access the plugin.</li>
+<li><p class="first">Wie Sie vielleicht festgestellt haben, war keine Plug-in Kategorie in der Beschreibung vermerkt. Das macht es schwer festzustellen, wie die neu installierte Erweiterung verwendbar ist. Die meisten externen Erweiterungen werden unter dem <em class="guilabel">Erweiterungen</em> Menü selbst installiert. Klicken Sie auf <em class="menuselection">Erweiterungen ‣ QuickWKT</em>. Üblicher Weise erstellen externe Plug-ins auch eine Schaltfläche in der <em class="guilabel">Erweiterungen</em> Werkzeugleiste. Sie können also auch diese benutzen, um das Plug-in zu verwenden.</p>
+</li>
 </ol>
-<img alt="../_images/923.png" class="align-center" src="../_images/923.png" />
+<img alt="../_images/924.png" class="align-center" src="../_images/924.png" />
 </div>
 <div class="section" id="experimental-plugins">
-<h3>Experimental Plugins<a class="headerlink" href="#experimental-plugins" title="Permalink zu dieser Überschrift">¶</a></h3>
-<p>Now you know how to install and find an <em>External Plugin</em> in QGIS. Let&#8217;s explore some advanced options. Sometimes you are looking for a specific plugin, but cannot find it in the <em class="guilabel">Get more</em> tab. It maybe because the plugin is marked <em>Experimental</em>. Here is how to install <em>experimental</em> plugins.</p>
+<h3>Experimentelle Erweiterungen<a class="headerlink" href="#experimental-plugins" title="Permalink zu dieser Überschrift">¶</a></h3>
+<p>Sie wissen jetzt, wie man <em>Externe Plug-ins</em> in QGIS findet und installiert. Lassen Sie uns erweitere Optionen erkunden. Manchmal sucht man nach einer bestimmten Erweiterung, kann diese aber nicht unter <em class="guilabel">Alle</em> (neu in QGIS 2.8.1) finden. Das kommt eventuell daher, weil das Plug-in als <em>experimentell</em> markiert sind. So installieren Sie jetzt eine <em>experimentelle</em> Erweiterung.</p>
 <ol class="arabic simple">
-<li>Open <em class="guilabel">Plugin Manager</em> by <em class="menuselection">Plugins ‣ Manage and Install Plugins...</em>. Click on the <em class="guilabel">Settings</em> tab. You will see an option called <em class="guilabel">Show also experimental plugins</em>. Click the checkbox next to it, to enable it.</li>
+<li><p class="first">Öffnen Sie <em class="guilabel">Erweiterungen</em> über <em class="menuselection">Erweiterungen ‣ Erweiterungen verwalten und installieren...</em>.  Klicken Sie auf <cite>Einstellungen</cite>. Hier sehen Sie eine Option, die <em class="guilabel">Auch experimentelle Erweiterungen anzeigen</em> heißt. Aktivieren Sie die Checkbox, um es zu aktivieren.</p>
+</li>
 </ol>
-<img alt="../_images/1024.png" class="align-center" src="../_images/1024.png" />
+<img alt="../_images/1025.png" class="align-center" src="../_images/1025.png" />
 <ol class="arabic simple" start="2">
-<li>You will see a new tab called <em class="guilabel">New</em>. The newly enabled experimental plugins will show up here.</li>
+<li><p class="first">Sie sehen nun einen neuen Eintrag <em class="guilabel">Neu</em>. Expermimentelle Plug-ins werden hier angezeigt.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Bemerkung</p>
-<p class="last">The <em class="guilabel">New</em> tab will appear only temporarily once you enable the experimental plugins. The next time you open <em class="guilabel">Plugin Manager</em>, the experimental plugins will show alongside regular plugins in the <em class="guilabel">Get more</em> tab.</p>
+<p class="last">Dieser <em class="guilabel">Neu</em> Eintrag wird nur dann angezeigt, sofern experimentelle Erweiterungen aktiviert ist. Wenn Sie das nächste Mal <em class="guilabel">Erweiterungen</em> öffnen, werden auch diese Plug-ins neben den regulären in <em class="guilabel">Alle</em> angezeigt.</p>
 </div>
-<img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
+<img alt="../_images/1131.png" class="align-center" src="../_images/1131.png" />
 <ol class="arabic simple" start="3">
-<li>Let&#8217;s install a plugin called <em class="guilabel">TimeManager</em>. Click on the plugin name and then Click <em class="guilabel">Install</em>.</li>
+<li><p class="first">Wir installieren eine Erweiterung, die <em class="guilabel">Time Manager</em> genannt wird. Kicken Sie auf den Plug-in Namen und dann auf <em class="guilabel">Erweiterung installieren</em>.</p>
+</li>
 </ol>
-<img alt="../_images/1225.png" class="align-center" src="../_images/1225.png" />
+<img alt="../_images/1226.png" class="align-center" src="../_images/1226.png" />
 <ol class="arabic simple" start="4">
-<li>Now when you come back to the main QGIS window, you will see a new <em>Panel</em> at the bottom of the canvas. This panel is created by the TimeManager plugin. This is yet another way of plugins to add useful functionality to the user interface .</li>
+<li><p class="first">Wenn Sie zum Hauptfenster von QGIS zurückkehren, sehen Sie ein Bedienfeld im unteren Bereich. Es wurde durch das Time Manager Plug-in erzeugt. Dies ist eine andere Art, wie Erweiterungen Funktionen zur Bedienoberfläche hinzufügen können.</p>
+</li>
 </ol>
-<img alt="../_images/1323.png" class="align-center" src="../_images/1323.png" />
+<img alt="../_images/1324.png" class="align-center" src="../_images/1324.png" />
 <ol class="arabic simple" start="5">
-<li>You can enable/disable this panel from <em class="menuselection">View ‣ Panels ‣ Time Manager</em>.</li>
+<li><p class="first">Sie können das Bedienelement über <em class="menuselection">Ansicht ‣ Bedienfelder ‣ Time Manager</em> aktivieren/deaktivieren.</p>
+</li>
 </ol>
-<img alt="../_images/1422.png" class="align-center" src="../_images/1422.png" />
+<img alt="../_images/1423.png" class="align-center" src="../_images/1423.png" />
 </div>
 </div>
 </div>
@@ -299,7 +310,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Zuletzt aktualisiert am May 05, 2015.<br/>
+      Zuletzt aktualisiert am May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

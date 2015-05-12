@@ -111,6 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Construirea unui Plugin Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -219,7 +220,7 @@
 <li><p class="first">O dată ce ați descărcat datele, deschideți QGIS. Mergeți la <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1131.png" class="align-center" src="../_images/1131.png" />
+<img alt="../_images/1133.png" class="align-center" src="../_images/1133.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Faceți clic pe <em class="guilabel">Browse</em> și navigați la folderul unde ați descărcat datele.</p>
 </li>
@@ -229,32 +230,32 @@
 <li><p class="first">Localizați fișierul descărcat, <cite>ne_10m_populated_places_simple.zip</cite>. Nu e nevoie să-l dezarhivați. QGIS are capacitatea de a citi în mod direct fișierele zip. Selectați fișierul și faceți clic pe <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/340.png" class="align-center" src="../_images/340.png" />
+<img alt="../_images/344.png" class="align-center" src="../_images/344.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Straturile selectate se vor încărca în QGIS, după care vor apărea mai multe puncte, reprezentând locurile populate ale lumii.</p>
 </li>
 </ol>
-<img alt="../_images/429.png" class="align-center" src="../_images/429.png" />
+<img alt="../_images/430.png" class="align-center" src="../_images/430.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Faceți clic-dreapta pe layer și selectați <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/530.png" class="align-center" src="../_images/530.png" />
+<img alt="../_images/531.png" class="align-center" src="../_images/531.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Explorați atributele și valorile lor.</p>
 </li>
 </ol>
-<img alt="../_images/628.png" class="align-center" src="../_images/628.png" />
+<img alt="../_images/629.png" class="align-center" src="../_images/629.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Deoarece ne interesează populația din fiecare entitate, <cite>pop_max</cite> va fi câmpul căutat. Puteți face dublu-clic pe denumirea câmpului, pentru a sorta coloana în ordine descrescătoare.</p>
 </li>
 </ol>
-<img alt="../_images/728.png" class="align-center" src="../_images/728.png" />
+<img alt="../_images/729.png" class="align-center" src="../_images/729.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Acum suntem gata de a efectua interogarea pe aceste atribute. QGIS folosește expresii bazate pe SQL pentru a efectua interogările.</p>
 </li>
 </ol>
-<img alt="../_images/827.png" class="align-center" src="../_images/827.png" />
+<img alt="../_images/828.png" class="align-center" src="../_images/828.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">In fereastra <em class="guilabel">Select By Expression</em>, expandați secțiunea <em class="guilabel">Fields and Values</em> și efectuați dublu-clic pe eticheta <tt class="docutils literal"><span class="pre">pop_max</span></tt>. Veți observa că ea va vi adăugată în partea de jos a secțiunii expresiei. Dacă nu sunteți siguri cu privire la valorile câmpului, puteți face clic pe <em class="guilabel">Load all unique values</em> pentru a vedea valorile atributelor care sunt prezente în setul de date. În acest exercițiu, suntem în căutarea tuturor entităților care au o populație mai mare de <tt class="docutils literal"><span class="pre">1,000,000</span></tt>. Deci, completați expresia de mai jos și faceți clic pe <em class="guilabel">Select</em>.</p>
 </li>
@@ -262,14 +263,12 @@
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000
 </pre></div>
 </div>
-<img alt="../_images/925.png" class="align-center" src="../_images/925.png" />
+<img alt="../_images/926.png" class="align-center" src="../_images/926.png" />
 <ol class="arabic simple" start="10">
-<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. You will
-notice that a subset of points is now rendered in yellow. This is the
-result of our query and you are seeing all places from the dataset that
-have the <tt class="docutils literal"><span class="pre">pop_max</span></tt> attribute value greater than <tt class="docutils literal"><span class="pre">1,000,000</span></tt>.</li>
+<li><p class="first">Faceți clic pe <em class="guilabel">Close</em> și reveniți la fereastra principală a QGIS. Veți observa că un subset de puncte este acum randat în galben. Acesta este rezultatul interogării noastre, putându-se vedea toate locurile din setul de date care au valoarea atributului <tt class="docutils literal"><span class="pre">pop_max</span></tt> mai mare de <tt class="docutils literal"><span class="pre">1,000,000</span></tt>.</p>
+</li>
 </ol>
-<img alt="../_images/1026.png" class="align-center" src="../_images/1026.png" />
+<img alt="../_images/1027.png" class="align-center" src="../_images/1027.png" />
 <ol class="arabic simple" start="11">
 <li>The goal for this exercise is to find the places that are country capitals.
 The field containing this data is <cite>adm0cap</cite>. The value <tt class="docutils literal"><span class="pre">1</span></tt> indicates that
@@ -282,7 +281,7 @@ and click <em class="guilabel">Select</em> and then <em class="guilabel">Close</
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000 and &quot;adm0cap&quot; = 1
 </pre></div>
 </div>
-<img alt="../_images/1132.png" class="align-center" src="../_images/1132.png" />
+<img alt="../_images/1134.png" class="align-center" src="../_images/1134.png" />
 <ol class="arabic simple" start="12">
 <li>Return to the main QGIS window. Now you will see a smaller subset of the
 points selected. This is the result of the second query and shows all
@@ -292,12 +291,12 @@ on this subset of data, we can make this selection persistent. Right-click
 the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select
 <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/1226.png" class="align-center" src="../_images/1226.png" />
+<img alt="../_images/1227.png" class="align-center" src="../_images/1227.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">În fila <em class="guilabel">General</em>, mergeți la secțiunea <em class="guilabel">Feature subset</em>. Click pe <em class="guilabel">Query Builder</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1324.png" class="align-center" src="../_images/1324.png" />
+<img alt="../_images/1325.png" class="align-center" src="../_images/1325.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Introduceți aceeași expresie pe care ați introdus-ot mai devreme, apoii faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
@@ -305,7 +304,7 @@ the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simpl
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000 and &quot;adm0cap&quot; = 1
 </pre></div>
 </div>
-<img alt="../_images/1423.png" class="align-center" src="../_images/1423.png" />
+<img alt="../_images/1424.png" class="align-center" src="../_images/1424.png" />
 <ol class="arabic simple" start="15">
 <li>Back in the main QGIS window, you will see rest of the points disappear.
 You may now perform any other analysis on this layer and only the features
@@ -314,7 +313,7 @@ still appear in yellow. This is because they are still selected. Find the
 <em class="guilabel">Deselect Features from All Layers</em> button under the
 <em class="guilabel">Attributes</em> toolbar and click on it.</li>
 </ol>
-<img alt="../_images/1521.png" class="align-center" src="../_images/1521.png" />
+<img alt="../_images/1522.png" class="align-center" src="../_images/1522.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Veți vedea că acum punctele sunt de-selectate și randate în culoarea lor originală.</p>
 </li>
@@ -345,7 +344,7 @@ still appear in yellow. This is because they are still selected. Find the
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on May 05, 2015.<br/>
+      Last updated on May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -111,6 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Construirea unui Plugin Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -225,42 +226,42 @@
 <li><p class="first">O dată ce ați descărcat datele, deschideți QGIS. Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1102.png" class="align-center" src="../_images/1102.png" />
+<img alt="../_images/1103.png" class="align-center" src="../_images/1103.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Clic pe <em class="guilabel">Browse</em> și navigați la folderul unde ați descărcat datele.</p>
 </li>
 </ol>
-<img alt="../_images/239.png" class="align-center" src="../_images/239.png" />
+<img alt="../_images/240.png" class="align-center" src="../_images/240.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Țineți apăsată tasta <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> și efectuați clic pe ambele fișiere zip, pentru a le selecta. Clic pe <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/327.png" class="align-center" src="../_images/327.png" />
+<img alt="../_images/328.png" class="align-center" src="../_images/328.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Vi se va cere să alegeți un strat din arhiva zip. Selectați <tt class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines.shp</span></tt> și faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/419.png" class="align-center" src="../_images/419.png" />
+<img alt="../_images/420.png" class="align-center" src="../_images/420.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Din moment ce ați selectat mai multe fișiere, repetați procesul pentru fișierul următor. Selectați <tt class="docutils literal"><span class="pre">10m_populated_places_simple.shp</span></tt> și faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/520.png" class="align-center" src="../_images/520.png" />
+<img alt="../_images/521.png" class="align-center" src="../_images/521.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Veți vedea ambele fișiere shape încărcate în QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/619.png" class="align-center" src="../_images/619.png" />
+<img alt="../_images/620.png" class="align-center" src="../_images/620.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">S-au creat zonele tampon în jurul straturilor de tip punct și de tip linie. Instrumentul de geoprocesare din QGIS, <cite>Buffer</cite>, folosește <cite>unitățile stratului</cite> pentru a calcula distanțele tampon. Straturile pe care le avem sunt într-un <cite>Sistem de Coordonate de Referință (CRS) Geografic</cite>, având unitățile în <cite>grade</cite>. Acest lucru nu este adecvat atât timp cât vrem ca analiza noastră să folosească <cite>metri</cite> sau <cite>kilometri</cite>. Pentru acest lucru, trebuie să reproiectăm straturile într-un <cite>Sistem de Coordonate de Referință (CRS) Proiectat</cite>. Faceți clic dreapta pe <tt class="docutils literal"><span class="pre">10m_populated_places_simple</span> <span class="pre">layer</span></tt> apoi alegeți <em class="guilabel">Save As</em>.</p>
 </li>
 </ol>
-<img alt="../_images/718.png" class="align-center" src="../_images/718.png" />
+<img alt="../_images/719.png" class="align-center" src="../_images/719.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">În fereastra de dialog <em class="guilabel">Save vector layer as...</em>, apăsați <em class="guilabel">Browse</em> de lângă <em class="guilabel">Save as</em> și selectați locatia fișierului de ieșire. Denumiți fișierul de ieșire ca <tt class="docutils literal"><span class="pre">populated_places_reprojected.shp</span></tt>. Apoi, efectuați clic pe butonul <em class="guilabel">Browse</em> de lângă <em class="guilabel">CRS</em>.</p>
 </li>
 </ol>
-<img alt="../_images/817.png" class="align-center" src="../_images/817.png" />
+<img alt="../_images/818.png" class="align-center" src="../_images/818.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Acum trebuie să alegem un CRS adecvat scopului nostru. Pentru crearea unor zone tampon, o proiecție echidistantă azimutală ar fi cea mai potrivită, atât timp cât distanțele radiale din jurul centrului de proiecție sunt corecte. În cazul nostru, deoarece setul de date este global, vom alege o proiecție a lumii. În fereastra de dialog <em class="guilabel">Coordinate Reference System Selector</em>, lansați căutarea <cite>world az..</cite>, apoi veți observa rezultatele apărând. Selectați <cite>World_Azimuthal_Equidistant</cite> și faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
@@ -269,37 +270,37 @@
 <p class="first admonition-title">Note</p>
 <p class="last">Proiecția <cite>World_Azimuthal_Equidistant</cite> se întinde până la 90 de grade, pornind dinspre origine. Deoarece originea are longitudinea de 0 grade, numai datele conținute în interiorul longitudinii de +/- 90 grade vor fi convertite.</p>
 </div>
-<img alt="../_images/915.png" class="align-center" src="../_images/915.png" />
+<img alt="../_images/916.png" class="align-center" src="../_images/916.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Înapoi, în fereastra de dialog <em class="guilabel">Save vector layer as ...</em>, bifați caseta de lângă <em class="guilabel">Add saved file to map</em> si apăsați <cite>OK</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/1016.png" class="align-center" src="../_images/1016.png" />
+<img alt="../_images/1017.png" class="align-center" src="../_images/1017.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Repetați procesul de reproiectare pentru stratul <tt class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines</span></tt> și salvați noul strat ca <tt class="docutils literal"><span class="pre">rivers_lake_reprojected.shp</span></tt> .</p>
 </li>
 </ol>
-<img alt="../_images/1120.png" class="align-center" src="../_images/1120.png" />
+<img alt="../_images/1121.png" class="align-center" src="../_images/1121.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Acum, veți avea 4 straturi în <em class="guilabel">Layers Panel</em> dvs. Debifați casetele de lângă straturile originale pentru a afișa doar straturile reproiectate. Straturile reproiectate vor fi arătate ca fiind încă în <cite>CRS Geografic</cite> din cauza unei setări. Să corectăm acest lucru. Apăsați pe butonul <em class="guilabel">Project Properties</em>. Această setare poate fi accesată, de asemenea, din <em class="menuselection">Project ‣ Project Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1218.png" class="align-center" src="../_images/1218.png" />
+<img alt="../_images/1219.png" class="align-center" src="../_images/1219.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">În fila <em class="guilabel">CRS</em> a ferestrei de dialog <em class="guilabel">Project Properties</em>, debifați caseta de lângă <em class="guilabel">Enable on-the-fly CRS transformation</em>. Faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1316.png" class="align-center" src="../_images/1316.png" />
+<img alt="../_images/1317.png" class="align-center" src="../_images/1317.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Înapoi, în fereastra principală QGIS, faceți clic dreapta pe oricare dintre straturile reproiectate și selectați <em class="guilabel">Zoom to Layer Extent</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1415.png" class="align-center" src="../_images/1415.png" />
+<img alt="../_images/1416.png" class="align-center" src="../_images/1416.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Acum, veți vedea datele din CRS-ul stratului. Vom crea zone tampon pentru ambele seturi de date. Clic <em class="menuselection">Vector ‣ Geoprocessing Tools ‣ Buffer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1514.png" class="align-center" src="../_images/1514.png" />
+<img alt="../_images/1515.png" class="align-center" src="../_images/1515.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">În instrumentul <em class="guilabel">Buffer</em>, selectați ca ieșire stratul <tt class="docutils literal"><span class="pre">populated_places_reprojected</span></tt>. Introduceți <cite>10000</cite> ca distanță tampon. Rețineți că ne dorim un tampon de 10 kmp și deoarece unitățile CRS-ului sunt în metri, trebuie să introducem 10,000. Denumiți fișierul de ieșire ca <tt class="docutils literal"><span class="pre">populated_places_buffer.shp</span></tt>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
@@ -390,7 +391,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on May 05, 2015.<br/>
+      Last updated on May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

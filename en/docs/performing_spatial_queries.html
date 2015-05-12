@@ -111,6 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -223,31 +224,31 @@ cities that are within 10 kms of a river.</p>
 <li>Once you have downloaded the data, open QGIS. Go to
 <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
 </ol>
-<img alt="../_images/1102.png" class="align-center" src="../_images/1102.png" />
+<img alt="../_images/1103.png" class="align-center" src="../_images/1103.png" />
 <ol class="arabic simple" start="2">
 <li>Click <em class="guilabel">Browse</em> and navigate to the folder where you downloaded the
 zip files.</li>
 </ol>
-<img alt="../_images/239.png" class="align-center" src="../_images/239.png" />
+<img alt="../_images/240.png" class="align-center" src="../_images/240.png" />
 <ol class="arabic simple" start="3">
 <li>Hold the <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> key and click on both the zip files to select them.
 Click <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/327.png" class="align-center" src="../_images/327.png" />
+<img alt="../_images/328.png" class="align-center" src="../_images/328.png" />
 <ol class="arabic simple" start="4">
 <li>You will be asked to choose a layer from the zip archive.
 Select <tt class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines.shp</span></tt> and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/419.png" class="align-center" src="../_images/419.png" />
+<img alt="../_images/420.png" class="align-center" src="../_images/420.png" />
 <ol class="arabic simple" start="5">
 <li>Since you have selected multiple files, repeat the process for the next file.
 Select 10m_populated_places_simple.shp and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/520.png" class="align-center" src="../_images/520.png" />
+<img alt="../_images/521.png" class="align-center" src="../_images/521.png" />
 <ol class="arabic simple" start="6">
 <li>You will see both the shapefiles now loaded in QGIS.</li>
 </ol>
-<img alt="../_images/619.png" class="align-center" src="../_images/619.png" />
+<img alt="../_images/620.png" class="align-center" src="../_images/620.png" />
 <ol class="arabic simple" start="7">
 <li>We will be created buffers around the point and line layers. The <cite>Buffer</cite>
 geoprocessing tool in QGIS uses <cite>layer units</cite> to calculate buffer distances.
@@ -257,14 +258,14 @@ the unit of <cite>degrees</cite>. This is not appropriate as we want our analysi
 <cite>Projected Coordinate Reference System (CRS)</cite>. Right-click on the
 <tt class="docutils literal"><span class="pre">10m_populated_places_simple</span> <span class="pre">layer</span></tt> and choose <em class="guilabel">Save As</em>.</li>
 </ol>
-<img alt="../_images/718.png" class="align-center" src="../_images/718.png" />
+<img alt="../_images/719.png" class="align-center" src="../_images/719.png" />
 <ol class="arabic simple" start="8">
 <li>In the <em class="guilabel">Save vector layer as...</em> dialog, click <em class="guilabel">Browse</em>
 next to <em class="guilabel">Save as</em> and select the output file location. Name the
 output file as <tt class="docutils literal"><span class="pre">populated_places_reprojected.shp</span></tt>. Next, click the
 <em class="guilabel">Browse</em> button next to <em class="guilabel">CRS</em>.</li>
 </ol>
-<img alt="../_images/817.png" class="align-center" src="../_images/817.png" />
+<img alt="../_images/818.png" class="align-center" src="../_images/818.png" />
 <ol class="arabic simple" start="9">
 <li>Now we must choose an appropriate CRS for our purpose. For creating buffers,
 a Azimuthal Equidistant projection would be best suited as radial distances
@@ -280,17 +281,17 @@ dataset is global, we will choose a world projection. In the
 origin. Here the origin being 0 degrees longitude, the only data contained
 within +/- 90 degrees longitude will be converted.</p>
 </div>
-<img alt="../_images/915.png" class="align-center" src="../_images/915.png" />
+<img alt="../_images/916.png" class="align-center" src="../_images/916.png" />
 <ol class="arabic simple" start="10">
 <li>Back in <em class="guilabel">Save vector layer as ...</em> dialog, check the box next to
 <em class="guilabel">Add saved file to map</em> and click <cite>OK</cite>.</li>
 </ol>
-<img alt="../_images/1016.png" class="align-center" src="../_images/1016.png" />
+<img alt="../_images/1017.png" class="align-center" src="../_images/1017.png" />
 <ol class="arabic simple" start="11">
 <li>Repeat the re-projection process for the <tt class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines</span></tt>
 layer and save the new layer as <tt class="docutils literal"><span class="pre">rivers_lake_reprojected.shp</span></tt>.</li>
 </ol>
-<img alt="../_images/1120.png" class="align-center" src="../_images/1120.png" />
+<img alt="../_images/1121.png" class="align-center" src="../_images/1121.png" />
 <ol class="arabic simple" start="12">
 <li>Now you will have 4 layers in your <em class="guilabel">Layers Panel</em>. Un-check the
 boxes next to the original layers to display only the re-projected layers.
@@ -299,24 +300,24 @@ because of a setting. Let&#8217;s turn that off. Click on the
 <em class="guilabel">Project Properties</em> button. This setting can also be accessed
 from <em class="menuselection">Project ‣ Project Properties</em>.</li>
 </ol>
-<img alt="../_images/1218.png" class="align-center" src="../_images/1218.png" />
+<img alt="../_images/1219.png" class="align-center" src="../_images/1219.png" />
 <ol class="arabic simple" start="13">
 <li>In the <em class="guilabel">CRS</em> tab of the <em class="guilabel">Project Properties</em> dialog,
 un-check the box next to <em class="guilabel">Enable on-the-fly CRS transformation</em>.
 Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1316.png" class="align-center" src="../_images/1316.png" />
+<img alt="../_images/1317.png" class="align-center" src="../_images/1317.png" />
 <ol class="arabic simple" start="14">
 <li>Back in the main QGIS window, right-click on any one of the re-projected
 layers and select <em class="guilabel">Zoom to Layer Extent</em>.</li>
 </ol>
-<img alt="../_images/1415.png" class="align-center" src="../_images/1415.png" />
+<img alt="../_images/1416.png" class="align-center" src="../_images/1416.png" />
 <ol class="arabic simple" start="15">
 <li>Now you will see the data in the layer&#8217;s CRS. We will now create buffers for
 both the datasets. Click <em class="menuselection">Vector ‣ Geoprocessing Tools ‣
 Buffer</em>.</li>
 </ol>
-<img alt="../_images/1514.png" class="align-center" src="../_images/1514.png" />
+<img alt="../_images/1515.png" class="align-center" src="../_images/1515.png" />
 <ol class="arabic simple" start="16">
 <li>In the <em class="guilabel">Buffer</em> tool, select <tt class="docutils literal"><span class="pre">populated_places_reprojected</span></tt>
 layer as Input. Enter the buffer distance as <cite>10000</cite>. Note that we want a
@@ -422,7 +423,7 @@ are indeed close to rivers.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on May 05, 2015.<br/>
+      Last updated on May 11, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

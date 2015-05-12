@@ -111,6 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Construirea unui Plugin Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -201,17 +202,17 @@
 <li><p class="first">Vom folosi 2 plugin-uri pentru a realiza această activitate. Asigurați-vă că ați instalat plugin-urile <strong>OSM Place Search</strong> și <strong>OpenLayers</strong>. Parcurgeți <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a> pentru instrucțiuni despre modul de descărcare a plugin-urilor.</p>
 </li>
 </ol>
-<img alt="../_images/130.png" class="align-center" src="../_images/130.png" />
+<img alt="../_images/139.png" class="align-center" src="../_images/139.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Plugin-ul <strong>OSM Place Search</strong> se va instala într-un <em>Panou</em> din QGIS. Veți vedea un panou nou, intitulat <em class="guilabel">OSM place search...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
+<img alt="../_images/224.png" class="align-center" src="../_images/224.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Plugin-ul <strong>OpenLayers</strong> este instalat în meniul <em>Plugin</em>. Acest plugin permite, în QGIS, accesarea hărților topografice ale diverșilor furnizori. Haideți să încărcăm harta de bază OpenStreetMap, apelând <em class="menuselection">Plugins ‣ OpenLayers plugin ‣ Add OpenStreetMap layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/314.png" class="align-center" src="../_images/314.png" />
+<img alt="../_images/315.png" class="align-center" src="../_images/315.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Veți vedea o hartă a lumii, încărcată în QGIS.</p>
 </li>
@@ -220,27 +221,27 @@
 <p class="first admonition-title">Note</p>
 <p class="last">Dacă nu vedeți nici un fel de date - asigurați-vă că sunteți on-line - atât timp cât imaginile hărții de bază sunt preluate de pe internet. Puteți folosi, de asemenea, instrumentul <em>Pan</em> pentru a muta ușor suportul hărții, ceea ce va declanșa o actualizare a hărții de bază.</p>
 </div>
-<img alt="../_images/49.png" class="align-center" src="../_images/49.png" />
+<img alt="../_images/410.png" class="align-center" src="../_images/410.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Acum, haideți să filtrăm după <em>London</em>. Introduceți interogarea în câmpul <em class="guilabel">Name contains...</em> din panoul <strong>OSM Place Search</strong>. Aveți posibilitatea să faceți clic pe oricare rezultat, locul respectiv evidențiindu-se pe hartă. Selectați primul rezultat - care este orașul Londra, din Marea Britanie - apoi apăsați butonul <em class="guilabel">Zoom</em>.</p>
 </li>
 </ol>
-<img alt="../_images/59.png" class="align-center" src="../_images/59.png" />
+<img alt="../_images/510.png" class="align-center" src="../_images/510.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Veți vedea stratul de bază deplasându-se și centrându-se în dreptul orașului Londra. Puteți utiliza instrumentul <em class="guilabel">Zoom</em> pentru a mări și selecta cu precizie zona de interes. Pentru acest tutorial, veți mări centrul orașului, după cum se arată mai jos.</p>
 </li>
 </ol>
-<img alt="../_images/68.png" class="align-center" src="../_images/68.png" />
+<img alt="../_images/69.png" class="align-center" src="../_images/69.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Acum putem descărca datele afișate pe suportul hărții. Mergeți la <em class="menuselection">Vector ‣ OpenStreetMap ‣ Download data</em>.</p>
 </li>
 </ol>
-<img alt="../_images/78.png" class="align-center" src="../_images/78.png" />
+<img alt="../_images/79.png" class="align-center" src="../_images/79.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">În dialogul <em class="guilabel">Download OpenStreetMap data</em>, alegeți <em class="guilabel">From map canvas</em>, și completați coordonatele <em class="guilabel">Granițelor</em>. Specificați calea și numele fișierului de ieșire <tt class="docutils literal"><span class="pre">london.osm</span></tt>.</p>
 </li>
 </ol>
-<img alt="../_images/88.png" class="align-center" src="../_images/88.png" />
+<img alt="../_images/89.png" class="align-center" src="../_images/89.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Fișierul descărcat cu extensia <tt class="docutils literal"><span class="pre">.osm</span></tt> este un fișier text în formatul <a class="reference external" href="http://wiki.openstreetmap.org/wiki/OSM_XML">XML OSM</a>. În primul rând, trebuie să-l convertim într-un format adecvat, care este ușor de a folosit în QGIS. Mergeți la <em class="menuselection">Vector ‣ OpenStreetMap ‣ Import topology from XML</em>.</p>
 </li>
@@ -249,37 +250,37 @@
 <p class="first admonition-title">Note</p>
 <p class="last">Acum, că nu mai avem nevoie de funcționalitatea <strong>OSM Place Search</strong>, aveți posibilitatea să faceți clic pe butonul de închidere, pentru a o elimina de pe fereastra principală. Dacă aveți nevoie să o folosiți din nou, o puteți activa din <em class="menuselection">View ‣ Panels ‣ OSM place search...</em> (Windows) sau <em class="menuselection">Settings ‣ Panels ‣ OSM place search...</em> (Linux).</p>
 </div>
-<img alt="../_images/98.png" class="align-center" src="../_images/98.png" />
+<img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Navigați către fișierul descărcat <tt class="docutils literal"><span class="pre">london.osm</span></tt>, în <em class="guilabel">Input XML file</em>. În câmpul <em class="guilabel">Output SpatiaLite DB file</em> specificați <tt class="docutils literal"><span class="pre">london.osm.db</span></tt>. Asigurați-vă că ați bifat <em class="guilabel">Create connection (SpatiaLite) after import</em>.</p>
 </li>
 </ol>
-<img alt="../_images/108.png" class="align-center" src="../_images/108.png" />
+<img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Acum, ultimul pas. Trebuie să creăm straturi cu geometrie SpatialLite, care să poată fi vizualizate și analizate în QGIS. Acest lucru se face cu ajutorul <em class="menuselection">Vector ‣ OpenStreetMap ‣ Export topology to SpatialLite</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1112.png" class="align-center" src="../_images/1112.png" />
+<img alt="../_images/1113.png" class="align-center" src="../_images/1113.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Fișierul <tt class="docutils literal"><span class="pre">london.osm.db</span></tt> conține toate tipurile de entități ale bazei de date OSM - puncte, linii și poligoane. Straturile GIS conțin, de obicei, doar un singur tip de entitate, așa că veți alege unul. Din moment ce suntem interesați de locațiile de tip punct ale pub-urilor, vom alege <em class="guilabel">Point (nodes)</em> pentru <em class="guilabel">Export type</em>. Dacă am fi vrut să obținem rețeaua de drumuri, am fi ales <em class="guilabel">Polylines (open ways)</em>. Denumiți <em class="guilabel">Output layer name</em> ca <tt class="docutils literal"><span class="pre">london_points</span></tt>. Datele GIS sunt compuse din 2 părți - locația și atributele. Suntem, de asemenea, interesați și de <strong>numele</strong> pub-ului - nu doar de locația sa, așa că trebuie să exportăm aceste informații, la fel de bine. Faceți clic pe <em class="guilabel">Load from DB</em> din secțiunea <em class="guilabel">Exported tags</em>. Acest lucru va aduce toate atributele din fișierul <tt class="docutils literal"><span class="pre">london.osm.db</span></tt>. Bifați etichetele <em class="guilabel">name</em> and <em class="guilabel">amenity</em>. Vedeți <a class="reference external" href="http://wiki.openstreetmap.org/wiki/Tags">OSM Tags</a> pentru a afla mai multe despre ce înseamnă fiecare atribut. Asigurați-vă că ați bifat și <em class="guilabel">Load into canvas when finished</em>, apoi faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" />
+<img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Veți vedea un nou strat de tip punct, numit <tt class="docutils literal"><span class="pre">london_points</span></tt>, încărcat în QGIS. Rețineți că acesta conține <strong>toate</strong> punctele din baza de date OSM în fereastra de vizualizare. Din moment ce suntem interesați numai de pub-uri, pentru a le selecta, va trebui să efectuăm o interogare. Faceți clic dreapta pe stratul <tt class="docutils literal"><span class="pre">london_points</span></tt> și selectați <em class="guilabel">Open Attribute Table</em>.</p>
 </li>
 </ol>
-<img alt="../_images/138.png" class="align-center" src="../_images/138.png" />
+<img alt="../_images/1310.png" class="align-center" src="../_images/1310.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Veți observa că în coloana <em class="guilabel">amenity</em> valoarea atributului unor entități este <strong>pub</strong>. Efectuați clic pe butonul <em class="guilabel">Select features using an expression</em>.</p>
 </li>
 </ol>
-<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
+<img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Introduceți expresia <cite>&#8220;amenity&#8221; = &#8216;pub&#8217;</cite> și faceți clic pe <em class="guilabel">Select</em>.</p>
 </li>
 </ol>
-<img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
+<img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Înapoi, pe suportul hărții QGIS, veți vedea unele puncte evidențiate în galben. Acestea reprezintă rezultatul interogării noastre. Faceți clic dreapta pe stratul <tt class="docutils literal"><span class="pre">london_points</span></tt> și alegeți <em class="guilabel">Save Selection As...</em>.</p>
 </li>
@@ -325,7 +326,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on May 05, 2015.<br/>
+      Last updated on May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

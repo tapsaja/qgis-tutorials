@@ -111,6 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Construirea unui Plugin Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -219,52 +220,52 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Mergeți la <em class="menuselection">Layer ‣ Add Raster Layer</em>. Localizați fișierul descărcat <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02.tif</span></tt> și efectuați clic pe <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/128.png" class="align-center" src="../_images/128.png" />
+<img alt="../_images/130.png" class="align-center" src="../_images/130.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Acesta este un fișier raster mare, fiind posibil să observați că, atunci când măriți sau deplasați harta, e nevoie de un pic de timp pentru randarea imaginii. QGIS oferă o soluție simplă pentru încărcarea mult mai rapidă a rasterelor, prin utilizarea <strong>Piramidelor de Imagini</strong>. QGIS creează plăci pregătite la diferite rezoluții, acestea fiind prezentate în locul unui raster complet. Acest lucru face ca navigația prin hartă să devină mai fluentă și mai receptivă. Faceți clic dreapta pe stratul <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02</span></tt> și alegeți <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
+<img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Alegeți fila <em class="guilabel">Pyramids</em>. Țineți tasta <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> apăsată și selectați toate rezoluțiile oferite în panoul <em class="guilabel">Resolutions</em>. Lăsați valorile implicite pentru celelalte opțiuni și faceți clic pe <em class="guilabel">Build pyramids</em>. O dată procesul terminat, clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
+<img alt="../_images/313.png" class="align-center" src="../_images/313.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Înapoi, în fereastra principală a QGIS, utilizați instrumentul <em class="guilabel">Zoom</em> pentru a localiza zona <em>Hagley Park</em> din Christchurch. Acesta este parcul pe care îl vom digitiza.</p>
 </li>
 </ol>
-<img alt="../_images/48.png" class="align-center" src="../_images/48.png" />
+<img alt="../_images/49.png" class="align-center" src="../_images/49.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Înainte de a începe, e nevoie să setăm <strong>Opțiunile de digitizare</strong> implicite. Mergeți la <em class="menuselection">Settings ‣ Options...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
+<img alt="../_images/59.png" class="align-center" src="../_images/59.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Selectați fila <em class="guilabel">Digitizing</em> din fereastra de dialog <em class="guilabel">Options</em>. Setați <em class="guilabel">Default snap mode</em> pentru <em class="guilabel">To vertex and segment</em>. Acest lucru va permite atragerea automată, către cel mai apropiat nod sau segment de linie. De asemenea, preferăm să setăm <em class="guilabel">Default snapping tolerance</em> și <em class="guilabel">Search radius for vertex edits</em> în pixeli, în locul unităților hărții. Acest lucru ne oferă garanția că distanța de atragere rămâne constantă, indiferent de nivelul de mărire. În funcție de rezoluția ecranului dvs., puteți alege o valoare corespunzătoare. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
+<img alt="../_images/68.png" class="align-center" src="../_images/68.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Acum suntem gata pentru a începe digitizarea. Vom crea mai întâi un strat de drumuri și vom digitiza drumurile din jurul parcului. Selectați <em class="menuselection">Layer ‣ New ‣ New Spatialite Layer...</em>. Dacă doriți, puteți crea un <em class="guilabel">New Shapefile Layer...</em>, în schimb. Formatul bazei de date Spatialite este de tip deschis, similar formatului geodatabase ESRI. Baza de date Spatialite este stocată într-un singur fișier de pe hard disk și poate include atât tipuri spațiale (punct, linie, poligon), cât și straturi non-spațiale. Acest lucru ușurează portabilitatea, comparativ cu utilizarea unei mulțimi de fișiere shape. În acest tutorial, vom crea o pereche de straturi de tip poligon și un strat de tip linie, astfel încât o bază de date Spatialite va fi foarte potrivită. Puteți încărca întotdeauna un strat spatialite și să-l salvați ca fișier shape, sau în orice alt format dorit.</p>
 </li>
 </ol>
-<img alt="../_images/77.png" class="align-center" src="../_images/77.png" />
+<img alt="../_images/78.png" class="align-center" src="../_images/78.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">În fereastra de dialog <em class="guilabel">New Spatialite Layer</em>, faceți clic pe butonul <em class="guilabel">...</em> și salvați o nouă bază de date Spatialite numită <tt class="docutils literal"><span class="pre">nztopo.sqlite</span></tt>. Alegeți <tt class="docutils literal"><span class="pre">Roads</span></tt> pentru <em class="guilabel">Layer name</em>, apoi selectați <tt class="docutils literal"><span class="pre">Line</span></tt> pentru <em class="guilabel">Type</em>. Harta topografică de bază este în CRS-ul <tt class="docutils literal"><span class="pre">EPSG:2193</span> <span class="pre">-</span> <span class="pre">NZGD</span> <span class="pre">2000</span></tt>, deci vom alege același lucru pentru stratul nostru de drumuri. Bifați caseta <em class="guilabel">Create an autoincrementing primary key</em>. În acest mod, se va crea un câmp numit <strong>pkuid</strong> în tabela de atribute și se va atribui un ID numeric, unic, în mod automat, pentru fiecare entitate. Atunci când se creează un strat GIS, trebuie să decideți cu privire la atributele pe care le va avea fiecare entitate. Din moment ce acesta este un strat de drumuri, vom avea două atribute de bază - nume și clasă. Introduceți <tt class="docutils literal"><span class="pre">Name</span></tt> ca <em class="guilabel">Name</em> al atributului din secțiunea <em class="guilabel">New attribute</em>, după care faceți clic pe <em class="guilabel">Add to attribute list.</em></p>
 </li>
 </ol>
-<img alt="../_images/87.png" class="align-center" src="../_images/87.png" />
+<img alt="../_images/88.png" class="align-center" src="../_images/88.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">În mod similar, creați un nou atribut <tt class="docutils literal"><span class="pre">Class</span></tt> de tipul <em class="guilabel">Text data</em>. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/97.png" class="align-center" src="../_images/97.png" />
+<img alt="../_images/98.png" class="align-center" src="../_images/98.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">După ce stratul este încărcat, faceți clic pe butonul <em class="guilabel">Toggle Editing</em>, pentru a trece stratul în modul de editare.</p>
 </li>
 </ol>
-<img alt="../_images/107.png" class="align-center" src="../_images/107.png" />
+<img alt="../_images/108.png" class="align-center" src="../_images/108.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Efectuați clic pe butonul <em class="guilabel">Add feature</em>. Clic pe suportul hărții pentru a adăuga un nou nod. Adăugați noi noduri de-a lungul entității care reprezintă drumul. După ce ați digitizat un segment de drum, faceți clic dreapta pentru a încheia entitatea..</p>
 </li>
@@ -273,27 +274,27 @@ original GeoTIFF which is a much smaller file size.</p>
 <p class="first admonition-title">Note</p>
 <p class="last">Puteți utiliza rotița de scroll a mouse-ului pentru a mări sau a micșora în timpul digitizării. Puteți menține apăsat, de asemenea, butonul de scroll și să mișcați mouse-ul pentru deplasare.</p>
 </div>
-<img alt="../_images/1111.png" class="align-center" src="../_images/1111.png" />
+<img alt="../_images/1112.png" class="align-center" src="../_images/1112.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">După ce faceți clic dreapta pentru a înceta editarea entității, veți obține o fereastră de dialog de tip pop-up, <em class="guilabel">Attributes</em>. Aici puteți introduce atributele entității nou create. Deoarece <strong>pkuid</strong> este un câmp de auto-incrementare, nu veți putea introduce manual o valoare. Lăsați-l gol și introduceți numele drumului, așa cum apare pe harta topo. Opțional, mai puteți atribui drumului o Clasa Road. Faceți clic pe: guilabel: <cite>OK</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/129.png" class="align-center" src="../_images/129.png" />
+<img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Stilul implicit al noului strat de tip linie este cel al unei linii subțiri. Să-l schimbăm, astfel încât să putem observa mai bine entitățile digitizate pe suportul hărții. Faceți clic dreapta pe stratul <tt class="docutils literal"><span class="pre">Roads</span></tt> și selectați <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/137.png" class="align-center" src="../_images/137.png" />
+<img alt="../_images/138.png" class="align-center" src="../_images/138.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Selectați fila <em class="guilabel">Style</em> din fereastra de dialog <em class="guilabel">Properties Layer</em>. Alegeți un stil de linie mai gros, cum ar fi <em class="guilabel">Primary</em> din stilurile predefinite. Faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/147.png" class="align-center" src="../_images/147.png" />
+<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Acum, veți vedea clar entitatea drumului digitizat. Clic pe <em class="guilabel">Save Layer Edits</em> pentru a salva noua entitate pe disc.</p>
 </li>
 </ol>
-<img alt="../_images/157.png" class="align-center" src="../_images/157.png" />
+<img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Înainte de a digitiza drumurile rămase, este important să actualizați alte setări care sunt importante pentru a crea un strat fără erori. Mergeți la <em class="menuselection">Settings ‣ Snapping Options...</em>.</p>
 </li>
@@ -373,7 +374,7 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Veți observa că unele clădiri nu sunt verticale. Va trebui să desenăm un dreptunghi, rotit la un anumit unghi, pentru a se potrivi cu amprenta clădirii. Faceți clic pe <em class="guilabel">Rectangle from center</em>.</p>
 </li>
 </ol>
-<img alt="../_images/313.png" class="align-center" src="../_images/313.png" />
+<img alt="../_images/314.png" class="align-center" src="../_images/314.png" />
 <ol class="arabic simple" start="32">
 <li><p class="first">Faceți clic în centrul clădirii și, menținând butonul apăsat, trageți mouse-ul pentru a desena un dreptunghi vertical.</p>
 </li>
@@ -429,7 +430,7 @@ original GeoTIFF which is a much smaller file size.</p>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on May 05, 2015.<br/>
+      Last updated on May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

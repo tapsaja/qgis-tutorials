@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">BIL, BIP 혹은 BSQ 파일 열기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">파이썬 프로그램밍 시작</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">파이썬 플러그인 만들기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">인접 폴리곤 찾기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">qgis2leaf로 웹 지도 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">QGIS에서 구글지도 커넥터 이용하기</a></li>
@@ -222,42 +223,42 @@ tutorial from link below.</p>
 <li><p class="first">GIS를 구동시키고 메뉴 레이어 &#8211;&gt; 레이어 추가 &#8211;&gt; 벡터 레이어 추가 :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Layer &#8211;&gt; Add Layer &#8211;&gt; Add Vector Layer..`로 갑니다.</p>
 </li>
 </ol>
-<img alt="../_images/170.png" class="align-center" src="../_images/170.png" />
+<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">다운로드한 <a href="#id1"><span class="problematic" id="id2">``</span></a>Shapefiles.zip``파일을 찾고 선택합니다. 열기 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Open`를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/228.png" class="align-center" src="../_images/228.png" />
+<img alt="../_images/229.png" class="align-center" src="../_images/229.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">추가할 레이어 선택 <em class="guilabel">Select layers to add...</em> 다이알로그에서 쉬프트키 :kbd:<a href="#id1"><span class="problematic" id="id2">`</span></a>Shift`를 누른 채 <a href="#id3"><span class="problematic" id="id4">``</span></a>Arlington_Soundings_2007_stpl83.shp``와 <a href="#id5"><span class="problematic" id="id6">``</span></a>Boundary2004_550_stpl83.shp``레이어 를 선택합니다. 확인 :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>OK`을 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/319.png" class="align-center" src="../_images/319.png" />
+<img alt="../_images/320.png" class="align-center" src="../_images/320.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">QGIS에서 추가된 2개의 레이어를 보게됩니다.  <a href="#id1"><span class="problematic" id="id2">``</span></a>Boundary2004_550_stpl83``레이어는 호수의 경계를 나타냅니다. TOC에서 이 레이어의 박스를 해체합니다.</p>
 </li>
 </ol>
-<img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
+<img alt="../_images/415.png" class="align-center" src="../_images/415.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">두번째 레이어 <a href="#id1"><span class="problematic" id="id2">``</span></a>Arlington_Soundings_2007_stpl83``가 나타날 것입니다. 비록 데이터가 선처럼 생겼으나 이것은 점들이 매우 촘촘하게 연속된 것입니다.</p>
 </li>
 </ol>
-<img alt="../_images/514.png" class="align-center" src="../_images/514.png" />
+<img alt="../_images/515.png" class="align-center" src="../_images/515.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">확대 <em class="guilabel">Zoom</em> 아이콘을 클릭하여 화면의 작은 지역을 선택합니다. 확대할 수록 점들이 나타납니다. 각 점은  <em>DGPS</em> 장비로 특정 위치에서 <a href="#id1"><span class="problematic" id="id2">*</span></a>Depth Sounder*로 기록한 데이터값입니다.</p>
 </li>
 </ol>
-<img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
+<img alt="../_images/614.png" class="align-center" src="../_images/614.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">객체 확인 <em class="guilabel">Identify</em> 툴을 선택하여 한 점을 클릭합니다. 피처 속성 <em class="guilabel">Identify Results</em> 판넬에서 점의 속성값을 볼 수 있습니다. 이 경우 <a href="#id1"><span class="problematic" id="id2">``</span></a>ELEVATION``속성은 그 위치에서의 호수의 길이값을 포함하고 있습니다. 예제에서 깊이 단면과 고도 등고선을 만드는 것이므로 보간법의 입력값으로 이 값을 사용할 것입니다.</p>
 </li>
 </ol>
-<img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
+<img alt="../_images/713.png" class="align-center" src="../_images/713.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">보간 플러그인 <a href="#id1"><span class="problematic" id="id2">``</span></a>Interpolation plugin``이 활성화 되어 있는지 확인합니다. 어떻게 플러그인을 활성화 하는가는  :doc:<a href="#id3"><span class="problematic" id="id4">`</span></a>using_plugins`를 보시기 바랍니다. 일단 활성화되었다면, 메뉴 래스터 &#8211;&gt; 보간 &#8211;&gt; 보간 :menuselection:<a href="#id5"><span class="problematic" id="id6">`</span></a>Raster &#8211;&gt; Interpolation &#8211;&gt; Interpolation`으로 갑니다.</p>
 </li>
 </ol>
-<img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
+<img alt="../_images/813.png" class="align-center" src="../_images/813.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">보간 플러그인  <em class="guilabel">Interpolation</em> 다이알로그중, 입력 <em class="guilabel">Input</em> 판넬에서 벡터 레이어 <em class="guilabel">Vector layers`로  ``Arlington_Soundings_2007_stpl83``를 선택합니다. 보간 속성값 :guilabel:`Interpolation attribute`으로 ``ELEVATION``를 선택합니다. 추가 :guilabel:`Add`를 클릭합니다.  셀 크기 X :guilabel:`Cellsize X`와 셀 크기 Y :guilabel:`Cellsize Y`의 값을 ``5``로 변경합니다. 이 값은 출력 그리드의 각 픽셀의 크기입니다. 원 자료가 **Feet-US** 단위로 좌표 투영되었으므로 선택을 기준으로 그리드의 크기는 **5 feet**가 될 것입니다. 출력 파일 :guilabel:`Output file</em> 옆  <em class="guilabel">...</em> 박스를 클릭하여 <a href="#id1"><span class="problematic" id="id2">``</span></a>elevation_tin.tif``라고 출력파일명을 입력합니다. 확인 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>OK`을 클릭합니다.</p>
 </li>
@@ -266,37 +267,37 @@ tutorial from link below.</p>
 <p class="first admonition-title">주석</p>
 <p class="last">보간의 결과는 선택한 방법과 매개변수에 따라서 매우 달라질 수 있습니다. QGiS 보간법은 <a href="#id1"><span class="problematic" id="id2">*</span></a>Triagulated Irregular Network (TIN)*와 <a href="#id3"><span class="problematic" id="id4">*</span></a>Inverse Distance Weighting (IDW)*를 지원합니다. TIN 방법은 대체로 수직고도 데이터를 사용하고 반면 IDW방법은 광물농도, 인구밀도 등과 같은 다른 유형의 데이터의 보간에 사용됩니다. 보다 자세한 사항은 QGiS문서인  <a class="reference external" href="http://docs.qgis.org/2.2/en/docs/gentle_gis_introduction/spatial_analysis_interpolation.html">Spatial Analysis</a> 를 보시기 바랍니다.</p>
 </div>
-<img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
+<img alt="../_images/912.png" class="align-center" src="../_images/912.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">QGIS에 새로운 레이어로 <a href="#id1"><span class="problematic" id="id2">``</span></a>elevation_tin``가 추가될 것입니다. 레이어를 우측클릭하고 레이어 영역으로 확대 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Zoom to layer`를 선택합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
+<img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">이제 만들어진 표면 전체를 볼 수 있을 것입니다. 보간은 수집된 데이터의 외곽에 대해서는 정확한 값을 제공하지 않습니다. 호수 경계를 가지고 분석된 표면 결과를 잘라내기 해봅시다. 메뉴 래스터 &#8211;&gt; 추출 &#8211;&gt; 잘라내기  :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Raster &#8211;&gt; Extraction &#8211;&gt; Clipper`로 갑니다.</p>
 </li>
 </ol>
-<img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
+<img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">출력파일 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Output file`에 <a href="#id3"><span class="problematic" id="id4">``</span></a>elevation_tin_clipped.tif``라고 입력합니다. 클리핑 모드:guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>Cliping mode`로  마스크 레이어 :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>Mask layer`를 선택합니다. 마스크 레이어로 :guilabel:<a href="#id9"><span class="problematic" id="id10">`</span></a>Mask layer``로 <a href="#id11"><span class="problematic" id="id12">``</span></a>Boundary2004_550_stpl83``를 선택합니다. 확인 :guilabel:<a href="#id13"><span class="problematic" id="id14">`</span></a>OK`을 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
+<img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">새로운 래스터 레이어 <a href="#id1"><span class="problematic" id="id2">``</span></a>elevation_tin_clipped``가 QGIS에 추가 됩니다. 이제 이 레이어를 스타일링해서 고도차이를 보일 것입니다. <a href="#id3"><span class="problematic" id="id4">``</span></a>elevation_tin``레이어로부터 최소 및 최대 고도값을 알아봅니다. <a href="#id5"><span class="problematic" id="id6">``</span></a>elevation_tin_clipped``레이어를 우측클릭하고 속성 :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>Properties`을 선택합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
+<img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">스타일 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Style`탭으로 갑니다. 랜더유형 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Render type`으로 단일밴드 의사색채 <a href="#id5"><span class="problematic" id="id6">``</span></a>Singleband pseudocolor``를 선택합니다. 새 색상표 작성 :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>Generate new color map`판넬에서 <a href="#id9"><span class="problematic" id="id10">``</span></a>Spectral``을 선택합니다. 고도지도에 맞서는 깊이지도를 만드는 것이므로 뒤집기 :guilabel:<a href="#id11"><span class="problematic" id="id12">`</span></a>Invert`박스를 체크합니다. 그러면 파란색은 깊은 곳, 빨간색은 얕은 곳으로 할당됩니다. 분류 :guilabel:<a href="#id13"><span class="problematic" id="id14">`</span></a>Classify`를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1410.png" class="align-center" src="../_images/1410.png" />
+<img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">투명도 <em class="guilabel">Tranparency</em> 탭으로 전환합니다. 최종 출력에서 검은색 픽셀을 제거하고자 합니다.  <em class="guilabel">Additional no data value`에 ``0`</em> 을 입력합니다. 확인 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>OK`을 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1510.png" class="align-center" src="../_images/1510.png" />
+<img alt="../_images/1511.png" class="align-center" src="../_images/1511.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">이제 개별 깊이 데이터로 만든 호수의 깊이 지형도를 만들었습니다. 이제 등고선을 만들어 봅시다. 메뉴 래스터 &#8211;&gt; 추출 &#8211;&gt; 등고선 :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Raster &#8211;&gt; Extraction &#8211;&gt; Contours`으로 갑니다.</p>
 </li>
@@ -306,7 +307,7 @@ tutorial from link below.</p>
 <li><p class="first">등고선 <em class="guilabel">Contour</em> 다이알로그에서 등고선 출력파일 <em class="guilabel">Output file for contour lines`로  ``contours``를 입력합니다. 5ft간격의등고선을 만들 것이므로 등고선 간격 :guilabel:`Interval between contour lines`에 ``5.00``를 입력합니다. 속성 이름 :guilabel:`Attribute name</em> 박스에 체크합니다. 확인 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>OK`을 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
+<img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">일단 과정이 종료되면 등고선은 <tt class="docutils literal"><span class="pre">contours</span></tt> 레이어로 불러들여질 것입니다. 레이어를 우측클릭하고 속성 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Properties`을 선택합니다.</p>
 </li>
@@ -347,7 +348,7 @@ tutorial from link below.</p>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      최종 업데이트: May 05, 2015<br/>
+      최종 업데이트: May 12, 2015<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

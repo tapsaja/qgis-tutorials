@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Beginnen met programmeren in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -202,17 +203,17 @@
 <li><p class="first">We zullen 2 plug-ins gebruiken om de taak te volbrengen. Zorg er voor dat u de plug-ins <strong>OSM Place Search</strong> en <strong>OpenLayers</strong> hebt geïnstalleerd. Zie <a class="reference internal" href="using_plugins.html"><em>Plug-ins gebruiken</em></a> voor instructies over het downloaden van plug-ins.</p>
 </li>
 </ol>
-<img alt="../_images/130.png" class="align-center" src="../_images/130.png" />
+<img alt="../_images/139.png" class="align-center" src="../_images/139.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">De plug-in <strong>OSM Place Search</strong> zal zichzelf installleren als een <em>Paneel</em> in QGIS. U zult in QGIS een nieuw paneel zien, genaamd <em class="guilabel">OSM place search...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
+<img alt="../_images/224.png" class="align-center" src="../_images/224.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">De plug-in <strong>OpenLayers</strong> wordt geïnstalleerd onder het menu <em>Plugins</em>. Deze plug-in stelt u in staat toegang te krijgen tot basiskaarten van verschillende leveranciers QGIS. Laten we de basiskaart OpenStreetMap laden in QGIS door te gaan naar <em class="menuselection">Plugins ‣ OpenLayers plugin ‣ Add OpenStreetMap layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/314.png" class="align-center" src="../_images/314.png" />
+<img alt="../_images/315.png" class="align-center" src="../_images/315.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">U zult zien dat een wereldkaart wordt geladen in QGIS.</p>
 </li>
@@ -221,27 +222,27 @@
 <p class="first admonition-title">Notitie</p>
 <p class="last">Indien u geen gegevens ziet - zorg er voor dat u online bent - omdat de tegels voor de basiskaart worden opgehaald vanaf het internet. U kunt ook het gereedschap <em>Pannen</em> gebruiken om het kaartvenster enigszins te verplaatsen, wat het vernieuwen van de basiskaart zal activeren.</p>
 </div>
-<img alt="../_images/49.png" class="align-center" src="../_images/49.png" />
+<img alt="../_images/410.png" class="align-center" src="../_images/410.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Laten we nu eens zoeken naar <em>London</em>. Typ de query in het van <em class="guilabel">Name contains...</em> in het paneel <strong>OSM Place Search</strong>. U kunt met de muis over de resultaten gaan en de overeenkomstige plaats zal worden geaccentueerd op de kaart. Selecteer het eerste resultaat - wat de stad London in het VK is - en klik op de knop <em class="guilabel">Zoom</em>.</p>
 </li>
 </ol>
-<img alt="../_images/59.png" class="align-center" src="../_images/59.png" />
+<img alt="../_images/510.png" class="align-center" src="../_images/510.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">U zult de basiskaart zien verplaatsen en centreren rondom de stad Londen. U kunt het gereedschap <em class="guilabel">Zoom</em> gebruiken om te zoomen en het exacte gebied van uw interesse te selecteren. Voor deze handleiding kunt u inzoomen op het centrum van de stad, zoals weergegeven.</p>
 </li>
 </ol>
-<img alt="../_images/68.png" class="align-center" src="../_images/68.png" />
+<img alt="../_images/69.png" class="align-center" src="../_images/69.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Nu kunnen we de in het kaartvenster weergegeven gegevens downloaden. Ga naar <em class="menuselection">Vector ‣ OpenStreetMap ‣ Download data</em>.</p>
 </li>
 </ol>
-<img alt="../_images/78.png" class="align-center" src="../_images/78.png" />
+<img alt="../_images/79.png" class="align-center" src="../_images/79.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">In het dialoogvenster <em class="guilabel">Download OpenStreetMap data</em>, kies <em class="guilabel">Van kaartvenster</em> als het <em class="guilabel">Extent</em>. Kies het pad en de naam voor het uitvoerbestand als <tt class="docutils literal"><span class="pre">london.osm</span></tt>.</p>
 </li>
 </ol>
-<img alt="../_images/88.png" class="align-center" src="../_images/88.png" />
+<img alt="../_images/89.png" class="align-center" src="../_images/89.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Het gedownloade bestand met de extensie <tt class="docutils literal"><span class="pre">.osm</span></tt> is een tekstbestand in de indeling <a class="reference external" href="http://wiki.openstreetmap.org/wiki/OSM_XML">OSM XML</a>. We moeten heet eerst converteren naar een geschikte indeling die voor QGIS eenvoudig te verwerken is. Ga naar <em class="menuselection">Vector ‣ OpenStreetMap ‣ Importeer topologie van XML</em>.</p>
 </li>
@@ -250,37 +251,37 @@
 <p class="first admonition-title">Notitie</p>
 <p class="last">Nu we de functionaliteit <strong>OSM Place Search</strong> niet meer nodig hebben, kunt u nu op de knop Sluiten drukken om het uit het hoofdvenster te verwijderen. Als u het opnieuw wilt gebruiken kunt u het inschakelen via <em class="menuselection">Beeld ‣ Panelen ‣ OSM place search...</em> (Windows) of <em class="menuselection">Instellingen ‣ Panelen ‣ OSM place search...</em> (Linux).</p>
 </div>
-<img alt="../_images/98.png" class="align-center" src="../_images/98.png" />
+<img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Kies het gedownloade <tt class="docutils literal"><span class="pre">london.osm</span></tt> als het <em class="guilabel">Invoer XML-bestand</em>. Noem het <em class="guilabel">Uitvoer SpatiaLite DB-bestand</em> <tt class="docutils literal"><span class="pre">london.osm.db</span></tt>. Zorg er voor dat het vak <em class="guilabel">Maak connectie (SpatiaLite) na import</em> is geselecteerd.</p>
 </li>
 </ol>
-<img alt="../_images/108.png" class="align-center" src="../_images/108.png" />
+<img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Nu de laatste stap. We moeten SpatialLite geometrie-lagen maken die kunnen worden bekeken en geanalyseerd in QGIS. Dit wordt gedaan door middel van <em class="menuselection">Vector ‣ OpenStreetMap ‣ Exporteer topologie naar SpatialLite</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1112.png" class="align-center" src="../_images/1112.png" />
+<img alt="../_images/1113.png" class="align-center" src="../_images/1113.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Het bestand <tt class="docutils literal"><span class="pre">london.osm.db</span></tt> bevat alle objecttypen van de database van OSM database - Punten, Lijnen en Polygonen. GIS-lagen bevatten slechts één type object, dus dient u er een te kiezen. Omdat we zijn geïnteresseerd in puntlocaties van pubs, dient u hier te kiezen voor <em class="guilabel">Punten (nodes)</em> als het <em class="guilabel">Export-type</em>. U zou hebben gekozen voor <em class="guilabel">Polygonen (open ways)</em> indien u het wegennetwerk zou willen hebben. Noem het <em class="guilabel">Uitvoer laagnaam</em> <tt class="docutils literal"><span class="pre">london_points</span></tt>. GIS-gegevens heeft twee delen in zich - locatie en attributen. We zijn ook geïnteresseerd in de naam van de <strong>name</strong> van de pub - niet alleen de locatie ervan, dus moeten we die informatie ook exporteren. Klik op <em class="guilabel">Vanuit DB laden</em> in het gedeelte  <em class="guilabel">Geëxporteerde tags</em>. Dit zal alle objecten ophalen uit het bestand <tt class="docutils literal"><span class="pre">london.osm.db</span></tt>. Selecteer de tags <em class="guilabel">name</em> en <em class="guilabel">amenity</em>. Bekijk <a class="reference external" href="http://wiki.openstreetmap.org/wiki/Tags">OSM Tags</a> om meer te leren over wat elk attribuut betekent. Zorg er voor dat het vak <em class="guilabel">Voeg opgeslagen bestand toe aan kaart</em> is geselecteerd en klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" />
+<img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">U zult nu een nieuwe laag van punten zien, genaamd <tt class="docutils literal"><span class="pre">london_points</span></tt>, geladen in QGIS. Onthoud dat deze <strong>ALLE</strong> punten bevat die in de database van OSM staan voor het bekeken gedeelte. Omdat we alleen geïnteresseerd zijn in pubs, moeten we een query schrijven om alleen die te kunnen selecteren. Klik met rechts op de laag <tt class="docutils literal"><span class="pre">london_points</span></tt> en selecteer <em class="guilabel">Open attributentabel</em>.</p>
 </li>
 </ol>
-<img alt="../_images/138.png" class="align-center" src="../_images/138.png" />
+<img alt="../_images/1310.png" class="align-center" src="../_images/1310.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">U zult zien dat sommige objecten de waarde voor attributen <strong>pubs</strong> hebben, vermeld onder de kolom <em class="guilabel">amenity</em>. Klik op de knop <em class="guilabel">Selecteer objecten m.b.v. reguliere expressie</em> button.</p>
 </li>
 </ol>
-<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
+<img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Voer de uitdrukking <cite>&#8220;amenity&#8221; = &#8216;pub&#8217;</cite> in en klik op <em class="guilabel">Selecteren</em>.</p>
 </li>
 </ol>
-<img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
+<img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Terug in het kaartvenster van QGIS, zult u enkele punten zijn geaccentueerd in geel. Dat is het resultaat van onze query. Klik met rechts op de laag <tt class="docutils literal"><span class="pre">london_points</span></tt> en kies <em class="guilabel">Selectie opslaan als...</em>.</p>
 </li>
@@ -326,7 +327,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op May 05, 2015.<br/>
+      Laatste aanpassing op May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

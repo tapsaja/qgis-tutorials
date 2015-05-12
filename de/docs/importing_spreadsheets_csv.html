@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Verwenden von Plugins" href="using_plugins.html" />
+    <link rel="next" title="Verwenden von Erweiterungen" href="using_plugins.html" />
     <link rel="prev" title="Mit Attributen arbeiten" href="working_with_attributes.html" />
 
 <meta charset='utf-8'>
@@ -85,9 +85,9 @@
 <li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Erstellen einer Karte</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Mit Attributen arbeiten</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Import von Tabellen oder CSV Dateien</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Verwenden von Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Verwenden von Erweiterungen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Einfache Vektor Gestaltung</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calculating Line Lengths and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -131,7 +132,7 @@
     </a>
   </li>
   <li>
-    <a href="using_plugins.html" title="Next Chapter: Verwenden von Plugins"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Verwenden von Pl... &raquo;</span>
+    <a href="using_plugins.html" title="Next Chapter: Verwenden von Erweiterungen"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Verwenden von Er... &raquo;</span>
     </a>
   </li>
               
@@ -208,12 +209,12 @@
 <li><p class="first">Überprüfen Sie Ihre tabellarischen Datenquelle. Um diese in QGIS zu importieren, müssen Sie sie als Textdatei speichern und benötigen zumindest 2 Spalten mit X und Y Koordinaten. Wenn Sie eine Tabelle haben, verwenden Sie die <cite>Speichern als...</cite> Funktion in Ihrem Programm, um diese als <cite>Tabulator getrennte Datei (TAB)</cite> oder <cite>Comma separierte Werte (CSV)</cite> zu speichern. Sobald Sie die Inhalte so exportiert haben, können Sie diese mit einem Texteditor wie Notepad öffnen und die Inhalte darstellen. Im Fall der Significant Earthquake Database, kommen diese Daten bereits als Textdatei, die die Latitude und Longitude der Erdbebenzentren mit weiteren relevanten Attributen enthält. Jedes Feld ist durch einen Tabulator (TAB) getrennt.</p>
 </li>
 </ol>
-<img alt="../_images/160.png" class="align-center" src="../_images/160.png" />
+<img alt="../_images/170.png" class="align-center" src="../_images/170.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Öffnen Sie QGIS. Klicke auf <em class="menuselection">Layer ‣ Layer hinzufügen ‣ Textdatei als Layer importieren</em> (neu in QGIS 2.8.1).</p>
 </li>
 </ol>
-<img alt="../_images/227.png" class="align-center" src="../_images/227.png" />
+<img alt="../_images/228.png" class="align-center" src="../_images/228.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Im Dialog <em class="guilabel">Textdatei als Layer importieren</em>, klicken Sie <em class="guilabel">Durchsuchen...</em> und geben Sie den Pfad zur geladenen Datei an. Im Bereich <em class="guilabel">Dateiformat</em> wählen Sie <em class="guilabel">Benutzerdefiniert</em> und markieren sie <em class="guilabel">Tabulator</em>. Die <em class="guilabel">Geometriedefinition</em> wird automatisch gesetzt, wenn geeignete X und Y Koordinatenfelder gefunden werden. In unserem Fall sind das <em>LONGITUDE</em> und <em>LATITUDE</em>. Sie können dies ändern, falls der Import die falschen Felder gewählt hat. Klicke <em class="guilabel">OK</em>.</p>
 </li>
@@ -222,22 +223,22 @@
 <p class="first admonition-title">Bemerkung</p>
 <p class="last">Es kann leicht passieren X und Y Koordinaten zu verwechseln. Latitude definiert die Nord-Süd-Position eines Punktes und ist daher eine <strong>Y</strong> Koordinate. Ähnlich gibt Longtitude die Ost-West-Position eine Punktes an und sit damit eine <strong>X</strong> Koordinate.</p>
 </div>
-<img alt="../_images/318.png" class="align-center" src="../_images/318.png" />
+<img alt="../_images/319.png" class="align-center" src="../_images/319.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Es kann sein, dass im nächsten Dialog Fehlermeldungen dargestellt werden. Die Fehler in dieser Datei sind hauptsächlich fehlende X oder Y Felder. Sie können diese Fehler überprüfen und in Ihrer Basisdatei korrigieren. Für diese Übung könnnen Sie diese Fehler ignorieren.</p>
 </li>
 </ol>
-<img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
+<img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Als nächstes fordert Sie die <em class="guilabel">Koordinatenbezugssystem-Auswahl</em> auf, ein KBS auszuwählen (hängt von den QGIS Grundeinstellungen ab). Da die Erdbebenkoordinaten in Latitude und Longitude sind, wählen Sie <cite>WGS 84</cite>. Klicke <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
+<img alt="../_images/514.png" class="align-center" src="../_images/514.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Sie können jetzt sehen, dass die Daten importiert und im QGIS Kartenbereich dargestellt wurden.</p>
 </li>
 </ol>
-<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
+<img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
 </div>
 </div>
 
@@ -263,7 +264,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Zuletzt aktualisiert am May 05, 2015.<br/>
+      Zuletzt aktualisiert am May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

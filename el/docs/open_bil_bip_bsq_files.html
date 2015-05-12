@@ -111,6 +111,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Βρείτε Γειτονικά Πολύγωνα σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Διαδικτυακοί Χάρτες με το qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Χρήση του Google Maps Engine Connector για το QGIS</a></li>
@@ -208,17 +209,17 @@ Facility</a> as an example.</p>
 <li><p class="first">Αποσυμπιέστε και εξάγετε το .bsq αρχείο. Στα Windows, μπορείτε να χρησιμοποιήσετε το εξαιρετικό <a class="reference external" href="http://www.7-zip.org/">7-Zip</a> για να διαβάσετε και να εξάγετε .gz αρχεία. Θα παρατηρήσετε ότι έχετε μόνο ένα .bsq αρχείο με όνομα <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt>. Δεν υπάρχει κανένα .hdr αρχείο.</p>
 </li>
 </ol>
-<img alt="../_images/1100.png" class="align-center" src="../_images/1100.png" />
+<img alt="../_images/1101.png" class="align-center" src="../_images/1101.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Σημειώστε ότι εάν προσπαθήσετε να ανοίξετε το αρχείο `` GL-LatLong-1deg-landcover.bsq`` στο QGIS όπως είναι, θα σας εμφανιστεί ένα μήνυμα σφάλματος.</p>
 </li>
 </ol>
-<img alt="../_images/237.png" class="align-center" src="../_images/237.png" />
+<img alt="../_images/238.png" class="align-center" src="../_images/238.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Για να ξεπεραστεί αυτό το σφάλμα, θα δημιουργήσουμε ένα αρχείο κεφαλίδα με επέκταση `` .hdr``. Το αρχείο κεφαλίδα περιέχει πληροφορίες σχετικά με το σύνολο δεδομένων και πώς είναι οργανωμένο. Συνήθως, αυτές οι πληροφορίες παρέχονται ως τμήμα μεταδεδομένων για το σύνολο δεδομένων. Εάν δεν έχετε μεταδεδομένα, δείτε στην ιστοσελίδα ή την τεκμηρίωση για ενδείξεις. Μερικές από τις πληροφορίες μπορείτε να τις μαντέψετε αν δεν τις γνωρίζεται. Στην περίπτωση αυτού του συνόλου δεδομένων, η σελίδα συνδέσεων λήψης δεδομένων στα <a class="reference external" href="ftp://ftp.glcf.umd.edu/glcf/Global_Land_Cover/Global/1deg/gl-latlong-1deg-landcover.glcf">μεταδεδομένα</a>. Κατεβάστε και ανοίξτε τα μεταδεδομένα.</p>
 </li>
 </ol>
-<img alt="../_images/325.png" class="align-center" src="../_images/325.png" />
+<img alt="../_images/326.png" class="align-center" src="../_images/326.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Το .hdr αρχείο πρέπει να είναι ένα απλό αρχείο κειμένου με την παρακάτω μορφή. Μερικές από αυτές τις παραμέτρους μας δίνονται και μερικές πρέπει να επεξεργαστούν. Μάθετε περισσότερα  σχετικά με τη μορφή &lt;<a class="reference external" href="http://www.gdal.org/frmt_various.html">http://www.gdal.org/frmt_various.html</a>&gt;`_.</p>
 </li>
@@ -238,17 +239,17 @@ byteorder &lt;byte order in which image pixel values are stored, msb or lsb&gt;
 <li><p class="first">Ανοίξτε ένα πρόγραμμα επεξεργασίας κειμένου και δημιουργήστε ένα αρχείο με τη μορφή που καθορίζεται στο προηγούμενο βήμα. Αποθηκεύστε το αρχείο ως <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.hdr</span></tt>. Βεβαιωθείτε ότι το αρχείο δεν έχει `` .txt`` στο τέλος. Μερικές από τις τιμές στα αρχεία κειμένου είναι εύκολο να κατανοηθούν. Τα ** ncols ** και ** nrows ** προέρχονται από τα μεταδεδομένα, όπως ο Αριθμός των Γραμμών και ο Αριθμός των Pixel ανά Γραμμή. Το <strong>cellsize</strong> είναι 1 ως ανάλυση Pixel από τα μεταδεδομένα. Τις συντεταγμένες Χ,Υ της κάτω αριστερής γωνίας πρέπει να τις επεξεργαστούμε. Δεδομένου ότι το αρχείο καλύπτει ολόκληρο τον κόσμο και οι μονάδες είναι γεωγραφικού πλάτους/μήκους, <em>xllcorner*</em> και <strong>yllcorner</strong> είναι -180 και -90 αντίστοιχα. Δεν έχουμε καμία πληροφορία για το nodata_value, επομένως -9999 είναι ασφαλές. Από τα μεταδεδομένα και πάλι, η μορφη του Pixel είναι Byte, επομένως <strong>nbits</strong> θα ισούται με 8 και ο τύπος του Pixel θα είναι <strong>byte_unsigned</strong>. Δεν έχουμε καμία πληροφορία για τη σειρά των byte, επομένως αφήστε το ως msbfirst.</p>
 </li>
 </ol>
-<img alt="../_images/518.png" class="align-center" src="../_images/518.png" />
+<img alt="../_images/519.png" class="align-center" src="../_images/519.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Τώρα που έχετε το αρχείο κεφαλίδας, τοποθετήστε το στην ίδια διεύθυνση ως  <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt>. Έπειτα στο QGIS, πηγαίνετε στο <em class="menuselection">Layer ‣ Add Raster Layer</em>. Επιλέξτε <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt> ως είσοδο και κάντε κλικ στο <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/617.png" class="align-center" src="../_images/617.png" />
+<img alt="../_images/618.png" class="align-center" src="../_images/618.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Στην επόμενη οθόνη, μπορεί να σας ζητηθεί να επιλέξετε CRS. Δεδομένου ότι τα δεδομένα είναι σε γεωγραφικό πλάτος/μήκος, επιλέξτε <strong>WGS84 EPSG:4326</strong> ως το CRS. Τώρα θα δείτε το σύνολο δεδομένων να φορτώνονται στο QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/716.png" class="align-center" src="../_images/716.png" />
+<img alt="../_images/717.png" class="align-center" src="../_images/717.png" />
 </div>
 </div>
 
@@ -274,7 +275,7 @@ byteorder &lt;byte order in which image pixel values are stored, msb or lsb&gt;
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on May 05, 2015.<br/>
+      Last updated on May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

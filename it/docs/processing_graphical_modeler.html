@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Primi passi con la programmazione Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Trovare i poligoni confinanti in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Realizzare mappe web leaflet con qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Usare il Google Maps Engine Connector con QGIS</a></li>
@@ -230,19 +231,19 @@ and run it on the downloaded datasets.</p>
 <ol class="arabic simple">
 <li>Launch QGIS and go to <em class="menuselection">Processing ‣ Graphical Modeler...</em>.</li>
 </ol>
-<img alt="../_images/1105.png" class="align-center" src="../_images/1105.png" />
+<img alt="../_images/1106.png" class="align-center" src="../_images/1106.png" />
 <ol class="arabic simple" start="2">
 <li>The <em class="guilabel">Processing modeler</em> dialog contains a left-hand panel and a
 main canvas. Select the <em class="guilabel">Inputs</em> tab in the left-hand panel and
 drag the <em class="guilabel">+ Raster layer</em> to the canvas.</li>
 </ol>
-<img alt="../_images/248.png" class="align-center" src="../_images/248.png" />
+<img alt="../_images/249.png" class="align-center" src="../_images/249.png" />
 <ol class="arabic simple" start="3">
 <li>A <em class="guilabel">Parameter definition</em> dialog will pop-up. Enter <tt class="docutils literal"><span class="pre">Input</span></tt> as
 the <em class="guilabel">Parameter name</em> and mark <tt class="docutils literal"><span class="pre">Yes</span></tt> to <em class="guilabel">Required</em>.
 Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/330.png" class="align-center" src="../_images/330.png" />
+<img alt="../_images/333.png" class="align-center" src="../_images/333.png" />
 <ol class="arabic simple" start="4">
 <li>You will see a box with the name <em class="guilabel">Input</em> appear in the canvas.
 This represents the landcover raster that we will use as input. Next step
@@ -259,12 +260,12 @@ applications</a>
 for instructions on how to install SAGA. If you cannot install SAGA, you may
 skip this step entirely.</p>
 </div>
-<img alt="../_images/422.png" class="align-center" src="../_images/422.png" />
+<img alt="../_images/423.png" class="align-center" src="../_images/423.png" />
 <ol class="arabic simple" start="5">
 <li>A configuration dialog for <em class="guilabel">Majority Filter</em> will be presented.
 Leave the values to their default and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/523.png" class="align-center" src="../_images/523.png" />
+<img alt="../_images/524.png" class="align-center" src="../_images/524.png" />
 <ol class="arabic simple" start="6">
 <li>You will note that there is now a new box named <em class="guilabel">Majority Filter</em>
 in the canvas and it is connected to the <em class="guilabel">Input</em> box. This is
@@ -279,18 +280,18 @@ algorithm and drag it to the canvas.</li>
 holding the left mouse button. You can also use the scroll-wheel to zoom in
 and out in the model cavas.</p>
 </div>
-<img alt="../_images/621.png" class="align-center" src="../_images/621.png" />
+<img alt="../_images/622.png" class="align-center" src="../_images/622.png" />
 <ol class="arabic simple" start="7">
 <li>Select &#8216;Filtered Grid&#8217; from algorithm &#8216;Majority Filter&#8217; as the value for
 <em class="guilabel">Input layer</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/721.png" class="align-center" src="../_images/721.png" />
+<img alt="../_images/722.png" class="align-center" src="../_images/722.png" />
 <ol class="arabic simple" start="8">
 <li>The final step in the workflow is to query for a class value and create a
 new layer from the matching features. Search for the <tt class="docutils literal"><span class="pre">Extract</span> <span class="pre">by</span>
 <span class="pre">attribute</span></tt> algorithm and drag it the canvas.</li>
 </ol>
-<img alt="../_images/820.png" class="align-center" src="../_images/820.png" />
+<img alt="../_images/821.png" class="align-center" src="../_images/821.png" />
 <ol class="arabic simple" start="9">
 <li>Select &#8216;Vectorized&#8217; from algorithm &#8216;Polygonize (raster to vector) as the
 <em class="guilabel">Input Layer</em>. We want to extract the pixels that represent
@@ -300,38 +301,38 @@ Croplands. The corresponding pixel value for this class will be 12. (see
 output of this operation will be the final result, we need to name the
 output. Enter <tt class="docutils literal"><span class="pre">vectorized</span> <span class="pre">class</span></tt> as the <em class="guilabel">Output</em>.</li>
 </ol>
-<img alt="../_images/918.png" class="align-center" src="../_images/918.png" />
+<img alt="../_images/919.png" class="align-center" src="../_images/919.png" />
 <ol class="arabic simple" start="10">
 <li>Enter the <em class="guilabel">Model name</em> as <tt class="docutils literal"><span class="pre">vectorize</span></tt> and <em class="guilabel">Group
 name</em> as <tt class="docutils literal"><span class="pre">raster</span></tt>. Click the <em class="guilabel">Save</em> button.</li>
 </ol>
-<img alt="../_images/1019.png" class="align-center" src="../_images/1019.png" />
+<img alt="../_images/1020.png" class="align-center" src="../_images/1020.png" />
 <ol class="arabic simple" start="11">
 <li>Name the model <tt class="docutils literal"><span class="pre">vectorize</span></tt> and click <em class="guilabel">Save</em>.</li>
 </ol>
-<img alt="../_images/1123.png" class="align-center" src="../_images/1123.png" />
+<img alt="../_images/1124.png" class="align-center" src="../_images/1124.png" />
 <ol class="arabic simple" start="12">
 <li>Now it is time to test our model. Close the modeler and switch to the main
 QGIS window. Go to <em class="menuselection">Layer ‣ Add Layer ‣ Add Raster
 Layer...</em>.</li>
 </ol>
-<img alt="../_images/1220.png" class="align-center" src="../_images/1220.png" />
+<img alt="../_images/1221.png" class="align-center" src="../_images/1221.png" />
 <ol class="arabic simple" start="13">
 <li>Browse to the downloaded <tt class="docutils literal"><span class="pre">LC_hd_global_2001.tif.gz</span></tt> file and click
 <em class="guilabel">Open</em>. Once the raster is loaded, go to
 <em class="menuselection">Processing ‣ Toolbox</em>.</li>
 </ol>
-<img alt="../_images/1318.png" class="align-center" src="../_images/1318.png" />
+<img alt="../_images/1319.png" class="align-center" src="../_images/1319.png" />
 <ol class="arabic simple" start="14">
 <li>Find the newly created model under <em class="menuselection">Models ‣ raster ‣
 vectorize</em>. Double-click to launch the model.</li>
 </ol>
-<img alt="../_images/1417.png" class="align-center" src="../_images/1417.png" />
+<img alt="../_images/1418.png" class="align-center" src="../_images/1418.png" />
 <ol class="arabic simple" start="15">
 <li>Select <tt class="docutils literal"><span class="pre">LC_hd_global_2001</span></tt> as the <em class="guilabel">Input</em> and click
 <em class="guilabel">Run</em>.</li>
 </ol>
-<img alt="../_images/1516.png" class="align-center" src="../_images/1516.png" />
+<img alt="../_images/1517.png" class="align-center" src="../_images/1517.png" />
 <ol class="arabic simple" start="16">
 <li>You will see all the steps being executed without any user input. Once the
 processing finishes, a new layer <tt class="docutils literal"><span class="pre">vectorized_class</span></tt> will be added to
@@ -387,7 +388,7 @@ layer. Load the <tt class="docutils literal"><span class="pre">LC_hd_global_2012
 <em class="menuselection">Layer ‣ Add Layer ‣ Add Raster Layer...</em>. Click the
 <em class="guilabel">vectorize`</em> model from the <em class="guilabel">Processing Toolbox</em> panel.</li>
 </ol>
-<img alt="../_images/249.png" class="align-center" src="../_images/249.png" />
+<img alt="../_images/2410.png" class="align-center" src="../_images/2410.png" />
 <ol class="arabic simple" start="25">
 <li>Pick the <tt class="docutils literal"><span class="pre">LC_hd_global_2012</span></tt> layer as the <em class="guilabel">Input</em> and click
 <em class="guilabel">Run</em>.</li>
@@ -460,7 +461,7 @@ directory location will depend on the platform as follows: (Replace
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento May 05, 2015.<br/>
+      Ultimo aggiornamento May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

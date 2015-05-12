@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -231,7 +232,7 @@ the <a class="reference external" href="http://www2.census.gov/geo/tiger/TIGER20
 downloaded <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float.tif</span></tt> file and click
 <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/1108.png" class="align-center" src="../_images/1108.png" />
+<img alt="../_images/1109.png" class="align-center" src="../_images/1109.png" />
 <ol class="arabic simple" start="2">
 <li>Once the layer is loaded, select the <em class="guilabel">Identify</em> tool and click
 anywhere on the layer. You will see the temperature value in celsius as the
@@ -243,7 +244,7 @@ value or Band 1 at that location.</li>
 <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national.txt</span></tt> file on your disk. Go to <em class="menuselection">Layer
 ‣ Add Delimited Text Layer</em>.</li>
 </ol>
-<img alt="../_images/335.png" class="align-center" src="../_images/335.png" />
+<img alt="../_images/336.png" class="align-center" src="../_images/336.png" />
 <ol class="arabic simple" start="4">
 <li>In the <em class="guilabel">Create a Layer from Delimited Text File</em> dialog, click
 <em class="guilabel">Browse</em> and open <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national.txt</span></tt>. Choose
@@ -252,18 +253,18 @@ are in Latitude and Longitude, so select <em class="guilabel">INTPTLONG</em> as
 <em class="guilabel">X field</em> and <em class="guilabel">INTPTLAT</em> as <em class="guilabel">Y field</em>. Check
 the <em class="guilabel">Use spatial index</em> box and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/425.png" class="align-center" src="../_images/425.png" />
+<img alt="../_images/426.png" class="align-center" src="../_images/426.png" />
 <ol class="arabic simple" start="5">
 <li>Now we are ready to extract the temperature values from the raster layer.
 Install the <tt class="docutils literal"><span class="pre">Point</span> <span class="pre">Sampling</span> <span class="pre">Tool</span></tt> plugin. See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> for
 details on how to install plugins.</li>
 </ol>
-<img alt="../_images/526.png" class="align-center" src="../_images/526.png" />
+<img alt="../_images/527.png" class="align-center" src="../_images/527.png" />
 <ol class="arabic simple" start="6">
 <li>Open the plugin dialog from <em class="menuselection">Plugins ‣ Analyses ‣ Point
 sampling tool</em>.</li>
 </ol>
-<img alt="../_images/624.png" class="align-center" src="../_images/624.png" />
+<img alt="../_images/625.png" class="align-center" src="../_images/625.png" />
 <ol class="arabic simple" start="7">
 <li>In the <em class="guilabel">Point Sampling Tool</em> dialog, select
 <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt> as the <em class="guilabel">Layer containing sampling
@@ -276,39 +277,39 @@ as <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locat
 start the sampling process. Click <em class="guilabel">Close</em> once the process
 finishes.</li>
 </ol>
-<img alt="../_images/724.png" class="align-center" src="../_images/724.png" />
+<img alt="../_images/725.png" class="align-center" src="../_images/725.png" />
 <ol class="arabic simple" start="8">
 <li>You will see a new layer <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations</span></tt> loaded in
 QGIS. Use the <em class="guilabel">Identify</em> tool to click on any point to see the
 attributes. You will see the <tt class="docutils literal"><span class="pre">us.tmax_no</span></tt> field - which contains the
 raster pixel value at the location of the point.</li>
 </ol>
-<img alt="../_images/823.png" class="align-center" src="../_images/823.png" />
+<img alt="../_images/824.png" class="align-center" src="../_images/824.png" />
 <ol class="arabic simple" start="9">
 <li>First part of our analysis is over. Let&#8217;s remove the unnecessary layers. Hold
 the <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> key and select <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations</span></tt> and
 <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt> layers. Right-click and select <em class="guilabel">Remove</em>
 to remove them from QGIS TOC.</li>
 </ol>
-<img alt="../_images/921.png" class="align-center" src="../_images/921.png" />
+<img alt="../_images/922.png" class="align-center" src="../_images/922.png" />
 <ol class="arabic simple" start="10">
 <li>Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>. Browse to the downloaded
 <tt class="docutils literal"><span class="pre">tl_2013_us_county.zip</span></tt> file and click <em class="guilabel">Open</em>. Select the
 <tt class="docutils literal"><span class="pre">tl_2013_us_county.shp</span></tt> as the layer and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1022.png" class="align-center" src="../_images/1022.png" />
+<img alt="../_images/1023.png" class="align-center" src="../_images/1023.png" />
 <ol class="arabic simple" start="11">
 <li>The <tt class="docutils literal"><span class="pre">tl_2013_us_county</span></tt> will be added to QGIS. This layer is in
 <tt class="docutils literal"><span class="pre">EPSG:4269</span> <span class="pre">NAD83</span></tt> projection. This doesn&#8217;t match the projection of the
 raster layer. We will re-project this layer to <tt class="docutils literal"><span class="pre">EPSG:4326</span> <span class="pre">WGS84</span></tt>
 projection.</li>
 </ol>
-<img alt="../_images/1126.png" class="align-center" src="../_images/1126.png" />
+<img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
 <ol class="arabic simple" start="12">
 <li>Right-click the <tt class="docutils literal"><span class="pre">tl_2013_us_county</span></tt> layer and select <em class="guilabel">Save
 As..</em>.</li>
 </ol>
-<img alt="../_images/1223.png" class="align-center" src="../_images/1223.png" />
+<img alt="../_images/1224.png" class="align-center" src="../_images/1224.png" />
 <ol class="arabic simple" start="13">
 <li>In the <em class="guilabel">Save Vector layer as..</em> dialog, click <em class="guilabel">Browse</em>
 and name the output file as <tt class="docutils literal"><span class="pre">counties.shp</span></tt>. Choose <em class="guilabel">Selected
@@ -316,16 +317,16 @@ CRS</em> from the <em class="guilabel">CRS</em> dropdown menu. Click <em class="
 select <tt class="docutils literal"><span class="pre">WGS</span> <span class="pre">84</span></tt> as the CRS. Check the <em class="guilabel">Add saved file to map</em>
 and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
+<img alt="../_images/1322.png" class="align-center" src="../_images/1322.png" />
 <ol class="arabic simple" start="14">
 <li>A new layer named <tt class="docutils literal"><span class="pre">counties</span></tt> will be add to QGIS.</li>
 </ol>
-<img alt="../_images/1420.png" class="align-center" src="../_images/1420.png" />
+<img alt="../_images/1421.png" class="align-center" src="../_images/1421.png" />
 <ol class="arabic simple" start="15">
 <li>Enable the <tt class="docutils literal"><span class="pre">Zonal</span> <span class="pre">Statistics</span> <span class="pre">Plugins</span></tt>. This is a core plugin so it is
 already installed. See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> to know to how enable core plugins.</li>
 </ol>
-<img alt="../_images/1519.png" class="align-center" src="../_images/1519.png" />
+<img alt="../_images/1520.png" class="align-center" src="../_images/1520.png" />
 <ol class="arabic simple" start="16">
 <li>Go to <em class="menuselection">Raster ‣ Zonal statistics ‣ Zonal statistics</em>.</li>
 </ol>
@@ -394,7 +395,7 @@ extracted from the raster grid.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Actualizado por última vez en May 05, 2015.<br/>
+      Actualizado por última vez en May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

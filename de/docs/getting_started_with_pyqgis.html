@@ -85,9 +85,9 @@
 <li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Erstellen einer Karte</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Mit Attributen arbeiten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Import von Tabellen oder CSV Dateien</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Verwenden von Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Verwenden von Erweiterungen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Searching and Downloading OpenStreetMap Data</a></li>
-<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Basic Vector Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Einfache Vektor Gestaltung</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calculating Line Lengths and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -218,25 +219,25 @@ dataset from Natural Earth.</p>
 downloaded <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt> file and click <em class="guilabel">Open</em>. Select
 the <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt> layer and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/150.png" class="align-center" src="../_images/150.png" />
+<img alt="../_images/160.png" class="align-center" src="../_images/160.png" />
 <ol class="arabic simple" start="2">
 <li>You will see the <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> layer loaded in QGIS.</li>
 </ol>
-<img alt="../_images/226.png" class="align-center" src="../_images/226.png" />
+<img alt="../_images/227.png" class="align-center" src="../_images/227.png" />
 <ol class="arabic simple" start="3">
 <li>Select the <em class="guilabel">Identify</em> tool and click on any of the points to
 examine the available attributes. You will see that the name of the airport
 and it&#8217;s 3 digit code are contained in the attributes <tt class="docutils literal"><span class="pre">name</span></tt> and
 <tt class="docutils literal"><span class="pre">iata_code</span></tt> respectively.</li>
 </ol>
-<img alt="../_images/317.png" class="align-center" src="../_images/317.png" />
+<img alt="../_images/318.png" class="align-center" src="../_images/318.png" />
 <ol class="arabic simple" start="4">
 <li>QGIS provides a built-in console where you can type python commands and get
 the result. This console is a great way to learn scripting and also to do
 quick data processing. Open the <em class="guilabel">Python Console</em> by going to
 <em class="menuselection">Plugins ‣ Python Console</em>.</li>
 </ol>
-<img alt="../_images/412.png" class="align-center" src="../_images/412.png" />
+<img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
 <ol class="arabic simple" start="5">
 <li>You will see a new panel open at the bottom of QGIS canvas. You will see a
 prompt like <tt class="docutils literal"><span class="pre">&gt;&gt;&gt;</span></tt> at the bottom where you can type commands. For
@@ -248,7 +249,7 @@ loaded layer and stores it in the <tt class="docutils literal"><span class="pre"
 <div class="highlight-python"><div class="highlight"><pre><span class="n">layer</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/512.png" class="align-center" src="../_images/512.png" />
+<img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
 <ol class="arabic simple" start="6">
 <li>There is a handy function called <tt class="docutils literal"><span class="pre">dir()</span></tt> in python that shows you all
 available methods for any object. This is useful when you are not sure
@@ -258,7 +259,7 @@ see what operations we can do on the <tt class="docutils literal"><span class="p
 <div class="highlight-python"><div class="highlight"><pre><span class="nb">dir</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/611.png" class="align-center" src="../_images/611.png" />
+<img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
 <ol class="arabic simple" start="7">
 <li>You will see a long list of available functions. For now, we will use a
 function called <tt class="docutils literal"><span class="pre">getFeatures()</span></tt> which will gets you the reference to all
@@ -271,7 +272,7 @@ second line.</li>
   <span class="k">print</span> <span class="n">f</span>
 </pre></div>
 </div>
-<img alt="../_images/711.png" class="align-center" src="../_images/711.png" />
+<img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
 <ol class="arabic simple" start="8">
 <li>As you will see in the output, each line contains a reference to a feature
 within the layer. The reference to the feature is stored in the <tt class="docutils literal"><span class="pre">f</span></tt>
@@ -283,7 +284,7 @@ airport feature.</li>
   <span class="k">print</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;iata_code&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<img alt="../_images/811.png" class="align-center" src="../_images/811.png" />
+<img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
 <ol class="arabic simple" start="9">
 <li>So now you know how to programatically access the attribute of each feature
 in a layer. Now, let&#8217;s see how we can access the coordinates of the feature.
@@ -300,7 +301,7 @@ the x and y coordinates of each feature.</li>
   <span class="k">print</span> <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/910.png" class="align-center" src="../_images/910.png" />
+<img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
 <ol class="arabic simple" start="10">
 <li>What if we wanted to get only the <tt class="docutils literal"><span class="pre">x</span></tt> cordinate of the feature? You can
 call the <tt class="docutils literal"><span class="pre">x()</span></tt> function on the point object and get its x coordinate.</li>
@@ -310,7 +311,7 @@ call the <tt class="docutils literal"><span class="pre">x()</span></tt> function
   <span class="k">print</span> <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/1010.png" class="align-center" src="../_images/1010.png" />
+<img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
 <ol class="arabic simple" start="11">
 <li>Now we have all the pieces that we can stitch together to generate our
 desired output. Type the following code to print the name, iata_code,
@@ -323,7 +324,7 @@ latitude and longitude of each of the airport features. The <tt class="docutils 
          <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">(),</span> <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">())</span>
 </pre></div>
 </div>
-<img alt="../_images/1114.png" class="align-center" src="../_images/1114.png" />
+<img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
 <ol class="arabic simple" start="12">
 <li>You can see the output printed on the console. A more useful way to store
 the output would be in a file. You can type the following code to create a
@@ -345,13 +346,13 @@ the text file.</li>
 <span class="n">output_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
-<img alt="../_images/1212.png" class="align-center" src="../_images/1212.png" />
+<img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
 <ol class="arabic simple" start="13">
 <li>You can go to the output file location you specified and open the text file.
 You will see the data from the airports shapefile that we extracted using
 python scripting.</li>
 </ol>
-<img alt="../_images/1311.png" class="align-center" src="../_images/1311.png" />
+<img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
 </div>
 </div>
 
@@ -377,7 +378,7 @@ python scripting.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Zuletzt aktualisiert am May 05, 2015.<br/>
+      Zuletzt aktualisiert am May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

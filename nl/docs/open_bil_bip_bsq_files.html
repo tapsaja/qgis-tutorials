@@ -112,6 +112,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Beginnen met programmeren in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -225,12 +226,12 @@ dataset.</p>
 will see that you only have a .bsq file named <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt>.
 There is no hdr file.</li>
 </ol>
-<img alt="../_images/1100.png" class="align-center" src="../_images/1100.png" />
+<img alt="../_images/1101.png" class="align-center" src="../_images/1101.png" />
 <ol class="arabic simple" start="2">
 <li>Note that if you try to open the <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt> file in
 QGIS as it is, you will get an error message.</li>
 </ol>
-<img alt="../_images/237.png" class="align-center" src="../_images/237.png" />
+<img alt="../_images/238.png" class="align-center" src="../_images/238.png" />
 <ol class="arabic simple" start="3">
 <li>To overcome this error, we will create a header file with <tt class="docutils literal"><span class="pre">.hdr</span></tt> extension.
 The header file contains information about the dataset and how it is organized.
@@ -240,7 +241,7 @@ clues. Some of the information can be guessed if you do not know it. In case
 of this dataset, the data download page links to the <a class="reference external" href="ftp://ftp.glcf.umd.edu/glcf/Global_Land_Cover/Global/1deg/gl-latlong-1deg-landcover.glcf">metadata</a>.
 Download the metadata and open it.</li>
 </ol>
-<img alt="../_images/325.png" class="align-center" src="../_images/325.png" />
+<img alt="../_images/326.png" class="align-center" src="../_images/326.png" />
 <ol class="arabic simple" start="4">
 <li>The .hdr file needs to be a plain text file in the following format. Some of
 these parameters are given to us and some needs to be worked out. <a class="reference external" href="http://www.gdal.org/frmt_various.html">Learn
@@ -271,20 +272,20 @@ is a safe bet. From metadata again, Pixel Format is Byte, so <strong>nbits</stro
 equal to 8 and pixeltype will be <strong>byte_unsigned</strong>. We do not have
 information about the byteorder, so leave it as msbfirst.</li>
 </ol>
-<img alt="../_images/518.png" class="align-center" src="../_images/518.png" />
+<img alt="../_images/519.png" class="align-center" src="../_images/519.png" />
 <ol class="arabic simple" start="6">
 <li>Now that you have the header file, put it in the same directory as
 <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt>. Then in QGIS, go to
 <em class="menuselection">Layer ‣ Add Raster Layer</em>. Select
 <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt> as your input and click <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/617.png" class="align-center" src="../_images/617.png" />
+<img alt="../_images/618.png" class="align-center" src="../_images/618.png" />
 <ol class="arabic simple" start="7">
 <li>In the next screen, you may be prompted to choose a CRS. Since the data is
 in Lat/Long, choose <strong>WGS84 EPSG:4326</strong> as your CRS. Now you will see the
 dataset loaded in QGIS.</li>
 </ol>
-<img alt="../_images/716.png" class="align-center" src="../_images/716.png" />
+<img alt="../_images/717.png" class="align-center" src="../_images/717.png" />
 </div>
 </div>
 
@@ -310,7 +311,7 @@ dataset loaded in QGIS.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op May 05, 2015.<br/>
+      Laatste aanpassing op May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

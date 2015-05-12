@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Primi passi con la programmazione Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Trovare i poligoni confinanti in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Realizzare mappe web leaflet con qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Usare il Google Maps Engine Connector con QGIS</a></li>
@@ -219,77 +220,77 @@
 <li><p class="first">Per prima cosa carichiamo il census tracts shapefile. Andare su <em class="menuselection">Layer ‣ Aggiungi vettore</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1103.png" class="align-center" src="../_images/1103.png" />
+<img alt="../_images/1104.png" class="align-center" src="../_images/1104.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Individuate il file scaricato che si chiama  <cite>tl_2013_06_tract.zip</cite>  e selezionatelo. QGIS può aprire file .zip direttamente, perciò non c&#8217;è bisogno di decomprimerli.</p>
 </li>
 </ol>
-<img alt="../_images/240.png" class="align-center" src="../_images/240.png" />
+<img alt="../_images/247.png" class="align-center" src="../_images/247.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Selezionate il layer <cite>tl_2013_06_tract.shp</cite> e fate click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/328.png" class="align-center" src="../_images/328.png" />
+<img alt="../_images/329.png" class="align-center" src="../_images/329.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Vedrete i dati del censimento caricati in QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/420.png" class="align-center" src="../_images/420.png" />
+<img alt="../_images/421.png" class="align-center" src="../_images/421.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Fate clikck sul tasto destro del mouse sul layer e scegliete <em class="guilabel">Apri la tabella degli attributi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/521.png" class="align-center" src="../_images/521.png" />
+<img alt="../_images/522.png" class="align-center" src="../_images/522.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Esaminate gli attributi dello shapefile dei dati del censimento. Per unire una tabella con questo shapefile,  abbiamo bisogno di attributo che sia unico e comune per ciascuna feature. In questo caso, il campo <strong>GEOID</strong> è un identificativo unico per ciascun attributo e può essere usato per unire questo shapefile con qualsiasi altra tabella che contenga lo stesso campo ID.</p>
 </li>
 </ol>
-<img alt="../_images/620.png" class="align-center" src="../_images/620.png" />
+<img alt="../_images/621.png" class="align-center" src="../_images/621.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Aprite il file CSV <cite>ca_tracts_pop.csv</cite> in un editor di testo. Noterete che ciascuna riga del file contiene informazioni circa un attributo che ha lo stesso identificatore unico che abbiamo visto nel passo precedente. Noterete che questo campo è chiamato <strong>GEO.id2</strong> nel CSV. Voi noterete inoltre che la colonna  <strong>D001</strong> contiene i valori di popolazione per ciascuno dei dati di censimento.</p>
 </li>
 </ol>
-<img alt="../_images/719.png" class="align-center" src="../_images/719.png" />
+<img alt="../_images/720.png" class="align-center" src="../_images/720.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Si potrebbe importare questo CSV senza ulteriori specificazioni ed esso effettivamente verrebbe importato tale e quale. Ma il tipo di dati di default per ciascuna colonna sarebbe di tipo <em>String</em> (text). Questo si può accettare per tutti i campi meno che per il <cite>D001</cite>  che contiene i dati numerici sulla popolazione. Se importiamo questo dato come testo non ci sarà possibile effettuare operazioni matematiche sull&#8217;intera colonna. Per dire a QGIS di importare il campo come numerico abbiamo bisogno di creare un cosiddetto file <cite>sidecar</cite> con estensione <cite>.csvt</cite> . Questo file avrà solo 1 riga che specifica il tipo di dati per ciascuna colonna. Salvate questo file come <cite>ca_tracts_pop.csvt</cite>  nella stessa directory in cui si trova il CSV originale. Potrete anche <a class="reference download internal" href="../_downloads/ca_tracts_pop.csvt"><tt class="xref download docutils literal"><span class="pre">scaricare</span> <span class="pre">il</span> <span class="pre">file</span> <span class="pre">.csvt</span> <span class="pre">qui.</span></tt></a></p>
 </li>
 </ol>
-<img alt="../_images/818.png" class="align-center" src="../_images/818.png" />
+<img alt="../_images/819.png" class="align-center" src="../_images/819.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Adesso siamo pronti a importare il file CSV in QGIS. Andate su <em class="menuselection">Layer ‣ Aggiungi layer testo delimitato</em>.</p>
 </li>
 </ol>
-<img alt="../_images/916.png" class="align-center" src="../_images/916.png" />
+<img alt="../_images/917.png" class="align-center" src="../_images/917.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Trovate la cartella contenente il file CSV e quindi selezionatelo. Accertatevi di aver selezionato <em class="guilabel">File format</em> as <em class="guilabel">CSV (valori separati da virgole)</em>. Dal momento che abbiamo importato questo file come una tabella, dobbiamo specificare che il nostro file non contiene dati geometrici. Selezionate l&#8217;opzione <em class="guilabel">No geometry (solo tabella degli attributi)</em>. Fare quindi click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1017.png" class="align-center" src="../_images/1017.png" />
+<img alt="../_images/1018.png" class="align-center" src="../_images/1018.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Il CSV sarà importato come tabella in QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/1121.png" class="align-center" src="../_images/1121.png" />
+<img alt="../_images/1122.png" class="align-center" src="../_images/1122.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Selezionate il layer <cite>tl_2013_06_tract</cite> . Tasto destro e poi selezionate <em class="guilabel">Proprietà</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1219.png" class="align-center" src="../_images/1219.png" />
+<img alt="../_images/1220.png" class="align-center" src="../_images/1220.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Nella finestra di dialogo delle <em class="guilabel">Propietà del layer</em>  selezionare la scheda <em class="guilabel">Joins</em>. Fare quindi click su pulsante <cite>+</cite> .</p>
 </li>
 </ol>
-<img alt="../_images/1317.png" class="align-center" src="../_images/1317.png" />
+<img alt="../_images/1318.png" class="align-center" src="../_images/1318.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Nella finestra di dialogo <em class="guilabel">Aggiungi vettore da unire (join)</em> selezionate <cite>ca_tracts_pop</cite> come <em class="guilabel">Vettore da unire</em>. Poi dobbiamo selezionare il campo con un unico identificatore sia nello shapefile che nel CSV. Selezionate <cite>GEO.id2</cite> e <cite>GEOID</cite> rispettivamente come <em class="guilabel">Campo Unione</em> e <em class="guilabel">Campo destinazione</em> . Click su <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1416.png" class="align-center" src="../_images/1416.png" />
+<img alt="../_images/1417.png" class="align-center" src="../_images/1417.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Chiudete la finestra di dialogo <em class="guilabel">Proprietà</em> e tornate sulla finestra principale di QGIS. A questo punto il campo proveniente dal file CSV è stato unito con lo shapefile. Click con il tasto destro sul layer <cite>tl_2013_06_tract</cite> e selezionate <em class="guilabel">Apri tabella attributi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1515.png" class="align-center" src="../_images/1515.png" />
+<img alt="../_images/1516.png" class="align-center" src="../_images/1516.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Adesso potete vedere un nuovo set di campi, compreso il campo <em class="guilabel">ca_tracts_pop_D001</em> , aggiunto a ciascuna riga. Ora avete accesso ai valori relativi alla popolazione per ciascun dato estratto dal file CSV. Chiudete la tabella degli attributi e tornate alla finestra principale di QGIS.</p>
 </li>
@@ -340,7 +341,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento May 05, 2015.<br/>
+      Ultimo aggiornamento May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

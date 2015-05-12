@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">BIL, BIP 혹은 BSQ 파일 열기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">파이썬 프로그램밍 시작</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">파이썬 플러그인 만들기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">인접 폴리곤 찾기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">qgis2leaf로 웹 지도 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">QGIS에서 구글지도 커넥터 이용하기</a></li>
@@ -216,7 +217,7 @@ login, or use the <em class="guilabel">Guest Download</em> button at the bottom 
 immediately download the data. Repeat the process for <em class="guilabel">2000 year</em>
 data.</li>
 </ol>
-<img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
+<img alt="../_images/1108.png" class="align-center" src="../_images/1108.png" />
 <p>2개의 압축파일이 다운로드될 것입니다.</p>
 <p>For convenience, you can also download a copy of this data by clicking on following links:</p>
 <p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_90_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_90_ascii_one.zip</span></tt></a></p>
@@ -234,67 +235,67 @@ data.</li>
 <li><p class="first">다운로드한 압축파일을 찾습니다. 컨트롤키 :kbd:<a href="#id1"><span class="problematic" id="id2">`</span></a>Ctrl`를 누른채로 두개의 압축파일을 클릭합니다. 이 방법으로 한 번에 두개의 파일을 불러올 수 있습니다. 상황에 따라 두 개의 파일이 선택되지 않을 경우 하나씩 실행하십시오.</p>
 </li>
 </ol>
-<img alt="../_images/334.png" class="align-center" src="../_images/334.png" />
+<img alt="../_images/335.png" class="align-center" src="../_images/335.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">각 압출파일에는 2개의 그리드파일이 들어있습니다. 파일명에 있는 <a href="#id1"><span class="problematic" id="id2">``</span></a>a``는 인구수가 UN 총합과 맞도록 수정된 것을 시사합니다. 이 예제에서는 수정된 그리드를 사용할 것입니다. <a href="#id3"><span class="problematic" id="id4">``</span></a>glds00ag60.asc``를 선택하여 레이어로 불러옵니다. :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>OK`를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/424.png" class="align-center" src="../_images/424.png" />
+<img alt="../_images/425.png" class="align-center" src="../_images/425.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">레이어는 정의된 CRS를 갖고 있지 않습니다. 그래서 그리드가 위도/경도이므로 좌표체계로  <a href="#id1"><span class="problematic" id="id2">`</span></a>EPSG:4326`를 선택합니다.</p>
 </li>
 </ol>
-<img alt="../_images/525.png" class="align-center" src="../_images/525.png" />
+<img alt="../_images/526.png" class="align-center" src="../_images/526.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">두개의 압축파일을 선택했으므로 유사한 다이알로그를 다시 보게될 것입니다. 과정을 반복하고 <a href="#id1"><span class="problematic" id="id2">``</span></a>glds90ag60.asc``를 선택하여 레이어로 불러옵니다.</p>
 </li>
 </ol>
-<img alt="../_images/623.png" class="align-center" src="../_images/623.png" />
+<img alt="../_images/624.png" class="align-center" src="../_images/624.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">다시 한번 CRS로  <a href="#id1"><span class="problematic" id="id2">`</span></a>EPSG:4326`를 선택합니다.</p>
 </li>
 </ol>
-<img alt="../_images/723.png" class="align-center" src="../_images/723.png" />
+<img alt="../_images/724.png" class="align-center" src="../_images/724.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">이제 QGIS에 불러들여진 두개의 래스터파일을 보게됩니다. 래스터는 회색스케일로 표현되어 있습니다. 여기서 보다 어두운 픽셀은 낮은 값을, 반면 밝은 픽셀은 보다 높은 값을 나타냅니다.</p>
 </li>
 </ol>
-<img alt="../_images/822.png" class="align-center" src="../_images/822.png" />
+<img alt="../_images/823.png" class="align-center" src="../_images/823.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">래스터의 각 픽셀은 지정된 값을 가지고 있습니다. 이 값은 이 그리드의 인구밀도입니다.  도구를 선택하기 위해 객체확인:guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Identify Features`단추를 클릭하고 래스터의 아무곳이나 클릭하여 픽셀값을 알아봅니다.</p>
 </li>
 </ol>
-<img alt="../_images/920.png" class="align-center" src="../_images/920.png" />
+<img alt="../_images/921.png" class="align-center" src="../_images/921.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">인구밀도의 패턴을 보다 낫게 시각화 하기 위해서 이것을 스타일화 할 필요가 있습니다. 레이어에서 마우스의 오른쪽 단추를 클릭하여  속성 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Properties`을 선택합니다. TOC 즉, Table of Contents에서 레이어명을 더블클릭하여 레이어 속성 다이알로그를 열 수도 있습니다.</p>
 </li>
 </ol>
-<img alt="../_images/1021.png" class="align-center" src="../_images/1021.png" />
+<img alt="../_images/1022.png" class="align-center" src="../_images/1022.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">스타일 <em class="guilabel">Style</em> 탭에서 랜더 유형  <em class="guilabel">Render type</em> 을 단일밴드 의사색채 <em class="guilabel">Singleband pseudocolor`로 변경합니다. 다음 새 색상표 작성 :guilabel:`Generate a new color map`에서 분류 :guilabel:`Classify</em> 를 클릭합니다. 5개의 새로운 색값이 만들어진 것을 볼 수 있습니다.  :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>OK`를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1125.png" class="align-center" src="../_images/1125.png" />
+<img alt="../_images/1126.png" class="align-center" src="../_images/1126.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">QGIS 캔버스로 되돌아 갑니다. 래스터가 열지도 같이 표현된 것을 볼 수 있습니다. 같은 과정을 다른 래스터에 대해 반복합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1222.png" class="align-center" src="../_images/1222.png" />
+<img alt="../_images/1223.png" class="align-center" src="../_images/1223.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">분석내용은 1990년과 2000년 사이에 가장 인구변화가 큰 곳을 찾는 것입니다. 이것을 수행하기 위한 방법은 두개의 레이어에서 각 그리드 픽셀값 간의 차이를 찾는 것입니다. 메뉴&gt;  래스터 &#8211;&gt; 래스터 계산기  :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Raster &#8211;&gt; Raster calculator`를 선택합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1320.png" class="align-center" src="../_images/1320.png" />
+<img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">래스터 밴드  <em class="guilabel">Raster bands</em> 에서 레이어를 더블클릭함으로써 레이어를 선택할 수 있습니다. 밴드는 래스터 이름 뒤에 &#64;와 밴드수가 붙습니다. 예제의 래스터는 단지 하나의 밴드만 가지기때문에 래스터마다 1이 붙은 것을 볼 수 있습니다. 래스터 계산기는 래스터 픽셀에 대해 수학적인 계산을 할 수 있습니다. 여기서는 2000년도 인구밀도에서 1990년도 인구밀도를 빼는 간단한 식을 입력합니다. 식 <tt class="docutils literal"><span class="pre">glds00ag60&#64;1</span> <span class="pre">-</span> <span class="pre">glds90ag60&#64;1</span></tt> 를 입력합니다. 출력 레이어로  :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>pop_density_change_2000_1990.tif`를 입력하고 결과를 프로젝트에 추가 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Add result to project`박스를 체크합니다. :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>OK`를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1419.png" class="align-center" src="../_images/1419.png" />
+<img alt="../_images/1420.png" class="align-center" src="../_images/1420.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">이 과정이 완료되면 QGIS에서 새로운 레이어가 추가된 것을 볼 수 있습니다.</p>
 </li>
 </ol>
-<img alt="../_images/1518.png" class="align-center" src="../_images/1518.png" />
+<img alt="../_images/1519.png" class="align-center" src="../_images/1519.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">여기서 회색스케일 시각화결과는 매우 유용합니다. 그러나 보다 정보전달력이 높은 결과물을 만들어 낼 수 있습니다. <a href="#id1"><span class="problematic" id="id2">``</span></a>pop_density_change_2000_1990``레이어에 대해 마우스 오른쪽 클릭을 하고 속성  :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Properties`을 선택합니다.</p>
 </li>
@@ -339,7 +340,7 @@ data.</li>
 <li><p class="first">이제 인구밀도가 감소한 지역을 회색 픽셀로 볼 수 있습니다.</p>
 </li>
 </ol>
-<img alt="../_images/2410.png" class="align-center" src="../_images/2410.png" />
+<img alt="../_images/2411.png" class="align-center" src="../_images/2411.png" />
 </div>
 </div>
 
@@ -365,7 +366,7 @@ data.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      최종 업데이트: May 05, 2015<br/>
+      최종 업데이트: May 12, 2015<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

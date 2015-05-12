@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -216,22 +217,22 @@ projection.</li>
 <li><p class="first">Télécharger et extraire l&#8217;archive &#8220;Natural Earth Quick Start Kit Data&#8221;. Ouvrir QGIS. Cliquer sur  <em class="menuselection">File ‣ Open Project</em>.</p>
 </li>
 </ol>
-<img alt="../_images/180.png" class="align-center" src="../_images/180.png" />
+<img alt="../_images/190.png" class="align-center" src="../_images/190.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Naviguer jusqu&#8217;au répertoire ou sont extraites les données de Natural Earth. Il devrait y avoir un dossier nommé <tt class="file docutils literal"><span class="pre">Natural_Earth_quick_start_for_QGIS.qgs</span></tt>. Il s&#8217;agit du dossier du projet qui contient des couches stylisées en format QGIS Document. Cliquer sur <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/230.png" class="align-center" src="../_images/230.png" />
+<img alt="../_images/234.png" class="align-center" src="../_images/234.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Vous allez voir de nombreuses couches de contenu et une carte du monde stylisée sur la fenêtre QGIS. S&#8217;il y a des erreurs qui apparaissent dans le haut de la fenêtre, les fermer en cliquant sur la  croix.</p>
 </li>
 </ol>
-<img alt="../_images/322.png" class="align-center" src="../_images/322.png" />
+<img alt="../_images/323.png" class="align-center" src="../_images/323.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Dans ce tutoriel, nous allons réaliser une carte du Japon. Cliquer sur le bouton <em class="guilabel">Zoom In</em>  et tracer un rectangle autour du japon pour agrandir la zone.</p>
 </li>
 </ol>
-<img alt="../_images/416.png" class="align-center" src="../_images/416.png" />
+<img alt="../_images/417.png" class="align-center" src="../_images/417.png" />
 <ol class="arabic simple" start="5">
 <li>You can turn off some map layers for data that we do not need for this map.
 Un-check the box next to <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> and
@@ -254,19 +255,19 @@ system (CRS) that is designed for minimum distortions. It is divided in 18
 zones and if you are working for a smaller region in Japan, using this CRS
 will be better.</p>
 </div>
-<img alt="../_images/516.png" class="align-center" src="../_images/516.png" />
+<img alt="../_images/517.png" class="align-center" src="../_images/517.png" />
 <ol class="arabic simple" start="6">
 <li>Check the <em class="guilabel">Enable on-the-fly CRS Transformation</em> box. Type <tt class="docutils literal"><span class="pre">Tokyo</span>
 <span class="pre">utm</span> <span class="pre">zone54n</span></tt> in the <em class="guilabel">Filter</em> search box. Once you see the
 results, select <em class="guilabel">Tokyo / UTM Zone 54N - EPSG:3095</em>. Click
 <em class="guilabel">Apply</em>.</li>
 </ol>
-<img alt="../_images/615.png" class="align-center" src="../_images/615.png" />
+<img alt="../_images/616.png" class="align-center" src="../_images/616.png" />
 <ol class="arabic simple" start="7">
 <li>Now we can start to assemble our map. Go to
 <em class="menuselection">Project ‣ New Print Composer</em>.</li>
 </ol>
-<img alt="../_images/714.png" class="align-center" src="../_images/714.png" />
+<img alt="../_images/715.png" class="align-center" src="../_images/715.png" />
 <ol class="arabic simple" start="8">
 <li>You will be prompted to enter a title for the composer. You can leave it
 empty and click <em class="guilabel">Ok</em>.</li>
@@ -276,32 +277,32 @@ empty and click <em class="guilabel">Ok</em>.</li>
 <p class="last">Leaving the composer name empty will assign a default name such as
 <tt class="docutils literal"><span class="pre">Composer</span> <span class="pre">1</span></tt>.</p>
 </div>
-<img alt="../_images/814.png" class="align-center" src="../_images/814.png" />
+<img alt="../_images/815.png" class="align-center" src="../_images/815.png" />
 <ol class="arabic simple" start="10">
 <li>In the Print Composer window, click on <em class="guilabel">Zoom full</em> to display the
 full extent of the Layout. Now we would have to bring the map view that we
 see in the QGIS Canvas to the composer. Go to <em class="menuselection">Layout ‣
 Add Map</em>.</li>
 </ol>
-<img alt="../_images/1013.png" class="align-center" src="../_images/1013.png" />
+<img alt="../_images/1014.png" class="align-center" src="../_images/1014.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Une fois que le bouton <em class="guilabel">Add Map</em> est actif, faire un click droit et maintenir appuyé pour tracer un rectangle à l&#8217;endroit voulu pour la carte.</p>
 </li>
 </ol>
-<img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" />
+<img alt="../_images/1118.png" class="align-center" src="../_images/1118.png" />
 <ol class="arabic simple" start="12">
 <li>You will see that the rectangle window will be rendered with the map from
 the main QGIS canvas. The rendered map may not be covering the full extent
 of our interest area.  Select <em class="menuselection">Layout ‣ Move item content</em>
 to pan the map in the window and center it in the composer.</li>
 </ol>
-<img alt="../_images/1215.png" class="align-center" src="../_images/1215.png" />
+<img alt="../_images/1216.png" class="align-center" src="../_images/1216.png" />
 <ol class="arabic simple" start="13">
 <li>Let us adjust the zoom level for the given map. Click on the
 <em class="guilabel">Item Properties</em> tab and enter <cite>7000000</cite> for <em class="guilabel">Scale</em>
 value.</li>
 </ol>
-<img alt="../_images/1314.png" class="align-center" src="../_images/1314.png" />
+<img alt="../_images/1315.png" class="align-center" src="../_images/1315.png" />
 <ol class="arabic simple" start="14">
 <li>Now we will add a map inset that shows a zoomed in view for the Tokyo area.
 Before we make  any changes to the layers in the main QGIS window, check
@@ -309,12 +310,12 @@ the <em class="guilabel">Lock layers for map item</em> and <em class="guilabel">
 for map item</em> boxes. This will ensure that if we turn off some layers or
 change their styles, this view will not change.</li>
 </ol>
-<img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
+<img alt="../_images/1413.png" class="align-center" src="../_images/1413.png" />
 <ol class="arabic simple" start="15">
 <li>Switch to the main QGIS window. Use the <em class="guilabel">Zoom In</em> button to zoom
 to the area around Tokyo.</li>
 </ol>
-<img alt="../_images/1512.png" class="align-center" src="../_images/1512.png" />
+<img alt="../_images/1513.png" class="align-center" src="../_images/1513.png" />
 <ol class="arabic simple" start="16">
 <li>There are some duplicate labels coming from the <tt class="docutils literal"><span class="pre">ne_10m_populated_places</span></tt>
 layer. You can turn it off for this view.</li>
@@ -368,7 +369,7 @@ grid. Click on the <em class="guilabel">change...</em> button next to <em class=
 <tt class="docutils literal"><span class="pre">4326</span></tt> in the <em class="guilabel">Filter</em> box. From the results, select the
 <tt class="docutils literal"><span class="pre">WGS84</span> <span class="pre">EPSG:4326</span></tt> as the CRS. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/234.png" class="align-center" src="../_images/234.png" />
+<img alt="../_images/235.png" class="align-center" src="../_images/235.png" />
 <ol class="arabic simple" start="24">
 <li>Select the <em class="guilabel">Interval</em> values as <tt class="docutils literal"><span class="pre">5</span></tt> degrees in both
 <em class="guilabel">X</em> and <em class="guilabel">Y</em> direction. You can adjust the
@@ -428,7 +429,7 @@ HTML tags.</li>
 &lt;/div&gt;
 </pre></div>
 </div>
-<img alt="../_images/323.png" class="align-center" src="../_images/323.png" />
+<img alt="../_images/324.png" class="align-center" src="../_images/324.png" />
 <ol class="arabic simple" start="33">
 <li>Similarly add another label to add the data and software credits.</li>
 </ol>
@@ -469,7 +470,7 @@ SVG. For this tutorial, let’s export it as an image. Click
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Mis à jour le May 05, 2015.<br/>
+      Mis à jour le May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -31,7 +31,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Realizzare mappe web leaflet con qgis2leaf" href="leaflet_maps_with_qgis2leaf.html" />
-    <link rel="prev" title="Building a Python Plugin" href="building_a_python_plugin.html" />
+    <link rel="prev" title="Using Custom Python Expression Functions" href="custom_python_functions.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Aprire file in formato BIL, BIP o BSQ in QGIS.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Primi passi con la programmazione Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Trovare i poligoni confinanti in un layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Realizzare mappe web leaflet con qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Usare il Google Maps Engine Connector con QGIS</a></li>
@@ -127,7 +128,7 @@
               
                 
   <li>
-    <a href="building_a_python_plugin.html" title="Previous Chapter: Building a Python Plugin"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Building a Pytho...</span>
+    <a href="custom_python_functions.html" title="Previous Chapter: Using Custom Python Expression Functions"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Using Custom Pyt...</span>
     </a>
   </li>
   <li>
@@ -212,42 +213,42 @@
 <li><p class="first">Caricate lo shapefile <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> layer andando su <em class="menuselection">Layer ‣ Aggiungi Vettore</em>.</p>
 </li>
 </ol>
-<img alt="../_images/139.png" class="align-center" src="../_images/139.png" />
+<img alt="../_images/140.png" class="align-center" src="../_images/140.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Lo script adotta due campi per realizzare la propria azione. Un campo nome e un campo che noi abbiamo deciso di aggiungere. Usate lo strumento identifica elemento per fare click su una qualsiasi delle geometrie e quindi esaminare gli attributi. In questo caso il campo nome è NAME e noi vogliamo aggiungere la somma della popolazione stimata nei paesi confinanti con il campo POP_EST.</p>
 </li>
 </ol>
-<img alt="../_images/224.png" class="align-center" src="../_images/224.png" />
+<img alt="../_images/225.png" class="align-center" src="../_images/225.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Andate su <em class="menuselection">Plugins ‣ Console python</em>.</p>
 </li>
 </ol>
-<img alt="../_images/315.png" class="align-center" src="../_images/315.png" />
+<img alt="../_images/316.png" class="align-center" src="../_images/316.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">nella finestra <em class="guilabel">Console Python</em> fate click sul pulsante <em class="guilabel">Mostra Editor</em>.</p>
 </li>
 </ol>
-<img alt="../_images/410.png" class="align-center" src="../_images/410.png" />
+<img alt="../_images/411.png" class="align-center" src="../_images/411.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Nel pannello  <em class="guilabel">Editor</em>, fate click sul pulsante <em class="guilabel">Apri file</em>  e individuate lo script he avete scaricato poco fa e che si chiama <a href="#id1"><span class="problematic" id="id2">``</span></a>neighbors.py` fate click su <em class="guilabel">Apri</em>.</p>
 </li>
 </ol>
-<img alt="../_images/510.png" class="align-center" src="../_images/510.png" />
+<img alt="../_images/511.png" class="align-center" src="../_images/511.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Una volta che lo script è stato caricato, potreste decidere di cambiare le intestazioni del <tt class="docutils literal"><span class="pre">_NAME_FIELD</span></tt>  e quelle del <tt class="docutils literal"><span class="pre">_SUM_FIELD</span></tt>  in modo che corrispondano con con quelle presenti sul vostro layer. Ma se state lavorando sul <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> potete lasciare le cose esattamente come sono. Fate click sul pulsante <em class="guilabel">Salva</em>  all&#8217;interno dell&#8217;<em class="guilabel">Editor</em> se effettuate dei cambiamenti. Adesso fate click sul pulsante <em class="guilabel">Esegui script</em> per eseguire lo script.</p>
 </li>
 </ol>
-<img alt="../_images/69.png" class="align-center" src="../_images/69.png" />
+<img alt="../_images/610.png" class="align-center" src="../_images/610.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Una volta che lo script termina il suo lavoro, fate click col tasto destro sul layer <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> e selezionate <em class="guilabel">Apri tabella degli attributi</em>.</p>
 </li>
 </ol>
-<img alt="../_images/79.png" class="align-center" src="../_images/79.png" />
+<img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Potrete notare 2 nuovi attribiuti chiamati <tt class="docutils literal"><span class="pre">NEIGHBORS</span></tt> e <tt class="docutils literal"><span class="pre">SUM</span></tt>. Entrambe le colonne sono state aggiunte dallo script.</p>
 </li>
 </ol>
-<img alt="../_images/89.png" class="align-center" src="../_images/89.png" />
+<img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
 <p>Di seguito avete lo script completo a disposizione. Siete liberi di modificarlo per adattarlo alle vostre esigenze.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c">################################################################################</span>
 <span class="c"># Copyright 2014 Ujaval Gandhi</span>
@@ -357,7 +358,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento May 05, 2015.<br/>
+      Ultimo aggiornamento May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

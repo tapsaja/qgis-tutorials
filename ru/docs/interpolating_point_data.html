@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Открытие файлов BIL, BIP или BSQ в QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Первые шаги в программировании на Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Создание модуля на Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Нахождение соседних полигонов в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Веб-карты Leaflet с помощью qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Использование Google Maps Engine Connector для QGIS</a></li>
@@ -222,36 +223,36 @@ tutorial from link below.</p>
 <li><p class="first">Откройте QGIS. Перейдите к <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer..</em></p>
 </li>
 </ol>
-<img alt="../_images/170.png" class="align-center" src="../_images/170.png" />
+<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Перейдите к загруженному файлу <tt class="docutils literal"><span class="pre">Shapefiles.zip</span></tt> и выберите его. Нажмите <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/228.png" class="align-center" src="../_images/228.png" />
+<img alt="../_images/229.png" class="align-center" src="../_images/229.png" />
 <ol class="arabic simple" start="3">
 <li>In the <em class="guilabel">Select layers to add...</em> dialog, hold the <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> key
 and select <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83.shp</span></tt> and
 <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83.shp</span></tt> layers. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/319.png" class="align-center" src="../_images/319.png" />
+<img alt="../_images/320.png" class="align-center" src="../_images/320.png" />
 <ol class="arabic simple" start="4">
 <li>You will see the 2 layers loaded in QGIS. The <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83</span></tt>
 layer represents the boundary of the lake. Un-check the box next to it in
 the Table of Contents.</li>
 </ol>
-<img alt="../_images/414.png" class="align-center" src="../_images/414.png" />
+<img alt="../_images/415.png" class="align-center" src="../_images/415.png" />
 <ol class="arabic simple" start="5">
 <li>This will reveal the data from the second layer
 <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></tt>. Though the data looks like lines, it is
 a series of points that are very close.</li>
 </ol>
-<img alt="../_images/514.png" class="align-center" src="../_images/514.png" />
+<img alt="../_images/515.png" class="align-center" src="../_images/515.png" />
 <ol class="arabic simple" start="6">
 <li>Click the <em class="guilabel">Zoom</em> icon and select a small area on the screen. As
 you zoom closer, you will see the points. Each point represents a reading
 taken by a <em>Depth Sounder</em> at the location recorded by a <em>DGPS</em> equipment.</li>
 </ol>
-<img alt="../_images/613.png" class="align-center" src="../_images/613.png" />
+<img alt="../_images/614.png" class="align-center" src="../_images/614.png" />
 <ol class="arabic simple" start="7">
 <li>Select the <em class="guilabel">Identify</em> tool and click on a point. You will see the
 <em class="guilabel">Identify Results</em> panel show up on the left with the attribute
@@ -260,13 +261,13 @@ depth of the lake at the location. As our task is to create a depth profile
 and elevation contours, we will use this values as input for the
 interpolation.</li>
 </ol>
-<img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
+<img alt="../_images/713.png" class="align-center" src="../_images/713.png" />
 <ol class="arabic simple" start="8">
 <li>Make sure you have the <tt class="docutils literal"><span class="pre">Interpolation</span> <span class="pre">plugin</span></tt> enabled. See
 <a class="reference internal" href="using_plugins.html"><em>Использование модулей расширения</em></a> for how to enable plugins. Once enabled, go to
 <em class="menuselection">Raster ‣ Interpolation ‣ Interpolation</em>.</li>
 </ol>
-<img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
+<img alt="../_images/813.png" class="align-center" src="../_images/813.png" />
 <ol class="arabic simple" start="9">
 <li>In the <em class="guilabel">Interpolation</em> dialog, select
 <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></tt> as the <em class="guilabel">Vector layers</em> in the
@@ -289,33 +290,33 @@ for interpolating other types of data such as mineral concentrations,
 populations etc. See the <a class="reference external" href="http://docs.qgis.org/2.2/en/docs/gentle_gis_introduction/spatial_analysis_interpolation.html">Spatial Analysis</a>
 module of the QGIS documentation for more details.</p>
 </div>
-<img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
+<img alt="../_images/912.png" class="align-center" src="../_images/912.png" />
 <ol class="arabic simple" start="10">
 <li>You will see the new later <tt class="docutils literal"><span class="pre">elevation_tin</span></tt> loaded in QGIS. Right-click
 the layer and select <em class="guilabel">Zoom to layer</em>.</li>
 </ol>
-<img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
+<img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" />
 <ol class="arabic simple" start="11">
 <li>Now you will see the full extent of the created surface. Interpolation does
 not give accurate results outside the collection area. Let&#8217;s clip the
 resulting surface with the lake boundary. Go to <em class="menuselection">Raster ‣
 Extraction ‣ Clipper</em>.</li>
 </ol>
-<img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
+<img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
 <ol class="arabic simple" start="12">
 <li>Name the <em class="guilabel">Output file</em> as <tt class="docutils literal"><span class="pre">elevation_tin_clipped.tif</span></tt>. Select the
 <em class="guilabel">Cliiped mode</em> as <em class="guilabel">Mask layer</em>. Select
 <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83</span></tt> as the <em class="guilabel">Mask layer`</em>. Click
 <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
+<img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" />
 <ol class="arabic simple" start="13">
 <li>A new raster <tt class="docutils literal"><span class="pre">elevation_tin_clipped</span></tt> will be loaded in QGIS. We will now
 style this layer to show the difference in elevations. Note the min and max
 elevation values from the <tt class="docutils literal"><span class="pre">elevation_tin</span></tt> layer. Right-click the
 <tt class="docutils literal"><span class="pre">elevation_tin_clipped</span></tt> layer and select <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
+<img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" />
 <ol class="arabic simple" start="14">
 <li>Go to the <em class="guilabel">Style</em> tab. Select <em class="guilabel">Render type</em> as
 <tt class="docutils literal"><span class="pre">Singleband</span> <span class="pre">pseudocolor</span></tt>. In the <em class="guilabel">Generate new color map</em>
@@ -323,13 +324,13 @@ panel, select <tt class="docutils literal"><span class="pre">Spectral</span></tt
 opposed to a height-map, check the <em class="guilabel">Invert</em> box. This will assign
 blues to deep areas and reds to shallow areas. Click <em class="guilabel">Classify</em>.</li>
 </ol>
-<img alt="../_images/1410.png" class="align-center" src="../_images/1410.png" />
+<img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
 <ol class="arabic simple" start="15">
 <li>Switch to the <em class="guilabel">Tranparency</em> tab. We want to remove the
 black-pixels from our output. Enter <tt class="docutils literal"><span class="pre">0</span></tt> as the <em class="guilabel">Additional no
 data value</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1510.png" class="align-center" src="../_images/1510.png" />
+<img alt="../_images/1511.png" class="align-center" src="../_images/1511.png" />
 <ol class="arabic simple" start="16">
 <li>Now you have a elevation relief map for the lake generated from the
 individual depth readings. Let&#8217;s generate contours now. Go to
@@ -343,7 +344,7 @@ at 5ft intervals, so enter <tt class="docutils literal"><span class="pre">5.00</
 contour lines</em>. Check the <em class="guilabel">Attribute name</em> box. Click
 <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
+<img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
 <ol class="arabic simple" start="18">
 <li>The contour lines will be loaded as <tt class="docutils literal"><span class="pre">contours</span></tt> layer once the processing
 is finished. Right-click the layer and select <em class="guilabel">Properties</em>.</li>
@@ -385,7 +386,7 @@ elevation along the line.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Обновлено: May 05, 2015.<br/>
+      Обновлено: May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

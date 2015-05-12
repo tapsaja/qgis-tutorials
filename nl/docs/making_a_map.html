@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Beginnen met programmeren in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -215,22 +216,22 @@
 <li><p class="first">Download en pak de gegevens van de Natural Earth Quick Start Kit uit. Open QGIS. Klik op <em class="menuselection">Project ‣ Open...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/180.png" class="align-center" src="../_images/180.png" />
+<img alt="../_images/190.png" class="align-center" src="../_images/190.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Blader naar de map waar u de gegevens van Natural Earth hebt uitgepakt. U zou een bestand moeten zien genaamd <tt class="file docutils literal"><span class="pre">Natural_Earth_quick_start_for_QGIS.qgs</span></tt>. Dat is het projectbestand dat de opgemaakte lagen bevat in de indeling QGIS Document. Klik op <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/230.png" class="align-center" src="../_images/230.png" />
+<img alt="../_images/234.png" class="align-center" src="../_images/234.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">U zou vele lagen in de inhoudstabel moeten zien en een opgemaakte kaart van de wereld in het kaartvenster van QGIS. Als u ziet dat fouten worden weergegeven aan de bovenzijde van het kaartvenster, klik op het kruis om ze te sluiten.</p>
 </li>
 </ol>
-<img alt="../_images/322.png" class="align-center" src="../_images/322.png" />
+<img alt="../_images/323.png" class="align-center" src="../_images/323.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">In deze handleiding zullen we ene kaart van Japan maken. Klik op de knop <em class="guilabel">Inzoomen</em> en teken een rechthoek rondom Japan om op het gebied in te zoomen.</p>
 </li>
 </ol>
-<img alt="../_images/416.png" class="align-center" src="../_images/416.png" />
+<img alt="../_images/417.png" class="align-center" src="../_images/417.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">U kunt enkele kaartlagen uitschakelen voor gegevens die we voor deze kaart niet nodig hebben. Deselecteer het vak naast de lagen <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> en <tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt>. Vóór we een kaart geschikt maken om te worden afgedrukt, moeten we een toepasselijke projectie kiezen. Deze gegevens staan in een Geografisch Coördinaten Systeem (GCS) waar de eenheden graden zijn. Dat is niet gewenst voor een kaart waar u de afstanden in kilometers of mijlen wilt hebben. We moeten een Geprojecteerd Coördinaten Systeem gebruiken dat vervormingen voor ons interessegebied minimaliseert en eenheden in meters heeft. Universal Transverse Mercator (UTM) is een geschikte keuze voor een geprojecteerd coördinaten systeem. Het is ook globaal, dus is het een goede standaard waarop u kunt vertrouwen en een UTM-zone kunt kiezen die uw interessegebied bevat om vervormingen voor uw regio te minimaliseren. In ons geval zullen we UTM-zone 54N gebruiken. Klik op de knop <em class="guilabel">CRS-status</em> aan de rechter onderzijde van het venster van QGIS.</p>
 </li>
@@ -239,17 +240,17 @@
 <p class="first admonition-title">Notitie</p>
 <p class="last">Voor Japan is Japan Plane Rectangular CS een geprojecteerd coördinaten referentiesysteem (CRS) dat ontworpen is voor minimale vervormingen. Het is opgedeeld in 18 zones en als u werkt met een kleinere regio in Japan, is het gebruiken van dit CRS beter.</p>
 </div>
-<img alt="../_images/516.png" class="align-center" src="../_images/516.png" />
+<img alt="../_images/517.png" class="align-center" src="../_images/517.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Selecteer het vak <em class="guilabel">Gelijktijdige CRS-transformatie gebruiken</em>. Type <tt class="docutils literal"><span class="pre">Tokyo</span> <span class="pre">utm</span> <span class="pre">zone54n</span></tt> in het zoekvak <em class="guilabel">Filter</em>. Selecteer <em class="guilabel">Tokyo / UTM Zone 54N - EPSG:3095</em> als u eenmaal de resultaten ziet. Klik op <em class="guilabel">Toepassen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/615.png" class="align-center" src="../_images/615.png" />
+<img alt="../_images/616.png" class="align-center" src="../_images/616.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Nu kunnen we beginnen om onze kaart samen te stellen. Ga naar <em class="menuselection">Project ‣ Nieuwe  Printvormgeving</em>.</p>
 </li>
 </ol>
-<img alt="../_images/714.png" class="align-center" src="../_images/714.png" />
+<img alt="../_images/715.png" class="align-center" src="../_images/715.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">U zult worden gevraagd een titel voor de printvormgeving in te vullen. U mag die leeg laten en klik op <em class="guilabel">OK</em>.</p>
 </li>
@@ -258,37 +259,37 @@
 <p class="first admonition-title">Notitie</p>
 <p class="last">Leeg laten van de naam van de printvormgeving zal een standaard naam, zoals <tt class="docutils literal"><span class="pre">Printvormgeving</span> <span class="pre">1</span></tt>, toewijzen.</p>
 </div>
-<img alt="../_images/814.png" class="align-center" src="../_images/814.png" />
+<img alt="../_images/815.png" class="align-center" src="../_images/815.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Klik, in het venster Printvormgeving, op <em class="guilabel">Volledig zoomen</em> om het volledige bereik van de lay-out weer te geven. Nu zouden we de kaartweergave die we in het kaartvenster van QGIS zien moeten overbrengen naar de printvormgeving. Ga naar <em class="menuselection">Lay-out ‣ Kaart toevoegen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1013.png" class="align-center" src="../_images/1013.png" />
+<img alt="../_images/1014.png" class="align-center" src="../_images/1014.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Als de knop <em class="guilabel">Nieuwe kaart toevoegen</em> actief is, houdt dan de linker muisknop ingedrukt en sleep een rechthoek waar u de kaart wilt invoegen.</p>
 </li>
 </ol>
-<img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" />
+<img alt="../_images/1118.png" class="align-center" src="../_images/1118.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">U zult zien dat het rechthoekige venster zal worden gerenderd met de kaart uit het kaartvenster van QGIS. De gerenderde kaart zou niet het gehele gebied van onze interesse kunnen bedekken. Selecteer <em class="menuselection">Lay-out ‣ Inhoud verschuiven</em> om de kaart in het venster te verschuiven en het in Printvormgeving te centreren.</p>
 </li>
 </ol>
-<img alt="../_images/1215.png" class="align-center" src="../_images/1215.png" />
+<img alt="../_images/1216.png" class="align-center" src="../_images/1216.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Laten we het zoomniveau voor de betrokken kaart aanpassen. Klik op de tab <em class="guilabel">Item-eigenschappen</em> en voer <cite>7000000</cite> in als waarde voor <em class="guilabel">Schaal</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1314.png" class="align-center" src="../_images/1314.png" />
+<img alt="../_images/1315.png" class="align-center" src="../_images/1315.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Nu zullen we een kaartdetail toevoegen dat een ingezoomde weergave van het gebied rondom Tokio weergeeft. Selecteer, vóór we wijzigingen maken in het hoofdvenster van QGIS, de vakken <em class="guilabel">Lagen vastzetten voor kaartonderdeel</em> en <em class="guilabel">Laagstijlen vastzetten voor laagitem</em>. Dat zal er voor zorgen dat als we enkele lagen uitschakelen of hun stijlen wijzigen, deze weergave niet zal wijzigen.</p>
 </li>
 </ol>
-<img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
+<img alt="../_images/1413.png" class="align-center" src="../_images/1413.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Schakel naar het hoofdvenster van QGIS. Gebruik de knop <em class="guilabel">Inzoomen</em> om in te zoomen op het gebied rondom Tokio.</p>
 </li>
 </ol>
-<img alt="../_images/1512.png" class="align-center" src="../_images/1512.png" />
+<img alt="../_images/1513.png" class="align-center" src="../_images/1513.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Er zijn enkele gedupliceerde labels die afkomstig zijn van de laag <tt class="docutils literal"><span class="pre">ne_10m_populated_places</span></tt>. U mag die voor deze weergave uitschakelen.</p>
 </li>
@@ -328,7 +329,7 @@
 <li><p class="first">Voer, in het dialoogvenster <em class="guilabel">Keuze Coördinaten ReferentieSysteem</em>, <tt class="docutils literal"><span class="pre">4326</span></tt> in in het vak <em class="guilabel">Filter</em>. Selecteer uit de resultaten <tt class="docutils literal"><span class="pre">WGS84</span> <span class="pre">EPSG:4326</span></tt> als het CRS. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/234.png" class="align-center" src="../_images/234.png" />
+<img alt="../_images/235.png" class="align-center" src="../_images/235.png" />
 <ol class="arabic simple" start="24">
 <li><p class="first">Selecteer de waarden <em class="guilabel">Interval</em> als <tt class="docutils literal"><span class="pre">5</span></tt> graden in beide richtingen <em class="guilabel">X</em> en <em class="guilabel">Y</em>. U kunt de <em class="guilabel">Verschuiving</em> aanpassen om te wijzigen waar de rasterlijnen verschijnen.</p>
 </li>
@@ -378,7 +379,7 @@
 &lt;/div&gt;
 </pre></div>
 </div>
-<img alt="../_images/323.png" class="align-center" src="../_images/323.png" />
+<img alt="../_images/324.png" class="align-center" src="../_images/324.png" />
 <ol class="arabic simple" start="33">
 <li><p class="first">Voeg op dezelfde wijze nog een label toe om de rechten voor gegevens en software toe te voegen.</p>
 </li>
@@ -419,7 +420,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op May 05, 2015.<br/>
+      Laatste aanpassing op May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

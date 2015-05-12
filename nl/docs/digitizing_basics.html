@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Beginnen met programmeren in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -220,52 +221,52 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Ga naar <em class="menuselection">Kaartlagen ‣ Laag toevoegen ‣ Rasterlaag toevoegen</em>. Zoek het gedownloade <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-03.tif</span></tt> op en klik op <em class="guilabel">Openen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/128.png" class="align-center" src="../_images/128.png" />
+<img alt="../_images/130.png" class="align-center" src="../_images/130.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Dit is een groot rasterbestand en het zou u kunnen opvallen dat wanneer u op de kaart inzoomt of die verschuift, dat het enige tijd vergt voor de afbeelding is gerenderd. QGIS biedt een eenvoudige oplossing om rasters veel sneller te laden door <strong>Afbeeldingspiramiden</strong> te gebruiken. QGIS maakt vooraf gerenderde tegels in verschillende resoluties en deze worden aan u gepresenteerd in plaats van het volledige raster. Dat maakt het navigeren over de kaart snel en responsief. Klik met rechts op de laag <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-03</span></tt> en kies <em class="guilabel">Eigenschappen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
+<img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Kies de tab <em class="guilabel">Piramiden</em>. Houdt de <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>-toets ingedrukt en selecteer alle aangeboden resoluties in het paneel <em class="guilabel">Resoluties</em>. Laat de andere opties op hun standaarden staan en klik op <em class="guilabel">Piramiden bouwen</em>. Als het proces voltooid is, klik dan op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
+<img alt="../_images/313.png" class="align-center" src="../_images/313.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Gebruik, terug in het hoofdvenster van QGIS, het gereedschap <em class="guilabel">Zoomen</em> om het gebied van <em>Hagley Park</em> in Christchurch te lokaliseren. Dat is het park dat we zullen digitaliseren.</p>
 </li>
 </ol>
-<img alt="../_images/48.png" class="align-center" src="../_images/48.png" />
+<img alt="../_images/49.png" class="align-center" src="../_images/49.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Voor we beginnen moeten we de standaard opties voor <strong>Digitaliseren</strong> instellen. Ga naar <em class="menuselection">Extra ‣ Opties...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
+<img alt="../_images/59.png" class="align-center" src="../_images/59.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Selecteer de tab <em class="guilabel">Digitaliseren</em> in het dialoogvenster <em class="guilabel">Opties</em>. Stel de <em class="guilabel">Default snap mode</em> in op <em class="guilabel">Naar hoekpunt en segment</em>. Dit stelt u in staat te snappen aan het dichtstbijzijnde hoekpunt of lijnsegment. Ik heb zelf de voorkeur om de <em class="guilabel">Standaard &#8216;snapping&#8217;-tolerantie</em> en <em class="guilabel">Zoekradius voor hoekpuntaanpassingen</em> in te stellen op pixels in plaats van op kaarteenheden. Dat zal er voor zorgen dat de afstand voor snappen hetzelfde blijft, ongeacht het zoomniveau. Afhankelijk van de resolutie van uw computerscherm, kunt u een toepasselijke waarde kiezen. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
+<img alt="../_images/68.png" class="align-center" src="../_images/68.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Nu zijn we klaar om te beginnen met digitaliseren. We zullen eerst een wegenlaag maken en de wegen rondom het gebied van het park digitaliseren. Selecteer <em class="menuselection">KaartLagen ‣ Laag maken ‣ Nieuwe Spatialite-laag...</em>. Als u dat liever doet kunt u in plaats daarvan ook kiezen voor <em class="guilabel">Nieuwe Shapefile-laag...</em>. Spatialite is een open database-indeling, soortgelijk aan de indeling van ESRI&#8217;s geodatabase. Spatialite-database is opgenomen in één bestand op uw harde schijf en kan verschillende ruimtelijke typen (punt, lijn, polygoon) als ook niet-ruimtelijke lagen bevatten. Dat maakt het veel eenvoudiger om te verplaatsen dan een stapel shapefiles. In deze handleiding maken we een aantal polygoonlagen en een lijnlaag, dus is een Spatialite-database meer geschikt. U kunt altijd nog een Spatialite-laag laden en die opslaan als een shapefile of enige andere indeling die u wilt.</p>
 </li>
 </ol>
-<img alt="../_images/77.png" class="align-center" src="../_images/77.png" />
+<img alt="../_images/78.png" class="align-center" src="../_images/78.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">klik, in het dialoogvenster <em class="guilabel">Nieuwe Spatialite-laag</em>, op de knop <em class="guilabel">...</em> en sla een nieuwe database voor Spatialite, genaamd <tt class="docutils literal"><span class="pre">nztopo.sqlite</span></tt>, op. Kies als <em class="guilabel">Laagnaam</em> <tt class="docutils literal"><span class="pre">Roads</span></tt> en selecteer <tt class="docutils literal"><span class="pre">Lijn</span></tt> als het <em class="guilabel">Type</em>. De basis topografische kaart is in het CRS <tt class="docutils literal"><span class="pre">EPSG:2193</span> <span class="pre">-</span> <span class="pre">NZGD</span> <span class="pre">2000</span></tt>, dus kunnen we dezelfde voor onze laag &#8220;Roads&#8221; selecteren. Selecteer het vak <em class="guilabel">Maak een automatisch ophogend primair sleutelveld aan</em>. Dit zal een veld <strong>pkuid</strong> in de attributentabel maken en automatisch een uniek numeriek ID toewijzen aan elk object. Bij het maken van een GIS-laag moet u beslissen welke attributen elk object zal moeten hebben. Omdat dit ene laag met wegen is, zullen we 2 basisattributen hebben - Naam en Klasse. Voer <tt class="docutils literal"><span class="pre">Naam</span></tt> in als de <em class="guilabel">Naam</em> van het attribuut in het gedeelte <em class="guilabel">Nieuw attribuut</em> en klik op <em class="guilabel">Toevoegen aan attributenlijst.</em></p>
 </li>
 </ol>
-<img alt="../_images/87.png" class="align-center" src="../_images/87.png" />
+<img alt="../_images/88.png" class="align-center" src="../_images/88.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Maak op soortgelijke wijze een nieuw attribuut <tt class="docutils literal"><span class="pre">Klasse</span></tt> van het type <em class="guilabel">Text data</em>. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/97.png" class="align-center" src="../_images/97.png" />
+<img alt="../_images/98.png" class="align-center" src="../_images/98.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Klik, als de laag eenmaal is geladen, op de knop <em class="guilabel">Bewerken aan-/uitzetten</em> om de laag in de modus Berwerken te zetten.</p>
 </li>
 </ol>
-<img alt="../_images/107.png" class="align-center" src="../_images/107.png" />
+<img alt="../_images/108.png" class="align-center" src="../_images/108.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Klik op de knop <em class="guilabel">Object toevoegen</em>. Klik op het kaartvenster om een nieuw punt toe te voegen. Voeg nieuwe punten toe langs het wegobject. Als u eenmaal een segment van de weg hebt gedigitaliseerd, klik met rechts om het object te beëindigen.</p>
 </li>
@@ -274,27 +275,27 @@ original GeoTIFF which is a much smaller file size.</p>
 <p class="first admonition-title">Notitie</p>
 <p class="last">U kunt het wieltje van de muis gebruiken om in- of uit te zoomen tijdens het digitaliseren. U kunt ook het muiswiel ingedrukt houden en de muis verplaatsen om te verschuiven.</p>
 </div>
-<img alt="../_images/1111.png" class="align-center" src="../_images/1111.png" />
+<img alt="../_images/1112.png" class="align-center" src="../_images/1112.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Nadat u met rechts heeft geklikt om het object te beëindigen, zult u een pop-up dialoogvenster krijgen, genaamd <em class="guilabel">Attributen</em>. Hier kunt u attributen invoeren voor het nieuw gemaakte object. Omdat <strong>pkuid</strong> een automatisch ophogend veld is, zult u niet in staat zijn daar handmatig een waarde in te geven. Laat het leeg en voer de naam van de weg in zoals die verschijnt op de topografische kaart. Wijs ook, optioneel, een waarde voor Klasse toe. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/129.png" class="align-center" src="../_images/129.png" />
+<img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">De standaard stijl voor de nieuwe lijnlaag is een dunne lijn. Laten we die wijzigen zodat we de gedigitaliseerde objecten in het kaartvenster beter kunnen zien. Klik met rechts op de laag <tt class="docutils literal"><span class="pre">Roads</span></tt> en selecteer <em class="guilabel">Eigenschappen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/137.png" class="align-center" src="../_images/137.png" />
+<img alt="../_images/138.png" class="align-center" src="../_images/138.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Selecteer de tab <em class="guilabel">Stijl</em> in het dialoogvenster <em class="guilabel">Laag-eigenschappen</em>. Kies een dikkere lijnstijl zoals <em class="guilabel">Primary</em> uit de vooraf gedefinieerde stijlen. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/147.png" class="align-center" src="../_images/147.png" />
+<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Nu zult u het gedigitaliseerde wegobject duidelijk zien. Klik op <em class="guilabel">Opslaan voor geselecteerde laag/lagen</em> om het nieuwe object op schijf te bewaren.</p>
 </li>
 </ol>
-<img alt="../_images/157.png" class="align-center" src="../_images/157.png" />
+<img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Voor we de resterende wegen gaan digitaliseren, is het belangrijk om enkele andere instellingen bij te werken die belangrijk zijn om een foutenvrije laag te maken. Ga naar <em class="menuselection">Extra ‣ Opties voor Snappen...</em>.</p>
 </li>
@@ -374,7 +375,7 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Het zal u opvallen dat sommige gebouwen niet verticaal staan. We zullen een rechthoek onder een hoek moeten tekenen om met de omtrek van het gebouw overeen te komen. Klik op <em class="guilabel">Rectangle from center</em>.</p>
 </li>
 </ol>
-<img alt="../_images/313.png" class="align-center" src="../_images/313.png" />
+<img alt="../_images/314.png" class="align-center" src="../_images/314.png" />
 <ol class="arabic simple" start="32">
 <li><p class="first">Klik in het midden van het gebouw en sleep de muis om een verticale rechthoek te tekenen.</p>
 </li>
@@ -430,7 +431,7 @@ original GeoTIFF which is a much smaller file size.</p>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op May 05, 2015.<br/>
+      Laatste aanpassing op May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -111,6 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Βρείτε Γειτονικά Πολύγωνα σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Διαδικτυακοί Χάρτες με το qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Χρήση του Google Maps Engine Connector για το QGIS</a></li>
@@ -204,7 +205,7 @@
 <li><p class="first">Ανοίξτε QGIS. Κάντε κλικ στο: Επιλογή μενού:<cite>Plugins &#8211;&gt; Manage and Install Plugins...</cite>. για να ανοίξετε το:guilabel:<cite>Plugin Manager</cite> διαλόγου.</p>
 </li>
 </ol>
-<img alt="../_images/1128.png" class="align-center" src="../_images/1128.png" />
+<img alt="../_images/1130.png" class="align-center" src="../_images/1130.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Ακόμα κι αν αυτή είναι η πρώτη φορά που χρησιμοποιείτε το QGIS, θα δείτε πολλά plugins που αναφέρονται στο πλαίσιο του:guilabel:<cite>Installed</cite> tab. Αυτό συμβαίνει επειδή είναι <em>Core Plugins</em> και είχαν εγκατασταθεί κατά την εγκατάσταση του QGIS.</p>
 </li>
@@ -214,12 +215,12 @@
 <li><p class="first">Ας ενεργοποιήσετε ένα από τα plugins. Ελέγξτε στο κουτάκι δίπλα στο <em class="guilabel">Spatial Query Plugin</em>. Αυτό θα ενεργοποιήσει το plugin και θα είστε σε θέση να το χρησιμοποιήσετε. Ένα πράγμα που πρέπει να σημειωθεί είναι ότι τα πρόσθετα έχουν τη δυνατότητα να εισάγουν τα στοιχεία μενού σε διάφορες θέσεις και να δημιουργούν νέες επιτροπές και γραμμές εργαλείων. Μερικές φορές είναι δύσκολο να γνωρίζει κανείς πώς να βρείτε τα πρόσφατα ενεργοποιημένα εργαλεία. Ένα στοιχείο είναι να κοιτάξουμε στην περιγραφή του plugin. Εδώ η περιγραφή λέει  <em>Category: Vector</em>. Αυτό δείχνει ότι το plugin θα βρεθεί κάτω από το:guilabel:<cite>Vector`μόλις ενεργοποιηθεί το μενού. Κάντε κλικ :guilabel:`Close</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/338.png" class="align-center" src="../_images/338.png" />
+<img alt="../_images/339.png" class="align-center" src="../_images/339.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Τώρα που η <em class="guilabel">Spatial Query Plugin</em> είναι ενεργοποιημένη, μπορείτε να πάτε στο :Επιλογή μενού:<cite>Vector &#8211;&gt; Spatial Query</cite> για να χρησιμοποιήσετε τη λειτουργικότητα που προστίθεται από το plugin.</p>
 </li>
 </ol>
-<img alt="../_images/427.png" class="align-center" src="../_images/427.png" />
+<img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
 </div>
 <div class="section" id="external-plugins">
 <h3>Εξωτερικά Plugins<a class="headerlink" href="#external-plugins" title="Permalink to this headline">¶</a></h3>
@@ -228,27 +229,27 @@
 <li><p class="first">Ανοίξτε QGIS. Κάντε κλικ στο: Επιλογή μενού:<cite>Plugins &#8211;&gt; Manage and Install Plugins...</cite>. για να ανοίξετε το:guilabel:<cite>Plugin Manager</cite> διαλόγου.</p>
 </li>
 </ol>
-<img alt="../_images/528.png" class="align-center" src="../_images/528.png" />
+<img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Κάντε κλικ στο <em class="guilabel">Get more</em> tab. Εδώ θα δείτε μια λίστα των plugins που αναφέρονται.</p>
 </li>
 </ol>
-<img alt="../_images/626.png" class="align-center" src="../_images/626.png" />
+<img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Γι αυτό το tutorial, ας βρούμε και να εγκαταστήσουμε ένα plugin που ονομάζεται &#8216;QuickQKT&#8217;. Μόλις αρχίσετε να πληκτρολογείτε*qui* στο κουτί <em class="guilabel">search</em> , θα δείτε τα αποτελέσματα της αναζήτησης παρακάτω. Κάντε κλικ στο:guilabel:<cite>QuickWKT</cite>. Επειτα, κάντε κλικ στο κουμπί <em class="guilabel">Install plugin</em> για να το εγκαταστήσετε.</p>
 </li>
 </ol>
-<img alt="../_images/726.png" class="align-center" src="../_images/726.png" />
+<img alt="../_images/727.png" class="align-center" src="../_images/727.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Όταν το plugin έχει κατεβεί και εγκατασταθεί, θα δείτε ένα παράθυρο διαλόγου επιβεβαίωσης.</p>
 </li>
 </ol>
-<img alt="../_images/825.png" class="align-center" src="../_images/825.png" />
+<img alt="../_images/826.png" class="align-center" src="../_images/826.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Αν έχετε παρατηρήσει, δεν υπήρξε καμία αναφορά της κατηγορίας plugin στην περιγραφή. Αυτό καθιστά δύσκολο να προσδιοριστεί πώς να αποκτήσετε πρόσβαση στο πρόσφατα εγκατεστημένο plugin. Τα περισσότερα εξωτερικά πρόσθετα εγκαθίστανται κάτω από το ίδιο μενού:guilabel:<cite>Plugins</cite> στο QGIS. Κάντε κλικ στο: Επιλογή μενού:<cite>Plugins &#8211;&gt; QuickWKT</cite> και θα δείτε το μόλις εγκατεστημένο plugin. Συνήθως, τα εξωτερικά plugins έχουν επίσης κουμπί εγκαταστασης στο <em class="guilabel">Plugins</em> εργαλείων, επίσης. Μπορείτε επίσης να χρησιμοποιήσετε αυτό το κουμπί για να αποκτήσετε πρόσβαση στο πρόγραμμα.</p>
 </li>
 </ol>
-<img alt="../_images/923.png" class="align-center" src="../_images/923.png" />
+<img alt="../_images/924.png" class="align-center" src="../_images/924.png" />
 </div>
 <div class="section" id="experimental-plugins">
 <h3>Πειραματικά Plugins<a class="headerlink" href="#experimental-plugins" title="Permalink to this headline">¶</a></h3>
@@ -257,7 +258,7 @@
 <li><p class="first">Ανοίξτε <em class="guilabel">Plugin Manager</em> by :Επιλογή μενού:<cite>Plugins &#8211;&gt; Manage and Install Plugins...</cite>. Κάντε κλικ στο <em class="guilabel">Settings</em> tab.Θα δείτε μια επιλογή που ονομάζεται <em class="guilabel">Show also experimental plugins</em>. Κάντε κλικ στο πλαίσιο ελέγχου δίπλα σε αυτό, για να το ενεργοποιήσετε.</p>
 </li>
 </ol>
-<img alt="../_images/1024.png" class="align-center" src="../_images/1024.png" />
+<img alt="../_images/1025.png" class="align-center" src="../_images/1025.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Θα δείτε μια νέα καρτέλα που ονομάζεται <em class="guilabel">New</em>. Τα πρόσφατα ενεργοποιήμένα πειραματικά plugins θα εμφανιστούν εδώ.</p>
 </li>
@@ -266,22 +267,22 @@
 <p class="first admonition-title">Note</p>
 <p class="last">Η  καρτέλα <em class="guilabel">New</em> θα εμφανιστεί μόνο προσωρινά τη στιγμή που θα ενεργοποιήσετε τα πειραματικά plugins. Την επόμενη φορά που θα ανοίξετε τα πειραματικά plugins <em class="guilabel">Plugin Manager</em>, θα δείχνουν παράλληλα με την τακτική των plugins στη <em class="guilabel">Get more</em> tab.</p>
 </div>
-<img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
+<img alt="../_images/1131.png" class="align-center" src="../_images/1131.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Ας εγκαταστήσουμε ένα plugin που ονομάζεται <em class="guilabel">TimeManager</em>. Κάντε κλικ στο όνομα του plugin και, στη συνέχεια, κάντε κλικ: <em class="guilabel">Install</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1225.png" class="align-center" src="../_images/1225.png" />
+<img alt="../_images/1226.png" class="align-center" src="../_images/1226.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Τώρα, όταν θα επιστρέψετε στο κύριο παράθυρο του QGIS, θα δείτε ένα νέο <em>Panel</em>  στο κάτω μέρος του πίνακα. Αυτός ο πίνακας έχει δημιουργηθεί από το plugin TimeManager. Αυτός είναι ένας ακόμη τρόπος των plugins για να προσθέσετε λειτουργικότητα στο περιβάλλον εργασίας του χρήστη.</p>
 </li>
 </ol>
-<img alt="../_images/1323.png" class="align-center" src="../_images/1323.png" />
+<img alt="../_images/1324.png" class="align-center" src="../_images/1324.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Μπορείτε να ενεργοποιήσετε / απενεργοποιήσετε αυτό το πάνελ από: επιλογή μενού:<cite>View &#8211;&gt; Panels &#8211;&gt; Time Manager</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/1422.png" class="align-center" src="../_images/1422.png" />
+<img alt="../_images/1423.png" class="align-center" src="../_images/1423.png" />
 </div>
 </div>
 </div>
@@ -308,7 +309,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on May 05, 2015.<br/>
+      Last updated on May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

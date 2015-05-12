@@ -111,6 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Βρείτε Γειτονικά Πολύγωνα σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Διαδικτυακοί Χάρτες με το qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Χρήση του Google Maps Engine Connector για το QGIS</a></li>
@@ -219,52 +220,52 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Πηγαίνετε στο <em class="menuselection">Layer ‣ Add Raster Layer</em>. Εντοπίστε το αρχείο που κατεβάσατε <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02.tif</span></tt> και πατήστε <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/128.png" class="align-center" src="../_images/128.png" />
+<img alt="../_images/130.png" class="align-center" src="../_images/130.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Αυτό είναι ένα μεγάλο αρχείο δεδομένων πλέγματος και μπορεί να παρατηρήσετε ότι όταν κάνετε μεγένθυνση ή μετακινείστε γύρω στο χάρτη, ο χάρτης θέλει λίγο χρόνο για να επεξεργαστεί την εικόνα.</p>
 </li>
 </ol>
-<img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
+<img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Επιλέξτε την καρτέλα <em class="guilabel">Pyramids</em>. Κρατήστε πατημένο το <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> και επιλέξτε όλες τις αναλύσεις που υπάρχουν στον πίνακα <em class="guilabel">Resolutions</em>. Αφήστε τις υπόλοιπες επιλογές όπως είναι και πατήστε <em class="guilabel">Build pyramids</em>. Μόλις τελείωσει η διαδικασία πατήστε <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
+<img alt="../_images/313.png" class="align-center" src="../_images/313.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Πίσω στο κύριο παράθυρο του QGIS, χρησιμοποιήστε το εργαλείο <em class="guilabel">Zoom</em> για να εντοπίσετε  την περιοχή <em>Hagley Park</em> στο Christchurch. Αυτό είναι το πάρκο που θα ψηφιοποιήσουμε.</p>
 </li>
 </ol>
-<img alt="../_images/48.png" class="align-center" src="../_images/48.png" />
+<img alt="../_images/49.png" class="align-center" src="../_images/49.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Πριν ξεκινήσουμε, πρέπει να θέσουμε προεπιλογή <strong>Digitizing Options</strong>. Πηγαίνετε <em class="menuselection">Settings ‣ Options...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
+<img alt="../_images/59.png" class="align-center" src="../_images/59.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Επιλέξτε την καρτέλα <em class="guilabel">Digitizing</em> στο παράθυρο διαλόγου <em class="guilabel">Options</em>. Ορίστε το <em class="guilabel">Default snap mode</em> σε <em class="guilabel">To vertex and segment</em>.  Αυτό σας επιτρέπει να κάνετε εναλλαγές στη πλησιέστερη κορυφή ή ευθύγραμμο τμήμα. Επίσης προτιμώ να θέτω το <em class="guilabel">Default snapping tolerance</em> και το <em class="guilabel">Search radius for vertex edits</em> σε pixels αντί για μονάδες χάρτη. Αυτό θα εξασφαλίσει ότι η απόσταση εναλλαγής παραμένει σταθερή ανεξαρτήτως του επιπέδου μεγέθυνσης. Αναλόγως την ανάλυσης της οθόνης του υπολογιστή σας , μπορείτε να χρησιμοποιήσετε μια πιο κατάλληλη τιμή. Πατήστε <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
+<img alt="../_images/68.png" class="align-center" src="../_images/68.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Τώρα είμαστε έτοιμοι να ξεκινήσουμε τη ψηφιοποίηση. Πρώτα θα δημιουργήσουμε ένα επίπεδο δρόμων και θα ψηφιοποιήσουμε τους δρόμους γύρω από την περιοχή του πάρκου. Επιλέξτε <em class="menuselection">Layer ‣ New ‣ New Spatialite Layer...</em>. Εναλλακτικά μπορείτε να επιλέξετε να δημιουργήσετε <em class="guilabel">New Shapefile Layer...</em>. Το Spatialite είναι ένα αρχείο τύπου ανοικτής βάσης δεδομένων, παρόμοιο με αυτό της γεω-βάσης δεδομένων της ESRI. Η Spatialite βάση δεδομένων  περιέχεται σε ένα μόνο αρχείο που βρίσκεται στο σκληρό δίσκο και μπορεί να περιλαμβάνει διάφορους χωρικούς τύπους (σημείο, γραμμή, πολύγωνο) καθώς εξίσου και μη χωρικά επίπεδα. Η μετακίνηση γύρω στο χάρτη είναι πιο εύκολη, από ότι θα ήταν εάν είχαμε πολλά αρχεία shapefile. Σε αυτό το tutorial, δημιουργούμε ένα ζευγάρι πολυγωνικών επιπέδων και ένα επίπεδο γραμμής, έτσι ώστε μια βάση δεδομένων Spatialite να ταιριάζει καλύτερα. Μπορείτε ανά πάσα στιγμή να φορτώσετε ένα spatialite επίπεδο και να το αποθηκεύσετε ως shapefile ή με οποιονδήποτε τύπο αρχείου επιθυμείτε.</p>
 </li>
 </ol>
-<img alt="../_images/77.png" class="align-center" src="../_images/77.png" />
+<img alt="../_images/78.png" class="align-center" src="../_images/78.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Στο παράθυρο διαλόγου <em class="guilabel">New Spatialite Layer</em>, πατήστε το κουμπί <em class="guilabel">...</em> και αποθηκεύστε μια νέα spatialite βάση δεδομένων με όνομα <tt class="docutils literal"><span class="pre">nztopo.sqlite</span></tt>. Επιλέξτε το <em class="guilabel">Layer name</em> ως <tt class="docutils literal"><span class="pre">Roads</span></tt> και επιλέξτε <tt class="docutils literal"><span class="pre">Line</span></tt> ως <em class="guilabel">Type</em>. Ο τοπογραφικός χάρτης που θα χρησιμοποιήσουμε ως βάση είναι ο <tt class="docutils literal"><span class="pre">EPSG:2193</span> <span class="pre">-</span> <span class="pre">NZGD</span> <span class="pre">2000</span></tt> CRS, οπότε μπορούμε να επιλέξουμε το ίδιο και για το επίπεδο δρόμων μας. Τσεκάρετε το <em class="guilabel">Create an autoincrementing primary key</em>. Αυτό θα δημιουργήσει ένα πεδίο με όνομα <strong>pkuid</strong> στον πίνακα χαρακτηριστικών και θα αναθέσει ένα μοναδικό αριθμητικό κλειδί αυτόματα για κάθε χαρακτηριστικό. Κατά τη δημιουργία ενός επιπέδου GIS, πρέπει να αποφασίσετε για τα χαρακτηριστικά που θα έχει κάθε γνώρισμα. Εφόσον αυτό είναι ένα επίπεδο δρόμων, θα έχουμε 2 βασικά χαρακτηριστικά - Όνομα και Κλάση. Πληκτρολογήστε <tt class="docutils literal"><span class="pre">Name</span></tt> ως  <em class="guilabel">Name</em> του χαρακτηριστικού στη περιοχή <em class="guilabel">New attribute</em> και πατήστε <em class="guilabel">Add to attribute list.</em></p>
 </li>
 </ol>
-<img alt="../_images/87.png" class="align-center" src="../_images/87.png" />
+<img alt="../_images/88.png" class="align-center" src="../_images/88.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Παρομοίως δημιουργήστε μια νέα κλάση χαρακτηριστικών <tt class="docutils literal"><span class="pre">Class</span></tt> του τύπου <em class="guilabel">Text data</em>. Πατήστε <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/97.png" class="align-center" src="../_images/97.png" />
+<img alt="../_images/98.png" class="align-center" src="../_images/98.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Μόλις φορτώσει το επίπεδο, πατήστε το κουμπί <em class="guilabel">Toggle Editing</em> για να τεθεί το επίπεδο σε κατάσταση επεξεργασίας.</p>
 </li>
 </ol>
-<img alt="../_images/107.png" class="align-center" src="../_images/107.png" />
+<img alt="../_images/108.png" class="align-center" src="../_images/108.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Πατήστε το κουμπί <em class="guilabel">Add feature</em>. Κάντε κλικ στον καμβά του χάρτη για να προσθέστε μια νέα κορυφή. Προσθέστε νέες κορυφές κατά μήκος του δρόμου. Μόλις έχετε ψηφιοποιήσει ένα τμήμα του δρόμου, κάντε δεξί κλικ για να τελειώσετε.</p>
 </li>
@@ -273,27 +274,27 @@ original GeoTIFF which is a much smaller file size.</p>
 <p class="first admonition-title">Note</p>
 <p class="last">Μπορείτε να χρησιμοποιήσετε τη ρόδα του ποντικιού για μεγέθυνση ή σμίκρυνση κατά τη διάρκεια της ψηφιοποίησης. Μπορείτε επίσης να έχετε πατημένο το κουμπί κύλισης και να κουνάτε το ποντίκι για να μετακινείστε γύρω.</p>
 </div>
-<img alt="../_images/1111.png" class="align-center" src="../_images/1111.png" />
+<img alt="../_images/1112.png" class="align-center" src="../_images/1112.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Αφού κάνετε δεξί κλικ για να τελειώσετε, θα εμφανιστεί ένα αναδυόμενο παράθυρο διαλόγου που ονομάζεται <em class="guilabel">Attributes</em>. Εδώ μπορείτε να συμπληρώσετε τα χαρακτηριστικά των γνωρισμάτων που δημιουργήθηκαν πρόσφατα. Μιας και το <strong>pkuid</strong> είναι ένα πεδίο που προσαυξάνεται αυτόματα, δε θα έχετε τη δυνατότητα να εισάγετε τη τιμή χειροκίνητα. Αφήστε το κενό και εισάγετε το όνομα του δρόμου όπως εμφανίζεται στον τοπογραφικό χάρτη. Προαιρετικά, αναθέστε και μια τιμή για την Κλάση του Δρόμου. Πατήστε <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/129.png" class="align-center" src="../_images/129.png" />
+<img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Το προεπιλεγμένο στυλ του νέου επιπέδου γραμμής είναι μια λεπτή γραμμή. Ας το αλλάξουμε έτσι ώστε να δούμε καλύτερα τα ψηφιοποιημένα χαρακτηριστικά στον καμβά. Κάντε δεξί κλικ στο επίπεδο <tt class="docutils literal"><span class="pre">Roads</span></tt> και επιλέξτε <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/137.png" class="align-center" src="../_images/137.png" />
+<img alt="../_images/138.png" class="align-center" src="../_images/138.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Επιλέξτε την καρτέλα <em class="guilabel">Style</em> στο παράθυρο διαλόγου <em class="guilabel">Layer Properties</em>. Επιλέξτε ένα στυλ πιο παχιάς γραμμής, όπως το <em class="guilabel">Primary</em> από τα προκαθορισμένα στυλ. Πατήστε <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/147.png" class="align-center" src="../_images/147.png" />
+<img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Τώρα βλέπετε τα ψηφιοποιημένα χαρακτηριστικά του δρόμου ξεκάθαρα. Πατήστε <em class="guilabel">Save Layer Edits</em> για να αποθηκεύσετε τα νέα χαρακτηριστικά στο δίσκο.</p>
 </li>
 </ol>
-<img alt="../_images/157.png" class="align-center" src="../_images/157.png" />
+<img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Πριν ψηφιοποιήσουμε τους υπόλοιπους δρόμους, είναι σημαντικό να ενημερώσουμε κάποιες άλλες ρυθμίσεις οι οποίες παίζουν βασικό ρόλο στο να δημιουργήσουμε ένα επίπεδο χωρίς λάθη.  Πηγαίνετε στο <em class="menuselection">Settings ‣ Snapping Options...</em>.</p>
 </li>
@@ -373,7 +374,7 @@ original GeoTIFF which is a much smaller file size.</p>
 <li><p class="first">Θα παρατηρήσετε ότι κάποια κτίρια δεν είναι κάθετα. Θα πρέπει να σχεδιάσουμε ένα ορθογώνιο σε τέτοια γωνία έτσι ώστε να ταιριάζει με το αποτύπωμα του κτιρίου. Κάντε κλικ στο <em class="guilabel">Rectangle from center</em>.</p>
 </li>
 </ol>
-<img alt="../_images/313.png" class="align-center" src="../_images/313.png" />
+<img alt="../_images/314.png" class="align-center" src="../_images/314.png" />
 <ol class="arabic simple" start="32">
 <li><p class="first">Κάντε κλικ στο κέντρο του κτιρίου και σύρετε το ποντίκι για να σχεδιάσετε ένα κάθετο ορθογώνιο.</p>
 </li>
@@ -429,7 +430,7 @@ original GeoTIFF which is a much smaller file size.</p>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on May 05, 2015.<br/>
+      Last updated on May 12, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

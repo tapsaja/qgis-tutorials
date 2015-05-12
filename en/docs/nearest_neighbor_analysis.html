@@ -111,6 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
@@ -229,7 +230,7 @@ below:</p>
 <li>Open <em class="menuselection">Layer ‣ Add Layer ‣ Add Delimited Text Layer</em> and
 browse to the downloaded <tt class="docutils literal"><span class="pre">signif.txt</span></tt> file.</li>
 </ol>
-<img alt="../_images/190.png" class="align-center" src="../_images/190.png" />
+<img alt="../_images/1100.png" class="align-center" src="../_images/1100.png" />
 <ol class="arabic simple" start="2">
 <li>Since this is a <em>tab-delimited file</em>, choose <em class="guilabel">Tab</em> as the
 <em class="guilabel">File format</em>. The <em class="guilabel">X field</em> and <em class="guilabel">Y field</em>
@@ -241,19 +242,19 @@ would be auto-populated. Click <em class="guilabel">OK</em>.</li>
 valid errors and some rows from the file will not be imported. You can ignore
 the errors for the purpose of this tutorial.</p>
 </div>
-<img alt="../_images/235.png" class="align-center" src="../_images/235.png" />
+<img alt="../_images/236.png" class="align-center" src="../_images/236.png" />
 <ol class="arabic simple" start="3">
 <li>As the earthquake dataset has Latitude/Longitude coordinates, it will be
 imported with the default CRS of <tt class="docutils literal"><span class="pre">EPSG:</span> <span class="pre">4326</span></tt>. Verify that is the case in
 the bottom-right corner. Let&#8217;s also open the Populated Places layer. Go to
 <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</em>.</li>
 </ol>
-<img alt="../_images/324.png" class="align-center" src="../_images/324.png" />
+<img alt="../_images/325.png" class="align-center" src="../_images/325.png" />
 <ol class="arabic simple" start="4">
 <li>Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt> file and
 click <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/417.png" class="align-center" src="../_images/417.png" />
+<img alt="../_images/418.png" class="align-center" src="../_images/418.png" />
 <ol class="arabic simple" start="5">
 <li>Zoom around and explore both the datasets. Each purple point represents the
 location of a significant earthquake and each blue point represents the
@@ -261,11 +262,11 @@ location of a populated place. We need a way to find out the nearest point
 from the populated places layer for each of the points in the earthquake
 layer.</li>
 </ol>
-<img alt="../_images/517.png" class="align-center" src="../_images/517.png" />
+<img alt="../_images/518.png" class="align-center" src="../_images/518.png" />
 <ol class="arabic simple" start="6">
 <li>Go to <em class="menuselection">Vector ‣ Analysis Tools ‣ Distance Matrix</em>.</li>
 </ol>
-<img alt="../_images/616.png" class="align-center" src="../_images/616.png" />
+<img alt="../_images/617.png" class="align-center" src="../_images/617.png" />
 <ol class="arabic simple" start="7">
 <li>Here select the earthquake layer <tt class="docutils literal"><span class="pre">signif</span></tt> as the Input point layer and the
 populated places <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> as the target layer. You
@@ -282,7 +283,7 @@ layer. Select the same layer as both Input and Target. The result would be a
 nearest neighbor from the same layer instead of a different layer as we have
 used here.</p>
 </div>
-<img alt="../_images/715.png" class="align-center" src="../_images/715.png" />
+<img alt="../_images/716.png" class="align-center" src="../_images/716.png" />
 <ol class="arabic simple" start="8">
 <li>Once the processing finishes, click the <em class="guilabel">Close</em> button in the
 <em class="guilabel">Distance Matrix</em> dialog. You can now view the <tt class="docutils literal"><span class="pre">matrix.csv</span></tt> file
@@ -290,18 +291,18 @@ in Notepad or any text editor.  QGIS can import CSV files as well, so we
 will add it to QGIS and view it there. Go to <em class="menuselection">Layer ‣ Add
 Layer ‣ Add Delimited Text Layer...</em>.</li>
 </ol>
-<img alt="../_images/815.png" class="align-center" src="../_images/815.png" />
+<img alt="../_images/816.png" class="align-center" src="../_images/816.png" />
 <ol class="arabic simple" start="9">
 <li>Browse to the newly created <tt class="docutils literal"><span class="pre">matrix.csv</span></tt> file. Since this file is just
 text columns, select <em class="guilabel">No geometry (attribute only table)</em> as the
 <em class="guilabel">Geometry definition</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/913.png" class="align-center" src="../_images/913.png" />
+<img alt="../_images/914.png" class="align-center" src="../_images/914.png" />
 <ol class="arabic simple" start="10">
 <li>You will see the CSV file loaded as a table. Right-click on the table layer
 and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/1014.png" class="align-center" src="../_images/1014.png" />
+<img alt="../_images/1015.png" class="align-center" src="../_images/1015.png" />
 <ol class="arabic simple" start="11">
 <li>Now you will be able to see the content of our results. The
 <em class="guilabel">InputID</em> field contains the field name from the Earthquake
@@ -316,18 +317,18 @@ Coordinate Reference System. Here the distance will be in <em>decimal degrees</e
 units because our source layer coordinates are in degrees. If you want
 distance in meters, reproject the layers before running the tool.</p>
 </div>
-<img alt="../_images/1118.png" class="align-center" src="../_images/1118.png" />
+<img alt="../_images/1119.png" class="align-center" src="../_images/1119.png" />
 <ol class="arabic simple" start="12">
 <li>This is very close to the result we were looking for. For some users, this
 table would be sufficient. However, we can also integrate this results in
 our original Earthquake layer using a <strong>Table Join</strong>. Right-click on the
 Earthquake layer, and select <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/1216.png" class="align-center" src="../_images/1216.png" />
+<img alt="../_images/1217.png" class="align-center" src="../_images/1217.png" />
 <ol class="arabic simple" start="13">
 <li>Go to the <em class="guilabel">Joins</em> tab and click on the <em class="guilabel">+</em> button.</li>
 </ol>
-<img alt="../_images/1413.png" class="align-center" src="../_images/1413.png" />
+<img alt="../_images/1414.png" class="align-center" src="../_images/1414.png" />
 <ol class="arabic simple" start="14">
 <li>We want to join the data from our analysis result to this layer. We need to
 select a field from each of the layers that has the same values. Select
@@ -335,12 +336,12 @@ select a field from each of the layers that has the same values. Select
 <em class="guilabel">Join field</em>. The <em class="guilabel">Target field</em> would be <tt class="docutils literal"><span class="pre">I_D</span></tt>.
 Leave other options to their default values and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1413.png" class="align-center" src="../_images/1413.png" />
+<img alt="../_images/1414.png" class="align-center" src="../_images/1414.png" />
 <ol class="arabic simple" start="15">
 <li>You will see the join appear in the <em class="guilabel">Joins</em> tab. Click
 <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1513.png" class="align-center" src="../_images/1513.png" />
+<img alt="../_images/1514.png" class="align-center" src="../_images/1514.png" />
 <ol class="arabic simple" start="16">
 <li>Now open the attribute table of the <tt class="docutils literal"><span class="pre">signif</span></tt> layer by right-clicking and
 selecting <em class="guilabel">Open Attribute Table</em>.</li>
@@ -393,7 +394,7 @@ the canvas. Let&#8217;s do the same for the populated places layer. Right-click
 on the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select
 <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/236.png" class="align-center" src="../_images/236.png" />
+<img alt="../_images/237.png" class="align-center" src="../_images/237.png" />
 <ol class="arabic simple" start="24">
 <li>Open the <em class="guilabel">Query Builder</em> dialog from the <em class="guilabel">General</em> tab.
 Enter the following expression.</li>
@@ -457,7 +458,7 @@ that connects it to the nearest populated place.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on May 05, 2015.<br/>
+      Last updated on May 11, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
