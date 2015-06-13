@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Searching and Downloading OpenStreetMap Data &mdash; QGIS Tutorials and Tips</title>
+    <title>Suchen und Laden von OpenStreetMap Daten &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -86,7 +86,7 @@
 <li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Mit Attributen arbeiten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Import von Tabellen oder CSV Dateien</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Verwenden von Erweiterungen</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Searching and Downloading OpenStreetMap Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Suchen und Laden von OpenStreetMap Daten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Einfache Vektor Gestaltung</a></li>
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Calculating Line Lengths and Statistics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
@@ -190,158 +190,116 @@
       
 
   <div class="section" id="searching-and-downloading-openstreetmap-data">
-<h1>Searching and Downloading OpenStreetMap Data<a class="headerlink" href="#searching-and-downloading-openstreetmap-data" title="Permalink zu dieser Überschrift">¶</a></h1>
+<h1>Suchen und Laden von OpenStreetMap Daten<a class="headerlink" href="#searching-and-downloading-openstreetmap-data" title="Permalink zu dieser Überschrift">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/downloading_osm_data_a4.pdf">A4</a> <a class="reference external" href="../pdf/downloading_osm_data_letter.pdf">Letter</a> ]</p>
-<p>Getting high quality data is essential for any GIS task. One great resource for
-free and openly licensed data is <a class="reference external" href="http://www.openstreetmap.org/">OpenStreetMap(OSM)</a> . The OSM database consits of streets, local
-data as well as building polygons. Getting access to OSM data in a GIS format
-is integrated in QGIS. This tutorial explains the process for searching,
-downloading and using OSM data in QGIS.</p>
+<p>Hochqualitative Daten sind für jede GIS-Aufgabe unerlässlich. Eine großartige Quelle für freie und offen lizenzierte Daten ist <a class="reference external" href="http://www.openstreetmap.org/">OpenStreetMap(OSM)</a> . Die OSM Datenbank besteht aus Straßen, lokale Daten wie auch Gebäude-Polygone. Einen Zugang zu OSM-Daten in einem GIS-Format ist in QGIS integriert. Diese Anleitung erläutert den Prozess, OSM-Daten in QGIS zu suchen, herunterzuladen und zu verwenden.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink zu dieser Überschrift">¶</a></h2>
-<p>Search for <em>London</em> in OSM database, browse and select a part of the city, and
-extract all pub locations as a shapefile.</p>
+<h2>Übersicht der Aufgabe<a class="headerlink" href="#overview-of-the-task" title="Permalink zu dieser Überschrift">¶</a></h2>
+<p>Suche nach <em>London</em> in der OSM-Datenbank. Browsen in den Daten. Auswahl eines Teils der Stadt und Extrahieren aller öffentlichen Orte als Shapedatei.</p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink zu dieser Überschrift">¶</a></h2>
+<h2>Arbeitsablauf<a class="headerlink" href="#procedure" title="Permalink zu dieser Überschrift">¶</a></h2>
 <ol class="arabic simple">
-<li>We will use 2 plugins to accomplish the task. Make sure you have installed
-<strong>OSM Place Search</strong> and <strong>OpenLayers</strong> plugins. See <a class="reference internal" href="using_plugins.html"><em>Verwenden von Erweiterungen</em></a> for
-instructions on downloading plugins.</li>
+<li><p class="first">Wir werden 2 Plug-ins verwenden, um die Aufgabe zu erledigen. Stellen Sie sicher, dass Sie die <strong>OSM Place Search</strong> and <strong>OpenLayers</strong> Plug-ins installiert haben. Siehe dazu <tt class="xref doc docutils literal"><span class="pre">Verwenden</span> <span class="pre">von</span> <span class="pre">Erweiterungen</span></tt> als Anleitung.</p>
+</li>
 </ol>
 <img alt="../_images/139.png" class="align-center" src="../_images/139.png" />
 <ol class="arabic simple" start="2">
-<li>The <strong>OSM Place Search</strong> plugin will install itself as a <em>Panel</em> in QGIS.
-You will see a new panel titled <em class="guilabel">OSM place search...</em> in QGIS.</li>
+<li><p class="first">Die <strong>OSM Place Search</strong> Erweiterung installiert sich als eigenes <em>Panel</em> in QGIS. Sie sehen einen neuen Bedienbereich <em class="guilabel">OSM place search...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/224.png" class="align-center" src="../_images/224.png" />
 <ol class="arabic simple" start="3">
-<li>The <strong>OpenLayers</strong> plugin is installed under the <em>Plugin</em> menu. This plugin
-allows you to access basemaps from various providers in QGIS. Let&#8217;s load the
-OpenStreetMap basemap in QGIS by going to <em class="menuselection">Plugins ‣
-OpenLayers plugin ‣ Add OpenStreetMap layer</em>.</li>
+<li><p class="first">Das <strong>OpenLayers</strong> Plug-in wird im <strong>Web</strong> Menü installiert (neu in QGIS 2.8). Es erlaubt den Zugriff in QGIS auf Basiskarten verschiedener Anbieter. Lassen Sie uns die OpenStreetMap Basiskarte über <em class="menuselection">Web ‣ OpenLayers plugin ‣ OpenStreetMap</em> laden.</p>
+</li>
 </ol>
 <img alt="../_images/315.png" class="align-center" src="../_images/315.png" />
 <ol class="arabic simple" start="4">
-<li>You will see a world map loaded in QGIS.</li>
+<li><p class="first">Sie sollten jetzt eine Weltkarte in QGIS sehen.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Bemerkung</p>
-<p class="last">If you do not see any data - make sure you are online - as the basemap tiles
-are fetched from the internet. You can also use the <em>Pan</em> tool to move the
-map canvas slightly, which will trigger a refresh of the basemap.</p>
+<p class="last">Sollte Sie nichts sehen, stellen Sie sicher, dass Sie online sind, wenn die Kacheln der Basiskarte geladen werden. Sie können auch das <em>Karte verschieben</em> Werkzeug benutzen, um die Karte leicht zu verschieben. Dadurch wird die Karte aktualisiert.</p>
 </div>
 <img alt="../_images/410.png" class="align-center" src="../_images/410.png" />
 <ol class="arabic simple" start="5">
-<li>Now, let&#8217;s search for <em>London</em>. Type the query in the <em class="guilabel">Name
-contains...</em> box in the <strong>OSM Place Search</strong> panel. You can hover over the
-results and the appropriate place will be highlighted on the map. Select the
-first result - which the city of London in UK - and click the
-<em class="guilabel">Zoom</em> button.</li>
+<li><p class="first">Suchen wir jetzt nach <em>London</em>. Geben Sie Ihre Suche in das Feld <em class="guilabel">Name contains...</em> im <strong>OSM Place Search</strong> Bereich ein. Sie können mit dem Mauszeiger über die Ergebnisse fahren und der zugehörige Ort wird auf der Karte hervorgehoben. Wählen Sie den ersten Treffer -welcher die Stadt London in Großbritannien ist- und klicken Sie <em class="guilabel">Zoom</em>.</p>
+</li>
 </ol>
 <img alt="../_images/510.png" class="align-center" src="../_images/510.png" />
 <ol class="arabic simple" start="6">
-<li>You will see the base layer move and center around the city of London. You
-can use the <em class="guilabel">Zoom</em> tool to zoom and select the exact area of your
-interest. For this tutorial, you can zoom in the center of the city as
-shown.</li>
+<li><p class="first">Der Basislayer wird zur Stadt London verschoben und zentriert. Sie können das <em class="guilabel">Hineinzoomen</em> Werkzeug benutzen und einen Bereich Ihres Interesses wählen. Für dieses Tutorial können Sie -wie hier gezeigt- auf das Zentrum der Stadt vergrössern.</p>
+</li>
 </ol>
 <img alt="../_images/69.png" class="align-center" src="../_images/69.png" />
 <ol class="arabic simple" start="7">
-<li>Now we can download the data displayed on the map canvas. Go to
-<em class="menuselection">Vector ‣ OpenStreetMap ‣ Downlod data</em>.</li>
+<li><p class="first">Jetzt können wir die angezeigten Inhalte des Kartenrahmens herunterladen. Gehen Sie zu <em class="menuselection">Vector ‣ OpenStreetMap ‣ Daten herunterladen...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/79.png" class="align-center" src="../_images/79.png" />
 <ol class="arabic simple" start="8">
-<li>In the <em class="guilabel">Download OpenStreetMap data</em> dialog, choose
-<em class="guilabel">From map canvas</em> as the <em class="guilabel">Extent</em>. Choose the path and
-name the output file as <tt class="docutils literal"><span class="pre">london.osm</span></tt>.</li>
+<li><p class="first">Im Dialog <em class="guilabel">OpenStreetMap-Daten herunterladen</em> verwenden Sie <em class="guilabel">Ausmaße des Kartenanzeige</em>. Wählen Sie einen Pfad und Namen der Ausgabedatei als <tt class="docutils literal"><span class="pre">london.osm</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/89.png" class="align-center" src="../_images/89.png" />
 <ol class="arabic simple" start="9">
-<li>The downloaded file with the <tt class="docutils literal"><span class="pre">.osm</span></tt> extension is an text file in the <a class="reference external" href="http://wiki.openstreetmap.org/wiki/OSM_XML">OSM
-XML</a> format. We first need to
-convert it into a suitable format that is easy to consume in QGIS. Go to
-<em class="menuselection">Vector ‣ OpenStreetMap ‣ Import topology from XML</em>.</li>
+<li><p class="first">Die Datei mit der <tt class="docutils literal"><span class="pre">.osm</span></tt> Endung eine Textdatei im  <a class="reference external" href="http://wiki.openstreetmap.org/wiki/OSM_XML">OSM XML</a> Format. Wir müssen diese zuerst in ein geeignetes Format konvertieren, um es einfach in QGIS verarbeiten zu können. Gehen Sie zu <em class="menuselection">Vektor ‣ OpenStreetMap ‣ Topologie aus XML importieren</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Bemerkung</p>
-<p class="last">Now that we do not need the <strong>OSM Place Search</strong> functionality, you can
-click the close button to remove it from the main window. If you need to use
-it again, you can enable it from  <em class="menuselection">View ‣ Panels ‣ OSM
-place search...</em> (Windows) or <em class="menuselection">Settings ‣ Panels ‣ OSM place search...</em> (Linux).</p>
+<p class="last">Da wir die <strong>OSM Place Search</strong> Funktion nicht mehr benötigen, können Sie den Schließen-Button klicken, um den Bereich aus dem Fenster zu entfernen. Falls Sie diese erneut benötigen, können Sie sie über <em class="menuselection">Ansicht ‣ Bedienfelder ‣ OSM place search...</em> (Windows) or <em class="menuselection">Einstellungen ‣ Bedienfelder ‣ OSM place search...</em> (Linux) aktivieren.</p>
 </div>
 <img alt="../_images/99.png" class="align-center" src="../_images/99.png" />
 <ol class="arabic simple" start="10">
-<li>Choose the downloaded <tt class="docutils literal"><span class="pre">london.osm</span></tt> as the <em class="guilabel">Input XML file</em>.
-Name the <em class="guilabel">Output SpatiaLite DB file</em> as <tt class="docutils literal"><span class="pre">london.osm.db</span></tt>. Make
-sure the <em class="guilabel">Create connection (SpatiaLite) after import</em> button is
-checked.</li>
+<li><p class="first">Wählen Sie die heruntergeladene Datei <tt class="docutils literal"><span class="pre">london.osm</span></tt> als <em class="guilabel">Import-XML-Datei (.osm)</em>. Bennen Sie die <em class="guilabel">Spatialite-DB-Ausgabedatei</em> als <tt class="docutils literal"><span class="pre">london.osm.db</span></tt>. Stellen Sie sicher, dass <em class="guilabel">(SpatiaLite-)Verbindung nach Import erzeugen</em> aktiviert ist.</p>
+</li>
 </ol>
 <img alt="../_images/109.png" class="align-center" src="../_images/109.png" />
 <ol class="arabic simple" start="11">
-<li>Now the last step. We need to create SpatialLite geometry layers that can
-be viewed and analyzed in QGIS. This is done using <em class="menuselection">Vector
-‣ OpenStreetMap ‣ Export topology to SpatialLite</em>.</li>
+<li><p class="first">Nun der letzte Schritt. Wir müssen einen SpatiaLite Geometrie Layer erzeugen, der in QGIS angezeigt und analysiert werden kann. Dies wird mit <em class="menuselection">Vektor ‣ OpenStreetMap ‣ Topologie nach SpatiaLite exportieren...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1113.png" class="align-center" src="../_images/1113.png" />
 <ol class="arabic simple" start="12">
-<li>The <tt class="docutils literal"><span class="pre">london.osm.db</span></tt> file contains all feature types in the OSM database -
-Points, Lines and Polygons. GIS layers typically contain only one type of
-feature, so you need to choose one. Since we are interested in point
-locations of pubs, here you need to choose <em class="guilabel">Point (nodes)</em> as the
-<em class="guilabel">Export type</em>. You would choose <em class="guilabel">Polylines (open ways)</em>
-if you wanted to get the road network. Name the <em class="guilabel">Output layer
-name</em> as <tt class="docutils literal"><span class="pre">london_points</span></tt>. GIS data has 2 parts to it - location and
-attributes. We are also interested in the <strong>name</strong> of the pub - not just
-its location, so we need to export that information as well. Click on
-<em class="guilabel">Load from DB</em> under <em class="guilabel">Exported tags</em> section. This will
-fetch all attributes from the <tt class="docutils literal"><span class="pre">london.osm.db</span></tt> file. Check
-<em class="guilabel">name</em> and <em class="guilabel">amenity</em> tags. See <a class="reference external" href="http://wiki.openstreetmap.org/wiki/Tags">OSM Tags</a> to learn more about what
-each attribute means. Make sure the <em class="guilabel">Load into canvas when
-finished</em> is checked, and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Die <tt class="docutils literal"><span class="pre">london.osm.db</span></tt> Datei enthält alle Feature-Typen in der OSM-Datenbank - Punkte, Linien und Polygone. GIS Layer enthalten typischer Weise nur einen Typus von Feature, so dass Sie einen wählen müssen. Da wir an den Punkt-Örtlichkeiten von Pubs interessiert sind, müssen Sie hier <em class="guilabel">Punkte (Knoten)</em> als <em class="guilabel">Exporttyp</em> verwenden. Wollten Sie das Straßennetz wäre der Typ <em class="guilabel">Polylinien (offene Wege)</em>. Benennen Sie den <em class="guilabel">Ausgabelayername</em> als <tt class="docutils literal"><span class="pre">london_points</span></tt>. GIS-Daten haben 2 Teile - Positionen und Attribute. Wir möchten neben der Position also auch den <strong>Namen</strong> der Pubs und müssen daher diese Information ebenfalls exportieren. Klicken Sie auf <em class="guilabel">Aus Datenbank laden</em> im Bereich <em class="guilabel">Exportierte Tags</em>. Damit werden alle Attribute der <tt class="docutils literal"><span class="pre">london.osm.db</span></tt> geholt. Aktivieren Sie <em class="guilabel">name</em> und <em class="guilabel">amenity</em>. Um mehr über die OSM-Attribute und deren Bedeutung zu erfahren, siehe <a class="reference external" href="http://wiki.openstreetmap.org/wiki/Tags">OSM Tags</a>. Stellen Sie sicher, dass <em class="guilabel">Nach Abschluss zur Karte hinzufügen</em> aktiv ist und klicken dann <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1211.png" class="align-center" src="../_images/1211.png" />
 <ol class="arabic simple" start="13">
-<li>You will see a new point layer named <tt class="docutils literal"><span class="pre">london_points</span></tt> loaded in QGIS. Note
-that this contains <strong>ALL</strong> points in the OSM database for the viewport.
-Since we are interested only in pubs, we need to write a query to select
-only those. Right click on <tt class="docutils literal"><span class="pre">london_points</span></tt> layer and select
-<em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Sie sehen einen neuen Punkt-Layer mit Namen <tt class="docutils literal"><span class="pre">london_points</span></tt>. Beachten Sie, dass <strong>ALLE</strong> Punkte von OSM in der Ansicht enthalten sind. Da wir nur die Pubs möchten, müssen wir eine Abfrage formulieren, die nur diese auswählt. Machen Sie einen Rechtsklick auf <tt class="docutils literal"><span class="pre">london_points</span></tt> und dann <em class="guilabel">Attributtabelle öffnen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1310.png" class="align-center" src="../_images/1310.png" />
 <ol class="arabic simple" start="14">
-<li>You will note that some features have the attribute value of <strong>pubs</strong>
-listed under the <em class="guilabel">amenity</em> column. Click on <em class="guilabel">Select
-features using an expression</em> button.</li>
+<li><p class="first">Sie können erkennen, dass in der Spalte <em class="guilabel">amenity</em> manche Features den Attributwert <strong>pubs</strong> haben. Klicken Sie auf <em class="guilabel">Objekte mit einem Ausdruck wählen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
 <ol class="arabic simple" start="15">
-<li>Enter the expression <cite>&#8220;amenity&#8221; = &#8216;pub&#8217;</cite> and click <em class="guilabel">Select</em>.</li>
+<li><p class="first">Geben Sie den Ausdruck <cite>&#8220;amenity&#8221; = &#8216;pub&#8217;</cite> and klicken Sie <em class="guilabel">Auswahl</em>.</p>
+</li>
 </ol>
 <img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
 <ol class="arabic simple" start="16">
-<li>Back in the QGIS Canvas, you will see some points highlighted in yellow.
-These are the result of our query. Right-click the <tt class="docutils literal"><span class="pre">london_points</span></tt> layer
-and choose <em class="guilabel">Save Selection As...</em>.</li>
+<li><p class="first">Zurück im Kartenfenster, können Sie einzelne hervorgehobene gelbe Punkte erkennen. Diese sind das Ergebnis unseres Ausdrucks. Machen Sie einen Rechtsklick auf <tt class="docutils literal"><span class="pre">london_points</span></tt> und nutzen <em class="guilabel">Speichern als...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/168.png" class="align-center" src="../_images/168.png" />
 <ol class="arabic simple" start="17">
-<li>In the <em class="guilabel">Save vector layer as...</em> dialog, enter the name of the
-output file as <tt class="docutils literal"><span class="pre">london_pubs.shp</span></tt>. Leave all other options as they are and
-make sure the <em class="guilabel">Add saved file to map</em> option is checked. Click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Im Folgedialog <em class="guilabel">Vektorlayer speichern als...</em> wird der Pfad zur Ausgabedatei <tt class="docutils literal"><span class="pre">london_pubs.shp</span></tt> definiert und der Haken bei <em class="guilabel">Nur gewählte Objekte speichern</em> sowie <em class="guilabel">Gespeicherte Datei zur Karte hinzufügen</em> gesetzt. Klicke <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/177.png" class="align-center" src="../_images/177.png" />
 <ol class="arabic simple" start="18">
-<li>You will see a new layer named <tt class="docutils literal"><span class="pre">london_pubs</span></tt> in the QGIS canvas. Uncheck
-the <tt class="docutils literal"><span class="pre">london_points</span></tt> layer as we don&#8217;t need that anymore.</li>
+<li><p class="first">Jetzt sehen wir einen neuen Layer <tt class="docutils literal"><span class="pre">london_pubs</span></tt> im QGIS-Fenster. Deaktivieren Sie <tt class="docutils literal"><span class="pre">london_points</span></tt>, da wie sei nicht mehr brauchen.</p>
+</li>
 </ol>
 <img alt="../_images/188.png" class="align-center" src="../_images/188.png" />
 <ol class="arabic simple" start="19">
-<li>The extraction of the pubs shapefile layer is now complete. You can use the
-<em class="guilabel">Identify</em> tool to click on any of the point as see its
-attributes.</li>
+<li><p class="first">Das Extrahieren der Pubs als Shapedatei ist damit abgeschlossen. Mit dem <em class="guilabel">Objekte abfragen</em> Tool könne Sie auf jeden der Punkte klicken und dessen Attribute sehen.</p>
+</li>
 </ol>
 <img alt="../_images/196.png" class="align-center" src="../_images/196.png" />
 </div>
@@ -369,7 +327,7 @@ attributes.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Zuletzt aktualisiert am May 19, 2015.<br/>
+      Zuletzt aktualisiert am Jun 13, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
