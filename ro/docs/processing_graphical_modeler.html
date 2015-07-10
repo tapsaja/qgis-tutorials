@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Construirea unui Plugin Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -191,22 +192,14 @@
   <div class="section" id="automating-complex-workflows-using-processing-modeler">
 <h1>Automatizarea Fluxurilor de Lucru Complexe utilizând Modelatorul de Procese<a class="headerlink" href="#automating-complex-workflows-using-processing-modeler" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/processing_graphical_modeler_a4.pdf">A4</a> <a class="reference external" href="../pdf/processing_graphical_modeler_letter.pdf">Letter</a> ]</p>
-<p>GIS Workflows typically involve many steps - with each step generating
-intermediate output that is used by the next step. If you change the input data
-or want to tweak a parameter, you will need to run through the entire process
-again manually.  Fortunately, QGIS has a graphical modeler built-in that can
-help you define your workflow and run it with a single invocation. You can also
-run these workflows as a batch over a large number of inputs.</p>
+<p>Fluxurile  de lucru GIS implică, de obicei, mai multe etape - cu fiecare pas se generează un rezultat intermediar care este utilizat în etapa următoare. Dacă schimbați datele de intrare sau doriți să reglați un parametru, va trebui să treceți prin întregul proces din nou, manual. Din fericire, QGIS are un modelator grafic încorporat care vă poate ajuta să definiți fluxul de lucru și să-l rulați cu o singură invocare. Puteți rula, de asemenea, acest lot de fluxuri de lucru pentru un număr mare de intrări.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>This tutorial shows how to build a model to extract areas for a particular
-class from a classified land use raster.</p>
+<p>Acest tutorial vă arată cum să construiți un model pentru a extrage zonele unei anumite clase dintr-un raster cu o utilizare a terenului clasificată.</p>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://www.landcover.org/data/lc/">Global Mosaics of the standard MODIS land cover type data
-product</a> from <a class="reference external" href="http://www.landcover.org/">Global Land Cover
-Facility</a> as an example.</p>
+<p>Vom folosi ca exemplu <a class="reference external" href="http://www.landcover.org/data/lc/">Global Mosaics of the standard MODIS land cover type data product</a> de la <cite>Global Land Cover Facility &lt;http://www.landcover.org/&gt;</cite>.</p>
 <p>Desărcați <a class="reference external" href="ftp://ftp.glcf.umd.edu/glcf/Global_LNDCVR/Global_HD_Rev1/GeoTIFF/">GeoTIFF-urile cu rezoluția spațială de 0.5 grade</a> pentru 2001 și 2012.</p>
 <p>Pentru comoditate, puteți descărca o copie a ambelor seturi de date direct de la adresele următoare:</p>
 <p><a class="reference external" href="../../downloads/LC_hd_global_2001.tif.gz">LC_hd_global_2001.tif.gz</a></p>
@@ -217,28 +210,27 @@ Facility</a> as an example.</p>
 <h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <p>Fluxul nostru de lucru pentru acest exercițiu va avea următoarele etape:</p>
 <ul class="simple">
-<li>Apply a <tt class="docutils literal"><span class="pre">Majority</span> <span class="pre">Filter</span></tt> algorithm to the input landcover raster. This
-will reduce noise in our output by eliminating isolated pixels.</li>
-<li>Convert the resulting raster to a polygon layer.</li>
-<li>Query for a class value from the attribute table of the polygon layer and
-create a vector layer for that class.</li>
+<li><p class="first">Aplicați un algoritm <tt class="docutils literal"><span class="pre">Majority</span> <span class="pre">Filter</span></tt> asupra rasterului de intrare, de acoperire a teritoriului. Acest lucru va reduce zgomotul în rezultatul nostru, prin eliminarea pixelilor izolați.</p>
+</li>
+<li><p class="first">Conversia rasterului rezultat într-un strat poligonal.</p>
+</li>
+<li><p class="first">Efectuați o interogare după valoarea unei clase din tabela de atribute a stratului poligonal, apoi creați un strat vectorial pentru această clasă.</p>
+</li>
 </ul>
-<p>The following steps outline the process to code the above process into a model
-and run it on the downloaded datasets.</p>
+<p>Următorii pași conturează procesul de codificare a procesului de mai sus într-un model, pe care îl veți rula pe seturile de date descărcate.</p>
 <ol class="arabic simple">
-<li>Launch QGIS and go to <em class="menuselection">Processing ‣ Graphical Modeler...</em>.</li>
+<li><p class="first">Deschideți QGIS și mergeți la <em class="menuselection">Procesare ‣ Modelatorul Grafic...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1106.png" class="align-center" src="../_images/1106.png" />
 <ol class="arabic simple" start="2">
-<li>The <em class="guilabel">Processing modeler</em> dialog contains a left-hand panel and a
-main canvas. Select the <em class="guilabel">Inputs</em> tab in the left-hand panel and
-drag the <em class="guilabel">+ Raster layer</em> to the canvas.</li>
+<li><p class="first">Dialogul <em class="guilabel">Modelatorului de procese</em> conține un panou în stânga și un canevas principal. Selectați fila <em class="guilabel">Intrări</em> din panoul din partea stângă, apoi trageți <em class="guilabel">+ Stratul raster</em> pe canevas.</p>
+</li>
 </ol>
 <img alt="../_images/249.png" class="align-center" src="../_images/249.png" />
 <ol class="arabic simple" start="3">
-<li>A <em class="guilabel">Parameter definition</em> dialog will pop-up. Enter <tt class="docutils literal"><span class="pre">Input</span></tt> as
-the <em class="guilabel">Parameter name</em> and mark <tt class="docutils literal"><span class="pre">Yes</span></tt> to <em class="guilabel">Required</em>.
-Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Se va afișa un dialog cu <em class="guilabel">Definițiile Parametrului</em>. Introduceți <tt class="docutils literal"><span class="pre">Input</span></tt> ca :guilabel: <cite>Nume al Parametrului</cite> și marcați <tt class="docutils literal"><span class="pre">Yes</span></tt> la <em class="guilabel">Required</em>. Faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/333.png" class="align-center" src="../_images/333.png" />
 <ol class="arabic simple" start="4">
@@ -259,8 +251,8 @@ skip this step entirely.</p>
 </div>
 <img alt="../_images/423.png" class="align-center" src="../_images/423.png" />
 <ol class="arabic simple" start="5">
-<li>A configuration dialog for <em class="guilabel">Majority Filter</em> will be presented.
-Leave the values to their default and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Va fi prezentat un dialog de configurare <em class="guilabel">Majority Filter</em>. Lăsați valorile implicite așa cum sunt și faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/524.png" class="align-center" src="../_images/524.png" />
 <ol class="arabic simple" start="6">
@@ -346,8 +338,8 @@ the model.</li>
 </ol>
 <img alt="../_images/1715.png" class="align-center" src="../_images/1715.png" />
 <ol class="arabic simple" start="18">
-<li>Enter the <em class="guilabel">Parameter Name</em> as <tt class="docutils literal"><span class="pre">Class</span></tt>. Enter <tt class="docutils literal"><span class="pre">12</span></tt> as the
-<em class="guilabel">Default value</em>.</li>
+<li><p class="first">Introduceți <tt class="docutils literal"><span class="pre">Class</span></tt> ca <em class="guilabel">Nume al Parametrului</em>. Introduceți <tt class="docutils literal"><span class="pre">12</span></tt> ca <em class="guilabel">Valoare implicită</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1815.png" class="align-center" src="../_images/1815.png" />
 <ol class="arabic simple" start="19">
@@ -405,7 +397,8 @@ directly in the model. Right-click the <tt class="docutils literal"><span class=
 </ol>
 <img alt="../_images/277.png" class="align-center" src="../_images/277.png" />
 <ol class="arabic simple" start="28">
-<li>Click the <em class="guilabel">Edit model help</em> button from the toolbar.</li>
+<li><p class="first">Clic pe butonul <em class="guilabel">Ajutorul Editării modelului</em> din bara de instrumente</p>
+</li>
 </ol>
 <img alt="../_images/285.png" class="align-center" src="../_images/285.png" />
 <ol class="arabic simple" start="29">
@@ -459,7 +452,7 @@ directory location will depend on the platform as follows: (Replace
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Jun 24, 2015.<br/>
+      Last updated on Jul 10, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

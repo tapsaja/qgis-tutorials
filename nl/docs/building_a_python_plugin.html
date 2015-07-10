@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Building a Python Plugin &mdash; QGIS Tutorials and Tips</title>
+    <title>Een plug-in in Python bouwen &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -98,24 +98,25 @@
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Kaartgegevens digitaliseren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Samenvoegen van tabellen uitvoeren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Ruimtelijke samenvoegingen uitvoeren</a></li>
-<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Punten in polygoon-analyses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Heatmaps maken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analyse Nearest Neighbor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Monsters nemen van rastergegevens met behulp van punten of polygonen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpoleren van puntgegevens</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Massa verwerken met behulp van Framework Processing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Complexe werkstromen automatiseren met behulp van Grafische modellen bouwen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Maken van kaarten automatiseren met Atlas van Printvormgeving</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">De QGIS Browser gebruiken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Aantal punten in een laag tellen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">BIL-, BIP- of BSQ-bestanden openen in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Beginnen met programmeren in Python</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Building a Python Plugin</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Een plug-in in Python bouwen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Google Maps Engine Connector gebruiken voor QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS bronnen om te leren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Lesgeven in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Gebruik van gegevens</a></li>
@@ -190,124 +191,81 @@
       
 
   <div class="section" id="building-a-python-plugin">
-<h1>Building a Python Plugin<a class="headerlink" href="#building-a-python-plugin" title="Permalink naar deze titel">¶</a></h1>
+<h1>Een plug-in in Python bouwen<a class="headerlink" href="#building-a-python-plugin" title="Permalink naar deze titel">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/building_a_python_plugin_a4.pdf">A4</a> <a class="reference external" href="../pdf/building_a_python_plugin_letter.pdf">Letter</a> ]</p>
-<p>Plugins are a great way to extend the functionality of QGIS. You can write
-plugins using Python that can range from adding a simple button to
-sohpisticated toolkits. This tutorial will outline the process involved in
-setting up your development environment, designing the user interface for a
-plugin and writing code to interact with QGIS. Please review the
-<a class="reference internal" href="getting_started_with_pyqgis.html"><em>Beginnen met programmeren in Python</em></a> tutorial to get familiar with the basics.</p>
+<p>Plug-ins zijn een fantastische manier om de functionaliteit van QGIS uit te breiden. U kunt plug-ins schrijven met behulp van Python die kunnen variëren van het toevoegen van een eenvoudige knop tot gesofisticeerde gereedschappen. Deze handleiding zal een overzicht van het proces geven voor het instellen van uw ontwikkelomgeving, de interface voor een plug-in ontwerpen en code schrijven voor interactie met QGIS. Bekijk de handleiding <a class="reference internal" href="getting_started_with_pyqgis.html"><em>Beginnen met programmeren in Python</em></a> om bekend te raken met de basisbeginselen.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the Task<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
-<p>We will develop a simple plugin called <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></tt> that will allow
-users to pick a vector layer and write its attributes to a CSV file.</p>
+<h2>Overzicht van de taak<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
+<p>We zullen een eenvoudige plug-in ontwikkelen, genaamd <tt class="docutils literal"><span class="pre">Attributen</span> <span class="pre">opslaan</span></tt> die gebruikers in staat zal stellen een vectorlaag uit te zoeken en de attributen daarvan weg te schrijven naar een CSV-bestand.</p>
 </div>
 <div class="section" id="get-the-tools">
-<h2>Get the Tools<a class="headerlink" href="#get-the-tools" title="Permalink naar deze titel">¶</a></h2>
+<h2>De gereedschappen ophalen<a class="headerlink" href="#get-the-tools" title="Permalink naar deze titel">¶</a></h2>
 <div class="section" id="qt-creator">
 <h3>Qt Creator<a class="headerlink" href="#qt-creator" title="Permalink naar deze titel">¶</a></h3>
-<p><a class="reference external" href="http://www.qt.io/">Qt</a> is a software development framework that is used to
-develop applications that run on Windows, Mac, Linux as well as various mobile
-operating systems. QGIS itself is written using the Qt framework. For plugin
-development, we will use an application called <a class="reference external" href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a> to design the interface for our
-plugin.</p>
-<p>Download and install the Qt Creator software from <a class="reference external" href="http://sourceforge.net/projects/qtcreator.mirror/files/latest/download">SourgeForge</a></p>
+<p><a class="reference external" href="http://www.qt.io/">Qt</a> is een framework voor softwareontwikkeling dat is gebruikt om toepassingen te ontwikkelen die kunnen worden uitgevoerd op Windows, Mac, Linux als ook op verschillende mobiele besturingssystemen. QGIS zelf is geschreven met behulp van het framework Qt. Voor de ontwikkeling van plug-ins zullen we een toepassing gebruiken, genaamd <a class="reference external" href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a> om de interface voor onze plug-in te ontwerpen.</p>
+<p>Download en installeer de software van Qt Creator vanaf <a class="reference external" href="http://sourceforge.net/projects/qtcreator.mirror/files/latest/download">SourgeForge</a></p>
 </div>
 <div class="section" id="python-bindings-for-qt">
-<h3>Python Bindings for Qt<a class="headerlink" href="#python-bindings-for-qt" title="Permalink naar deze titel">¶</a></h3>
-<p>Since we are developing the plugin in Python, we need to install the python
-bindings for Qt. The method for installing these will depend on the platform
-you are using. For building plugins we need the <tt class="docutils literal"><span class="pre">pyrcc4</span></tt> command-line tool.</p>
+<h3>Python Bindings voor Qt<a class="headerlink" href="#python-bindings-for-qt" title="Permalink naar deze titel">¶</a></h3>
+<p>Omdat we de plug-in ontwikkelen in Python, moeten we de Python bindings voor Qt installeren. De methode voor het installeren hiervan is afhankelijk van het platform dat u gebruikt. Voor het bouwen van plug-ins hebben het gereedschap voor de opdrachtregel <tt class="docutils literal"><span class="pre">pyrcc4</span></tt> nodig.</p>
 <p><strong>Windows</strong></p>
-<p>Download the <a class="reference external" href="http://trac.osgeo.org/osgeo4w/">OSGeo4W network installer</a> and choose <em class="guilabel">Express Desktop
-Install</em>. Install the package <tt class="docutils literal"><span class="pre">QGIS</span></tt>. After installation, you will be able to access the
-<tt class="docutils literal"><span class="pre">pyrcc4</span></tt> tool via the <em class="guilabel">OSGeo4W Shell</em>.</p>
+<p>Download de <a class="reference external" href="http://trac.osgeo.org/osgeo4w/">OSGeo4W network installer</a> en kies <em class="guilabel">Express Desktop Install</em>. Installeer het pakket <tt class="docutils literal"><span class="pre">QGIS</span></tt>. Na die installatie zult u in stata zijn toegang te verkrijgen tot het gereedschap <tt class="docutils literal"><span class="pre">pyrcc4</span></tt> via de <em class="guilabel">OSGeo4W Shell</em>.</p>
 <p><strong>Mac</strong></p>
-<p>Install the <a class="reference external" href="http://brew.sh">Homebrew</a> package manager. Install <tt class="docutils literal"><span class="pre">PyQt</span></tt>
-package by running the following command:</p>
+<p>Installeer de <a class="reference external" href="http://brew.sh">Homebrew</a> pakketbeheerder. Installeer het pakket <tt class="docutils literal"><span class="pre">PyQt</span></tt>  door de volgende opdracht uit te voeren:</p>
 <div class="highlight-none"><div class="highlight"><pre>brew install pyqt
 </pre></div>
 </div>
 <p><strong>Linux</strong></p>
-<p>Depending on your distribution, find and install the <tt class="docutils literal"><span class="pre">python-qt4</span></tt> package. On
-Ubuntu and Debian-based distributions, you can run the following command:</p>
+<p>Afhankelijk van uw distributie, zoek en installeer het pakket <tt class="docutils literal"><span class="pre">python-qt4</span></tt>. Op Ubuntu en Debian-gebaseerde distributies kunt u de volgende opdracht uitvoeren:</p>
 <div class="highlight-none"><div class="highlight"><pre>sudo apt-get install python-qt4
 </pre></div>
 </div>
 </div>
 <div class="section" id="a-text-editor-or-a-python-ide">
-<h3>A Text Editor or a Python IDE<a class="headerlink" href="#a-text-editor-or-a-python-ide" title="Permalink naar deze titel">¶</a></h3>
+<h3>Een tekstbewerker of een Python IDE<a class="headerlink" href="#a-text-editor-or-a-python-ide" title="Permalink naar deze titel">¶</a></h3>
 <p>Any kind of software development requires a good text editor. If you already
 have a favorite text editor or an IDE (Integrated Development Environment), you
 may use it for this tutorial. Otherwise, each platform offers a wide variety of
 free or paid options for text editors. Choose the one that fits your needs.</p>
-<p>This tutorial uses Notepad++ editor on Windows.</p>
+<p>Deze handleiding gebruikt de bewerker Notepad++ op Windows.</p>
 <p><strong>Windows</strong></p>
-<p><a class="reference external" href="http://notepad-plus-plus.org/">Notepad++</a> is a good free editor for windows.
-Download and install the <a class="reference external" href="http://notepad-plus-plus.org/repository/6.x/6.7.5/npp.6.7.5.Installer.exe">Notepad++ editor</a>.</p>
+<p><a class="reference external" href="http://notepad-plus-plus.org/">Notepad++</a> is een goede gratis tekstbewerker voor Windows. Download en installeer de  <a class="reference external" href="https://notepad-plus-plus.org/repository/6.x/6.7.9.2/npp.6.7.9.2.Installer.exe">tekstbewerker Notepad++</a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Notitie</p>
-<p class="last">If you are using Notepad++, makes sure to check <em class="guilabel">Replace by space</em>
-at  <em class="menuselection">Settings ‣ Preferences ‣ Tab Settings</em>. Python is
-very sensitive about whitespace and this setting will ensure tabs and spaces
-are treated properly.</p>
+<p class="last">Indien u Notepad++ gebruikt, zorg er dan voor dat <em class="guilabel">Omzetten in spaties</em> is geselecteerd in  <em class="menuselection">Instellingen ‣ Voorkeuren ‣ Tabs</em>. Python is bijzonde rgevoelig voor witruimte en deze instelling zal er voor zorgen dat tabs en spaties op de juiste manier worden behandeld.</p>
 </div>
 </div>
 <div class="section" id="plugin-builder-plugin">
-<h3>Plugin Builder plugin<a class="headerlink" href="#plugin-builder-plugin" title="Permalink naar deze titel">¶</a></h3>
+<h3>plug-in Plugin Builder<a class="headerlink" href="#plugin-builder-plugin" title="Permalink naar deze titel">¶</a></h3>
 <p>There is a helpful QGIS plugin named <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> which creates all the
 necessary files and the boilerplate code for a plugin. Find and install the
 <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> plugin. See <a class="reference internal" href="using_plugins.html"><em>Plug-ins gebruiken</em></a> for more details on how to
 install plugins.</p>
 </div>
 <div class="section" id="plugins-reloader-plugin">
-<h3>Plugins Reloader plugin<a class="headerlink" href="#plugins-reloader-plugin" title="Permalink naar deze titel">¶</a></h3>
-<p>This is another helper plugin which allows iterative development of plugins.
-Using this plugin, you can change your plugin code and have it reflected in
-QGIS without having to restart QGIS every time. Find and install the <tt class="docutils literal"><span class="pre">Plugin</span>
-<span class="pre">Reloader</span></tt> plugin. See <a class="reference internal" href="using_plugins.html"><em>Plug-ins gebruiken</em></a> for more details on how to install
-plugins.</p>
+<h3>plug-in Plugins Reloader<a class="headerlink" href="#plugins-reloader-plugin" title="Permalink naar deze titel">¶</a></h3>
+<p>Dit is een andere nuttige hulpplug-in die het iteratief ontwikkelen van plug-ins mogelijk maakt. Met behulp van deze plug-in kunt u de code voor uw plug-in wijzigen en die hebben gereflecteerd in QGIS zonder dat u QGIS elke keer opnieuw moet starten. Zoek en installeer de plug-in <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Reloader</span></tt>. Bekijk <a class="reference internal" href="using_plugins.html"><em>Plug-ins gebruiken</em></a> voor meer details over hoe plug-ins te installeren.</p>
 <div class="admonition note">
 <p class="first admonition-title">Notitie</p>
-<p class="last">Plugin Reloader is an experimental plugin. Make sure you have checked
-<em class="guilabel">Show also experimental plugins</em> in <em class="guilabel">Plugin Manager</em>
-settings if you cannot find it.</p>
+<p class="last">Plugin Reloader is een experimentele plug-in. Zorg er voor dat u ook <em class="guilabel">Ook de experimentele plugins tonen</em> in de instellingen van <em class="guilabel">Plug-ins installeren en beheren</em> te selecteren, als u hem niet kunt vinden.</p>
 </div>
 </div>
 </div>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink naar deze titel">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS. Go to <em class="menuselection">Plugins ‣ Plugin Builder ‣ Plugin
-Builder</em>.</li>
+<li><p class="first">Open QGIS. Ga naar <em class="menuselection">Plug-ins ‣ Plugin Builder ‣ Plugin Builder</em>.</p>
+</li>
 </ol>
 <img alt="../_images/116.png" class="align-center" src="../_images/116.png" />
 <ol class="arabic simple" start="2">
-<li>You will see the <em class="guilabel">QGIS Plugin Builder</em> dialog with a form. You can
-fill the form with details relating to our plugin. The <em class="guilabel">Class
-name</em> will be the name of the Python Class containing the logic of the
-plugin. This will also be the name of the folder containing all the plugin
-files. Enter <tt class="docutils literal"><span class="pre">SaveAttributes</span></tt> as the class name. The <em class="guilabel">Plugin
-name</em> is the name under which your plugin will appear in the
-<em class="guilabel">Plugin Manager</em>. Enter the name as <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></tt>. Add a
-description in the <em class="guilabel">Description</em> field. The <em class="guilabel">Module
-name</em> will be the name of the main python file for the plugin. Enter it as
-<tt class="docutils literal"><span class="pre">save_attributes</span></tt>. Leave the version numbers as they are. The
-<em class="guilabel">Text for menu item</em> value will be how the users will find your
-plugin in QGIS menu. Enter it as <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span> <span class="pre">as</span> <span class="pre">CSV</span></tt>. Enter your name
-and email address in the appropriate fields. The <em class="guilabel">Menu</em>  field
-will decide where your plugin item is added in QGIS. Since our plugin is for
-vector data, select <tt class="docutils literal"><span class="pre">Vector</span></tt>. Check the <em class="guilabel">Flag the plugin as
-experimental</em> box at the bottom. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">U zult het dialoogvenster zien van <em class="guilabel">QGIS Plugin Builder</em> met een formulier. U kunt het formulier vullen met details met betrekking tot onze plug-in. De <em class="guilabel">Class name</em> zal de naam zijn van de Python Class die de logica van de plug-in bevat. Dit al ook de naam zijn van de map die alle bestanden van de plug-in bevat. Voer <tt class="docutils literal"><span class="pre">SaveAttributes</span></tt> in als de naam van de klasse. De <em class="guilabel">Plugin name</em> is de naam waarmee uw plug-in zal verschijnen in <em class="guilabel">Plug-ins beheren en installeren</em>. Voer de naam in als <tt class="docutils literal"><span class="pre">Attributen</span> <span class="pre">opslaan</span></tt>. Voeg een beschrijving toe in het veld <em class="guilabel">Description</em>. De <em class="guilabel">Module name</em> zal de naam zijn van het belangrijkste Python-bestand voor de plug-in. Voer die in als <tt class="docutils literal"><span class="pre">save_attributes</span></tt>. Laat de versienummers zoals zij zijn. De waarde <em class="guilabel">Text for menu item</em> zal zijn hoe de gebruikers uw plug-in zullen vinden in het menu van QGIS. Voer het in als <tt class="docutils literal"><span class="pre">Attributen</span> <span class="pre">opslaan</span> <span class="pre">als</span> <span class="pre">CSV</span></tt>. Voer uw naam en e-mailadres in in de toepasselijke velden. Het veld <em class="guilabel">Menu</em>  bepaalt waar het item voor uw plug-in wordt toegevoegd in QGIS. Selecteer, omdat onze plug-in bestemd is voor vectorgegevens, <tt class="docutils literal"><span class="pre">Vector</span></tt>. Selecteer het vak <em class="guilabel">Flag the plugin as experimental</em> onderin. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/213.png" class="align-center" src="../_images/213.png" />
 <ol class="arabic simple" start="3">
-<li>Next, you will be prompted to choose a directory for your plugin. You need
-to browse to the QGIS python plugin directory on your computer and select
-<em class="guilabel">Select Folder</em>. Typically, a <tt class="docutils literal"><span class="pre">.qgis2/</span></tt> directory is located in
-your home directory. The <tt class="docutils literal"><span class="pre">plugin</span></tt> folder location will depend on your
-platform as follows: (Replace <tt class="docutils literal"><span class="pre">username</span></tt> with your login name)</li>
+<li><p class="first">Vervolgens zult u worden gevraagd om een map te kiezen voor uw plug-in. U moet naar de map voor de QGIS Python plug-ins bladeren op uw computer en <em class="guilabel">Map selecteren</em> selecteren. Normaal gesproken is een map <tt class="docutils literal"><span class="pre">.qgis2/</span></tt> aanwezig in uw eigen gebruikersmap. De locatie van de map <tt class="docutils literal"><span class="pre">plugin</span></tt> is als volgt afhankelijk van uw platform: (Vervang <tt class="docutils literal"><span class="pre">username</span></tt> door uw gebruikersnaam)</p>
+</li>
 </ol>
 <p><strong>Windows</strong></p>
 <div class="highlight-none"><div class="highlight"><pre>c:\Users\username\.qgis2\python\plugins
@@ -323,28 +281,26 @@ platform as follows: (Replace <tt class="docutils literal"><span class="pre">use
 </div>
 <img alt="../_images/37.png" class="align-center" src="../_images/37.png" />
 <ol class="arabic simple" start="4">
-<li>You will see a confirmation dialog once your plugin template is created.
-Note the path to the plugin folder.</li>
+<li><p class="first">U zult een dialoogvenster ter bevestiging zien als de sjabloon voor uw plug-in eenmaal is gemaakt. Onthoud het pad naar de map voor de plug-in.</p>
+</li>
 </ol>
 <img alt="../_images/44.png" class="align-center" src="../_images/44.png" />
 <ol class="arabic simple" start="5">
-<li>Before we can use the newly created plugin, we need to compile the
-<tt class="docutils literal"><span class="pre">resources.qrc</span></tt> file that was created by Plugin Builder. Launch the
-<em class="guilabel">OSGeo4W Shell</em> on windows or a terminal on Mac or Linux.</li>
+<li><p class="first">Vóór we onze nieuw gemaakte plug-in kunnen gebruiken, moeten we het bestand <tt class="docutils literal"><span class="pre">resources.qrc</span></tt> , dat werd gemaakt door de Plugin Builder, compileren. Start de <em class="guilabel">OSGeo4W Shell</em> op Windows of een terminal op Mac of Linux.</p>
+</li>
 </ol>
 <img alt="../_images/54.png" class="align-center" src="../_images/54.png" />
 <ol class="arabic simple" start="6">
-<li>Browse to the plugin directory where the output of <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> was
-created. You can use the <tt class="docutils literal"><span class="pre">cd</span></tt> command followed by the path to the
-directory.</li>
+<li><p class="first">Blader naar de map voor de plug-in waar de uitvoer van de <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> werd gemaakt. U kunt de opdracht <tt class="docutils literal"><span class="pre">cd</span></tt>, gevolgd door het pad naar de map, gebruiken.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>cd c:\Users\username\.qgis2\python\plugins\SaveAttributes
 </pre></div>
 </div>
 <img alt="../_images/64.png" class="align-center" src="../_images/64.png" />
 <ol class="arabic simple" start="7">
-<li>Once you are in the directory, type <tt class="docutils literal"><span class="pre">make</span></tt>. This will run the <tt class="docutils literal"><span class="pre">pyrcc4</span></tt>
-command that we had installed as part of Qt bindings for Python.</li>
+<li><p class="first">Als u eenmaal in de map bent, typ <tt class="docutils literal"><span class="pre">make</span></tt>. Dat zal de opdracht <tt class="docutils literal"><span class="pre">pyrcc4</span></tt> uitvoeren die we hadden geïnstalleerd als deel van de Qt bindings voor Python.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>make
 </pre></div>
@@ -777,7 +733,7 @@ upload it to the QGIS plugin repository.</p>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Jun 24, 2015.<br/>
+      Laatste aanpassing op Jul 10, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

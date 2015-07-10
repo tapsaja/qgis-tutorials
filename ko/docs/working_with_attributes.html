@@ -113,6 +113,7 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">파이썬 프로그램밍 시작</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">파이썬 플러그인 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">인접 폴리곤 찾기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">qgis2leaf로 웹 지도 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">QGIS에서 구글지도 커넥터 이용하기</a></li>
@@ -220,43 +221,43 @@ below:</p>
 <li>Once you have downloaded the data, open QGIS. Go to <em class="menuselection">Layer
 ‣ Add Layer ‣ Add Vector Layer</em>.</li>
 </ol>
-<img alt="../_images/1133.png" class="align-center" src="../_images/1133.png" />
+<img alt="../_images/1135.png" class="align-center" src="../_images/1135.png" />
 <ol class="arabic simple" start="2">
 <li>Click on <em class="guilabel">Browse</em> and navigate to the folder where you downloaded
 the data.</li>
 </ol>
-<img alt="../_images/279.png" class="align-center" src="../_images/279.png" />
+<img alt="../_images/288.png" class="align-center" src="../_images/288.png" />
 <ol class="arabic simple" start="3">
 <li>Locate the downloaded zip file <cite>ne_10m_populated_places_simple.zip</cite>. You do
 not need to unzip the file. QGIS has the ability to read zip files directly.
 Select the file and click <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/344.png" class="align-center" src="../_images/344.png" />
+<img alt="../_images/345.png" class="align-center" src="../_images/345.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">선택된 레이어가 QGIS에 올라오고 세계지도에 인구분포를 나타내는 많은 점들을 보게 됩니다.</p>
 </li>
 </ol>
-<img alt="../_images/430.png" class="align-center" src="../_images/430.png" />
+<img alt="../_images/431.png" class="align-center" src="../_images/431.png" />
 <ol class="arabic simple" start="5">
 <li>Right-click the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/531.png" class="align-center" src="../_images/531.png" />
+<img alt="../_images/532.png" class="align-center" src="../_images/532.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">다양한 속성과 해당 값들을 살펴봅니다.</p>
 </li>
 </ol>
-<img alt="../_images/629.png" class="align-center" src="../_images/629.png" />
+<img alt="../_images/630.png" class="align-center" src="../_images/630.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">각 피처에서 인구에 관심이 있는데, <a href="#id1"><span class="problematic" id="id2">`</span></a>pop_max`가 찾는 필드입니다. 필드 헤더를 더블클릭하면 내림차순으로 정렬할 수 있습니다.</p>
 </li>
 </ol>
-<img alt="../_images/729.png" class="align-center" src="../_images/729.png" />
+<img alt="../_images/730.png" class="align-center" src="../_images/730.png" />
 <ol class="arabic simple" start="8">
 <li>Now we are ready to perform our query on these attributes. QGIS uses
 SQL-like expressions to perform queries. Click <em class="guilabel">Select features
 using an expression</em>.</li>
 </ol>
-<img alt="../_images/828.png" class="align-center" src="../_images/828.png" />
+<img alt="../_images/829.png" class="align-center" src="../_images/829.png" />
 <ol class="arabic simple" start="9">
 <li>In the <em class="guilabel">Select By Expression</em> window, expand the <em class="guilabel">Fields
 and Values</em> section and double-click the <tt class="docutils literal"><span class="pre">pop_max</span></tt> label.  You will notice
@@ -270,14 +271,14 @@ greater than <tt class="docutils literal"><span class="pre">1,000,000</span></tt
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000
 </pre></div>
 </div>
-<img alt="../_images/926.png" class="align-center" src="../_images/926.png" />
+<img alt="../_images/927.png" class="align-center" src="../_images/927.png" />
 <ol class="arabic simple" start="10">
 <li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. You will
 notice that a subset of points is now rendered in yellow. This is the
 result of our query and you are seeing all places from the dataset that
 have the <tt class="docutils literal"><span class="pre">pop_max</span></tt> attribute value greater than <tt class="docutils literal"><span class="pre">1,000,000</span></tt>.</li>
 </ol>
-<img alt="../_images/1027.png" class="align-center" src="../_images/1027.png" />
+<img alt="../_images/1028.png" class="align-center" src="../_images/1028.png" />
 <ol class="arabic simple" start="11">
 <li>The goal for this exercise is to find the places that are country capitals.
 The field containing this data is <cite>adm0cap</cite>. The value <tt class="docutils literal"><span class="pre">1</span></tt> indicates that
@@ -290,7 +291,7 @@ and click <em class="guilabel">Select</em> and then <em class="guilabel">Close</
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000 and &quot;adm0cap&quot; = 1
 </pre></div>
 </div>
-<img alt="../_images/1134.png" class="align-center" src="../_images/1134.png" />
+<img alt="../_images/1136.png" class="align-center" src="../_images/1136.png" />
 <ol class="arabic simple" start="12">
 <li>Return to the main QGIS window. Now you will see a smaller subset of the
 points selected. This is the result of the second query and shows all
@@ -300,19 +301,19 @@ on this subset of data, we can make this selection persistent. Right-click
 the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select
 <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/1227.png" class="align-center" src="../_images/1227.png" />
+<img alt="../_images/1228.png" class="align-center" src="../_images/1228.png" />
 <ol class="arabic simple" start="13">
 <li>In the <em class="guilabel">General</em> tab, scroll down to the <em class="guilabel">Feature
 subset</em> section. Click <em class="guilabel">Query Builder</em>.</li>
 </ol>
-<img alt="../_images/1325.png" class="align-center" src="../_images/1325.png" />
+<img alt="../_images/1326.png" class="align-center" src="../_images/1326.png" />
 <ol class="arabic simple" start="14">
 <li>Enter the same expression you had entered earlier and click <em class="guilabel">OK</em>.</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000 and &quot;adm0cap&quot; = 1
 </pre></div>
 </div>
-<img alt="../_images/1424.png" class="align-center" src="../_images/1424.png" />
+<img alt="../_images/1425.png" class="align-center" src="../_images/1425.png" />
 <ol class="arabic simple" start="15">
 <li>Back in the main QGIS window, you will see rest of the points disappear.
 You may now perform any other analysis on this layer and only the features
@@ -321,12 +322,12 @@ still appear in yellow. This is because they are still selected. Find the
 <em class="guilabel">Deselect Features from All Layers</em> button under the
 <em class="guilabel">Attributes</em> toolbar and click on it.</li>
 </ol>
-<img alt="../_images/1522.png" class="align-center" src="../_images/1522.png" />
+<img alt="../_images/1523.png" class="align-center" src="../_images/1523.png" />
 <ol class="arabic simple" start="16">
 <li>You will see that the points are now de-selected and rendered in their
 original color.</li>
 </ol>
-<img alt="../_images/1621.png" class="align-center" src="../_images/1621.png" />
+<img alt="../_images/1622.png" class="align-center" src="../_images/1622.png" />
 </div>
 </div>
 
@@ -352,7 +353,7 @@ original color.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      최종 업데이트: Jun 24, 2015<br/>
+      최종 업데이트: Jul 10, 2015<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
