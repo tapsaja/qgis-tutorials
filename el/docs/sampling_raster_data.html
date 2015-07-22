@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Βρείτε Γειτονικά Πολύγωνα σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Διαδικτυακοί Χάρτες με το qgis2leaf</a></li>
@@ -219,112 +220,112 @@
 <li><p class="first">Πηγαίνετε στο <em class="menuselection">Layer ‣ Add Raster Layer</em> και περιηγηθείτε στο αρχείο λήψης <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float.tif</span></tt> και κάντε κλικ στο <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1128.png" class="align-center" src="../_images/1128.png" />
+<img alt="../_images/1130.png" class="align-center" src="../_images/1130.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Μόλις φορτωθεί το επίπεδο, επιλέξτε το εργαλείο <em class="guilabel">Identify</em> και κάντε κλικ οπουδήποτε στο επίπεδο. Θα δείτε την τιμή της θερμοκρασίας σε βαθμούς Κελσίου ή Band 1 σε αυτήν την θέση.</p>
 </li>
 </ol>
-<img alt="../_images/260.png" class="align-center" src="../_images/260.png" />
+<img alt="../_images/269.png" class="align-center" src="../_images/269.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Τώρα αποσυμπιέστε το αρχείο λήψης <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national.zip</span></tt> και εξάγετε το αρχείο <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national.txt</span></tt> στο δίσκο σας. Πηγαίνετε στο  <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/337.png" class="align-center" src="../_images/337.png" />
+<img alt="../_images/338.png" class="align-center" src="../_images/338.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Στο παράθυρο διαλόγου <em class="guilabel">Create a Layer from Delimited Text File</em>, κάντε κλικ στο <em class="guilabel">Browse</em> και ανοίξτε το <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national.txt</span></tt>. Επιλέξτε το <em class="guilabel">Tab</em> κάτω από το <em class="guilabel">Custom delimiters</em>. Οι συντεταγμένες του σημείου είναι σε γεωγραφικό μήκος και πλάτος, έτσι επιλέξτε <em class="guilabel">INTPTLONG</em> ως <em class="guilabel">X field</em> και <em class="guilabel">INTPTLAT</em> ως <em class="guilabel">Y field</em>. Επιλέξτε το κουτί  <em class="guilabel">Use spatial index</em> και κάντε κλικ στο <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/427.png" class="align-center" src="../_images/427.png" />
+<img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Τώρα είμαστε έτοιμοι να εξάγουμε τις τιμές των θερμοκρασιών από το επίπεδο raster. Εγκαταστήστε το plugin <tt class="docutils literal"><span class="pre">Point</span> <span class="pre">Sampling</span> <span class="pre">Tool</span></tt>. Δείτε το <a class="reference internal" href="using_plugins.html"><em>Χρησιμοποιώντας Πρόσθετες Λειτουργίες</em></a> για λεπτομέρειες σχετικά με το πως να εγκαταστήσετε plugins.</p>
 </li>
 </ol>
-<img alt="../_images/528.png" class="align-center" src="../_images/528.png" />
+<img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Ανοίξτε το παράθυρο διαλόγου plugin από το <em class="menuselection">Plugins ‣ Analyses ‣ Point sampling tool</em>.</p>
 </li>
 </ol>
-<img alt="../_images/626.png" class="align-center" src="../_images/626.png" />
+<img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Στο παράθυρο διαλόγου <em class="guilabel">Point Sampling Tool</em>, επιλέξτε <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt> ως <em class="guilabel">Layer containing sampling points</em>. Πρέπει να παραλάβουμε ρητά τα πεδία από το επίπεδο εισόδου που επιθυμούμε στο επίπεδο εξόδου. Επιλέξτε τα πεδία <tt class="docutils literal"><span class="pre">GEOID</span></tt> και <tt class="docutils literal"><span class="pre">NAME</span></tt> από το επίπεδο <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt>. Μπορούμε να δοκιμάσουμε τιμές από πολλαπλά raster band μια φορά, αλλά επειδή η raster band έχει μόνο 1, επιλέξτε το <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float:</span> <span class="pre">Band</span> <span class="pre">1</span></tt>. Ονομάστε το επίπεδο διανύσματος εξόδου ως <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations.shp</span></tt>. Κάντε κλικ στο  <em class="guilabel">OK</em> για να ξεκινήσει η διαδικασία δειγματοληψίας. Κάντε κλικ στο <em class="guilabel">Close</em> μόλις η διαδικασία τελειώσει.</p>
 </li>
 </ol>
-<img alt="../_images/726.png" class="align-center" src="../_images/726.png" />
+<img alt="../_images/727.png" class="align-center" src="../_images/727.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Θα δείτε ένα νέο επίπεδο <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations</span></tt> να έχει φορτωθεί στο QGIS. Χρησιμοποιήστε το εργαλείο <em class="guilabel">Identify</em> για να κάνετε κλικ σε οποιοδήποτε σημείο για να δείτε τα χαρακτηριστικά του. Θα δείτε το πεδίο <tt class="docutils literal"><span class="pre">us.tmax_no</span></tt> - το οποίο περιλαμβάνει την τιμή του raster pixel στην τοποθεσία του σημείου.</p>
 </li>
 </ol>
-<img alt="../_images/825.png" class="align-center" src="../_images/825.png" />
+<img alt="../_images/826.png" class="align-center" src="../_images/826.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Το πρώτο μέρος της ανάλυσης μας τελείωσε. Ας αφαιρέσουμε τα περιττά επίπεδα. Κρατήστε το  <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> πλήκτρο και επιλέξτε τα επίπεδα <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations</span></tt> και <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt>. Κάντε δεξί-κλικ και επιλέξτε <em class="guilabel">Remove</em> για να τα αφαιρέσετε από το QGIS TOC.</p>
 </li>
 </ol>
-<img alt="../_images/923.png" class="align-center" src="../_images/923.png" />
+<img alt="../_images/924.png" class="align-center" src="../_images/924.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Πηγαίνετε στο <em class="menuselection">Layer ‣ Add Vector Layer</em>. Περιηγηθείτε στο αρχείο λήψης <tt class="docutils literal"><span class="pre">tl_2013_us_county.zip</span></tt> και κάντε κλικ στο <em class="guilabel">Open</em>. Επιλέξτε το <tt class="docutils literal"><span class="pre">tl_2013_us_county.shp</span></tt> ως επίπεδο και κάντε κλικ στο <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1024.png" class="align-center" src="../_images/1024.png" />
+<img alt="../_images/1025.png" class="align-center" src="../_images/1025.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Το <tt class="docutils literal"><span class="pre">tl_2013_us_county</span></tt> θα προστεθεί στο QGIS. Αυτό το επίπεδο είναι μέσα στην προβολή <tt class="docutils literal"><span class="pre">EPSG:4269</span> <span class="pre">NAD83</span></tt>. Αυτό δεν ταιριάζει με την προβολή του raster επιπέδου. Θα επανασχεδιάσουμε αυτό το επίπεδο στην προβολή <tt class="docutils literal"><span class="pre">EPSG:4326</span> <span class="pre">WGS84</span></tt>.</p>
 </li>
 </ol>
-<img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
+<img alt="../_images/1131.png" class="align-center" src="../_images/1131.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Κάντε δεξί-κλικ στο επίπεδο <tt class="docutils literal"><span class="pre">tl_2013_us_county</span></tt> και επιλέξτε <em class="guilabel">Save As..</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1225.png" class="align-center" src="../_images/1225.png" />
+<img alt="../_images/1226.png" class="align-center" src="../_images/1226.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Στο παράθυρο διαλόγου <em class="guilabel">Save Vector layer as..</em>, κάντε κλικ στο <em class="guilabel">Browse</em> και ονομάστε το αρχείο εξόδου ως <tt class="docutils literal"><span class="pre">counties.shp</span></tt>. Επιλέξτε <em class="guilabel">Selected CRS</em> από το αναδυόμενο μενού <em class="guilabel">CRS</em>. Κάντε κλικ στο <em class="guilabel">Browse</em> και επιλέξτε <tt class="docutils literal"><span class="pre">WGS</span> <span class="pre">84</span></tt> ως το  CRS. Επιλέξτε το <em class="guilabel">Add saved file to map</em> και κάντε κλικ στο <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1323.png" class="align-center" src="../_images/1323.png" />
+<img alt="../_images/1324.png" class="align-center" src="../_images/1324.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Ένα νέο επίπεδο με όνομα <tt class="docutils literal"><span class="pre">counties</span></tt> θα προστεθεί στο QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/1422.png" class="align-center" src="../_images/1422.png" />
+<img alt="../_images/1423.png" class="align-center" src="../_images/1423.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Ενεργοποιήστε το <tt class="docutils literal"><span class="pre">Zonal</span> <span class="pre">Statistics</span> <span class="pre">Plugins</span></tt>. Αυτό είναι ένα βασικό plugin έτσι είναι είναι ήδη εγκατεστημένο. Δείτε το <a class="reference internal" href="using_plugins.html"><em>Χρησιμοποιώντας Πρόσθετες Λειτουργίες</em></a> έτσι ώστε να γνωρίζεται πως να ενεργοποιήσετε βασικά plugins.</p>
 </li>
 </ol>
-<img alt="../_images/1521.png" class="align-center" src="../_images/1521.png" />
+<img alt="../_images/1522.png" class="align-center" src="../_images/1522.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Πηγαίνετε στο <em class="menuselection">Raster ‣ Zonal statistics ‣ Zonal statistics</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1620.png" class="align-center" src="../_images/1620.png" />
+<img alt="../_images/1621.png" class="align-center" src="../_images/1621.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Επιλέξτε <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float</span></tt> στο <em class="guilabel">Raster layer</em> και <tt class="docutils literal"><span class="pre">counties</span></tt>  στο guilabel:<cite>Polygon layer containing the zones</cite>. Πληκτρολογήστε <tt class="docutils literal"><span class="pre">ZS_</span></tt> as the <em class="guilabel">Output column prefix</em>. Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1719.png" class="align-center" src="../_images/1719.png" />
+<img alt="../_images/1720.png" class="align-center" src="../_images/1720.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Η ανάλυση μπορεί να πάρει κάποιο χρόνο ανάλογα στο μέγεθος του συνόλου δεδομένων.</p>
 </li>
 </ol>
-<img alt="../_images/1819.png" class="align-center" src="../_images/1819.png" />
+<img alt="../_images/1820.png" class="align-center" src="../_images/1820.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Μόλις η διαδικασία τελειώσει, επιλέξτε το επίπεδο <tt class="docutils literal"><span class="pre">counties</span></tt>. Χρησιμοποιήστε το εργαλείο <em class="guilabel">Identify</em> και κάντε κλικ σε οποιοδήποτε πολύγωνο πολιτείας. Θα δείτε τρία νέα χαρακτηριστικά που προστίθενται στο επίπεδο: <tt class="docutils literal"><span class="pre">ZS_count</span></tt>, <tt class="docutils literal"><span class="pre">ZS_mean</span></tt> και <tt class="docutils literal"><span class="pre">ZS_sum</span></tt>. Αυτά τα χαρακτηριστικά περιλαμβάνουν την καταμέτρηση των raster pixels, τη μέση τιμή των raster pixel και το άθροισμα των τιμών των raster pixel αντίστοιχα. Δεδομένου ότι μας ενδιαφέρει η μέση θερμοκρασία, το πεδίο <tt class="docutils literal"><span class="pre">ZS_mean</span></tt> θα είναι αυτό που θα χρησιμοποιήσουμε.</p>
 </li>
 </ol>
-<img alt="../_images/1917.png" class="align-center" src="../_images/1917.png" />
+<img alt="../_images/1918.png" class="align-center" src="../_images/1918.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Ας διαμορφώσουμε αυτό το επίπεδο για να δημιουργήσουμε ένα χάρτη θερμοκρασιών. Κάντε δεξί-κλικ στο επίπεδο <tt class="docutils literal"><span class="pre">counties</span></tt> και επιλέξτε <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/2014.png" class="align-center" src="../_images/2014.png" />
+<img alt="../_images/2015.png" class="align-center" src="../_images/2015.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Αλλάξτε στη καρτέλα <em class="guilabel">Style</em>. Επιλέξτε <em class="guilabel">Graduated</em> style και επιλέξτε <tt class="docutils literal"><span class="pre">ZS_mean</span></tt> ως <em class="guilabel">Column</em>. Διαλέξτε ένα <em class="guilabel">Color Ramp</em> και <em class="guilabel">Mode</em> της επιλογής σας. Κάντε κλικ στο <em class="guilabel">Classify</em> για να δημιουργήσετε κλάσεις. Κάντε κλικ στο <em class="guilabel">OK</em>. (Δείτε το <a class="reference internal" href="basic_vector_styling.html"><em>Βασική διανυσματική διαμόρφωση</em></a> για περισσότερες λεπτομέρειες στο styling.)</p>
 </li>
 </ol>
-<img alt="../_images/2118.png" class="align-center" src="../_images/2118.png" />
+<img alt="../_images/2119.png" class="align-center" src="../_images/2119.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Θα δείτε τα πολύγωνα πολιτειών να έχουν διαμορφωθεί χρησιμοποιώντας το μέγιστο μέσο όρο θερμοκρασιών που εξάγεται από το πλέγμα του raster.</p>
 </li>
 </ol>
-<img alt="../_images/2217.png" class="align-center" src="../_images/2217.png" />
+<img alt="../_images/2218.png" class="align-center" src="../_images/2218.png" />
 </div>
 </div>
 
@@ -350,7 +351,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Jul 15, 2015.<br/>
+      Last updated on Jul 22, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -113,6 +113,7 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
@@ -222,12 +223,12 @@
 <li><p class="first">Sobald Sie die Daten heruntergeladen haben, öffnen Sie QGIS. Gehen Sie zu <em class="menuselection">Layer ‣ Layer hinzufügen ‣ Vektorlayer hinzufügen...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1135.png" class="align-center" src="../_images/1135.png" />
+<img alt="../_images/1137.png" class="align-center" src="../_images/1137.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Klicken Sie auf <em class="guilabel">Durchsuchen</em> und gehen Sie zum Ordner, wo sich die geladenen Daten befinden.</p>
 </li>
 </ol>
-<img alt="../_images/288.png" class="align-center" src="../_images/288.png" />
+<img alt="../_images/289.png" class="align-center" src="../_images/289.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Finden Sie die ZIP-Datei <cite>ne_10m_populated_places_simple.zip</cite>. Sie brauchen diese nicht zu entpacken. QGIS kann direkt ZIP-Dateien lesen. Selektieren Sie die Datei und klicken <em class="guilabel">Öffnen</em>.</p>
 </li>
@@ -237,27 +238,27 @@
 <li><p class="first">Die Auswahl wird nun in QGIS geladen und Sie sehen viele Punkte, die die besiedelten Orte der Welt repräsentieren.</p>
 </li>
 </ol>
-<img alt="../_images/431.png" class="align-center" src="../_images/431.png" />
+<img alt="../_images/432.png" class="align-center" src="../_images/432.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Machen Sie einen Rechtsklick auf den Layereintrag und wählen Sie <em class="guilabel">Attributtabelle öffnen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/532.png" class="align-center" src="../_images/532.png" />
+<img alt="../_images/533.png" class="align-center" src="../_images/533.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Erkunden Sie die unterschiedlichen Attribute und deren Werte.</p>
 </li>
 </ol>
-<img alt="../_images/630.png" class="align-center" src="../_images/630.png" />
+<img alt="../_images/631.png" class="align-center" src="../_images/631.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Uns interessiert die Population von jedem Feature, so dass wir uns auf das Feld <cite>pop_max</cite> konzentrieren. Sie können zweifach auf die Überschrift klicken, um die Tabelle in absteigender Reihenfolge zu sortieren.</p>
 </li>
 </ol>
-<img alt="../_images/730.png" class="align-center" src="../_images/730.png" />
+<img alt="../_images/731.png" class="align-center" src="../_images/731.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Jetzt sind wir soweit, unsere Abfrage auf diese Attribute zu machen. QGIS nutzt SQL-ähnliche Ausdrücke für Abfragen. Klicke <em class="guilabel">Objekte mit einem Ausdruck wählen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/829.png" class="align-center" src="../_images/829.png" />
+<img alt="../_images/830.png" class="align-center" src="../_images/830.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Im Fenster <em class="guilabel">Select By Expression</em>, erweitern sie den Bereich <em class="guilabel">Felder und Werte</em> und Doppelklicken Sie <tt class="docutils literal"><span class="pre">pop_max</span></tt>. Sie werden sehen, dass dies zum Ausdrucksbereich hinzugefügt wurde. Sollten Sie sich bezüglich der Feldwerte nicht sicher sein, können Sie <em class="guilabel">alle eindeutigen Werte laden</em>, um festzustellen, welche Attributwerte im Datensatz vorhanden sind. In dieser Übung suchen wir alle Features mit mehr als <tt class="docutils literal"><span class="pre">1.000.000</span></tt> Einwohnern. Vervollständigen Sie den Ausdruck und klicken Sie <em class="guilabel">Auswahl</em>.</p>
 </li>
@@ -265,12 +266,12 @@
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000
 </pre></div>
 </div>
-<img alt="../_images/927.png" class="align-center" src="../_images/927.png" />
+<img alt="../_images/928.png" class="align-center" src="../_images/928.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">Klicken Sie <em class="guilabel">Schließen</em> und kehren zum QGIS Hauptfenster zurück. Wir sehen jetzt eine Teilmenge an Punkten, die jetzt gelb sind. Dies ist das Ergebnis unseres Ausdrucks und Sie sehen alle Orte, die ein <tt class="docutils literal"><span class="pre">pop_max</span></tt> Attribut haben, das grösser als <tt class="docutils literal"><span class="pre">1.000.000</span></tt> ist.</p>
 </li>
 </ol>
-<img alt="../_images/1028.png" class="align-center" src="../_images/1028.png" />
+<img alt="../_images/1029.png" class="align-center" src="../_images/1029.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Das Ziel der Aufgabe ist es, die Orte zu finden, die Hauptstädte sind. Das Feld, welches dies beinhaltet ist <cite>adm0cap</cite>. Der Wert <tt class="docutils literal"><span class="pre">1</span></tt> zeigt an, dass der Ort eine Hauptstadt ist. Wir können diese Kriterium zu unserer vorherigen Abfrage hinzufügen, in dem wir den <tt class="docutils literal"><span class="pre">and</span></tt> Operator verwenden. Lassen Sie uns unseren Ausdruck verfeinern, um die Hauptstädte zu finden. Klicken Sie in der Attributtabelle <em class="guilabel">Objekte mit einem Ausdruck wählen</em> und geben Sie den Ausdruck wie unten ein und klicken Sie <em class="guilabel">Auswahl</em> und danach <em class="guilabel">Schließen</em>.</p>
 </li>
@@ -278,17 +279,17 @@
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000 and &quot;adm0cap&quot; = 1
 </pre></div>
 </div>
-<img alt="../_images/1136.png" class="align-center" src="../_images/1136.png" />
+<img alt="../_images/1138.png" class="align-center" src="../_images/1138.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Zurück im QGIS Hauptfenster sehen Sie jetzt eine kleinere Teilmenge an ausgewählten Punkten. Dies ist das Ergebnis unserer zweiten Abfrage und zeigt alle Hauptstädte mit mehr als 1.000.000 Einwohner. Wenn wir weitere Analysen auf diese Auswahl durchführen möchten, können wir diese dauerhaft speichern. Machen Sie einen Rechtsklick auf den <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> Layer und wählen <em class="guilabel">Eigenschaften</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1228.png" class="align-center" src="../_images/1228.png" />
+<img alt="../_images/1229.png" class="align-center" src="../_images/1229.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Im Reiter <em class="guilabel">Allgemein</em> gehen Sie nach unten zum Bereich <em class="guilabel">Objektuntermenge</em>. Klicke <em class="guilabel">Abfrageerstellung</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1326.png" class="align-center" src="../_images/1326.png" />
+<img alt="../_images/1327.png" class="align-center" src="../_images/1327.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Geben Sie die den selben Ausdruck wie vorher ein und klicken Sie <em class="guilabel">OK</em>.</p>
 </li>
@@ -296,17 +297,17 @@
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000 and &quot;adm0cap&quot; = 1
 </pre></div>
 </div>
-<img alt="../_images/1425.png" class="align-center" src="../_images/1425.png" />
+<img alt="../_images/1426.png" class="align-center" src="../_images/1426.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Im Hauptfenster QGIS sehen Sie, dass die restlichen Punkte verschwunden sind. Nun können Sie jede andere Analyse zu dem Layer durchführen, wobei lediglich die gewählten Features verwendet werden. Dabei sind die Punkte nach wie vor gelb. Dies rührt daher, dass diese noch immer ausgewählt sind. Klicken Sie in der Werkzeugleiste der <em class="guilabel">Attributtabelle</em> die Schaltfläche <em class="guilabel">Alles abwählen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1523.png" class="align-center" src="../_images/1523.png" />
+<img alt="../_images/1524.png" class="align-center" src="../_images/1524.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Die Punkte sind abgewählt und werden in ihrer Originalfarbe dargestellt.</p>
 </li>
 </ol>
-<img alt="../_images/1622.png" class="align-center" src="../_images/1622.png" />
+<img alt="../_images/1623.png" class="align-center" src="../_images/1623.png" />
 </div>
 </div>
 
@@ -332,7 +333,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Zuletzt aktualisiert am Jul 15, 2015.<br/>
+      Zuletzt aktualisiert am Jul 22, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -113,6 +113,7 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Первые шаги в программировании на Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Создание модуля на Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Нахождение соседних полигонов в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Веб-карты Leaflet с помощью qgis2leaf</a></li>
@@ -223,12 +224,12 @@ dataset. Download the <a class="reference external" href="http://www.naturaleart
 <li>Once you have downloaded the data, open QGIS. Go to <em class="menuselection">Layer
 ‣ Add Layer ‣ Add Vector Layer</em>.</li>
 </ol>
-<img alt="../_images/1135.png" class="align-center" src="../_images/1135.png" />
+<img alt="../_images/1137.png" class="align-center" src="../_images/1137.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Нажмите на <em class="guilabel">Browse</em> и перейдите к папке, в которую вы загрузили данные.</p>
 </li>
 </ol>
-<img alt="../_images/288.png" class="align-center" src="../_images/288.png" />
+<img alt="../_images/289.png" class="align-center" src="../_images/289.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Найдите загруженный zip-файл <cite>ne_10m_populated_places_simple.zip</cite>. Вам не нужно распаковывать файл. QGIS может читать архивные файлы напрямую. Выберите файл и нажмите :guilabel: <cite>Открыть</cite>.</p>
 </li>
@@ -238,27 +239,27 @@ dataset. Download the <a class="reference external" href="http://www.naturaleart
 <li><p class="first">Теперь выбранный слой будет загружен в QGIS, и вы увидите много точек, представляющих населенные пункты мира.</p>
 </li>
 </ol>
-<img alt="../_images/431.png" class="align-center" src="../_images/431.png" />
+<img alt="../_images/432.png" class="align-center" src="../_images/432.png" />
 <ol class="arabic simple" start="5">
 <li>Right-click the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
-<img alt="../_images/532.png" class="align-center" src="../_images/532.png" />
+<img alt="../_images/533.png" class="align-center" src="../_images/533.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Исследуйте различные атрибуты и их значения.</p>
 </li>
 </ol>
-<img alt="../_images/630.png" class="align-center" src="../_images/630.png" />
+<img alt="../_images/631.png" class="align-center" src="../_images/631.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Нас интересует население каждого объекта, так что <cite>pop_max</cite> является искомым полем. Вы можете дважды щелкнуть на заголовке поля для сортировки столбца в порядке убывания.</p>
 </li>
 </ol>
-<img alt="../_images/730.png" class="align-center" src="../_images/730.png" />
+<img alt="../_images/731.png" class="align-center" src="../_images/731.png" />
 <ol class="arabic simple" start="8">
 <li>Now we are ready to perform our query on these attributes. QGIS uses
 SQL-like expressions to perform queries. Click <em class="guilabel">Select features
 using an expression</em>.</li>
 </ol>
-<img alt="../_images/829.png" class="align-center" src="../_images/829.png" />
+<img alt="../_images/830.png" class="align-center" src="../_images/830.png" />
 <ol class="arabic simple" start="9">
 <li>In the <em class="guilabel">Select By Expression</em> window, expand the <em class="guilabel">Fields
 and Values</em> section and double-click the <tt class="docutils literal"><span class="pre">pop_max</span></tt> label.  You will notice
@@ -272,14 +273,14 @@ greater than <tt class="docutils literal"><span class="pre">1,000,000</span></tt
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000
 </pre></div>
 </div>
-<img alt="../_images/927.png" class="align-center" src="../_images/927.png" />
+<img alt="../_images/928.png" class="align-center" src="../_images/928.png" />
 <ol class="arabic simple" start="10">
 <li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. You will
 notice that a subset of points is now rendered in yellow. This is the
 result of our query and you are seeing all places from the dataset that
 have the <tt class="docutils literal"><span class="pre">pop_max</span></tt> attribute value greater than <tt class="docutils literal"><span class="pre">1,000,000</span></tt>.</li>
 </ol>
-<img alt="../_images/1028.png" class="align-center" src="../_images/1028.png" />
+<img alt="../_images/1029.png" class="align-center" src="../_images/1029.png" />
 <ol class="arabic simple" start="11">
 <li>The goal for this exercise is to find the places that are country capitals.
 The field containing this data is <cite>adm0cap</cite>. The value <tt class="docutils literal"><span class="pre">1</span></tt> indicates that
@@ -292,7 +293,7 @@ and click <em class="guilabel">Select</em> and then <em class="guilabel">Close</
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000 and &quot;adm0cap&quot; = 1
 </pre></div>
 </div>
-<img alt="../_images/1136.png" class="align-center" src="../_images/1136.png" />
+<img alt="../_images/1138.png" class="align-center" src="../_images/1138.png" />
 <ol class="arabic simple" start="12">
 <li>Return to the main QGIS window. Now you will see a smaller subset of the
 points selected. This is the result of the second query and shows all
@@ -302,19 +303,19 @@ on this subset of data, we can make this selection persistent. Right-click
 the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select
 <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/1228.png" class="align-center" src="../_images/1228.png" />
+<img alt="../_images/1229.png" class="align-center" src="../_images/1229.png" />
 <ol class="arabic simple" start="13">
 <li>In the <em class="guilabel">General</em> tab, scroll down to the <em class="guilabel">Feature
 subset</em> section. Click <em class="guilabel">Query Builder</em>.</li>
 </ol>
-<img alt="../_images/1326.png" class="align-center" src="../_images/1326.png" />
+<img alt="../_images/1327.png" class="align-center" src="../_images/1327.png" />
 <ol class="arabic simple" start="14">
 <li>Enter the same expression you had entered earlier and click <em class="guilabel">OK</em>.</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000 and &quot;adm0cap&quot; = 1
 </pre></div>
 </div>
-<img alt="../_images/1425.png" class="align-center" src="../_images/1425.png" />
+<img alt="../_images/1426.png" class="align-center" src="../_images/1426.png" />
 <ol class="arabic simple" start="15">
 <li>Back in the main QGIS window, you will see rest of the points disappear.
 You may now perform any other analysis on this layer and only the features
@@ -323,12 +324,12 @@ still appear in yellow. This is because they are still selected. Find the
 <em class="guilabel">Deselect Features from All Layers</em> button under the
 <em class="guilabel">Attributes</em> toolbar and click on it.</li>
 </ol>
-<img alt="../_images/1523.png" class="align-center" src="../_images/1523.png" />
+<img alt="../_images/1524.png" class="align-center" src="../_images/1524.png" />
 <ol class="arabic simple" start="16">
 <li>You will see that the points are now de-selected and rendered in their
 original color.</li>
 </ol>
-<img alt="../_images/1622.png" class="align-center" src="../_images/1622.png" />
+<img alt="../_images/1623.png" class="align-center" src="../_images/1623.png" />
 </div>
 </div>
 
@@ -354,7 +355,7 @@ original color.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Обновлено: Jul 15, 2015.<br/>
+      Обновлено: Jul 22, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -113,6 +113,7 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Первые шаги в программировании на Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Создание модуля на Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Нахождение соседних полигонов в слое</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Веб-карты Leaflet с помощью qgis2leaf</a></li>
@@ -222,18 +223,18 @@ use 2km resolution FAS subsets for Brazil for this tutorial.</p>
 Brazil subsets shown in the <em class="guilabel">FAS Subsets</em> section. Click on any
 one of them.</li>
 </ol>
-<img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
+<img alt="../_images/1108.png" class="align-center" src="../_images/1108.png" />
 <ol class="arabic simple" start="2">
 <li>In the details page, click the <em class="guilabel">2km</em> link under the product of
 your choice. Here we will download the <em class="guilabel">NDVI</em> product. <a class="reference external" href="http://en.wikipedia.org/wiki/Normalized_Difference_Vegetation_Index">Learn more
 about NDVI</a>.</li>
 </ol>
-<img alt="../_images/250.png" class="align-center" src="../_images/250.png" />
+<img alt="../_images/258.png" class="align-center" src="../_images/258.png" />
 <ol class="arabic simple" start="3">
 <li>Click the <em class="guilabel">Download GeoTIFF file</em> link to download the raster
 image.</li>
 </ol>
-<img alt="../_images/334.png" class="align-center" src="../_images/334.png" />
+<img alt="../_images/335.png" class="align-center" src="../_images/335.png" />
 <p>Repeat the process for all 7 FAS subsets for Brazil.</p>
 <p>For convenience, you can directly download sample data used in this tutorial from links below.</p>
 <p><a class="reference external" href="../../downloads/ne_10m_admin_0_countries.zip">ne_10m_admin_0_countries.zip</a></p>
@@ -251,13 +252,13 @@ image.</li>
 <ol class="arabic simple" start="4">
 <li>Open QGIS and go to <em class="menuselection">Layer ‣ Add Raster Layer..</em>.</li>
 </ol>
-<img alt="../_images/424.png" class="align-center" src="../_images/424.png" />
+<img alt="../_images/425.png" class="align-center" src="../_images/425.png" />
 <ol class="arabic simple" start="5">
 <li>Browse to the directory with the individual images. Hold down the <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>
 key and click on the image files to make a multiple selection. Click
 <em class="guilabel">Open</em>.</li>
 </ol>
-<img alt="../_images/525.png" class="align-center" src="../_images/525.png" />
+<img alt="../_images/526.png" class="align-center" src="../_images/526.png" />
 <ol class="arabic simple" start="6">
 <li>You will see the images load up in the Table of Content on the left panel.
 Now let us create a single <cite>Mosaic</cite> image from all these individual images.
@@ -270,7 +271,7 @@ Click on <em class="menuselection">Raster ‣ Miscellaneous ‣ Merge</em>.</li>
 enable the <em class="guilabel">GdalTools</em> plugin from <em class="menuselection">Plugins ‣
 Manage and install plugins ‣ Installed</em>. See <a class="reference internal" href="using_plugins.html"><em>Использование модулей расширения</em></a> for more details.</p>
 </div>
-<img alt="../_images/623.png" class="align-center" src="../_images/623.png" />
+<img alt="../_images/624.png" class="align-center" src="../_images/624.png" />
 <ol class="arabic simple" start="7">
 <li>In the <em class="guilabel">Merge</em> dialog, click <em class="guilabel">Select...</em> next to
 <em class="guilabel">Input files</em> and browse to the directory containing all
@@ -279,55 +280,55 @@ subsets. Now click <em class="guilabel">Select...</em> next to <em class="guilab
 and name the output as <tt class="docutils literal"><span class="pre">Brazil_mosaic.tif</span></tt>. At the bottom, check the box next to
 <em class="guilabel">Load into canvas when finished</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/723.png" class="align-center" src="../_images/723.png" />
+<img alt="../_images/724.png" class="align-center" src="../_images/724.png" />
 <ol class="arabic simple" start="8">
 <li>You will get a pop-up message saying <cite>Processing complete</cite>, once the mosaic is
 created and loaded to the QGIS Canvas. You will see that the individual
 images and now combined and mosaiced into a single layer. You can now turn
 off individual layers by un-checking the box next to them.</li>
 </ol>
-<img alt="../_images/822.png" class="align-center" src="../_images/822.png" />
+<img alt="../_images/823.png" class="align-center" src="../_images/823.png" />
 <ol class="arabic simple" start="9">
 <li>Another Raster operation you can do is to subset or <cite>crop</cite> an image. We can
 use a polygon from a vector layer to crop the raster to the exact shape.
 Let&#8217;s load the country polygons shapefile we downloaded from Natural Earth.
 Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
 </ol>
-<img alt="../_images/920.png" class="align-center" src="../_images/920.png" />
+<img alt="../_images/921.png" class="align-center" src="../_images/921.png" />
 <ol class="arabic simple" start="10">
 <li>Select the <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt> file and click
 <em class="guilabel">Open</em>. When prompted to select the layer within the zip file,
 select <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt>.</li>
 </ol>
-<img alt="../_images/1021.png" class="align-center" src="../_images/1021.png" />
+<img alt="../_images/1022.png" class="align-center" src="../_images/1022.png" />
 <ol class="arabic simple" start="11">
 <li>Once the vector layer is loaded, we want to select and extract the polygon
 for Brazil. Select the <em class="guilabel">Select Single Feature</em> tool from the
 toolbar.</li>
 </ol>
-<img alt="../_images/1125.png" class="align-center" src="../_images/1125.png" />
+<img alt="../_images/1126.png" class="align-center" src="../_images/1126.png" />
 <ol class="arabic simple" start="12">
 <li>Click anywhere on the Brazil polygon and it will be selected.</li>
 </ol>
-<img alt="../_images/1222.png" class="align-center" src="../_images/1222.png" />
+<img alt="../_images/1223.png" class="align-center" src="../_images/1223.png" />
 <ol class="arabic simple" start="13">
 <li>Right-click the <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> layer and select
 <em class="guilabel">Save Selection As...</em>.</li>
 </ol>
-<img alt="../_images/1320.png" class="align-center" src="../_images/1320.png" />
+<img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
 <ol class="arabic simple" start="14">
 <li>Name your output as <tt class="docutils literal"><span class="pre">brazil_boundary.shp</span></tt> and make sure <em class="guilabel">Add
 saved file to map</em> box is checked. click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1419.png" class="align-center" src="../_images/1419.png" />
+<img alt="../_images/1420.png" class="align-center" src="../_images/1420.png" />
 <ol class="arabic simple" start="15">
 <li>You will see the Brazil boundary polygon now loaded in QGIS.</li>
 </ol>
-<img alt="../_images/1518.png" class="align-center" src="../_images/1518.png" />
+<img alt="../_images/1519.png" class="align-center" src="../_images/1519.png" />
 <ol class="arabic simple" start="16">
 <li>Now go to <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</li>
 </ol>
-<img alt="../_images/1617.png" class="align-center" src="../_images/1617.png" />
+<img alt="../_images/1618.png" class="align-center" src="../_images/1618.png" />
 <ol class="arabic simple" start="17">
 <li>Select the <em class="guilabel">input file (raster)</em> as <tt class="docutils literal"><span class="pre">Brazil_mosaic</span></tt>. Name the
 <em class="guilabel">Output file</em> as <tt class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></tt>. In the
@@ -335,23 +336,23 @@ saved file to map</em> box is checked. click <em class="guilabel">OK</em>.</li>
 the newly created <tt class="docutils literal"><span class="pre">brazil_boundary</span></tt> as the mask layer. Check the box next
 to <em class="guilabel">Load into canvas when finished</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/1716.png" class="align-center" src="../_images/1716.png" />
+<img alt="../_images/1717.png" class="align-center" src="../_images/1717.png" />
 <ol class="arabic simple" start="18">
 <li>The new cropped layer will be loaded into QGIS. You will notice the black
 pixels surrounding the actual mosaic. Let&#8217;s remove that. Right-click on the
 <tt class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></tt> layer and select <em class="guilabel">Properties</em>.</li>
 </ol>
-<img alt="../_images/1816.png" class="align-center" src="../_images/1816.png" />
+<img alt="../_images/1817.png" class="align-center" src="../_images/1817.png" />
 <ol class="arabic simple" start="19">
 <li>Go to the <em class="guilabel">Transparency</em> tab, and add <cite>0</cite> as an
 <em class="guilabel">Additional no data value</em>.</li>
 </ol>
-<img alt="../_images/1914.png" class="align-center" src="../_images/1914.png" />
+<img alt="../_images/1915.png" class="align-center" src="../_images/1915.png" />
 <ol class="arabic simple" start="20">
 <li>Now you have a nice mosaic cropped to a country boundary that you can use
 in your project as a background layer or do further analysis on.</li>
 </ol>
-<img alt="../_images/2011.png" class="align-center" src="../_images/2011.png" />
+<img alt="../_images/2012.png" class="align-center" src="../_images/2012.png" />
 </div>
 </div>
 
@@ -377,7 +378,7 @@ in your project as a background layer or do further analysis on.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Обновлено: Jul 15, 2015.<br/>
+      Обновлено: Jul 22, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

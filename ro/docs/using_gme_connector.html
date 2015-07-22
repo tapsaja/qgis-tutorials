@@ -112,6 +112,7 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Construirea unui Plugin Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
@@ -219,7 +220,7 @@
 <li><p class="first">Descărcați fișierul shape <a class="reference external" href="https://data.sfgov.org/Transportation/SFMTA-Bikeway-Network/t6vv-tjkd">SFMTA Bikeway Network</a> folosind opțiunea de Export de pe portal.</p>
 </li>
 </ol>
-<img alt="../_images/1130.png" class="align-center" src="../_images/1130.png" />
+<img alt="../_images/1132.png" class="align-center" src="../_images/1132.png" />
 <p>Sursa de date: <a class="reference internal" href="credits.html#sfmta" id="id1">[SFMTA]</a></p>
 </div>
 <div class="section" id="create-a-google-maps-engine-account">
@@ -228,12 +229,12 @@
 <li><p class="first">Vă puteți crea un cont gratuit de testare pentru Google Maps Engine. Contul de testare reprezintă o instanță a motorului de hărți, complet funcțională, dar cu o cotă de stocare limitată. Vizitați <a class="reference external" href="http://www.google.com/enterprise/mapsearth/products/mapsengine.html">Google Maps Engine homepage</a> și faceți clic pe link-ul <em class="guilabel">Get started with a free account</em>.</p>
 </li>
 </ol>
-<img alt="../_images/269.png" class="align-center" src="../_images/269.png" />
+<img alt="../_images/270.png" class="align-center" src="../_images/270.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Trebuie să vă conectați la contul dvs Google. De asemenea, dacă doriți să vă folosiți e-mailul de lucru, aveți posibilitatea să vă creați un nou cont Google cu adresa dorită. După ce v-ați logat, veți vedea ecranul <em class="guilabel">Create a Maps Engine Project</em>. Introduceți un <em class="guilabel">Project Name</em>, care va identifica contul dvs. atunci când utilizați Google Maps Engine. Acceptați termenii și faceți clic pe butonul <em class="guilabel">Accept and create</em>.</p>
 </li>
 </ol>
-<img alt="../_images/338.png" class="align-center" src="../_images/338.png" />
+<img alt="../_images/339.png" class="align-center" src="../_images/339.png" />
 </div>
 <div class="section" id="create-a-google-developer-console-project">
 <h2>Crearea unui proiect Google Developer Console<a class="headerlink" href="#create-a-google-developer-console-project" title="Permalink to this headline">¶</a></h2>
@@ -241,97 +242,97 @@
 <li><p class="first">Google Maps Engine Connector folosește <tt class="docutils literal"><span class="pre">Google</span> <span class="pre">Maps</span> <span class="pre">Engine</span> <span class="pre">API</span></tt> pentru a accesa datele stocate în contul dumneavoastră. Veți avea nevoie de acreditări speciale, pe care plugin-ul le va folosi pentru a vă accesa programatic datele. Vizitați <a class="reference external" href="https://console.developers.google.com/">Google Developer Console</a> și faceți clic pe <em class="guilabel">Create Project</em>. Introduceți <tt class="docutils literal"><span class="pre">GME</span> <span class="pre">Connector</span> <span class="pre">for</span> <span class="pre">QGIS</span> <span class="pre">API</span></tt> ca <em class="guilabel">PROJECT NAME</em>, și <tt class="docutils literal"><span class="pre">gme-qgis-api</span></tt> ca <em class="guilabel">PROJECT ID</em>. Aceste nume sunt doar o sugestie - puteți utiliza orice nume și orice id vă place.</p>
 </li>
 </ol>
-<img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
+<img alt="../_images/429.png" class="align-center" src="../_images/429.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">O dată ce proiectul este creat, faceți clic pe link-ul <em class="guilabel">APIs &amp; auth</em>. Derulați în jos și găsiți <em class="guilabel">Google Maps Engine API</em>. Clic pe butonul <em class="guilabel">OFF</em> pentru a-l pune pe <em class="guilabel">ON</em>.</p>
 </li>
 </ol>
-<img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
+<img alt="../_images/530.png" class="align-center" src="../_images/530.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Apoi, faceți clic pe link-ul <em class="guilabel">Credentials</em>. Clic pe <em class="guilabel">CREATE NEW CLIEND ID</em> din secțiunea <em class="guilabel">OAuth</em>.</p>
 </li>
 </ol>
-<img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
+<img alt="../_images/628.png" class="align-center" src="../_images/628.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">În fereastra de dialog <em class="guilabel">Create Client ID</em>, selectați <em class="guilabel">Installed Application</em> ca <em class="guilabel">APPLICATION TYPE</em> și <em class="guilabel">Other</em> ca <em class="guilabel">INSTALLED APPLICATION TYPE</em>. Apăsați <em class="guilabel">Create Client ID.</em></p>
 </li>
 </ol>
-<img alt="../_images/727.png" class="align-center" src="../_images/727.png" />
+<img alt="../_images/728.png" class="align-center" src="../_images/728.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">O dată ce id-ul clientului este creat, veți vedea o nouă secțiune numită <em class="guilabel">Client ID for native application</em>. Observați <em class="guilabel">Client ID</em> și <em class="guilabel">Client secret</em>. Acestea sunt acreditările de care aveți nevoie în QGIS.</p>
 </li>
 </ol>
-<img alt="../_images/826.png" class="align-center" src="../_images/826.png" />
+<img alt="../_images/827.png" class="align-center" src="../_images/827.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">Înapoi în QGIS, vizitați <em class="menuselection">Plugins ‣ Manage and Install Plugins...</em>. Găsiți plugin-ul <tt class="docutils literal"><span class="pre">Google</span> <span class="pre">Maps</span> <span class="pre">Engine</span> <span class="pre">Connector</span></tt> și faceți click pe <em class="guilabel">Install plugin</em>.</p>
 </li>
 </ol>
-<img alt="../_images/924.png" class="align-center" src="../_images/924.png" />
+<img alt="../_images/925.png" class="align-center" src="../_images/925.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">O dată ce plugin-ul este instalat, veți vedea o nouă bară de instrumente în QGIS. Această bară de instrumente conține diferite instrumente pentru lucrul cu Google Maps Engine. Faceți clic pe butonul <em class="guilabel">More</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1025.png" class="align-center" src="../_images/1025.png" />
+<img alt="../_images/1026.png" class="align-center" src="../_images/1026.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">În fereastra de dialog <em class="guilabel">Advanced Settings</em>, introduceți <em class="guilabel">Client ID</em> și <em class="guilabel">Client Secret</em> pe care le-ați obținut din Google Developer Console. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1131.png" class="align-center" src="../_images/1131.png" />
+<img alt="../_images/1133.png" class="align-center" src="../_images/1133.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">După ce ați introdus noile acreditări API, vi se va cere să vă logați și să autorizați plugin-ul pentru a le folosi pe acestea. Conectați-vă la contul dvs. Google.</p>
 </li>
 </ol>
-<img alt="../_images/1226.png" class="align-center" src="../_images/1226.png" />
+<img alt="../_images/1227.png" class="align-center" src="../_images/1227.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Clic pe <em class="guilabel">Accept</em>, în ecranul următor.</p>
 </li>
 </ol>
-<img alt="../_images/1324.png" class="align-center" src="../_images/1324.png" />
+<img alt="../_images/1325.png" class="align-center" src="../_images/1325.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Dacă totul a mers bine, veți vedea un mesaj care indică faptul că v-ați conectat cu succes.</p>
 </li>
 </ol>
-<img alt="../_images/1423.png" class="align-center" src="../_images/1423.png" />
+<img alt="../_images/1424.png" class="align-center" src="../_images/1424.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Acum, haideți să adăugăm stratul SFMTA Bikeway Network, care a fost descărcat mai devreme. Mergeți la <em class="menuselection">Layer ‣ Add Vector Layer</em>. Navigați la fișierul descărcat <tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network.zip</span></tt> și faceți clic pe <em class="guilabel">Open</em>. Selectați stratul <tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network.shp</span></tt>, și apoi apăsați <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1522.png" class="align-center" src="../_images/1522.png" />
+<img alt="../_images/1523.png" class="align-center" src="../_images/1523.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">Una dintre caracteristicile plugin-ului <tt class="docutils literal"><span class="pre">Google</span> <span class="pre">Maps</span> <span class="pre">Engine</span> <span class="pre">Connector</span></tt> este abilitatea de a încărca seturi de date direct din QGIS. Selectați stratul <tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network</span></tt> și faceți clic pe pictograma <em class="guilabel">Upload</em> din bara de instrumente.</p>
 </li>
 </ol>
-<img alt="../_images/1621.png" class="align-center" src="../_images/1621.png" />
+<img alt="../_images/1622.png" class="align-center" src="../_images/1622.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">În fereastra de dialog <em class="guilabel">Upload a dataset to Google Maps Engine</em>, introduceți o <em class="guilabel">Descriere</em> a setului de date. Puteți lăsa toate celelalte setări la valorile implicite. Clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1720.png" class="align-center" src="../_images/1720.png" />
+<img alt="../_images/1721.png" class="align-center" src="../_images/1721.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Plugin-ul va folosi Google Maps Engine API pentru a încărca stratul și va crea o <em>Sursă de date</em> pentru motorul Google Maps. După ce încărcarea s-a încheiat, o nouă filă de browser se va deschide și vă va duce la sursa de date nou creată.</p>
 </li>
 </ol>
-<img alt="../_images/1820.png" class="align-center" src="../_images/1820.png" />
+<img alt="../_images/1821.png" class="align-center" src="../_images/1821.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Pașii următori vor demonstra procesul de creare a unei hărți cu ajutorul Google Maps Engine. O dată ce harta este creată, o vom accesa folosind plugin-ul din QGIS. O dată ce tabela vectorială a fost prelucrată, faceți clic pe <em class="guilabel">Create styled layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1918.png" class="align-center" src="../_images/1918.png" />
+<img alt="../_images/1919.png" class="align-center" src="../_images/1919.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Denumiți stratul ca <tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network</span></tt> și faceți clic pe <em class="guilabel">Create</em>.</p>
 </li>
 </ol>
-<img alt="../_images/2015.png" class="align-center" src="../_images/2015.png" />
+<img alt="../_images/2016.png" class="align-center" src="../_images/2016.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Clic pe <em class="guilabel">Add rule</em> pentru adăugarea unui stil personalizat pentru strat.</p>
 </li>
 </ol>
-<img alt="../_images/2119.png" class="align-center" src="../_images/2119.png" />
+<img alt="../_images/2120.png" class="align-center" src="../_images/2120.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Alegeți culoarea și opțiunile de etichetare din secțiunea <em class="guilabel">Line style</em>. Clic pe <em class="guilabel">Apply</em> pentru a vizualiza setările de stil aplicate stratului dvs. De asemenea, puteți selecta opțiunea <em class="guilabel">No Basemap</em> din colțul din dreapta-sus, pentru a vă permite să vedeți stratul  fără harta de bază. O dată ce vă mulțumește stilul, treceți la fila <em class="guilabel">Info windows</em>.</p>
 </li>
 </ol>
-<img alt="../_images/2218.png" class="align-center" src="../_images/2218.png" />
+<img alt="../_images/2219.png" class="align-center" src="../_images/2219.png" />
 <ol class="arabic simple" start="23">
 <li><p class="first">Aici puteți specifica ce conținut să fie afișat atunci când se face clic pe o entitate din hartă. Puteți accesa atributele entității folosind marcajul <tt class="docutils literal"><span class="pre">{attribute_name}</span></tt>. În acest caz, vrem doar să afișăm numele străzii pentru entitatea tip linie. Introduceți următoarele în zona de text. Apăsați  <em class="guilabel">Apply</em> și apoi faceți clic pe orice entitate de tip linie de pe hartă, pentru a testa codul fereastrei info. Când ați terminat, bifați <em class="guilabel">Publish on exit</em> și faceți clic pe <em class="guilabel">Exit</em>.</p>
 </li>
@@ -341,7 +342,7 @@
 &lt;/div&gt;
 </pre></div>
 </div>
-<img alt="../_images/2314.png" class="align-center" src="../_images/2314.png" />
+<img alt="../_images/2315.png" class="align-center" src="../_images/2315.png" />
 <ol class="arabic simple" start="24">
 <li><p class="first">Clic pe <em class="guilabel">Add to map</em> pentru a crea o hartă cu acest strat.</p>
 </li>
@@ -391,7 +392,7 @@
 <li><p class="first">Faceți clic pe stratul dreptunghiului de încadrare pentru a-l selecta. Veți observa că instrumentele <em class="guilabel">View</em> sunt activate. Apăsați pictograma <em class="guilabel">WMS Overlay</em> din bara de instrumente.</p>
 </li>
 </ol>
-<img alt="../_images/339.png" class="align-center" src="../_images/339.png" />
+<img alt="../_images/3310.png" class="align-center" src="../_images/3310.png" />
 <ol class="arabic simple" start="34">
 <li><p class="first">În fereastra de dialog <em class="guilabel">Select A Layer to Add</em>, alegeți stratul <tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network</span></tt> și apăsați <em class="guilabel">Add Selected to Map</em>.</p>
 </li>
@@ -433,7 +434,7 @@ width="100%" height="600px"></iframe>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Jul 15, 2015.<br/>
+      Last updated on Jul 22, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Running and Scheduling QGIS Processing Jobs &mdash; QGIS Tutorials and Tips</title>
+    <title>Taken voor QGIS uitvoeren en in schema zetten &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -31,7 +31,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Naburige polygonen in een laag zoeken" href="find_neighbor_polygons.html" />
-    <link rel="prev" title="Using Custom Python Expression Functions" href="custom_python_functions.html" />
+    <link rel="prev" title="Writing Python Scripts for Processing Framework" href="processing_python_scripts.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -112,8 +112,9 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">BIL-, BIP- of BSQ-bestanden openen in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Beginnen met programmeren in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Een plug-in in Python bouwen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Running and Scheduling QGIS Processing Jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Aangepaste Python expressie-functies gebruiken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Taken voor QGIS uitvoeren en in schema zetten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Google Maps Engine Connector gebruiken voor QGIS</a></li>
@@ -129,7 +130,7 @@
               
                 
   <li>
-    <a href="custom_python_functions.html" title="Previous Chapter: Using Custom Python Expression Functions"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Using Custom Pyt...</span>
+    <a href="processing_python_scripts.html" title="Previous Chapter: Writing Python Scripts for Processing Framework"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Writing Python S...</span>
     </a>
   </li>
   <li>
@@ -191,143 +192,104 @@
       
 
   <div class="section" id="running-and-scheduling-qgis-processing-jobs">
-<h1>Running and Scheduling QGIS Processing Jobs<a class="headerlink" href="#running-and-scheduling-qgis-processing-jobs" title="Permalink naar deze titel">¶</a></h1>
+<h1>Taken voor QGIS uitvoeren en in schema zetten<a class="headerlink" href="#running-and-scheduling-qgis-processing-jobs" title="Permalink naar deze titel">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/running_qgis_jobs.pdf">A4</a> <a class="reference external" href="../pdf/running_qgis_jobs_letter.pdf">Letter</a> ]</p>
-<p>You can automate a lot of tasks in QGIS using Python scripting (PyQGIS) and the
-Processing Framework. Most of the time, you would run these scripts manually
-while QGIS is open. While that is helpful, many times you need a way to run
-this jobs via the command-line and without needing to open QGIS. Fortunately,
-you can write standalone python scripts that use QGIS libraries and can be run
-via the command-line. In this tutorial, we will learn how to write and
-schedule a job that uses the QGIS Processing framework.</p>
+<p>U kunt veel van de taken in QGIS automatiseren met behulp van Python scripten (PyQGIS) en het framework Processing. Meestentijds zult u deze scripts handmatig uitvoeren terwijl QGIS is geopend. Hoewel dat nuttig is, heeft u ook vaak een manier nodig om deze taken via de opdrachtregel uit te kunnen voeren en zonder QGIS te moeten openen. Gelukkig kunt u zelfstandige scripts voor Python schrijven die bibliotheken van QGIS gebruiken en via de opdrachtregel kunnen worden uitgevoerd. In deze handleiding zullen we leren hoe een taak te schrijven en in en schema te zetten en die het framework van QGIS Processing gebruikt.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
-<p>Let&#8217;s say we are working on some analysis using shapefiles of a region. The
-shapefiles are updated on a daily basis and we always need the latest file. But
-before we can use these files, we need to cleanup the data. We can setup a QGIS
-job that automates this process and runs it daily so you have the latest
-cleaned up shapefiles for your work. We will write a standalone Python script
-that downloads a shapefile and run topological cleaning operations on a daily
-basis.</p>
+<h2>Overzicht van de taak<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
+<p>Laten we zeggen dat we werken aan enkele analyses met behulp van shapefiles van een regio. De shapefiles worden bijgewerkt op dagelijkse basis en we hebben altijd het laatste bestand nodig. Maar voordat we deze bestanden kunnen gebruiken, moeten we de gegevens opschonen. We kunnen ene taak voor QGIS instellen die dit proces automatiseert en dagelijks wordt uitgevoerd zodat u de laatste opgeschoonde shapefiles voor uw werk heeft. We zullen een zelfstandig Python=script schrijven dat een shapefile downloadt en topologische bewerkingen voor opschonen uitvoert op een dagelijkse basis.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
+<h3>Andere vaardigheden die u zult leren<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
 <ul class="simple">
-<li>Downloading and unzipping files using Python.</li>
-<li>Running any Processing algorithm via PyQGIS.</li>
-<li>Fixing topological errors in a vector layer.</li>
+<li><p class="first">Bestanden downloaden en unzippen met behulp van Python.</p>
+</li>
+<li><p class="first">Een algoritme van Processing uitvoeren via PyQGIS.</p>
+</li>
+<li><p class="first">Topologische fouten in een vectorlaag repareren.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
-<p><a class="reference external" href="http://www.geofabrik.de/">Geofabrik</a> provides daily updated shapefiles of
-<a class="reference external" href="http://www.openstreetmap.org/">OpenStreetMap</a> datasets.</p>
-<p>We will use <a class="reference external" href="http://download.geofabrik.de/australia-oceania.html">shapefiles for Fiji</a> for this exercise.
-Download the <a class="reference external" href="http://download.geofabrik.de/australia-oceania/fiji-latest.shp.zip">fiji-latest.shp.zip</a> and
-unzip it to a folder on your disk.</p>
-<p>Data Source <a class="reference internal" href="credits.html#geofabrik" id="id1">[GEOFABRIK]</a></p>
+<h2>De gegevens ophalen<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
+<p><a class="reference external" href="http://www.geofabrik.de/">Geofabrik</a> verschaft dagelijks bijgewerkte shapefiles van gegevenssets van <a class="reference external" href="http://www.openstreetmap.org/">OpenStreetMap</a> .</p>
+<p>We zulleen de <a class="reference external" href="http://download.geofabrik.de/australia-oceania.html">shapefiles voor Fiji</a> gebruiken voor deze oefening. Download de <a class="reference external" href="http://download.geofabrik.de/australia-oceania/fiji-latest.shp.zip">fiji-latest.shp.zip</a> en pak dat uit in een map op uw schijf.</p>
+<p>Gegevensbron <a class="reference internal" href="credits.html#geofabrik" id="id1">[GEOFABRIK]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink naar deze titel">¶</a></h2>
 <ol class="arabic simple">
-<li>We will first run through the process of cleaning the shapefile manually to
-note the commands that we will use in the python script. Launch QGIS and go
-to <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">We zullen eerst door het proces van het handmatig opschonen gaan om de opdrachten te noteren die we zullen gebruiken in het script voor Python. Start QGIS en ga naar <em class="menuselection">Kaartlagen ‣ Laag toevoegen ‣ Vector laag toevoegen</em>.</p>
+</li>
 </ol>
-<img alt="../_images/1109.png" class="align-center" src="../_images/1109.png" />
+<img alt="../_images/1128.png" class="align-center" src="../_images/1128.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the folder containing the unzipped shapefiles and select the
-<tt class="docutils literal"><span class="pre">roads.shp</span></tt> file and click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Blader naar de map die de uitgepakte shapefiles bevat en selecteer het bestand <tt class="docutils literal"><span class="pre">roads.shp</span></tt> en klik op <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
-<img alt="../_images/259.png" class="align-center" src="../_images/259.png" />
+<img alt="../_images/260.png" class="align-center" src="../_images/260.png" />
 <ol class="arabic simple" start="3">
-<li>First we must re-project the roads layer to a Projected CRS. This will allow
-us to use <em>meters</em> as units when performing analysis instead of degrees.
-Open <em class="menuselection">Processing ‣ Toolbox</em>.</li>
+<li><p class="first">Eerst moeten we de laag roads opnieuw projecteren naar een Geprojecteerd CRS. Dat stelt ons in staat om <em>meters</em> als eenheden te gebruiken bij het uitvoeren van anlyses, in plaats van graden. Open <em class="menuselection">Processing ‣ Toolbox</em>.</p>
+</li>
 </ol>
-<img alt="../_images/336.png" class="align-center" src="../_images/336.png" />
+<img alt="../_images/337.png" class="align-center" src="../_images/337.png" />
 <ol class="arabic simple" start="4">
-<li>Search for the <em class="guilabel">Reproject layer</em> tool. Double-click it to launch
-the dialog.</li>
+<li><p class="first">Zoek naar het gereedschap <em class="guilabel">Reproject layer</em>. Dubbelklik er op om het dialoogvenster te starten.</p>
+</li>
 </ol>
-<img alt="../_images/426.png" class="align-center" src="../_images/426.png" />
+<img alt="../_images/427.png" class="align-center" src="../_images/427.png" />
 <ol class="arabic simple" start="5">
-<li>In the <em class="guilabel">Reproject layer</em> dialog, select the <tt class="docutils literal"><span class="pre">roads</span></tt> layer as
-<em class="guilabel">Input layer</em>. We will use <tt class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span> <span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></tt>
-CRS as the <em class="guilabel">Target CRS</em>. Click <em class="guilabel">Run</em>.</li>
+<li><p class="first">Selecteer, in het dialoogvenster <em class="guilabel">Reproject layer</em>, de laag <tt class="docutils literal"><span class="pre">roads</span></tt> als <em class="guilabel">Input layer</em>. We zullen CRS <tt class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span> <span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></tt> gebruiken als het <em class="guilabel">Target CRS</em>. Klik op <em class="guilabel">Run</em>.</p>
+</li>
 </ol>
-<img alt="../_images/527.png" class="align-center" src="../_images/527.png" />
+<img alt="../_images/528.png" class="align-center" src="../_images/528.png" />
 <ol class="arabic simple" start="6">
-<li>Once the process finishes, you will see the reprojected layer loaded in
-QGIS. Go to <em class="menuselection">Processing ‣ History and Log..</em>.</li>
+<li><p class="first">Als het proces eenmaal is voltooid, zult u de  opnieuw geprojecteerde laag zien geladen in QGIS. Ga naar <em class="menuselection">Processing ‣ Historie..</em>.</p>
+</li>
 </ol>
-<img alt="../_images/625.png" class="align-center" src="../_images/625.png" />
+<img alt="../_images/626.png" class="align-center" src="../_images/626.png" />
 <ol class="arabic simple" start="7">
-<li>In the <em class="guilabel">History and Log</em> dialog, expand the <em class="guilabel">Algorithm</em>
-folder and select the latest entry. You will see the full processing command
-shown in the bottom panel. Note this command for use in our script.</li>
+<li><p class="first">Vergroot, in het dialoogvenster <em class="guilabel">Historie</em>, de map <em class="guilabel">ALGORITHM</em> en selecteer het laatste item. U zult de volledige opdracht voor Processing in het onderste paneel zien staan. Noteer deze opdracht om in ons script te gebruiken.</p>
+</li>
 </ol>
-<img alt="../_images/725.png" class="align-center" src="../_images/725.png" />
+<img alt="../_images/726.png" class="align-center" src="../_images/726.png" />
 <ol class="arabic simple" start="8">
-<li>Back in the main QGIS Window, click at the <em class="guilabel">CRS</em> button in the
-bottom-right corner.</li>
+<li><p class="first">Klik, terug in het hoofdvenster van QGIS, op de knop <em class="guilabel">CRS</em> in de rechter benedenhoek.</p>
+</li>
 </ol>
-<img alt="../_images/824.png" class="align-center" src="../_images/824.png" />
+<img alt="../_images/825.png" class="align-center" src="../_images/825.png" />
 <ol class="arabic simple" start="9">
-<li>In the <em class="guilabel">Project Properties | CRS</em> dialog, check the
-<em class="guilabel">Enable on-the-fly CRS transformation</em> and select <tt class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span>
-<span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></tt> as the CRS. This will ensure that our original and
-reprojected layers will line up correctly.</li>
+<li><p class="first">In het dialoogvenster <em class="guilabel">Projecteigenschappen | CRS</em>, selecteer <em class="guilabel">Gelijjktijdige CRS-transformatie gebruiken</em> en selecteer <tt class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span> <span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></tt> als het CRS. Dit zal er voor zorgen dat onze originele en opnieuw geprojecteerde lagen juist uit zullen lijn.</p>
+</li>
 </ol>
-<img alt="../_images/922.png" class="align-center" src="../_images/922.png" />
+<img alt="../_images/923.png" class="align-center" src="../_images/923.png" />
 <ol class="arabic simple" start="10">
-<li>Now we will run the cleaning operation. GRASS has a very powerful set of
-topological cleaning tools. These are available in QGIS via the <tt class="docutils literal"><span class="pre">v.clean</span></tt>
-algorithm. Search for this algorithm in the <em class="guilabel">Processing Toolbox</em>
-and double-click it to launch the dialog.</li>
+<li><p class="first">Nu zullen we de bewerking voor het opschonen uitvoeren. GRASS heeft een zeer krachtige verzameling topologische gereedschappen voor opschonen. Deze zijn in QGIS beschikbaar via het algoritme <tt class="docutils literal"><span class="pre">v.clean</span></tt>. Zoek naar dit algoritme in de <em class="guilabel">Processing Toolbox</em> en dubbelklik er op om het dialoogvenster te starten.</p>
+</li>
 </ol>
-<img alt="../_images/1023.png" class="align-center" src="../_images/1023.png" />
+<img alt="../_images/1024.png" class="align-center" src="../_images/1024.png" />
 <ol class="arabic simple" start="11">
-<li>You can read more about various tools and options in the <em class="guilabel">Help</em>
-tab. For this tutorial, we will be using the <tt class="docutils literal"><span class="pre">snap</span></tt> tool to remove
-duplicate vertices that are within 1 meter of each other. Select
-<tt class="docutils literal"><span class="pre">Reprojected</span> <span class="pre">layer</span></tt> as the <em class="guilabel">Layer to clean</em>. Choose <tt class="docutils literal"><span class="pre">snap</span></tt> as
-the <em class="guilabel">Cleaning tool</em>.  Enter <tt class="docutils literal"><span class="pre">1.00</span></tt> as the
-<em class="guilabel">Threshold</em>. Leave the other fields blank and click
-<em class="guilabel">Run</em>.</li>
+<li><p class="first">U kunt meer te weten komen over de verschillende gereedschappen en opties op de tab <em class="guilabel">Help</em>. Voor deze handleiding zullen we het gereedschap <tt class="docutils literal"><span class="pre">snap</span></tt> gebruiken om duplicaat-punten te verwijderen die binnen 1 meter van elkaar liggen. Selecteer de`` laag Opnieuw geprojecteerd`` als de <em class="guilabel">Layer to clean</em>. Kies <tt class="docutils literal"><span class="pre">snap</span></tt> als de <em class="guilabel">Cleaning tool</em>.  Voer <tt class="docutils literal"><span class="pre">1.00</span></tt> als de <em class="guilabel">Threshold</em>. Laat de andere velden leeg en klik op <em class="guilabel">Run</em>.</p>
+</li>
 </ol>
-<img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
+<img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
 <ol class="arabic simple" start="12">
-<li>Once the processing finishes, you will see 2 new layers added to QGIS. The
-<tt class="docutils literal"><span class="pre">Cleaned</span> <span class="pre">vector</span> <span class="pre">layer</span></tt> is the layer with topological errors corrected.
-You will also have a <tt class="docutils literal"><span class="pre">Errors</span> <span class="pre">layer</span></tt> which will highlight the features
-which were repaired. You can use the errors layer as a guide and zoom in to
-see vertices that were removed.</li>
+<li><p class="first">Als de verwerking eenmaal is voltooid zult u 2 nieuwe lagen zien toegevoegd aan QGIS. De laag <tt class="docutils literal"><span class="pre">Cleaned</span> <span class="pre">vector</span></tt> is de laag met gecorrigeerde topologische fouten. U zult ook een laag <tt class="docutils literal"><span class="pre">Errors</span></tt> hebben waarin de objecten zijn geaccentueerd die zijn gerepareerd. U kunt de laag met fouten als richtlijn nemen en inzoomen op de punten die werden verwijderd.</p>
+</li>
 </ol>
-<img alt="../_images/1224.png" class="align-center" src="../_images/1224.png" />
+<img alt="../_images/1225.png" class="align-center" src="../_images/1225.png" />
 <ol class="arabic simple" start="13">
-<li>Go to <em class="menuselection">Processing ‣ History and Log</em> dialog and note the
-full processing command for later use.</li>
+<li><p class="first">Ga naar het dialoogvenster <em class="menuselection">Processing ‣ Geschiedenis</em> en noteeer de volledige opdracht voor Processing voor later gebruik.</p>
+</li>
 </ol>
-<img alt="../_images/1322.png" class="align-center" src="../_images/1322.png" />
+<img alt="../_images/1323.png" class="align-center" src="../_images/1323.png" />
 <ol class="arabic simple" start="14">
-<li>We are ready to start coding now. See the <strong>A Text Editor or a Python IDE</strong>
-section in the <a class="reference internal" href="building_a_python_plugin.html"><em>Een plug-in in Python bouwen</em></a> tutorial for instructions to
-setup your text editor or IDE. For running standalone python scripts that
-use QGIS, we must set various configuration options. A good way to run
-standalone scripts is to launch them via a <tt class="docutils literal"><span class="pre">.bat</span></tt> file. This file will
-first set the correct configuration options and then call the python
-script. Create a new file named <tt class="docutils literal"><span class="pre">launch.bat</span></tt> and enter the following
-text. Change the values according to your QGIS configuration. Don&#8217;t forget
-to replace the username with your own username in the path to the python
-script.  The paths in this file will be the same on your system if you
-installed QGIS via the <tt class="docutils literal"><span class="pre">OSGeo4W</span> <span class="pre">Installer</span></tt>. Save the file on your
-Desktop.</li>
+<li><p class="first">We zijn nu klaar om te beginnen met coderen. Bekijk het gedeelte <strong>Een tekstbewerker of een Python IDE</strong> in de handleiding <a class="reference internal" href="building_a_python_plugin.html"><em>Een plug-in in Python bouwen</em></a> voor instructies om uw tekstbewerker of IDE in te stellen. Voor het uitvoeren van zelfstandige scripts in Python die QGIS gebruiken, moeten we verschillende opties voor configuratie instellen. Een goede manier om zelfstandige scripts uit te voeren is om ze te starten via een <tt class="docutils literal"><span class="pre">.bat</span></tt>-bestand. Dat bestand zal eerst de juiste opties voor configuratie instellen en dan het script van Python aanroepen. Maak een nieuw bestand genaamd <tt class="docutils literal"><span class="pre">launch.bat</span></tt> en voer de volgende tekst in. Wijzig de waarden overeenkomstig uw configuratie voor QGIS. Vergeet niet de gebruikersnaam te vervangen door uw eigen gebruikersnaam in het pad naar het script van Python. De paden in dit bestand zullen hetzelfde zijn op uw systeem indien u QGIS installeerde via de <tt class="docutils literal"><span class="pre">OSGeo4W</span> <span class="pre">Installer</span></tt>. Sla het bestand op op uw bureaublad.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Notitie</p>
-<p class="last">Linux and Mac users will need to create a shell script to set the paths
-and environment variables.</p>
+<p class="last">Linux- en Mac-gebruikers dienen een shell-script te maken om de variabelen voor paden en omgeving in te stellen.</p>
 </div>
 <div class="highlight-none"><div class="highlight"><pre>REM Change OSGEO4W_ROOT to point to the base install folder
 SET OSGEO4W_ROOT=C:\OSGeo4W64
@@ -346,33 +308,24 @@ python c:\Users\Ujaval\Desktop\download_and_clean.py
 pause
 </pre></div>
 </div>
-<img alt="../_images/1421.png" class="align-center" src="../_images/1421.png" />
+<img alt="../_images/1422.png" class="align-center" src="../_images/1422.png" />
 <ol class="arabic simple" start="15">
-<li>Create a new python file and enter the following code. Name the file as
-<tt class="docutils literal"><span class="pre">download_and_clean.py</span></tt> and save it on your Desktop.</li>
+<li><p class="first">maak een nieuw Python-bestand en voer de volgende code in. Noem het bestand <tt class="docutils literal"><span class="pre">download_and_clean.py</span></tt> en sla het op op uw bureaublad.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="k">print</span> <span class="s">&#39;Hello QGIS!&#39;</span>
 </pre></div>
 </div>
-<img alt="../_images/1520.png" class="align-center" src="../_images/1520.png" />
+<img alt="../_images/1521.png" class="align-center" src="../_images/1521.png" />
 <ol class="arabic simple" start="16">
-<li>Switch to your Desktop and locate the <tt class="docutils literal"><span class="pre">launch.bat</span></tt> icon. Double-click it
-to launch a new command window and run the script. If you see <tt class="docutils literal"><span class="pre">Hello</span>
-<span class="pre">QGIS!</span></tt> printed in the command window, your configuration and setup worked
-fine. If you see errors or do not see the text, check your <tt class="docutils literal"><span class="pre">launch.bat</span></tt>
-file and make sure all the paths match the locations on your system.</li>
+<li><p class="first">Schakel over naar uw bureaublad en zoek naar het pictogram van het bestand <tt class="docutils literal"><span class="pre">launch.bat</span></tt>. Dubbelklik er op om een nieuw scherm voor de opdrachtregel te starten en voer het script uit. Als u in het scherm van de opdrachtregel ziet afgedrukt <tt class="docutils literal"><span class="pre">Hello</span> <span class="pre">QGIS!</span></tt>, zijn uw configuratie en instellingen juist ingesteld. Als u fouten ziet of de tekst niet ziet, controleer dan uw bestand <tt class="docutils literal"><span class="pre">launch.bat</span></tt> en zorg er voor dat alle paden overeenkomen met de locaties op uw systeem.</p>
+</li>
 </ol>
-<img alt="../_images/1619.png" class="align-center" src="../_images/1619.png" />
+<img alt="../_images/1620.png" class="align-center" src="../_images/1620.png" />
 <ol class="arabic simple" start="17">
-<li>Back in your text editor, modify the <tt class="docutils literal"><span class="pre">download_and_clean.py</span></tt> script to
-add the following code. This is the bootstrap code to initialize QGIS.
-These are unnecessary if you are running the script within QGIS. But since
-we are running it outside QGIS, we need to add these at the beginning. Make
-sure you replace the username with your username. After making these
-changes, save the file and run <tt class="docutils literal"><span class="pre">launch.bat</span></tt> again. If you see <tt class="docutils literal"><span class="pre">Hello</span>
-<span class="pre">QGIS!</span></tt> printed, you are all set to do add the processing logic to the
-script.</li>
+<li><p class="first">Terug in uw tekstbewerker, pas het script <tt class="docutils literal"><span class="pre">download_and_clean.py</span></tt> aan door de volgende code toe te voegen. Dit is de bootstrap-code om QGIS te initialiseren. Deze zijn overbodig als u het script binnen QGIS uitvoert. Maar omdat we het buiten QGIS uitvoeren, moeten we deze aan het begin toevoegen. Zorg er voor dat u de gebruikersnaam vervangt door uw eigen gebruikersnaam. Sla, na het maken van deze wijzigingen, het ebstand op en voer <tt class="docutils literal"><span class="pre">launch.bat</span></tt> opnieuw uit. Als u <tt class="docutils literal"><span class="pre">Hello</span> <span class="pre">QGIS!</span></tt> ziet afgedrukt, is alles ingesteld om de logica voor Processing toe te voegen aan het script.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
@@ -393,13 +346,10 @@ script.</li>
 <span class="k">print</span> <span class="s">&#39;Hello QGIS!&#39;</span>
 </pre></div>
 </div>
-<img alt="../_images/1718.png" class="align-center" src="../_images/1718.png" />
+<img alt="../_images/1719.png" class="align-center" src="../_images/1719.png" />
 <ol class="arabic simple" start="18">
-<li>Recall the first processing command that we had saved from the log. This
-was the command to re-project a layer. Paste the command to your script and
-add the surrounding code as follows. Note that processing commands return
-the path to the output layers as a dictionary. We are storing this as the
-<tt class="docutils literal"><span class="pre">ret</span></tt> value and printing the path to the reprojected layer.</li>
+<li><p class="first">herinnert u zich nog de eerste opdracht voor Processing die we hebben opgeslagen vanuit het log? Dat was de opdracht om de laag opnieuw te projecteren. Plak de opdracht in uw script en voeg de omringende code als volgt toe. Onthoud dat de opdrachten voor Processing het pad naar de uitvoerlaag teruggeven als een woordenboek. We zullen dat opslaan als de waarde <tt class="docutils literal"><span class="pre">ret</span></tt> en het pad naar de opnieuw geprojecteerde laag afdrukken.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">roads_shp_path</span> <span class="o">=</span> <span class="s">&quot;C:</span><span class="se">\\</span><span class="s">Users</span><span class="se">\\</span><span class="s">Ujaval</span><span class="se">\\</span><span class="s">Downloads</span><span class="se">\\</span><span class="s">fiji-latest.shp</span><span class="se">\\</span><span class="s">roads.shp&quot;</span>
 <span class="n">ret</span> <span class="o">=</span> <span class="n">processing</span><span class="o">.</span><span class="n">runalg</span><span class="p">(</span><span class="s">&#39;qgis:reprojectlayer&#39;</span><span class="p">,</span> <span class="n">roads_shp_path</span><span class="p">,</span> <span class="s">&#39;EPSG:3460&#39;</span><span class="p">,</span>
@@ -408,17 +358,15 @@ the path to the output layers as a dictionary. We are storing this as the
 <span class="k">print</span> <span class="n">output</span>
 </pre></div>
 </div>
-<img alt="../_images/1818.png" class="align-center" src="../_images/1818.png" />
+<img alt="../_images/1819.png" class="align-center" src="../_images/1819.png" />
 <ol class="arabic simple" start="19">
-<li>Run the script via <tt class="docutils literal"><span class="pre">launch.bat</span></tt> and you will see the path to the newly
-created reprojected layer.</li>
+<li><p class="first">Voer het script uit via <tt class="docutils literal"><span class="pre">launch.bat</span></tt> en u zult het pad zien naar de nieuw gemaakte laag Opnieuw geprojecteerd.</p>
+</li>
 </ol>
-<img alt="../_images/1916.png" class="align-center" src="../_images/1916.png" />
+<img alt="../_images/1917.png" class="align-center" src="../_images/1917.png" />
 <ol class="arabic simple" start="20">
-<li>Now add the code for cleaning the topology. Since this is our final output,
-we will add the output file paths as the last 2 arguments for the
-<tt class="docutils literal"><span class="pre">grass.v.clean</span></tt> algorithm. If you left these blank, the output will be
-created in a temporary directory.</li>
+<li><p class="first">Voeg nu de code toe voor het opschonen van de topologie. Omdat dit onze uiteindelijke uitvoer is, zullen we de paden voor de uitvoerbestanden als de laatste 2 argumenten vermelden voor het algoritme <tt class="docutils literal"><span class="pre">grass.v.clean</span></tt>. Als u deze leeg laat zal de uitvoer worden gemaakt in een tijdelijke map.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">processing</span><span class="o">.</span><span class="n">runalg</span><span class="p">(</span><span class="s">&quot;grass:v.clean&quot;</span><span class="p">,</span>
                   <span class="n">output</span><span class="p">,</span>
@@ -431,15 +379,10 @@ created in a temporary directory.</li>
                   <span class="s">&#39;C:\Users</span><span class="se">\\</span><span class="s">Ujaval</span><span class="se">\\</span><span class="s">Desktop</span><span class="se">\\</span><span class="s">errors.shp&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="../_images/2013.png" class="align-center" src="../_images/2013.png" />
+<img alt="../_images/2014.png" class="align-center" src="../_images/2014.png" />
 <ol class="arabic simple" start="21">
-<li>Run the script and you will see 2 new shapefiles created on your Desktop.
-This completes the processing part of the script. Let&#8217;s add the code to
-download the data from the original website and unzip it automatically. We
-will also store the path to the unzipped file in a variable that we can
-pass to the processing algorithm later. We will need to import some
-additional modules for doing this. (See the end of the tutorial for the
-full script with all the changes)</li>
+<li><p class="first">Voer het script uit en u zult 2 nieuwe shapefiles zien gemaakt op uw Bureaublad. Dit voltooid het gedeelte ven Processing van het script. Laten we de code toevoegen voor het downloaden van de gegevens van de originele website en die automatisch laten unzippen. We zullen ook het pad naar het uitgepakte bestand opslaan als een variabele die we later kunnen doorgeven aan het algoritme van Processing. We zullen enkele aanvullende modules moeten importeren om dit te kunnen doen. (Bekijk het einde van de handleiding voor het volledige script met alle wijzigingen)</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">urllib</span>
@@ -462,51 +405,52 @@ full script with all the changes)</li>
                 <span class="n">roads_shp_path</span> <span class="o">=</span> <span class="n">file_path</span>
 </pre></div>
 </div>
-<img alt="../_images/2117.png" class="align-center" src="../_images/2117.png" />
+<img alt="../_images/2118.png" class="align-center" src="../_images/2118.png" />
 <ol class="arabic simple" start="22">
-<li>Run the completed script. Everytime you run the script, a fresh copy of the
-data will be downloaded and processed.</li>
+<li><p class="first">Voer het complete script uit. Elke keer als u het script uitvoert wordt een verse kopie van de gegevens gedownload en verwerkt.</p>
+</li>
 </ol>
-<img alt="../_images/2216.png" class="align-center" src="../_images/2216.png" />
+<img alt="../_images/2217.png" class="align-center" src="../_images/2217.png" />
 <ol class="arabic simple" start="23">
-<li>To automate running on this script on a daily basis, we can use the <tt class="docutils literal"><span class="pre">Task</span>
-<span class="pre">Scheduler</span></tt> in Windows. Launch the Task Scheduler and click
-<em class="guilabel">Create Basic Task</em>.</li>
+<li><p class="first">We kunnen de <tt class="docutils literal"><span class="pre">Taakplanner</span></tt> in Windows gebruiken om het uitvoeren van dit script op een dagelijkse basis te automatiseren. Start de Taakplanner en klik op <em class="guilabel">Basistaak maken</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Notitie</p>
-<p class="last">Linux and Mac users can use cron jobs to schedule  tasks.</p>
+<p class="last">Linux- en Mac-gebruikers kunnen cron jobs gebruiken om taken te plannen.</p>
 </div>
-<img alt="../_images/2313.png" class="align-center" src="../_images/2313.png" />
+<img alt="../_images/2314.png" class="align-center" src="../_images/2314.png" />
 <ol class="arabic simple" start="24">
-<li>Name the task as <tt class="docutils literal"><span class="pre">Daily</span> <span class="pre">Download</span> <span class="pre">and</span> <span class="pre">Cleanup</span></tt> and click <em class="guilabel">Next</em>.</li>
+<li><p class="first">Noem de taak <tt class="docutils literal"><span class="pre">Dagelijkse</span> <span class="pre">download</span> <span class="pre">en</span> <span class="pre">opschonen</span></tt> en klik op <em class="guilabel">Volgende</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2412.png" class="align-center" src="../_images/2412.png" />
 <ol class="arabic simple" start="25">
-<li>Select <tt class="docutils literal"><span class="pre">Daily</span></tt> as the <em class="guilabel">Trigger</em> and click <em class="guilabel">Next</em></li>
+<li><p class="first">Selecteer <tt class="docutils literal"><span class="pre">Dagelijks</span></tt> als de <em class="guilabel">Taaktrigger</em> en klik op <em class="guilabel">Volgende</em></p>
+</li>
 </ol>
 <img alt="../_images/2510.png" class="align-center" src="../_images/2510.png" />
 <ol class="arabic simple" start="26">
-<li>Select a time as per your liking and click <em class="guilabel">Next</em>.</li>
+<li><p class="first">Selecteer een tijdstip naar keuze en klik op <em class="guilabel">Volgende</em>.</p>
+</li>
 </ol>
 <img alt="../_images/268.png" class="align-center" src="../_images/268.png" />
 <ol class="arabic simple" start="27">
-<li>Choose <tt class="docutils literal"><span class="pre">Start</span> <span class="pre">a</span> <span class="pre">program</span></tt> as the <em class="guilabel">Action</em> and click
-<em class="guilabel">Next</em>.</li>
+<li><p class="first">Kies <tt class="docutils literal"><span class="pre">Een</span> <span class="pre">programma</span> <span class="pre">straten</span></tt> als de <em class="guilabel">Actie</em> en klik op <em class="guilabel">Volgende</em>.</p>
+</li>
 </ol>
 <img alt="../_images/278.png" class="align-center" src="../_images/278.png" />
 <ol class="arabic simple" start="28">
-<li>Click <em class="guilabel">Browse</em> and locate the <tt class="docutils literal"><span class="pre">launch.bat</span></tt> script. Click
-<em class="guilabel">Next</em>.</li>
+<li><p class="first">Klik op <em class="guilabel">Bladeren</em> en zoek naar het script <tt class="docutils literal"><span class="pre">launch.bat</span></tt>. Klik op <em class="guilabel">Volgende</em>.</p>
+</li>
 </ol>
 <img alt="../_images/286.png" class="align-center" src="../_images/286.png" />
 <ol class="arabic simple" start="29">
-<li>Click <em class="guilabel">Finish</em> at the last screen to schedule the task. Now the
-script will automatically launch at the specified time to give you a fresh
-copy of cleaned data everyday.</li>
+<li><p class="first">Klik op <em class="guilabel">Voltooien</em> in het laatste scherm om de taak te plannen. Nu zal het script automatisch starten op de gespecificeerde tijd om u elke dag een verse kopie van opgeschoonde gegevens te geven.</p>
+</li>
 </ol>
 <img alt="../_images/295.png" class="align-center" src="../_images/295.png" />
-<p>Below is the full <tt class="docutils literal"><span class="pre">download_and_clean.py</span></tt> script for your reference.</p>
+<p>Hieronder staat het volledige script <tt class="docutils literal"><span class="pre">download_and_clean.py</span></tt> ter verwijzing.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -592,7 +536,7 @@ copy of cleaned data everyday.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Jul 15, 2015.<br/>
+      Laatste aanpassing op Jul 22, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

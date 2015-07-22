@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Using Custom Python Expression Functions &mdash; QGIS Tutorials and Tips</title>
+    <title>Aangepaste Python expressie-functies gebruiken &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Running and Scheduling QGIS Processing Jobs" href="running_qgis_jobs.html" />
+    <link rel="next" title="Writing Python Scripts for Processing Framework" href="processing_python_scripts.html" />
     <link rel="prev" title="Een plug-in in Python bouwen" href="building_a_python_plugin.html" />
 
 <meta charset='utf-8'>
@@ -112,8 +112,9 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">BIL-, BIP- of BSQ-bestanden openen in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Beginnen met programmeren in Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Een plug-in in Python bouwen</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Using Custom Python Expression Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Aangepaste Python expressie-functies gebruiken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Taken voor QGIS uitvoeren en in schema zetten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Google Maps Engine Connector gebruiken voor QGIS</a></li>
@@ -133,7 +134,7 @@
     </a>
   </li>
   <li>
-    <a href="running_qgis_jobs.html" title="Next Chapter: Running and Scheduling QGIS Processing Jobs"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Running and Sche... &raquo;</span>
+    <a href="processing_python_scripts.html" title="Next Chapter: Writing Python Scripts for Processing Framework"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Writing Python S... &raquo;</span>
     </a>
   </li>
               
@@ -191,71 +192,55 @@
       
 
   <div class="section" id="using-custom-python-expression-functions">
-<h1>Using Custom Python Expression Functions<a class="headerlink" href="#using-custom-python-expression-functions" title="Permalink naar deze titel">¶</a></h1>
+<h1>Aangepaste Python expressie-functies gebruiken<a class="headerlink" href="#using-custom-python-expression-functions" title="Permalink naar deze titel">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/custom_python_functions_a4.pdf">A4</a> <a class="reference external" href="../pdf/custom_python_functions_letter.pdf">Letter</a> ]</p>
-<p>Expressions in QGIS have a lot of power and are used in many core features -
-selection, calculating field values, styling, labelling etc. QGIS also has
-support for user-defined expressions. With a little bit of python programming,
-you can define your own functions that can be used within the expression
-engine.</p>
+<p>Expressies in QGIS zijn bijzonder krachtig en worden in vele bron-mogelijkheden gebruikt - selectie, berekenen van veldwaarden, opmaken, labelen etc. QGIS hefet ook ondersteuning voor gebruikergedefinieerde expressies. Met slechts weinig programmeren in Python kunt u uw eigen functies definiëren die kunnen worden gebruikt binnen het programma voor de expressie.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
-<p>We will define a custom function that finds the UTM Zone of a map feature and
-use this function to write an expression that displays the UTM zone as a map
-tip when hovered over the point.</p>
+<h2>Overzicht van de taak<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
+<p>We zullen een aangepaste functie definiëren die de UTM Zone van een kaartobject zoekt en deze functie gebruikt om een expressie te schrijven die de UTM-zone als een kaarttip weergeeft als over het punt wordt gegaan.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
+<h3>Andere vaardigheden die u zult leren<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
 <ul class="simple">
-<li>How to use the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">Tips</span></tt> tool to display custom text when hovering over a
-feature.</li>
+<li><p class="first">Hoe het gereedschap <tt class="docutils literal"><span class="pre">Kaarttips</span></tt> te gebruiken om aangepaste tekst weer te geven indien er over een object wordt gegaan.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
-<p>We will use Natural Earth&#8217;s <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places</a>
-dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simple (less columns) dataset</a></p>
-<p>For convenience, you may directly download a copy of the dataset from the links
-below:</p>
+<h2>De gegevens ophalen<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
+<p>We zullen de gegevensset Natural Earth&#8217;s <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places</a> gebruiken. Download de <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simple (less columns) dataset</a></p>
+<p>Voor het gemak kunt u direct een kopie van beide gegevenssets downloaden vanaf de links hieronder:</p>
 <p><a class="reference external" href="../../downloads/ne_10m_populated_places_simple.zip">ne_10m_populated_places_simple.zip</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink naar deze titel">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS and go to <em class="menuselection">Layers ‣ Add Vector ‣ Add Vector
-Layer</em>.</li>
+<li><p class="first">Open QGIS en ga naar <em class="menuselection">Kaartlagen ‣ Laag toevoegen ‣ Vectorlaag toevoegen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/128.png" class="align-center" src="../_images/128.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt> file and
-click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Blader naar het gedownloade bestand <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt> en klik op <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
 <ol class="arabic simple" start="3">
-<li>Go to <em class="menuselection">View ‣ Select ‣ Select By Expressions...</em>.</li>
+<li><p class="first">Ga naar <em class="menuselection">Beeld ‣ Selecteren ‣ Selecteren met expressie...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
 <ol class="arabic simple" start="4">
-<li>Switch to the <em class="guilabel">Function Editor</em> tab. Here you can write any
-PyQGIS code that will be executed by the expression engine.</li>
+<li><p class="first">Schakel naar de tab <em class="guilabel">Functiebewerker</em>. Hier kunt u alle code voor PyQGIS schrijven die zal worden uitgevoerd doort het programma voor expressies.</p>
+</li>
 </ol>
 <img alt="../_images/48.png" class="align-center" src="../_images/48.png" />
 <ol class="arabic simple" start="5">
-<li>We will define a custom function named <tt class="docutils literal"><span class="pre">GetUtmZone</span></tt> that will calculate
-the UTM zone number for each feature. Since custom functions in QGIS work at
-the feature level. We will use the centroid of the feature&#8217;s geometry and
-compute the UTM Zone from the latitude and longitude of the centroid
-geometry. We will also add a &#8216;N&#8217; or &#8216;S&#8217; designation to the zone to indicate
-whether the zone is in the northern or southern hemisphere. Type the
-following code in the editor, enter the name of the file as <tt class="docutils literal"><span class="pre">utm_zones.py</span></tt>
-and click <em class="guilabel">Save file</em>.</li>
+<li><p class="first">We zullen een aangepaste functie maken, genaamd <tt class="docutils literal"><span class="pre">GetUtmZone</span></tt> dat het getal van de UTM-zone zal berekenen voor elk object. Omdat aangepaste functies in QGIS werken op het niveau van objecten. We zullen het zwaartepunt van de geometrie van het object gebruiken en de UTM-zone berekenen uit de latitude en longitude van de geometrie van het zwaartepunt. We zullen ook een bestemmings &#8216;N&#8217; of &#8216;S&#8217; toevoegen aan de zone om aan te geven of de zone zich bevindt in de noordelijke of zuidelijke hemisfeer. Typ de volgende code in de bewerker, voer als naam voor het bestand <tt class="docutils literal"><span class="pre">utm_zones.py</span></tt> in en klik op <em class="guilabel">Bestand opslaan</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Notitie</p>
-<p class="last">UTM Zones are longitudinal projection zones numbered from 1 to 60. Each UTM
-zone is 6 degree wide. Here we use a simple mathematical formula to find the
-appropriate zone for a given longitude value. Note that this formula doesn&#8217;t
-cover some special UTM zones.</p>
+<p class="last">UTM-zones zijn projectiezones op de lengtegraad, genummerd van 1 tot en met 60. Elke UTM-zone is 6 graden breed. Hier gebruiken we een eenvoudige wiskundige formule om de toepasselijke zone te zoeken voor een bepaalde waarde voor de lengtegraad. Onthoud dat deze formule niet enige bijzondere UTM-zones dekt.</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
@@ -278,77 +263,59 @@ cover some special UTM zones.</p>
 </div>
 <img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
 <ol class="arabic simple" start="6">
-<li>Click <em class="guilabel">Run Script</em>. This will execute the python code and register
-the function <tt class="docutils literal"><span class="pre">GetUtmZone</span></tt> with the expression engine. Note that this is
-needed to be done only once. Once the function is registered, it will always
-be available to the expression engine.</li>
+<li><p class="first">Klik op <em class="guilabel">Script uitvoeren</em>. Dit zal de code voor Python uitvoeren en de functie``GetUtmZone`` registreren in het programma voor de expressies. Onthoud dat dit slechts één keer behoeft te worden uitgevoerd. Als de functie eenmaal is geregistreerd, zal hij altijd beschikbaar zijn voor het programma voor de expressies.</p>
+</li>
 </ol>
 <img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
 <ol class="arabic simple" start="7">
-<li>Switch to the <em class="guilabel">Expression</em> tab in the <em class="guilabel">Select by
-expression</em> dialog. Find and expand the <em class="guilabel">Custom</em> group in the
-<em class="guilabel">Functions</em> section. You will notice a new custom function
-<tt class="docutils literal"><span class="pre">$GetUtmZone</span></tt> in the list. We can now use this function in the expressions
-just like any other function. Type the following expression in the editor.
-This expression will select all points that fall in the UTM Zone <tt class="docutils literal"><span class="pre">40N</span></tt>.
-Click <em class="guilabel">Select</em>.</li>
+<li><p class="first">Schakel naar de tab <em class="guilabel">Expressie</em> in het dialoogvenster <em class="guilabel">Selecteren met expressie</em>. Zoek en vergroot de groep <em class="guilabel">Custom</em> in het gedeelte <em class="guilabel">Functies</em>. U zult ene nieuwe aangepaste functie <tt class="docutils literal"><span class="pre">$GetUtmZone</span></tt> in de lijst zien. We kunnen nu deze functie nu gebruiken in expressies, net als alle andere functies. Typ de volgende expressie in de bewerker. Deze expressie zal alle punten selecteren die in de UTM Zone <tt class="docutils literal"><span class="pre">40N</span></tt> vallen. Klik op <em class="guilabel">Selecteren</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>$GetUtmZone = &#39;40N&#39;
 </pre></div>
 </div>
 <img alt="../_images/77.png" class="align-center" src="../_images/77.png" />
 <ol class="arabic simple" start="8">
-<li>Back in the main QGIS window, you will see many points highlighted in
-yellow. These are the points falling in the UTM Zone we specified in the
-expression.</li>
+<li><p class="first">Terug in het hoofdvenster van QGIS zult u vele punten zien die geel zijn geaccentueerd. Dit zijn de punten die vallen in de UTM Zone die we hebben gespecificeerd in de expressie.</p>
+</li>
 </ol>
 <img alt="../_images/87.png" class="align-center" src="../_images/87.png" />
 <ol class="arabic simple" start="9">
-<li>You saw how we defined and used a custom function to select features by
-expression. We will now use the same function in another context. One of the
-hidden gems in QGIS is the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">Tip</span></tt> tool. This tool shows user-defined
-text when you hover over a feature. Right-click the
-<tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select <em class="guilabel">Properties</em>.</li>
+<li><p class="first">U zag hoe we een aangepaste functie om objecten met een expressie te selecteren hebben gedefinieerd en gebruikt. We zullen du dezelfde functie in een andere context gebruiken. Eén van de verborgen juwelen in QGIS is het gereedschap <tt class="docutils literal"><span class="pre">Kaarttips</span></tt>. Dit gereedschap geeft gebruiker-gedefinieerde tekst weer indien u over een object gaat. Klik met rechts op de laag <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> en selecteer <em class="guilabel">Eigenschappen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/97.png" class="align-center" src="../_images/97.png" />
 <ol class="arabic simple" start="10">
-<li>Switch to the <em class="guilabel">Display</em> tab and select <em class="guilabel">HTML</em>. Here you
-can enter any text that will be displayed when you hover over the features
-of the layer. Even better, you can use layer field values and expressions
-to define a much more useful message. Click on the <em class="guilabel">Insert
-expression...</em> button.</li>
+<li><p class="first">Schakel over naar de tab <em class="guilabel">Tonen</em> en selecteer <em class="guilabel">HTML</em>. Hier kunt u elke tekst invullen die zal wordne weergegeven als u over de objecten van de laag gaat. Beter nog, u kunt veldwaarden van de laag gebruiken en ook expressies om veel betere nuttige berichten weer te geven. Klik op de knop <em class="guilabel">Voorwaarde toevoegen...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/107.png" class="align-center" src="../_images/107.png" />
 <ol class="arabic simple" start="11">
-<li>You will see the familiar expression editor again. We will use the
-<tt class="docutils literal"><span class="pre">concat</span></tt> function to join the value of the field <tt class="docutils literal"><span class="pre">name</span></tt> and the result
-of our custom function $GetUtmZone. Enter the following expression and
-click <em class="guilabel">OK</em>.</li>
+<li><p class="first">U zult opnieuw de bekende expressiebewerker zien. We zullen de functie <tt class="docutils literal"><span class="pre">concat</span></tt> gebruiken om de waarde van het veld <tt class="docutils literal"><span class="pre">name</span></tt> samen te voegen met het resultaat van onze aangepaste functie $GetUtmZone. Voer de volgende expressie in en klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>concat(&quot;name&quot;, &#39; | UTM Zone: &#39;, $GetUtmZone)
 </pre></div>
 </div>
 <img alt="../_images/1111.png" class="align-center" src="../_images/1111.png" />
 <ol class="arabic simple" start="12">
-<li>You will see the expression entered as the value of the <em class="guilabel">Display</em>
-text. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">U zult de expressie zien ingevoerd als de waarde van de tekst in <em class="guilabel">Tonen</em>. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/129.png" class="align-center" src="../_images/129.png" />
 <ol class="arabic simple" start="13">
-<li>Before we proceed, let us de-select the features that were selected in the
-previous step. Go to <em class="menuselection">View ‣ Select ‣ Deselect Features
-from All Layers</em>.</li>
+<li><p class="first">laten we, vóórdat we doorgaan, de objecten die werden geselecteerd in de vorige stap deselecteren. Ga naar <em class="menuselection">Beeld ‣ Selecteren ‣ Objecten uit alle lagen deselecteren</em>.</p>
+</li>
 </ol>
 <img alt="../_images/137.png" class="align-center" src="../_images/137.png" />
 <ol class="arabic simple" start="14">
-<li>Activate the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">Tips</span></tt> tool by going to <em class="menuselection">View ‣ Map
-Tips</em>.</li>
+<li><p class="first">Activeer het gereedschap <tt class="docutils literal"><span class="pre">Kaarttips</span></tt> door te gaan naar <em class="menuselection">Beeld ‣ Kaarttips</em>.</p>
+</li>
 </ol>
 <img alt="../_images/147.png" class="align-center" src="../_images/147.png" />
 <ol class="arabic simple" start="15">
-<li>Zoom into any area of the map and put your mouse cursor over any feature.
-You will see the name of the city and corresponding UTM zone displayed as
-the map tip.</li>
+<li><p class="first">Zoom in op een willekeurig gebied van de kaart en plaats uw muiscursor boven een object. U zult de naam van de stad en de corresponderende UTM-zone weergegeven zien worden als een kaarttip.</p>
+</li>
 </ol>
 <img alt="../_images/157.png" class="align-center" src="../_images/157.png" />
 </div>
@@ -376,7 +343,7 @@ the map tip.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Jul 15, 2015.<br/>
+      Laatste aanpassing op Jul 22, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
