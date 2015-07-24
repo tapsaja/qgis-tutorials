@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Writing Python Scripts for Processing Framework &mdash; QGIS Tutorials and Tips</title>
+    <title>Scriptare în Python pentru Cadrul de Procesare &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -29,8 +29,8 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Running and Scheduling QGIS Processing Jobs" href="running_qgis_jobs.html" />
-    <link rel="prev" title="Using Custom Python Expression Functions" href="custom_python_functions.html" />
+    <link rel="next" title="Rularea și programarea Activităților de Prelucrare QGIS" href="running_qgis_jobs.html" />
+    <link rel="prev" title="Utilizarea Funcțiilor pentru Expresiile Python Personalizate" href="custom_python_functions.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -111,9 +111,9 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Construirea unui Plugin Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Writing Python Scripts for Processing Framework</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Utilizarea Funcțiilor pentru Expresiile Python Personalizate</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Scriptare în Python pentru Cadrul de Procesare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Rularea și programarea Activităților de Prelucrare QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -129,11 +129,11 @@
               
                 
   <li>
-    <a href="custom_python_functions.html" title="Previous Chapter: Using Custom Python Expression Functions"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Using Custom Pyt...</span>
+    <a href="custom_python_functions.html" title="Previous Chapter: Utilizarea Funcțiilor pentru Expresiile Python Personalizate"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Utilizarea Funcț...</span>
     </a>
   </li>
   <li>
-    <a href="running_qgis_jobs.html" title="Next Chapter: Running and Scheduling QGIS Processing Jobs"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Running and Sche... &raquo;</span>
+    <a href="running_qgis_jobs.html" title="Next Chapter: Rularea și programarea Activităților de Prelucrare QGIS"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Rularea și progr... &raquo;</span>
     </a>
   </li>
               
@@ -191,66 +191,47 @@
       
 
   <div class="section" id="writing-python-scripts-for-processing-framework">
-<h1>Writing Python Scripts for Processing Framework<a class="headerlink" href="#writing-python-scripts-for-processing-framework" title="Permalink to this headline">¶</a></h1>
+<h1>Scriptare în Python pentru Cadrul de Procesare<a class="headerlink" href="#writing-python-scripts-for-processing-framework" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/processing_python_scripts_a4.pdf">A4</a> <a class="reference external" href="../pdf/processing_python_scripts_letter.pdf">Letter</a> ]</p>
 <p>One can write standalone pyqgis scripts that can be run via the Python Console
-in QGIS. You can also adapt your pyqgis scripts so they can be run via the
+in QGIS. With a few tweaks, you can make your standalone scripts run via the
 Processing Framework. This has several advantages. First, taking user input and
-writing output files is far easier as Processing Framework offers standardized
-user interface for these. Having your script in the Processing Toolbox also
+writing output files is far easier because Processing Framework offers standardized
+user interface for these. Second, having your script in the Processing Toolbox also
 allows it to be part of any Processing Model or be run as a Batch job with
 multiple inputs. This tutorial will show how to write a custom python script
 that can be part of the Processing Framework in QGIS.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Our script will perform a dissolve operation based on a field chosen by the
-user. It will also sum up values of another field for the dissolved features.
-In the example, we will dissolve a world shapefile based on a <tt class="docutils literal"><span class="pre">SUBREGION</span></tt>
-attribute and sum up <tt class="docutils literal"><span class="pre">POP_EST</span></tt> field to calculate total population in the
-dissolved region.</p>
+<h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>Script-ul nostru va efectua o operație de dizolvare bazată pe un câmp ales de utilizator. De asemenea, va însuma valorile altui câmp pentru entitățile dizolvate. În exemplu, vom dizolva un fișier shape al lumii, bazat pe atributul <tt class="docutils literal"><span class="pre">SUBREGIUNE</span></tt> și vom însuma câmpul <tt class="docutils literal"><span class="pre">POP_EST</span></tt>, pentru a calcula totalul populației din regiunea dizolvată.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you are looking to do a Dissolve operation along with Statistics, you can
-use the excellent <tt class="docutils literal"><span class="pre">DissolveWithStats</span></tt> plugin. This script is a
-demonstration how to implement similar functionality via a Processing
-script.</p>
+<p class="last">Dacă doriți să știți cum se face o operație de dizolvare împreună cu Statisticile, puteți folosi excelentul plugin <tt class="docutils literal"><span class="pre">DissolveWithStats</span></tt>. Acest script este o demonstrație despre cum să puneți în aplicare o funcționalitate similară prin intermediul unui script de Procesare.</p>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/">Admin 0 - Countries</a>
-dataset from Natural Earth.</p>
-<p>Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - countries shapefile.</a>.</p>
-<p>Data Source <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
-<p>For convenience, you may directly download a copy of the dataset from the links
-below:</p>
+<h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Vom folosi setul de date <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/">Admin 0 - Țări</a> de la Natural Earth.</p>
+<p>Vom folosi setul de date <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - fișierul shape al țărilor.</a></p>
+<p>Sursa de date <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
+<p>Pentru comoditate, puteți descărca o copie a setului de date direct de la adresa de mai jos:</p>
 <p><a class="reference external" href="../../downloads/ne_10m_admin_0_countries.zip">ne_10_admin_0_countries.zip</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS and go to <em class="menuselection">Layers ‣ Add Vector ‣ Add Vector
-Layer</em>. Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10_admin_0_countries.zip</span></tt> file and
-load the <tt class="docutils literal"><span class="pre">ne_10_admin_0_countries</span></tt> layer. Go to <em class="menuselection">Processing
-‣ Toolbox</em>.</li>
+<li><p class="first">În QGIS, mergeți la <em class="menuselection">Layers ‣ Add Vector ‣ Add Vector Layer</em>. Navigați la fișierul descărcat <tt class="docutils literal"><span class="pre">ne_10_admin_0_countries.zip</span></tt> și încărcați stratul <tt class="docutils literal"><span class="pre">ne_10_admin_0_countries</span></tt>. Mergeți la <em class="menuselection">Processing ‣ Toolbox</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
 <ol class="arabic simple" start="2">
-<li>Expand the <em class="guilabel">Scripts</em> group in the <em class="guilabel">Processing Toolbox</em>
-and select <em class="guilabel">Create a new script</em>.</li>
+<li><p class="first">Extinteți grupul <em class="guilabel">Scripts</em> din <em class="guilabel">Processing Toolbox</em> și selectați <em class="guilabel">Create a new script</em>.</p>
+</li>
 </ol>
 <img alt="../_images/250.png" class="align-center" src="../_images/250.png" />
 <ol class="arabic simple" start="3">
-<li>For a python script to be recognized as a Processing script, the beginning
-of the script must be the specifications of the input and outputs. This will
-be used to construct the user interface to run the script. You can learn
-more about the format of these lines from <a class="reference external" href="https://docs.qgis.org/2.8/en/docs/user_manual/processing/scripts.html">QGIS Processing Documentation</a>.
-Enter the following lines in the <em class="guilabel">Script editor</em>. Here we are
-specifying 3 user inputs: <tt class="docutils literal"><span class="pre">dissolve_layer</span></tt>, <tt class="docutils literal"><span class="pre">dissolve_field</span></tt> and
-<tt class="docutils literal"><span class="pre">sum_field</span></tt>. Note that we are adding <tt class="docutils literal"><span class="pre">dissolve_layer</span></tt> after both the
-field input definitions. This means that input will be pre-populated with
-choice of fields from the <tt class="docutils literal"><span class="pre">dissolve_layer</span></tt>. We also specify the
-<tt class="docutils literal"><span class="pre">output_layer</span></tt> as the output vector layer. Click <em class="guilabel">Save</em> button.</li>
+<li><p class="first">Pentru ca un script Python să fie recunoscut ca un script de Procesare, la începutul script-ului trebuie să se afle specificațiile de intrare și de ieșire. Acestea vor fi utilizate la construirea interfeței cu utilizatorul, pentru a rula script-ul. Puteți afla mai multe despre formatul acestor linii, din <a class="reference external" href="https://docs.qgis.org/2.8/en/docs/user_manual/processing/scripts.html">Documentația Processing din QGIS</a>. Introduceți următoarele linii în <em class="guilabel">Script editor</em>. Aici avem 3 intrări ale utilizatorului: <tt class="docutils literal"><span class="pre">dissolve_layer</span></tt>, <tt class="docutils literal"><span class="pre">dissolve_field</span></tt> și <tt class="docutils literal"><span class="pre">sum_field</span></tt>. Rețineți că <tt class="docutils literal"><span class="pre">dissolve_layer</span></tt> se adaugă după definițiile ambelor câmpuri de intrare. Acest lucru înseamnă că intrările vor fi pre-populate prin alegerea câmpurilor din <tt class="docutils literal"><span class="pre">dissolve_layer</span></tt>. De asemenea, specificați <tt class="docutils literal"><span class="pre">output_layer</span></tt> ca și strat vectorial de ieșire. Faceți clic pe butonul <em class="guilabel">Save</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>##dissolve_layer=vector
 ##dissolve_field=field dissolve_layer
@@ -260,31 +241,30 @@ choice of fields from the <tt class="docutils literal"><span class="pre">dissolv
 </div>
 <img alt="../_images/334.png" class="align-center" src="../_images/334.png" />
 <ol class="arabic simple" start="4">
-<li>Name the script <tt class="docutils literal"><span class="pre">dissolve_with_sum</span></tt> and save it at the default location
-under <em class="menuselection">.qgis2 ‣ processing ‣ scripts</em> folder.</li>
+<li><p class="first">Denumiți script-ul <tt class="docutils literal"><span class="pre">dissolve_with_sum</span></tt> și salvați-l în locația implicită din folderul <em class="menuselection">.qgis2 ‣ processing ‣ scripts</em>.</p>
+</li>
 </ol>
 <img alt="../_images/424.png" class="align-center" src="../_images/424.png" />
 <ol class="arabic simple" start="5">
-<li>Back in the <em class="guilabel">Script editor</em>, click <em class="guilabel">Run algorithm</em>
-button to preview the user interface.</li>
+<li><p class="first">Înapoi, în <em class="guilabel">Script editor</em>, faceți clic pe butonul <em class="guilabel">Run algorithm</em>, pentru a previzualiza interfața utilizatorului.</p>
+</li>
 </ol>
 <img alt="../_images/525.png" class="align-center" src="../_images/525.png" />
 <ol class="arabic simple" start="6">
-<li>You can see that just by adding a few lines, we have a nice user interface
-for the user to specify the inputs. It is also consistent with all other
-Processing algorithms, so there is no learning curve involved in using your
-custom algorithm.</li>
+<li><p class="first">Puteți vedea că doar prin adăugarea a câtorva rânduri, avem o interfață frumoasă, pe care utilizatorul va preciza intrările. De asemenea, este în concordanță cu toți ceilalți algoritmi de procesare, astfel încât nu există nici o curbă de învățare implicată în folosirea algoritmului personalizat.</p>
+</li>
 </ol>
 <img alt="../_images/623.png" class="align-center" src="../_images/623.png" />
 <ol class="arabic simple" start="7">
-<li>In the <em class="guilabel">Script editor</em>, enter the following code. You will notice
-that we are using some special methods such as <tt class="docutils literal"><span class="pre">processing.getObject()</span></tt>
-and <tt class="docutils literal"><span class="pre">processing.features()</span></tt>. These are convenience wrappers that make it
-easy to work with data. You can learn more about these from <a class="reference external" href="https://docs.qgis.org/2.8/en/docs/user_manual/processing/console.html#additional-functions-for-handling-data">Additional
-functions for handling data</a>
-section of QGIS Processing Documentation. Click <em class="guilabel">Save</em> to save the
-newly entered code and then the <em class="guilabel">X</em> button to close the editor.</li>
+<li><p class="first">În: guilabel: <cite>Script editor</cite>, introduceți următorul cod. Veți observa că apelăm unele metode speciale, cum ar fi <tt class="docutils literal"><span class="pre">processing.getObject()</span></tt> și <tt class="docutils literal"><span class="pre">processing.features()</span></tt>. Acestea sunt ambalate confortabil, pentru a ușura lucrul cu datele. Puteți afla mai multe despre acestea din secțiunea <a class="reference external" href="https://docs.qgis.org/2.8/en/docs/user_manual/processing/console.html#additional-functions-for-handling-data">Funcțiilor suplimentare de manipulare a datelor</a> a Documentației de Procesare QGIS. Clic pe <em class="guilabel">Save</em> pentru a salva codul nou introdus, și apoi pe butonul <em class="guilabel">X</em> pentru a închide editorul.</p>
+</li>
 </ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This script uses python list comprehensions extensively. Take a look at this
+<a class="reference external" href="https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions">list comprehension tutorial</a>
+to get familiar with the syntax.</p>
+</div>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -301,39 +281,33 @@ newly entered code and then the <em class="guilabel">X</em> button to close the 
 </div>
 <img alt="../_images/723.png" class="align-center" src="../_images/723.png" />
 <ol class="arabic simple" start="8">
-<li>While writing code, it is important to be able to see errors and debug your
-code. Your processing scripts can be debugged easily via the built-in Python
-Console. In the main QGIS window, go to <em class="menuselection">Plugins ‣ Python
-Console</em>. Once the console is open, find your script in the
-<em class="guilabel">Processing Toolbox</em> and double-click it to launch it.</li>
+<li><p class="first">În timp ce se scrie codul, este important să fiți în măsură să vedeți erorile și să depanați codul. Script-urile de Procesare pot fi depanate cu ușurință prin intermediul consolei Python încorporate. În fereastra principală a QGIS, mergeți la <em class="menuselection">Plugins ‣ Python Console</em>. O dată ce consola este deschisă, găsiți script-ul în <em class="guilabel">Instrumentarul Processing</em> și faceți dublu clic pe el pentru a-l lansa.</p>
+</li>
 </ol>
 <img alt="../_images/822.png" class="align-center" src="../_images/822.png" />
 <ol class="arabic simple" start="9">
-<li>Select <tt class="docutils literal"><span class="pre">SUBREGION</span></tt> as the <em class="guilabel">dissolve field</em>. You may choose any
-field as the <em class="guilabel">sum field</em> as the script doesn&#8217;t have any code yet
-to deal with it. Click <em class="guilabel">Run</em>.</li>
+<li><p class="first">Selectați <tt class="docutils literal"><span class="pre">SUBREGIUNE</span></tt> ca și <em class="guilabel">câmp de dizolvare</em>. Puteți alege orice câmp și ca <em class="guilabel">câmp de însumare</em> atât timp cât scriptul nu are nici un cod pentru a interacționa cu acesta. Clic <em class="guilabel">Run</em>.</p>
+</li>
 </ol>
 <img alt="../_images/920.png" class="align-center" src="../_images/920.png" />
 <ol class="arabic simple" start="10">
-<li>You will see an error dialog. This is expected since the script is
-incomplete and doesn&#8217;t generate any output yet.</li>
+<li><p class="first">Veți vedea un dialog de eroare. Acest lucru este de așteptat, deoarece script-ul este incomplet și nu generează nici o ieșire încă.</p>
+</li>
 </ol>
 <img alt="../_images/1021.png" class="align-center" src="../_images/1021.png" />
 <ol class="arabic simple" start="11">
-<li>In the main QGIS windows, you will see the debug output from the script
-printed in the console. This is useful way to add print statements and see
-intermediate variable values.</li>
+<li><p class="first">În principalele ferestrele QGIS, veți vedea ieșirea de depanare a script-ului afișat în consolă. Acest lucru este un mod util de a adăuga instrucțiuni de imprimare și de a vedea valorile variabile intermediare.</p>
+</li>
 </ol>
 <img alt="../_images/1125.png" class="align-center" src="../_images/1125.png" />
 <ol class="arabic simple" start="12">
-<li>Let&#8217;s go back to editing the script by right-clicking the script and select
-<em class="guilabel">Edit script</em>.</li>
+<li><p class="first">Să ne întoarcem la editarea script-ului printr-un clic dreapta pe script, apoi selectați <em class="guilabel">Edit script</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1222.png" class="align-center" src="../_images/1222.png" />
 <ol class="arabic simple" start="13">
-<li>Enter the following code to complete the script. Note that we are using the
-existing dissolve algorithm in QGIS via processing using
-<tt class="docutils literal"><span class="pre">processing.runalg()</span></tt> method.</li>
+<li><p class="first">Introduceți codul de mai jos pentru a finaliza script-ul. Rețineți că folosim algoritmul existent de dizolvare din QGIS, prin procesarea cu ajutorul metodei <tt class="docutils literal"><span class="pre">processing.runalg()</span></tt>.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># Create a dictionary to hold values from the sum field</span>
 <span class="n">sum_unique_values</span> <span class="o">=</span> <span class="p">{}</span>
@@ -363,28 +337,22 @@ existing dissolve algorithm in QGIS via processing using
 </div>
 <img alt="../_images/1320.png" class="align-center" src="../_images/1320.png" />
 <ol class="arabic simple" start="14">
-<li>Run the algorithm by selecting <tt class="docutils literal"><span class="pre">SUBREGION</span></tt> as the <em class="guilabel">dissolve
-field</em> and <tt class="docutils literal"><span class="pre">POP_EST</span></tt> as the <em class="guilabel">sum field</em>. Click <em class="guilabel">Run</em>.</li>
+<li><p class="first">Rulează algoritmul prin selectarea <tt class="docutils literal"><span class="pre">SUBREGIUNII</span></tt> ca și <em class="guilabel">câmp dizolvat</em>, și <tt class="docutils literal"><span class="pre">POP_EST</span></tt> ca și <em class="guilabel">câmp însumat</em>. Clic pe <em class="guilabel">Run</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The processing algorithm may take upto 10 minutes to finish depending on
-your system.</p>
+<p class="last">Algoritmul de procesare poate dura până la 10 minute pentru a termina, în funcție de sistemul dumneavoastră.</p>
 </div>
 <img alt="../_images/1419.png" class="align-center" src="../_images/1419.png" />
 <ol class="arabic simple" start="15">
-<li>Once the processing finishes, you can use the <em class="guilabel">Identify</em> tool and
-click on any polygon. You will see the newly added <tt class="docutils literal"><span class="pre">SUM</span></tt> field with the
-<tt class="docutils literal"><span class="pre">POP_EST</span></tt> values from all original polygons added up.</li>
+<li><p class="first">După ce prelucrarea se încheie, puteți folosi instrumentul de <em class="guilabel">Identificare</em>, pentru a efectua clic pe orice poligon. Veți vedea adăugat noul câmp, <tt class="docutils literal"><span class="pre">SUM</span></tt>, cu valorile <tt class="docutils literal"><span class="pre">POP_EST</span></tt> adăugate din toate poligoanele originale.</p>
+</li>
 </ol>
 <img alt="../_images/1518.png" class="align-center" src="../_images/1518.png" />
 <ol class="arabic simple" start="16">
-<li>You will note that all other fields in the output are still present. When
-you dissolve many features to create a single feature, it doesn&#8217;t make
-sense to keep the original fields in the output. Go back to the
-<em class="guilabel">Script editor</em> and add the following code to delete all fields
-except the <tt class="docutils literal"><span class="pre">SUM</span></tt> field and the field that was used to dissolve the
-original layer. Click <em class="guilabel">Save</em> button and close the window.</li>
+<li><p class="first">Veți observa că toate celelalte câmpuri ale rezultatului sunt încă prezente. Când se dizolvă mai multe entități pentru a crea o singură entitate, nu are sens să se păstreze câmpurile originale în rezultat. Mergeți înapoi la: guilabel: <cite>Script editor</cite> și adăugați următorul cod pentru a șterge toate domeniile, cu excepția câmpului <tt class="docutils literal"><span class="pre">SUM</span></tt> și a câmpului care a fost folosit pentru a dizolva stratul original. Faceți clic pe butonul <em class="guilabel">Save</em> și închideți fereastra.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># Delete all fields except dissolve field and the newly created &#39;SUM&#39; field.</span>
 <span class="n">olayer</span><span class="o">.</span><span class="n">startEditing</span><span class="p">()</span>
@@ -398,52 +366,44 @@ original layer. Click <em class="guilabel">Save</em> button and close the window
 </div>
 <img alt="../_images/1617.png" class="align-center" src="../_images/1617.png" />
 <ol class="arabic simple" start="17">
-<li>One of the hidden features of the Processing Framework is that all
-algorithms can work on selected features of a layer. This is very helpful
-when you want to run an algorithm on the subset of a layer. As our script
-uses <tt class="docutils literal"><span class="pre">processing.features()</span></tt> method to read features, it will respect the
-current selection. To demonstrate that, let&#8217;s make a selection first. Click
-on the <em class="guilabel">Select features using an expression</em> button.</li>
+<li><p class="first">Una dintre funcționalitățile ascunse ale Cadrului de Procesare este aceea că toți algoritmii pot lucra pe entitățile selectate ale unui strat. Acest lucru este foarte util atunci când doriți să rulați un algoritm pe subsetul unui strat. Deoarece script-ul nostru folosește metoda <tt class="docutils literal"><span class="pre">processing.features()</span></tt> pentru a citi entitățile, se va respecta selecția curentă. Pentru a demonstra aceasta, haideți să facem mai întâi o selecție. Faceți clic pe butonul <em class="guilabel">Selectare entități utilizând o expresie</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1716.png" class="align-center" src="../_images/1716.png" />
 <ol class="arabic simple" start="18">
-<li>Enter the following expression to select features from North and South
-America and click <em class="guilabel">Select</em>.</li>
+<li><p class="first">Introduceți următoarea expresie pentru a selecta entitățile din America de Nord și cea din Sud, apoi faceți clic pe <em class="guilabel">Select</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;CONTINENT&quot; = &#39;North America&#39; OR &quot;CONTINENT&quot; = &#39;South America&#39;
 </pre></div>
 </div>
 <img alt="../_images/1816.png" class="align-center" src="../_images/1816.png" />
 <ol class="arabic simple" start="19">
-<li>You will see the selected features highlighted in yellow. Right-click the
-<tt class="docutils literal"><span class="pre">dissolve_with_sum</span></tt> script and select <em class="guilabel">Execute</em>.</li>
+<li><p class="first">Veți vedea entitățile selectate, evidențiate cu galben. Efectuați clic-dreapta pe script-ul <tt class="docutils literal"><span class="pre">dissolve_with_sum</span></tt>, apoi selectați <em class="guilabel">Execute</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1914.png" class="align-center" src="../_images/1914.png" />
 <ol class="arabic simple" start="20">
-<li>Select the inputs as before and click <em class="guilabel">Run</em>.</li>
+<li><p class="first">Selectați intrările ca mai înainte, apoi efectuați clic pe <em class="guilabel">Run</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2011.png" class="align-center" src="../_images/2011.png" />
 <ol class="arabic simple" start="22">
-<li>A new <tt class="docutils literal"><span class="pre">output</span> <span class="pre">layer</span></tt> will be added to QGIS. This will contain dissolved
-geometries only from the selected features in the input layer. You will
-also note that the <tt class="docutils literal"><span class="pre">output</span> <span class="pre">layer</span></tt> will contain only 2 fields as expected.</li>
+<li><p class="first">Un nou <tt class="docutils literal"><span class="pre">strat</span> <span class="pre">de</span> <span class="pre">ieșire</span></tt> va fi adăugat în QGIS. Acesta va conține geometriile dizolvate numai din entitățile selectate din stratul de intrare. Observați, de asemenea, că <tt class="docutils literal"><span class="pre">stratul</span> <span class="pre">de</span> <span class="pre">ieșire</span></tt> va conține numai 2 câmpuri, cum era de asteptat.</p>
+</li>
 </ol>
 <img alt="../_images/2116.png" class="align-center" src="../_images/2116.png" />
 <ol class="arabic simple" start="23">
-<li>One last but important remmaining work is to document our algorithm. The
-Processing Framework has nice tools to write and access help. Go to the
-<em class="guilabel">Script editor</em> and click the <em class="guilabel">Edit script help</em>
-button.</li>
+<li><p class="first">O ultimă, dar importantă activitate, o reprezintă documentarea algoritmului nostru. Cadrul de Procesare dispune de instrumente plăcute pentru a scrie și accesa Ajutorul. Mergeți la <em class="guilabel">Script editor</em> și faceți clic pe butonul <em class="guilabel">Edit script help</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2215.png" class="align-center" src="../_images/2215.png" />
 <ol class="arabic simple" start="24">
-<li>Fill in the details for different elements and click <em class="guilabel">OK</em>. Now a
-detailed help will be available to all users of your script in the
-<em class="guilabel">Help</em> tab when they launch the algorithm.</li>
+<li><p class="first">Completați detaliile pentru diferite elemente și faceți clic pe <em class="guilabel">OK</em>. Un ajutor detaliat va fi disponibil pentru toți utilizatorii script-ului în fila <em class="guilabel">Help</em>, atunci când se va lansa algoritmul.</p>
+</li>
 </ol>
 <img alt="../_images/2312.png" class="align-center" src="../_images/2312.png" />
-<p>Below is the complete script for reference. You may modify it to suit your
-needs.</p>
+<p>Mai jos este script-ul complet. Îl puteți modifica pentru a se potrivi cerințelor dumneavoastră.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c">##dissolve_layer=vector</span>
 <span class="c">##dissolve_field=field dissolve_layer</span>
 <span class="c">##sum_field=field dissolve_layer</span>
@@ -517,7 +477,7 @@ needs.</p>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Jul 22, 2015.<br/>
+      Last updated on Jul 24, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

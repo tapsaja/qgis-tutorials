@@ -195,10 +195,10 @@
 <h1>Writing Python Scripts for Processing Framework<a class="headerlink" href="#writing-python-scripts-for-processing-framework" title="제목 주소">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/processing_python_scripts_a4.pdf">A4</a> <a class="reference external" href="../pdf/processing_python_scripts_letter.pdf">Letter</a> ]</p>
 <p>One can write standalone pyqgis scripts that can be run via the Python Console
-in QGIS. You can also adapt your pyqgis scripts so they can be run via the
+in QGIS. With a few tweaks, you can make your standalone scripts run via the
 Processing Framework. This has several advantages. First, taking user input and
-writing output files is far easier as Processing Framework offers standardized
-user interface for these. Having your script in the Processing Toolbox also
+writing output files is far easier because Processing Framework offers standardized
+user interface for these. Second, having your script in the Processing Toolbox also
 allows it to be part of any Processing Model or be run as a Batch job with
 multiple inputs. This tutorial will show how to write a custom python script
 that can be part of the Processing Framework in QGIS.</p>
@@ -286,6 +286,12 @@ functions for handling data</a>
 section of QGIS Processing Documentation. Click <em class="guilabel">Save</em> to save the
 newly entered code and then the <em class="guilabel">X</em> button to close the editor.</li>
 </ol>
+<div class="admonition note">
+<p class="first admonition-title">주석</p>
+<p class="last">This script uses python list comprehensions extensively. Take a look at this
+<a class="reference external" href="https://docs.python.org/2/tutorial/datastructures.html#list-comprehensions">list comprehension tutorial</a>
+to get familiar with the syntax.</p>
+</div>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">PyQt4.QtCore</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -518,7 +524,7 @@ needs.</p>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      최종 업데이트: Jul 22, 2015<br/>
+      최종 업데이트: Jul 24, 2015<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

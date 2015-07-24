@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Running and Scheduling QGIS Processing Jobs &mdash; QGIS Tutorials and Tips</title>
+    <title>Rularea și programarea Activităților de Prelucrare QGIS &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Găsirea Poligoanelor Învecinate Dintr-un Strat" href="find_neighbor_polygons.html" />
-    <link rel="prev" title="Writing Python Scripts for Processing Framework" href="processing_python_scripts.html" />
+    <link rel="prev" title="Scriptare în Python pentru Cadrul de Procesare" href="processing_python_scripts.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -111,9 +111,9 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Construirea unui Plugin Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Running and Scheduling QGIS Processing Jobs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Utilizarea Funcțiilor pentru Expresiile Python Personalizate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Scriptare în Python pentru Cadrul de Procesare</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Rularea și programarea Activităților de Prelucrare QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -129,7 +129,7 @@
               
                 
   <li>
-    <a href="processing_python_scripts.html" title="Previous Chapter: Writing Python Scripts for Processing Framework"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Writing Python S...</span>
+    <a href="processing_python_scripts.html" title="Previous Chapter: Scriptare în Python pentru Cadrul de Procesare"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Scriptare în Pyt...</span>
     </a>
   </li>
   <li>
@@ -191,143 +191,104 @@
       
 
   <div class="section" id="running-and-scheduling-qgis-processing-jobs">
-<h1>Running and Scheduling QGIS Processing Jobs<a class="headerlink" href="#running-and-scheduling-qgis-processing-jobs" title="Permalink to this headline">¶</a></h1>
+<h1>Rularea și programarea Activităților de Prelucrare QGIS<a class="headerlink" href="#running-and-scheduling-qgis-processing-jobs" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/running_qgis_jobs.pdf">A4</a> <a class="reference external" href="../pdf/running_qgis_jobs_letter.pdf">Letter</a> ]</p>
-<p>You can automate a lot of tasks in QGIS using Python scripting (PyQGIS) and the
-Processing Framework. Most of the time, you would run these scripts manually
-while QGIS is open. While that is helpful, many times you need a way to run
-this jobs via the command-line and without needing to open QGIS. Fortunately,
-you can write standalone python scripts that use QGIS libraries and can be run
-via the command-line. In this tutorial, we will learn how to write and
-schedule a job that uses the QGIS Processing framework.</p>
+<p>Puteți automatiza o mulțime de sarcini în QGIS folosind scriptarea Python (PyQGIS) și cadrul de Procesare. De cele mai multe ori, veți rula manual aceste scripturi, atât timp cât este deschis QGIS. Deși acest lucru este util, de multe ori e nevoie de o modalitate de a rula aceste activități prin intermediul liniei de comandă, fără a fi nevoie de deschiderea QGIS. Din fericire, puteți scrie scripturi python de sine stătătoare, care folosesc bibliotecile QGIS, și care pot fi rulate prin intermediul liniei de comandă. In acest tutorial, vom învăța cum să scriem și să programăm o acțiune care utilizează cadrul de Procesare din QGIS.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Let&#8217;s say we are working on some analysis using shapefiles of a region. The
-shapefiles are updated on a daily basis and we always need the latest file. But
-before we can use these files, we need to cleanup the data. We can setup a QGIS
-job that automates this process and runs it daily so you have the latest
-cleaned up shapefiles for your work. We will write a standalone Python script
-that downloads a shapefile and run topological cleaning operations on a daily
-basis.</p>
+<h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>Să spunem că lucrăm la unele analize folosind fișierele shape ale unei regiuni. Fișierele shape sunt actualizate zilnic și avem nevoie întotdeauna cel mai recent fișier. Dar înainte de a putea folosi aceste fișiere, trebuie să efectuăm o curățare a datelor. Putem seta o acțiune QGIS care automatizează acest proces, și care rulează zilnic, astfel încât să aveți ultimele fișiere shape curățate. Vom scrie un script Python de sine stătător, care descarcă un fișier shape și rulează operațiuni de curățare topologică o dată pe zi.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<h3>Alte competențe pe care le veți dobândi<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Downloading and unzipping files using Python.</li>
-<li>Running any Processing algorithm via PyQGIS.</li>
-<li>Fixing topological errors in a vector layer.</li>
+<li><p class="first">Descărcarea și dezarhivarea fișierelor folosind Python.</p>
+</li>
+<li><p class="first">Rularea oricărui algoritm de prelucrare prin PyQGIS.</p>
+</li>
+<li><p class="first">Repararea erorilor topologice dintr-un strat vectorial.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://www.geofabrik.de/">Geofabrik</a> provides daily updated shapefiles of
-<a class="reference external" href="http://www.openstreetmap.org/">OpenStreetMap</a> datasets.</p>
-<p>We will use <a class="reference external" href="http://download.geofabrik.de/australia-oceania.html">shapefiles for Fiji</a> for this exercise.
-Download the <a class="reference external" href="http://download.geofabrik.de/australia-oceania/fiji-latest.shp.zip">fiji-latest.shp.zip</a> and
-unzip it to a folder on your disk.</p>
-<p>Data Source <a class="reference internal" href="credits.html#geofabrik" id="id1">[GEOFABRIK]</a></p>
+<h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.geofabrik.de/">Geofabrik</a> furnizează zilnic seturi de date conținând fișiere shape actualizate ale <a class="reference external" href="http://www.openstreetmap.org/">OpenStreetMap</a>.</p>
+<p>Vom folosi <a class="reference external" href="http://download.geofabrik.de/australia-oceania.html">fișierele shape pentru Fiji</a> în cadrul acestui exercițiu. Descărcați <a class="reference external" href="http://download.geofabrik.de/australia-oceania/fiji-latest.shp.zip">fiji-latest.shp.zip</a> și dezarhivați-l într-un dosar de pe discul dvs.</p>
+<p>Sursa de date <a class="reference internal" href="credits.html#geofabrik" id="id1">[GEOFABRIK]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>We will first run through the process of cleaning the shapefile manually to
-note the commands that we will use in the python script. Launch QGIS and go
-to <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Vom trece mai întâi prin procesul manual de curățare a fișierului shape, pentru a nota comenzile pe care le vom folosi în scriptul python. Lansați QGIS și mergeți la <em class="menuselection">Strat ‣ Adăugare Strat ‣ Adăugare Strat Vectorial</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1128.png" class="align-center" src="../_images/1128.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the folder containing the unzipped shapefiles and select the
-<tt class="docutils literal"><span class="pre">roads.shp</span></tt> file and click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Navigați la folderul care conține fișierele shape dezarhivate, apoi selectați fișierul <tt class="docutils literal"><span class="pre">roads.shp</span></tt> și faceți clic pe <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/260.png" class="align-center" src="../_images/260.png" />
 <ol class="arabic simple" start="3">
-<li>First we must re-project the roads layer to a Projected CRS. This will allow
-us to use <em>meters</em> as units when performing analysis instead of degrees.
-Open <em class="menuselection">Processing ‣ Toolbox</em>.</li>
+<li><p class="first">În primul rând trebuie să reproiectăm stratul drumurilor, folosind un CRS Proiectat. Aceasta ne va permite să folosim ca unități <em>metrii</em> în locul gradelor, atunci când se va efectua o analiză. Deschideți <em class="menuselection">Procesare ‣ Instrumentar</em>.</p>
+</li>
 </ol>
 <img alt="../_images/337.png" class="align-center" src="../_images/337.png" />
 <ol class="arabic simple" start="4">
-<li>Search for the <em class="guilabel">Reproject layer</em> tool. Double-click it to launch
-the dialog.</li>
+<li><p class="first">Căutați instrumentul <em class="guilabel">Reproiectare strat</em>. Faceți dublu clic pe el pentru a lansa dialogul.</p>
+</li>
 </ol>
 <img alt="../_images/427.png" class="align-center" src="../_images/427.png" />
 <ol class="arabic simple" start="5">
-<li>In the <em class="guilabel">Reproject layer</em> dialog, select the <tt class="docutils literal"><span class="pre">roads</span></tt> layer as
-<em class="guilabel">Input layer</em>. We will use <tt class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span> <span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></tt>
-CRS as the <em class="guilabel">Target CRS</em>. Click <em class="guilabel">Run</em>.</li>
+<li><p class="first">În dialogul <em class="guilabel">Reproiectare strat</em>, folosiți stratul <tt class="docutils literal"><span class="pre">roads</span></tt> ca <em class="guilabel">Strat de intrare</em>. Vom folosi CRS-ul <tt class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span> <span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></tt> ca <em class="guilabel">CRS Destinație</em>. Clic pe <em class="guilabel">Rulează</em>.</p>
+</li>
 </ol>
 <img alt="../_images/528.png" class="align-center" src="../_images/528.png" />
 <ol class="arabic simple" start="6">
-<li>Once the process finishes, you will see the reprojected layer loaded in
-QGIS. Go to <em class="menuselection">Processing ‣ History and Log..</em>.</li>
+<li><p class="first">O dată ce procesul s-a încheiat, stratul reproiectat se va încărca în QGIS. Mergeți la <em class="menuselection">Procesare ‣ Istoric și Jurnal..</em>.</p>
+</li>
 </ol>
 <img alt="../_images/626.png" class="align-center" src="../_images/626.png" />
 <ol class="arabic simple" start="7">
-<li>In the <em class="guilabel">History and Log</em> dialog, expand the <em class="guilabel">Algorithm</em>
-folder and select the latest entry. You will see the full processing command
-shown in the bottom panel. Note this command for use in our script.</li>
+<li><p class="first">În dialogul <em class="guilabel">Istoric și Jurnal</em>, expandați folderul <em class="guilabel">Algoritm</em> și selectați ultima intrare. Veți vedea comanda completă de procesare afișată în panoul de jos. Notați această comandă, pentru a o utiliza în script-ul nostru.</p>
+</li>
 </ol>
 <img alt="../_images/726.png" class="align-center" src="../_images/726.png" />
 <ol class="arabic simple" start="8">
-<li>Back in the main QGIS Window, click at the <em class="guilabel">CRS</em> button in the
-bottom-right corner.</li>
+<li><p class="first">Înapoi în fereastra principală a QGIS, faceți clic pe butonul <em class="guilabel">CRS</em> din colțul din dreapta-jos.</p>
+</li>
 </ol>
 <img alt="../_images/825.png" class="align-center" src="../_images/825.png" />
 <ol class="arabic simple" start="9">
-<li>In the <em class="guilabel">Project Properties | CRS</em> dialog, check the
-<em class="guilabel">Enable on-the-fly CRS transformation</em> and select <tt class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span>
-<span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></tt> as the CRS. This will ensure that our original and
-reprojected layers will line up correctly.</li>
+<li><p class="first">În dialogul <em class="guilabel">Proprietățile Proiectului | CRS</em>, bifați <em class="guilabel">Activează transformarea din zbor a CRS-ului</em>, apoi selectați <tt class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span> <span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></tt> ca CRS. Acest lucru vă asigură că straturile noastre originale și cele reproiectate se vor alinia corect.</p>
+</li>
 </ol>
 <img alt="../_images/923.png" class="align-center" src="../_images/923.png" />
 <ol class="arabic simple" start="10">
-<li>Now we will run the cleaning operation. GRASS has a very powerful set of
-topological cleaning tools. These are available in QGIS via the <tt class="docutils literal"><span class="pre">v.clean</span></tt>
-algorithm. Search for this algorithm in the <em class="guilabel">Processing Toolbox</em>
-and double-click it to launch the dialog.</li>
+<li><p class="first">Acum, vom rula operația de curățare. GRASS având un set foarte puternic de instrumente de curățare topologică. Acestea sunt disponibile în QGIS prin algoritmul <tt class="docutils literal"><span class="pre">v.clean</span></tt>. Căutați acest algoritm în <em class="guilabel">Instrumentarul de Procesare</em>, apoi faceți dublu clic pe el pentru a lansa dialogul.</p>
+</li>
 </ol>
 <img alt="../_images/1024.png" class="align-center" src="../_images/1024.png" />
 <ol class="arabic simple" start="11">
-<li>You can read more about various tools and options in the <em class="guilabel">Help</em>
-tab. For this tutorial, we will be using the <tt class="docutils literal"><span class="pre">snap</span></tt> tool to remove
-duplicate vertices that are within 1 meter of each other. Select
-<tt class="docutils literal"><span class="pre">Reprojected</span> <span class="pre">layer</span></tt> as the <em class="guilabel">Layer to clean</em>. Choose <tt class="docutils literal"><span class="pre">snap</span></tt> as
-the <em class="guilabel">Cleaning tool</em>.  Enter <tt class="docutils literal"><span class="pre">1.00</span></tt> as the
-<em class="guilabel">Threshold</em>. Leave the other fields blank and click
-<em class="guilabel">Run</em>.</li>
+<li><p class="first">Puteți citi despre mai multe instrumente diferite și despre opțiunile acestora în fila <em class="guilabel">Ajutor</em>. Pentru acest tutorial, vom folosi instrumentul <tt class="docutils literal"><span class="pre">snap</span></tt> pentru a elimina vertexurile duplicate, care se află cel mult la 1 metru unul față de celălalt. Selectați <tt class="docutils literal"><span class="pre">Stratul</span> <span class="pre">reproiectat</span></tt> ca <em class="guilabel">Stratul de curățat</em>. Alegeți <tt class="docutils literal"><span class="pre">snap</span></tt> ca <em class="guilabel">Instrument de curățare</em>. Introduceți <tt class="docutils literal"><span class="pre">1.00</span></tt> ca <em class="guilabel">Prag</em>. Lăsați celelalte câmpuri goale și faceți clic pe <em class="guilabel">Rulează</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
 <ol class="arabic simple" start="12">
-<li>Once the processing finishes, you will see 2 new layers added to QGIS. The
-<tt class="docutils literal"><span class="pre">Cleaned</span> <span class="pre">vector</span> <span class="pre">layer</span></tt> is the layer with topological errors corrected.
-You will also have a <tt class="docutils literal"><span class="pre">Errors</span> <span class="pre">layer</span></tt> which will highlight the features
-which were repaired. You can use the errors layer as a guide and zoom in to
-see vertices that were removed.</li>
+<li><p class="first">După ce termină prelucrarea, veți vedea 2 straturi noi adăugate în QGIS. <tt class="docutils literal"><span class="pre">Stratul</span> <span class="pre">vectorial</span> <span class="pre">curățat</span></tt> este stratul cu erori topologice corectate. Veți avea, de asemenea, un <tt class="docutils literal"><span class="pre">Strat</span> <span class="pre">cu</span> <span class="pre">erori</span></tt> care va evidenția entitățile care au fost reparate. Puteți utiliza stratul erorilor ca un ghid și să-l măriți, pentru a vedea vertexurile care au fost eliminate.</p>
+</li>
 </ol>
 <img alt="../_images/1225.png" class="align-center" src="../_images/1225.png" />
 <ol class="arabic simple" start="13">
-<li>Go to <em class="menuselection">Processing ‣ History and Log</em> dialog and note the
-full processing command for later use.</li>
+<li><p class="first">Mergeți în dialogul <em class="menuselection">Procesare ‣ Istoric și Jurnal</em> și notați comanda de procesare completă, pentru o utilizare ulterioară.</p>
+</li>
 </ol>
 <img alt="../_images/1323.png" class="align-center" src="../_images/1323.png" />
 <ol class="arabic simple" start="14">
-<li>We are ready to start coding now. See the <strong>A Text Editor or a Python IDE</strong>
-section in the <a class="reference internal" href="building_a_python_plugin.html"><em>Construirea unui Plugin Python</em></a> tutorial for instructions to
-setup your text editor or IDE. For running standalone python scripts that
-use QGIS, we must set various configuration options. A good way to run
-standalone scripts is to launch them via a <tt class="docutils literal"><span class="pre">.bat</span></tt> file. This file will
-first set the correct configuration options and then call the python
-script. Create a new file named <tt class="docutils literal"><span class="pre">launch.bat</span></tt> and enter the following
-text. Change the values according to your QGIS configuration. Don&#8217;t forget
-to replace the username with your own username in the path to the python
-script.  The paths in this file will be the same on your system if you
-installed QGIS via the <tt class="docutils literal"><span class="pre">OSGeo4W</span> <span class="pre">Installer</span></tt>. Save the file on your
-Desktop.</li>
+<li><p class="first">Acum suntem gata să începem codificarea. Vedeți secțiunea unui <strong>Editor de Text sau IDE Python</strong> în tutorialul <a class="reference internal" href="building_a_python_plugin.html"><em>Construirea unui Plugin Python</em></a> pentru instrucțiunile de instalare. Pentru rularea script-urilor python standalone, care utilizează QGIS, trebuie să setați diverse opțiuni de configurare. O modalitate bună de a rula scripturi independente este de a le lansa printr-un fișier <tt class="docutils literal"><span class="pre">.bat</span></tt>. Acest fișier va stabili mai întâi opțiunile de configurare corecte, apoi va apela script-ul python. Creați un nou fișier numit <tt class="docutils literal"><span class="pre">launch.bat</span></tt> și introduceți textul următor. Modificați valorile în funcție de configurația QGIS. Nu uitați să înlocuiți numele de utilizator cu al dvs. în calea către script-ul python. Căile din acest fișier vor fi similare pe sistemul dumneavoastră, cu acelea ale QGIS, dacă l-ați instalat prin <tt class="docutils literal"><span class="pre">Programul</span> <span class="pre">de</span> <span class="pre">instalare</span> <span class="pre">OSGeo4W</span></tt>. Salvați fișierul pe desktop.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Linux and Mac users will need to create a shell script to set the paths
-and environment variables.</p>
+<p class="last">Utilizatorii de Linux și Mac trebuie să creeze un script pentru linia de comandă, în scopul stabilirii căilor și variabilelor de mediu.</p>
 </div>
 <div class="highlight-none"><div class="highlight"><pre>REM Change OSGEO4W_ROOT to point to the base install folder
 SET OSGEO4W_ROOT=C:\OSGeo4W64
@@ -348,8 +309,8 @@ pause
 </div>
 <img alt="../_images/1422.png" class="align-center" src="../_images/1422.png" />
 <ol class="arabic simple" start="15">
-<li>Create a new python file and enter the following code. Name the file as
-<tt class="docutils literal"><span class="pre">download_and_clean.py</span></tt> and save it on your Desktop.</li>
+<li><p class="first">Creați un nou fișier python și introduceți următorul cod. Denumiți fișierul ca <tt class="docutils literal"><span class="pre">download_and_clean.py</span></tt>, apoi salvați-l pe desktop.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="k">print</span> <span class="s">&#39;Hello QGIS!&#39;</span>
@@ -357,22 +318,13 @@ pause
 </div>
 <img alt="../_images/1521.png" class="align-center" src="../_images/1521.png" />
 <ol class="arabic simple" start="16">
-<li>Switch to your Desktop and locate the <tt class="docutils literal"><span class="pre">launch.bat</span></tt> icon. Double-click it
-to launch a new command window and run the script. If you see <tt class="docutils literal"><span class="pre">Hello</span>
-<span class="pre">QGIS!</span></tt> printed in the command window, your configuration and setup worked
-fine. If you see errors or do not see the text, check your <tt class="docutils literal"><span class="pre">launch.bat</span></tt>
-file and make sure all the paths match the locations on your system.</li>
+<li><p class="first">Comutați la Desktop-ul dvs. și localizați pictograma <tt class="docutils literal"><span class="pre">launch.bat</span></tt>. Faceți dublu clic pe el pentru a lansa o nouă fereastră de comandă și rulați scriptul. Dacă vedeți <tt class="docutils literal"><span class="pre">Hello</span> <span class="pre">QGIS!</span></tt> afișat în fereastra de comandă, instalarea și configurarea au fost corecte. Dacă vedeți erori sau nu vedeți textul, verificați fișierul <tt class="docutils literal"><span class="pre">launch.bat</span></tt> și asigurați-vă că toate căile se potrivesc cu locațiile de pe sistemul dumneavoastră.</p>
+</li>
 </ol>
 <img alt="../_images/1620.png" class="align-center" src="../_images/1620.png" />
 <ol class="arabic simple" start="17">
-<li>Back in your text editor, modify the <tt class="docutils literal"><span class="pre">download_and_clean.py</span></tt> script to
-add the following code. This is the bootstrap code to initialize QGIS.
-These are unnecessary if you are running the script within QGIS. But since
-we are running it outside QGIS, we need to add these at the beginning. Make
-sure you replace the username with your username. After making these
-changes, save the file and run <tt class="docutils literal"><span class="pre">launch.bat</span></tt> again. If you see <tt class="docutils literal"><span class="pre">Hello</span>
-<span class="pre">QGIS!</span></tt> printed, you are all set to do add the processing logic to the
-script.</li>
+<li><p class="first">Înapoi în editorul de text, modificați scriptul <tt class="docutils literal"><span class="pre">download_and_clean.py</span></tt> și adăugați următorul cod. Acesta este codul bootstrap de inițializare a QGIS. El este inutil dacă scriptul se execută din interiorul QGIS. Dar din moment ce îl executăm din afară, este necesar să-l adăugăm la început. Asigurați-vă că înlocuiți numele de utilizator cu al dvs. După efectuarea acestor modificări, salvați din nou fișierul, apoi rulați <tt class="docutils literal"><span class="pre">launch.bat</span></tt>. Dacă apare afișat <tt class="docutils literal"><span class="pre">Hello</span> <span class="pre">QGIS!</span></tt>, sunteți gata să adăugați logica de procesare a script-ului.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
@@ -395,11 +347,8 @@ script.</li>
 </div>
 <img alt="../_images/1719.png" class="align-center" src="../_images/1719.png" />
 <ol class="arabic simple" start="18">
-<li>Recall the first processing command that we had saved from the log. This
-was the command to re-project a layer. Paste the command to your script and
-add the surrounding code as follows. Note that processing commands return
-the path to the output layers as a dictionary. We are storing this as the
-<tt class="docutils literal"><span class="pre">ret</span></tt> value and printing the path to the reprojected layer.</li>
+<li><p class="first">Reveniți la prima comandă de prelucrare pe care am salvat-o în jurnal. Aceasta a fost comanda de reproiectare a unui strat. Lipiți comanda pentru script și adăugați codul înconjurător, după cum urmează. Așa cum se observă, comenzile de prelucrare returnează calea către straturile de ieșire sub formă de dicționar. Această valoare este stocată ca <tt class="docutils literal"><span class="pre">ret</span></tt> și afișează calea către stratul reproiectat.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">roads_shp_path</span> <span class="o">=</span> <span class="s">&quot;C:</span><span class="se">\\</span><span class="s">Users</span><span class="se">\\</span><span class="s">Ujaval</span><span class="se">\\</span><span class="s">Downloads</span><span class="se">\\</span><span class="s">fiji-latest.shp</span><span class="se">\\</span><span class="s">roads.shp&quot;</span>
 <span class="n">ret</span> <span class="o">=</span> <span class="n">processing</span><span class="o">.</span><span class="n">runalg</span><span class="p">(</span><span class="s">&#39;qgis:reprojectlayer&#39;</span><span class="p">,</span> <span class="n">roads_shp_path</span><span class="p">,</span> <span class="s">&#39;EPSG:3460&#39;</span><span class="p">,</span>
@@ -410,15 +359,13 @@ the path to the output layers as a dictionary. We are storing this as the
 </div>
 <img alt="../_images/1819.png" class="align-center" src="../_images/1819.png" />
 <ol class="arabic simple" start="19">
-<li>Run the script via <tt class="docutils literal"><span class="pre">launch.bat</span></tt> and you will see the path to the newly
-created reprojected layer.</li>
+<li><p class="first">Rulați scriptul, cu ajutorul <tt class="docutils literal"><span class="pre">launch.bat</span></tt>, apoi veți vedea calea către noul strat reproiectat creat.</p>
+</li>
 </ol>
 <img alt="../_images/1917.png" class="align-center" src="../_images/1917.png" />
 <ol class="arabic simple" start="20">
-<li>Now add the code for cleaning the topology. Since this is our final output,
-we will add the output file paths as the last 2 arguments for the
-<tt class="docutils literal"><span class="pre">grass.v.clean</span></tt> algorithm. If you left these blank, the output will be
-created in a temporary directory.</li>
+<li><p class="first">Acum adăugați codul pentru curățarea topologică. Deoarece acesta este rezultatul nostru final, vom adăuga căile fișierului de ieșire, ca ultimele 2 argumente pentru algoritmul <tt class="docutils literal"><span class="pre">grass.v.clean</span></tt>. Dacă nu le completați, rezultatul va fi creat într-un director temporar.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">processing</span><span class="o">.</span><span class="n">runalg</span><span class="p">(</span><span class="s">&quot;grass:v.clean&quot;</span><span class="p">,</span>
                   <span class="n">output</span><span class="p">,</span>
@@ -433,13 +380,8 @@ created in a temporary directory.</li>
 </div>
 <img alt="../_images/2014.png" class="align-center" src="../_images/2014.png" />
 <ol class="arabic simple" start="21">
-<li>Run the script and you will see 2 new shapefiles created on your Desktop.
-This completes the processing part of the script. Let&#8217;s add the code to
-download the data from the original website and unzip it automatically. We
-will also store the path to the unzipped file in a variable that we can
-pass to the processing algorithm later. We will need to import some
-additional modules for doing this. (See the end of the tutorial for the
-full script with all the changes)</li>
+<li><p class="first">Rulați scriptul și veți vedea 2 fișiere shape nou create pe desktop. Acesta completează partea de procesare a script-ului. Haideți să adăugăm codul pentru a descărca datele de pe site-ul original, și să-l dezarhivăm în mod automat. Vom stoca, de asemenea, calea către fișierul dezarhivat într-o variabilă pe care o putem transmite algoritmului de procesare ulterioară. Va trebui să importăm unele module suplimentare pentru a face acest lucru. (Vedeți sfârșitul tutorialului pentru script-ul complet, cu toate modificările)</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">urllib</span>
@@ -464,49 +406,50 @@ full script with all the changes)</li>
 </div>
 <img alt="../_images/2118.png" class="align-center" src="../_images/2118.png" />
 <ol class="arabic simple" start="22">
-<li>Run the completed script. Everytime you run the script, a fresh copy of the
-data will be downloaded and processed.</li>
+<li><p class="first">Rulați scriptul finalizat. De fiecare dată când rulați scriptul, o copie proaspătă a datelor va fi descărcată și procesată.</p>
+</li>
 </ol>
 <img alt="../_images/2217.png" class="align-center" src="../_images/2217.png" />
 <ol class="arabic simple" start="23">
-<li>To automate running on this script on a daily basis, we can use the <tt class="docutils literal"><span class="pre">Task</span>
-<span class="pre">Scheduler</span></tt> in Windows. Launch the Task Scheduler and click
-<em class="guilabel">Create Basic Task</em>.</li>
+<li><p class="first">Pentru a automatiza rularea acestui script pe o bază zilnică, putem folosi <tt class="docutils literal"><span class="pre">Programatorul</span> <span class="pre">de</span> <span class="pre">Sarcini</span></tt> din Windows. Lansați Programatorul de Sarcini și faceți clic pe <em class="guilabel">Creează o Acțiune de Bază</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Linux and Mac users can use cron jobs to schedule  tasks.</p>
+<p class="last">Utilizatorii de Linux și Mac pot folosi acțiuni cron pentru programarea sarcinilor.</p>
 </div>
 <img alt="../_images/2314.png" class="align-center" src="../_images/2314.png" />
 <ol class="arabic simple" start="24">
-<li>Name the task as <tt class="docutils literal"><span class="pre">Daily</span> <span class="pre">Download</span> <span class="pre">and</span> <span class="pre">Cleanup</span></tt> and click <em class="guilabel">Next</em>.</li>
+<li><p class="first">Denumiți sarcina &#8220;Descărcare zilnică și Curățare&#8221;, apoi faceți clic pe <em class="guilabel">Next</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2412.png" class="align-center" src="../_images/2412.png" />
 <ol class="arabic simple" start="25">
-<li>Select <tt class="docutils literal"><span class="pre">Daily</span></tt> as the <em class="guilabel">Trigger</em> and click <em class="guilabel">Next</em></li>
+<li><p class="first">Selectați <tt class="docutils literal"><span class="pre">Zilnic</span></tt> ca <em class="guilabel">Declanșator</em>, apoi faceți clic pe <em class="guilabel">Next</em></p>
+</li>
 </ol>
 <img alt="../_images/2510.png" class="align-center" src="../_images/2510.png" />
 <ol class="arabic simple" start="26">
-<li>Select a time as per your liking and click <em class="guilabel">Next</em>.</li>
+<li><p class="first">Selectați o dată pe placul dumneavoastră, apoi faceți clic pe <em class="guilabel">Next</em>.</p>
+</li>
 </ol>
 <img alt="../_images/268.png" class="align-center" src="../_images/268.png" />
 <ol class="arabic simple" start="27">
-<li>Choose <tt class="docutils literal"><span class="pre">Start</span> <span class="pre">a</span> <span class="pre">program</span></tt> as the <em class="guilabel">Action</em> and click
-<em class="guilabel">Next</em>.</li>
+<li><p class="first">Selectați <tt class="docutils literal"><span class="pre">Rulează</span> <span class="pre">un</span> <span class="pre">program</span></tt> ca <em class="guilabel">Intrare</em>, apoi efectuați clic pe <em class="guilabel">Next</em>.</p>
+</li>
 </ol>
 <img alt="../_images/278.png" class="align-center" src="../_images/278.png" />
 <ol class="arabic simple" start="28">
-<li>Click <em class="guilabel">Browse</em> and locate the <tt class="docutils literal"><span class="pre">launch.bat</span></tt> script. Click
-<em class="guilabel">Next</em>.</li>
+<li><p class="first">Clic pe <em class="guilabel">Răsfoire</em> și localizați scriptul <tt class="docutils literal"><span class="pre">launch.bat</span></tt>. Clic <em class="guilabel">Next</em>.</p>
+</li>
 </ol>
 <img alt="../_images/286.png" class="align-center" src="../_images/286.png" />
 <ol class="arabic simple" start="29">
-<li>Click <em class="guilabel">Finish</em> at the last screen to schedule the task. Now the
-script will automatically launch at the specified time to give you a fresh
-copy of cleaned data everyday.</li>
+<li><p class="first">Faceți clic pe <em class="guilabel">Finish</em> din ultimul ecran, pentru a planifica sarcina. Acum, scriptul se va lansa automat la ora specificată, pentru a vă oferi zilnic o copie recentă și curată a datelor.</p>
+</li>
 </ol>
 <img alt="../_images/295.png" class="align-center" src="../_images/295.png" />
-<p>Below is the full <tt class="docutils literal"><span class="pre">download_and_clean.py</span></tt> script for your reference.</p>
+<p>Mai jos este scriptul <tt class="docutils literal"><span class="pre">download_and_clean.py</span></tt>, pentru referința dvs.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -592,7 +535,7 @@ copy of cleaned data everyday.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Jul 22, 2015.<br/>
+      Last updated on Jul 24, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

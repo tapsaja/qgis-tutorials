@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Using Custom Python Expression Functions &mdash; QGIS Tutorials and Tips</title>
+    <title>Utilizarea Funcțiilor pentru Expresiile Python Personalizate &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -29,7 +29,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Writing Python Scripts for Processing Framework" href="processing_python_scripts.html" />
+    <link rel="next" title="Scriptare în Python pentru Cadrul de Procesare" href="processing_python_scripts.html" />
     <link rel="prev" title="Construirea unui Plugin Python" href="building_a_python_plugin.html" />
 
 <meta charset='utf-8'>
@@ -111,9 +111,9 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Fișierele Open BIL, BIP sau BSQ în QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Noțiuni de bază despre programarea în Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Construirea unui Plugin Python</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Using Custom Python Expression Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Utilizarea Funcțiilor pentru Expresiile Python Personalizate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Scriptare în Python pentru Cadrul de Procesare</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Rularea și programarea Activităților de Prelucrare QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
@@ -133,7 +133,7 @@
     </a>
   </li>
   <li>
-    <a href="processing_python_scripts.html" title="Next Chapter: Writing Python Scripts for Processing Framework"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Writing Python S... &raquo;</span>
+    <a href="processing_python_scripts.html" title="Next Chapter: Scriptare în Python pentru Cadrul de Procesare"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Scriptare în Pyt... &raquo;</span>
     </a>
   </li>
               
@@ -191,71 +191,55 @@
       
 
   <div class="section" id="using-custom-python-expression-functions">
-<h1>Using Custom Python Expression Functions<a class="headerlink" href="#using-custom-python-expression-functions" title="Permalink to this headline">¶</a></h1>
+<h1>Utilizarea Funcțiilor pentru Expresiile Python Personalizate<a class="headerlink" href="#using-custom-python-expression-functions" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/custom_python_functions_a4.pdf">A4</a> <a class="reference external" href="../pdf/custom_python_functions_letter.pdf">Letter</a> ]</p>
-<p>Expressions in QGIS have a lot of power and are used in many core features -
-selection, calculating field values, styling, labelling etc. QGIS also has
-support for user-defined expressions. With a little bit of python programming,
-you can define your own functions that can be used within the expression
-engine.</p>
+<p>Expresiile din QGIS au o mare putere, fiind utilizate în mai multe funcțiuni de bază - selectare, calculul valorilor unui câmp, stilizare, etichetare etc. QGIS are, de asemenea suport pentru expresii definite de către utilizator. Cu un pic de programare python puteți defini propriile funcții, care pot fi utilizate în cadrul motorului de expresii.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will define a custom function that finds the UTM Zone of a map feature and
-use this function to write an expression that displays the UTM zone as a map
-tip when hovered over the point.</p>
+<h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>Vom defini o funcție personalizată care găsește Zona UTM a unei entități din hartă, apoi vom folosi această funcție pentru a scrie o expresie care afișează zona UTM sub formă de sfat, la trecerea pe deasupra punctului.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<h3>Alte competențe pe care le veți dobândi<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>How to use the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">Tips</span></tt> tool to display custom text when hovering over a
-feature.</li>
+<li><p class="first">Cum să utilizați instrumentul <tt class="docutils literal"><span class="pre">Indicii</span> <span class="pre">Hartă</span></tt> pentru a afișa textul personalizat, la trecerea pe deasupra unei entități.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use Natural Earth&#8217;s <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places</a>
-dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simple (less columns) dataset</a></p>
-<p>For convenience, you may directly download a copy of the dataset from the links
-below:</p>
+<h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Vom folosi setul de date <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Locuri Populate</a> de la Natural Earth. Descărcați setul de date <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simplu (cu mai puține coloane)</a></p>
+<p>Pentru comoditate, puteți descărca o copie a setului de date direct de la adresa de mai jos:</p>
 <p><a class="reference external" href="../../downloads/ne_10m_populated_places_simple.zip">ne_10m_populated_places_simple.zip</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS and go to <em class="menuselection">Layers ‣ Add Vector ‣ Add Vector
-Layer</em>.</li>
+<li><p class="first">Lansați QGIS și mergeți la <em class="menuselection">Strat ‣ Adăugare Strat ‣ Adăugare Strat Vectorial</em>.</p>
+</li>
 </ol>
 <img alt="../_images/128.png" class="align-center" src="../_images/128.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt> file and
-click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Navigați la fișierul descărcat, <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt>, apoi faceți clic pe <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
 <ol class="arabic simple" start="3">
-<li>Go to <em class="menuselection">View ‣ Select ‣ Select By Expressions...</em>.</li>
+<li><p class="first">Mergeți la <em class="menuselection">Vizualizare ‣ Selectare ‣ Selectare După Expresie...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
 <ol class="arabic simple" start="4">
-<li>Switch to the <em class="guilabel">Function Editor</em> tab. Here you can write any
-PyQGIS code that will be executed by the expression engine.</li>
+<li><p class="first">Comutați pe fila <em class="guilabel">Editorul de Funcții</em>. Aici puteți scrie orice cod PyQGIS, care va fi executat de către motorul de expresii.</p>
+</li>
 </ol>
 <img alt="../_images/48.png" class="align-center" src="../_images/48.png" />
 <ol class="arabic simple" start="5">
-<li>We will define a custom function named <tt class="docutils literal"><span class="pre">GetUtmZone</span></tt> that will calculate
-the UTM zone number for each feature. Since custom functions in QGIS work at
-the feature level. We will use the centroid of the feature&#8217;s geometry and
-compute the UTM Zone from the latitude and longitude of the centroid
-geometry. We will also add a &#8216;N&#8217; or &#8216;S&#8217; designation to the zone to indicate
-whether the zone is in the northern or southern hemisphere. Type the
-following code in the editor, enter the name of the file as <tt class="docutils literal"><span class="pre">utm_zones.py</span></tt>
-and click <em class="guilabel">Save file</em>.</li>
+<li><p class="first">Vom defini o funcție particularizată, denumită <tt class="docutils literal"><span class="pre">GetUtmZone</span></tt>, care va calcula numărul zonei UTM pentru fiecare entitate. Deoarece funcțiile personalizate din QGIS lucrează la nivel de entitate. Vom folosi centrul de greutate al geometriei entității și vom calcula Zona UTM din latitudinea și longitudinea geometriei centroidului. Vom adăuga, de asemenea, denumirea &#8216;N&#8217; sau &#8216;S&#8217;, pentru a indica dacă zona este în emisfera nordică sau sudică. Introduceți codul de mai jos în editor, denumiți fișierul ca <tt class="docutils literal"><span class="pre">utm_zones.py</span></tt>, apoi faceți clic pe <em class="guilabel">Salvare fișier</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">UTM Zones are longitudinal projection zones numbered from 1 to 60. Each UTM
-zone is 6 degree wide. Here we use a simple mathematical formula to find the
-appropriate zone for a given longitude value. Note that this formula doesn&#8217;t
-cover some special UTM zones.</p>
+<p class="last">Zonele UTM sunt zone de proiecție longitudinale, numerotate de la 1 la 60. Fiecare zonă UTM are o dimensiune de 6 grade. Aici vom folosi o formulă matematică simplă, pentru a găsi zona adecvată pentru o valoare longitudinală dată. Rețineți că această formulă nu acoperă unele zone UTM speciale.</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
@@ -278,77 +262,59 @@ cover some special UTM zones.</p>
 </div>
 <img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
 <ol class="arabic simple" start="6">
-<li>Click <em class="guilabel">Run Script</em>. This will execute the python code and register
-the function <tt class="docutils literal"><span class="pre">GetUtmZone</span></tt> with the expression engine. Note that this is
-needed to be done only once. Once the function is registered, it will always
-be available to the expression engine.</li>
+<li><p class="first">Faceți clic pe <em class="guilabel">Rulare Script</em>. Aceasta va executa codul python și va înregistra funcția <tt class="docutils literal"><span class="pre">GetUtmZone</span></tt> în motorul de expresii. Rețineți că acest lucru este necesar să aibă loc o singură dată. O dată ce funcția este înregistrată, ea va fi întotdeauna la dispoziția motorului de expresii.</p>
+</li>
 </ol>
 <img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
 <ol class="arabic simple" start="7">
-<li>Switch to the <em class="guilabel">Expression</em> tab in the <em class="guilabel">Select by
-expression</em> dialog. Find and expand the <em class="guilabel">Custom</em> group in the
-<em class="guilabel">Functions</em> section. You will notice a new custom function
-<tt class="docutils literal"><span class="pre">$GetUtmZone</span></tt> in the list. We can now use this function in the expressions
-just like any other function. Type the following expression in the editor.
-This expression will select all points that fall in the UTM Zone <tt class="docutils literal"><span class="pre">40N</span></tt>.
-Click <em class="guilabel">Select</em>.</li>
+<li><p class="first">Comutați în fila <em class="guilabel">Expresiilor</em> a dialogului <em class="guilabel">Selectare după expresie</em>. Găsiți și extindeți grupul <em class="guilabel">Personalizate</em> din secțiunea <em class="guilabel">Funcțiilor</em>. Veți observa o nouă funcție personalizată, <tt class="docutils literal"><span class="pre">$GetUtmZone</span></tt>, în listă. Putem folosi de acum această funcție în cadrul expresiilor, la fel ca oricare altă funcție. Tastați următoarea expresie în editor. Această expresie va selecta toate punctele care se încadrează în Zona UTM <tt class="docutils literal"><span class="pre">40N</span></tt>. Faceți clic pe <em class="guilabel">Selectare</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>$GetUtmZone = &#39;40N&#39;
 </pre></div>
 </div>
 <img alt="../_images/77.png" class="align-center" src="../_images/77.png" />
 <ol class="arabic simple" start="8">
-<li>Back in the main QGIS window, you will see many points highlighted in
-yellow. These are the points falling in the UTM Zone we specified in the
-expression.</li>
+<li><p class="first">În fereastra principală a QGIS, veți observa unele entități evidențiate în galben. Acestea sunt punctele care se încadrează în zona UTM specificată în expresie.</p>
+</li>
 </ol>
 <img alt="../_images/87.png" class="align-center" src="../_images/87.png" />
 <ol class="arabic simple" start="9">
-<li>You saw how we defined and used a custom function to select features by
-expression. We will now use the same function in another context. One of the
-hidden gems in QGIS is the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">Tip</span></tt> tool. This tool shows user-defined
-text when you hover over a feature. Right-click the
-<tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select <em class="guilabel">Properties</em>.</li>
+<li><p class="first">Ați văzut cum am definit și folosit o funcție personalizată, pentru a selecta entitățile duiupă o expresie. Vom folosi acum aceeași funcție într-un alt context. Una dintre bijuteriile ascunse în QGIS este instrumentul <tt class="docutils literal"><span class="pre">Indiciile</span> <span class="pre">Hărții</span></tt>. Acest instrument arată textul definit de utilizator atunci când treceți peste un element. Faceți clic dreapta pe stratul <cite>ne_10m_populated_places_simple`</cite>, apoi selectați <em class="guilabel">Proprietăți</em>.</p>
+</li>
 </ol>
 <img alt="../_images/97.png" class="align-center" src="../_images/97.png" />
 <ol class="arabic simple" start="10">
-<li>Switch to the <em class="guilabel">Display</em> tab and select <em class="guilabel">HTML</em>. Here you
-can enter any text that will be displayed when you hover over the features
-of the layer. Even better, you can use layer field values and expressions
-to define a much more useful message. Click on the <em class="guilabel">Insert
-expression...</em> button.</li>
+<li><p class="first">Comutați la fila <em class="guilabel">Afișare</em>, apoi selectați <em class="guilabel">HTML</em>. Aici puteți introduce un text oarecare, care va fi afișat atunci când treceți peste entitățile stratului. Mai mult, puteți folosi valori și expresii din câmpurile stratului pentru a defini un mesaj mult mai util. Faceți clic pe butonul <em class="guilabel">Introduceți expresie...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/107.png" class="align-center" src="../_images/107.png" />
 <ol class="arabic simple" start="11">
-<li>You will see the familiar expression editor again. We will use the
-<tt class="docutils literal"><span class="pre">concat</span></tt> function to join the value of the field <tt class="docutils literal"><span class="pre">name</span></tt> and the result
-of our custom function $GetUtmZone. Enter the following expression and
-click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Veți vedea din nou editorul de expresii familiar. Vom folosi funcția <tt class="docutils literal"><span class="pre">concat</span></tt> pentru a alătura valoarea câmpului <tt class="docutils literal"><span class="pre">name</span></tt> rezultatului funcției noastre personalizate, $GetUtmZone. Introduceți următoarea expresie, apoi faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>concat(&quot;name&quot;, &#39; | UTM Zone: &#39;, $GetUtmZone)
 </pre></div>
 </div>
 <img alt="../_images/1111.png" class="align-center" src="../_images/1111.png" />
 <ol class="arabic simple" start="12">
-<li>You will see the expression entered as the value of the <em class="guilabel">Display</em>
-text. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Veți vedea expresia introdusă ca valoare a textului <em class="guilabel">Display</em>. Faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/129.png" class="align-center" src="../_images/129.png" />
 <ol class="arabic simple" start="13">
-<li>Before we proceed, let us de-select the features that were selected in the
-previous step. Go to <em class="menuselection">View ‣ Select ‣ Deselect Features
-from All Layers</em>.</li>
+<li><p class="first">Înainte de a continua, haideți să de-selectăm funcțiile alese în pasul anterior. Mergeți la <em class="menuselection">Vizualizare ‣ Selectare ‣ Deselectează Entitățile din Toate Straturile</em>.</p>
+</li>
 </ol>
 <img alt="../_images/137.png" class="align-center" src="../_images/137.png" />
 <ol class="arabic simple" start="14">
-<li>Activate the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">Tips</span></tt> tool by going to <em class="menuselection">View ‣ Map
-Tips</em>.</li>
+<li><p class="first">Activați instrumentul <tt class="docutils literal"><span class="pre">Indiciile</span> <span class="pre">Hărții</span></tt> mergând la <em class="menuselection">Vizualizare ‣ Indiciile Hărții</em>.</p>
+</li>
 </ol>
 <img alt="../_images/147.png" class="align-center" src="../_images/147.png" />
 <ol class="arabic simple" start="15">
-<li>Zoom into any area of the map and put your mouse cursor over any feature.
-You will see the name of the city and corresponding UTM zone displayed as
-the map tip.</li>
+<li><p class="first">Măriți oricare zonă a hărții și deplasați cursorul mouse-ului peste o entitate oarecare. Veți vedea numele orașului și zona UTM corespunzătoare, afișate ca indiciu în hartă.</p>
+</li>
 </ol>
 <img alt="../_images/157.png" class="align-center" src="../_images/157.png" />
 </div>
@@ -376,7 +342,7 @@ the map tip.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Jul 22, 2015.<br/>
+      Last updated on Jul 24, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
