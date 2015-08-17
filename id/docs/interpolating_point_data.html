@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Interpolasi Data Poin &mdash; QGIS Tutorials and Tips</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
+    <link rel="next" title="Batch Processing using Processing Framework" href="batch_processing.html" />
+    <link rel="prev" title="Sampling Data Raster menggunakan Poin atau Poligon" href="sampling_raster_data.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-690672-13', 'qgistutorials.com');
+  ga('require', 'displayfeatures');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html"><img src="../_static/logo.png">
+          QGIS Tutorials and Tips</a>
+        <span class="navbar-text navbar-version pull-left"><b>v1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            <li class="divider-vertical"></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Tutorials List <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Pengantar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="making_a_map.html">Membuat Peta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_attributes.html">Bekerja dengan Attribut</a></li>
+<li class="toctree-l1"><a class="reference internal" href="importing_spreadsheets_csv.html">Mengimpor file Spreadsheet atau CSV</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Menggunakan Plugins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Mencari dan mengunduh data OpenSteetMap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Styling Dasar Vektor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Menghitung panjang garis dan Statistik/</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Styling dan Analisis Dasar Raster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Mosaik Raster dan Klipping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Bekerja dengan Data Permukaan Medan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Bekerja dengan data WMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferensi Lembaran Topo dan Peta hasil Scan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferensi Citra Udara</a></li>
+<li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitalisasi Data Peta</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Melakukan Join Tabel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Melakukan Join Spasial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Poin di Analisis Poligon</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Membuat Heatmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Melakukan Queries Spasial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analisa Tetangga Terdekat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Data Raster menggunakan Poin atau Poligon</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Interpolasi Data Poin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Otomatisasi Workflow Kompleks menggunakan Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Menggunakan QGIS Browser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Menghitung jumlah vertices pada sebuah Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Membuka file BIL, BIP atau BSQ di QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Memulai Pemrograman Phyton</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Menulis Skrip Pythin untuk Framework Pemrosessan</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Menjalankan dan Menjadwalkan Pekerjaan Pemrosesan QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Menemukan Polygon Neighbor atau Tetangga pada Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Peta Web Leaflet dengan qgis2leaf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_resources.html">Sumber Pembelajaran QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Mengajar QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Kredit Data</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="sampling_raster_data.html" title="Previous Chapter: Sampling Data Raster menggunakan Poin atau Poligon"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Sampling Data Ra...</span>
+    </a>
+  </li>
+  <li>
+    <a href="batch_processing.html" title="Next Chapter: Batch Processing using Processing Framework"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Batch Processing... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+
+            
+<form role="form" class="navbar-form navbar-right">
+<select id="languages" class="form-control select-mini">
+  <option value="en">English</option>
+  <option value="ro">Romanian</option>
+  <option value="fi_FI">Finnish</option>
+  <option value="it">Italian</option>
+  <option value="nl">Dutch</option>
+  <option value="es">Spanish</option>
+  <option value="ru">Russian</option>
+  <option value="pt_BR">Portuguese</option>
+  <option value="fr">French</option>
+  <option value="ko">Korean</option>
+  <option value="el">Greek</option>
+  <option value="de">German</option>
+  <option value="id">Indonesian</option>
+</select>
+</form>
+
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><h4>Author</h4>
+<div class="g-person" data-width="250" data-href="//plus.google.com/u/0/116912222767108657277" data-showtagline="false" data-showcoverphoto="false" data-rel="author"></div>
+
+<h4>Share</h4>
+<div class="addthis_sharing_toolbox"></div>
+        </div>
+      </div>
+    <div class="col-md-9">
+      
+
+  <div class="section" id="interpolating-point-data">
+<h1>Interpolasi Data Poin<a class="headerlink" href="#interpolating-point-data" title="Link permanent untuk headline ini">¶</a></h1>
+<p>[ Download PDF <a class="reference external" href="../pdf/interpolating_point_data_a4.pdf">A4</a> <a class="reference external" href="../pdf/interpolating_point_data_letter.pdf">Letter</a> ]</p>
+<p>Interpolasi secara umum dipakai di GIS sebagai teknik unttuk membuat permukaan yang kontinu dari poin diskrit. Banyak fenomena di dunia nyata yang berupa kontinu - elevasi, tanah, temperatur dan lain-lain. Tapi kita ingin untuk memodelkan permukaan ini untuk analisis, suatu hal yang mustahil untuk melakukan pengukuran melalui permukaan.  Karenanya, pengukuran lapangan diambil pada berbagai poin sepanjang permukaan dan nilai sekunder adalah yang disimpulkan dengan suatu proses bernama &#8216;interpolation&#8217;. Dalam QGIS, interpolasi dapat dilakukan melalui fungsi built-in yakni <tt class="docutils literal"><span class="pre">Interpolation</span> <span class="pre">plugin</span></tt>.</p>
+<div class="section" id="overview-of-the-task">
+<h2>Tinjauan Tugas<a class="headerlink" href="#overview-of-the-task" title="Link permanent untuk headline ini">¶</a></h2>
+<p>Kita akan mengukur kedalaman medan untuk Danau Arlington di Texas dan membuat sebuah peta relief elevasi dan kontur dari pengukuran ini.</p>
+<div class="section" id="other-skills-you-will-learn">
+<h3>Skill lain yang akan anda pelajari<a class="headerlink" href="#other-skills-you-will-learn" title="Link permanent untuk headline ini">¶</a></h3>
+<ul class="simple">
+<li><p class="first">Membuat kontur dari data poin</p>
+</li>
+<li><p class="first">Masking nilai tanpa-data dari sebuah layer raster</p>
+</li>
+<li><p class="first">Menambah label ke layer vektor.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="get-the-data">
+<h2>Mendapatkan data<a class="headerlink" href="#get-the-data" title="Link permanent untuk headline ini">¶</a></h2>
+<p>Texas Water Development Board menyediakan <a class="reference external" href="http://www.twdb.state.tx.us/surfacewater/surveys/completed/list/index.asp">shapefiles for completed lake surveys</a>.</p>
+<p>Unduh <a class="reference external" href="http://www.twdb.texas.gov/hydro_survey/Arlington/2007-12/Shapefiles.zip">2007-12 survey shapefiles for Lake Arlington</a>.</p>
+<p>Untuk kenyamanan, anda akan secara langsung mengunduh data sampel yang digunakan pada tutorial ini dari link di bawah.</p>
+<p><a class="reference external" href="../../downloads/Shapefiles.zip">Shapefiles.zip</a></p>
+<p>Sumber Data: <a class="reference internal" href="credits.html#twdb" id="id1">[TWDB]</a></p>
+</div>
+<div class="section" id="procedure">
+<h2>Prosedur<a class="headerlink" href="#procedure" title="Link permanent untuk headline ini">¶</a></h2>
+<ol class="arabic simple">
+<li><p class="first">Buka QGIS. Akses <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer..</em></p>
+</li>
+</ol>
+<img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
+<ol class="arabic simple" start="2">
+<li><p class="first">Jelajahi file <tt class="docutils literal"><span class="pre">Shapefiles.zip</span></tt> yang sudah diunduh dan pilih. KLik <em class="guilabel">Open</em>.</p>
+</li>
+</ol>
+<img alt="../_images/229.png" class="align-center" src="../_images/229.png" />
+<ol class="arabic simple" start="3">
+<li><p class="first">Pada dialog <em class="guilabel">Select layers to add...</em> , tahan tombol <tt class="kbd docutils literal"><span class="pre">Shift`dan</span> <span class="pre">pilih</span> <span class="pre">layer</span> <span class="pre">``Arlington_Soundings_2007_stpl83.shp`</span></tt> dan <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83.shp</span></tt> . Klik <em class="guilabel">OK</em>.</p>
+</li>
+</ol>
+<img alt="../_images/320.png" class="align-center" src="../_images/320.png" />
+<ol class="arabic simple" start="4">
+<li><p class="first">Anda akan melihat 2 layer telah dibuka di QGIS. layer <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83</span></tt> merepresentasikan batas danau. Batalkan tanda cek pada kotak di sebelahnya pada di Table of Content.</p>
+</li>
+</ol>
+<img alt="../_images/415.png" class="align-center" src="../_images/415.png" />
+<ol class="arabic simple" start="5">
+<li><p class="first">Ini akan memngungkap data dari layer kedua <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></tt> . Walaupun data terlihat seperti garis, ono adalah kumpulan poin yang berjarak sangat dekat.</p>
+</li>
+</ol>
+<img alt="../_images/515.png" class="align-center" src="../_images/515.png" />
+<ol class="arabic simple" start="6">
+<li><p class="first">Klik ikon <em class="guilabel">Zoom</em> dan pilih sebuah area kecil di layar. Semakin anda menzoom, anda akan melihat poin-poin. Tiap poin merepresentasikan hasil bacaan yang diambil <em>Depth Sounder</em> pada lokasi yang direkam dengan peralatan <em>DGPS</em>.</p>
+</li>
+</ol>
+<img alt="../_images/614.png" class="align-center" src="../_images/614.png" />
+<ol class="arabic simple" start="7">
+<li><p class="first">Pilih tool <em class="guilabel">Identify</em> dan klik sebuah poin. Anda akan melihat panel <em class="guilabel">Identify Results</em> muncul di sebelah kiri dengan nilai attribut poin tersebut. Dalam kasus ini, attribut <tt class="docutils literal"><span class="pre">ELEVATION</span></tt> mengandung  informasi kedalaman danau di lokasi. Karena tugas kita untuk membuat profil kedalaman dan kontur elevasi, kita akan menggunakan nilai-nilai ini sebagai input untuk interpolasi.</p>
+</li>
+</ol>
+<img alt="../_images/713.png" class="align-center" src="../_images/713.png" />
+<ol class="arabic simple" start="8">
+<li><p class="first">Pastikan anda sudah mengaktifkan <tt class="docutils literal"><span class="pre">Interpolation</span> <span class="pre">plugin</span></tt> . Lihat <tt class="xref doc docutils literal"><span class="pre">docs/menggunakan_plugin</span></tt> untuk mengetahui bagaimana caranya mengaktifkan plugins. Kalau plugins sudah aktif, akses Raster &#8211;&gt; Interpolation &#8211;&gt; Interpolation`.</p>
+</li>
+</ol>
+<img alt="../_images/813.png" class="align-center" src="../_images/813.png" />
+<ol class="arabic simple" start="9">
+<li><p class="first">Pada dialog <em class="guilabel">Interpolation</em> , pilih <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83``l</span> <span class="pre">sebagai</span> <span class="pre">:guilabel:`Vector</span> <span class="pre">layers`</span> <span class="pre">di</span> <span class="pre">panel</span> <span class="pre">:guilabel:`Input`</span> <span class="pre">.</span> <span class="pre">Pilih</span> <span class="pre">``ELEVATION</span></tt> sebagai <em class="guilabel">Interpolation attribute</em> . Klik <em class="guilabel">Add</em> . Ubah nilai <em class="guilabel">Cellsize X</em> dan <em class="guilabel">Cellsize Y menjadi ``5`</em> . Nilai ini adalah ukuran tiap pixel di grid output. Karena sumber data kita dalam CRS terproyeksi atau projected dengan <strong>Feet-US</strong> sebagai unit, berdasarkan seleksi, ukuran grid menjadi <strong>5 feet</strong> . Klik tombol <em class="guilabel">...</em> disebelah <em class="guilabel">Output file</em> dan namakan file output dengan <tt class="docutils literal"><span class="pre">elevation_tin.tif</span></tt> . Klik <em class="guilabel">OK</em>.</p>
+</li>
+</ol>
+<div class="admonition note">
+<p class="first admonition-title">Catatan</p>
+<p class="last">Hasil interpolasi dapat beragam secara signfikan bergantung pada metode dan parameter yang anda gunakan. Interpolasi QGIS mensupport metode <em>Triagulated Irregular Network (TIN)</em> dan <em>Inverse Distance Weighting (IDW)</em> untuk interpolasi. Metode TIN umumnya digunakan untuk data elevasi sedangkan metode IDW untuk interpolasi data tipe lain seperti konsenstrasi mineral, populasi dan sebagainya/ Lihat <a class="reference external" href="http://docs.qgis.org/2.2/en/docs/gentle_gis_introduction/spatial_analysis_interpolation.html">Spatial Analysis</a> module of the QGIS documentation for more details.</p>
+</div>
+<img alt="../_images/912.png" class="align-center" src="../_images/912.png" />
+<ol class="arabic simple" start="10">
+<li><p class="first">Anda akan melihat layer baru <tt class="docutils literal"><span class="pre">elevation_tin</span></tt> terbuka di QGIS. Klik kanan layer dan pilih <em class="guilabel">Zoom to layer</em>.</p>
+</li>
+</ol>
+<img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" />
+<ol class="arabic simple" start="11">
+<li><p class="first">Sekarang anda akan melihat Jangkauan secara seluruhnya dari permukaan yang dihasilkan . Interpolasi tidak memberikan hasil yang akurat di luar area koleksi. Mari klip hasil permukaan dengan batas danau. Akses <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</p>
+</li>
+</ol>
+<img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
+<ol class="arabic simple" start="12">
+<li><p class="first">Beri nama <em class="guilabel">Output file</em> dengan <tt class="docutils literal"><span class="pre">elevation_tin_clipped.tif</span></tt> . Pilih <em class="guilabel">Cliiped mode</em> dengan <em class="guilabel">Mask layer</em> . Pilih <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83</span></tt> sebagai <em class="guilabel">Mask layer`</em> . Klik <em class="guilabel">OK</em>.</p>
+</li>
+</ol>
+<img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" />
+<ol class="arabic simple" start="13">
+<li><p class="first">Sebuah raster baru <tt class="docutils literal"><span class="pre">elevation_tin_clipped</span></tt> akan dibuka di QGIS. Sekarang kita akan menstyle layer ini untuk menunjukkan perbedaan dalam elevasi. Perhatikan bahwa nilai min dan maks elevasi dari layer <tt class="docutils literal"><span class="pre">elevation_tin</span></tt> . KLik kanan layer <tt class="docutils literal"><span class="pre">elevation_tin_clipped</span></tt> dan pilih <em class="guilabel">Properties</em>.</p>
+</li>
+</ol>
+<img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" />
+<ol class="arabic simple" start="14">
+<li><p class="first">Akses tab <em class="guilabel">Style</em> . Pilih xxx <em class="guilabel">Render type`dengan ``Singleband pseudocolor`</em> . Pada panel <em class="guilabel">Generate new color map</em> , pilih color ramp <tt class="docutils literal"><span class="pre">Spectral</span></tt> . Karena kita ingin membuat peta-kedalaman  yang kontradiksi dengan peta-ketinggian, beri tanda cek pada kotak <em class="guilabel">Invert</em> . Ini akan memasangkan warna biru untuk area dalam dan merah untuk daerah dangkal. Klik <em class="guilabel">Classify</em>.</p>
+</li>
+</ol>
+<img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
+<ol class="arabic simple" start="15">
+<li><p class="first">Pindah ke tab <em class="guilabel">Tranparency</em> . Kita ingin mengapus pixel-hitam dari output kita. Masukkan <tt class="docutils literal"><span class="pre">0</span></tt> sebagai <em class="guilabel">Additional no data value</em> . Klik <em class="guilabel">OK</em>.</p>
+</li>
+</ol>
+<img alt="../_images/1511.png" class="align-center" src="../_images/1511.png" />
+<ol class="arabic simple" start="16">
+<li><p class="first">Sekarang anda memiliki sebuah peta relief elevasi untuk danau yang dihasilkan dari pembacaan data kedalaman individu. mari sekarang kita buat kontur. Akses <em class="menuselection">Raster ‣ Extraction ‣ Contours</em>.</p>
+</li>
+</ol>
+<img alt="../_images/1610.png" class="align-center" src="../_images/1610.png" />
+<ol class="arabic simple" start="17">
+<li><p class="first">Pada dialog <em class="guilabel">Contour</em> , masukkan <tt class="docutils literal"><span class="pre">contours</span></tt> sebagai <em class="guilabel">Output file for contour lines</em> . Kita akan membuat garis kontur dengan interval 5 kaki atau 5ft, jadi masukkan <tt class="docutils literal"><span class="pre">5.00</span></tt> sebagai <em class="guilabel">Interval between contour lines</em> . Beri tanda cek pada kotak <em class="guilabel">Attribute name</em> . Klik <em class="guilabel">OK</em>.</p>
+</li>
+</ol>
+<img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
+<ol class="arabic simple" start="18">
+<li><p class="first">Garis kontur akan terbuka sebagai layer <tt class="docutils literal"><span class="pre">contours</span></tt> saat proses selesai . Klik kanan pada layer dan pilih <em class="guilabel">Properties</em>.</p>
+</li>
+</ol>
+<img alt="../_images/189.png" class="align-center" src="../_images/189.png" />
+<ol class="arabic simple" start="19">
+<li><p class="first">Akses tab <em class="guilabel">Labels</em> . Beri tanda cek pada kotak <em class="guilabel">Label this layer with</em> dan pilih <tt class="docutils literal"><span class="pre">ELEV</span></tt> sebagai field. Pilih <tt class="docutils literal"><span class="pre">Curved</span></tt> sebagai tipe <em class="guilabel">Placement</em>  dan klik <em class="guilabel">OK</em>.</p>
+</li>
+</ol>
+<img alt="../_images/197.png" class="align-center" src="../_images/197.png" />
+<ol class="arabic simple" start="20">
+<li><p class="first">Anda akan melihat bahwa setiap garis kontur akan secara layak dilabli dengan elevasi sesuai garis.</p>
+</li>
+</ol>
+<img alt="../_images/204.png" class="align-center" src="../_images/204.png" />
+</div>
+</div>
+
+
+
+
+
+  <div id="disqus_thread"></div>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+    </div>
+      
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2015, Ujaval Gandhi.<br/>
+      Terakhir diperbarui pada Aug 17, 2015.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+    </p>
+  </div>
+</footer>
+<!-- Google+ Badge -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+<!-- Disqus comments widget -->
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'qgistutorials'; // required: replace example with your forum shortname
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>
+
+<script type="text/javascript">
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=spatialthoughts" async="async"></script>
+
+<!-- Script fpr language switching. Largely adapted from https://github.com/pcav/faunalia-website -->
+<script>
+    var currentPage = 'docs/interpolating_point_data.html'; // coming from sphinx, always without starting '/'
+    var currentLang = 'en';
+    $(document).ready(function(){
+
+        var search = new RegExp('\/[a-zA-Z_]{2,8}\/'+ currentPage, 'gi');
+        var langPlusPage = window.location.href.match(search);
+        // it's possible this is a index.html page called without 'index.html', try without the currentPage
+        if (langPlusPage==undefined){
+            search = new RegExp('\/[a-zA-Z_]{2,8}\/$', 'gi');
+            langPlusPage = window.location.href.match(search);
+        }
+
+        // it's possible this is an index.html page called without 'index.html', try removing index.html
+        if (langPlusPage==undefined){
+            currentPage = currentPage.replace('index.html','')
+            search = new RegExp('\/[a-zA-Z_]{2,8}\/'+ currentPage, 'gi');
+            langPlusPage = window.location.href.match(search);
+        }
+        // still no langPlugPage: stop, because the language swicher will misbehave 
+
+        if (langPlusPage == undefined || langPlusPage.length != 1){
+            alert('You hit an error, please report back to us.');
+            return;
+        }
+        langPlusPage = langPlusPage[0];
+        currentLang = langPlusPage.replace(currentPage, '');
+
+        $("#languages").val(currentLang.replace(/\//g,'')); // currentLang is something like '/nl/'
+
+        $("#languages").change(function() {
+            gotoLang($(this).val());
+        });
+
+    });
+
+    // load current page in a different language
+    function gotoLang(lang){
+        var currentUrl = window.location.href;
+        var newUrl = currentUrl.replace(currentLang, '/'+lang+'/');
+        window.location.href = newUrl;
+    }
+</script>
+
+  </body>
+</html>
