@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Building a Python Plugin &mdash; QGIS Tutorials and Tips</title>
+    <title>Δημιουργία ενός πρόσθετου στην Python. &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -104,13 +104,13 @@
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Δειγματοληψία Raster Δεδομένων με χρήση Σημείων ή Πολυγώνων.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Παρεμβάλλοντας τα σημεία δεδομένων</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Μαζική επεξεργασία χρησιμοποιώντας το πλαίσιο επεξεργασίας</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Αυτοματοποίηση Σύνθετων Ροών με την χρήση επεξεργασίας προσπέλασης.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Χρησιμοποιώντας το QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Μέτρηση του Aριθμού των Kορυφών σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Building a Python Plugin</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Δημιουργία ενός πρόσθετου στην Python.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
@@ -192,124 +192,75 @@
       
 
   <div class="section" id="building-a-python-plugin">
-<h1>Building a Python Plugin<a class="headerlink" href="#building-a-python-plugin" title="Permalink to this headline">¶</a></h1>
+<h1>Δημιουργία ενός πρόσθετου στην Python.<a class="headerlink" href="#building-a-python-plugin" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/building_a_python_plugin_a4.pdf">A4</a> <a class="reference external" href="../pdf/building_a_python_plugin_letter.pdf">Letter</a> ]</p>
-<p>Plugins are a great way to extend the functionality of QGIS. You can write
-plugins using Python that can range from adding a simple button to
-sohpisticated toolkits. This tutorial will outline the process involved in
-setting up your development environment, designing the user interface for a
-plugin and writing code to interact with QGIS. Please review the
-<a class="reference internal" href="getting_started_with_pyqgis.html"><em>Ξεκινώντας προγραμματισμό με την Python</em></a> tutorial to get familiar with the basics.</p>
+<p>Τα πρόσθτε είναι ένας υπέροχος τρόπος να επεκτίνουμε την λειτουργικότητα του QGIS. Μπορείτε να γράψετε πρόσθετα χρησιμοποιώντας Python τα οποία μπορούν να είναι από την εισαγωγή ενός απλού κουμπιού μέχρι την δημιουργία μιας εκλεπτισμένης εργαλειοθήκης. Αυτή η εργασία θα παραθέσει την διαδικασία η οποία απαιτείται στην ρύθμιση του περιβάλλοντος ανάπτυξης σας, σχεδιάζοντας την διεπαφή με χρήστη για ένα πρόσθετο και γράφοντας κώδικα με σκοπό να αλληλεπιδράσετε με το QGIS. Παρακαλώ διαβάστε την άσκηση  <a class="reference internal" href="getting_started_with_pyqgis.html"><em>Ξεκινώντας προγραμματισμό με την Python</em></a> για να εξοικειωθείτε με τα βασικα βήματα.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the Task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will develop a simple plugin called <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></tt> that will allow
-users to pick a vector layer and write its attributes to a CSV file.</p>
+<h2>Περίληψη του αντικειμένου.<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>Θα δημιουργήσουμε ένα απλό πρόσθετο που λέγεται &#8220;Αποθήκευση χαρακτηριστικών&#8221; το οποίο θα επιτρέπει στους χρήστες να πάρουν ένα διανυσματικό στρώμα και να γράψουν τα χαρακτηριστικά του σε ένα αρχείο CSV.</p>
 </div>
 <div class="section" id="get-the-tools">
-<h2>Get the Tools<a class="headerlink" href="#get-the-tools" title="Permalink to this headline">¶</a></h2>
+<h2>Πάρτε τα εργαλεία<a class="headerlink" href="#get-the-tools" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="qt-creator">
-<h3>Qt Creator<a class="headerlink" href="#qt-creator" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference external" href="http://www.qt.io/">Qt</a> is a software development framework that is used to
-develop applications that run on Windows, Mac, Linux as well as various mobile
-operating systems. QGIS itself is written using the Qt framework. For plugin
-development, we will use an application called <a class="reference external" href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a> to design the interface for our
-plugin.</p>
-<p>Download and install the Qt Creator software from <a class="reference external" href="http://sourceforge.net/projects/qtcreator.mirror/files/latest/download">SourgeForge</a></p>
+<h3>Δημιουργός Qt<a class="headerlink" href="#qt-creator" title="Permalink to this headline">¶</a></h3>
+<p>To <a class="reference external" href="http://doc.qt.io/qtcreator/index.html">Qt &lt;http://www.qt.io/&gt;`_είναι μια πλατφόρμα ανάπτυξης λογισμικού η οποία χρησιμοποιείται για να δημιουργεί εφαρμογέ για Windows, Mac, Linux καθώς και για διάφορα λειτουργικά συστήματα για κινητά. Το ίδιο το QGIS είναι γραμμένο χρησιμοποιώντας την πλατφόρμα Qt. Για την ανάπτυξη πρόσθετων, θα χρησιμοποιήσουμε μια εφαρμογή που λέγεται  `Qt Creator</a>  για να σχεδιάσουμε την διεπαφή για το πρόσθετό μας.</p>
+<p>Μεταφορτώστε και εγκαταστείστε το λογισμικό Qt Creator από το <a class="reference external" href="http://sourceforge.net/projects/qtcreator.mirror/files/latest/download">SourgeForge</a></p>
 </div>
 <div class="section" id="python-bindings-for-qt">
-<h3>Python Bindings for Qt<a class="headerlink" href="#python-bindings-for-qt" title="Permalink to this headline">¶</a></h3>
-<p>Since we are developing the plugin in Python, we need to install the python
-bindings for Qt. The method for installing these will depend on the platform
-you are using. For building plugins we need the <tt class="docutils literal"><span class="pre">pyrcc4</span></tt> command-line tool.</p>
+<h3>Δεσμοι Python για το Qt<a class="headerlink" href="#python-bindings-for-qt" title="Permalink to this headline">¶</a></h3>
+<p>Δεδομένου οτι αναπτύσουμε ένα πρόσθετο στην Python, χρειάζεται να εγκαταστήσουμε τους δεσμού python για το Qt. Η μέθοδος για την εγκατάσταση αυτή θα εξαρτηθεί από την πλατφόρμα που χρησιμοποιείτε. Για την δημιουργία των πρόσθετων θα χρειαστούμε το εργαλείο γραμμής εντολών <tt class="docutils literal"><span class="pre">pyrcc4</span></tt>.</p>
 <p><strong>Windows</strong></p>
-<p>Download the <a class="reference external" href="http://trac.osgeo.org/osgeo4w/">OSGeo4W network installer</a> and choose <em class="guilabel">Express Desktop
-Install</em>. Install the package <tt class="docutils literal"><span class="pre">QGIS</span></tt>. After installation, you will be able to access the
-<tt class="docutils literal"><span class="pre">pyrcc4</span></tt> tool via the <em class="guilabel">OSGeo4W Shell</em>.</p>
+<p>Κατεβάστε το <a class="reference external" href="http://trac.osgeo.org/osgeo4w/">OSGeo4W network installer</a> και επιλέξτε το <em class="guilabel">Express Desktop Install</em>. Εγκαταστείστε το πακέτο <tt class="docutils literal"><span class="pre">QGIS</span></tt>. Μετά την εγκατάσταση, θα έχετε πρόσβαση στο εργαλείο <tt class="docutils literal"><span class="pre">pyrcc4</span></tt> μέσω του <em class="guilabel">OSGeo4W Shell</em>.</p>
 <p><strong>Mac</strong></p>
-<p>Install the <a class="reference external" href="http://brew.sh">Homebrew</a> package manager. Install <tt class="docutils literal"><span class="pre">PyQt</span></tt>
-package by running the following command:</p>
+<p>Εγκαταστείστε τον διαχειριστή πακέτων <cite>Homebrew &lt;http://brew.sh&gt;&#8221;. Εγκαταστείστε το πακέτο ``PyQt`</cite> τρέχοντας την παρακάτω εντολή.</p>
 <div class="highlight-none"><div class="highlight"><pre>brew install pyqt
 </pre></div>
 </div>
 <p><strong>Linux</strong></p>
-<p>Depending on your distribution, find and install the <tt class="docutils literal"><span class="pre">python-qt4</span></tt> package. On
-Ubuntu and Debian-based distributions, you can run the following command:</p>
+<p>Λαμβάνοντας υπόψην την διανομή σας, βρείτε και εγκαταστείστε το πακέτο <tt class="docutils literal"><span class="pre">python-qt4</span></tt>. Στα Ubuntu και τις διανομές Debian, μπορείτε να χρησιμοποιείσετε την παρακάτω εντολή.</p>
 <div class="highlight-none"><div class="highlight"><pre>sudo apt-get install python-qt4
 </pre></div>
 </div>
 </div>
 <div class="section" id="a-text-editor-or-a-python-ide">
-<h3>A Text Editor or a Python IDE<a class="headerlink" href="#a-text-editor-or-a-python-ide" title="Permalink to this headline">¶</a></h3>
-<p>Any kind of software development requires a good text editor. If you already
-have a favorite text editor or an IDE (Integrated Development Environment), you
-may use it for this tutorial. Otherwise, each platform offers a wide variety of
-free or paid options for text editors. Choose the one that fits your needs.</p>
-<p>This tutorial uses Notepad++ editor on Windows.</p>
+<h3>Ενας επεξεργαστής κειμένου ή ένα Python IDE<a class="headerlink" href="#a-text-editor-or-a-python-ide" title="Permalink to this headline">¶</a></h3>
+<p>Κάθε είδους ανάπτυξη λογισμικού χρειάζεται έναν καλό επεξεργαστή κειμένου. Αν έχετε ήδη κάποιον επεξεργαστή κειμένου ή ένα IDE (Ενσωματωμένο περιβάλλον ανάπτυξης), μπορείτε να το χρησιμοποιήσετε για αυτή την άσκηση. Σε διαφορετική περίπτωση, κάθε πλατφόρμα σας δίνει την δυνατότητα να χρησιμοποιήσετε μια μεγάλη ποικιλία από δωρεάν ή επι πληρωμή επεξεργαστές κειμένων. Επιλέξτε έναν που να ταιριάζει με τις ανάγκες σας.</p>
+<p>Αυτή η άσκηση χρησιμοποιεί τον επεξεργαστή Notepad++ για Windows</p>
 <p><strong>Windows</strong></p>
-<p><a class="reference external" href="http://notepad-plus-plus.org/">Notepad++</a> is a good free editor for windows.
-Download and install the <a class="reference external" href="http://notepad-plus-plus.org/repository/6.x/6.7.5/npp.6.7.5.Installer.exe">Notepad++ editor</a>.</p>
+<p>To <a class="reference external" href="http://notepad-plus-plus.org/">Notepad++</a> είναι ένας καλός, δωρεάν επεξεργαστής για Windows. Κατεβάστε και εγκαταστείστε τον επεξεργαστή <a class="reference external" href="http://notepad-plus-plus.org/repository/6.x/6.7.5/npp.6.7.5.Installer.exe">Notepad++ editor</a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you are using Notepad++, makes sure to check <em class="guilabel">Replace by space</em>
-at  <em class="menuselection">Settings ‣ Preferences ‣ Tab Settings</em>. Python is
-very sensitive about whitespace and this setting will ensure tabs and spaces
-are treated properly.</p>
+<p class="last">Αν χρησιμοποιείτε το Notepad++, φροντίστε να έχετε επιλέξει το <em class="guilabel">Replace by space</em> στο <em class="menuselection">Settings ‣ Preferences ‣ Tab Settings</em>. Η Python είναι αρκετά ευαίσθητη όταν υπάρχουν κενά και αυτή η ρύθμιση θα φροντίσει ώστε οι καρτέλες και τα κενά να διαχειρίζονται με τον σωστό τρόπο.</p>
 </div>
 </div>
 <div class="section" id="plugin-builder-plugin">
-<h3>Plugin Builder plugin<a class="headerlink" href="#plugin-builder-plugin" title="Permalink to this headline">¶</a></h3>
-<p>There is a helpful QGIS plugin named <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> which creates all the
-necessary files and the boilerplate code for a plugin. Find and install the
-<tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> plugin. See <a class="reference internal" href="using_plugins.html"><em>Χρησιμοποιώντας Πρόσθετες Λειτουργίες</em></a> for more details on how to
-install plugins.</p>
+<h3>Δημιουργία πρόσθετου<a class="headerlink" href="#plugin-builder-plugin" title="Permalink to this headline">¶</a></h3>
+<p>Υπάρχει ένα πολύ χρήσιμο πρόσθετο στο QGIS που ονομάζεται <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt>  το οποίο δημιουργεί όλα τα κατάλληλα αρχεία και το πρότυπο του κώδικα για το πρόσθετο. Βρείτε και εγκαταστείστε το πρόσθετο <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt>. Βλέπε  <a class="reference internal" href="using_plugins.html"><em>Χρησιμοποιώντας Πρόσθετες Λειτουργίες</em></a>  για περισσότερες λεπτομέρειες για το πως να εγκαταστείσετε ένα πρόσθετο.</p>
 </div>
 <div class="section" id="plugins-reloader-plugin">
-<h3>Plugins Reloader plugin<a class="headerlink" href="#plugins-reloader-plugin" title="Permalink to this headline">¶</a></h3>
-<p>This is another helper plugin which allows iterative development of plugins.
-Using this plugin, you can change your plugin code and have it reflected in
-QGIS without having to restart QGIS every time. Find and install the <tt class="docutils literal"><span class="pre">Plugin</span>
-<span class="pre">Reloader</span></tt> plugin. See <a class="reference internal" href="using_plugins.html"><em>Χρησιμοποιώντας Πρόσθετες Λειτουργίες</em></a> for more details on how to install
-plugins.</p>
+<h3>Μεταφόρτωση πρόσθετου<a class="headerlink" href="#plugins-reloader-plugin" title="Permalink to this headline">¶</a></h3>
+<p>Αυτός είναι ένας ακόμα βοηθός για τα πρόσθετα ο οποίος επιτρέπει την επαναλαμβανόμενη ανάπτυξη πρόσθετων. Χρησιμοποιώντας αυτό το πρόσθετο, μπορείτε να αλλάξετε τον κώδικα του πρόσθετού σας και να κάνετε τις αλλαγές να αντικατοπτρίζονται στο QGIS χωρίς να πρέπει να κάνετε επανεκκίνηση στο QGIS κάθε φορά. Βρείτε και εγκαταστείστε το πρόσθετο  <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Reloader</span></tt>. Δείτε το <a class="reference internal" href="using_plugins.html"><em>Χρησιμοποιώντας Πρόσθετες Λειτουργίες</em></a> για περισσότερες λεπτομέρειες για την εγκατάσταση πρόσθετων.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Plugin Reloader is an experimental plugin. Make sure you have checked
-<em class="guilabel">Show also experimental plugins</em> in <em class="guilabel">Plugin Manager</em>
-settings if you cannot find it.</p>
+<p class="last">Ο επαναφορτωτής πρόσθετων είναι ένα πειραματικό πρόσθετο. Φροντίστε να έχετε επιλέξει το <em class="guilabel">Show also experimental plugins</em> στις ρυθμίσεις <em class="guilabel">Plugin Manager</em> αν δεν μπορείτε να το βρείτε.</p>
 </div>
 </div>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<h2>Διαδικασία<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS. Go to <em class="menuselection">Plugins ‣ Plugin Builder ‣ Plugin
-Builder</em>.</li>
+<li><p class="first">Ανοίξτε το QGIS. Πηγαίνετε στο <em class="menuselection">Plugins ‣ Plugin Builder ‣ Plugin Builder</em>.</p>
+</li>
 </ol>
 <img alt="../_images/116.png" class="align-center" src="../_images/116.png" />
 <ol class="arabic simple" start="2">
-<li>You will see the <em class="guilabel">QGIS Plugin Builder</em> dialog with a form. You can
-fill the form with details relating to our plugin. The <em class="guilabel">Class
-name</em> will be the name of the Python Class containing the logic of the
-plugin. This will also be the name of the folder containing all the plugin
-files. Enter <tt class="docutils literal"><span class="pre">SaveAttributes</span></tt> as the class name. The <em class="guilabel">Plugin
-name</em> is the name under which your plugin will appear in the
-<em class="guilabel">Plugin Manager</em>. Enter the name as <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></tt>. Add a
-description in the <em class="guilabel">Description</em> field. The <em class="guilabel">Module
-name</em> will be the name of the main python file for the plugin. Enter it as
-<tt class="docutils literal"><span class="pre">save_attributes</span></tt>. Leave the version numbers as they are. The
-<em class="guilabel">Text for menu item</em> value will be how the users will find your
-plugin in QGIS menu. Enter it as <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span> <span class="pre">as</span> <span class="pre">CSV</span></tt>. Enter your name
-and email address in the appropriate fields. The <em class="guilabel">Menu</em>  field
-will decide where your plugin item is added in QGIS. Since our plugin is for
-vector data, select <tt class="docutils literal"><span class="pre">Vector</span></tt>. Check the <em class="guilabel">Flag the plugin as
-experimental</em> box at the bottom. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Θα δείτε το παράθυρο διαλόγου <em class="guilabel">QGIS Plugin Builder</em> με μία φόρμα. Μπορείτε να ολοκληρώσετε την φόρμα αυτή με λεπτομέρεις που να σχετίζονται με το πρόσθετό σας. Η <em class="guilabel">Class name</em> θα είναι το όνομα από την κατηγορία της Python που περιέχει την λογική για το πρόσθετο. Αυτό θα είναι επίσης και το όνομα του φακέλου που θα περιέχει όλα τα αρχεία του πρόσθετου. Εισάγετε ως όνομα για την κατηγορία το <tt class="docutils literal"><span class="pre">SaveAttributes</span></tt>. Προσθέστε μια περιγραφή στο πεδίο <em class="guilabel">Description</em>. Το  <em class="guilabel">Module name</em> θα είναι το όνομα του κεντρικού αρχείου της python για το πρόσθετο. Εισάγετε το ως <tt class="docutils literal"><span class="pre">save_attributes</span></tt>. Αφήστε τους αριθμούς της έκδοσης ίδιους. Η τιμή του <em class="guilabel">Text for menu item</em> θα είναι ο τρόπος με τον οποίο οι χρήστες θα βρίσκουν το πρόσθετό σας στο μενού του QGIS. Εισάγετέ το ως <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span> <span class="pre">as</span> <span class="pre">CSV</span></tt>.  Εισάγετε το όνομά σας και την διεύθυσνη του ηλεκτρονικού σας ταχυδρομείου στα κατάλληλα πεδία. Το πεδίο  <em class="guilabel">Menu</em> θα καθορίσει την τοποθεσία του πρόσθετού σας όταν αυτό θα προστεθεί στο QGIS.  Λαμβάνοντας υπόψιν οτι το πρόσθετό σας είναι για διανυσματικά δεδομένα, επιλέξτε &#8220;Vector. Κάντε κλικ στο κουτί <em class="guilabel">Flag the plugin as experimental</em> στο κάτω μέρος της οθόνης. Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/213.png" class="align-center" src="../_images/213.png" />
 <ol class="arabic simple" start="3">
-<li>Next, you will be prompted to choose a directory for your plugin. You need
-to browse to the QGIS python plugin directory on your computer and select
-<em class="guilabel">Select Folder</em>. Typically, a <tt class="docutils literal"><span class="pre">.qgis2/</span></tt> directory is located in
-your home directory. The <tt class="docutils literal"><span class="pre">plugin</span></tt> folder location will depend on your
-platform as follows: (Replace <tt class="docutils literal"><span class="pre">username</span></tt> with your login name)</li>
+<li><p class="first">Έπειτα θα σας ζητηθεί να επιλέξετε ένα φάκελο για το πρόσθετό σας. Θα χρειαστεί να μεταφερθείτε στον φάκελο με τα QGIS python πρόσθετα στον υπολογιστή σας και να επιλέξετε <em class="guilabel">Select Folder</em>. Ενας τυπικός φάκελος <tt class="docutils literal"><span class="pre">.qgis2/</span></tt> βρίσκεται στον βασικό σας φάκελο. Η θέση του φακέλου <tt class="docutils literal"><span class="pre">plugin</span></tt> εξαρτάται από την πλατφόρμα που χρησιμοποιείτε και είναι συνήθως : (Replace <tt class="docutils literal"><span class="pre">username</span></tt> with your login name)</p>
+</li>
 </ol>
 <p><strong>Windows</strong></p>
 <div class="highlight-none"><div class="highlight"><pre>c:\Users\username\.qgis2\python\plugins
@@ -325,106 +276,89 @@ platform as follows: (Replace <tt class="docutils literal"><span class="pre">use
 </div>
 <img alt="../_images/37.png" class="align-center" src="../_images/37.png" />
 <ol class="arabic simple" start="4">
-<li>You will see a confirmation dialog once your plugin template is created.
-Note the path to the plugin folder.</li>
+<li><p class="first">Θα δείτε ένα παράθυρο το οποίο θα σας επιβεβαιώνει οτι το πρότυπο του πρόσθετου σας έχει δημιουργηθεί. Συγκρατήστε την διαδρομή για τον φάκελο του πρόσθετου,</p>
+</li>
 </ol>
 <img alt="../_images/44.png" class="align-center" src="../_images/44.png" />
 <ol class="arabic simple" start="5">
-<li>Before we can use the newly created plugin, we need to compile the
-<tt class="docutils literal"><span class="pre">resources.qrc</span></tt> file that was created by Plugin Builder. Launch the
-<em class="guilabel">OSGeo4W Shell</em> on windows or a terminal on Mac or Linux.</li>
+<li><p class="first">Πριν μπορέσουμε να χρησιμοποιήσουμε το πρόσφατα δημιουργημένο πρόσθετο, χρειάζεται να συντάξουμε το αρχείο <tt class="docutils literal"><span class="pre">resources.qrc</span></tt>  το οποίο δημιουργήθηκε από το Plugin Builder. Τρέξτε το  <em class="guilabel">OSGeo4W Shell</em> σε Windows ή σε ένα τερματικό σε Mac ή Linux.</p>
+</li>
 </ol>
 <img alt="../_images/54.png" class="align-center" src="../_images/54.png" />
 <ol class="arabic simple" start="6">
-<li>Browse to the plugin directory where the output of <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> was
-created. You can use the <tt class="docutils literal"><span class="pre">cd</span></tt> command followed by the path to the
-directory.</li>
+<li><p class="first">Μεταφερθείτε στον φάκελο του πρόσθετου όπου το εξαγόμενο του <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> δημιουργήθηκε. Μπορείτε να χρησιμοποιήσετε την εντολή <tt class="docutils literal"><span class="pre">cd</span></tt> ακολουθούμενη από την διαδρομή για τον φάκελο.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>cd c:\Users\username\.qgis2\python\plugins\SaveAttributes
 </pre></div>
 </div>
 <img alt="../_images/64.png" class="align-center" src="../_images/64.png" />
 <ol class="arabic simple" start="7">
-<li>Once you are in the directory, type <tt class="docutils literal"><span class="pre">make</span></tt>. This will run the <tt class="docutils literal"><span class="pre">pyrcc4</span></tt>
-command that we had installed as part of Qt bindings for Python.</li>
+<li><p class="first">Αφού μεταφερθείτε στον φάκελο, πληκτρολογίστε  <tt class="docutils literal"><span class="pre">make</span></tt>. Αυτό θα τρέξει την εντολή  <tt class="docutils literal"><span class="pre">pyrcc4</span></tt> την οποία εγκαταστήσαμε ως μέρος του Qt bindings για την python.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>make
 </pre></div>
 </div>
 <img alt="../_images/74.png" class="align-center" src="../_images/74.png" />
 <ol class="arabic simple" start="8">
-<li>Now we are ready to have a first look at the brand new plugin we created.
-Close QGIS and launch it again. Go to <em class="menuselection">Plugins ‣ Manage
-and Install plugins</em> and enable the <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></tt> plugin in the
-<em class="guilabel">Installed</em> tab. You will notice that there is a new icon
-in the toolbar and a new menu entry under <em class="menuselection">Vector
-‣ Save Attributes ‣ Save Attributes as CSV`</em>. Select it to launch
-the plugin dialog.</li>
+<li><p class="first">Τώρα είμαστε έτοιμοι να δούμε το νέο πρόσθετο που δημιουργήσαμε. Κλείστε το QGIS και ξανατρέξτε το πάλι. Πηγαίνετε στο <em class="menuselection">Plugins ‣ Manage and Install plugins</em> και ενεργοποιήστε το plugin <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes&quot;</span> <span class="pre">από</span> <span class="pre">την</span> <span class="pre">καρτέλα</span>&nbsp; <span class="pre">:guilabel:`Installed`.</span> <span class="pre">Θα</span> <span class="pre">παρατηρήσετε</span> <span class="pre">οτι</span> <span class="pre">υπάρχει</span> <span class="pre">ένα</span> <span class="pre">νέο</span> <span class="pre">εικονίδιο</span> <span class="pre">στην</span> <span class="pre">γραμμή</span> <span class="pre">εργαλείων</span> <span class="pre">και</span> <span class="pre">μια</span> <span class="pre">νέα</span> <span class="pre">εγγραφή</span> <span class="pre">κάτω</span> <span class="pre">από</span> <span class="pre">το</span> <span class="pre">μενού</span>&nbsp; <span class="pre">:menuselection:`Vector</span> <span class="pre">--&gt;</span> <span class="pre">Save</span> <span class="pre">Attributes</span> <span class="pre">--&gt;</span> <span class="pre">Save</span> <span class="pre">Attributes</span> <span class="pre">as</span> <span class="pre">CSV</span></tt>. Επιλέξτε να τρέξετε το παράθυρο διαλόγου για τα πρόσθετα.</p>
+</li>
 </ol>
 <img alt="../_images/84.png" class="align-center" src="../_images/84.png" />
 <ol class="arabic simple" start="9">
-<li>You will notice a new blank dialog named <em class="guilabel">Save Attributes</em>. Close
-this dialog.</li>
+<li><p class="first">Θα παρατηρήσετε ένα νέο κενό παράθυρο διαλόγου με όνομα <em class="guilabel">Save Attributes</em>. Κλείστε αυτό το παράθυρο διαλόγου.</p>
+</li>
 </ol>
 <img alt="../_images/94.png" class="align-center" src="../_images/94.png" />
 <ol class="arabic simple" start="10">
-<li>We will now design our dialog box and add some user interface elements to
-it. Open the <tt class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator</span></tt> program and to to <em class="guilabel">File &#8211;&gt; Open File
-or Project...</em>.</li>
+<li><p class="first">Τώρα θα σχεδιάσουμε το δικό μας παράθυρο διαλόγου και θα προσθέσουμε μερικά στοιχεία στην διεπαφή χρήστη. Ανοίξτε το πρόγραμμα <tt class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator</span></tt> και πηγαίνετε στο <em class="guilabel">File &#8211;&gt; Open File or Project...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/104.png" class="align-center" src="../_images/104.png" />
 <ol class="arabic simple" start="11">
-<li>Browse to the plugin directory and select the
-<tt class="docutils literal"><span class="pre">save_attributes_dialog_base.ui</span></tt> file. Click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Μεταφερθείτε στον φάκελο του πρόσθετου και επιλέξτε το αρχείο  <tt class="docutils literal"><span class="pre">save_attributes_dialog_base.ui</span></tt>. Πατήστε <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/117.png" class="align-center" src="../_images/117.png" />
 <ol class="arabic simple" start="12">
-<li>You will see the blank dialog from the plugin. You can drag-and-drop
-elements from the left-hand panel on the dialog. We will add a
-<em class="guilabel">Combo Box</em> type of <em class="guilabel">Input Widget</em>. Drag it to the
-plugin dialog.</li>
+<li><p class="first">Τώρα θα δείτε ένα κενό παράθυρο διαλόγου από το πρόσθετο. Μπορείτε να επιλέξετε και να σύρετε στοιχεία από το παράθυρο στα αριστερά, στο παράθυρο διαλόγου. Θα προσθέσουμε ενός είδους Widget:guilabel:<cite>Combo Box</cite> type of <em class="guilabel">Input Widget</em>. Σύρετέ το στο παράθυρο διαλόγου του πρόσθετου.</p>
+</li>
 </ol>
 <img alt="../_images/124.png" class="align-center" src="../_images/124.png" />
 <ol class="arabic simple" start="13">
-<li>Resize the combo box and adjust its size. Now drag a <em class="guilabel">Label</em> type
-<em class="guilabel">Display Widget</em> on the dialog.</li>
+<li><p class="first">Αλλάξτε το μέγεθος στο παράθυρο. Τώρα σύρετε στο παράθυρο διαλόγου ένα :<cite>Label</cite> type <em class="guilabel">Display Widget</em>.</p>
+</li>
 </ol>
 <img alt="../_images/134.png" class="align-center" src="../_images/134.png" />
 <ol class="arabic simple" start="14">
-<li>Click on the label text and enter <tt class="docutils literal"><span class="pre">Select</span> <span class="pre">a</span> <span class="pre">layer</span></tt>.</li>
+<li><p class="first">Πατήστε σην ετικέτα κείμενο και εισάγετε το <tt class="docutils literal"><span class="pre">Select</span> <span class="pre">a</span> <span class="pre">layer</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/144.png" class="align-center" src="../_images/144.png" />
 <ol class="arabic simple" start="15">
-<li>Save this file by going to <em class="menuselection">File ‣ Save
-save_attributes_dialog_base.ui</em>. Note the name of the combo box object is
-<tt class="docutils literal"><span class="pre">comboBox</span></tt>. To interact with this object using python code, we will have
-to refer to it by this name.</li>
+<li><p class="first">Σώστε αυτό το αρχείο πηγαίνοντας στο  <em class="menuselection">File ‣ Save save_attributes_dialog_base.ui</em>. Συγκρατήστε οτι το όνομα από το αντικείμενο- κουτί είναι <tt class="docutils literal"><span class="pre">comboBox</span></tt>. Για να αλληλεπιδράσετε με το αντικείμενο χρησιμοποιώντας εντολές στην python,  θα πρέπει να το καλείτε με το όνομα αυτό.</p>
+</li>
 </ol>
 <img alt="../_images/154.png" class="align-center" src="../_images/154.png" />
 <ol class="arabic simple" start="16">
-<li>Let&#8217;s reload our plugin so we can see the changes in the dialog
-window. Go to <em class="menuselection">Plugin ‣ Plugin Reloader ‣ Choose a
-plugin to be reloaded</em>.</li>
+<li><p class="first">Ας τρέξουμε το πρόσθετο ώστε να μπορούμε να δούμε τις αλλαγές στο παράθυρο διαλόγου. Πηγαίνετε στο <em class="menuselection">Plugin ‣ Plugin Reloader ‣ Choose a plugin to be reloaded</em>.</p>
+</li>
 </ol>
 <img alt="../_images/164.png" class="align-center" src="../_images/164.png" />
 <ol class="arabic simple" start="17">
-<li>Select <tt class="docutils literal"><span class="pre">SaveAttributes</span></tt> in the <em class="guilabel">Configure Plugin reloader</em>
-dialog.</li>
+<li><p class="first">Επιλέξτε <tt class="docutils literal"><span class="pre">SaveAttributes</span></tt> από το παράθυρο διαλόγου  <em class="guilabel">Configure Plugin reloader</em>.</p>
+</li>
 </ol>
 <img alt="../_images/173.png" class="align-center" src="../_images/173.png" />
 <ol class="arabic simple" start="18">
-<li>Now click the <em class="guilabel">Save Attributes as CSV</em> button. You will see the
-newly designed dialog box.</li>
+<li><p class="first">Τώρα πατήστε στο κουμπί  <em class="guilabel">Save Attributes as CSV</em>. Θα δείτε ένα καινούριο σχεδιασμένο παράθυρο διαλόγου.</p>
+</li>
 </ol>
 <img alt="../_images/184.png" class="align-center" src="../_images/184.png" />
 <ol class="arabic simple" start="19">
-<li>Let&#8217;s add some logic to the plugin that will populate the combo box with
-the layers loaded in QGIS. Go to the plugin directory and load the file
-<tt class="docutils literal"><span class="pre">save_attributes.py</span></tt> in a text editor. Scroll down and find the
-<tt class="docutils literal"><span class="pre">run(self)</span></tt> method. This method will be called when you click the toolbar
-button or select the plugin menu item. Add the following code at the
-beginning of the method. This code gets the layers loaded in QGIS and adds
-it to the <tt class="docutils literal"><span class="pre">comboBox</span></tt> object from the plugin dialog.</li>
+<li><p class="first">Ας προσθέσουμε τώρα λογική στο πρόσθετο το οποίο θα γεμίσει το κουτί με στρώματα τα οποία φορτώνονται στο QGIS. Πηγαίνετε στον φάκελο του πρόσθετου και φορτώστε το αρχείο <tt class="docutils literal"><span class="pre">save_attributes.py</span></tt> σε έναν επεξεργαστή κειμένου. Μεταφερθείτε προς τα κάτω και βρείτε την μέθοδο <tt class="docutils literal"><span class="pre">run(self)</span></tt>. Αυτή η μέθοδος θα καλείται όταν πατάτε το κουμπί στην γραμμή εργαλείων ή επιλέγετε το πρόσθετο από το μενού. Προσθέστε τον παρακάτω κώδικα στην αρχή της μεθόδου. Αυτός ο κώδικας παίρνει όλα τα στρώματα τα οποία είναι φορτωμένα στο QGIS και τα προσθέτει  στο αντικείμενο κουτί από το παράθυρο διαλόγου του πρόσθετου.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">layers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">legendInterface</span><span class="p">()</span><span class="o">.</span><span class="n">layers</span><span class="p">()</span>
 <span class="n">layer_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -435,41 +369,28 @@ it to the <tt class="docutils literal"><span class="pre">comboBox</span></tt> ob
 </div>
 <img alt="../_images/192.png" class="align-center" src="../_images/192.png" />
 <ol class="arabic simple" start="20">
-<li>Back in the main QGIS window, reload the plugin by going to
-<em class="menuselection">Plugins ‣ Plugin Reloader ‣  Reload plugin:
-SaveAttributes</em>. Alternatively, you can just press <tt class="kbd docutils literal"><span class="pre">F5</span></tt>. To test this
-new functionality, we must load some layers in QGIS. After you load some
-data, launch the plugin by going to <em class="menuselection">Vector ‣ Save
-Attributes ‣ Save Attributes as CSV</em>.</li>
+<li><p class="first">Πίσω στο κύριο παράθυρο του QGIS, φορτώστε το πρόσθετο πηγαίνοντας στο <em class="menuselection">Plugins ‣ Plugin Reloader ‣ Reload plugin: SaveAttributes</em>. Εναλλακτικά, μπορείτε απλά να πατήσετε <tt class="kbd docutils literal"><span class="pre">F5</span></tt>. Για να δοκιμάσετε την λειτουργία, θα πρέπει να προσθέσετε μερικά στρώματα στο QGIS. Αφού προσθέσετε τα δεδομένα, τρέξτε το πρόσθετο πηγαίνοντας στο  <em class="menuselection">Vector ‣ Save Attributes ‣ Save Attributes as CSV</em>.</p>
+</li>
 </ol>
 <img alt="../_images/201.png" class="align-center" src="../_images/201.png" />
 <ol class="arabic simple" start="21">
-<li>You will see that our combo box is now populated with the layer names that
-are loaded in QGIS.</li>
+<li><p class="first">Θα δείτε οτι το κουτί είναι τώρα γεμάτο με τα ονόματα των στρωμάτων τα οποία έχετε φορτώσει στο QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/214.png" class="align-center" src="../_images/214.png" />
 <ol class="arabic simple" start="22">
-<li>Let&#8217;s add remaining user interface elements. Switch back to <tt class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator</span></tt>
-and load the <tt class="docutils literal"><span class="pre">save_attributes_dialog_base.ui</span></tt> file. Add a <tt class="docutils literal"><span class="pre">Label</span></tt>
-<em class="guilabel">Display Widget</em> and change the text to <tt class="docutils literal"><span class="pre">Select</span> <span class="pre">output</span> <span class="pre">file</span></tt>.
-Add a <tt class="docutils literal"><span class="pre">LineEdit</span></tt> type <em class="guilabel">Input Widget</em> that will show the output
-file path that the user has chosen. Next, add a <tt class="docutils literal"><span class="pre">Push</span> <span class="pre">Button</span></tt> type
-<em class="guilabel">Button</em> and change the button label to <tt class="docutils literal"><span class="pre">...</span></tt>. Note the object
-names of the widgets that we will have to use to interact with them. Save
-the file.</li>
+<li><p class="first">Ας προσθέσουμε μερικά στοιχεία διεπαφής χρήστη ακόμα. Πηγαίνετε πάλι στο <tt class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator&quot;</span> <span class="pre">και</span> <span class="pre">φορτώστε</span> <span class="pre">το</span> <span class="pre">αρχείο</span> <span class="pre">``save_attributes_dialog_base.ui</span></tt>. Προσθέστε μια &#8220;Ετικέτα&#8221; <em class="guilabel">Display Widget</em> και αλλάξτε το κείμενο στο <tt class="docutils literal"><span class="pre">Select</span> <span class="pre">output</span> <span class="pre">file</span></tt>. Προσθέστε ένα <cite>LineEdit`</cite> <em class="guilabel">Input Widget</em> το οποίο θα δείχνει την διεύθυσνη του εξαγόμενου αρχείου που έχει επιλεχθεί από τον χρήστη. Μετά, προσθέστε ένα κουμπί  <tt class="docutils literal"><span class="pre">Push</span> <span class="pre">Button</span></tt>  <em class="guilabel">Button</em> και αλλάξτε την ετικέτα του σε <tt class="docutils literal"><span class="pre">...</span></tt>. Σημειώστε οτι τα ονόματα των αντικειμένων από τα widget καθώς θα πρέπει να τα χρησιμοποιήσετε για να αλληλεπιδράσετε μαζί τους. Σώστε το αρχείο.</p>
+</li>
 </ol>
 <img alt="../_images/221.png" class="align-center" src="../_images/221.png" />
 <ol class="arabic simple" start="23">
-<li>We will now add python code to open a file browser when the user clicks the
-<tt class="docutils literal"><span class="pre">...</span></tt> push button and show the select path in the line edit widget. Open
-the <tt class="docutils literal"><span class="pre">save_attributes.py</span></tt> file in a text editor. Add <tt class="docutils literal"><span class="pre">QFileDialog</span></tt> to
-our list of imports at the top of the file.</li>
+<li><p class="first">Τώρα θα προσθέσουμε κώδικα στην python μέσω του οποίου θα ανοίγει ένας περιηγητής αρχείων όταν ο χρήστης θα πατάει το κουμπί <tt class="docutils literal"><span class="pre">...</span></tt> και να εμφανίζει την επιλεγμένη διαδρομή σε μια γραμμή κειμένου στο widget. Ανοίξτε το αρχείο <tt class="docutils literal"><span class="pre">save_attributes.py</span></tt> σε έναν επεξεργαστή κειμένου. Προσθέστε το  <tt class="docutils literal"><span class="pre">QFileDialog</span></tt> στην λίστα με τα εισαγόμενα στην κορυφή του αρχείου</p>
+</li>
 </ol>
 <img alt="../_images/231.png" class="align-center" src="../_images/231.png" />
 <ol class="arabic simple" start="24">
-<li>Add a new method called <tt class="docutils literal"><span class="pre">select_output_file</span></tt> with the following code.
-This code will open a file browser and populate the line edit widget with
-the path of the file that the user chose.</li>
+<li><p class="first">Προσθέστε μια νέα μέθοδο που λέγεται <tt class="docutils literal"><span class="pre">select_output_file</span></tt> χρησιμοποιώντας τον παρακάτω κώδικα. Αυτός ο κώδικας θα ανοίγει έναν περιηγητή και θα εμφανίζει στην γραμμή του widget την διαδρομή του αρχείου που έχει επιλέξει ο χρήστης.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">select_output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">QFileDialog</span><span class="o">.</span><span class="n">getSaveFileName</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="p">,</span> <span class="s">&quot;Select output file &quot;</span><span class="p">,</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&#39;*.txt&#39;</span><span class="p">)</span>
@@ -478,12 +399,8 @@ the path of the file that the user chose.</li>
 </div>
 <img alt="../_images/241.png" class="align-center" src="../_images/241.png" />
 <ol class="arabic simple" start="25">
-<li>Now we need to add code so that when the <cite>...</cite> button is clicked,
-<tt class="docutils literal"><span class="pre">select_output_file</span></tt> method is called. Scroll up to the <tt class="docutils literal"><span class="pre">__init__</span></tt>
-method and add the following lines at the bottom. This code will clear the
-previously loaded text (if any) in the line edit widget and also connect
-the <tt class="docutils literal"><span class="pre">select_output_file</span></tt> method to the <tt class="docutils literal"><span class="pre">clicked</span></tt> signal of the push
-button widget.</li>
+<li><p class="first">Τώρα πρέπει να προσθέσετε κώδικα ώστε όταν το κουμπί  <cite>...</cite> ενεργοποιείται, να καλείται η μέθοδος <tt class="docutils literal"><span class="pre">select_output_file</span></tt>. Μεταφερθείτε προς τα πάνω στην μέθοδο  <tt class="docutils literal"><span class="pre">__init__</span></tt> και προσθέστε τις παρακάτω γραμμές στο τέλος της.  Αυτός ο κώδικάς θα σβήνει το κείμενο που είχε φορτωθεί προηγουμένως (αν υπάρχει) στην γραμμή του widget και επίσης θα συνδέει την μέθοδο <tt class="docutils literal"><span class="pre">select_output_file</span></tt> με το σήμα που δίνει το &#8220;κλικ&#8221; όταν ο χρήστης πατάει το κουμπί στο widget.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">lineEdit</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">pushButton</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">select_output_file</span><span class="p">)</span>
@@ -491,18 +408,13 @@ button widget.</li>
 </div>
 <img alt="../_images/251.png" class="align-center" src="../_images/251.png" />
 <ol class="arabic simple" start="26">
-<li>Back in QGIS, reload the plugin and open the <em class="guilabel">Save Attributes`</em>
-dialog. If all went fine, you will be able to click the <tt class="docutils literal"><span class="pre">...</span></tt> button and
-select an output text file from your disk.</li>
+<li><p class="first">Πίσω στο QGIS, φορτώστε το πρόσθετο και ανοίξτε το παράθυρο διαλόγου <em class="guilabel">Save Attributes`</em>. Αν όλα έχουν πάει καλά, θα είστε σε θέση να κάνετε κλικ στο κουμπί <tt class="docutils literal"><span class="pre">...</span></tt> και επιλέξτε το εξαγόμενο αρχείο κειμένου από τον δίσκο σας.</p>
+</li>
 </ol>
 <img alt="../_images/261.png" class="align-center" src="../_images/261.png" />
 <ol class="arabic simple" start="27">
-<li>When you click <em class="guilabel">OK</em> on the plugin dialog, nothing happens. That
-is because we have not added the logic to pull attribute information from
-the layer and write it to the text file. We now have all the pieces in
-place to do just that. Find the place in the <tt class="docutils literal"><span class="pre">run</span></tt> method where it says
-<tt class="docutils literal"><span class="pre">pass</span></tt>.  Replace it with the code below. The explanation for this code
-can be found in <a class="reference internal" href="getting_started_with_pyqgis.html"><em>Ξεκινώντας προγραμματισμό με την Python</em></a>.</li>
+<li><p class="first">Όταν πατάτε το  <em class="guilabel">OK</em> στο παράθυρο διαλόγου του πρόσθετου, δεν συμβαίνει τίποτα. Αυτό συμβαίνει επειδή δεν έχετε προσθέσει λογική ώστε να τραβάτε τα χαρακτηριστικά της πληροφορίας από το στρώμα και να τα γράφετε στο αρχείο κειμένου. Τώρα έχουμε όλα τα κομμάτια στην θέση τους για να ξεκινήσουμε. Βρείτε το σημείο στην μέθοδο <tt class="docutils literal"><span class="pre">run</span></tt> που λέει <tt class="docutils literal"><span class="pre">pass</span></tt>. Αντικαταστήστε το με τον κώδικα παρακάτω. Η εξήγηση για αυτόν τον κώδικα βρίσκεται στο <a class="reference internal" href="getting_started_with_pyqgis.html"><em>Ξεκινώντας προγραμματισμό με την Python</em></a>.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">lineEdit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
 <span class="n">output_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
@@ -521,20 +433,14 @@ can be found in <a class="reference internal" href="getting_started_with_pyqgis.
 </div>
 <img alt="../_images/271.png" class="align-center" src="../_images/271.png" />
 <ol class="arabic simple" start="28">
-<li>Now our plugin is ready. Reload the plugin and try it out. You will find
-that the output text file you chose will have the attributes from the
-vector layer. You can zip the plugin directory and share it with your
-users. They can unzip the contents to their plugin directory and try out
-your plugin. If this was a real plugin, you would upload it to the <a class="reference external" href="https://plugins.qgis.org/">QGIS
-Plugin Repository</a> so that all QGIS users will
-be able to find and download your plugin.</li>
+<li><p class="first">Τώρα το πρόσθετό μας είναι έτοιμο. Μεταφορτώστε το πρόσθετο και δοκιμάστε το. Θα δείτε οτι το εξαγόμενο αρχείο που έχετε επιλέξει έχει όλα τα χαρακτηριστικά από το διανυσματικό στρώμα. Μπορείτε να συμπιέσετε τον φάκελο του πρόσθετου και να το μοιραστείτε με άλλους χρήστες. Αυτού μπορούν να αποσυμπιέσουν τα περιεχόμενα του φακέλου του πρόσθετου και να δοκιμάσουν το πρόσθετό σας. Αν αυτό είναι ένα πραγματικό πρόσθετο, μπορείτε να το ανεβάσετε στο αποθετήριο πρόσθετων του QGIS  &lt;<a class="reference external" href="https://plugins.qgis.org/">https://plugins.qgis.org/</a>&gt;`_ ώστε όλοι οι χρήστες τους QGIS να είναι σε θέση να βρούν και να κατεβάσουν το πρόσθετό σας.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">This plugin is for demonstration purpose only. Do not publish this plugin or
-upload it to the QGIS plugin repository.</p>
+<p class="last">Αυτό το πρόσθετο είναι για εκπαιδευτικούς λόγους μόνο. Μην το δημοσιεύσετε ή ανεβάσετε το πρόσθετο αυτό στο αποθετήριο του QGIS.</p>
 </div>
-<p>Below is the full <tt class="docutils literal"><span class="pre">save_attributes.py</span></tt> file as a reference.</p>
+<p>Παρακάτω παραθέτεται το πλήρες αρχείο <tt class="docutils literal"><span class="pre">save_attributes.py</span></tt> ως αναφορά.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">/***************************************************************************</span>
@@ -779,7 +685,7 @@ upload it to the QGIS plugin repository.</p>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Aug 19, 2015.<br/>
+      Last updated on Aug 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

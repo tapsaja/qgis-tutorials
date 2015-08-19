@@ -31,7 +31,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="QGIS bronnen om te leren" href="learning_resources.html" />
-    <link rel="prev" title="Leaflet Web Maps with qgis2leaf" href="leaflet_maps_with_qgis2leaf.html" />
+    <link rel="prev" title="Kaarten op Leaflet Web met qgis2leaf" href="leaflet_maps_with_qgis2leaf.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -100,7 +100,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Ruimtelijke samenvoegingen uitvoeren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Punten in polygoon-analyses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Heatmaps maken</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Ruimtelijke query&#8217;s uitvoeren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analyse Nearest Neighbor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Monsters nemen van rastergegevens met behulp van punten of polygonen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpoleren van puntgegevens</a></li>
@@ -116,7 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Python-scripts schrijven voor framework Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Taken voor QGIS uitvoeren en in schema zetten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
-<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Kaarten op Leaflet Web met qgis2leaf</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Google Maps Engine Connector gebruiken voor QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS bronnen om te leren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Lesgeven in QGIS</a></li>
@@ -130,7 +130,7 @@
               
                 
   <li>
-    <a href="leaflet_maps_with_qgis2leaf.html" title="Previous Chapter: Leaflet Web Maps with qgis2leaf"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Leaflet Web Maps...</span>
+    <a href="leaflet_maps_with_qgis2leaf.html" title="Previous Chapter: Kaarten op Leaflet Web met qgis2leaf"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Kaarten op Leafl...</span>
     </a>
   </li>
   <li>
@@ -228,150 +228,116 @@
 <div class="section" id="create-a-google-maps-engine-account">
 <h2>Een account voor Google Maps Engine maken<a class="headerlink" href="#create-a-google-maps-engine-account" title="Permalink naar deze titel">¶</a></h2>
 <ol class="arabic simple" start="2">
-<li>You can sign up for a free Google Maps Engine trial account. The trial
-account is a full featured Maps Engine instance with limited storage quota.
-Visit <a class="reference external" href="http://www.google.com/enterprise/mapsearth/products/mapsengine.html">Google Maps Engine homepage</a> and
-click the <em class="guilabel">Get started with a free account</em> link.</li>
+<li><p class="first">U kunt een gratis probeer-account voor  Google Maps Engine aanvragen. Het probeer-account is een volledig functionerende Maps Engine instance met beperkte quota voor opslag. Bezoek <a class="reference external" href="http://www.google.com/enterprise/mapsearth/products/mapsengine.html">Google Maps Engine homepage</a> en klik op de link <em class="guilabel">Get started with a free account</em>.</p>
+</li>
 </ol>
 <img alt="../_images/270.png" class="align-center" src="../_images/270.png" />
 <ol class="arabic simple" start="3">
-<li>You will need to sign-in to your Google account. If you wish to use your
-work email, you can create a new Google account with your work email address
-as well. Once signed in, you will see the <em class="guilabel">Create a Maps Engine
-Project</em> screen. Enter a <em class="guilabel">Project Name</em> which will identify your
-account when using Google Maps Engine. Accept the terms and click
-<em class="guilabel">Accept and create</em> button.</li>
+<li><p class="first">U zult zich moeten inschrijven met uw Google-account. Indien u uw e-mail van uw werk wilt gebruiken, kunt u ook een nieuw account voor Google maken met uw e-mail van uw werk. Eenmaal ingelogd zult u het scherm <em class="guilabel">Create a Maps Engine Project</em> zien. Voer een <em class="guilabel">Project Name</em> in die uw account zal identificeren bij het gebruiken van Google Maps Engine. Accepteer de voorwaarden en klik op de knop <em class="guilabel">Accept and create</em>.</p>
+</li>
 </ol>
 <img alt="../_images/339.png" class="align-center" src="../_images/339.png" />
 </div>
 <div class="section" id="create-a-google-developer-console-project">
-<h2>Create a Google Developer Console project<a class="headerlink" href="#create-a-google-developer-console-project" title="Permalink naar deze titel">¶</a></h2>
+<h2>Een Google Developer Console project maken<a class="headerlink" href="#create-a-google-developer-console-project" title="Permalink naar deze titel">¶</a></h2>
 <ol class="arabic simple" start="4">
-<li>The Google Maps Engine Connector uses the <tt class="docutils literal"><span class="pre">Google</span> <span class="pre">Maps</span> <span class="pre">Engine</span>
-<span class="pre">API</span></tt> to access the data stored in your account. You will need to obtain
-special credentials which the plugin will use to programatically access your
-data. Visit <a class="reference external" href="https://console.developers.google.com/">Google Developer Console</a>
-and click <em class="guilabel">Create Project</em>. Enter <tt class="docutils literal"><span class="pre">GME</span> <span class="pre">Connector</span> <span class="pre">for</span>
-<span class="pre">QGIS</span> <span class="pre">API</span></tt> as the <em class="guilabel">PROJECT NAME</em> and <tt class="docutils literal"><span class="pre">gme-qgis-api</span></tt> as the
-<em class="guilabel">PROJECT ID</em>. These names are just a suggestion - you may use any
-name and id you like.</li>
+<li><p class="first">De Google Maps Engine Connector gebruikt de <tt class="docutils literal"><span class="pre">Google</span> <span class="pre">Maps</span> <span class="pre">Engine</span> <span class="pre">API</span></tt> om toegang te krijgen tot de in uw account opgeslagen gegevens. U zult speciale toegangsvoorwaarden moeten verkrijgen die de plug-in zal gebruiken om programmatisch toegang tot uw gegevens te kunnen krijgen. Bezoek <a class="reference external" href="https://console.developers.google.com/">Google Developer Console</a> en klik op <em class="guilabel">Create Project</em>. Voer <tt class="docutils literal"><span class="pre">GME</span> <span class="pre">Connector</span> <span class="pre">for</span> <span class="pre">QGIS</span> <span class="pre">API</span></tt> in als de <em class="guilabel">PROJECT NAME</em> en <tt class="docutils literal"><span class="pre">gme-qgis-api</span></tt> als de <em class="guilabel">PROJECT ID</em>. Deze namen zijn slechts suggesties - u kunt elke naam en ID gebruiken die u wilt.</p>
+</li>
 </ol>
 <img alt="../_images/429.png" class="align-center" src="../_images/429.png" />
 <ol class="arabic simple" start="5">
-<li>Once the project is created, click the <em class="guilabel">APIs &amp; auth</em> link. Scroll
-down and find the <em class="guilabel">Google Maps Engine API</em>. Click the
-<em class="guilabel">OFF</em> button to toggle it to <em class="guilabel">ON</em>.</li>
+<li><p class="first">Klik, als het project is gemaakt, op de link <em class="guilabel">APIs &amp; auth</em>. Scroll naar beneden en zoek de <em class="guilabel">Google Maps Engine API</em> op. Klik op de knop <em class="guilabel">OFF</em> om die te schakelen naar <em class="guilabel">ON</em>.</p>
+</li>
 </ol>
 <img alt="../_images/530.png" class="align-center" src="../_images/530.png" />
 <ol class="arabic simple" start="6">
-<li>Next, click on the <em class="guilabel">Credentials</em> link. Click <em class="guilabel">CREATE NEW
-CLIEND ID</em> under the <em class="guilabel">OAuth</em> section.</li>
+<li><p class="first">Klik vervolgens op de link <em class="guilabel">Credentials</em>. Klik op <em class="guilabel">CREATE NEW CLIENT ID</em> in het gedeelte <em class="guilabel">OAuth</em>.</p>
+</li>
 </ol>
 <img alt="../_images/628.png" class="align-center" src="../_images/628.png" />
 <ol class="arabic simple" start="7">
-<li>In the <em class="guilabel">Create Client ID</em> dialog, select <em class="guilabel">Installed
-Application</em> as the <em class="guilabel">APPLICATION TYPE</em> and <em class="guilabel">Other</em> as
-the <em class="guilabel">INSTALLED APPLICATION TYPE</em>. Click <em class="guilabel">Create Client
-ID.</em></li>
+<li><p class="first">Selecteer, in het dialoogvenster <em class="guilabel">Create Client ID</em>, <em class="guilabel">Installed Application</em> als het <em class="guilabel">APPLICATION TYPE</em> en <em class="guilabel">Other</em> als het <em class="guilabel">INSTALLED APPLICATION TYPE</em>. Klik op <em class="guilabel">Create Client ID.</em></p>
+</li>
 </ol>
 <img alt="../_images/728.png" class="align-center" src="../_images/728.png" />
 <ol class="arabic simple" start="8">
-<li>Once the client id is created, you will see a new section called
-<em class="guilabel">Client ID for native application</em>. Note the <em class="guilabel">Client ID</em>
-and <em class="guilabel">Client secret</em>. These are the credentials you will need to use
-in QGIS.</li>
+<li><p class="first">Als de client-ID eenmaal is gemaakt, zult u een nieuw gedeelte zien, genaamd <em class="guilabel">Client ID for native application</em>. Onthoud de <em class="guilabel">Client ID</em> en <em class="guilabel">Client secret</em>. Dat zijn de gegevens die u zult moeten gebruiken in QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/827.png" class="align-center" src="../_images/827.png" />
 <ol class="arabic simple" start="9">
-<li>Back in QGIS, visit <em class="menuselection">Plugins ‣ Manage and Install
-Plugins...</em>. Find the <tt class="docutils literal"><span class="pre">Google</span> <span class="pre">Maps</span> <span class="pre">Engine</span> <span class="pre">Connector</span></tt> plugin and
-click <em class="guilabel">Install plugin</em>.</li>
+<li><p class="first">Ga, terug in QGIS, naar <em class="menuselection">Plug-ins ‣ Plug-ins beheren en installeren...</em>. Zoek naar de plug-in <tt class="docutils literal"><span class="pre">Google</span> <span class="pre">Maps</span> <span class="pre">Engine</span> <span class="pre">Connector</span></tt> en klik op <em class="guilabel">Installeer plug-in</em>.</p>
+</li>
 </ol>
 <img alt="../_images/925.png" class="align-center" src="../_images/925.png" />
 <ol class="arabic simple" start="10">
-<li>Once the plugin is installed, you will see a new toolbar in QGIS. This
-toolbar contains various tools to work with Google Maps Engine. Click the
-<em class="guilabel">More</em> button.</li>
+<li><p class="first">Als de plug-in eenmaal is geïnstalleerd zult u een nieuwe werkbalk zien in QGIS. Deze werkbalk bestaat uit verschillende gereedschappen om te werken met de Google Maps Engine. Klik op de knop <em class="guilabel">More</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1026.png" class="align-center" src="../_images/1026.png" />
 <ol class="arabic simple" start="11">
-<li>In the <em class="guilabel">Advanced Settings</em> dialog, enter the <em class="guilabel">Client
-ID</em> and <em class="guilabel">Client Secret</em> you obtained from Google Developer
-Console. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Voer, in het dialoogvenster <em class="guilabel">Advanced Settings</em>, de <em class="guilabel">Client ID</em> en <em class="guilabel">Client Secret</em> in die u verkreeg van Google Developer Console. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1133.png" class="align-center" src="../_images/1133.png" />
 <ol class="arabic simple" start="12">
-<li>As you entered new API credentials, you will be prompted to log-in and
-authorize the plugin to use these. Sign-in to your Google account.</li>
+<li><p class="first">Omdat u uw nieuwe gegevens voor de API heeft ingevoerd, zult u worden gevraagd in te loggen en de plug-in te autoriseren om deze te gebruiken. Log in op uw Google-account.</p>
+</li>
 </ol>
 <img alt="../_images/1227.png" class="align-center" src="../_images/1227.png" />
 <ol class="arabic simple" start="13">
-<li>Click <em class="guilabel">Accept</em> in the next screen.</li>
+<li><p class="first">Klik op <em class="guilabel">Accept</em> in het volgende csherm.</p>
+</li>
 </ol>
 <img alt="../_images/1325.png" class="align-center" src="../_images/1325.png" />
 <ol class="arabic simple" start="14">
-<li>If all went well, you will see a message indicating you have successfully
-logged in.</li>
+<li><p class="first">Als alles goed ging zult u een bericht zien dat aangeeft dat u met succes bent ingelogd.</p>
+</li>
 </ol>
 <img alt="../_images/1424.png" class="align-center" src="../_images/1424.png" />
 <ol class="arabic simple" start="15">
-<li>Now lets add the SFMTA Bikeway Network layer that was downloaded earlier.
-Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>. Browse to the downloaded
-<tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network.zip</span></tt> file and click <em class="guilabel">Open</em>. Select the
-<tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network.shp</span></tt> layer and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Laten we nu de laag SFMTA Bikeway Network toevoegen die eerder werd gedownload. Ga naar <em class="menuselection">Kaartlagen ‣ Laag toevoegen ‣ Vectorlaag toevoegen</em>. Blader naar het gedownloade bestand <tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network.zip</span></tt> en klik op <em class="guilabel">Open</em>. Selecteer de laag <tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network.shp</span></tt> en klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1523.png" class="align-center" src="../_images/1523.png" />
 <ol class="arabic simple" start="16">
-<li>One of the features of the <tt class="docutils literal"><span class="pre">Google</span> <span class="pre">Maps</span> <span class="pre">Engine</span> <span class="pre">Connector</span></tt> plugin
-is the ability to upload datasets directly from QGIS. Select the
-<tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network</span></tt> layer and click <em class="guilabel">Upload</em> icon in the
-toolbar.</li>
+<li><p class="first">Eén van de mogelijkheden van de plug-in <tt class="docutils literal"><span class="pre">Google</span> <span class="pre">Maps</span> <span class="pre">Engine</span> <span class="pre">Connector</span></tt> is de mogelijkheid om gegevenssets direct te uploaden vanuit QGIS. Selecteer de laag <tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network</span></tt> en klik op het pictogram <em class="guilabel">Upload</em> op de werkbalk.</p>
+</li>
 </ol>
 <img alt="../_images/1622.png" class="align-center" src="../_images/1622.png" />
 <ol class="arabic simple" start="17">
-<li>In the <em class="guilabel">Upload a dataset to Google Maps Engine</em> dialog, enter a
-<em class="guilabel">Description</em> of the dataset. You may leave all other settings to
-default values. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Voer, in het dialoogvenster <em class="guilabel">Upload a dataset to Google Maps Engine</em>, een <em class="guilabel">Description</em> voor de gegevensset in. U kunt alle andere instellingen op hun standaard waarden laten staan. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1721.png" class="align-center" src="../_images/1721.png" />
 <ol class="arabic simple" start="18">
-<li>The plugin will use the Google Maps Engine API to upload the layer and
-create a Google Maps Engine <em>Data Source</em>. Once the upload is finished, a
-new browser tab will open and take you to the newly created data source.</li>
+<li><p class="first">De plug-in zal de Google Maps Engine API gebruiken om de laag te uploaden en een Google Maps Engine <em>Data Source</em> maken. Als de upload eenmaal is voltooid, zal een nieuwe browsertab openen en u meenemen naar de nieuw gemaakte gegevensbron.</p>
+</li>
 </ol>
 <img alt="../_images/1821.png" class="align-center" src="../_images/1821.png" />
 <ol class="arabic simple" start="19">
-<li>The next few steps will demonstrate the process of creating a map using
-Google Maps Engine. Once the map is created, we will access that map using
-the plugin in QGIS. Once your vector table has finished processing, click
-<em class="guilabel">Create styled layer</em>.</li>
+<li><p class="first">De volgende paar stappen zullen het proces van het maken van een kaart met behulp van Google Maps Engine demonstreren. Als de kaart eenmaal is gemaakt, kunnen we toegang krijgen tot die kaart met behulp van de plug-in in QGIS. Klik op <em class="guilabel">Create styled layer</em> als uw vectortabel klaar is met de verwerking.</p>
+</li>
 </ol>
 <img alt="../_images/1919.png" class="align-center" src="../_images/1919.png" />
 <ol class="arabic simple" start="20">
-<li>Name the layer as <tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network</span></tt> and click <em class="guilabel">Create</em>.</li>
+<li><p class="first">Noem de laag <tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network</span></tt> en klik op <em class="guilabel">Create</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2016.png" class="align-center" src="../_images/2016.png" />
 <ol class="arabic simple" start="21">
-<li>Click <em class="guilabel">Add rule</em> to add a custom style for the layer.</li>
+<li><p class="first">Klik op <em class="guilabel">Add rule</em> om een aangepaste stijl voor de laag toe te voegen.</p>
+</li>
 </ol>
 <img alt="../_images/2120.png" class="align-center" src="../_images/2120.png" />
 <ol class="arabic simple" start="22">
-<li>Choose the color and label options under the <em class="guilabel">Line style</em>
-section. Click <em class="guilabel">Apply</em> to view the style settings applied to your
-layer. You may also select <em class="guilabel">No Basemap</em> option from top-right
-corner to allow you to see your layer without the underlying basemap. Once
-you are satisfied with the styling, switch to the <em class="guilabel">Info windows</em>
-tab.</li>
+<li><p class="first">Kies de kleur- en labelopties in het gedeelte <em class="guilabel">Line style</em>. Klik op <em class="guilabel">Apply</em> om de instellingen voor de stijl te bekijken die zijn toegepast op uw laag. U kunt ook de optie <em class="guilabel">No Basemap</em> selecteren uit de rechter bovenhoek om uw laag te bekijken zonder de onderliggende basiskaart. Schakel naar de tab <em class="guilabel">Info windows</em> als u tevreden bent met de opmaak.</p>
+</li>
 </ol>
 <img alt="../_images/2219.png" class="align-center" src="../_images/2219.png" />
 <ol class="arabic simple" start="23">
-<li>Here you can specify what content is shown when a feature is clicked on the
-map. You can access the feature attributes using the markup
-<tt class="docutils literal"><span class="pre">{attribute_name}</span></tt>. In this case, we just want to display the street name
-for the line feature. Enter the following in the text area. Click
-<em class="guilabel">Apply</em> and click on any line feature on the map to test the info
-window code. When done, check the <em class="guilabel">Publish on exit</em> button and
-click <em class="guilabel">Exit</em>.</li>
+<li><p class="first">Hier kunt u specificeren welke inhoud weergegeven moet worden als er op een object op de kaart wordt geklikt. U kunt toegang verkrijgen tot de attributen van de objecten dor middel van de markup <tt class="docutils literal"><span class="pre">{attribute_name}</span></tt>. In dit geval willen we alleen de straatnaam weergeven voor het object line. Voer de volgende tekst in in het tekstgebied. Klik op <em class="guilabel">Apply</em> en klik op elk object line op de kaart om de code voor het Info-venster te testen. Selecteer, indien gereed, de knop <em class="guilabel">Publish on exit</em> en klik op <em class="guilabel">Exit</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&lt;div class=&#39;googeb-info-window&#39; style=&#39;font-family: sans-serif&#39;&gt;
  {STREETNAME}  {TYPE}
@@ -380,69 +346,66 @@ click <em class="guilabel">Exit</em>.</li>
 </div>
 <img alt="../_images/2315.png" class="align-center" src="../_images/2315.png" />
 <ol class="arabic simple" start="24">
-<li>Click <em class="guilabel">Add to map</em> to create a map with this layer.</li>
+<li><p class="first">Klik op <em class="guilabel">Add to map</em> om een kaart te maken met deze laag.</p>
+</li>
 </ol>
 <img alt="../_images/2413.png" class="align-center" src="../_images/2413.png" />
 <ol class="arabic simple" start="25">
-<li>Select <em class="guilabel">Create new</em> and enter <tt class="docutils literal"><span class="pre">SFMTA</span> <span class="pre">Bikeway</span> <span class="pre">Network</span></tt> as the
-<em class="guilabel">Map title</em>.</li>
+<li><p class="first">Selecteer <em class="guilabel">Create new</em> en voer <tt class="docutils literal"><span class="pre">SFMTA</span> <span class="pre">Bikeway</span> <span class="pre">Network</span></tt> in als de <em class="guilabel">Map title</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2511.png" class="align-center" src="../_images/2511.png" />
 <ol class="arabic simple" start="26">
-<li>You will see a new map containing the styled layer. You have an option of
-choosing different basemaps for the map. Since this is a bike path map, you
-can select the <em class="guilabel">Terrain</em> style basemap.</li>
+<li><p class="first">Nu zult u ene kaart zien die de opgemaakte laag bevat. U heeft de optie om te kiezen uit verschillende basiskaarten voor de kaart. Omdat dit een kaart is voor fietspaden kunt u de basiskaart met de <em class="guilabel">Terrain</em> kiezen.</p>
+</li>
 </ol>
 <img alt="../_images/2610.png" class="align-center" src="../_images/2610.png" />
 <ol class="arabic simple" start="27">
-<li>Click <em class="guilabel">Publish map</em>.</li>
+<li><p class="first">Klik op <em class="guilabel">Publish map</em>.</p>
+</li>
 </ol>
 <img alt="../_images/279.png" class="align-center" src="../_images/279.png" />
 <ol class="arabic simple" start="28">
-<li>Once the map is published, click on the <em class="guilabel">Access links</em> icon.</li>
+<li><p class="first">Kli, als de kaart eenmaal is gepubliceerd, op het pictogram <em class="guilabel">Access links</em>.</p>
+</li>
 </ol>
 <img alt="../_images/287.png" class="align-center" src="../_images/287.png" />
 <ol class="arabic simple" start="29">
-<li>You will see various options to view, embed and access the newly created
-map. Since we will be accessing the map using the QGIS plugin, you do not
-need any links from here.</li>
+<li><p class="first">U zult verscheidene opties zien om de nieuw gemaakte kaart weer te geven, in te bedden of toegang te verkrijgen tot. Omdat we toegang tot de kaart zullen verkrijgen met behulp van de plug-in in QGIS, heeft u geen links van hier nodig.</p>
+</li>
 </ol>
 <img alt="../_images/296.png" class="align-center" src="../_images/296.png" />
 <ol class="arabic simple" start="30">
-<li>Back in QGIS, click the <em class="guilabel">Search</em> icon in the toolbar.</li>
+<li><p class="first">Klik, terug in QGIS, op het pictogram <em class="guilabel">Search</em> op de werkbalk.</p>
+</li>
 </ol>
 <img alt="../_images/304.png" class="align-center" src="../_images/304.png" />
 <ol class="arabic simple" start="31">
-<li>In the <em class="guilabel">Maps Engine Maps</em> dialog, you will see your map listed.
-Click on the row to select it. Click <em class="guilabel">Add Selected to Map</em>.</li>
+<li><p class="first">In het dialoogvenster <em class="guilabel">Maps Engine Maps</em>, zult u uw kaart zien vermeld. Klik op de rij om hem te selecteren. Klik op <em class="guilabel">Add Selected to Map</em>.</p>
+</li>
 </ol>
 <img alt="../_images/3112.png" class="align-center" src="../_images/3112.png" />
 <ol class="arabic simple" start="32">
-<li>The plugin will query Google Maps Engine and load a vector layer containing
-the bounding box of the map. If you do not see any data on the canvas,
-right-click on the <tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network</span></tt> layer and select
-<em class="guilabel">Zoom to Layer Extent</em>.</li>
+<li><p class="first">De plug-in zal de Google Maps Engine bevragen en een vectorlaag laden die het begrenzingsvak voor de kaart zal laden. Als u geen gegevens in het kaartvenster ziet, klik dan met rechts op de laag <tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network</span></tt> en selecteer <em class="guilabel">Op kaartlaag inzoomen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/3210.png" class="align-center" src="../_images/3210.png" />
 <ol class="arabic simple" start="33">
-<li>Click on the bounding box layer to select it. You will notice that the
-<em class="guilabel">View</em> tools are now enabled. Click on the <em class="guilabel">WMS
-Overlay</em> icon in the toolbar.</li>
+<li><p class="first">Klik op de laag van het begrenzingsvak om die te selecteren. U zult zien dat de gereedschappen <em class="guilabel">View</em> nu zijn ingeschakeld. Klik op het pictogram <em class="guilabel">WMS Overlay</em> op de werkbalk.</p>
+</li>
 </ol>
 <img alt="../_images/3310.png" class="align-center" src="../_images/3310.png" />
 <ol class="arabic simple" start="34">
-<li>In the <em class="guilabel">Select A Layer to Add</em> dialog, choose the
-<tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network</span></tt> layer and click <em class="guilabel">Add Selected to Map</em>.</li>
+<li><p class="first">Kies, in het dialoogvenster <em class="guilabel">Select A Layer to Add</em>, de laag <tt class="docutils literal"><span class="pre">SFMTA_Bikeway_Network</span></tt> en klik op <em class="guilabel">Add Selected to Map</em>.</p>
+</li>
 </ol>
 <img alt="../_images/343.png" class="align-center" src="../_images/343.png" />
 <ol class="arabic simple" start="35">
-<li>A new WMS layer will be added to QGIS and you will see your styled layer
-from Google Maps Engine displayed in QGIS.</li>
+<li><p class="first">Een nieuwe WMS-laag zal worden toegevoegd aan QGIS en u zult uw opgemaakte laag uit Google Maps Engine zien weergegeven in QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/353.png" class="align-center" src="../_images/353.png" />
-<p>Hope this tutorial gives an overview of the capabilities of the plugin. You can
-visit the <a class="reference external" href="https://github.com/googlemaps/mapsengine-qgis-connector">plugin homepage</a>
-to view the source code and learn more about the plugin.</p>
+<p>Ik hoop dat deze handleiding een overzicht geeft van de mogelijkheden van de plug-in. U kunt de <a class="reference external" href="https://github.com/googlemaps/mapsengine-qgis-connector">plug-in thuispagina</a> bezoeken om de broncode te bekijken en meer te weten te komen over de plug-in.</p>
 <p>Below is the Google Maps Engine map that was created for this tutorial.</p>
 <div style="margin-top:10px;">
 <iframe
@@ -473,7 +436,7 @@ width="100%" height="600px"></iframe>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Aug 19, 2015.<br/>
+      Laatste aanpassing op Aug 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

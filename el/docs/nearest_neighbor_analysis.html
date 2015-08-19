@@ -104,13 +104,13 @@
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Δειγματοληψία Raster Δεδομένων με χρήση Σημείων ή Πολυγώνων.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Παρεμβάλλοντας τα σημεία δεδομένων</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Μαζική επεξεργασία χρησιμοποιώντας το πλαίσιο επεξεργασίας</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Αυτοματοποίηση Σύνθετων Ροών με την χρήση επεξεργασίας προσπέλασης.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Χρησιμοποιώντας το QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Μέτρηση του Aριθμού των Kορυφών σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Δημιουργία ενός πρόσθετου στην Python.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
@@ -203,20 +203,18 @@
 <ul class="simple">
 <li><p class="first">Πως να κάνετε ένωση πινάκων στο QGIS. ( Δείτε <a class="reference internal" href="performing_table_joins.html"><em>Εκτελώντας συγχωνεύσεις πινάκων</em></a> for detailed instructions.)</p>
 </li>
-<li>Using <em class="guilabel">Query Builder</em> to show a subset of features from a layer.</li>
-<li>Using MMQGIS plugin to create hub lines to visualize the nearest neighbors.</li>
+<li><p class="first">Πατήστε <em class="guilabel">Add rule</em> για να προσθέσετε ένα προσαρμοσμένο στυλ για το στρώμα.</p>
+</li>
+<li><p class="first">Χρησιμοποιείστε το πρόσθετο MMQGIS  για να δημιουργήσετε γραμμές-κόμβους για να οπτικοποιήσετε τους  πλησιέστερους γείτονες.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Πάρτε τα δεδομένα<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use NOAA’s National Geophysical Data Center’s <a class="reference external" href="http://www.ngdc.noaa.gov/nndc/struts/form?t=101650&amp;s=1&amp;d=1">Significant Earthquake
-Database</a> as our
-layer representing all major earthquakes. Download the <a class="reference external" href="http://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&amp;query_0=$ID&amp;t=101650&amp;s=13&amp;d=189&amp;dfn=signif.txt">tab-delimited
-earthquake data</a>.</p>
+<p>Θα χρησιμοποιήσουμε δεδομένα από τον ΝΟΑΑ, Εθνικό Γεωφυσικό κέντρο δεδομένων και πιο συγκεκριμένα την βάση <a class="reference external" href="http://www.ngdc.noaa.gov/nndc/struts/form?t=101650&amp;s=1&amp;d=1">Significant Earthquake Database</a> ως το στρώμα στο οποίο θα εμφανίζονται όλοι οι μείζωντες στεισμοί. Μεταφορτώστε τα δεδομένα <a class="reference external" href="http://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&amp;query_0=$ID&amp;t=101650&amp;s=13&amp;d=189&amp;dfn=signif.txt">tab-delimited earthquake data</a>.</p>
 <p>Εκ φύσεως η Γη έχει ένα υπέροχο  <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places</a> σύνολο δεδομένων. Κάνετε λήψη το  <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simple (less columns) dataset</a></p>
-<p>For convenience, you may directly download a copy of both the datasets from the links
-below:</p>
+<p>Για ευκολία, μπορείτε να μεταφορτώσετε απευθείας ένα αντίγραφο και από τις δύο δέσμες στοιχείων από τις παρακάτω συνδέσεις.</p>
 <p><a class="reference external" href="../../downloads/signif.txt">signif.txt</a></p>
 <p><a class="reference external" href="../../downloads/ne_10m_populated_places_simple.zip">ne_10m_populated_places_simple.zip</a></p>
 <p>Πηγές δεδομένων: <a class="reference internal" href="credits.html#ngdc" id="id1">[NGDC]</a> <a class="reference internal" href="credits.html#naturalearth" id="id2">[NATURALEARTH]</a></p>
@@ -224,8 +222,8 @@ below:</p>
 <div class="section" id="procedure">
 <h2>Διαδικασία<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open <em class="menuselection">Layer ‣ Add Layer ‣ Add Delimited Text Layer</em> and
-browse to the downloaded <tt class="docutils literal"><span class="pre">signif.txt</span></tt> file.</li>
+<li><p class="first">Ανοίξτε το <em class="menuselection">Layer ‣ Add Layer ‣ Add Delimited Text Layer</em> και περιηγηθείτε στο μεταφορτωμένο αρχείο``signif.txt``.</p>
+</li>
 </ol>
 <img alt="../_images/1100.png" class="align-center" src="../_images/1100.png" />
 <ol class="arabic simple" start="2">
@@ -238,15 +236,13 @@ browse to the downloaded <tt class="docutils literal"><span class="pre">signif.t
 </div>
 <img alt="../_images/236.png" class="align-center" src="../_images/236.png" />
 <ol class="arabic simple" start="3">
-<li>As the earthquake dataset has Latitude/Longitude coordinates, it will be
-imported with the default CRS of <tt class="docutils literal"><span class="pre">EPSG:</span> <span class="pre">4326</span></tt>. Verify that is the case in
-the bottom-right corner. Let&#8217;s also open the Populated Places layer. Go to
-<em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Δεδομένου οτι το αρχείο με τους σεισμούς έχει συντεταγμένες σε Γεωγραφικό Μήκος/Πλάτος, η εισαγωγή του θα γίνει χρησιμοποιώντας το προεπιλεγμένο σύστημα &#8220;EPSG: 4326&#8221;. Μπορείτε να το επαληθεύσετε κοιτώντας στην κάτω-δεξιά γωνία του παραθύρου. Ανοίξτε επίσης το επίθεμα Populated Places. Πηγαίνετε στο <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</em>.</p>
+</li>
 </ol>
 <img alt="../_images/325.png" class="align-center" src="../_images/325.png" />
 <ol class="arabic simple" start="4">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt> file and
-click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Περιηγηθείτε στο μεταφορτωμένο αρχείο``ne_10m_populated_places_simple.zip`` και επιλέξτε <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/418.png" class="align-center" src="../_images/418.png" />
 <ol class="arabic simple" start="5">
@@ -260,13 +256,8 @@ click <em class="guilabel">Open</em>.</li>
 </ol>
 <img alt="../_images/617.png" class="align-center" src="../_images/617.png" />
 <ol class="arabic simple" start="7">
-<li>Here select the earthquake layer <tt class="docutils literal"><span class="pre">signif</span></tt> as the Input point layer and the
-populated places <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> as the target layer. You
-also need to select a unique field from each of these layers which is how
-your results will be displayed. In this analysis, we are looking to get only
-<tt class="docutils literal"><span class="pre">1</span></tt> nearest point, so check the <em class="guilabel">Use only the nearest(k) target
-points</em>, and enter <em class="guilabel">1</em>. Name your output file <tt class="docutils literal"><span class="pre">matrix.csv</span></tt>, and
-click OK.  Once the processing finishes, click <em class="guilabel">Close</em>.</li>
+<li><p class="first">Εδώ επιλέξτε το πεδίο``signif`` ως το επίθεμα εισαγωγής σημείου και τις κατοικημένες περιοχές <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> ως το επίθεμα-στόχος. Θα χρειαστεί επίσης να επιλέξετε ένα μοναδικό πεδίο για κάθε ένα από αυτά τα επιθέματα τα οποία καθορίζουν το πως εμφανίζονται τα αποτελέσματα σας. Σε αυτήν την ανάλυση, ψάχνουμε να βρούμε μόνο <strong>1</strong> πλησιέστερο σημείο, επομένως επιλέξτε το <em class="guilabel">Use only the nearest(k) target points</em>, και πληκτρολογήστε <em class="guilabel">1</em>. Δώστε ένα όνομα στο αρχείο που θα προκύψει <tt class="docutils literal"><span class="pre">matrix.csv</span></tt>, και επιλέξτε OK.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -274,11 +265,8 @@ click OK.  Once the processing finishes, click <em class="guilabel">Close</em>.<
 </div>
 <img alt="../_images/716.png" class="align-center" src="../_images/716.png" />
 <ol class="arabic simple" start="8">
-<li>Once the processing finishes, click the <em class="guilabel">Close</em> button in the
-<em class="guilabel">Distance Matrix</em> dialog. You can now view the <tt class="docutils literal"><span class="pre">matrix.csv</span></tt> file
-in Notepad or any text editor.  QGIS can import CSV files as well, so we
-will add it to QGIS and view it there. Go to <em class="menuselection">Layer ‣ Add
-Layer ‣ Add Delimited Text Layer...</em>.</li>
+<li><p class="first">Όταν είναι έτοιμο το αρχείο σας, πατήστε το κουμπί <em class="guilabel">Close</em> στο παράθυρο διαλόγου :<cite>Distance Matrix</cite>. Μπορείτε να δείτε το αρχείο <tt class="docutils literal"><span class="pre">matrix.csv</span></tt> στο Σημειωματάριο ή σε ένα οποιοδήποτε πρόγραμμα επεξεργασίας κειμένου. Το QGIS μπορεί επίσης να ανοίξει CSV αρχεία, επομένως θα το προσθέσουμε στο QGIS και θα το δούμε εκεί. Πηγαίνετε στο <em class="menuselection">Layer ‣ Add Delimited Text Layer...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/816.png" class="align-center" src="../_images/816.png" />
 <ol class="arabic simple" start="9">
@@ -311,11 +299,8 @@ Layer ‣ Add Delimited Text Layer...</em>.</li>
 </ol>
 <img alt="../_images/1414.png" class="align-center" src="../_images/1414.png" />
 <ol class="arabic simple" start="14">
-<li>We want to join the data from our analysis result to this layer. We need to
-select a field from each of the layers that has the same values. Select
-<tt class="docutils literal"><span class="pre">matrix</span></tt> as the <em class="guilabel">Join layer`</em> and <tt class="docutils literal"><span class="pre">InputID</span></tt> as the
-<em class="guilabel">Join field</em>. The <em class="guilabel">Target field</em> would be <tt class="docutils literal"><span class="pre">I_D</span></tt>.
-Leave other options to their default values and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Θέλουμε να ενώσουμε τα δεδομένα από τα αποτελέσματα της ανάλυσης μας  σε αυτό το στρώμα. Πρέπει να επιλέξουμε ένα πεδίο από το κάθε ένα από τα στρώματα που έχει τις ίδιες τιμές. Επιλέξτε τα πεδία &#8220;matrix``  ως :guilabel:&#8221;Στρώμα για την ένωση`` και <tt class="docutils literal"><span class="pre">InputID</span></tt> ως <em class="guilabel">Πεδίο για την ένωση</em>. The <em class="guilabel">Πεδίο-στόχος</em> θα είναι <tt class="docutils literal"><span class="pre">I_D</span></tt>. Αφήστε τις υπόλοιπες επιλογές στις προεπιλεγμένες τιμές και πατήστε <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1414.png" class="align-center" src="../_images/1414.png" />
 <ol class="arabic simple" start="15">
@@ -324,8 +309,8 @@ Leave other options to their default values and click <em class="guilabel">OK</e
 </ol>
 <img alt="../_images/1514.png" class="align-center" src="../_images/1514.png" />
 <ol class="arabic simple" start="16">
-<li>Now open the attribute table of the <tt class="docutils literal"><span class="pre">signif</span></tt> layer by right-clicking and
-selecting <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Τώρα ανοίξτε τον πίνακα χαρακτηριστικών του στρώματος σεισμοί  <tt class="docutils literal"><span class="pre">signif</span></tt>  κάνοντας δεξί κλίκ και επιλέγοντας <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1613.png" class="align-center" src="../_images/1613.png" />
 <ol class="arabic simple" start="17">
@@ -334,83 +319,64 @@ selecting <em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
 <img alt="../_images/1712.png" class="align-center" src="../_images/1712.png" />
 <ol class="arabic simple" start="18">
-<li>We will now explore a way to visualize these results. First, we need to
-make the table join permanent by saving it to a new layer. Right-click the
-<tt class="docutils literal"><span class="pre">signif</span></tt> layer and select <em class="guilabel">Save As...</em>.</li>
+<li><p class="first">Τώρα θα εξερευνήσουμε έναν τρόπο οπτικοποίησης των αποτελεσμάτων. Αρχικά, θα πρέπει να κάνουμε την ένωση μόνιμη σώζοντας την σε νέο στρώμα. Κάντε δεξί-κλικ στο στρώμα``signif`` και επιλέξτε <em class="guilabel">Save As- Αποθήκευση ως...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1812.png" class="align-center" src="../_images/1812.png" />
 <ol class="arabic simple" start="19">
-<li>Click the <em class="guilabel">Browse</em> button next to <em class="guilabel">Save as</em> label and
-name the output layer as <tt class="docutils literal"><span class="pre">earthquake_with_places.shp</span></tt>. Make sure the
-<em class="guilabel">Add saved file to map</em> box is checked and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Πατήστε το κουμπί <em class="guilabel">Browse`δίπλα στην ετικέτα :guilabel:`Save as</em> και ονομάστε το εξαγώμενο αρχείο ως <tt class="docutils literal"><span class="pre">earthquake_with_places.shp</span></tt>. Φροντίστε το κουτί <em class="guilabel">Add saved file to map`και πατήστε :guilabel:`OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1910.png" class="align-center" src="../_images/1910.png" />
 <ol class="arabic simple" start="20">
-<li>Once the new layer is loaded, you can turn off the visibility of the
-<tt class="docutils literal"><span class="pre">signif</span></tt> layer. As our dataset is quite large, we can run our
-visualization analysis on a subset of the data. QGIS has a neat feature
-where you can load a subset of features from a layer without having to
-export it to a new layer. Right-click the <tt class="docutils literal"><span class="pre">earthquake_with_places</span></tt> layer
-and select <em class="guilabel">Properties</em>.</li>
+<li><p class="first">Οταν φορτωθεί το νέο στρώμα, μπορείτε να απενεργοποιήσετε την εμφάνισή του στο στρώμα``signif``. Δεδομένου οτι η δέσμη δεδομένων μας είναι εκτενής, μπορούμε να τρέξουμε την οπτικοποίηση σε ένα υποσύνολο των δεδομένων. το QGIS έχει ένα ένδιαφέρον χαρακτηριστικό μέσω του οποίου μπορείτε να φορτώσετε ένα υποσύνολο από τα χαρατηριστικά ενός στρώματος χωρίς να χρειάζετε να γίνει εξαγωγή σε νέο στρώμα. Κάντε δεξί-κλίκ στο στρώμα <tt class="docutils literal"><span class="pre">earthquake_with_places</span></tt> και επιλέξτε  <em class="guilabel">Properties-Ιδιότητες</em>.</p>
+</li>
 </ol>
 <img alt="../_images/207.png" class="align-center" src="../_images/207.png" />
 <ol class="arabic simple" start="21">
-<li>In the <em class="guilabel">General</em> tab, scroll down to the <em class="guilabel">Feature
-subset</em> section. Click <em class="guilabel">Query Builder</em>.</li>
+<li><p class="first">Στην καρτέλα <em class="guilabel">General-Γενικά</em>, επιλέξτε το τμήμα <em class="guilabel">Feature subset- Υποσύνολο χαρακτηριστικών</em>. Κάντε κλίκ στο <em class="guilabel">Query Builder</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2113.png" class="align-center" src="../_images/2113.png" />
 <ol class="arabic simple" start="22">
-<li>For this tutorial, we will visualize the earthquakes and their nearest
-populated places for Mexico. Enter the following expression in the
-<em class="guilabel">Query Builder</em> dialog.</li>
+<li><p class="first">Στην παρούσα άσκηση, θα οπτικοποιήσουμε τους σεισμούς και τις κοντινότερες σε αυτούς κατοικημένες περιοχές για το Μεξικό. Εισάγετε την παρακάτω έκφραση στο παράθυρο διαλόγου <em class="guilabel">Query Builder</em></p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;COUNTRY&quot; = &#39;MEXICO&#39;
 </pre></div>
 </div>
 <img alt="../_images/2212.png" class="align-center" src="../_images/2212.png" />
 <ol class="arabic simple" start="23">
-<li>You will see that only the points falling within Mexico will be visible in
-the canvas. Let&#8217;s do the same for the populated places layer. Right-click
-on the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select
-<em class="guilabel">Properties</em>.</li>
+<li><p class="first">Θα δείτε οτι μόνο τα σημεία που εμφανίζονται μέσα στην περιοχή του Μεξικό είναι εμφανή στον καμβά.  Ας κάνουμε το ίδιο και για το στρώμα με τις κατοικημένες περιοχές. Κάντε δεξί-κλίκ στο στρώμα``ne_10m_populated_places_simple`` και επιλέξτε Ιδιότητες `` layer and select <em class="guilabel">Properties</em>.</p>
+</li>
 </ol>
 <img alt="../_images/237.png" class="align-center" src="../_images/237.png" />
 <ol class="arabic simple" start="24">
-<li>Open the <em class="guilabel">Query Builder</em> dialog from the <em class="guilabel">General</em> tab.
-Enter the following expression.</li>
+<li><p class="first">Ανοίξτε το παράθυρο διαλόγου:guilabel:<cite>Query Builder</cite> από την καρτέλα <em class="guilabel">General</em>. Εισάγετε την παρακάτω εντολή.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;adm0name&quot; = &#39;Mexico&#39;
 </pre></div>
 </div>
 <img alt="../_images/245.png" class="align-center" src="../_images/245.png" />
 <ol class="arabic simple" start="25">
-<li>Now we are ready to create our visualization. We will use a plugin named
-<tt class="docutils literal"><span class="pre">MMQGIS</span></tt>. Find and install the plugin. See <a class="reference internal" href="using_plugins.html"><em>Χρησιμοποιώντας Πρόσθετες Λειτουργίες</em></a> for more
-details on how to work with plugins. Once you have the plugin installed, go
-to <em class="menuselection">MMQGIS ‣ Create ‣ Hub Lines</em>.</li>
+<li><p class="first">Τώρα είστε σε θέση να δημιουργήσετε την δική σας οπτικοποίηση. Θα χρησιμοποιήσουμε το πρόσθετο``MMQGIS``. Βρείτε και εγκαταστείστε το πρόσθετο. Βλέπε <a class="reference internal" href="using_plugins.html"><em>Χρησιμοποιώντας Πρόσθετες Λειτουργίες</em></a> για περισσότερες πληροφορίες σχετικά με το πως να δουλεύετε με τα πρόσθετα. Αφού εγκαταστείσετε το πρόσθετο πηγαίνεται στο <em class="menuselection">MMQGIS ‣ Create ‣ Hub Lines</em>.</p>
+</li>
 </ol>
 <img alt="../_images/255.png" class="align-center" src="../_images/255.png" />
 <ol class="arabic simple" start="26">
-<li>Select <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> as the <em class="guilabel">Hub Point
-Layer</em> and <tt class="docutils literal"><span class="pre">name</span></tt> as the <em class="guilabel">Hub ID Attribute</em>. Similarly, select
-<tt class="docutils literal"><span class="pre">earthquake_with_places</span></tt> as the <em class="guilabel">Spoke Point Layer</em> and
-<tt class="docutils literal"><span class="pre">matrix_Tar</span></tt> as the <em class="guilabel">Spoke Hub ID Attribute</em>. The hub lines
-algorithm will go through each of earthquake points and create a line that
-will join it to the populated place which matches the attribute we
-specified. Click <em class="guilabel">Browse</em> and name the <em class="guilabel">Output
-Shapefile</em> as <tt class="docutils literal"><span class="pre">earthquake_hub_lines.shp</span></tt>. Click <em class="guilabel">OK</em> to start
-the processing.</li>
+<li><p class="first">Επιλέξτε το  <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> ως το <em class="guilabel">Στρώμα κομβικών σημείων</em> και``όνομα`` as the <em class="guilabel">Hub ID Attribute</em>. Ομοίως, επιλέξτε το``earthquake_with_places`` ως το <em class="guilabel">Spoke Point Layer</em> και το``matrix_Tar`` ως το <em class="guilabel">Spoke Hub ID Attribute</em>. Ο αλγόριθμος για τις κομβικές γραμμές θα περάσει μέσα από το κάθε σημείο που απεικονίζει σεισμό και θα δημιουργήσει μια γραμμή η οποί θα ενώνει το σημείο με την κατοικημένη περιοχή που ταιριάζει με την ιδιότητα που έχουμε προκαθορίσει. Κάντε κλίκ στο <em class="guilabel">Browse</em> και ονομάστε το <em class="guilabel">Output Shapefile</em> ως``earthquake_hub_lines.shp``. Κάντε κλίκ στο <em class="guilabel">OK</em> για να ξεκινήσετε την επεξεργασία.</p>
+</li>
 </ol>
 <img alt="../_images/265.png" class="align-center" src="../_images/265.png" />
 <ol class="arabic simple" start="27">
-<li>The processing may take a few minutes. You can see the progress on the
-bottom-left corner of the QGIS window.</li>
+<li><p class="first">Η επεξεργασία μπορεί να πάρει μερικά λεπτά. μπορείτε να δείτε την πρόοδο στην κάτω-αριστερή γωνιά του παραθύρου του QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/275.png" class="align-center" src="../_images/275.png" />
 <ol class="arabic simple" start="28">
-<li>Once the processing is done, you will see the <tt class="docutils literal"><span class="pre">earthquake_hub_lines</span></tt>
-layer loaded in QGIS. You can see that each earthquake point now has a line
-that connects it to the nearest populated place.</li>
+<li><p class="first">Μόλις η επεξεργασία είναι έτοιμη, θα δείτε το στρώμα <tt class="docutils literal"><span class="pre">earthquake_hub_lines</span></tt> φορτωμένο στο QGIS. Μπορείτε να δείτε ότι το κάθε σημείο που απεικονίζει σεισμό είναι τώρα συνδεδεμένο με την κοντινότερη κατοικημένη περιοχή με μία γραμμή.</p>
+</li>
 </ol>
 <img alt="../_images/283.png" class="align-center" src="../_images/283.png" />
 </div>
@@ -438,7 +404,7 @@ that connects it to the nearest populated place.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Aug 19, 2015.<br/>
+      Last updated on Aug 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

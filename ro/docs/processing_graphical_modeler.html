@@ -236,20 +236,12 @@
 </ol>
 <img alt="../_images/333.png" class="align-center" src="../_images/333.png" />
 <ol class="arabic simple" start="4">
-<li>You will see a box with the name <em class="guilabel">Input</em> appear in the canvas.
-This represents the landcover raster that we will use as input. Next step
-is to apply a <tt class="docutils literal"><span class="pre">Majority</span> <span class="pre">filter</span></tt> algorithm. Switch to the
-<em class="guilabel">Algorithm</em> tab from the bottom-left corner. Search for the
-algorithm and you will find it listed under <em class="guilabel">SAGA</em> provider. Drag
-it to the canvas.</li>
+<li><p class="first">Veți vedea o casetă cu numele <em class="guilabel">Input</em> apărând în canevas. Aceasta reprezintă rasterul de acoperire a terenului, pe care îl vom folosi ca intrare. Următorul pas este aplicarea unui algoritm <tt class="docutils literal"><span class="pre">Majority</span> <span class="pre">filter</span></tt>. Mergeți în fila :guilabel: <cite>Algoritm</cite> din colțul din stânga-jos. Căutați algoritmul, care va fi listat sub furnizorul <em class="guilabel">SAGA</em>. Glisați-l pe canevas.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you do not see this algorithm or get an error while using it, you may not
-have SAGA installed on your system. Please see <a class="reference external" href="https://docs.qgis.org/2.6/en/docs/user_manual/processing/3rdParty.html#saga">Configuring external
-applications</a>
-for instructions on how to install SAGA. If you cannot install SAGA, you may
-skip this step entirely.</p>
+<p class="last">Dacă nu vedeți acest algoritm sau dacă întâmpinați o eroare în timp ce îl utilizați, este posibil să nu aveți aplicația SAGA instalată pe sistemul dumneavoastră. Vă rugăm să consultați <a class="reference external" href="https://docs.qgis.org/2.6/en/docs/user_manual/processing/3rdParty.html#saga">Configurarea aplicațiilor externe</a> pentru instrucțiuni despre cum instalarea SAGA. Dacă nu se poate instala SAGA, puteți omite în întregime acest pas.</p>
 </div>
 <img alt="../_images/423.png" class="align-center" src="../_images/423.png" />
 <ol class="arabic simple" start="5">
@@ -258,44 +250,32 @@ skip this step entirely.</p>
 </ol>
 <img alt="../_images/524.png" class="align-center" src="../_images/524.png" />
 <ol class="arabic simple" start="6">
-<li>You will note that there is now a new box named <em class="guilabel">Majority Filter</em>
-in the canvas and it is connected to the <em class="guilabel">Input</em> box. This is
-because the <em class="guilabel">Majority Filter</em> algorithm uses the <em class="guilabel">Input</em>
-raster as its input. The next step in our workflow is to convert the output
-of majority filter to vector. Find the <tt class="docutils literal"><span class="pre">Polygonize</span> <span class="pre">(raster</span> <span class="pre">to</span> <span class="pre">vector)</span></tt>
-algorithm and drag it to the canvas.</li>
+<li><p class="first">Rețineți că de acum există pe canevas o nouă casetă denumită <em class="guilabel">Majority Filter</em>, acesta fiind conectată la caseta <em class="guilabel">Input</em>. Acest lucru se datorează faptului că algoritmul <em class="guilabel">Majority Filter</em> folosește rasterul <em class="guilabel">Input</em> ca intrare. Următorul pas al fluxului nostru de lucru, constă din convertirea ieșirii filtrului de majoritate în vector. Găsiți algoritmul <tt class="docutils literal"><span class="pre">Creare</span> <span class="pre">poligon</span> <span class="pre">(din</span> <span class="pre">raster</span> <span class="pre">în</span> <span class="pre">vector)</span></tt> și glisați-l pe canevas.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The boxes can be moved and arranged by clicking on it and dragging it while
-holding the left mouse button. You can also use the scroll-wheel to zoom in
-and out in the model canvas.</p>
+<p class="last">Casetele pot fi mutate și aranjate, făcând clic pe ele și trăgându-le, în timp ce se menține apăsat butonul stâng al mouse-ului. Puteți utiliza, de asemenea, rotița de scroll, pentru redimensionarea canevasului modelului.</p>
 </div>
 <img alt="../_images/622.png" class="align-center" src="../_images/622.png" />
 <ol class="arabic simple" start="7">
-<li>Select &#8216;Filtered Grid&#8217; from algorithm &#8216;Majority Filter&#8217; as the value for
-<em class="guilabel">Input layer</em>. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Selectați &#8216;Filtered Grid&#8217; din algoritmul &#8216;Majority Filter&#8217; ca valoare pentru <em class="guilabel">Stratul de intrare</em>. Clic <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/722.png" class="align-center" src="../_images/722.png" />
 <ol class="arabic simple" start="8">
-<li>The final step in the workflow is to query for a class value and create a
-new layer from the matching features. Search for the <tt class="docutils literal"><span class="pre">Extract</span> <span class="pre">by</span>
-<span class="pre">attribute</span></tt> algorithm and drag it the canvas.</li>
+<li><p class="first">Ultimul pas în fluxul de lucru este de a interoga valoarea unei clase, și de a crea un nou strat din entitățile identificate. Căutați algoritmul <tt class="docutils literal"><span class="pre">Extragere</span> <span class="pre">după</span> <span class="pre">atribute</span></tt> și glisați-l pe canevas.</p>
+</li>
 </ol>
 <img alt="../_images/821.png" class="align-center" src="../_images/821.png" />
 <ol class="arabic simple" start="9">
-<li>Select &#8216;Vectorized&#8217; from algorithm &#8216;Polygonize (raster to vector) as the
-<em class="guilabel">Input Layer</em>. We want to extract the pixels that represent
-Croplands. The corresponding pixel value for this class will be 12. (see
-<a class="reference external" href="http://www.landcover.org/data/lc/">Code Values</a>). Enter <tt class="docutils literal"><span class="pre">DN</span></tt> as the
-<em class="guilabel">Selection attribute</em> and <tt class="docutils literal"><span class="pre">12</span></tt> as the <em class="guilabel">value</em>. As the
-output of this operation will be the final result, we need to name the
-output. Enter <tt class="docutils literal"><span class="pre">vectorized</span> <span class="pre">class</span></tt> as the <em class="guilabel">Output</em>.</li>
+<li><p class="first">Selectați &#8216;Vectorizat&#8217;, din algoritmul &#8216;Poligonizare (din raster în vector), ca <em class="guilabel">Strat de Intrare</em>. Dorim să extragem pixelii care reprezintă Lanurile de Grâu. Valoarea corespunzătoare pixelilor pentru această clasă este 12. (vedeți <a class="reference external" href="http://www.landcover.org/data/lc/">Codul Valorilor</a>). Introduceți <tt class="docutils literal"><span class="pre">DN</span></tt> ca <em class="guilabel">Atribut al selecției</em> și <tt class="docutils literal"><span class="pre">12</span></tt> ca <em class="guilabel">valoare</em>. Deoarece rezultatul acestei operațiuni va fi cel final, va trebui să-i dăm un nume. Introduceți <tt class="docutils literal"><span class="pre">clasă</span> <span class="pre">vectorizată</span></tt> pentru <em class="guilabel">Ieșire</em>.</p>
+</li>
 </ol>
 <img alt="../_images/919.png" class="align-center" src="../_images/919.png" />
 <ol class="arabic simple" start="10">
-<li>Enter the <em class="guilabel">Model name</em> as <tt class="docutils literal"><span class="pre">vectorize</span></tt> and <em class="guilabel">Group
-name</em> as <tt class="docutils literal"><span class="pre">raster</span></tt>. Click the <em class="guilabel">Save</em> button.</li>
+<li><p class="first">Introduceți <tt class="docutils literal"><span class="pre">vectorizare</span></tt> pentru <em class="guilabel">Numele modelului</em> și <tt class="docutils literal"><span class="pre">raster</span></tt> pentru <em class="guilabel">Numele grupului</em>. Clic pe butonul <em class="guilabel">Salvare</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1020.png" class="align-center" src="../_images/1020.png" />
 <ol class="arabic simple" start="11">
@@ -304,20 +284,18 @@ name</em> as <tt class="docutils literal"><span class="pre">raster</span></tt>. 
 </ol>
 <img alt="../_images/1124.png" class="align-center" src="../_images/1124.png" />
 <ol class="arabic simple" start="12">
-<li>Now it is time to test our model. Close the modeler and switch to the main
-QGIS window. Go to <em class="menuselection">Layer ‣ Add Layer ‣ Add Raster
-Layer...</em>.</li>
+<li><p class="first">Acum este timpul să testăm modelul. Închideți modelatorul și comutați în fereastra principală a QGIS. Mergeți la <em class="menuselection">Strat ‣ Adăgare Strat ‣ Adăgare Strat Raster...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1221.png" class="align-center" src="../_images/1221.png" />
 <ol class="arabic simple" start="13">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">LC_hd_global_2001.tif.gz</span></tt> file and click
-<em class="guilabel">Open</em>. Once the raster is loaded, go to
-<em class="menuselection">Processing ‣ Toolbox</em>.</li>
+<li><p class="first">Navigați la fișierul descărcat, <tt class="docutils literal"><span class="pre">LC_hd_global_2001.tif.gz</span></tt>, apoi faceți clic pe <em class="guilabel">Deschidere</em>. O dată ce rasterul s-a încărcagt, mergeți la <em class="menuselection">Procesare ‣ Instrumentar</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1319.png" class="align-center" src="../_images/1319.png" />
 <ol class="arabic simple" start="14">
-<li>Find the newly created model under <em class="menuselection">Models ‣ raster ‣
-vectorize</em>. Double-click to launch the model.</li>
+<li><p class="first">Găsiți modelul nou creat în <em class="menuselection">Modele ‣ raster ‣ vectorizare</em>. Faceți dublu clic pentru a lansa modelul.</p>
+</li>
 </ol>
 <img alt="../_images/1418.png" class="align-center" src="../_images/1418.png" />
 <ol class="arabic simple" start="15">
@@ -326,17 +304,13 @@ vectorize</em>. Double-click to launch the model.</li>
 </ol>
 <img alt="../_images/1517.png" class="align-center" src="../_images/1517.png" />
 <ol class="arabic simple" start="16">
-<li>You will see all the steps being executed without any user input. Once the
-processing finishes, a new layer <tt class="docutils literal"><span class="pre">vectorized_class</span></tt> will be added to
-QGIS. Let&#8217;s improve the model a little bit. Right-click on the
-<tt class="docutils literal"><span class="pre">vectorize</span></tt> model and select <em class="guilabel">Edit model</em>.</li>
+<li><p class="first">Veți vedea toți pașii executându-se fără a se face apel la utilizator. După ce se termină prelucrarea, un nou strat <tt class="docutils literal"><span class="pre">vectorized_class</span></tt> va fi adăugat în QGIS. Haideți să îmbunătățim modelul un pic. Faceți clic-dreapta pe modelul <tt class="docutils literal"><span class="pre">vectorizare</span></tt> și selectați <em class="guilabel">Editare model</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1616.png" class="align-center" src="../_images/1616.png" />
 <ol class="arabic simple" start="17">
-<li>In Step 12, we hard-coded the value <tt class="docutils literal"><span class="pre">12</span></tt> as the class value. Instead, we
-can specify it as a input parameter which the user can change. To add this,
-switch to the <em class="guilabel">Inputs</em> tab and drag the <em class="guilabel">+ String</em> to
-the model.</li>
+<li><p class="first">La pasul 12, am hard-codat valoarea <tt class="docutils literal"><span class="pre">12</span></tt> ca valoare pentru clasă. În locul acestei operațiuni, o putem specifica ca parametru de intrare pe care utilizatorul îl poate schimba. Pentru aceasta, mergeți la fila <em class="guilabel">Intrări</em> și glisați <em class="guilabel">+ String</em> în model.</p>
+</li>
 </ol>
 <img alt="../_images/1715.png" class="align-center" src="../_images/1715.png" />
 <ol class="arabic simple" start="18">
@@ -345,57 +319,48 @@ the model.</li>
 </ol>
 <img alt="../_images/1815.png" class="align-center" src="../_images/1815.png" />
 <ol class="arabic simple" start="19">
-<li>We will now change the <tt class="docutils literal"><span class="pre">Extract</span> <span class="pre">by</span> <span class="pre">attribute</span></tt> algorithm to use this input
-instead of the hard-coded value. Click the <em class="guilabel">Edit</em> button next to
-the <em class="guilabel">Extract by attribute</em> box.</li>
+<li><p class="first">Vom schimba acum algoritmul <tt class="docutils literal"><span class="pre">Extragere</span> <span class="pre">după</span> <span class="pre">atribute</span></tt>, pentru a utiliza această intrare în locul valorii hard-codate. Faceți clic pe butonul <em class="guilabel">Editare</em>, de lângă caseta <em class="guilabel">Extragere după atribute</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1913.png" class="align-center" src="../_images/1913.png" />
 <ol class="arabic simple" start="20">
-<li>Click the dropdown arrow for <em class="guilabel">Value</em> and select <tt class="docutils literal"><span class="pre">Class</span></tt>. Click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Faceți clic pe săgeata verticală a <em class="guilabel">Valorii</em> și selectați <tt class="docutils literal"><span class="pre">Clasă</span></tt>. Faceți clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2010.png" class="align-center" src="../_images/2010.png" />
 <ol class="arabic simple" start="21">
-<li>You will see from the model diagram that the <em class="guilabel">Extract by
-attribute</em> algorithm now uses 2 inputs. The modeler has a shortcut to
-launch the model and test it. Click the <em class="guilabel">Run</em> button from the
-toolbar.</li>
+<li><p class="first">Veți vedea din diagrama modelului că algoritmul <em class="guilabel">Extragere după atribute</em> folosește acum 2 intrari. Modelatorul are o comandă rapidă pentru a lansa modelul și pentru a-l testa. Faceți clic pe butonul <em class="guilabel">Rulare</em> din bara de instrumente.</p>
+</li>
 </ol>
 <img alt="../_images/2115.png" class="align-center" src="../_images/2115.png" />
 <ol class="arabic simple" start="22">
-<li>Notice that the model dialog has a new editable field called
-<em class="guilabel">Class</em>. Enter <tt class="docutils literal"><span class="pre">16</span></tt> as the <em class="guilabel">Class</em> value and click
-<em class="guilabel">Run</em>.</li>
+<li><p class="first">Observați că dialogul modelului are un nou câmp editabil denumit <em class="guilabel">Clasă</em>. Introduceți <tt class="docutils literal"><span class="pre">16</span></tt> ca valoare pentru <em class="guilabel">Clasă</em>, apoi faceți clic pe <em class="guilabel">Rulare</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2214.png" class="align-center" src="../_images/2214.png" />
 <ol class="arabic simple" start="23">
-<li>Once the processing finishes, you will see that with just a click of a
-button we were able to run a complex workflow and extract the area for
-class 16.</li>
+<li><p class="first">După ce prelucrarea se încheie, veți vedea că, doar cu o apăsare de buton am putut rula un flux de lucru complex, și să extragem zona pentru clasa 16.</p>
+</li>
 </ol>
 <img alt="../_images/2311.png" class="align-center" src="../_images/2311.png" />
 <ol class="arabic simple" start="24">
-<li>Now that our model is ready, we can run it just as easily on a new raster
-layer. Load the <tt class="docutils literal"><span class="pre">LC_hd_global_2012.tif.gz</span></tt> file by going to
-<em class="menuselection">Layer ‣ Add Layer ‣ Add Raster Layer...</em>. Click the
-<em class="guilabel">vectorize`</em> model from the <em class="guilabel">Processing Toolbox</em> panel.</li>
+<li><p class="first">Acum, că modelul nostru este gata, îl putem rula la fel de ușor pe un nou strat raster. Încărcați fișierul <tt class="docutils literal"><span class="pre">LC_hd_global_2012.tif.gz</span></tt>, mergând la <em class="menuselection">Strat ‣ Adăugare Strat ‣ Adăugare Strat Raster...</em>. Clic pe modelul <em class="guilabel">vectorizare`</em>, din panoul <em class="guilabel">Processing Toolbox</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2410.png" class="align-center" src="../_images/2410.png" />
 <ol class="arabic simple" start="25">
-<li>Pick the <tt class="docutils literal"><span class="pre">LC_hd_global_2012</span></tt> layer as the <em class="guilabel">Input</em> and click
-<em class="guilabel">Run</em>.</li>
+<li><p class="first">Selectați <tt class="docutils literal"><span class="pre">LC_hd_global_2012</span></tt> ca <em class="guilabel">Intrare</em>, apoi efectuați clic pe <em class="guilabel">Rulare</em>.</p>
+</li>
 </ol>
 <img alt="../_images/257.png" class="align-center" src="../_images/257.png" />
 <ol class="arabic simple" start="26">
-<li>Once the new output is loaded, you can compare the changes in the Croplands
-from 2001 to 2012.</li>
+<li><p class="first">O dată ce noul rezultat este încărcat, puteți compara modificările Lanurilor, din 2001 până în 2012.</p>
+</li>
 </ol>
 <img alt="../_images/267.png" class="align-center" src="../_images/267.png" />
 <ol class="arabic simple" start="27">
-<li>It is always a good idea to add documentation to your model. The modeler
-has a built-in <em class="guilabel">Help editor</em> that allows you to embed help
-directly in the model. Right-click the <tt class="docutils literal"><span class="pre">vectorize</span></tt> model and select
-<em class="guilabel">Edit model</em>.</li>
+<li><p class="first">Este întotdeauna o idee bună să adăugați documentația pentru modelul dumneavoastră. Modelatorul are un <em class="guilabel">Editor de Ajutor</em> incorporat, care vă permite să înglobați documentația direct în model. Faceți clic dreapta pe modelul <tt class="docutils literal"><span class="pre">vectorizare</span></tt> și selectați <em class="guilabel">Editare model</em>.</p>
+</li>
 </ol>
 <img alt="../_images/277.png" class="align-center" src="../_images/277.png" />
 <ol class="arabic simple" start="28">
@@ -404,19 +369,11 @@ directly in the model. Right-click the <tt class="docutils literal"><span class=
 </ol>
 <img alt="../_images/285.png" class="align-center" src="../_images/285.png" />
 <ol class="arabic simple" start="29">
-<li>In the <em class="guilabel">Help editor</em> dialog, select any item from the
-<em class="guilabel">Select element to edit</em> panel and enter the help text in
-<em class="guilabel">Element description</em>. Click <em class="guilabel">OK</em>. This help will be
-available in the <em class="guilabel">Help</em> tab when you launch the model to run.</li>
+<li><p class="first">În dialogul <em class="guilabel">Editorului de Ajutor</em>, selectați oricare element din panoul <em class="guilabel">Selectați elementul de editat</em>, apoi introduceți textul de ajutor în <em class="guilabel">Descriere Element</em>. Faceți clic pe <em class="guilabel">OK</em>. Acest ajutor va fi disponibil în fila <em class="guilabel">Ajutor</em> atunci când veți lansa în execuție modelul.</p>
+</li>
 </ol>
 <img alt="../_images/294.png" class="align-center" src="../_images/294.png" />
-<p>Models can be a great timesaver and allow you to write your workflow once and
-run it multiple times. You can even share your model with other users. The
-model files are saved in the <tt class="docutils literal"><span class="pre">.qgis2</span></tt> directory. You can send the <tt class="docutils literal"><span class="pre">.model</span></tt>
-file to another user who can copy it to the appropriate directory on their
-computer and it will appear in the <em class="guilabel">Processing toolbox</em>. The models
-directory location will depend on the platform as follows: (Replace
-<tt class="docutils literal"><span class="pre">username</span></tt> with your login name)</p>
+<p>Modelele vă pot ajuta să economisiți timp, permițându-vă să schițați fluxul de lucru o singură dată și să-l rulați de mai multe ori. Aveți chiar posibilitatea să partajați modelul cu alți utilizatori. Fișierele modelului sunt salvate în directorul <tt class="docutils literal"><span class="pre">.qgis2</span></tt>. Puteți trimite fișierul <tt class="docutils literal"><span class="pre">.model</span></tt> către un alt utilizator, care îl poate copia în directorul corespunzător de pe computerul său, după care va apărea în <em class="guilabel">Instrumentarul Procesare</em>. Locația directorului pentru modele depinde de platformă, după cum urmează: (Înlocuiți <tt class="docutils literal"><span class="pre">username</span></tt> cu numele de conectare)</p>
 <p><strong>Windows</strong></p>
 <div class="highlight-none"><div class="highlight"><pre>c:\Users\username\.qgis2\processing\models\
 </pre></div>
@@ -454,7 +411,7 @@ directory location will depend on the platform as follows: (Replace
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Aug 19, 2015.<br/>
+      Last updated on Aug 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

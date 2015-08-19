@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Performing Spatial Queries &mdash; QGIS Tutorials and Tips</title>
+    <title>Ruimtelijke query’s uitvoeren &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -100,7 +100,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Ruimtelijke samenvoegingen uitvoeren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Punten in polygoon-analyses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Heatmaps maken</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Performing Spatial Queries</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Ruimtelijke query&#8217;s uitvoeren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Analyse Nearest Neighbor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Monsters nemen van rastergegevens met behulp van punten of polygonen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpoleren van puntgegevens</a></li>
@@ -116,7 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Python-scripts schrijven voor framework Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Taken voor QGIS uitvoeren en in schema zetten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
-<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Kaarten op Leaflet Web met qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Google Maps Engine Connector gebruiken voor QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS bronnen om te leren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Lesgeven in QGIS</a></li>
@@ -193,213 +193,181 @@
       
 
   <div class="section" id="performing-spatial-queries">
-<h1>Performing Spatial Queries<a class="headerlink" href="#performing-spatial-queries" title="Permalink naar deze titel">¶</a></h1>
+<h1>Ruimtelijke query&#8217;s uitvoeren<a class="headerlink" href="#performing-spatial-queries" title="Permalink naar deze titel">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/performing_spatial_queries_a4.pdf">A4</a> <a class="reference external" href="../pdf/performing_spatial_queries_letter.pdf">Letter</a> ]</p>
-<p>Spatial queries are core to many types of GIS analysis. In QGIS, this
-functionality is available via the <strong>Spatial Query</strong> plugin.</p>
+<p>Ruimtelijke query&#8217;s zijn de bron voor vele typen analyses in GIS. In QGIS is deze functionaliteit beschikbaar via de plug-in <strong>Ruimtelijke query</strong>.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
-<p>We will be working with 2 datasets - a lines layer representing rivers and a
-point layer representing cities. The task is to run a spatial query to find all
-cities that are within 10 kms of a river.</p>
+<h2>Overzicht van de taak<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
+<p>We zullen werken met 2 gegevenssets - een lijnenlaag die rivieren weergeeft en een puntenlaag die steden weergeeft. De taak is om een ruimtelijke query uit te voeren om alle steden te zoeken die binnen 10 km van een rivier liggen.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
+<h3>Andere vaardigheden die u zult leren<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
 <ul class="simple">
-<li>Opening .zip files directly in QGIS.</li>
-<li>Choosing an appropriate projection and re-projecting vector data.</li>
-<li>Creating buffers.</li>
-<li>Selecting features using SQL-like expressions.</li>
-<li>Coverting a shpefile to a KML file.</li>
-<li>Validating your results using Google Earth.</li>
+<li><p class="first">.zip-bestanden direct in QGIS openen.</p>
+</li>
+<li><p class="first">Een toepasselijke projectie kiezen en vectorgegevens opnieuw projecteren.</p>
+</li>
+<li><p class="first">Buffers maken.</p>
+</li>
+<li><p class="first">Objecten selecteren met behulp van SQL-achtige expressies.</p>
+</li>
+<li><p class="first">Een shapefile converteren naar een KML-bestand.</p>
+</li>
+<li><p class="first">Uw resultaten valideren met behulp van Google Earth.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
-<p>We will use <tt class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines</span></tt> and
-<tt class="docutils literal"><span class="pre">10m_populated_places_simple</span></tt> datasets from Natural Earth.</p>
+<h2>De gegevens ophalen<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
+<p>We zullen de gegevenssets <tt class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines</span></tt> en <tt class="docutils literal"><span class="pre">10m_populated_places_simple</span></tt> van Natural Earth gebruiken.</p>
 <p>Download <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_rivers_lake_centerlines.zip">Rivers and Lake Centerlines</a></p>
 <p>Download <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">Populated Places</a>.</p>
-<p>Data Source: <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
+<p>Gegevensbron: <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink naar deze titel">¶</a></h2>
 <ol class="arabic simple">
-<li>Once you have downloaded the data, open QGIS. Go to
-<em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Als u de gegevens heeft gedownload, open QGIS. Ga naar <em class="menuselection">Kaartlagen ‣ Laag toevoegen ‣ Vectorlaag toevoegen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1103.png" class="align-center" src="../_images/1103.png" />
 <ol class="arabic simple" start="2">
-<li>Click <em class="guilabel">Browse</em> and navigate to the folder where you downloaded the
-zip files.</li>
+<li><p class="first">Klik op <em class="guilabel">Bladeren</em> en navigeer naar de map waar u de gedownloade .zip-bestanden heeft opgeslagen.</p>
+</li>
 </ol>
 <img alt="../_images/240.png" class="align-center" src="../_images/240.png" />
 <ol class="arabic simple" start="3">
-<li>Hold the <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> key and click on both the zip files to select them.
-Click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Houdt de <tt class="kbd docutils literal"><span class="pre">Shift</span></tt>-toets ingedrukt en klik op beide zip-bestanden om ze te selecteren. Klik op <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/328.png" class="align-center" src="../_images/328.png" />
 <ol class="arabic simple" start="4">
-<li>You will be asked to choose a layer from the zip archive.
-Select <tt class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines.shp</span></tt> and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">U zult worden gevraagd een laag te kiezen uit het .zip-archief. Selecteer <tt class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines.shp</span></tt> en klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/420.png" class="align-center" src="../_images/420.png" />
 <ol class="arabic simple" start="5">
-<li>Since you have selected multiple files, repeat the process for the next file.
-Select 10m_populated_places_simple.shp and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Herhaal, omdat u meerdere bestanden heeft geselecteerd, het proces voor het volgende bestand. Selecteer 10m_populated_places_simple.shp en klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/521.png" class="align-center" src="../_images/521.png" />
 <ol class="arabic simple" start="6">
-<li>You will see both the shapefiles now loaded in QGIS.</li>
+<li><p class="first">U zult beide shapefiles nu zien geladen in QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/620.png" class="align-center" src="../_images/620.png" />
 <ol class="arabic simple" start="7">
-<li>We will be created buffers around the point and line layers. The <cite>Buffer</cite>
-geoprocessing tool in QGIS uses <cite>layer units</cite> to calculate buffer distances.
-The layers we have are in <cite>Geographic Coordinate Reference System (CRS)</cite> with
-the unit of <cite>degrees</cite>. This is not appropriate as we want our analysis to use
-<cite>metres</cite> or <cite>kilometres</cite>. To achive this, we must re-project our layers to a
-<cite>Projected Coordinate Reference System (CRS)</cite>. Right-click on the
-<tt class="docutils literal"><span class="pre">10m_populated_places_simple</span> <span class="pre">layer</span></tt> and choose <em class="guilabel">Save As</em>.</li>
+<li><p class="first">We zullen buffers maken rondom de punten- en lijnlagen. Het geoprocessing-gereedschap <cite>Buffer</cite> in QGIS gebruikt <cite>laageenheden</cite> om afstanden voor buffers te berekenen. De lagen die we hebben zijn in het <cite>Geografisch Coördinaten Referentie Systeem (CRS)</cite> met de eenheid <cite>graden</cite>. Dit is niet gewenst als we onze analyse <cite>meters</cite> of <cite>kilometers</cite> willen laten gebruiken. We moeten onze lagen opnieuw projecteren naar een <cite>Geprojecteerd Coördinaten Referentie Systeem (CRS)</cite> om dit te bereiken. Klik met rechts op de laag <tt class="docutils literal"><span class="pre">10m_populated_places_simple</span></tt> en kies <em class="guilabel">Opslaan als</em>.</p>
+</li>
 </ol>
 <img alt="../_images/719.png" class="align-center" src="../_images/719.png" />
 <ol class="arabic simple" start="8">
-<li>In the <em class="guilabel">Save vector layer as...</em> dialog, click <em class="guilabel">Browse</em>
-next to <em class="guilabel">Save as</em> and select the output file location. Name the
-output file as <tt class="docutils literal"><span class="pre">populated_places_reprojected.shp</span></tt>. Next, click the
-<em class="guilabel">Browse</em> button next to <em class="guilabel">CRS</em>.</li>
+<li><p class="first">Klik, in het dialoogvenster <em class="guilabel">Vectorlaag opslaan als...</em>,  op <em class="guilabel">Bladeren</em> naast <em class="guilabel">Opslaan als</em> en selecteer de locatie voor de uitvoer. Noem het uitvoerbestand <tt class="docutils literal"><span class="pre">populated_places_reprojected.shp</span></tt>. Klik vervolgens op de knop <em class="guilabel">Bladeren</em> naast <em class="guilabel">CRS</em>.</p>
+</li>
 </ol>
 <img alt="../_images/818.png" class="align-center" src="../_images/818.png" />
 <ol class="arabic simple" start="9">
-<li>Now we must choose an appropriate CRS for our purpose. For creating buffers,
-a Azimuthal Equidistant projection would be best suited as radial distances
-around the center of the projection are accurate. In our case, since the
-dataset is global, we will choose a world projection. In the
-<em class="guilabel">Coordinate Reference System Selector</em> dialog, start searching for
-<cite>world az..</cite> and you will see the results show up. Select the
-<cite>World_Azimuthal_Equidistant</cite> and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Nu moeten we een toepasselijk CRS kiezen voor ons doel. Voor het maken van buffers is een projectie in Azimuthal Equidistant het best geschikt, omdat radiale afstanden rondom het centrum van de projectie nauwkeurig zijn. In ons geval, omdat de gegevensset globaal is, zullen we ene wereldprojectie kiezen. In het dialoogvenster <em class="guilabel">Keuze Coördinaten ReferentieSysteem</em>, start het zoeken naar <cite>world az..</cite> en u zult de resultaten weergegeven zien worden. Selecteer de <cite>World_Azimuthal_Equidistant</cite> en klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Notitie</p>
-<p class="last">The <cite>World_Azimuthal_Equidistant</cite> projection spans 90 degrees from the
-origin. Here the origin being 0 degrees longitude, the only data contained
-within +/- 90 degrees longitude will be converted.</p>
+<p class="last">De projectie <cite>World_Azimuthal_Equidistant</cite> bedekt 90 graden vanuit het punt van origine. Hier is het origine 0 graden longitude, alleen de gegevens opgenomen binnen +/- 90 graden longitude zullen wordne geconverteerd.</p>
 </div>
 <img alt="../_images/916.png" class="align-center" src="../_images/916.png" />
 <ol class="arabic simple" start="10">
-<li>Back in <em class="guilabel">Save vector layer as ...</em> dialog, check the box next to
-<em class="guilabel">Add saved file to map</em> and click <cite>OK</cite>.</li>
+<li><p class="first">selecter, terug in het dialoogvenster <em class="guilabel">Vectorlaag opslaan als ...</em>, het vak naast <em class="guilabel">Voeg opgeslagen bestand toe aan kaart</em> en klik op <cite>OK</cite>.</p>
+</li>
 </ol>
 <img alt="../_images/1017.png" class="align-center" src="../_images/1017.png" />
 <ol class="arabic simple" start="11">
-<li>Repeat the re-projection process for the <tt class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines</span></tt>
-layer and save the new layer as <tt class="docutils literal"><span class="pre">rivers_lake_reprojected.shp</span></tt>.</li>
+<li><p class="first">Herhaal het proces voor het opnieuw projecteren voor de laag <tt class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines</span></tt> en sla de nieuwe laag op als <tt class="docutils literal"><span class="pre">rivers_lake_reprojected.shp</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/1121.png" class="align-center" src="../_images/1121.png" />
 <ol class="arabic simple" start="12">
-<li>Now you will have 4 layers in your <em class="guilabel">Layers Panel</em>. Un-check the
-boxes next to the original layers to display only the re-projected layers.
-The re-projected layers are still being shown in the <cite>Geographic CRS</cite>
-because of a setting. Let&#8217;s turn that off. Click on the
-<em class="guilabel">Project Properties</em> button. This setting can also be accessed
-from <em class="menuselection">Project ‣ Project Properties</em>.</li>
+<li><p class="first">Nu zult u 4 lagen in uw <em class="guilabel">Lagenlijst</em> hebben. Deselecteer de vakken naast de originele lagen om alleen de opnieuw geprojecteerde lagen weer te geven. De opnieuw geprojecteerde lagen zijn nog steeds weergegeven in het <cite>Geografisch CRS</cite> vanwege een instelling. Laten we die uitzetten. Klik op de knop <em class="guilabel">Projecteigenschappen</em>. Toegang tot deze instelling kan ook worden verkregen via <em class="menuselection">Project ‣ Projecteigenschappen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1219.png" class="align-center" src="../_images/1219.png" />
 <ol class="arabic simple" start="13">
-<li>In the <em class="guilabel">CRS</em> tab of the <em class="guilabel">Project Properties</em> dialog,
-un-check the box next to <em class="guilabel">Enable on-the-fly CRS transformation</em>.
-Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Deselecteer, op de tab <em class="guilabel">CRS</em> van het dialoogvenster <em class="guilabel">Projecteigenschappen</em>, het vak naast <em class="guilabel">Gelijktijdige CRS-transformatie gebruiken</em>. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1317.png" class="align-center" src="../_images/1317.png" />
 <ol class="arabic simple" start="14">
-<li>Back in the main QGIS window, right-click on any one of the re-projected
-layers and select <em class="guilabel">Zoom to Layer Extent</em>.</li>
+<li><p class="first">Terug in het hoofdvenster van QGIS, klik met rechts op een van de opnieuw geprojecteerde lagen en selecteer <em class="guilabel">Op kaartlaag inzoomen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1416.png" class="align-center" src="../_images/1416.png" />
 <ol class="arabic simple" start="15">
-<li>Now you will see the data in the layer&#8217;s CRS. We will now create buffers for
-both the datasets. Click <em class="menuselection">Vector ‣ Geoprocessing Tools ‣
-Buffer</em>.</li>
+<li><p class="first">Nu zult u nde gegevens zien in het CRS van de laag. We zullen nu buffers maken voor beide gegevenssets. Klik op <em class="menuselection">Vector ‣ Geoprocessing-gereedschap ‣ Buffer(s)</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1515.png" class="align-center" src="../_images/1515.png" />
 <ol class="arabic simple" start="16">
-<li>In the <em class="guilabel">Buffer</em> tool, select <tt class="docutils literal"><span class="pre">populated_places_reprojected</span></tt>
-layer as Input. Enter the buffer distance as <cite>10000</cite>. Note that we want a
-buffer of 10kms and since the CRS units are metres, we need to enter 10,000.
-Enter the output file name as <tt class="docutils literal"><span class="pre">populated_places_buffer.shp</span></tt>. Click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Selecteer, in het gereedschap <em class="guilabel">Buffer(s)</em>, de laag <tt class="docutils literal"><span class="pre">populated_places_reprojected</span></tt> als Invoer vectorlaag. Voer de afstand voor de buffer in als <cite>10000</cite>. Onthoud dat we een buffer van 10 km willen en omdat de eenheden van het CRS meters zijn,moeten we 10,000 invoeren. Voer als naam voor het uitvoerbestand in <tt class="docutils literal"><span class="pre">populated_places_buffer.shp</span></tt>. Klik op <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1614.png" class="align-center" src="../_images/1614.png" />
 <ol class="arabic simple" start="17">
-<li>Once the buffer processing is over, click the <em class="guilabel">Yes</em> to add the
-newly created layer to the TOC.</li>
+<li><p class="first">Klik, als het verwerken van de buffer voltooid is, op <em class="guilabel">Yes</em> om de nieuw gemaakte laag aan de inhoudsopgave toe te voegen.</p>
+</li>
 </ol>
 <img alt="../_images/1713.png" class="align-center" src="../_images/1713.png" />
 <ol class="arabic simple" start="18">
-<li>Repeat the same buffer process for the <tt class="docutils literal"><span class="pre">rivers_lake_reprojected</span></tt> layer and
-create an output file named <tt class="docutils literal"><span class="pre">rivers_lake_buffer.shp</span></tt>.</li>
+<li><p class="first">Herhaal hetzelfde proces voor de buffer voor de laag <tt class="docutils literal"><span class="pre">rivers_lake_reprojected</span></tt> en maak een uitvoerbestand, genaamd <tt class="docutils literal"><span class="pre">rivers_lake_buffer.shp</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/1813.png" class="align-center" src="../_images/1813.png" />
 <ol class="arabic simple" start="19">
-<li>The <tt class="docutils literal"><span class="pre">rivers_lake_buffer</span></tt> contains features that are both rivers as well as
-lakes. Our analysis calls for using only river features, so we will run a
-query to select only river features. Right-click on the
-<tt class="docutils literal"><span class="pre">rivers_lake_buffer</span></tt> layer and select <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">De laag <tt class="docutils literal"><span class="pre">rivers_lake_buffer</span></tt> bevat objecten die zowel rivieren als meren zijn. Onze analyse dient alleen de objecten rivieren te bevatten, dus zullen we een query uitvoeren om alleen de objecten rivier te selecteren. Klik met rechts op de laag <tt class="docutils literal"><span class="pre">rivers_lake_buffer</span></tt> en selecteer <em class="guilabel">Open attributentabel</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1911.png" class="align-center" src="../_images/1911.png" />
 <ol class="arabic simple" start="20">
-<li>You will see that the <cite>featurecla</cite> attribute contains the information we can
-use to select the river features. Click on <cite>Select features using an
-expression</cite> button.</li>
+<li><p class="first">U zult zien dat het attribuut <cite>featurecla</cite> de informatie bevat die we nodig hebben om de objecten rivier te kunnen selecteren. Klik op de knop <cite>Selecteer objecten m.b.v. een reguliere expressie</cite>.</p>
+</li>
 </ol>
 <img alt="../_images/208.png" class="align-center" src="../_images/208.png" />
 <ol class="arabic simple" start="21">
-<li>Enter the expression <cite>&#8220;featurecla&#8221; = &#8220;River&#8221;</cite> and click <em class="guilabel">Select</em>
-and then click <em class="guilabel">Close</em> to back to the main QGIS window.</li>
+<li><p class="first">Voer de expressie <cite>&#8220;featurecla&#8221; = &#8220;River&#8221;</cite> in en klik op <em class="guilabel">Selecteren</em> en klik dan op <em class="guilabel">Sluiten</em> om terug te gaan naar het hoofdvenster van QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/2114.png" class="align-center" src="../_images/2114.png" />
 <ol class="arabic simple" start="22">
-<li>Now we are ready to perform the spatial query. You need to enable the
-<cite>Spatial Query plugin</cite> to use this functionality. See <a class="reference internal" href="using_plugins.html"><em>Plug-ins gebruiken</em></a>
-for more details. Once enabled, go to <em class="menuselection">Vector ‣ Spatial
-Query ‣ Spatial Query</em>.</li>
+<li><p class="first">Nu zijn we gereed om de ruimtelijke query uit te voeren. U moet de <cite>plug-in Ruimtelijke Query</cite> om deze functionaliteit te kunnen gebruiken. Bekijk <a class="reference internal" href="using_plugins.html"><em>Plug-ins gebruiken</em></a> voor meer details. Ga, als hij eenmaal is ingeschakeld, naar <em class="menuselection">Vector ‣ Ruimtelijke Query ‣ Ruimtelijke Query</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2213.png" class="align-center" src="../_images/2213.png" />
 <ol class="arabic simple" start="23">
-<li>For our query, we want to select features from the buffered places that
-intersect with the buffered river lines. Make sure the checkbox next to
-<cite>selected geometries</cite> is checked. This is to ensure the query uses only
-river features that we selected previously. Click <em class="guilabel">Apply</em>.</li>
+<li><p class="first">Voor onze query willen we objecten selecteren uit de plaatsen met buffers die kruisen met de buffers van de lijnen van de rivieren. Zorg er voor dat het keuzevak naast <cite>geselecteerde geometrieën</cite> is geselecteerd. Dit is om er voor te zorgen dat de query alleen de objecten rivier gebruikt die we eerder hebben geselecteerd. Klik op <em class="guilabel">Apply</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2310.png" class="align-center" src="../_images/2310.png" />
 <ol class="arabic simple" start="24">
-<li>Once the query is complete, you will see a new section named
-<em class="guilabel">Selected features</em>. Click on the <em class="guilabel">Create layer with
-selected</em> button. A new layer will be added to the <cite>Layers Panel</cite>. Click
-<em class="guilabel">Close</em>.</li>
+<li><p class="first">Als de query is voltooid, zult u een nieuw gedeelte zien, genaamd <em class="guilabel">Geselecteerde objecten</em>. Klik op de knop <em class="guilabel">Aanmaken van laag met selectie</em>. Een nieuwe laag zal worden toegevoegd aan de <cite>Lagenlijst</cite>. Klik op <em class="guilabel">Close</em>.</p>
+</li>
 </ol>
 <img alt="../_images/246.png" class="align-center" src="../_images/246.png" />
 <ol class="arabic simple" start="25">
-<li>Zoom-in to any area and compare the results. You will notice that the new
-layer contains only the features that intersect with river buffers.</li>
+<li><p class="first">Zoom in op een willekeurig gebied en vergelijk de resultaten. het zal u opvallen dat de nieuwe laag alleen de objecten bevat die kruisen met buffers van rivieren.</p>
+</li>
 </ol>
 <img alt="../_images/256.png" class="align-center" src="../_images/256.png" />
 <ol class="arabic simple" start="26">
-<li>We should always verify my results to ensure the analysis is not flawed. One
-way to verify the results is to export this layer as a KML file and load it
-up in Google Earth. You can check if the areas you found really are within
-10kms of a river. Right-click the layer and <em class="guilabel">Save As...</em>.</li>
+<li><p class="first">We zouden altijd de resultaten van onze resultaten moeten verifiëren om er voor te zorgen dat de analyse zonder fouten is. Eén manier om de resultaten te verifiëren is om deze laag te exporteren als een KML-bestand en dat te uploaden naar Google Earth. U kunt controleren of de gebieden die u heeft gevonden inderdaad binnen 10 km van een rivier liggen. Klik met rechts op de laag en selecteer <em class="guilabel">Opslaan als...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/266.png" class="align-center" src="../_images/266.png" />
 <ol class="arabic simple" start="27">
-<li>In the <em class="guilabel">Save vector layer as...</em>, choose <cite>WGS84</cite> as the CRS. This
-because KML format needs the coordinates to be in this CRS. Name your KML as
-<tt class="docutils literal"><span class="pre">cities_near_river.kml</span></tt>.</li>
+<li><p class="first">Kies, in het dialoogvenster <em class="guilabel">Vectorlaag opslaan als...</em>, <cite>WGS84</cite> als het CRS. Dit omdat de indeling KML de coördinaten nodig heeft in dit CRS. Noem uw KML <tt class="docutils literal"><span class="pre">cities_near_river.kml</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/276.png" class="align-center" src="../_images/276.png" />
 <ol class="arabic simple" start="28">
-<li>Open Google Earth and verify that the cities represented by these buffers
-are indeed close to rivers.</li>
+<li><p class="first">Open Google Earth en verifieer dat de door deze buffers weergegeven steden inderdaad dicht bij rivieren liggen.</p>
+</li>
 </ol>
 <img alt="../_images/284.png" class="align-center" src="../_images/284.png" />
 </div>
@@ -427,7 +395,7 @@ are indeed close to rivers.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Aug 19, 2015.<br/>
+      Laatste aanpassing op Aug 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

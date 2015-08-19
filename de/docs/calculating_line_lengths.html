@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Calculating Line Lengths and Statistics &mdash; QGIS Tutorials and Tips</title>
+    <title>Längen von Linien und Statistiken berechnen &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -88,7 +88,7 @@
 <li class="toctree-l1"><a class="reference internal" href="using_plugins.html">Verwenden von Erweiterungen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="downloading_osm_data.html">Suchen und Laden von OpenStreetMap Daten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="basic_vector_styling.html">Einfache Vektor Gestaltung</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Calculating Line Lengths and Statistics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Längen von Linien und Statistiken berechnen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Basic Raster Styling and Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
@@ -193,172 +193,135 @@
       
 
   <div class="section" id="calculating-line-lengths-and-statistics">
-<h1>Calculating Line Lengths and Statistics<a class="headerlink" href="#calculating-line-lengths-and-statistics" title="Permalink zu dieser Überschrift">¶</a></h1>
+<h1>Längen von Linien und Statistiken berechnen<a class="headerlink" href="#calculating-line-lengths-and-statistics" title="Permalink zu dieser Überschrift">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/calculating_line_lengths_a4.pdf">A4</a> <a class="reference external" href="../pdf/calculating_line_lengths_letter.pdf">Letter</a> ]</p>
-<p>QGIS has built-in functions to calculate various properties based on the
-geometry of the feature - such as length, area, perimeter etc. This tutorial
-will show how to use <strong>Field Calculator</strong> to add a column with a value
-representing length of each feature.</p>
+<p>QGIS hat integrierte Funktionen, um unterschiedliche Eigenschaften basierend auf der Geometrie eines Features zu berechnen. So z.B. Länge, Fläche, Umfang etc. Dieses Tutorial zeigt, wie Sie den <strong>Feldrechner</strong> verwenden, eine Spalte mit dem Längenwert jedes Features hinzuzufügen.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink zu dieser Überschrift">¶</a></h2>
-<p>We will use a polyline shapefile of railroads in North America and try to
-determine the total length of railroads in the United States.</p>
+<h2>Übersicht der Aufgabe<a class="headerlink" href="#overview-of-the-task" title="Permalink zu dieser Überschrift">¶</a></h2>
+<p>Wir benutzen eine Shapedatei mit Linienzügen der Eisenbahnlinien in Nord Amerika und versuchen, die Gesamtlänge der Gleise der Vereinigten Staaten zu bestimmen.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink zu dieser Überschrift">¶</a></h3>
+<h3>Weitere Fähigkeiten, die Sie erlernen<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink zu dieser Überschrift">¶</a></h3>
 <ul class="simple">
-<li>Using expressions to select features.</li>
-<li>Re-projecting a layer from Geographic to Projected Coordinate Reference
-System(CRS).</li>
-<li>Viewing statistics for values of an attribute in a layer.</li>
+<li><p class="first">Ausdrücke verwenden, um Features zu selektieren.</p>
+</li>
+<li><p class="first">Umprojektion eines Layers von einem geografischen zu einem projezierten Koodinatenbezugssystem (KBS).</p>
+</li>
+<li><p class="first">Darstellen von Statistiken für die Werte eines Attributs in einem Layer.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink zu dieser Überschrift">¶</a></h2>
-<p><a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/railroads/">Natural Earth</a>
-has a public domain railroads dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads_north_america.zip">North America supplement</a>
-zip file from the portal.</p>
+<h2>Daten besorgen<a class="headerlink" href="#get-the-data" title="Permalink zu dieser Überschrift">¶</a></h2>
+<p><a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/railroads/">Natural Earth</a> hat einen öffentlichen Datensatz mit Eisenbahnlinien. Laden Sie die <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads_north_america.zip">North America supplement</a> ZIP-Datei von der Seite.</p>
 <p>For convenience, the version of railroad dataset used in this tutorial can be
 downloaded directly from the links below:</p>
 <p>Download <a class="reference download internal" href="../_downloads/ne_10m_railroads_north_america.zip"><tt class="xref download docutils literal"><span class="pre">North</span> <span class="pre">America</span> <span class="pre">supplement</span></tt></a></p>
-<p>Data Source <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
+<p>Datenquelle <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink zu dieser Überschrift">¶</a></h2>
+<h2>Arbeitsablauf<a class="headerlink" href="#procedure" title="Permalink zu dieser Überschrift">¶</a></h2>
 <ol class="arabic simple">
-<li>Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Gehe zu <em class="menuselection">Layer ‣ Layer hinzufügen ‣ Vektorlayer hinzufügen...</em> (neu in QGIS 2.8).</p>
+</li>
 </ol>
 <img alt="../_images/118.png" class="align-center" src="../_images/118.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.zip</span></tt> file and click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Suchen Sie die <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.zip</span></tt> Datei und klicke <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/215.png" class="align-center" src="../_images/215.png" />
 <ol class="arabic simple" start="3">
-<li>In the <em class="guilabel">Select layers to add...</em> dialog, choose
-<tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.shp</span></tt> layer.</li>
+<li><p class="first">Im Dialog <em class="guilabel">Einzufügende Vektorlayer wählen...</em>, wählen Sie <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america.shp</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/38.png" class="align-center" src="../_images/38.png" />
 <ol class="arabic simple" start="4">
-<li>Once the layer is loaded, you will notice that the layer has lines
-representing railroads for all of North America. Since we want to calculate
-line lengths only for United States railroads, we need to select the lines
-that fall in the United States. Right-click on the layer and select
-<em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Sobald der Layer geladen ist, sehen Sie Linien, die die Eisenbahnstrecken Nord Amerikas darstellen. Da wir die Länge der Linien nur für die Vereinigten Staaten berechnen wollen, müssen wir diejenigen auswählen, die in diesen Bereich fallen. Machen Sie einen Rechtsklick auf den Layereintrag und wählen Sie <em class="guilabel">Attributtabelle öffnen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/45.png" class="align-center" src="../_images/45.png" />
 <ol class="arabic simple" start="5">
-<li>The layer has an attribute called <em class="guilabel">sov_a3</em>. This is the 3 letter
-code for the country that a particular feature falls in. We can use the
-value of this attribute to select features that are in USA.</li>
+<li><p class="first">Der Layer hat ein Attribut <em class="guilabel">sov_a3</em>. Dies ist ein Code aus drei Buchstaben für das Land zu dem das jeweilige Feature gehört. Wir können dieses Attribut verwenden, um die Features auszuwählen, die in den USA liegen.</p>
+</li>
 </ol>
 <img alt="../_images/55.png" class="align-center" src="../_images/55.png" />
 <ol class="arabic simple" start="6">
-<li>In the <em class="guilabel">Attribute Table</em> window, click the <em class="guilabel">Select
-features using an expression</em> button.</li>
+<li><p class="first">Im Fenster <em class="guilabel">Attributtabelle</em> klicke <em class="guilabel">Objekte mit einem Ausdruck wählen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/65.png" class="align-center" src="../_images/65.png" />
 <ol class="arabic simple" start="7">
-<li>A new dialog <em class="guilabel">Select By Expression</em> will open. Find the attribute
-<em class="guilabel">sov_a3</em> under <em class="guilabel">Fields and Values</em> in the
-<em class="guilabel">Functions list</em> section. Double-click on it to add it to the
-<em class="guilabel">Expression</em> text area. Complete the expression by typing in
-<tt class="docutils literal"><span class="pre">&quot;sov_a3&quot;</span> <span class="pre">=</span> <span class="pre">'USA'</span></tt>. Click <em class="guilabel">Select</em> followed by
-<em class="guilabel">Close</em>.</li>
+<li><p class="first">Ein neuer Dialog <em class="guilabel">Auswählen mit Auswählen</em> öffnet sich. Finden Sie das Attribut <em class="guilabel">sov_a3</em> unter <em class="guilabel">Felder und Werte</em> in der Liste <em class="guilabel">Funktionen</em>. Machen Sie einen Doppelklick auf den Eintrag und fügen Sie diesen dem Bereich <em class="guilabel">Ausdruck</em> hinzu. Vervollständigen Sie den Ausdruck zu <tt class="docutils literal"><span class="pre">&quot;sov_a3&quot;</span> <span class="pre">=</span> <span class="pre">'USA'</span></tt>. Klicke <em class="guilabel">Auswahl</em> gefolgt von <em class="guilabel">Schließen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/75.png" class="align-center" src="../_images/75.png" />
 <ol class="arabic simple" start="8">
-<li>Back in the main QGIS window, you will see that all lines that fall in USA
-are selected and appear in yellow.</li>
+<li><p class="first">Zurück im Hauptfenster sehen Sie, dass die Linien im Bereich der USA ausgewählt sind und in Gelb dargestellt werden.</p>
+</li>
 </ol>
 <img alt="../_images/85.png" class="align-center" src="../_images/85.png" />
 <ol class="arabic simple" start="9">
-<li>Now let&#8217;s save our selection to a new shapefile. Right-click on the
-<tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> layer and select <em class="guilabel">Save
-Selection As...</em>.</li>
+<li><p class="first">Nun speichern wir unsere Auswahl als neue Shapedatei. Machen Sie einen Rechtsklick auf den Layer <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> und wählen Sie <em class="guilabel">Speichern als...</em>. (neu in QGIS 2.8).</p>
+</li>
 </ol>
 <img alt="../_images/95.png" class="align-center" src="../_images/95.png" />
 <ol class="arabic simple" start="10">
-<li>Click <em class="guilabel">Browse</em> and name the output file as <tt class="docutils literal"><span class="pre">usa_railroads.shp</span></tt>.
-We also want to change the CRS of the layer. Click on <em class="guilabel">Browse</em>
-next to <em class="guilabel">CRS</em>.</li>
+<li><p class="first">Klicke <em class="guilabel">Durchsuchen</em> und benennen Sie die Ausgabedatei als <tt class="docutils literal"><span class="pre">usa_railroads.shp</span></tt>. Setzen Sie den Haken bei <em class="guilabel">Nur gewählte Objekte speichern</em> (neu in QGIS 2.8). Weiter möchten wir das KBS des Layers ändern. Klicken Sie auf <em class="guilabel">KBS wählen</em> (neu in QGIS 2.8).</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Bemerkung</p>
-<p class="last">The built-in functions that use a feature&#8217;s geometry for calculation use the
-units of the layer&#8217;s CRS. Geographic Coordinate Reference System(CRS) such
-as <em>EPSG:4326</em> have <strong>degrees</strong> as units - so the length of the feature
-would be in <strong>degrees</strong> and area in <strong>square degrees</strong> - which is
-meaningless. You need to use a Projected Coordinate Reference System with
-units of <strong>meters</strong> or <strong>feet</strong> to perform such calculations.</p>
+<p class="last">Die integrierte Funktion, die die Geometry eines Features für Berechnungen benutzt, verwendet die Einheiten des KBS des Layers. Geografische Koordinatenbezugssysteme (KBS) wie <em>EPSG:4326</em> haben <strong>Grad</strong> als Einheit, so ist die Länge des Features auch in <strong>Grad</strong> und die Fläche in <strong>Quadrat-Grad</strong>, was bedeutungslos ist. Sie brauchen eine projeziertes Koordinatenbezugssystem, das <strong>Meter</strong> oder <strong>Fuß</strong> als Einheit verwendet, um diese Berechnungen durchzuführen.</p>
 </div>
 <img alt="../_images/105.png" class="align-center" src="../_images/105.png" />
 <ol class="arabic simple" start="11">
-<li>Since we are interested in calculating length, let’s select an equidistance
-projection. Type <em class="guilabel">north america equ</em> in the <em class="guilabel">Filter</em>
-search box. In the results pane below, select
-<em class="guilabel">North_America_Equidistant_Conic EPSG:102010</em> as the CRS. Click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Da wir an der Berechnung der Länge interessiert sind, wählen wir eine längentreue Projektion. Geben Sie <em class="guilabel">north america equ</em> im Suchfeld <em class="guilabel">Filter</em> ein. In der unteren Ergebnisliste selektieren Sie <em class="guilabel">North_America_Equidistant_Conic EPSG:102010</em> als KBS. Klicke <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/119.png" class="align-center" src="../_images/119.png" />
 <ol class="arabic simple" start="12">
-<li>In the <em class="guilabel">Save vector layer as...</em> dialog, check the <em class="guilabel">Add
-saved file to map</em> and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Im Dialog <em class="guilabel">Vektorlayer speichern als...</em>, aktivieren Sie <em class="guilabel">Gespeicherte Datei zur Karte hinzufügen</em> und klicken Sie <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/125.png" class="align-center" src="../_images/125.png" />
 <ol class="arabic simple" start="13">
-<li>Once the export process finishes, you will see a new layer <tt class="docutils literal"><span class="pre">usa_railroads</span></tt>
-loaded in QGIS. You can uncheck the box next to
-<tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> layer to turn it off as we don&#8217;t need it
-anymore.</li>
+<li><p class="first">Sobald der Exportprozess abgeschlossen ist, sehen Sie einen neuen geladenen Layer <tt class="docutils literal"><span class="pre">usa_railroads</span></tt>. Sie können die Box neben dem Layer <tt class="docutils literal"><span class="pre">ne_10m_railroads_north_america</span></tt> deaktivieren, um ihn auszuschalten, da wir ihn nicht mehr brauchen.</p>
+</li>
 </ol>
 <img alt="../_images/135.png" class="align-center" src="../_images/135.png" />
 <ol class="arabic simple" start="14">
-<li>Right-click on the <tt class="docutils literal"><span class="pre">usa_railroads</span></tt> layer and select
-<em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Machen Sie einen Rechtsklick auf <tt class="docutils literal"><span class="pre">usa_railroads</span></tt> und wählen <em class="guilabel">Attributtabelle öffnen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/145.png" class="align-center" src="../_images/145.png" />
 <ol class="arabic simple" start="15">
-<li>Now it is time to add a column with length of each feature. Put the layer
-in editing mode by clicking on the <em class="guilabel">Toggle editing</em> button. Once
-in editing mode, click the <em class="guilabel">Open field calculator</em> button.</li>
+<li><p class="first">Jetzt ist es an der Zeit, eine Spalte mit der Länge eines jeden Features hinzuzufügen. Versetzen Sie den Layer in den Bearbeitungsmodus, indem Sie <em class="guilabel">Bearbeitungsmodus umschalten</em> klicken. Sobald dieser aktiv ist, klicken Sie <em class="guilabel">Feldrechner öffnen</em>.</p>
+</li>
 </ol>
 <img alt="../_images/155.png" class="align-center" src="../_images/155.png" />
 <ol class="arabic simple" start="16">
-<li>In the <em class="guilabel">Field Calculator</em>, check <em class="guilabel">Create a new
-field</em>. Enter <strong>length_km</strong> as the <em class="guilabel">Output field name</em>. Choose
-<strong>Decimal number (real)</strong> as the <em class="guilabel">Output field type</em>. Change the
-output <em class="guilabel">Precision</em> to <strong>2</strong>. In the <em class="guilabel">Function list</em>
-panel, find the <em class="guilabel">$length</em> under <em class="guilabel">Geometry</em>.
-Double-click it to add it to the <em class="guilabel">Expression</em>. Complete the
-expression as <tt class="docutils literal"><span class="pre">$length</span> <span class="pre">/</span> <span class="pre">1000</span></tt> because our layer CRS is in <strong>meters</strong>
-unit and we want the output in <strong>km</strong>. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Im <em class="guilabel">Feldrechner</em> aktivieren Sie <em class="guilabel">Neues Feld anlegen</em>. Geben Sie <strong>length_km</strong> als <em class="guilabel">Ausgabefeldname</em> an. Als <em class="guilabel">Ausgabefeldtyp</em> wählen Sie <strong>Dezimalzahl (real)</strong>. Ändern Sie die <em class="guilabel">Genauigkeit</em> auf <strong>2</strong>. Im Bereich <em class="guilabel">Funktionen</em> suchen Sie <em class="guilabel">$length</em> unter <em class="guilabel">Geometrie</em>. Mit Doppelklick übernehmen Sie dies in den Bereich <em class="guilabel">Ausdruck</em>. Vervollständigen Sie den Ausdruck zu <tt class="docutils literal"><span class="pre">$length</span> <span class="pre">/</span> <span class="pre">1000</span></tt>, da das KBS die Einheit <strong>Meter</strong> verwendet und wir die Ausgabe in <strong>KM</strong> möchten. Klicke <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/165.png" class="align-center" src="../_images/165.png" />
 <ol class="arabic simple" start="17">
-<li>Back in <em class="guilabel">Attribute Table</em>, you will see a new column
-<em class="guilabel">length_km</em> appear. Click the <em class="guilabel">Toggle editing</em> button
-to save the changes to the attribute table.</li>
+<li><p class="first">Zurück in der <em class="guilabel">Attributtabelle</em>, sehen Sie eine neue Spalte <em class="guilabel">length_km</em>. Klicken Sie <em class="guilabel">Bearbeitungsmodus umschalten</em> und speichern Sie die Änderungen.</p>
+</li>
 </ol>
 <img alt="../_images/174.png" class="align-center" src="../_images/174.png" />
 <ol class="arabic simple" start="18">
-<li>Now that we have length of each individual line in our layer, we can easily
-add it all up and find the <strong>Total</strong> length. Go to <em class="menuselection">Vector
-‣ Analysis Tools ‣ Basic Statistics</em>.</li>
+<li><p class="first">Jetzt haben wir die Länge jeder einzelnen Linie in unserem Layer und können diese einfach zusammenrechnen, um die <strong>Gesamtlänge</strong> erhalten. Gehe zu <em class="menuselection">Vektor ‣ Analysewerkzeuge ‣ Grundstatistik...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/185.png" class="align-center" src="../_images/185.png" />
 <ol class="arabic simple" start="19">
-<li>Select the <em class="guilabel">Input Vector layer</em> as <tt class="docutils literal"><span class="pre">usa_railroads</span></tt>. Choose the
-<em class="guilabel">Target field</em> as <tt class="docutils literal"><span class="pre">length_km</span></tt> and click <em class="guilabel">OK</em>. You
-will see various statistics appear. The <em class="guilabel">Sum</em> value is the total
-length of the railroads that we are looking to find.</li>
+<li><p class="first">Selektieren Sie <tt class="docutils literal"><span class="pre">usa_railroads</span></tt> als <em class="guilabel">Eingabevektorlayer</em> und  <tt class="docutils literal"><span class="pre">length_km</span></tt> als <em class="guilabel">Zielfeld</em>. Klicke <em class="guilabel">OK</em>. Sie bekommen verschiedene Statistiken. Der Wert <em class="guilabel">Summe</em> ist die Gesamtlänge der Eisenbahnlinien, nach der wir gesucht haben.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Bemerkung</p>
-<p class="last">This answer will vary slightly if a different projection is chosen.In
-practice, line lengths for roads and other linear features are measured on
-the ground and provided as attributes to the dataset. This method works in
-absence of such attribute and as an approximation of actual line lengths.</p>
+<p class="last">Das Ergebnis kann bei verschiedenen Projektionen leicht variieren. In der Praxis werden Straßen und andere Linien am Boden gemessen und als Attribut versorgt. Diese Methode funktioniert bei Fehlen eines solchen Attributs als Näherungswert von Linienlängen.</p>
 </div>
 <img alt="../_images/193.png" class="align-center" src="../_images/193.png" />
 </div>
@@ -386,7 +349,7 @@ absence of such attribute and as an approximation of actual line lengths.</p>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Zuletzt aktualisiert am Aug 19, 2015.<br/>
+      Zuletzt aktualisiert am Aug 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

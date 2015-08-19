@@ -104,13 +104,13 @@
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Δειγματοληψία Raster Δεδομένων με χρήση Σημείων ή Πολυγώνων.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Παρεμβάλλοντας τα σημεία δεδομένων</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Μαζική επεξεργασία χρησιμοποιώντας το πλαίσιο επεξεργασίας</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Αυτοματοποίηση Σύνθετων Ροών με την χρήση επεξεργασίας προσπέλασης.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Χρησιμοποιώντας το QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Μέτρηση του Aριθμού των Kορυφών σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Δημιουργία ενός πρόσθετου στην Python.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
@@ -197,13 +197,12 @@
 <p>Συχνά,  χρειάζεται να δημιουργηθεί ένας χάρτης , ο οποίος μπορεί να εκτυπωθεί η να</p>
 <div class="section" id="overview-of-the-task">
 <h2>Επισκόπηση της εργασίας<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>The tutorial shows how to create a map of Japan with standard map elements like
-map inset, grids, north arrow, scale bar and labels.</p>
+<p>Ο παρών οδηγός εκμάθησης παρουσιάζει την δημιουργία ενός χάρτη της Ιαπωνίας με βασικά στοιχεία χαρτογράφησης όπως η ένθεση, οι γραμμές πλέγματος, το σημείο προσανατολισμού, η κλίμακα και οι ετικέτες.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<h3>Άλλες ικανότητες που θα μάθετε<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Using &#8216;on-the-fly&#8217; CRS transformation to visualize your data in a different
-projection.</li>
+<li><p class="first">Χρησιμοποιώντας την CRS μετατροπή για να οπτικοποιήσετε τα δεδομένα σας σε διαφορετική προβολή.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -236,19 +235,8 @@ projection.</li>
 </ol>
 <img alt="../_images/417.png" class="align-center" src="../_images/417.png" />
 <ol class="arabic simple" start="5">
-<li>You can turn off some map layers for data that we do not need for this map.
-Un-check the box next to <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> and
-<tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt> layers. Before we make a map suitable for printing, we need to choose an appropriate
-projection. This dataset comes in Geographic Coordinate System (GCS) where
-the units are degrees. This is not appropriate for a map where you want the
-distances to be in kilometers or miles. We need to use a Projected
-Coordinate System that minimizes distortions for our region of interest and
-has units in meters. Universal Transverse Mercator (UTM) is a decent choice
-for a projected coordinate system. It is also global, so it&#8217;s a good default
-that you can rely on and  choose a UTM zone that contains your area of
-interest to minimize distortions for your region. In our case, we will use
-UTM Zone 54N. Click the <em class="guilabel">CRS Status</em> button at the bottom-right of
-the QGIS window.</li>
+<li><p class="first">Μπορείτε να απενεργοποιήσετε τα στρώματα των δεδομένων που δεν χρειάζεστε για αυτόν τον χάρτη. Αποεπιλέξτετο κουτί δίπλα στα στρώματα  <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> και``10m_admin_0_map_units``. Πριν δημιουργήσουμε έναν χάρτη έτοιμο για εκτύπωση, θα πρέπει να επιλέξουμε μια κατάλληλη προβολή. Τα συγκεκριμένα δεδομένα βρίσκονται σε ένα Συστημα Γεωγραφικών Συντεταγμένων (ΣΓΣ) του οποίου οι μονάδες είναι σε βαθμούς. Αυτό δεν είναι κατάλληλο για έναν χάρτη στον οποίο θέλετε οι αποστάσεις να μετρώνται σε χιλιόμετρα ή μίλια. Θα πρέπεινα χρησιμοποιήσετε ένα Σύστημα Συντεταγμένων το οποίο να ελαχιστοποιεί τις στρεβλώσεις στην περίοχή μελέτης και οι μονάδες του να είναι σε μέτρα. Η Εγκάρσια Μερκατορική προβολή (UTM) είναι μια ικανοποιητική επιλογή ως σύστημα συντεταγμένων. Επιπρόσθετα, η Εγκαρσια Μερκατορική ειναι καταλληλή για παγκόσμιο επίπεδο και κατ&#8217; επέκταση είναι μια καλή εξ&#8217; ορισμού  επιλογή στην οποία μπορείτε να βασιστείτε και να επιλέξετε μια ζώνη της η οποία να περιέχει την περιοχή μελέτης για να ελαχιστοποιηθούν οι στρεβλώσεις στην γενικότερη περιοχή. Στην περίπτωση αυτή, θα χρησιμοποιήσουμε την UTM ζώνη 54Ν. Κάντε κλικ στο κουμπί <em class="guilabel">CRS Status</em> στην κάτω-δεξιά γωνία του παραθύρου του QGIS</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -263,25 +251,22 @@ results, select <em class="guilabel">Tokyo / UTM Zone 54N - EPSG:3095</em>. Clic
 </ol>
 <img alt="../_images/616.png" class="align-center" src="../_images/616.png" />
 <ol class="arabic simple" start="7">
-<li>Now we can start to assemble our map. Go to
-<em class="menuselection">Project ‣ New Print Composer</em>.</li>
+<li><p class="first">Τώρα μπορείτε να συναρμολογήσετε τον χάρτη σας. Πηγαίνετε στο  <em class="menuselection">Project ‣ New Print Composer</em>.</p>
+</li>
 </ol>
 <img alt="../_images/715.png" class="align-center" src="../_images/715.png" />
 <ol class="arabic simple" start="8">
-<li>You will be prompted to enter a title for the composer. You can leave it
-empty and click <em class="guilabel">Ok</em>.</li>
+<li><p class="first">Θα χρειαστεί να εισάγετε ένα τίτλο για την σύνθεση. Μπορείτε να το αφήσετε κενό και να πατήσετε  <em class="guilabel">Ok</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Leaving the composer name empty will assign a default name such as
-<tt class="docutils literal"><span class="pre">Composer</span> <span class="pre">1</span></tt>.</p>
+<p class="last">Αφήνωντας το όνομα της σύνθεσης άδειο θα δημιουργηθεί ένα προεπιλεγμένο όνομα όπως &#8220;Σύνθεση 1&#8221;</p>
 </div>
 <img alt="../_images/815.png" class="align-center" src="../_images/815.png" />
 <ol class="arabic simple" start="10">
-<li>In the Print Composer window, click on <em class="guilabel">Zoom full</em> to display the
-full extent of the Layout. Now we would have to bring the map view that we
-see in the QGIS Canvas to the composer. Go to <em class="menuselection">Layout ‣
-Add Map</em>.</li>
+<li><p class="first">Στο παράθυρο εκτύπωσης της σύνθεσης, πατήστε στο  <em class="guilabel">Zoom full</em> για να απεικονίσετε την πλήρη έκταση της διάταξης. Τώρα θα πρέπει να μεταφέρουμε την έκταση του χάρτη όπως την βλέπουμε στον καμβά της σύνθεσης στο QGIS. Πηγαίνετε στο <em class="menuselection">Layout ‣ Add Map-Προσθήκη Χάρτη</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1014.png" class="align-center" src="../_images/1014.png" />
 <ol class="arabic simple" start="11">
@@ -290,106 +275,83 @@ Add Map</em>.</li>
 </ol>
 <img alt="../_images/1118.png" class="align-center" src="../_images/1118.png" />
 <ol class="arabic simple" start="12">
-<li>You will see that the rectangle window will be rendered with the map from
-the main QGIS canvas. The rendered map may not be covering the full extent
-of our interest area.  Select <em class="menuselection">Layout ‣ Move item content</em>
-to pan the map in the window and center it in the composer.</li>
+<li><p class="first">Θα δείτε οτι στο παραλληλόγραμμο παράθυρο εμφανίζεται ο χάρτησ με τον χάρτη από τον κεντρικό καμβά του QGIS. Η απόδοση του χάρτη μπορεί να μην καλύπτει την πλήρη έκταση της περιοχής μελέτης. Επιλέξτε <em class="menuselection">Layout ‣ Move item content</em> για να μετακινήσετε τον χάρτη στο παράθυρο και να τον κεντράρετε στο κέντρο του  παραθύρου.</p>
+</li>
 </ol>
 <img alt="../_images/1216.png" class="align-center" src="../_images/1216.png" />
 <ol class="arabic simple" start="13">
-<li>Let us adjust the zoom level for the given map. Click on the
-<em class="guilabel">Item Properties</em> tab and enter <cite>7000000</cite> for <em class="guilabel">Scale</em>
-value.</li>
+<li><p class="first">Ας ρυθμίσουμε το επίπεδο μεγένθυσης για τον συγκεκριμένο χάρτη. Πατήστε στην καρτέλα  <em class="guilabel">Item Properties-ιδιότητες</em> και εισάγετε την τιμή  <cite>7000000</cite> for <em class="guilabel">Scale-κλίμακα</em></p>
+</li>
 </ol>
 <img alt="../_images/1315.png" class="align-center" src="../_images/1315.png" />
 <ol class="arabic simple" start="14">
-<li>Now we will add a map inset that shows a zoomed in view for the Tokyo area.
-Before we make  any changes to the layers in the main QGIS window, check
-the <em class="guilabel">Lock layers for map item</em> and <em class="guilabel">Lock layer styles
-for map item</em> boxes. This will ensure that if we turn off some layers or
-change their styles, this view will not change.</li>
+<li><p class="first">Τώρα θα εισάγουμε τον χάρτη που απεικονίζει μια μεγενθυμένη εικόνα της περιοχής του Τόκιο. Πριν κάνουμε οποιαδήποτε αλλαγή στην στρώματα στο κεντρικό παράθυρο του QGIS, επιλέξτε τα κουτιά <em class="guilabel">Lock layers for map item</em> και:guilabel:<cite>Lock layer styles for map item</cite>. Αυτό θα εξασφαλίσει οτι αν απενεργοποιήσουμε μερικά από τα στρώματα ή αλλάξουμε τον συμβολισμό τους, αυτή η απεικόνιση δεν θα αλλάξει.</p>
+</li>
 </ol>
 <img alt="../_images/1413.png" class="align-center" src="../_images/1413.png" />
 <ol class="arabic simple" start="15">
-<li>Switch to the main QGIS window. Use the <em class="guilabel">Zoom In</em> button to zoom
-to the area around Tokyo.</li>
+<li><p class="first">Πηγαίνετε στο κεντρικό παράθυρο του QGIS. Χρησιμοποιείστε το κουμπί <em class="guilabel">Zoom In</em> για να μεγενθύνετε την περιοχή γύρω από το Τόκιο</p>
+</li>
 </ol>
 <img alt="../_images/1513.png" class="align-center" src="../_images/1513.png" />
 <ol class="arabic simple" start="16">
-<li>There are some duplicate labels coming from the <tt class="docutils literal"><span class="pre">ne_10m_populated_places</span></tt>
-layer. You can turn it off for this view.</li>
+<li><p class="first">Υπάρχουν μερικές διπλές ετικέτες οι οποίες προέρχονται από το στρώμα &#8220;ne_10m_populated_places``. Μπορειτε να το απενεργοποιείσετε αυτό το στρώμα για την συγκεκριμένη απεικόνιση.</p>
+</li>
 </ol>
 <img alt="../_images/1612.png" class="align-center" src="../_images/1612.png" />
 <ol class="arabic simple" start="17">
-<li>We are now ready to add the map inset. Switch the the <em class="guilabel">Print
-Composer</em> window. Go to <em class="menuselection">Layout ‣ Add Map</em>.</li>
+<li><p class="first">Τώρα είμαστε σε θέση να εισάγουμε το χάρτη. Πηγαίνετε στο παράθυρο <em class="guilabel">Print Composer</em> . Πηγαίνετε στο <em class="menuselection">Layout ‣ Add Map- Προσθήκη χάρτη</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1711.png" class="align-center" src="../_images/1711.png" />
 <ol class="arabic simple" start="18">
-<li>Drag a rectangle at the place where you want to add the map inset. You will
-now notice that we have 2 map objects in the Print Composer. When making
-changes, make sure you have the correct map selected. Select the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt>
-object that we just added from the <em class="guilabel">Items</em> panel. Select the
-<em class="guilabel">Item properties</em> tab. Scroll down to the <em class="guilabel">Frame</em> panel
-and check the box next to it. You can change the color and thickness of the
-frame border so it is easy to distinguish against the map background.</li>
+<li><p class="first">Σύρετε ένα παραλληλόγραμμο στην θέση που θέλετε να προσθέσετε τον χάρτη. Τώρα θα παρατηρήσετε οτι έχετε 2 αντικείμενα χάρτη στην σύνθεση της εκτύπωσης. Όταν κάνετε αλλαγές, φροντίστε να έχετε επιλεγμένο τον σωστό χάρτη. Επιλέξτε τον  <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1-Χάρτη1</span></tt> τον οποίο μόλις εισάγατε από το παράθυρο <em class="guilabel">Items</em>. Επιλέξτε την καρτέλα <em class="guilabel">Item properties</em>. Μετακινηθείτε προς τα κάτω στο παράθυρο <em class="guilabel">Frame</em> και επιλέξτε το κουμπί που βρίσκεται δίπλα. Μπορείτε να αλλάξετε το χρώμα και το πάχος της κορνίζας ώστε να μπορείτε να το ξεχωρίζετε χρησιμοποιώντας το φόντο του.</p>
+</li>
 </ol>
 <img alt="../_images/1811.png" class="align-center" src="../_images/1811.png" />
 <ol class="arabic simple" start="19">
-<li>One neat feature of the Print Composer is that it can automatically
-highlight the area from the main map which is represented in our inset.
-Select the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> object from the <em class="guilabel">Items</em> panel. In the
-<em class="guilabel">Item properties</em> tab, scroll down to the <em class="guilabel">Overviews</em>
-section. Click the <em class="guilabel">Add a new overview</em> button.</li>
+<li><p class="first">Ενα ενδιαφέρον χαρακτηριστικό της σύνθεσης εκτύπωσης είναι οτι μπορεί να δώσει έμφαση στην περιοχή του κεντρικού χάρτη που εμφανίζεται στην κορνίζα αυτόματα. Επιλεξτε το αντικείμενο``Map 0` από το παράθυρο guilabel:<cite>Items</cite>. Στην καρτέλα <em class="guilabel">Item properties</em> tab, μετακινηθείτε πρός τα κάτω στο τμήμα <em class="guilabel">Overviews</em>. Πατήστε το κουμπί  <em class="guilabel">Add a new overview</em>.</p>
+</li>
 </ol>
 <img alt="../_images/199.png" class="align-center" src="../_images/199.png" />
 <ol class="arabic simple" start="20">
-<li>Select <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt> as the <em class="guilabel">Map Frame</em>. What this is telling the
-Print Composer is that it must highlight our current object <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> with
-the extent of the map shown in the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt> object.</li>
+<li><p class="first">Επιλέξτε το <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt> ως το <em class="guilabel">Map Frame&#8221;. Αυτή η πράξη μας, δείχνει στον σύνθεση της εκτύπωσης οτι πρέπει να δώσει έμφαση στο τρέχον αντικείμενο ``Map 0`</em> με την έκταση του χάρτη να είναι αυτή που φαίνεται στο <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/206.png" class="align-center" src="../_images/206.png" />
 <ol class="arabic simple" start="21">
-<li>Now that we have the map inset ready, we will add a grid and zebra border
-to the main map. Select the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> object from the <em class="guilabel">Items</em>
-panel. In the <em class="guilabel">Item properties</em> tab, scroll down to the
-<em class="guilabel">Grids</em> section. Click the <em class="guilabel">Add a new grid</em> button.</li>
+<li><p class="first">Τώρα που έχουμε την ένθεση του χάρτη έτοιμη, θα προσθέσουμε ένα πλέγμα και ένα περίγραμμα τύπου ζέβρα στον κεντρικό χάρτη. Επιλέξτε το αντικείμενο <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt>  από το παράθυρο <em class="guilabel">Items</em>. Στην καρτέλα <em class="guilabel">Item properties</em> μεταφερθείτε προς τα κάτω στο τμήμα <em class="guilabel">Grids</em>. Πατήστε το κουμπί <em class="guilabel">Add a new grid</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2112.png" class="align-center" src="../_images/2112.png" />
 <ol class="arabic simple" start="22">
-<li>By default, the grid lines use the same units and projections as the
-currently selected map projections. However, it is more common and useful
-to display grid lines in degrees. We can select a different CRS for the
-grid. Click on the <em class="guilabel">change...</em> button next to <em class="guilabel">CRS</em>.</li>
+<li><p class="first">Εξ&#8217; ορισμού, οι γραμμές του πλέγματος χρησιμοποιούν τις ίδιες μονάδες και προβολή η οποία έχει επιλεχθεί ως η τρέχουσα προβολή του χάρτη. Παρόλα αυτά, είναι πιο κοινό και χρήσιμο να προβάλεις τις γραμμές πλέγματος σε μονάδες. Μπορείτε να επιλέξετε ένα διαφορετικό σύστημα συντεταγμένων για το πλέγμα. Πατήστε στο κουμπί <em class="guilabel">change...</em> και  έπειτα στο <em class="guilabel">CRS</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2211.png" class="align-center" src="../_images/2211.png" />
 <ol class="arabic simple" start="23">
-<li>In the <em class="guilabel">Coordinate Reference System Selector</em> dialog, enter
-<tt class="docutils literal"><span class="pre">4326</span></tt> in the <em class="guilabel">Filter</em> box. From the results, select the
-<tt class="docutils literal"><span class="pre">WGS84</span> <span class="pre">EPSG:4326</span></tt> as the CRS. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Στο παράθυρο διαλόγου <em class="guilabel">Coordinate Reference System Selector</em> και εισάγετε <tt class="docutils literal"><span class="pre">4326</span></tt> στο κουτί <em class="guilabel">Filter</em>. Από τα αποτελέσματα, επιλέξτε το <tt class="docutils literal"><span class="pre">WGS84</span> <span class="pre">EPSG:4326</span></tt> ως το σύστημα συντεταγμένων. Και πατήστε οκ <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/235.png" class="align-center" src="../_images/235.png" />
 <ol class="arabic simple" start="24">
-<li>Select the <em class="guilabel">Interval</em> values as <tt class="docutils literal"><span class="pre">5</span></tt> degrees in both
-<em class="guilabel">X</em> and <em class="guilabel">Y</em> direction. You can adjust the
-<em class="guilabel">Offset</em> to change where the grid lines appear.</li>
+<li><p class="first">Επιλέξτε τις τιμές <em class="guilabel">Interval</em> και βάλτε <tt class="docutils literal"><span class="pre">5</span></tt> βαθμούς σε κάθε διεύθυνση <em class="guilabel">X</em> και <em class="guilabel">Y</em>. Μπορείτε να προσαρμόσετε την αντιστάθμιση <em class="guilabel">Offset</em> για να αλλάξετε το που θα εμφανίζονται οι γραμμές του πλέγματος.</p>
+</li>
 </ol>
 <img alt="../_images/244.png" class="align-center" src="../_images/244.png" />
 <ol class="arabic simple" start="25">
-<li>Scroll down to the <em class="guilabel">Grid frame</em> section and select a frame style
-that suits your taste. Also check the <em class="guilabel">Draw coordinates</em> box.</li>
+<li><p class="first">Μετακινηθείτε προς τα κάτω στο τμήμα <em class="guilabel">Grid frame</em> και επιλέξτε το στυλ της κορνίζας που θέλετε. Επιπλέον, επιλέξτε το κουτί <em class="guilabel">Draw coordinates</em>.</p>
+</li>
 </ol>
 <img alt="../_images/254.png" class="align-center" src="../_images/254.png" />
 <ol class="arabic simple" start="26">
-<li>Adjust the <em class="guilabel">Distance to map frame</em> till the coordinates are
-legible. Change the <em class="guilabel">Coordinate precision</em> to <tt class="docutils literal"><span class="pre">1</span></tt> so the
-coordinates are displayed only upto the first decimal.</li>
+<li><p class="first">Προσαρμόστε την απόσταστη του χάρτη από την κορνίζα του <em class="guilabel">Distance to map frame</em> μέχρι οι συντεταγμένες να είναι ευανάγνωστες. Αλλάξτε την ακρίβεια <em class="guilabel">Coordinate precision</em>  to <tt class="docutils literal"><span class="pre">1</span></tt>  ώστε οι συντεταγμένες να εμφανίζουν μόνο το πρώτο δεκαδικό.</p>
+</li>
 </ol>
 <img alt="../_images/264.png" class="align-center" src="../_images/264.png" />
 <ol class="arabic simple" start="27">
-<li>Now we will add a North Arrow to the map. The Print Composer comes with a
-nice collection of map-related images - including many types of North
-Arrows.  Click <em class="menuselection">Layout ‣ Add Image</em>.</li>
+<li><p class="first">Τώρα μπορείτε να προσθέσετε σημείο Βορρά στον χάρτη. Η Σύνθεση της Εκτύπωσης συμπεριλαμβάνει μια ωραία συλλογή από εικόνες σχετικές με τους χάρτες- που περιλαμβάνου πολλών ειδών σημεία Βορρά. Επιλέξτε το <em class="menuselection">Layout ‣ Add Image- προσθήκη εικόνας</em>.</p>
+</li>
 </ol>
 <img alt="../_images/274.png" class="align-center" src="../_images/274.png" />
 <ol class="arabic simple" start="28">
@@ -403,15 +365,13 @@ Arrows.  Click <em class="menuselection">Layout ‣ Add Image</em>.</li>
 </ol>
 <img alt="../_images/293.png" class="align-center" src="../_images/293.png" />
 <ol class="arabic simple" start="30">
-<li>Click on the layout where you want the scalebar to appear.  In the
-<em class="guilabel">Item Properties</em> tab, make sure you have chosen the correct map
-element for which to display the scalebar. Choose the Style that fit your
-requirement. In the <em class="guilabel">Segments</em> panel, you can adjust the number
-of segments and their size.</li>
+<li><p class="first">Κάντε κλικ στο σημείο που θέλετε να εμφανίζεται η ράβδος της κλίμακας. Στην καρτέλα <em class="guilabel">Item Properties-Ιδιότητες</em>, φροντίστε να έχετε επιλεγμένο το σωστό χάρτη για τον οποίο φτιάχνετε την κλίμακα. Επιλέξτε τον συμβολισμό που ταιριάζει με τις απαιτήσεις σας. Στο παράθυρο <em class="guilabel">Segments</em> μπορείτε να προσαρμόσετε τον αριθμό και το μέγεθος των τμημάτων.</p>
+</li>
 </ol>
 <img alt="../_images/303.png" class="align-center" src="../_images/303.png" />
 <ol class="arabic simple" start="31">
-<li>It is time to label our map. Click on <em class="menuselection">Layout ‣ Add Label</em>.</li>
+<li><p class="first">Είναι ώρα να βάλουμε ετικέτες στον χάρτη. Πατήστε στο <em class="menuselection">Layout ‣ Add Label-Προσθήκη ετικέτας</em>.</p>
+</li>
 </ol>
 <img alt="../_images/3111.png" class="align-center" src="../_images/3111.png" />
 <ol class="arabic simple" start="32">
@@ -425,7 +385,8 @@ of segments and their size.</li>
 </div>
 <img alt="../_images/324.png" class="align-center" src="../_images/324.png" />
 <ol class="arabic simple" start="33">
-<li>Similarly add another label to add the data and software credits.</li>
+<li><p class="first">Ομοίως εισάγετε ακόμα μια ετικέτα για να προσθέσετε τα δεδομένα και τα στοιχεία των δημιουργών.</p>
+</li>
 </ol>
 <img alt="../_images/332.png" class="align-center" src="../_images/332.png" />
 <ol class="arabic simple" start="34">
@@ -463,7 +424,7 @@ of segments and their size.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Aug 19, 2015.<br/>
+      Last updated on Aug 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

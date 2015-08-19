@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Automating Complex Workflows using Processing Modeler &mdash; QGIS Tutorials and Tips</title>
+    <title>Αυτοματοποίηση Σύνθετων Ροών με την χρήση επεξεργασίας προσπέλασης. &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -104,13 +104,13 @@
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Δειγματοληψία Raster Δεδομένων με χρήση Σημείων ή Πολυγώνων.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Παρεμβάλλοντας τα σημεία δεδομένων</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Μαζική επεξεργασία χρησιμοποιώντας το πλαίσιο επεξεργασίας</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Αυτοματοποίηση Σύνθετων Ροών με την χρήση επεξεργασίας προσπέλασης.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Χρησιμοποιώντας το QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Μέτρηση του Aριθμού των Kορυφών σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Δημιουργία ενός πρόσθετου στην Python.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
@@ -192,80 +192,61 @@
       
 
   <div class="section" id="automating-complex-workflows-using-processing-modeler">
-<h1>Automating Complex Workflows using Processing Modeler<a class="headerlink" href="#automating-complex-workflows-using-processing-modeler" title="Permalink to this headline">¶</a></h1>
+<h1>Αυτοματοποίηση Σύνθετων Ροών με την χρήση επεξεργασίας προσπέλασης.<a class="headerlink" href="#automating-complex-workflows-using-processing-modeler" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/processing_graphical_modeler_a4.pdf">A4</a> <a class="reference external" href="../pdf/processing_graphical_modeler_letter.pdf">Letter</a> ]</p>
-<p>GIS Workflows typically involve many steps - with each step generating
-intermediate output that is used by the next step. If you change the input data
-or want to tweak a parameter, you will need to run through the entire process
-again manually.  Fortunately, QGIS has a graphical modeler built-in that can
-help you define your workflow and run it with a single invocation. You can also
-run these workflows as a batch over a large number of inputs.</p>
+<p>Η ροές GIS τυπικά περιλαμβάνουν πολλά βήματα - με κάθε βήμα να δημιουργεί ένα εξαγόμενο αρχείο το οποίο χρησιμοποιείται από το επόμενο βήμα. Αν αλλάξετε τα εισαγόμενα δεδομένα ή αν θέλετε να μετατρέψετε ελαφτώς μια παράμετρο, θα πρέπει να τρέξετε την διαδικασία από την αρχή χειροκίνητα. Ευτυχώς, το QGIS έχει ένα ενσωματωμένο γραφικό περιβάλλον το οποίο μπορεί να σας βοηθήσει να ορίσετε την ροή και να την τρέξετε καλόντας την μόνο μία φορά. Μπορείτε επίσης να τρέξετε της ροές ως σύνολο σε ένα μεγάλο αριρμό εισόδων.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>This tutorial shows how to build a model to extract areas for a particular
-class from a classified land use raster.</p>
+<h2>Επισκόπηση του έργου<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>Αυτή η άσκηση σας δείχνει πως να δημιουργήσετε ένα μοντέλο για να εξάγετε περιοχές για μια συγκεκριμένη κατηγορία από ένα κατηγοριοποιημένο ψηφιδωτό αρχείο χρήσεων γης.</p>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://www.landcover.org/data/lc/">Global Mosaics of the standard MODIS land cover type data
-product</a> from <a class="reference external" href="http://www.landcover.org/">Global Land Cover
-Facility</a> as an example.</p>
-<p>Download the <a class="reference external" href="ftp://ftp.glcf.umd.edu/glcf/Global_LNDCVR/Global_HD_Rev1/GeoTIFF/">0.5 Degree resolution GeoTIFFs</a> for 2001
-and 2012.</p>
-<p>For convenience, you may directly download a copy of both the datasets from the links
-below:</p>
+<h2>Λήψη Δεδομένων<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Θα χρησιμοποιήσουμε το &#8220;Παγκόσμιο μωσαϊκό από πρότυπο  MODIS τα δεδομένα σχετικά με την κάλυψη γης &lt;<a class="reference external" href="http://www.landcover.org/data/lc/">http://www.landcover.org/data/lc/</a>&gt;`_ από το &#8220;Εγκατάσταση για την παγκόσμια κάλυψη γης &lt;<a class="reference external" href="http://www.landcover.org/">http://www.landcover.org/</a>&gt;`_ ως παράδειγμα.</p>
+<p>Κατεβάστε το  <a class="reference external" href="ftp://ftp.glcf.umd.edu/glcf/Global_LNDCVR/Global_HD_Rev1/GeoTIFF/">0.5 Degree resolution GeoTIFFs</a>  για το 2001 και 2012.</p>
+<p>Για ευκολία, μπορείτε να κατεβάσετε απευθείας ένα αντίγραφο από τα δυο σύνολα δεδομένων από τις παρακάτω συνδέσεις.</p>
 <p><a class="reference external" href="../../downloads/LC_hd_global_2001.tif.gz">LC_hd_global_2001.tif.gz</a></p>
 <p><a class="reference external" href="../../downloads/LC_hd_global_2012.tif.gz">LC_hd_global_2012.tif.gz</a></p>
-<p>Data Source <a class="reference internal" href="credits.html#glcf-modis" id="id1">[GLCF_MODIS]</a></p>
+<p>Πηγή δεδομένων  <a class="reference internal" href="credits.html#glcf-modis" id="id1">[GLCF_MODIS]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
-<p>Our workflow for this exercise will have the following steps.</p>
+<h2>Διαδικασία<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<p>Η ροή για αυτή την εργασία θα ακολουθεί τα παρακάτω βήματα.</p>
 <ul class="simple">
-<li>Apply a <tt class="docutils literal"><span class="pre">Majority</span> <span class="pre">Filter</span></tt> algorithm to the input landcover raster. This
-will reduce noise in our output by eliminating isolated pixels.</li>
-<li>Convert the resulting raster to a polygon layer.</li>
-<li>Query for a class value from the attribute table of the polygon layer and
-create a vector layer for that class.</li>
+<li><p class="first">Εφαρμόστε έναν αλγόριθμο <tt class="docutils literal"><span class="pre">Majority</span> <span class="pre">Filter</span></tt> στο εισαγόμενο ψηφιδωτό αρχείο κάλυψης γης. Αυτό θα μειώσει τον θόρυβο στο εξαγόμενο αρχείο με το να εξαλείφει τα μεμονομένα εικονοστοιχεία.</p>
+</li>
+<li><p class="first">Μετατρέψτε το αποτέλεσμα του ψηφιδωτού σε ένα πολυγωνο,</p>
+</li>
+<li><p class="first">Κάντε μια ερώτηση για μια τιμή της κατηγορίας από τα χαρακτηριστικά του πίνακα από το πολύγωνο και δημιουργήστε ένα διανυσματικό στρώμα για αυτή την κατηγορία.</p>
+</li>
 </ul>
-<p>The following steps outline the process to code the above process into a model
-and run it on the downloaded datasets.</p>
+<p>Τα βήματα που ακολουθούν παρουσιάζουν την διαδικασία του κώδικα της παραπάνω διαδικασίας σε ένα μοντέλο και το τρέχουν στα κατεβασμένα δεδομένα.</p>
 <ol class="arabic simple">
-<li>Launch QGIS and go to <em class="menuselection">Processing ‣ Graphical Modeler...</em>.</li>
+<li><p class="first">Τρέξτε το QGIS και πηγαίνετε στο <em class="menuselection">Processing ‣ Graphical Modeler...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1106.png" class="align-center" src="../_images/1106.png" />
 <ol class="arabic simple" start="2">
-<li>The <em class="guilabel">Processing modeler</em> dialog contains a left-hand panel and a
-main canvas. Select the <em class="guilabel">Inputs</em> tab in the left-hand panel and
-drag the <em class="guilabel">+ Raster layer</em> to the canvas.</li>
+<li><p class="first">Το παράθυρο διαλόγου  <em class="guilabel">Processing modeler</em> περιέχει ένα παράθυρο στα αριστερά της οθόνης και έναν κύριο καμβά. Επιλέξτε την καρτέλα <em class="guilabel">Inputs</em> στην αριστερή πλευρά της οθόνης και σύρετέ το  <em class="guilabel">+ Raster layer</em> στον καμβά.</p>
+</li>
 </ol>
 <img alt="../_images/249.png" class="align-center" src="../_images/249.png" />
 <ol class="arabic simple" start="3">
-<li>A <em class="guilabel">Parameter definition</em> dialog will pop-up. Enter <tt class="docutils literal"><span class="pre">Input</span></tt> as
-the <em class="guilabel">Parameter name</em> and mark <tt class="docutils literal"><span class="pre">Yes</span></tt> to <em class="guilabel">Required</em>.
-Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Ένα παράθυρο διαλόγου  <em class="guilabel">Parameter definition</em> θα ανοίξε. Εισάγετε το <tt class="docutils literal"><span class="pre">Input</span></tt> ως <em class="guilabel">Parameter name</em> και επιλέξτε <tt class="docutils literal"><span class="pre">Yes</span></tt> στο <em class="guilabel">Required</em>. Κάντε κλικ <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/333.png" class="align-center" src="../_images/333.png" />
 <ol class="arabic simple" start="4">
-<li>You will see a box with the name <em class="guilabel">Input</em> appear in the canvas.
-This represents the landcover raster that we will use as input. Next step
-is to apply a <tt class="docutils literal"><span class="pre">Majority</span> <span class="pre">filter</span></tt> algorithm. Switch to the
-<em class="guilabel">Algorithm</em> tab from the bottom-left corner. Search for the
-algorithm and you will find it listed under <em class="guilabel">SAGA</em> provider. Drag
-it to the canvas.</li>
+<li><p class="first">Θα δείτε ένα κουτί με το όνομα <em class="guilabel">Input</em> να εμφανίζεται στον καμβά. Αυτό εκπροσωπεί το ψηφιδωτό της εδαφοκάλυψης το οποίο θα χρησιμοποιήσουμε σαν είσοδο. Το επόμενο βήμα είναι να εφαρμόσετε έναν αλγόριθμο <tt class="docutils literal"><span class="pre">Majority</span> <span class="pre">filter</span></tt>. Αλλάξτε στην καρτέλα  <em class="guilabel">Algorithm</em> από την κάτω αριστερή γωνία. Ψάξτε για τον αλγόριθμο και θα δείτε οτι εμφανίζεται κάτω από την καρτέλα  <em class="guilabel">SAGA</em>. Σύρετέ το στον κάμβά.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you do not see this algorithm or get an error while using it, you may not
-have SAGA installed on your system. Please see <a class="reference external" href="https://docs.qgis.org/2.6/en/docs/user_manual/processing/3rdParty.html#saga">Configuring external
-applications</a>
-for instructions on how to install SAGA. If you cannot install SAGA, you may
-skip this step entirely.</p>
+<p class="last">Αν δεν βλέπετε τον αλγόριθμο ή αν εμφανιστεί κάποιο σφάλμα κατά την διάρκεια της διαδικασίας, μπορεί να μην έχετε εγκατεστημένο το SAGA στο σύστημά σας. Παρακαλώ δείτε το <a class="reference external" href="https://docs.qgis.org/2.6/en/docs/user_manual/processing/3rdParty.html#saga">Configuring external applications</a>  για οδηγίες στο πως να εγκαταστήσετε το SAGA.  Αν δεν μπορείτε να εγκαταστήσετε το SAGA, μπορείτε να προσπεράσετε αυτό το βήμα.</p>
 </div>
 <img alt="../_images/423.png" class="align-center" src="../_images/423.png" />
 <ol class="arabic simple" start="5">
-<li>A configuration dialog for <em class="guilabel">Majority Filter</em> will be presented.
-Leave the values to their default and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Ενα παράθυρο διαμόρφωσης για το <em class="guilabel">Majority Filter</em> θα εμφανιστεί. Αφήστε τις προεπιλεγμένες τιμές και πατήστε  <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/524.png" class="align-center" src="../_images/524.png" />
 <ol class="arabic simple" start="6">
@@ -463,7 +444,7 @@ directory location will depend on the platform as follows: (Replace
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Aug 19, 2015.<br/>
+      Last updated on Aug 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

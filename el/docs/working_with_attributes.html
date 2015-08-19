@@ -104,13 +104,13 @@
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Δειγματοληψία Raster Δεδομένων με χρήση Σημείων ή Πολυγώνων.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Παρεμβάλλοντας τα σημεία δεδομένων</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Μαζική επεξεργασία χρησιμοποιώντας το πλαίσιο επεξεργασίας</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Αυτοματοποίηση Σύνθετων Ροών με την χρήση επεξεργασίας προσπέλασης.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Χρησιμοποιώντας το QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Μέτρηση του Aριθμού των Kορυφών σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Δημιουργία ενός πρόσθετου στην Python.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
@@ -199,28 +199,29 @@
 <h2>Επισκόπηση του έργου<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
 <p>Το σύνολο των δεδομένων για αυτό το  tutorial περιέχει πληροφορίες σχετικά με κατοικημένες περιοχές του κόσμου. Ο στόχος είναι να αναζητήσετε και να βρείτε όλες τις πρωτεύουσες του κόσμου που έχουν πληθυσμό άνω των 1.000.000.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<h3>Άλλες δεξιότητες που θα μάθετε<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Select features from a layer using expressions.</li>
-<li>Deselect features from a layer using the <em class="guilabel">Attributes</em> toolbar.</li>
-<li>Using <em class="guilabel">Query Builder</em> to show a subset of features from a layer.</li>
+<li><p class="first">Επιλέγοντας χαρακτηριστικά χρησιμοποιώντας εντολές.</p>
+</li>
+<li><p class="first">Αποεπιλέξτε χαρακτηριστικά από ένα στρώμα χρησιμοποιώντας την γραμμή εργαλείων <em class="guilabel">Attributes</em></p>
+</li>
+<li><p class="first">Χρησιμοποιήστε το <em class="guilabel">Query Builder</em> για να εμφανίσετε ένα υποσύνολο χαρακτηριστικών από ένα στρώμα.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Αποκτήστε τα δεδομένα<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>Natural Earth has a nice <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places</a>
-dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simple (less columns) dataset</a></p>
-<p>For convenience, you may directly download a copy of datasets from the link
-below:</p>
+<p>Η σελίδα της Natural Earth έχει ένα ωραίο σύνολο δεδομένων για της κατοικημένες περιοχές&lt;<a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/</a>&gt;`. Μεταφορτώστε το απλό (λιγότερες στήλες) σύνολο δεδομένων &lt;<a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip</a>&gt;`_</p>
+<p>Για ευκολία, μπορείτε να μεταφορτώσετε απευθείας ένα αντίγραφο από το σύνολο δεδομένων από την παρακάτω σύνδεση.</p>
 <p><a class="reference external" href="../../downloads/ne_10m_populated_places_simple.zip">ne_10m_populated_places_simple.zip</a></p>
 <p>Πηγή δεδομένων[NATURALEARTH]_</p>
 </div>
 <div class="section" id="procedure">
 <h2>Διαδικασία<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Once you have downloaded the data, open QGIS. Go to <em class="menuselection">Layer
-‣ Add Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Αφού έχετε μεταφορτώσει τα δεδομένα, ανοίξτε το QGIS. Πηγαίνετε στο <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1137.png" class="align-center" src="../_images/1137.png" />
 <ol class="arabic simple" start="2">
@@ -239,7 +240,8 @@ below:</p>
 </ol>
 <img alt="../_images/432.png" class="align-center" src="../_images/432.png" />
 <ol class="arabic simple" start="5">
-<li>Right-click the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Κάντε δεξί-κλικ στο στρώμα και επιλέξτε <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/533.png" class="align-center" src="../_images/533.png" />
 <ol class="arabic simple" start="6">
@@ -253,79 +255,57 @@ below:</p>
 </ol>
 <img alt="../_images/731.png" class="align-center" src="../_images/731.png" />
 <ol class="arabic simple" start="8">
-<li>Now we are ready to perform our query on these attributes. QGIS uses
-SQL-like expressions to perform queries. Click <em class="guilabel">Select features
-using an expression</em>.</li>
+<li><p class="first">Τώρα είμαστε σε θέση να εκτελέσουμε το ερώτημα για τα συγκεκριμένα χαρακτηριστικά. Το QGIS χρησιμοποιεί εντολές που μοιάζουν με SQL για να εκτελέσει τα ερωτήματα. Κάντε κλικ στο <em class="guilabel">Select features using an expression</em>.</p>
+</li>
 </ol>
 <img alt="../_images/830.png" class="align-center" src="../_images/830.png" />
 <ol class="arabic simple" start="9">
-<li>In the <em class="guilabel">Select By Expression</em> window, expand the <em class="guilabel">Fields
-and Values</em> section and double-click the <tt class="docutils literal"><span class="pre">pop_max</span></tt> label.  You will notice
-that it is added to the expression section at the bottom.  If you aren&#8217;t
-sure about the field values, you can click the <em class="guilabel">Load all unique
-values</em> to see what the attribute values are present in the dataset. For
-this exercise, we are looking to find all features that have a population
-greater than <tt class="docutils literal"><span class="pre">1,000,000</span></tt>. So complete the expression as below and click
-<em class="guilabel">Select</em>.</li>
+<li><p class="first">Στο παράθυρο <em class="guilabel">Select By Expression</em> , επεκτείνετε το τμήμα <em class="guilabel">Fields and Values</em> και κάντε διπλό-κλικ στην ετικέτα <cite>pop_max</cite>. Θα παρατηρήσετε ότι προστίθεται στο κάτω μέρος της έκφρασης. Αν δεν είστε σίγουροι για τις τιμές των πεδίων, μπορείτε να κάνετε κλικ στο <em class="guilabel">Load all unique values</em> για να δείτε ποιές είναι οι τιμές των γνωρισμάτων για το συγκεκριμένο υποσύνολο δεδομένων. Για αυτή την άσκηση, ψάχνουμε να βρούμε όλα τα χαρακτηριστικά που έχουν πληθυσμό άνω των 1.000.000. Οπότε ολοκληρώστε την εντολή όπως φαίνεται παρακάτω και κάντε κλικ στο <em class="guilabel">Select</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000
 </pre></div>
 </div>
 <img alt="../_images/928.png" class="align-center" src="../_images/928.png" />
 <ol class="arabic simple" start="10">
-<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. You will
-notice that a subset of points is now rendered in yellow. This is the
-result of our query and you are seeing all places from the dataset that
-have the <tt class="docutils literal"><span class="pre">pop_max</span></tt> attribute value greater than <tt class="docutils literal"><span class="pre">1,000,000</span></tt>.</li>
+<li><p class="first">Κάντε κλίκ στο <em class="guilabel">Close</em> και επιστρέψτε στο κεντρικό παράθυρο του QGIS. Θα παρατηρήσετε οτι ένα υποσύνολο σημείων εμφανίζεται τώρα με κίτρινο χρώμα. Αυτό είναι αποτέλεσμα του ερωτήματος και πλέον είστε σε θέση να δείτε όλες τις περιοχές από το σύνολο των δεδομένων που έχουν τιμή για το γνώρισμα του &#8220;pop_max&#8221; παραπάνω από <tt class="docutils literal"><span class="pre">1,000,000</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/1029.png" class="align-center" src="../_images/1029.png" />
 <ol class="arabic simple" start="11">
-<li>The goal for this exercise is to find the places that are country capitals.
-The field containing this data is <cite>adm0cap</cite>. The value <tt class="docutils literal"><span class="pre">1</span></tt> indicates that
-the place is a capital. We can add this criteria to our previous expression
-using the <tt class="docutils literal"><span class="pre">and</span></tt> operator. Let’s refine our query to select only those
-places which are capitals.  Click on the <em class="guilabel">Select feature using an
-expression</em> button in the attribute table and enter the expression as below
-and click <em class="guilabel">Select</em> and then <em class="guilabel">Close</em>.</li>
+<li><p class="first">Ο στόχος αυτής της άσκησης είναι να βρεθούν τα μέρη που είναι πρωτεύουσες χωρών.  Το πεδίο που περιέχει αυτά τα δεδομένα είναι το <cite>adm0cap</cite>. Η τιμή &#8220;1&#8221; δείχνει οτι η συγκεκριμένη περιοχή είναι μια πρωτεύουσα. Μπορούμε να προσθέσουμε αυτά τα κριτήρια στην προηγούμενη εντολή χρησιμοποιώντας την λογική πράξη <tt class="docutils literal"><span class="pre">and</span></tt> . Μπορούμε να βελτιώσουμε το ερώτημα μας ώστε να επιλέγει μόνο τα σημεία αυτά που είναι πρωτεύουσες. Κάντε κλικ στο κουμπί <em class="guilabel">Select feature using an expression</em>, στον πίνακα χαρακτηριστικών και αφού εισάγετε την εντολή που δίνεται παρακάτω πατήστε  <em class="guilabel">Select</em> και μετά <em class="guilabel">Close</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000 and &quot;adm0cap&quot; = 1
 </pre></div>
 </div>
 <img alt="../_images/1138.png" class="align-center" src="../_images/1138.png" />
 <ol class="arabic simple" start="12">
-<li>Return to the main QGIS window. Now you will see a smaller subset of the
-points selected. This is the result of the second query and shows all
-places from the dataset that are country capitals as well as have
-population greater than 1,000,000. If we wanted to do some further analysis
-on this subset of data, we can make this selection persistent. Right-click
-the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select
-<em class="guilabel">Properties</em>.</li>
+<li><p class="first">Επιστρέψτε στο κύριο παράθυρο του QGIS. Τώρα μπορείτε να δείτε ένα μικρότερο υποσύνολο των επιλεγμένων σημείων. Αυτό είναι το αποτέλεσμα του δεύτερου ερωτήματος και δείχνει όλα τα σημεία από το αρχείο των δεδομένων τα οποία είναι πρωτεύουσες χωρών και έχουν πληθυσμό πάνω από 1.000.000.  Αν θέλαμε να κάνουμε παραπάνω ανάλυση σε αυτό το υποσύνολο των δεδομένων, μπορούμε να κάνουμε αυτή την επιλογή μόνιμη. Κάντε δεξί-κλικ στο στρώμα &#8220;ne_10m_populated_places_simple`` και επιλέξτε Ιδιότητες <em class="guilabel">Properties</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1229.png" class="align-center" src="../_images/1229.png" />
 <ol class="arabic simple" start="13">
-<li>In the <em class="guilabel">General</em> tab, scroll down to the <em class="guilabel">Feature
-subset</em> section. Click <em class="guilabel">Query Builder</em>.</li>
+<li><p class="first">Στην καρτέλα Γενικά <em class="guilabel">General</em>, μεταφερθείτε προς τα κάτω στο τμήμα  <em class="guilabel">Feature subset</em>. Κάντε κλικ στο <em class="guilabel">Query Builder</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1327.png" class="align-center" src="../_images/1327.png" />
 <ol class="arabic simple" start="14">
-<li>Enter the same expression you had entered earlier and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Εισάγετε την ίδια εντολή όπως και προηγουμένως και πατήστε <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000 and &quot;adm0cap&quot; = 1
 </pre></div>
 </div>
 <img alt="../_images/1426.png" class="align-center" src="../_images/1426.png" />
 <ol class="arabic simple" start="15">
-<li>Back in the main QGIS window, you will see rest of the points disappear.
-You may now perform any other analysis on this layer and only the features
-that match our expression will be used. You will notice that the points
-still appear in yellow. This is because they are still selected. Find the
-<em class="guilabel">Deselect Features from All Layers</em> button under the
-<em class="guilabel">Attributes</em> toolbar and click on it.</li>
+<li><p class="first">Πίσω στο κεντρικό παράθυρο του QGIS, θα δείτε οτι τα υπόλοιπα σημεία έχουν εξαφανιστεί. Τώρα μπορείτε να πραγματοποιήσετε οποιαδήποτε άλλη ανάλυση στο συγκεκριμένο στρώμα και μόνο τα χαρακτηριστικά τα οποία ταιριάζουν με την εντολή σας θα χρησιμοποιηθούν. Μπορεί να παρατηρήσετε οτι τα σημεία ακόμα εμφανίζονται με κίτρινο χρώμα. Αυτό συμβαίνει γιατί είναι ακόμα επιλεγμένα. Βρείτε το κουμπί <em class="guilabel">Deselect Features from All Layers</em> στην γραμμή εργαλείων <em class="guilabel">Attributes</em> και πατήστε το</p>
+</li>
 </ol>
 <img alt="../_images/1524.png" class="align-center" src="../_images/1524.png" />
 <ol class="arabic simple" start="16">
-<li>You will see that the points are now de-selected and rendered in their
-original color.</li>
+<li><p class="first">Θα δείτε οτι τα σημεία τώρα έχουν αποεπιλεχθεί και έχουν πλέον το αρχικό τους χρώμα.</p>
+</li>
 </ol>
 <img alt="../_images/1623.png" class="align-center" src="../_images/1623.png" />
 </div>
@@ -353,7 +333,7 @@ original color.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Aug 19, 2015.<br/>
+      Last updated on Aug 20, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
