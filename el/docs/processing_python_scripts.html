@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Writing Python Scripts for Processing Framework &mdash; QGIS Tutorials and Tips</title>
+    <title>Δημιουργία κώδικα στην Python για το πλαίσιο επεξεργασίας. &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Running and Scheduling QGIS Processing Jobs" href="running_qgis_jobs.html" />
-    <link rel="prev" title="Using Custom Python Expression Functions" href="custom_python_functions.html" />
+    <link rel="prev" title="Χρήση προσαρμοσμένων εκφράσεων συναρτήσεων στην Python" href="custom_python_functions.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -105,14 +105,14 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Παρεμβάλλοντας τα σημεία δεδομένων</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Μαζική επεξεργασία χρησιμοποιώντας το πλαίσιο επεξεργασίας</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Αυτοματοποίηση Σύνθετων Ροών με την χρήση επεξεργασίας προσπέλασης.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Αυτόματη δημιουργία χάρτη χρησιμοποιώντας την Σύνθεση Εκτύπωσης Ατλαντα</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Χρησιμοποιώντας το QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Μέτρηση του Aριθμού των Kορυφών σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Δημιουργία ενός πρόσθετου στην Python.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Writing Python Scripts for Processing Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Χρήση προσαρμοσμένων εκφράσεων συναρτήσεων στην Python</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Δημιουργία κώδικα στην Python για το πλαίσιο επεξεργασίας.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Βρείτε Γειτονικά Πολύγωνα σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Διαδικτυακοί Χάρτες με το qgis2leaf</a></li>
@@ -129,7 +129,7 @@
               
                 
   <li>
-    <a href="custom_python_functions.html" title="Previous Chapter: Using Custom Python Expression Functions"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Using Custom Pyt...</span>
+    <a href="custom_python_functions.html" title="Previous Chapter: Χρήση προσαρμοσμένων εκφράσεων συναρτήσεων στην Python"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Χρήση προσαρμοσμ...</span>
     </a>
   </li>
   <li>
@@ -192,53 +192,35 @@
       
 
   <div class="section" id="writing-python-scripts-for-processing-framework">
-<h1>Writing Python Scripts for Processing Framework<a class="headerlink" href="#writing-python-scripts-for-processing-framework" title="Permalink to this headline">¶</a></h1>
+<h1>Δημιουργία κώδικα στην Python για το πλαίσιο επεξεργασίας.<a class="headerlink" href="#writing-python-scripts-for-processing-framework" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/processing_python_scripts_a4.pdf">A4</a> <a class="reference external" href="../pdf/processing_python_scripts_letter.pdf">Letter</a> ]</p>
-<p>One can write standalone pyqgis scripts that can be run via the Python Console
-in QGIS. With a few tweaks, you can make your standalone scripts run via the
-Processing Framework. This has several advantages. First, taking user input and
-writing output files is far easier because Processing Framework offers standardized
-user interface for these. Second, having your script in the Processing Toolbox also
-allows it to be part of any Processing Model or be run as a Batch job with
-multiple inputs. This tutorial will show how to write a custom python script
-that can be part of the Processing Framework in QGIS.</p>
+<p>Μπορεί κανείς να γράψει αυτόνομο pygis κώδικα που να μπορεί να εκτελεστεί μέσω της κονσόλας Python στο QGIS. Με μερικά κόλπακια, μπορείτε να κάνετε τα αυτόνομα κομμάτια του κώδικά σας  να εκτελούνται μέσα στο Πλαίσιο Επεξεργασίας. Αυτό έχει πολλαπλά πλεονεκτήματα. Πρώτον, παίρνοντας τα στοιχεία που εισάγει ο χρήστης και με βάση αυτά δημιουργώντας νεα αρχεία είναι σαφώς πιο εύκολο γιατί το Πλαίσιο Επεξεργασίας παρέχει μια τυποποιημένη διεπαφή χρήστη για αυτές τις λειτουργίες. Δεύτερον, το να έχετε τον κώδικά σας στην Εργαλειοθήκη Επεξεργασίας, επιτρέπει στον κώδικα να είναι μέρος από το Μοντέλο Επεκεργασίας ή να εκτελείται ως μια συνολική δουλειά με πολλαπλές εισαγωγές. Αυτή η άσκηση θα σας δείξει πως να γράψετε ένα προσαρμοσμένο κομμάτι κώδικα το οποίο θα μπορεί να είναι μέρος από το Πλαίσιο Επεξεργασίας στο QGIS.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Our script will perform a dissolve operation based on a field chosen by the
-user. It will also sum up values of another field for the dissolved features.
-In the example, we will dissolve a world shapefile based on a <tt class="docutils literal"><span class="pre">SUBREGION</span></tt>
-attribute and sum up <tt class="docutils literal"><span class="pre">POP_EST</span></tt> field to calculate total population in the
-dissolved region.</p>
+<h2>Επισκόπηση της εργασίας<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>Ο κώδικάς μας θα πραγματοποιήσει μια διαδικασία διάλυσης με βάση το πεδίο επιλογής του χρήστη. Θα προσθέσει επίσης τις τιμές από ένα άλλο πεδίο για τα κατακερματισμένα χαρακτηριστικά. Για παράδειγμα., θα κατακερματίσουμε το shapefile με τα παγκόσμια δεδομένα βασιζόμενοι στο γνώρισμα <tt class="docutils literal"><span class="pre">SUBREGION``και</span> <span class="pre">θα</span> <span class="pre">προσθέσουμε</span> <span class="pre">το</span> <span class="pre">πεδίο</span> <span class="pre">``POP_EST</span></tt> ώστε να υπολογίσουμε τον συνολικό πληθυσμό στην κατακερματισμένη περιοχή.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you are looking to do a Dissolve operation along with Statistics, you can
-use the excellent <tt class="docutils literal"><span class="pre">DissolveWithStats</span></tt> plugin. This script is a
-demonstration how to implement similar functionality via a Processing
-script.</p>
+<p class="last">Αν θέλετε να κάνετε την διαδικασία κατακερματισμού υπολογίζοντας και κάποια στατιστικά στοιχεία, μπορείτε να χρησιμοποιήσετε το πρόσθετο <tt class="docutils literal"><span class="pre">DissolveWithStats</span></tt>. Αυτός ο κώδικας είναι μια παρουσίαση για το πως να εφαρμόσετε παρόμοιες συναρτήσεις μέσω ενός Κώδικα Επεξεργασίας.</p>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/">Admin 0 - Countries</a>
-dataset from Natural Earth.</p>
-<p>Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - countries shapefile.</a>.</p>
-<p>Data Source <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
-<p>For convenience, you may directly download a copy of the dataset from the links
-below:</p>
-<p><a class="reference external" href="../../downloads/ne_10m_admin_0_countries.zip">ne_10_admin_0_countries.zip</a></p>
+<h2>Λήψη δεδομένων<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Θα χρησιμοποιήσουμε το σύνολο δεδομένων <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/">Αdmin 0 - Χώρες</a> από την σελίδα Natural Earth.</p>
+<p>Κατεβάστε το <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - χώρες shapefile .</a>.</p>
+<p>Πηγή δεδομένων [naturalearth] _</p>
+<p>Για ευκολία, μπορείτε να κατεβάσετε απευθείας ένα αντίγραφο και από το σύνολο των δεδομένων από τις παρακάτω συνδέσεις</p>
+<p><a class="reference external" href="../../downloads/ne_10m_admin_0_countries.zip">ne_10m_admin_0_countries.zip</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<h2>Διαδικασία<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS and go to <em class="menuselection">Layers ‣ Add Vector ‣ Add Vector
-Layer</em>. Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10_admin_0_countries.zip</span></tt> file and
-load the <tt class="docutils literal"><span class="pre">ne_10_admin_0_countries</span></tt> layer. Go to <em class="menuselection">Processing
-‣ Toolbox</em>.</li>
+<li><p class="first">Ανοίξτε το QGIS και πηγαίνετε στο  <em class="menuselection">Layers ‣ Add Vector ‣ Add Vector Layer</em>. Πηγαίνετε στο κατεβασμένο αρχείο <tt class="docutils literal"><span class="pre">ne_10_admin_0_countries.zip</span></tt> και φορτώστε το στρώμα <tt class="docutils literal"><span class="pre">ne_10_admin_0_countries</span></tt>. Πηγαίνετε στο  <em class="menuselection">Processing ‣ Toolbox</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
 <ol class="arabic simple" start="2">
-<li>Expand the <em class="guilabel">Scripts</em> group in the <em class="guilabel">Processing Toolbox</em>
-and select <em class="guilabel">Create a new script</em>.</li>
+<li><p class="first">Επεκτείνετε την ομάδα  <em class="guilabel">Scripts`στο :guilabel:`Processing Toolbox</em> και επιλέξτε <em class="guilabel">Create a new script</em>.</p>
+</li>
 </ol>
 <img alt="../_images/250.png" class="align-center" src="../_images/250.png" />
 <ol class="arabic simple" start="3">
@@ -524,7 +506,7 @@ needs.</p>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Aug 20, 2015.<br/>
+      Last updated on Sep 16, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

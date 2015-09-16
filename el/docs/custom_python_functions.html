@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Using Custom Python Expression Functions &mdash; QGIS Tutorials and Tips</title>
+    <title>Χρήση προσαρμοσμένων εκφράσεων συναρτήσεων στην Python &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -29,7 +29,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Writing Python Scripts for Processing Framework" href="processing_python_scripts.html" />
+    <link rel="next" title="Δημιουργία κώδικα στην Python για το πλαίσιο επεξεργασίας." href="processing_python_scripts.html" />
     <link rel="prev" title="Δημιουργία ενός πρόσθετου στην Python." href="building_a_python_plugin.html" />
 
 <meta charset='utf-8'>
@@ -105,14 +105,14 @@
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Παρεμβάλλοντας τα σημεία δεδομένων</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Μαζική επεξεργασία χρησιμοποιώντας το πλαίσιο επεξεργασίας</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Αυτοματοποίηση Σύνθετων Ροών με την χρήση επεξεργασίας προσπέλασης.</a></li>
-<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Αυτόματη δημιουργία χάρτη χρησιμοποιώντας την Σύνθεση Εκτύπωσης Ατλαντα</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Χρησιμοποιώντας το QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Μέτρηση του Aριθμού των Kορυφών σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Ανοίγοντας BIL,BIP ή BSQ αρχεία στο QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Ξεκινώντας προγραμματισμό με την Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Δημιουργία ενός πρόσθετου στην Python.</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Using Custom Python Expression Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Χρήση προσαρμοσμένων εκφράσεων συναρτήσεων στην Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Δημιουργία κώδικα στην Python για το πλαίσιο επεξεργασίας.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Βρείτε Γειτονικά Πολύγωνα σε ένα Επίπεδο</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Διαδικτυακοί Χάρτες με το qgis2leaf</a></li>
@@ -133,7 +133,7 @@
     </a>
   </li>
   <li>
-    <a href="processing_python_scripts.html" title="Next Chapter: Writing Python Scripts for Processing Framework"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Writing Python S... &raquo;</span>
+    <a href="processing_python_scripts.html" title="Next Chapter: Δημιουργία κώδικα στην Python για το πλαίσιο επεξεργασίας."><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Δημιουργία κώδικ... &raquo;</span>
     </a>
   </li>
               
@@ -192,71 +192,55 @@
       
 
   <div class="section" id="using-custom-python-expression-functions">
-<h1>Using Custom Python Expression Functions<a class="headerlink" href="#using-custom-python-expression-functions" title="Permalink to this headline">¶</a></h1>
+<h1>Χρήση προσαρμοσμένων εκφράσεων συναρτήσεων στην Python<a class="headerlink" href="#using-custom-python-expression-functions" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/custom_python_functions_a4.pdf">A4</a> <a class="reference external" href="../pdf/custom_python_functions_letter.pdf">Letter</a> ]</p>
-<p>Expressions in QGIS have a lot of power and are used in many core features -
-selection, calculating field values, styling, labelling etc. QGIS also has
-support for user-defined expressions. With a little bit of python programming,
-you can define your own functions that can be used within the expression
-engine.</p>
+<p>Οι εντολές στο QGIS έχουν εξαιρετική δύναμη και χρησιμοποιούνται σε πολλά βασικά χαρακτηριστικά - επιλογή, υπολογισμός τιμών πεδίων, μορφοποίηση, ετικέτες κ.α. Το QGIS υποστηρίζει επίσης καθορισμένες από τον χρήστη εντολές. Με  λίγο προγραμματισμό στην python, μπορείτε να καθορίσετε τις δικές σας συναρτήσεις οι οποίες μπορούν να χρησιμοποιηθούν μέσα στην μηχανή εντολών.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will define a custom function that finds the UTM Zone of a map feature and
-use this function to write an expression that displays the UTM zone as a map
-tip when hovered over the point.</p>
+<h2>Επισκόπηση του έργου<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>Θα καθορίσουμε μια προσαρμοσένη συνάρτηση η οποία θα βρίσκει την χρονικη ζώνη UTM από ένα χαρακτηριστικό του χάρτη και θα χρησιμοποιεί αυτή την συνάρτηση για να γράψει μια εντολή η οποία θα εμφανίζει την χρονική ζώνη σαν μια πληροφορία στον χάρτη που θα εμφανίζεται όταν θα περνάει ο κέρσορας πάνω από το σημείο.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<h3>Άλλες δεξιότητες που θα μάθετε<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>How to use the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">Tips</span></tt> tool to display custom text when hovering over a
-feature.</li>
+<li><p class="first">Πως να χρησιμοποιείτε το εργαλείο &#8220;Πληροφορίες Χάρτη&#8221; για να εμφανίσετε προσαρμοσμένο κείμενο όταν ο κέρσορας περνάει πάνω από ένα χαρακτηριστικό.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use Natural Earth&#8217;s <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places</a>
-dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simple (less columns) dataset</a></p>
-<p>For convenience, you may directly download a copy of the dataset from the links
-below:</p>
+<h2>Λήψη δεδομένων<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Θα χρησιμοποιήσουμε τα δεδομένα για τις κατοικημένες περιοχές από την σελίδα  Natural Earth&lt;<a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/</a>&gt;`. Μεταφορτώστε το απλό (λιγότερες στήλες) σύνολο δεδομένων &lt;<a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip</a>&gt;`_</p>
+<p>Για ευκολία, μπορείτε να κατεβάσετε απευθείας ένα αντίγραφο και από το σύνολο των δεδομένων από τις παρακάτω συνδέσεις</p>
 <p><a class="reference external" href="../../downloads/ne_10m_populated_places_simple.zip">ne_10m_populated_places_simple.zip</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<h2>Διαδικασία<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS and go to <em class="menuselection">Layers ‣ Add Vector ‣ Add Vector
-Layer</em>.</li>
+<li><p class="first">Ανοίξτε το QGIS και πηγαίνετε στο <em class="menuselection">Layer ‣ Add Vector Layer..</em>.</p>
+</li>
 </ol>
 <img alt="../_images/128.png" class="align-center" src="../_images/128.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt> file and
-click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Περιηγηθείτε στο μεταφορτωμένο αρχείο``ne_10m_populated_places_simple.zip`` και επιλέξτε <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
 <ol class="arabic simple" start="3">
-<li>Go to <em class="menuselection">View ‣ Select ‣ Select By Expressions...</em>.</li>
+<li><p class="first">Πηγαίνετε στο  <em class="menuselection">View ‣ Select ‣ Select By Expressions...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
 <ol class="arabic simple" start="4">
-<li>Switch to the <em class="guilabel">Function Editor</em> tab. Here you can write any
-PyQGIS code that will be executed by the expression engine.</li>
+<li><p class="first">Πηγαίνετε στην καρτέλα  <em class="guilabel">Function Editor</em>. Εδώ μπορείτε να γράψετε όποιον PyQGIS κώδικα θέλετε να εκτελεστεί από την μηχανή εντολών.</p>
+</li>
 </ol>
 <img alt="../_images/48.png" class="align-center" src="../_images/48.png" />
 <ol class="arabic simple" start="5">
-<li>We will define a custom function named <tt class="docutils literal"><span class="pre">GetUtmZone</span></tt> that will calculate
-the UTM zone number for each feature. Since custom functions in QGIS work at
-the feature level. We will use the centroid of the feature&#8217;s geometry and
-compute the UTM Zone from the latitude and longitude of the centroid
-geometry. We will also add a &#8216;N&#8217; or &#8216;S&#8217; designation to the zone to indicate
-whether the zone is in the northern or southern hemisphere. Type the
-following code in the editor, enter the name of the file as <tt class="docutils literal"><span class="pre">utm_zones.py</span></tt>
-and click <em class="guilabel">Save file</em>.</li>
+<li><p class="first">Θα καθορίσουμε μια προσαρμοσμένη συνάρτηση με όνομα <tt class="docutils literal"><span class="pre">GetUtmZone</span></tt> που θα υπολογίζει την χρονική ζώνη για το κάθε χαρακτηριστικό. Λαμβάνοντας πάντα υπόψιν οτι οι προσαρμοσμένες εκφράσεις στο QGIS λειτουργούν σε επίπεδο χαρακτηριστικών. Θα χρησιμοποιήσουμε το κεντροειδές από την γεωμετρία των χαρακτηριστικών για να υπολογίσουμε την χρονική ζώνη από το γεωγραφικό μήκος και πλάτος του κεντροειδούς της γεωμετρίας. Θα προσθέσουμε επίσης έναν χαρακτηρισμό &#8220;Β&#8221; ή &#8220;Ν&#8221; στην ζώνη ο οποίος θα υποδεικνύει αν η ζώνη είναι στο βόρειο ή νότιο ημισφαίρειο. Πληκτρολογίστε τον παρακάτω κώδικα στον επεξεργαστή , εισάγετε το όνομα του αρχείου ως <tt class="docutils literal"><span class="pre">utm_zones.py</span></tt> και πατήστε  <em class="guilabel">Αποθήκευση αρχείου</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">UTM Zones are longitudinal projection zones numbered from 1 to 60. Each UTM
-zone is 6 degree wide. Here we use a simple mathematical formula to find the
-appropriate zone for a given longitude value. Note that this formula doesn&#8217;t
-cover some special UTM zones.</p>
+<p class="last">Οι χρονικές ζώνες είναι ζώνες προβολής κατά γεωγραφικό μήκος με αρίθμηση από το 1 ως το 60. Κάθε χρονική ζώνη έχει πλάτος 6 μοίρες. Εδώ θα χρησιμοποιήσουμε μια απλή μαθηματική εξίσωση για να βρούμε την κατάλληλη ζώνη για την δοσμένη τιμή του γεωγραφικού μήκους. Θυμηθείτε οτι αυτή η εξίσωση δεν καλύπτει μερικές ειδικές χρονικές ζώνες.</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
@@ -279,77 +263,59 @@ cover some special UTM zones.</p>
 </div>
 <img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
 <ol class="arabic simple" start="6">
-<li>Click <em class="guilabel">Run Script</em>. This will execute the python code and register
-the function <tt class="docutils literal"><span class="pre">GetUtmZone</span></tt> with the expression engine. Note that this is
-needed to be done only once. Once the function is registered, it will always
-be available to the expression engine.</li>
+<li><p class="first">Πατήστε στο:guilabel:<cite>Run Script, Τρέξτε τον κώδικα</cite>. αυτό θα εκτελέσει τον κώδικα στην python και θα καταχωρίσει την συνάρτηση <tt class="docutils literal"><span class="pre">GetUtmZone</span></tt> χρησιμοποιώντας την μηχανή εντολών. Θυμηθείτε οτι αυτό θα χρειαστεί να το κάνετε μόνο μία φορά. Μόλις η συνάρτηση καταχωρηθεί, θα είναι πάντα διαθέσιμη μέσα στην μηχανή εντολών.</p>
+</li>
 </ol>
 <img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
 <ol class="arabic simple" start="7">
-<li>Switch to the <em class="guilabel">Expression</em> tab in the <em class="guilabel">Select by
-expression</em> dialog. Find and expand the <em class="guilabel">Custom</em> group in the
-<em class="guilabel">Functions</em> section. You will notice a new custom function
-<tt class="docutils literal"><span class="pre">$GetUtmZone</span></tt> in the list. We can now use this function in the expressions
-just like any other function. Type the following expression in the editor.
-This expression will select all points that fall in the UTM Zone <tt class="docutils literal"><span class="pre">40N</span></tt>.
-Click <em class="guilabel">Select</em>.</li>
+<li><p class="first">Μεταφερθείτε στην καρτέλα <em class="guilabel">Expression</em> στο παράθυρο διαλόγου  <em class="guilabel">Select by expression</em>. Βρείτε και επεκτείνετε την ομάδα:guilabel:<cite>Custom</cite> στο τμήμα  <em class="guilabel">Functions</em>. Τώρα θα παρατηρήσετε οτι μια καινούρια προσαρμοσμένη συνάρτηση, η <tt class="docutils literal"><span class="pre">$GetUtmZone</span></tt> υπάρχει μέσα στην λίστα. Τώρα μπορούμε να χρησιμοποιήσουμε αυτή την συνάρτηση μέσα σε εντολή, όπως κάθε άλλη συνάρτηση. πληκτρολογήστε την παρακάτω εντολή στον επεξεργαστή. Αυτή η εντολή θα επιλέξει όλα τα σημεία τα οποία βρίσκονται μέσα στην χρονική ζώνη <tt class="docutils literal"><span class="pre">40N</span></tt>. Πατήστε  <em class="guilabel">Select</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>$GetUtmZone = &#39;40N&#39;
 </pre></div>
 </div>
 <img alt="../_images/77.png" class="align-center" src="../_images/77.png" />
 <ol class="arabic simple" start="8">
-<li>Back in the main QGIS window, you will see many points highlighted in
-yellow. These are the points falling in the UTM Zone we specified in the
-expression.</li>
+<li><p class="first">Πίσω στο κύριο παράθυρο του QGIS, θα δείτε πολλά σημεία με κίτρινο χρώμα. Αυτά είναι τα σημεία που πέφτουν μέσα στην χρονική ζώνη που καθορίζεται από τις εντολές.</p>
+</li>
 </ol>
 <img alt="../_images/87.png" class="align-center" src="../_images/87.png" />
 <ol class="arabic simple" start="9">
-<li>You saw how we defined and used a custom function to select features by
-expression. We will now use the same function in another context. One of the
-hidden gems in QGIS is the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">Tip</span></tt> tool. This tool shows user-defined
-text when you hover over a feature. Right-click the
-<tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select <em class="guilabel">Properties</em>.</li>
+<li><p class="first">Είδατε πως καθορίσαμε και χρησιμοποιήσαμε μια προσαρμοσμένη συνάρτηση για να επιλέξουμε χαρακτηριστικά μέσω εντολών. Θα χρησιμοποιήσουμε τώρα την ίδια συνάρτηση για κάτι διαφορετικό. Ένα κρυφό διαμάντι στο QGIS είναι το εργαλείο <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">Tip</span></tt>. Αυτό το εργαλείο δείχνει καθορισμένο από τον χρήστη κείμενο όταν περάσετε τον κέρσορα πάνω από ένα χαρακτηριστικό. κάντε δεξί κλικ στο στρώμα <a href="#id1"><span class="problematic" id="id2">``</span></a>ne_10m_populated_places_simple``και επιλέξτε  <em class="guilabel">Ιδιότητες</em>.</p>
+</li>
 </ol>
 <img alt="../_images/97.png" class="align-center" src="../_images/97.png" />
 <ol class="arabic simple" start="10">
-<li>Switch to the <em class="guilabel">Display</em> tab and select <em class="guilabel">HTML</em>. Here you
-can enter any text that will be displayed when you hover over the features
-of the layer. Even better, you can use layer field values and expressions
-to define a much more useful message. Click on the <em class="guilabel">Insert
-expression...</em> button.</li>
+<li><p class="first">Μετακινηθείτε στην καρτέλα <em class="guilabel">Display</em> και επιλέξτε <em class="guilabel">HTML</em>. Εδώ μπορείτε να προσθέσετε όποιοδήποτε κειμενο θέλετε να εμφανίζεται όταν περνάτε τον κέρσορα πάνω από το χαρακτηριστικό στο στρώμα. Ακόμα καλύτερα, μπορείτε να χρησιμοποιήσετε τις τιμές του πεδίου και τις εντολές του στρώματος για να εισάγετε ένα πιο χρήσιμο μήνυμα. Κάντε κλικ στο κουμπί  Click on the <em class="guilabel">Insert expression, Προσθήκη εντολής...</em> button.</p>
+</li>
 </ol>
 <img alt="../_images/107.png" class="align-center" src="../_images/107.png" />
 <ol class="arabic simple" start="11">
-<li>You will see the familiar expression editor again. We will use the
-<tt class="docutils literal"><span class="pre">concat</span></tt> function to join the value of the field <tt class="docutils literal"><span class="pre">name</span></tt> and the result
-of our custom function $GetUtmZone. Enter the following expression and
-click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Θα δείτε την γνωστή εντολή στον επεξεργαστή πάλι. Θα χρησιμοποιήσουμε τώρα την συνάρτηση <tt class="docutils literal"><span class="pre">concat</span></tt> για να ενώσουμε την τιμή με το πεδίο &#8220;όνομα&#8221; και το αποτέλεσμα από την προσαρμοσμένη συνάρτηση $GetUtmZone. Εισάγετε τις παρακάτω εντολές και πατήστε  <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>concat(&quot;name&quot;, &#39; | UTM Zone: &#39;, $GetUtmZone)
 </pre></div>
 </div>
 <img alt="../_images/1111.png" class="align-center" src="../_images/1111.png" />
 <ol class="arabic simple" start="12">
-<li>You will see the expression entered as the value of the <em class="guilabel">Display</em>
-text. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Τώρα θα δείτε την εντολή να έχει εισαχθεί σαν την τιμή  του κειμένου <em class="guilabel">Display</em> . Πατήστε <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/129.png" class="align-center" src="../_images/129.png" />
 <ol class="arabic simple" start="13">
-<li>Before we proceed, let us de-select the features that were selected in the
-previous step. Go to <em class="menuselection">View ‣ Select ‣ Deselect Features
-from All Layers</em>.</li>
+<li><p class="first">Προτού συνεχίσουμε, ας αποεπιλέξουμε τα χαρακτηριστικά τα οποία είχαν επιλεχθεί από το προηγούμενο βήμα. Πηγαίνετε στο <em class="menuselection">View ‣ Select ‣ Deselect Features from All Layers</em>.</p>
+</li>
 </ol>
 <img alt="../_images/137.png" class="align-center" src="../_images/137.png" />
 <ol class="arabic simple" start="14">
-<li>Activate the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">Tips</span></tt> tool by going to <em class="menuselection">View ‣ Map
-Tips</em>.</li>
+<li><p class="first">Ενεργοποιήστε το εργαλείο <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">Tips</span></tt> πηγαίνωντας στο  <em class="menuselection">View ‣ Map Tips</em>.</p>
+</li>
 </ol>
 <img alt="../_images/147.png" class="align-center" src="../_images/147.png" />
 <ol class="arabic simple" start="15">
-<li>Zoom into any area of the map and put your mouse cursor over any feature.
-You will see the name of the city and corresponding UTM zone displayed as
-the map tip.</li>
+<li><p class="first">Μεγενθύνετε οπουδήποτε μέσα στον χάρτη και μετακινήστε τον κέρσορα του ποντικιού σας πάνω από κάποιο χαρακτηριστικό. Θα δείτε το όνομα της πόλης και την αντίστοιχη χρονική ζώνη να εμφανίζεται στις πληροφορίες.</p>
+</li>
 </ol>
 <img alt="../_images/157.png" class="align-center" src="../_images/157.png" />
 </div>
@@ -377,7 +343,7 @@ the map tip.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Aug 20, 2015.<br/>
+      Last updated on Sep 16, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
