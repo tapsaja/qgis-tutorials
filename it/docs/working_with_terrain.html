@@ -116,6 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Trovare i poligoni confinanti in un layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Realizzare mappe web leaflet con qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Usare il Google Maps Engine Connector con QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">Risorse disponibili per l&#8217;apprendimento di QGIS</a></li>
@@ -218,7 +219,7 @@
 <li><p class="first">Portiamoci su <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> . Nella scheda <em class="guilabel">Search Criteria</em> facciamo una ricerca del luogo chiamato <cite>Mt. Everest</cite>. Facciamo click sul risultato per individuare il posto.</p>
 </li>
 </ol>
-<img alt="../_images/1139.png" class="align-center" src="../_images/1139.png" />
+<img alt="../_images/1140.png" class="align-center" src="../_images/1140.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Nella scheda <em class="guilabel">Data Sets</em> apriamo il gruppo <em class="guilabel">Digital Elevation</em> e, al suo interno, sbarriamo la casella <em class="guilabel">GMTED2010</em>.</p>
 </li>
@@ -228,12 +229,12 @@
 <li><p class="first">Adesso possiamo passare alla scheda <em class="guilabel">Results</em> e vedere le parti del dataset che rispondono positivamente ai criteri di ricerca che abbiamo impostato. Fate click sul pulsante <em class="guilabel">Download Options</em> . A questo punto dovete fare login per accedere al sito. Se non avete un account di accesso potete crearlo.</p>
 </li>
 </ol>
-<img alt="../_images/346.png" class="align-center" src="../_images/346.png" />
+<img alt="../_images/347.png" class="align-center" src="../_images/347.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Selezionate nella opportuna casella l&#8217;opzione  <em class="guilabel">30 ARC SEC</em>  e fate click su  <em class="guilabel">Select Download Option</em>.</p>
 </li>
 </ol>
-<img alt="../_images/433.png" class="align-center" src="../_images/433.png" />
+<img alt="../_images/434.png" class="align-center" src="../_images/434.png" />
 <p>Avete appena scaricato un file che si chiama <cite>GMTED2010N10E060_300.zip</cite>.  I dati altimetrici sono distribuiti in diversi formati raster  ASC, BIL, GeoTiff, solo per citarne alcuni. QGIS supporta una grande <cite>varietà di formati raster &lt;http://www.gdal.org/formats_list.html&gt;</cite> mediante la libreria GDAL. I dati di GMTED contenuti in questo file di archivio sono in formato GeoTiff.</p>
 <p>For convenience, you can download a copy of the data directly from below.</p>
 <p><a class="reference external" href="../../downloads/GMTED2010N10E060_300.zip">GMTED2010N10E060_300.zip</a></p>
@@ -245,12 +246,12 @@
 <li><p class="first">Aprite <em class="menuselection">Layer ‣ Aggiungi raster</em>  e trovate il file zip che avete appena scaricato.</p>
 </li>
 </ol>
-<img alt="../_images/534.png" class="align-center" src="../_images/534.png" />
+<img alt="../_images/535.png" class="align-center" src="../_images/535.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Troverete molti file diversi, che generati da diversi algoritmi. Nell&#8217;ambito di questa esercitazione useremo il file chiamato  <cite>10n060e_20101117_gmted_mea300.tif</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/632.png" class="align-center" src="../_images/632.png" />
+<img alt="../_images/633.png" class="align-center" src="../_images/633.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Nella finestra principale di QGIS sono ora mostrati i dati del terreno. Ciascun pixel nei raster territoriali rappresenta l&#8217;elevazione media misurata in metri in quel punto.
 I pixel scuri indicano le aree con valori di elevazione bassi mentre i pixel chiari indicano le aree con alti valori di elevazione.</p>
@@ -280,7 +281,7 @@ tool from <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</li>
 <li><p class="first">Lasciando la finestra <em class="guilabel">Clipper</em> aperta - e, ove necessario, spostandola per toglierla di mezzo - portatevi sulla finestra principale di QGIS. Tenete premuto il tasto sinistro del mouse e disegnate un rettangolo in modo da coprire l&#8217;intera finestra.</p>
 </li>
 </ol>
-<img alt="../_images/1140.png" class="align-center" src="../_images/1140.png" />
+<img alt="../_images/1141.png" class="align-center" src="../_images/1141.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Adesso, tornati nella finestra <em class="guilabel">Clipper</em>,  troverete già automaticamente riempite le coordinate che avete appena definito con la vostra selezione rettangolare. Assicuratevi che la finestra <em class="guilabel">Carica nella mappa quando finito</em> sia barrata. Fate click su <em class="guilabel">OK.</em></p>
 </li>
@@ -376,7 +377,7 @@ Selezionate inoltre la casella di spunta <em class="guilabel">Nome Attributo</em
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Oct 03, 2015.<br/>
+      Ultimo aggiornamento Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

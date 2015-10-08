@@ -116,6 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Trovare i poligoni confinanti in un layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Realizzare mappe web leaflet con qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Usare il Google Maps Engine Connector con QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">Risorse disponibili per l&#8217;apprendimento di QGIS</a></li>
@@ -219,17 +220,17 @@ Potete scaricare lo shapefile <a class="reference external" href="http://www.nat
 <li><p class="first">Aprite <a class="reference external" href="http://lance-modis.eosdis.nasa.gov/imagery/subsets/?area=sa">South America region subsets</a>.. Trovate il sottoinsieme di foto che si chiama Brasile visibile nella sezione <em class="guilabel">FAS Subsets</em>.  Fate click su alcune di esse.</p>
 </li>
 </ol>
-<img alt="../_images/1108.png" class="align-center" src="../_images/1108.png" />
+<img alt="../_images/1109.png" class="align-center" src="../_images/1109.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Nella pagina dettagli fate click sul link <em class="guilabel">2km</em> che si trova al di sotto dell&#8217;immagine che avete scelto. Qui scaricheremo il prodotto <em class="guilabel">NDVI</em>. <a class="reference external" href="http://en.wikipedia.org/wiki/Normalized_Difference_Vegetation_Index">Qui sono disponibili ulteriori informazioni su NDVI</a>.</p>
 </li>
 </ol>
-<img alt="../_images/258.png" class="align-center" src="../_images/258.png" />
+<img alt="../_images/259.png" class="align-center" src="../_images/259.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Fare click sul link  <em class="guilabel">Download GeoTIFF file</em> per scaricare l&#8217;immagine raster.</p>
 </li>
 </ol>
-<img alt="../_images/335.png" class="align-center" src="../_images/335.png" />
+<img alt="../_images/336.png" class="align-center" src="../_images/336.png" />
 <p>Ripetere la stessa operazione per tutti i 7 successivi sottinsiemi FAS del Brasile.</p>
 <p>For convenience, you can directly download sample data used in this tutorial from links below.</p>
 <p><a class="reference external" href="../../downloads/ne_10m_admin_0_countries.zip">ne_10m_admin_0_countries.zip</a></p>
@@ -248,12 +249,12 @@ Potete scaricare lo shapefile <a class="reference external" href="http://www.nat
 <li><p class="first">Aprite QGIS e andate su <em class="menuselection">Layer ‣ Aggiungi raster. .</em>.</p>
 </li>
 </ol>
-<img alt="../_images/425.png" class="align-center" src="../_images/425.png" />
+<img alt="../_images/426.png" class="align-center" src="../_images/426.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Selezionate la cartella che contiene le singole immagini. Tenete premuto il pulsante della tastiera <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>  e fate click con il mouse sui file di immagine per ottenere una selezione multipla. Click su <em class="guilabel">Apri</em>.</p>
 </li>
 </ol>
-<img alt="../_images/526.png" class="align-center" src="../_images/526.png" />
+<img alt="../_images/527.png" class="align-center" src="../_images/527.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Vedrete le immagini caricate alla vostra sinistra, nella Tabella dei Contenuti (TOC). Ora, andremo a compilare una singola immagine  <cite>Mosaico</cite>  ricavata dall&#8217;unione delle immagini che abbiamo scaricato. Fate click su <em class="menuselection">Raster ‣ Miscellanea ‣ Unione</em>.</p>
 </li>
@@ -262,7 +263,7 @@ Potete scaricare lo shapefile <a class="reference external" href="http://www.nat
 <p class="first admonition-title">Nota</p>
 <p class="last">Il menu raster di QGIS proviene da un plugin interno chiamato <em class="guilabel">GdalTools</em>. Se a qualcuno dovesse mancare il menu <em class="guilabel">Raster</em>, attivate il plugin <em class="guilabel">GdalTools</em> da <em class="menuselection">Plugins ‣ Gestisci e installa plugin ‣ Installa</em>. Se avete bisogno di ulteriori dettagli sui plugin, potete dare un&#8217;occhiata a <a class="reference internal" href="using_plugins.html"><em>Usare i Plugins</em></a></p>
 </div>
-<img alt="../_images/624.png" class="align-center" src="../_images/624.png" />
+<img alt="../_images/625.png" class="align-center" src="../_images/625.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Nella finestra di dialogo <em class="guilabel">Unione</em> , fate click sul tasto <em class="guilabel">Scegli...</em> vicino a <em class="guilabel">File di input</em> . Quindi, selezionate dalla loro directory tutte le singole immagini geotiff  mantenendo premuto il tasto <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> della tastiera e facendo click su ciascuna di esse. Ora, fate click sul tasto  <em class="guilabel">Scegli...</em>  vicino a <em class="guilabel">File di output</em>. Date al file di output il nome di <tt class="docutils literal"><span class="pre">Brazil_mosaic.tif</span></tt>. Poi,
 in basso, cliccate la casella <em class="guilabel">Carica sulla mappa quando finito</em>. Click su <em class="guilabel">OK</em>.</p>
@@ -359,7 +360,7 @@ in basso, cliccate la casella <em class="guilabel">Carica sulla mappa quando fin
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Oct 03, 2015.<br/>
+      Ultimo aggiornamento Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

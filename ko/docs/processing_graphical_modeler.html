@@ -116,6 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">인접 폴리곤 찾기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">qgis2leaf로 웹 지도 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">QGIS에서 구글지도 커넥터 이용하기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 수업 자원</a></li>
@@ -226,17 +227,17 @@
 <li><p class="first">QGIS를 시작하고 메뉴: 처리 -&gt; 시각화 모델러  :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Processing &#8211;&gt; Graphical Modeler...`로 가십시오.</p>
 </li>
 </ol>
-<img alt="../_images/1106.png" class="align-center" src="../_images/1106.png" />
+<img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">처리 모델러 <em class="guilabel">Processing modeler</em> 다이알로그는 왼쪽 패널과 오른쪽 메인 캔버스로 구성되어 있습니다. 왼쪽 패널에서 입력 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Inputs`을 선택하고  :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>+ Raster layer`를 캔버스로 끌어다 놓습니다.</p>
 </li>
 </ol>
-<img alt="../_images/249.png" class="align-center" src="../_images/249.png" />
+<img alt="../_images/250.png" class="align-center" src="../_images/250.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">파라미터 정의 <em class="guilabel">Parameter definition</em> 다이알로그가 나타납니다. 파라미터 이름 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Parameter name`에 <a href="#id3"><span class="problematic" id="id4">``</span></a>Input``을 입력하고 필수 :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>Required`에 <a href="#id7"><span class="problematic" id="id8">``</span></a>Yes``를 표시합니다. 확인 :guilabel:<a href="#id9"><span class="problematic" id="id10">`</span></a>OK`을 누릅니다.</p>
 </li>
 </ol>
-<img alt="../_images/333.png" class="align-center" src="../_images/333.png" />
+<img alt="../_images/334.png" class="align-center" src="../_images/334.png" />
 <ol class="arabic simple" start="4">
 <li>You will see a box with the name <em class="guilabel">Input</em> appear in the canvas.
 This represents the landcover raster that we will use as input. Next step
@@ -249,12 +250,12 @@ it to the canvas.</li>
 <p class="first admonition-title">주석</p>
 <p class="last">이 알고리즘을 볼 수 없거나 에러가 나타나면 컴퓨터 시스템에 SAGA 가 설치되어 있지 않은 것입니다. 어떻게 SAGA를 설치하는 가는 외부어플리케이션 설정 <a href="#id1"><span class="problematic" id="id2">`</span></a>Configuring external applications &lt;<a class="reference external" href="https://docs.qgis.org/2.6/en/docs/user_manual/processing/3rdParty.html#saga">https://docs.qgis.org/2.6/en/docs/user_manual/processing/3rdParty.html#saga</a>&gt;`_를 보기 바랍니다. SAGA를 설치할 수 않다면, 이 단계 전체를 건너뛸 수 있습니다.</p>
 </div>
-<img alt="../_images/423.png" class="align-center" src="../_images/423.png" />
+<img alt="../_images/424.png" class="align-center" src="../_images/424.png" />
 <ol class="arabic simple" start="5">
 <li>A configuration dialog for <em class="guilabel">Majority Filter</em> will be presented.
 Leave the values to their default and click <em class="guilabel">OK</em>.</li>
 </ol>
-<img alt="../_images/524.png" class="align-center" src="../_images/524.png" />
+<img alt="../_images/525.png" class="align-center" src="../_images/525.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">이제 캔버스에 <em class="guilabel">Majority Filter</em> 라는 이름의 새로운 상자가 나타나고 그것이  <em class="guilabel">Input</em> 상자와 연결되어 있음을 알게 될 것입니다. 이것은 <em class="guilabel">Majority Filter</em> 알고리즘이 입력데이터로  <em class="guilabel">Input</em> 를 사용하기 때문입니다. 작업흐름도에서 다음 단계는 majority filter의 결과물을 벡터데이터로 전환하는 것입니다. <tt class="docutils literal"><span class="pre">Polygonize</span> <span class="pre">(raster</span> <span class="pre">to</span> <span class="pre">vector)</span></tt> 알고리즘을 찾아서 캔버스로 드래그합니다.</p>
 </li>
@@ -265,7 +266,7 @@ Leave the values to their default and click <em class="guilabel">OK</em>.</li>
 holding the left mouse button. You can also use the scroll-wheel to zoom in
 and out in the model canvas.</p>
 </div>
-<img alt="../_images/622.png" class="align-center" src="../_images/622.png" />
+<img alt="../_images/623.png" class="align-center" src="../_images/623.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">입력레이어 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Input layer`에서 값으로  &#8216;Filtered Grid&#8217; from 알고리즘 &#8216;Majority Filter&#8217;를 선택하십시오. 확인 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>OK`을 누르십시오.</p>
 </li>
@@ -434,7 +435,7 @@ directory location will depend on the platform as follows: (Replace
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      최종 업데이트: Oct 03, 2015<br/>
+      최종 업데이트: Oct 08, 2015<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

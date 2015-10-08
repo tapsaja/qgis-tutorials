@@ -116,6 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Menulis Skrip Pythin untuk Framework Pemrosessan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Menjalankan dan Menjadwalkan Pekerjaan Pemrosesan QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Menemukan Polygon Neighbor atau Tetangga pada Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Peta Web Leaflet dengan qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">Sumber Pembelajaran QGIS</a></li>
@@ -227,32 +228,32 @@ will be named <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{
 <li><p class="first">Akses <em class="menuselection">Layer ‣ Add Raster Layer</em> dan jelajahi ke file unduhan <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float.tif</span></tt> dan klik <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1130.png" class="align-center" src="../_images/1130.png" />
+<img alt="../_images/1131.png" class="align-center" src="../_images/1131.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Ketika layer terbuka, pilih took <em class="guilabel">Identify</em> dan klik di amna saja pada layer. Anda akan melihat nilai temperatur dalam celseius atau Band 1 di lokasi.</p>
 </li>
 </ol>
-<img alt="../_images/269.png" class="align-center" src="../_images/269.png" />
+<img alt="../_images/270.png" class="align-center" src="../_images/270.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Sekarang unzip file unduhan <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national.zip</span></tt> dan ekstrak file <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national.txt</span></tt> pada disk anda. Akses <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/338.png" class="align-center" src="../_images/338.png" />
+<img alt="../_images/339.png" class="align-center" src="../_images/339.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Pada dialog <em class="guilabel">Create a Layer from Delimited Text File</em> , klik <em class="guilabel">Browse</em> dan <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national.txt</span></tt> . Pilih <em class="guilabel">Tab</em> pada  <em class="guilabel">Custom delimiters</em> . Koordinat poin dalam lintang atau latitude dan bujur atau longitude, jadi pilih <em class="guilabel">INTPTLONG</em> sebagai  <em class="guilabel">X field</em> dan <em class="guilabel">INTPTLAT</em> sebagai <em class="guilabel">Y field</em> . Beri tanda cek pada box <em class="guilabel">Use spatial index</em> dan klik <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
+<img alt="../_images/429.png" class="align-center" src="../_images/429.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Sekarang kita siap untuk mengekstrak nilai temperatur dari layer raster,. Install plugin <tt class="docutils literal"><span class="pre">Point</span> <span class="pre">Sampling</span> <span class="pre">Tool</span></tt> . Lihat <tt class="xref doc docutils literal"><span class="pre">docs/using_plugins</span></tt> untuk deteil bagaimana menginstall plugins.</p>
 </li>
 </ol>
-<img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
+<img alt="../_images/530.png" class="align-center" src="../_images/530.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Buka dialog plugin dari <em class="menuselection">Plugins ‣ Analyses ‣ Point sampling tool</em>.</p>
 </li>
 </ol>
-<img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
+<img alt="../_images/628.png" class="align-center" src="../_images/628.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Pada dialog <em class="guilabel">Point Sampling Tool</em> , pilih <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt> sebagai <em class="guilabel">Layer containing sampling points</em> . Kita harus secara eksplisit mengambil field dari layer input yang kita inginkan pada layer output. Pilih field <tt class="docutils literal"><span class="pre">GEOID</span></tt> dan <tt class="docutils literal"><span class="pre">NAME</span></tt> dari layer <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt> . Kita dapat mensampel nilai dari beberapa band raster sekali bersamaan, tapi karena raster kita hanya memiliki 1 band, pilih <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float:</span> <span class="pre">Band</span> <span class="pre">1</span></tt> . Beri nama layer vektor output sebagai <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations.shp</span></tt> . Klik <em class="guilabel">OK</em> untuk memulai proses sampling. Klik <em class="guilabel">Close</em> ketika proses selesai.</p>
 </li>
@@ -277,7 +278,7 @@ will be named <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{
 <li><p class="first"><tt class="docutils literal"><span class="pre">tl_2013_us_county</span></tt> akan ditambahkan ke QGIS. Layer ini dalam proyeksi <tt class="docutils literal"><span class="pre">EPSG:4269</span> <span class="pre">NAD83</span></tt>  . Ini tidak sesuai dengan proyeksi dari layer raster. Kita akan mere-proyeksi layer ini ke proyeksi <tt class="docutils literal"><span class="pre">EPSG:4326</span> <span class="pre">WGS84</span></tt></p>
 </li>
 </ol>
-<img alt="../_images/1131.png" class="align-center" src="../_images/1131.png" />
+<img alt="../_images/1132.png" class="align-center" src="../_images/1132.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Klik kanan layer <tt class="docutils literal"><span class="pre">tl_2013_us_county</span></tt> dan pilih <em class="guilabel">Save As..</em>.</p>
 </li>
@@ -358,7 +359,7 @@ will be named <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Terakhir diperbarui pada Oct 03, 2015.<br/>
+      Terakhir diperbarui pada Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

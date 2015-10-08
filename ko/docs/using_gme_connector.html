@@ -116,6 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">인접 폴리곤 찾기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">qgis2leaf로 웹 지도 만들기</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">QGIS에서 구글지도 커넥터 이용하기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 수업 자원</a></li>
@@ -223,7 +224,7 @@
 <li><p class="first">포털의 내보내기 옵션을 이용하여  <a class="reference external" href="https://data.sfgov.org/Transportation/SFMTA-Bikeway-Network/t6vv-tjkd">SFMTA Bikeway Network</a> shapefile 을 다운로드 합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1132.png" class="align-center" src="../_images/1132.png" />
+<img alt="../_images/1133.png" class="align-center" src="../_images/1133.png" />
 <p>데이터 출처:  <a class="reference internal" href="credits.html#sfmta" id="id1">[SFMTA]</a></p>
 </div>
 <div class="section" id="create-a-google-maps-engine-account">
@@ -232,12 +233,12 @@
 <li><p class="first">무료 구글 지도 엔진 시험판 계정을 만들기 위해 싸인을 할 수 있습니다. 시험판 계정은 한정된 저장 용량을 가진 완결된 지도엔진입니다. 구글 지도 엔진 홈페이지 <cite>Google Maps Engine homepage &lt;http://www.google.com/enterprise/mapsearth/products/mapsengine.html&gt;`_를 방문하고  :guilabel:`Get started with a free account</cite> 링크를 누릅니다.</p>
 </li>
 </ol>
-<img alt="../_images/270.png" class="align-center" src="../_images/270.png" />
+<img alt="../_images/279.png" class="align-center" src="../_images/279.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">구글 계정에 싸인을 할 필요가 있습니다. 직장 이메일을 사용하고자 한다면 직장 이메일 주소를 가진 구글 계정을 새로 만들 수 있습니다.일단 싸인을 하면  <em class="guilabel">Create a Maps Engine Project</em> 화면을 보게될 것입니다. 구글 지도 엔진을 사용할 때 계정을 구분하고자 <em class="guilabel">Project Name`를 입력합니다. 모든 동의를 마친 후 :guilabel:`Accept and create</em> 단추를 누릅니다. 이상의 과정은 구글의 사업이나 정책 변화에 따라 설명과 달라질 수 있습니다.</p>
 </li>
 </ol>
-<img alt="../_images/339.png" class="align-center" src="../_images/339.png" />
+<img alt="../_images/340.png" class="align-center" src="../_images/340.png" />
 </div>
 <div class="section" id="create-a-google-developer-console-project">
 <h2>구글 개발자 콘솔 프로젝트 만들기<a class="headerlink" href="#create-a-google-developer-console-project" title="제목 주소">¶</a></h2>
@@ -245,17 +246,17 @@
 <li><p class="first">구글 지도 엔진 커넥터는 계정에 저장된 데이터에 접근하기 위하여 <tt class="docutils literal"><span class="pre">Google</span> <span class="pre">Maps</span> <span class="pre">Engine</span> <span class="pre">API``를</span> <span class="pre">사용합니다.</span> <span class="pre">플러그인이</span> <span class="pre">사용자</span> <span class="pre">데이터에</span> <span class="pre">프로그램으로</span> <span class="pre">접근하기</span> <span class="pre">위해</span> <span class="pre">사용될</span> <span class="pre">것이므로</span> <span class="pre">특수</span> <span class="pre">자격을</span> <span class="pre">얻을</span> <span class="pre">필요가</span> <span class="pre">있을</span> <span class="pre">것입니다.</span> <span class="pre">`Google</span> <span class="pre">Developer</span> <span class="pre">Console</span> <span class="pre">&lt;https://console.developers.google.com/&gt;`_</span> <span class="pre">를</span> <span class="pre">방문하고</span> <span class="pre">:guilabel:`Create</span> <span class="pre">Project`를</span> <span class="pre">누르십시오.</span> <span class="pre">:guilabel:`PROJECT</span> <span class="pre">NAME`으로</span> <span class="pre">``GME</span> <span class="pre">Connector</span> <span class="pre">for</span> <span class="pre">QGIS</span> <span class="pre">API``를</span> <span class="pre">입력하고</span>&nbsp; <span class="pre">:guilabel:`PROJECT</span> <span class="pre">ID`로</span> <span class="pre">``gme-qgis-api</span></tt> 를 입력합니다. 이러한 이름들은 아무 이름이나 id로 단지 제출하는데 의미가 있습니다.</p>
 </li>
 </ol>
-<img alt="../_images/429.png" class="align-center" src="../_images/429.png" />
+<img alt="../_images/430.png" class="align-center" src="../_images/430.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">일단 프로젝트가 만들어지면  :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>APIs &amp; auth`링크를 누릅니다. 스크롤 다운으로 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Google Maps Engine API`를 찾습니다. :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>OFF`단추를 눌러서 :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>ON`으로 만듭니다.</p>
 </li>
 </ol>
-<img alt="../_images/530.png" class="align-center" src="../_images/530.png" />
+<img alt="../_images/531.png" class="align-center" src="../_images/531.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">다음으로 자격 <em class="guilabel">Credentials`링크를 누릅니다  :guilabel:`OAuth</em> 섹션 아래 <em class="guilabel">CREATE NEW CLIEND ID</em> 를 누릅니다.</p>
 </li>
 </ol>
-<img alt="../_images/628.png" class="align-center" src="../_images/628.png" />
+<img alt="../_images/629.png" class="align-center" src="../_images/629.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first"><em class="guilabel">Create Client ID</em> 다이알로그에서 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>APPLICATION TYPE`로써 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Installed Application`를 선택하고  :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>INSTALLED APPLICATION TYPE`로써  :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>Other`를 선택합니다.  :guilabel:<a href="#id9"><span class="problematic" id="id10">`</span></a>Create Client ID`를 누릅니다.</p>
 </li>
@@ -280,7 +281,7 @@
 <li><p class="first"><em class="guilabel">Advanced Settings</em> 다이알로그에서 구글 개발자 콘솔에서 얻은  <em class="guilabel">Client ID`와 :guilabel:`Client Secret</em> 를 입력합니다. 확인 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>OK`을 누릅니다.</p>
 </li>
 </ol>
-<img alt="../_images/1133.png" class="align-center" src="../_images/1133.png" />
+<img alt="../_images/1134.png" class="align-center" src="../_images/1134.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">새로운 API 자격관련 내용을 입력하면 이것들을 사용하기 위한 로그인 및 인증 플러그인 화면을 만나게됩니다. 구글 계정으로 싸인인 하십시오.</p>
 </li>
@@ -370,7 +371,7 @@ tab.</li>
 <li><p class="first">지도 생성 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Publish map`를 누릅니다.</p>
 </li>
 </ol>
-<img alt="../_images/279.png" class="align-center" src="../_images/279.png" />
+<img alt="../_images/2710.png" class="align-center" src="../_images/2710.png" />
 <ol class="arabic simple" start="28">
 <li><p class="first">일단 지도가 생성되면 링크 접근 <em class="guilabel">Access links</em> 아이콘을 누릅니다.</p>
 </li>
@@ -442,7 +443,7 @@ width="100%" height="600px"></iframe>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      최종 업데이트: Oct 03, 2015<br/>
+      최종 업데이트: Oct 08, 2015<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

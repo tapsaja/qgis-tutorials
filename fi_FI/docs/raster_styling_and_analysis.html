@@ -115,6 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS oppimisen resurssit</a></li>
@@ -215,7 +216,7 @@
 <li><p class="first">Siirry <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density/data-download">Population Density Grid, v3 lataussivulle.</a> Valitse <em class="guilabel">Data Attributes</em> arvoiksi <em class="guilabel">.ascii format</em>, <em class="guilabel">1° resolution</em> ja <em class="guilabel">1990 year</em>. Klikkaa <em class="guilabel">Download</em>. Tässä kohtaa voit luoda vapaan tilin ja tehdä sisään kirjoittautumisen, tai voit käyttää <em class="guilabel">Guest Download</em> näppäintä alhaalla välittömään datan lataamiseen. Toista prosessi <em class="guilabel">2000 year</em> datalle.</p>
 </li>
 </ol>
-<img alt="../_images/1109.png" class="align-center" src="../_images/1109.png" />
+<img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
 <p>Nyt sinulla on 2 zip tiedostoa ladattuna.</p>
 <p>For convenience, you can also download a copy of this data by clicking on following links:</p>
 <p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_90_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_90_ascii_one.zip</span></tt></a></p>
@@ -228,27 +229,27 @@
 <li><p class="first">Käynnistä QGIS ja mene <em class="menuselection">Tasot ‣ Lisää rasteritaso...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/259.png" class="align-center" src="../_images/259.png" />
+<img alt="../_images/260.png" class="align-center" src="../_images/260.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Paikallista ladatut zip tiedostot. Pidä <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> näppäintä alhaalla ja klikkaa kumpaakin zip tiedostoa valitaksesi ne. Tällä tavalla on mahdollista ladata molemmat tiedostot yhdellä kertaa.</p>
 </li>
 </ol>
-<img alt="../_images/336.png" class="align-center" src="../_images/336.png" />
+<img alt="../_images/337.png" class="align-center" src="../_images/337.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Kumpikin zip tiedosto sisältää 2 ruudukkotiedostoa. <tt class="docutils literal"><span class="pre">a</span></tt> kirjain tiedostonimessä tarkoitta että väestömäärät sopeutettiin YK:n määriin . Käytämme tässä oppaassa sovitettuja ruudukoita. Valitse <tt class="docutils literal"><span class="pre">glds00ag60.asc</span></tt> lisättäväksi tasoksi. Klikkaa</p>
 </li>
 </ol>
-<img alt="../_images/426.png" class="align-center" src="../_images/426.png" />
+<img alt="../_images/427.png" class="align-center" src="../_images/427.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Tasolla ei ole määriteltyä koordinaattijärjestelmää ja siksi ruudukot ovat lat/long muotoisia. Valitse <cite>EPSG:4326</cite> koordinaattijärjestelmäksi.</p>
 </li>
 </ol>
-<img alt="../_images/527.png" class="align-center" src="../_images/527.png" />
+<img alt="../_images/528.png" class="align-center" src="../_images/528.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Koska valitsimme molemmat zip tiedostot, tulee sinun käydä sama dialogi uudestaan. Toista prosessi ja valitse <tt class="docutils literal"><span class="pre">glds90ag60.asc</span></tt>  ruudukko lisättäväksi tasoksi.</p>
 </li>
 </ol>
-<img alt="../_images/625.png" class="align-center" src="../_images/625.png" />
+<img alt="../_images/626.png" class="align-center" src="../_images/626.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Ja taas, valitse <cite>EPSG:4326</cite> koordinaattijärjestelmäksi.</p>
 </li>
@@ -273,7 +274,7 @@
 <li><p class="first">Välilehdellä <em class="guilabel">Tyyli</em>, vaihda <em class="guilabel">Hahmotustyyppi</em> arvoksi <em class="guilabel">Yksikaista pseudoväri</em>. Seuraavaksi klikkaa <em class="guilabel">Luokittele</em> kappaleessa <em class="guilabel">Generoi uusi värikartta</em>. Nyt näet 5 uutta väriarvoa. Klikkaa</p>
 </li>
 </ol>
-<img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
+<img alt="../_images/1128.png" class="align-center" src="../_images/1128.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Takaisin QGIS karttapohjalle, näet heatmap kaltaisen rasterin hahmottamisen. Toista sama prosessi myös toiselle rasterille.</p>
 </li>
@@ -364,7 +365,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Oct 03, 2015.<br/>
+      Last updated on Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

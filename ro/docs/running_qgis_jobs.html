@@ -115,6 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Scriptare în Python pentru Cadrul de Procesare</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Rularea și programarea Activităților de Prelucrare QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">Resurse de învățare QGIS</a></li>
@@ -223,32 +224,32 @@
 <li><p class="first">Vom trece mai întâi prin procesul manual de curățare a fișierului shape, pentru a nota comenzile pe care le vom folosi în scriptul python. Lansați QGIS și mergeți la <em class="menuselection">Strat ‣ Adăugare Strat ‣ Adăugare Strat Vectorial</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1128.png" class="align-center" src="../_images/1128.png" />
+<img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Navigați la folderul care conține fișierele shape dezarhivate, apoi selectați fișierul <tt class="docutils literal"><span class="pre">roads.shp</span></tt> și faceți clic pe <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/260.png" class="align-center" src="../_images/260.png" />
+<img alt="../_images/268.png" class="align-center" src="../_images/268.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">În primul rând trebuie să reproiectăm stratul drumurilor, folosind un CRS Proiectat. Aceasta ne va permite să folosim ca unități <em>metrii</em> în locul gradelor, atunci când se va efectua o analiză. Deschideți <em class="menuselection">Procesare ‣ Instrumentar</em>.</p>
 </li>
 </ol>
-<img alt="../_images/337.png" class="align-center" src="../_images/337.png" />
+<img alt="../_images/338.png" class="align-center" src="../_images/338.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Căutați instrumentul <em class="guilabel">Reproiectare strat</em>. Faceți dublu clic pe el pentru a lansa dialogul.</p>
 </li>
 </ol>
-<img alt="../_images/427.png" class="align-center" src="../_images/427.png" />
+<img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">În dialogul <em class="guilabel">Reproiectare strat</em>, folosiți stratul <tt class="docutils literal"><span class="pre">roads</span></tt> ca <em class="guilabel">Strat de intrare</em>. Vom folosi CRS-ul <tt class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span> <span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></tt> ca <em class="guilabel">CRS Destinație</em>. Clic pe <em class="guilabel">Rulează</em>.</p>
 </li>
 </ol>
-<img alt="../_images/528.png" class="align-center" src="../_images/528.png" />
+<img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">O dată ce procesul s-a încheiat, stratul reproiectat se va încărca în QGIS. Mergeți la <em class="menuselection">Procesare ‣ Istoric și Jurnal..</em>.</p>
 </li>
 </ol>
-<img alt="../_images/626.png" class="align-center" src="../_images/626.png" />
+<img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">În dialogul <em class="guilabel">Istoric și Jurnal</em>, expandați folderul <em class="guilabel">Algoritm</em> și selectați ultima intrare. Veți vedea comanda completă de procesare afișată în panoul de jos. Notați această comandă, pentru a o utiliza în script-ul nostru.</p>
 </li>
@@ -273,7 +274,7 @@
 <li><p class="first">Puteți citi despre mai multe instrumente diferite și despre opțiunile acestora în fila <em class="guilabel">Ajutor</em>. Pentru acest tutorial, vom folosi instrumentul <tt class="docutils literal"><span class="pre">snap</span></tt> pentru a elimina vertexurile duplicate, care se află cel mult la 1 metru unul față de celălalt. Selectați <tt class="docutils literal"><span class="pre">Stratul</span> <span class="pre">reproiectat</span></tt> ca <em class="guilabel">Stratul de curățat</em>. Alegeți <tt class="docutils literal"><span class="pre">snap</span></tt> ca <em class="guilabel">Instrument de curățare</em>. Introduceți <tt class="docutils literal"><span class="pre">1.00</span></tt> ca <em class="guilabel">Prag</em>. Lăsați celelalte câmpuri goale și faceți clic pe <em class="guilabel">Rulează</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
+<img alt="../_images/1130.png" class="align-center" src="../_images/1130.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">După ce termină prelucrarea, veți vedea 2 straturi noi adăugate în QGIS. <tt class="docutils literal"><span class="pre">Stratul</span> <span class="pre">vectorial</span> <span class="pre">curățat</span></tt> este stratul cu erori topologice corectate. Veți avea, de asemenea, un <tt class="docutils literal"><span class="pre">Strat</span> <span class="pre">cu</span> <span class="pre">erori</span></tt> care va evidenția entitățile care au fost reparate. Puteți utiliza stratul erorilor ca un ghid și să-l măriți, pentru a vedea vertexurile care au fost eliminate.</p>
 </li>
@@ -435,7 +436,7 @@ pause
 <li><p class="first">Selectați o dată pe placul dumneavoastră, apoi faceți clic pe <em class="guilabel">Next</em>.</p>
 </li>
 </ol>
-<img alt="../_images/268.png" class="align-center" src="../_images/268.png" />
+<img alt="../_images/269.png" class="align-center" src="../_images/269.png" />
 <ol class="arabic simple" start="27">
 <li><p class="first">Selectați <tt class="docutils literal"><span class="pre">Rulează</span> <span class="pre">un</span> <span class="pre">program</span></tt> ca <em class="guilabel">Intrare</em>, apoi efectuați clic pe <em class="guilabel">Next</em>.</p>
 </li>
@@ -537,7 +538,7 @@ pause
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Oct 03, 2015.<br/>
+      Last updated on Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

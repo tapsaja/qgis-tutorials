@@ -116,6 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Trovare i poligoni confinanti in un layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Realizzare mappe web leaflet con qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Usare il Google Maps Engine Connector con QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">Risorse disponibili per l&#8217;apprendimento di QGIS</a></li>
@@ -224,32 +225,32 @@ Scaricate il <a class="reference external" href="http://www2.census.gov/geo/tige
 <li><p class="first">Andate su <em class="menuselection">Layer ‣ Aggiungi raster</em>  selezionate il file appena scaricato <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float.tif</span></tt>  e fate click su <em class="guilabel">Apri</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1130.png" class="align-center" src="../_images/1130.png" />
+<img alt="../_images/1131.png" class="align-center" src="../_images/1131.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Una volta che il layer raster è stato caricato, selezionate lo strumento  <em class="guilabel">informazioni elemento</em>  e fate click in un punto qulsiasi del layer. Vedrete immediatamente il valore della temperatura in gradi celsius indicato come valore di Banda 1 per quella località.</p>
 </li>
 </ol>
-<img alt="../_images/269.png" class="align-center" src="../_images/269.png" />
+<img alt="../_images/270.png" class="align-center" src="../_images/270.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">A questo punto, estraete sul vostro disco il contenuto del file archivio <a href="#id1"><span class="problematic" id="id2">``</span></a>2013_Gaz_ua_national.zip``che avete appena scaricato. Quindi andate su <em class="menuselection">Layer ‣ Aggiungi layer testo delimitato</em>.</p>
 </li>
 </ol>
-<img alt="../_images/338.png" class="align-center" src="../_images/338.png" />
+<img alt="../_images/339.png" class="align-center" src="../_images/339.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Nella finestra di dialogo <em class="guilabel">Crea un vettore da un file di testo delimitato</em>. Individuate il file appena estratto <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national.txt</span></tt> e apritelo. Scegliete <em class="guilabel">Tab</em> dopo aver sbarrato  <em class="guilabel">Delimitatori personalizzati</em>. I punti delle coordinate sono in Latitudine e Longitudine quindi selezionate le INTPTLONG come campo X e INTPTLAT come campo Y.</p>
 </li>
 </ol>
-<img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
+<img alt="../_images/429.png" class="align-center" src="../_images/429.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Ora sia pronti ad estrarre i valori delle temperature dal layer raster. Installare il plugin  <tt class="docutils literal"><span class="pre">Point</span> <span class="pre">Sampling</span> <span class="pre">Tool</span></tt>. Vedete <a class="reference internal" href="using_plugins.html"><em>Usare i Plugins</em></a> per i dettagli su come installare un plugin.</p>
 </li>
 </ol>
-<img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
+<img alt="../_images/530.png" class="align-center" src="../_images/530.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Aprite la finestra di dialogo da <em class="menuselection">Plugins ‣ Analyses ‣ Point sampling tool</em>.</p>
 </li>
 </ol>
-<img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
+<img alt="../_images/628.png" class="align-center" src="../_images/628.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Nella finestra di dialogo <em class="guilabel">Point Sampling Tool</em>  selezionate <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt> come il <em class="guilabel">Layer che contiene i punti campione</em>. Dobbiamo scegliere esplicitamente quali sono i campi del layer di input che intendiamo portare nel layer di output. Scegliete i campi <tt class="docutils literal"><span class="pre">GEOID</span></tt> e <tt class="docutils literal"><span class="pre">NAME</span></tt> dal layer <tt class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></tt>. Possiamo campionare i valori di differenti bande raster simultaneamente, ma considerato il fatto che il nostro raster ha una sola banda, scegliete <tt class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float:</span> <span class="pre">Band</span> <span class="pre">1</span></tt>. Chiamate il vettore di output con il nome di <tt class="docutils literal"><span class="pre">max_temparature_at_urban_locations.shp</span></tt>. Fate click su <em class="guilabel">OK</em> per avviare il processo di campionamento. Fate click su <em class="guilabel">Close</em> quanto il processo sarà concluso.</p>
 </li>
@@ -274,7 +275,7 @@ Scaricate il <a class="reference external" href="http://www2.census.gov/geo/tige
 <li><p class="first">Il layer <tt class="docutils literal"><span class="pre">tl_2013_us_county`</span> <span class="pre">verrà</span> <span class="pre">aggiunto</span> <span class="pre">a</span> <span class="pre">QGIS.</span> <span class="pre">Questo</span> <span class="pre">layer</span> <span class="pre">ci</span> <span class="pre">giunge</span> <span class="pre">in</span> <span class="pre">una</span> <span class="pre">proiezione</span> <span class="pre">``EPSG:4269</span> <span class="pre">NAD83</span></tt> che non si integra con la proiezione del raster. Pertanto ri-proietteremo questo layer in una proiezione EPSG:4326 WGS84.</p>
 </li>
 </ol>
-<img alt="../_images/1131.png" class="align-center" src="../_images/1131.png" />
+<img alt="../_images/1132.png" class="align-center" src="../_images/1132.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Click con il tasto destro del mouse sul layer <tt class="docutils literal"><span class="pre">tl_2013_us_county</span></tt> e selezionate <em class="guilabel">Salva con nome..</em>.</p>
 </li>
@@ -355,7 +356,7 @@ Scaricate il <a class="reference external" href="http://www2.census.gov/geo/tige
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Oct 03, 2015.<br/>
+      Ultimo aggiornamento Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

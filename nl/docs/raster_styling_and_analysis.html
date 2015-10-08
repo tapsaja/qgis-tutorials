@@ -116,6 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Python-scripts schrijven voor framework Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Taken voor QGIS uitvoeren en in schema zetten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Kaarten op Leaflet Web met qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Google Maps Engine Connector gebruiken voor QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS bronnen om te leren</a></li>
@@ -216,7 +217,7 @@
 <li><p class="first">Ga naar de downloadpagina <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density/data-download">Population Density Grid, v3 download page.</a> Selecteer de <em class="guilabel">Data Attributes</em> als <em class="guilabel">.ascii format</em>, <em class="guilabel">1° resolution</em> en <em class="guilabel">1990 year</em>. Klik op <em class="guilabel">Download</em>. Op dit punt zou u een gratis account en inlog aan kunnen maken, of de knop <em class="guilabel">Guest Download</em> aan de onderzijde gebruiken om de gegevens direct downloaden. Herhaal het proces voor de gegevens van <em class="guilabel">2000 year</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1109.png" class="align-center" src="../_images/1109.png" />
+<img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
 <p>U zult nu 2 zip-bestanden hebben gedownload.</p>
 <p>For convenience, you can also download a copy of this data by clicking on following links:</p>
 <p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_90_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_90_ascii_one.zip</span></tt></a></p>
@@ -229,27 +230,27 @@
 <li><p class="first">Open QGIS en ga naar <em class="menuselection">Kaartlagen ‣ Laag toevoegen ‣ Rasterlaag toevoegen...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/259.png" class="align-center" src="../_images/259.png" />
+<img alt="../_images/260.png" class="align-center" src="../_images/260.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Lokaliseer de downloade zip-bestanden. Houd de <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>-toets ingedrukt en klik op beide zip-bestanden om ze allebei te selecteren. Op deze manier bent u in staat om beide bestanden in één stap te laden.</p>
 </li>
 </ol>
-<img alt="../_images/336.png" class="align-center" src="../_images/336.png" />
+<img alt="../_images/337.png" class="align-center" src="../_images/337.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Elk zip-bestand bevat 2 rasterbestanden. De <tt class="docutils literal"><span class="pre">a</span></tt> in de bestandsnaam geeft aan dat de tellingen van de bevolking werd aangepast om overeen te komen met de totalen van de UN. We zullen voor deze handleiding de aangepaste rasters gebruiken. Selecteer <tt class="docutils literal"><span class="pre">glds00ag60.asc</span></tt> als de laag om toe te voegen. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/426.png" class="align-center" src="../_images/426.png" />
+<img alt="../_images/427.png" class="align-center" src="../_images/427.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">De laag heeft geen CRS gedefinieerd, en omdat de rasters in lat/long zijn, kies <cite>EPSG:4326</cite> als het coórdinaten referentiesysteem.</p>
 </li>
 </ol>
-<img alt="../_images/527.png" class="align-center" src="../_images/527.png" />
+<img alt="../_images/528.png" class="align-center" src="../_images/528.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">U zult soortgelijke dialoogvensters tweemaal zien langskomen, omdat we beide zip-bestanden hebben geselecteerd. Herhaal het proces en selecteer het raster <tt class="docutils literal"><span class="pre">glds90ag60.asc</span></tt> als de laag om toe te voegen.</p>
 </li>
 </ol>
-<img alt="../_images/625.png" class="align-center" src="../_images/625.png" />
+<img alt="../_images/626.png" class="align-center" src="../_images/626.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Kies nogmaals <cite>EPSG:4326</cite> als het CRS.</p>
 </li>
@@ -274,7 +275,7 @@
 <li><p class="first">Wijzig, op de tab <em class="guilabel">Stijl</em>, het <em class="guilabel">Rendertype</em> naar <em class="guilabel">Enkelbands pseudokleur</em>. Klik vervolgens op <em class="guilabel">Classificeren</em> onder <em class="guilabel">Genereer nieuw kleurenpalet</em>. U zult zien dat er 5 nieuwe kleurenwaarden worden gemaakt. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
+<img alt="../_images/1128.png" class="align-center" src="../_images/1128.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Terug in het kaartvenster van QGIS zult u een als een heatmap gerenderde weergave van het raster zien. Herhaal het proces ook voor het andere raster.</p>
 </li>
@@ -365,7 +366,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Oct 03, 2015.<br/>
+      Laatste aanpassing op Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

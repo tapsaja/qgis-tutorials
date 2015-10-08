@@ -115,6 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Δημιουργία κώδικα στην Python για το πλαίσιο επεξεργασίας.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Βρείτε Γειτονικά Πολύγωνα σε ένα Επίπεδο</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Διαδικτυακοί Χάρτες με το qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Χρήση του Google Maps Engine Connector για το QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS Μαθησιακοί πόροι</a></li>
@@ -217,7 +218,7 @@
 <li><p class="first">Πηγαίνετε στο <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> . Στην καρτέλα <em class="guilabel">Search Criteria</em>, αναζητήστε για την περιοχή με όνομα <cite>Mt. Everest</cite>.Κάντε κλικ στο αποτέλεσμα για να επιλέξετε την περιοχή.</p>
 </li>
 </ol>
-<img alt="../_images/1139.png" class="align-center" src="../_images/1139.png" />
+<img alt="../_images/1140.png" class="align-center" src="../_images/1140.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Στην καρτέλα <em class="guilabel">Data Sets</em>, ανοίξτε την ομάδα <em class="guilabel">Digital Elevation</em> και τσεκάρετε <em class="guilabel">GMTED2010</em>.</p>
 </li>
@@ -227,12 +228,12 @@
 <li><p class="first">Τώρα μπορείτε να μεταβείτε στην καρτέλα : guilabel: <cite>Results</cite> και δείτε το μέρος του συνόλου δεδομένων που τέμνουν τα κριτήρια της αναζήτησής σας. Κάντε κλικ στο κουμπί <em class="guilabel">Download Options</em>.Τώρα θα πρέπει να συνδεθείτε στην ιστοσελίδα. Μπορείτε να δημιουργήσετε έναν δωρεάν λογαριασμό εάν δεν έχετε έναν.</p>
 </li>
 </ol>
-<img alt="../_images/346.png" class="align-center" src="../_images/346.png" />
+<img alt="../_images/347.png" class="align-center" src="../_images/347.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Επιλέξτε την επιλογή <em class="guilabel">30 ARC SEC</em> και κάντε κλικ στο <em class="guilabel">Select Download Option</em>.</p>
 </li>
 </ol>
-<img alt="../_images/433.png" class="align-center" src="../_images/433.png" />
+<img alt="../_images/434.png" class="align-center" src="../_images/434.png" />
 <p>Θα έχετε τώρα ένα αρχείο με το όνομα <cite>GMTED2010N10E060_300.zip</cite>. Τα υψομετρικά δεδομένα διανέμονται σε διάφορες μορφές πλέγματος, όπως ASC, BIL, GeoTiff κλπ. Το QGIS υποστηρίζει μια μεγάλη ποικιλία μορφών πλεγμάτων &lt;<a class="reference external" href="http://www.gdal.org/formats_list.html">http://www.gdal.org/formats_list.html</a>&gt;` _  μέσω της βιβλιοθήκης GDAL. Τα δεδομένα GMTED λαμβάνονται ως αρχεία GeoTiff που περιέχονται σε αυτό το αρχείο zip.</p>
 <p>Για ευκολία, μπορείτε να μεταφορτώσετε απευθείας ένα αντίγραφο και από τις δύο δέσμες στοιχείων από τις παρακάτω συνδέσεις.</p>
 <p><a class="reference external" href="../../downloads/GMTED2010N10E060_300.zip">GMTED2010N10E060_300.zip</a></p>
@@ -244,12 +245,12 @@
 <li><p class="first">Ανοίξτε  <em class="menuselection">Layer ‣ Add Raster Layer</em>  και αναζητήστε το αρχείο zip που έχετε κατεβάσει.</p>
 </li>
 </ol>
-<img alt="../_images/534.png" class="align-center" src="../_images/534.png" />
+<img alt="../_images/535.png" class="align-center" src="../_images/535.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Υπάρχουν πολλά διαφορετικά αρχεία που δημιουργούνται από διαφορετικούς αλγορίθμους. Για αυτό το tutorial, θα χρησιμοποιήσουμε το αρχείο με το όνομα <cite>10n060e_20101117_gmted_mea300.tif</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/632.png" class="align-center" src="../_images/632.png" />
+<img alt="../_images/633.png" class="align-center" src="../_images/633.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Θα δείτε τα δεδομένα εδάφους που παρέχονται στο QGIS καμβά. Κάθε pixel στο πλέγμα εδάφους αντιπροσωπεύει το μέσο υψόμετρο σε μέτρα σε αυτή την τοποθεσία. Τα σκούρα pixels αντιπροσωπεύουν περιοχές με χαμηλό υψόμετρο και τα ανοιχτόχρωμα pixels αντιπροσωπεύουν περιοχές με μεγάλο υψόμετρο.</p>
 </li>
@@ -278,7 +279,7 @@
 <li><p class="first">Αφήστε το παράθυρο <em class="guilabel">Clipper</em> ανοιχτό και μεταβείτε στο κύριο παράθυρο του QGIS. Κρατήστε πατημένο το αριστερό πλήκτρο του ποντικιού σας και σχεδιάστε ένα ορθογώνιο που καλύπτει ολόκληρο τον καμβά.</p>
 </li>
 </ol>
-<img alt="../_images/1140.png" class="align-center" src="../_images/1140.png" />
+<img alt="../_images/1141.png" class="align-center" src="../_images/1141.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Τώρα πίσω στο παράθυρο <em class="guilabel">Clipper</em>  θα δείτε τις συντεταγμένες να έχουν συμπληρωθεί αυτόματα από την επιλογή σας.Σιγουρευτείτε ότι έχετε τσεκάρει την επιλογή <em class="guilabel">Load into canvas when finished</em>  και κάντε κλικ στο <em class="guilabel">OK.</em></p>
 </li>
@@ -374,7 +375,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Oct 03, 2015.<br/>
+      Last updated on Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

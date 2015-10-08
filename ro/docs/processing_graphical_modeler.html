@@ -115,6 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Scriptare în Python pentru Cadrul de Procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Rularea și programarea Activităților de Prelucrare QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">Resurse de învățare QGIS</a></li>
@@ -225,17 +226,17 @@
 <li><p class="first">Deschideți QGIS și mergeți la <em class="menuselection">Procesare ‣ Modelatorul Grafic...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1106.png" class="align-center" src="../_images/1106.png" />
+<img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Dialogul <em class="guilabel">Modelatorului de procese</em> conține un panou în stânga și un canevas principal. Selectați fila <em class="guilabel">Intrări</em> din panoul din partea stângă, apoi trageți <em class="guilabel">+ Stratul raster</em> pe canevas.</p>
 </li>
 </ol>
-<img alt="../_images/249.png" class="align-center" src="../_images/249.png" />
+<img alt="../_images/250.png" class="align-center" src="../_images/250.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Se va afișa un dialog cu <em class="guilabel">Definițiile Parametrului</em>. Introduceți <tt class="docutils literal"><span class="pre">Input</span></tt> ca :guilabel: <cite>Nume al Parametrului</cite> și marcați <tt class="docutils literal"><span class="pre">Yes</span></tt> la <em class="guilabel">Required</em>. Faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/333.png" class="align-center" src="../_images/333.png" />
+<img alt="../_images/334.png" class="align-center" src="../_images/334.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Veți vedea o casetă cu numele <em class="guilabel">Input</em> apărând în canevas. Aceasta reprezintă rasterul de acoperire a terenului, pe care îl vom folosi ca intrare. Următorul pas este aplicarea unui algoritm <tt class="docutils literal"><span class="pre">Majority</span> <span class="pre">filter</span></tt>. Mergeți în fila :guilabel: <cite>Algoritm</cite> din colțul din stânga-jos. Căutați algoritmul, care va fi listat sub furnizorul <em class="guilabel">SAGA</em>. Glisați-l pe canevas.</p>
 </li>
@@ -244,12 +245,12 @@
 <p class="first admonition-title">Note</p>
 <p class="last">Dacă nu vedeți acest algoritm sau dacă întâmpinați o eroare în timp ce îl utilizați, este posibil să nu aveți aplicația SAGA instalată pe sistemul dumneavoastră. Vă rugăm să consultați <a class="reference external" href="https://docs.qgis.org/2.6/en/docs/user_manual/processing/3rdParty.html#saga">Configurarea aplicațiilor externe</a> pentru instrucțiuni despre cum instalarea SAGA. Dacă nu se poate instala SAGA, puteți omite în întregime acest pas.</p>
 </div>
-<img alt="../_images/423.png" class="align-center" src="../_images/423.png" />
+<img alt="../_images/424.png" class="align-center" src="../_images/424.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Va fi prezentat un dialog de configurare <em class="guilabel">Majority Filter</em>. Lăsați valorile implicite așa cum sunt și faceți clic pe <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/524.png" class="align-center" src="../_images/524.png" />
+<img alt="../_images/525.png" class="align-center" src="../_images/525.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Rețineți că de acum există pe canevas o nouă casetă denumită <em class="guilabel">Majority Filter</em>, acesta fiind conectată la caseta <em class="guilabel">Input</em>. Acest lucru se datorează faptului că algoritmul <em class="guilabel">Majority Filter</em> folosește rasterul <em class="guilabel">Input</em> ca intrare. Următorul pas al fluxului nostru de lucru, constă din convertirea ieșirii filtrului de majoritate în vector. Găsiți algoritmul <tt class="docutils literal"><span class="pre">Creare</span> <span class="pre">poligon</span> <span class="pre">(din</span> <span class="pre">raster</span> <span class="pre">în</span> <span class="pre">vector)</span></tt> și glisați-l pe canevas.</p>
 </li>
@@ -258,7 +259,7 @@
 <p class="first admonition-title">Note</p>
 <p class="last">Casetele pot fi mutate și aranjate, făcând clic pe ele și trăgându-le, în timp ce se menține apăsat butonul stâng al mouse-ului. Puteți utiliza, de asemenea, rotița de scroll, pentru redimensionarea canevasului modelului.</p>
 </div>
-<img alt="../_images/622.png" class="align-center" src="../_images/622.png" />
+<img alt="../_images/623.png" class="align-center" src="../_images/623.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Selectați &#8216;Filtered Grid&#8217; din algoritmul &#8216;Majority Filter&#8217; ca valoare pentru <em class="guilabel">Stratul de intrare</em>. Clic <em class="guilabel">OK</em>.</p>
 </li>
@@ -412,7 +413,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Oct 03, 2015.<br/>
+      Last updated on Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

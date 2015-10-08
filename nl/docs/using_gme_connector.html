@@ -116,6 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Python-scripts schrijven voor framework Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Taken voor QGIS uitvoeren en in schema zetten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Kaarten op Leaflet Web met qgis2leaf</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Google Maps Engine Connector gebruiken voor QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS bronnen om te leren</a></li>
@@ -223,7 +224,7 @@
 <li><p class="first">Download het shapefile <a class="reference external" href="https://data.sfgov.org/Transportation/SFMTA-Bikeway-Network/t6vv-tjkd">SFMTA Bikeway Network</a>  met behulp van de optie Export van het portaal.</p>
 </li>
 </ol>
-<img alt="../_images/1132.png" class="align-center" src="../_images/1132.png" />
+<img alt="../_images/1133.png" class="align-center" src="../_images/1133.png" />
 <p>Gegevensbron: <a class="reference internal" href="credits.html#sfmta" id="id1">[SFMTA]</a></p>
 </div>
 <div class="section" id="create-a-google-maps-engine-account">
@@ -232,12 +233,12 @@
 <li><p class="first">U kunt een gratis probeer-account voor  Google Maps Engine aanvragen. Het probeer-account is een volledig functionerende Maps Engine instance met beperkte quota voor opslag. Bezoek <a class="reference external" href="http://www.google.com/enterprise/mapsearth/products/mapsengine.html">Google Maps Engine homepage</a> en klik op de link <em class="guilabel">Get started with a free account</em>.</p>
 </li>
 </ol>
-<img alt="../_images/270.png" class="align-center" src="../_images/270.png" />
+<img alt="../_images/279.png" class="align-center" src="../_images/279.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">U zult zich moeten inschrijven met uw Google-account. Indien u uw e-mail van uw werk wilt gebruiken, kunt u ook een nieuw account voor Google maken met uw e-mail van uw werk. Eenmaal ingelogd zult u het scherm <em class="guilabel">Create a Maps Engine Project</em> zien. Voer een <em class="guilabel">Project Name</em> in die uw account zal identificeren bij het gebruiken van Google Maps Engine. Accepteer de voorwaarden en klik op de knop <em class="guilabel">Accept and create</em>.</p>
 </li>
 </ol>
-<img alt="../_images/339.png" class="align-center" src="../_images/339.png" />
+<img alt="../_images/340.png" class="align-center" src="../_images/340.png" />
 </div>
 <div class="section" id="create-a-google-developer-console-project">
 <h2>Een Google Developer Console project maken<a class="headerlink" href="#create-a-google-developer-console-project" title="Permalink naar deze titel">¶</a></h2>
@@ -245,17 +246,17 @@
 <li><p class="first">De Google Maps Engine Connector gebruikt de <tt class="docutils literal"><span class="pre">Google</span> <span class="pre">Maps</span> <span class="pre">Engine</span> <span class="pre">API</span></tt> om toegang te krijgen tot de in uw account opgeslagen gegevens. U zult speciale toegangsvoorwaarden moeten verkrijgen die de plug-in zal gebruiken om programmatisch toegang tot uw gegevens te kunnen krijgen. Bezoek <a class="reference external" href="https://console.developers.google.com/">Google Developer Console</a> en klik op <em class="guilabel">Create Project</em>. Voer <tt class="docutils literal"><span class="pre">GME</span> <span class="pre">Connector</span> <span class="pre">for</span> <span class="pre">QGIS</span> <span class="pre">API</span></tt> in als de <em class="guilabel">PROJECT NAME</em> en <tt class="docutils literal"><span class="pre">gme-qgis-api</span></tt> als de <em class="guilabel">PROJECT ID</em>. Deze namen zijn slechts suggesties - u kunt elke naam en ID gebruiken die u wilt.</p>
 </li>
 </ol>
-<img alt="../_images/429.png" class="align-center" src="../_images/429.png" />
+<img alt="../_images/430.png" class="align-center" src="../_images/430.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Klik, als het project is gemaakt, op de link <em class="guilabel">APIs &amp; auth</em>. Scroll naar beneden en zoek de <em class="guilabel">Google Maps Engine API</em> op. Klik op de knop <em class="guilabel">OFF</em> om die te schakelen naar <em class="guilabel">ON</em>.</p>
 </li>
 </ol>
-<img alt="../_images/530.png" class="align-center" src="../_images/530.png" />
+<img alt="../_images/531.png" class="align-center" src="../_images/531.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Klik vervolgens op de link <em class="guilabel">Credentials</em>. Klik op <em class="guilabel">CREATE NEW CLIENT ID</em> in het gedeelte <em class="guilabel">OAuth</em>.</p>
 </li>
 </ol>
-<img alt="../_images/628.png" class="align-center" src="../_images/628.png" />
+<img alt="../_images/629.png" class="align-center" src="../_images/629.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Selecteer, in het dialoogvenster <em class="guilabel">Create Client ID</em>, <em class="guilabel">Installed Application</em> als het <em class="guilabel">APPLICATION TYPE</em> en <em class="guilabel">Other</em> als het <em class="guilabel">INSTALLED APPLICATION TYPE</em>. Klik op <em class="guilabel">Create Client ID.</em></p>
 </li>
@@ -280,7 +281,7 @@
 <li><p class="first">Voer, in het dialoogvenster <em class="guilabel">Advanced Settings</em>, de <em class="guilabel">Client ID</em> en <em class="guilabel">Client Secret</em> in die u verkreeg van Google Developer Console. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1133.png" class="align-center" src="../_images/1133.png" />
+<img alt="../_images/1134.png" class="align-center" src="../_images/1134.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Omdat u uw nieuwe gegevens voor de API heeft ingevoerd, zult u worden gevraagd in te loggen en de plug-in te autoriseren om deze te gebruiken. Log in op uw Google-account.</p>
 </li>
@@ -365,7 +366,7 @@
 <li><p class="first">Klik op <em class="guilabel">Publish map</em>.</p>
 </li>
 </ol>
-<img alt="../_images/279.png" class="align-center" src="../_images/279.png" />
+<img alt="../_images/2710.png" class="align-center" src="../_images/2710.png" />
 <ol class="arabic simple" start="28">
 <li><p class="first">Kli, als de kaart eenmaal is gepubliceerd, op het pictogram <em class="guilabel">Access links</em>.</p>
 </li>
@@ -437,7 +438,7 @@ width="100%" height="600px"></iframe>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Oct 03, 2015.<br/>
+      Laatste aanpassing op Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

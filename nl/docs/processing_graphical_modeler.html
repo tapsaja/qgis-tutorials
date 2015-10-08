@@ -116,6 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Python-scripts schrijven voor framework Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Taken voor QGIS uitvoeren en in schema zetten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Kaarten op Leaflet Web met qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Google Maps Engine Connector gebruiken voor QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS bronnen om te leren</a></li>
@@ -226,17 +227,17 @@
 <li><p class="first">Start QGIS en ga naar <em class="menuselection">Processing ‣ Grafische modellen bouwen...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1106.png" class="align-center" src="../_images/1106.png" />
+<img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Het dialoogvenster <em class="guilabel">Processing - Grafische modellen bouwen</em> bevat een paneel aan de linkerkant en een hoofdvenster. Selecteer de tab <em class="guilabel">Invoer</em> in het linkerpaneel en sleep <em class="guilabel">+ Raster layer</em> in het hoofdvenster.</p>
 </li>
 </ol>
-<img alt="../_images/249.png" class="align-center" src="../_images/249.png" />
+<img alt="../_images/250.png" class="align-center" src="../_images/250.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Een dialoogvenster <em class="guilabel">Parameterdefinitie</em> zal openen. Voer <tt class="docutils literal"><span class="pre">Invoer</span></tt> in als de <em class="guilabel">Parameternaam</em> en markeer <em class="guilabel">Vereist</em> als``Ja``. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/333.png" class="align-center" src="../_images/333.png" />
+<img alt="../_images/334.png" class="align-center" src="../_images/334.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">U zult in het kaartvenster een vak zien met de naam  <em class="guilabel">Invoer</em>. Dit vertegenwoordigt het raster voor landgebruik dat we zullen gebruiken als invoer. De volgende stap is om een algoritme <tt class="docutils literal"><span class="pre">Majority</span> <span class="pre">filter</span></tt> toe te passen. Schakel naar de tab <em class="guilabel">Algoritmen</em> in de linker benedenhoek. Zoek naar het algoritme en u zult het zien vermeld onder de provider <em class="guilabel">SAGA</em>. Sleep het naar het kaartvenster.</p>
 </li>
@@ -245,12 +246,12 @@
 <p class="first admonition-title">Notitie</p>
 <p class="last">Als u dit algoritme niet ziet of een foutmelding krijgt als u het gebruikt, heeft u misschien SAGA niet geïnstalleerd op uw systeem. Bekijk <a class="reference external" href="https://docs.qgis.org/2.6/nl/docs/user_manual/processing/3rdParty.html#saga">Configureren externe toepassingen</a> voor instructies over hoe SAGA te installeren. Indien u SAGA niet kunt installeren, kunt u deze stap in zijn geheel overslaan.</p>
 </div>
-<img alt="../_images/423.png" class="align-center" src="../_images/423.png" />
+<img alt="../_images/424.png" class="align-center" src="../_images/424.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Een dialoogvenster voor configuratie van <em class="guilabel">Majority Filter</em> zal openen. Laat de waarden op hun standaarden staan en klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/524.png" class="align-center" src="../_images/524.png" />
+<img alt="../_images/525.png" class="align-center" src="../_images/525.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Het zal u opvallen dat er een nieuw vak, genaamd <em class="guilabel">Majority Filter</em>, in het hoofdvenster staat en dat dat is verbonden met het vak <em class="guilabel">Invoer</em>. Dit omdat het algoritme <em class="guilabel">Majority Filter</em> het raster <em class="guilabel">Invoer</em> gebruikt als zijn invoer. De volgende stap in onze werkstroom is om de uitvoer van het Majority filter te converteren naar een vector. Zoek naar het algoritme <tt class="docutils literal"><span class="pre">Polygonize</span> <span class="pre">(raster</span> <span class="pre">to</span> <span class="pre">vector)</span></tt> en sleep het in het hoofdvenster.</p>
 </li>
@@ -259,7 +260,7 @@
 <p class="first admonition-title">Notitie</p>
 <p class="last">De vakken kunnen worden verplaatst en geschikt door er op te klikken en te slepen terwijl de linker muisknop ingedrukt wordt gehouden. U kunt ook het scroll-wiel gebruiken om in- en uit te zoomen in het venster voor het model.</p>
 </div>
-<img alt="../_images/622.png" class="align-center" src="../_images/622.png" />
+<img alt="../_images/623.png" class="align-center" src="../_images/623.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Selecteer &#8216;Filtered Grid&#8217; uit het algoritme &#8216;Majority Filter&#8217; als de waarde voor <em class="guilabel">Input layer</em>. Klik op <em class="guilabel">OK</em>.</p>
 </li>
@@ -413,7 +414,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Oct 03, 2015.<br/>
+      Laatste aanpassing op Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

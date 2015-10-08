@@ -115,6 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Δημιουργία κώδικα στην Python για το πλαίσιο επεξεργασίας.</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Βρείτε Γειτονικά Πολύγωνα σε ένα Επίπεδο</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Διαδικτυακοί Χάρτες με το qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Χρήση του Google Maps Engine Connector για το QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS Μαθησιακοί πόροι</a></li>
@@ -207,7 +208,7 @@
 <li><p class="first">Ανοίξτε το QGIS και πηγαίνετε στο <em class="menuselection">Layer ‣ Add WMS Layer...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1141.png" class="align-center" src="../_images/1141.png" />
+<img alt="../_images/1142.png" class="align-center" src="../_images/1142.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Στην καρτέλα <em class="guilabel">Layers</em>, κάντε κλικ στο <em class="guilabel">New</em>.</p>
 </li>
@@ -217,12 +218,12 @@
 <li><p class="first">Ονομάστε τη σύνδεση σας. Αυτό δεν είναι το όνομα του επιπέδου αλλά το όνομα της υπηρεσίας που προσφέρει το WMS επίπεδο. Μια μόνο υπηρεσία συνήθως προσφέρει πολλαπλά επίπεδα τα οποία μπορούν να προστεθούν στο έργο σας. Το URL που χρειάζεστε για να αποκτήσετε πρόσβαση σε ένα WMS επίπεδο, ονομάζεται <em>GetCapabilities</em>. Όταν συνδέεστε  σε ένα WMS διακομιστή με αυτήν την παράμετρο στο URL, επιστρέφει μια λίστα διαθέσιμων επιπέδων μαζί με ποικίλα δεδομένα. Σε αυτή την περίπτωση, ονομάστε τη σύνδεση ως <tt class="docutils literal"><span class="pre">MRDATA</span> <span class="pre">USGS</span></tt> και το GetCapabilities URL ως <tt class="docutils literal"><span class="pre">http://mrdata.usgs.gov/services/ca?request=getcapabilities&amp;service=WMS&amp;version=1.1.1&amp;</span></tt>. Πατήστε <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/347.png" class="align-center" src="../_images/347.png" />
+<img alt="../_images/348.png" class="align-center" src="../_images/348.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Έπειτα, πατήστε το κουμπί <em class="guilabel">Connect</em> για να γίνει η λίστα των επιπέδων διαθέσιμη. Θα παρατηρήσετε διάφορα αναγνωριστικά στη λίστα δίπλα από τα επίπεδα. Το αναγνωριστικό <tt class="docutils literal"><span class="pre">0</span></tt> σημαίνει ότι θα πάρετε ένα χάρτη για όλα τα επίπεδα. Αν δε θέλετε όλα τα επίπεδα, μπορείτε να επεκτείνετε τη λίστα κάνοντας κλικ στο εικονίδιο <em class="guilabel">+</em> και επιλέγοντας το επίπεδο που σας ενδιαφέρει. Επιλέξτε το επίπεδο <tt class="docutils literal"><span class="pre">0</span></tt> για αυτό το tutorial.</p>
 </li>
 </ol>
-<img alt="../_images/434.png" class="align-center" src="../_images/434.png" />
+<img alt="../_images/435.png" class="align-center" src="../_images/435.png" />
 <ol class="arabic" start="5">
 <li><p class="first">Στην περιοχή <em class="guilabel">Image encoding</em>, πρέπει να επιλέξετε έναν τύπο εικόνας. Οι τύποι εικόνας παίζουν σημαντικό ρόλο και ποιον από αυτούς θα χρησιμοποιήσετε εξαρτάται από την περίπτωση χρήσης σας. Εδώ είναι κάποιοι δείκτες</p>
 <ul class="simple">
@@ -238,12 +239,12 @@
 <p>Για αυτό το tutorial, επιλέξτε <em class="guilabel">JPEG</em> ως τύπο. Αλλάξτε το <em class="guilabel">Layer name</em> εάν το επιθυμείτε και πατήστε <em class="guilabel">Add</em>.</p>
 </li>
 </ol>
-<img alt="../_images/535.png" class="align-center" src="../_images/535.png" />
+<img alt="../_images/536.png" class="align-center" src="../_images/536.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Θα δείτε το επίπεδο να έχει φορτώσει στον καμβά του QGIS. Μπορείτε να κάνετε μεγέθυνση/μετακίνηση γύρω όπως με κάθε άλλο επίπεδο. Ο τρόπος με τον οποίο η WMS υπηρεσία λειτουργεί, είναι ότι κάθε φορά που κάνετε μεγέθυνση/μετακίνηση, στέλνει το παράθυρο συντεταγμένων σας στο διακομιστή και ο διακομιστής δημιουργεί μια εικόνα για αυτό το παράθυρο και την επιστρέφει στον πελάτη. Οπότε θα υπάρξει μια καθυστέρηση μέχρι να δείτε την εικόνα της περιοχής που έχετε μεγεθύνει.</p>
 </li>
 </ol>
-<img alt="../_images/633.png" class="align-center" src="../_images/633.png" />
+<img alt="../_images/634.png" class="align-center" src="../_images/634.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Παρ&#8217;όλα αυτά, μπορείτε να δείτε κάποια δεδομένα σχετικά με το επίπεδο. Κάντε δεξί κλικ στο επίπεδο και επιλέξτε <em class="guilabel">Properties</em>.</p>
 </li>
@@ -279,7 +280,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Oct 03, 2015.<br/>
+      Last updated on Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

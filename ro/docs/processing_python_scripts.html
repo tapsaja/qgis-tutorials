@@ -115,6 +115,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Scriptare în Python pentru Cadrul de Procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Rularea și programarea Activităților de Prelucrare QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">Resurse de învățare QGIS</a></li>
@@ -218,12 +219,12 @@
 <li><p class="first">În QGIS, mergeți la <em class="menuselection">Layers ‣ Add Vector ‣ Add Vector Layer</em>. Navigați la fișierul descărcat <tt class="docutils literal"><span class="pre">ne_10_admin_0_countries.zip</span></tt> și încărcați stratul <tt class="docutils literal"><span class="pre">ne_10_admin_0_countries</span></tt>. Mergeți la <em class="menuselection">Processing ‣ Toolbox</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
+<img alt="../_images/1108.png" class="align-center" src="../_images/1108.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Extinteți grupul <em class="guilabel">Scripts</em> din <em class="guilabel">Processing Toolbox</em> și selectați <em class="guilabel">Create a new script</em>.</p>
 </li>
 </ol>
-<img alt="../_images/250.png" class="align-center" src="../_images/250.png" />
+<img alt="../_images/258.png" class="align-center" src="../_images/258.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Pentru ca un script Python să fie recunoscut ca un script de Procesare, la începutul script-ului trebuie să se afle specificațiile de intrare și de ieșire. Acestea vor fi utilizate la construirea interfeței cu utilizatorul, pentru a rula script-ul. Puteți afla mai multe despre formatul acestor linii, din <a class="reference external" href="https://docs.qgis.org/2.8/en/docs/user_manual/processing/scripts.html">Documentația Processing din QGIS</a>. Introduceți următoarele linii în <em class="guilabel">Script editor</em>. Aici avem 3 intrări ale utilizatorului: <tt class="docutils literal"><span class="pre">dissolve_layer</span></tt>, <tt class="docutils literal"><span class="pre">dissolve_field</span></tt> și <tt class="docutils literal"><span class="pre">sum_field</span></tt>. Rețineți că <tt class="docutils literal"><span class="pre">dissolve_layer</span></tt> se adaugă după definițiile ambelor câmpuri de intrare. Acest lucru înseamnă că intrările vor fi pre-populate prin alegerea câmpurilor din <tt class="docutils literal"><span class="pre">dissolve_layer</span></tt>. De asemenea, specificați <tt class="docutils literal"><span class="pre">output_layer</span></tt> ca și strat vectorial de ieșire. Faceți clic pe butonul <em class="guilabel">Save</em>.</p>
 </li>
@@ -234,22 +235,22 @@
 ##output_layer=output vector
 </pre></div>
 </div>
-<img alt="../_images/334.png" class="align-center" src="../_images/334.png" />
+<img alt="../_images/335.png" class="align-center" src="../_images/335.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Denumiți script-ul <tt class="docutils literal"><span class="pre">dissolve_with_sum</span></tt> și salvați-l în locația implicită din folderul <em class="menuselection">.qgis2 ‣ processing ‣ scripts</em>.</p>
 </li>
 </ol>
-<img alt="../_images/424.png" class="align-center" src="../_images/424.png" />
+<img alt="../_images/425.png" class="align-center" src="../_images/425.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Înapoi, în <em class="guilabel">Script editor</em>, faceți clic pe butonul <em class="guilabel">Run algorithm</em>, pentru a previzualiza interfața utilizatorului.</p>
 </li>
 </ol>
-<img alt="../_images/525.png" class="align-center" src="../_images/525.png" />
+<img alt="../_images/526.png" class="align-center" src="../_images/526.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Puteți vedea că doar prin adăugarea a câtorva rânduri, avem o interfață frumoasă, pe care utilizatorul va preciza intrările. De asemenea, este în concordanță cu toți ceilalți algoritmi de procesare, astfel încât nu există nici o curbă de învățare implicată în folosirea algoritmului personalizat.</p>
 </li>
 </ol>
-<img alt="../_images/623.png" class="align-center" src="../_images/623.png" />
+<img alt="../_images/624.png" class="align-center" src="../_images/624.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">În: guilabel: <cite>Script editor</cite>, introduceți următorul cod. Veți observa că apelăm unele metode speciale, cum ar fi <tt class="docutils literal"><span class="pre">processing.getObject()</span></tt> și <tt class="docutils literal"><span class="pre">processing.features()</span></tt>. Acestea sunt ambalate confortabil, pentru a ușura lucrul cu datele. Puteți afla mai multe despre acestea din secțiunea <a class="reference external" href="https://docs.qgis.org/2.8/en/docs/user_manual/processing/console.html#additional-functions-for-handling-data">Funcțiilor suplimentare de manipulare a datelor</a> a Documentației de Procesare QGIS. Clic pe <em class="guilabel">Save</em> pentru a salva codul nou introdus, și apoi pe butonul <em class="guilabel">X</em> pentru a închide editorul.</p>
 </li>
@@ -470,7 +471,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Oct 03, 2015.<br/>
+      Last updated on Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

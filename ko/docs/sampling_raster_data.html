@@ -116,6 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">인접 폴리곤 찾기</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">qgis2leaf로 웹 지도 만들기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">QGIS에서 구글지도 커넥터 이용하기</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 수업 자원</a></li>
@@ -223,32 +224,32 @@
 <li><p class="first">메뉴 &#8211;&gt; 래스터 데이터 추가  :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Layer &#8211;&gt; Add Raster Layer`로 가서 다운로드한 <a href="#id3"><span class="problematic" id="id4">``</span></a>us.tmax_nohads_ll_{YYYYMMDD}_float.tif``파일을 찾고 열기 :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>Open`를 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/1130.png" class="align-center" src="../_images/1130.png" />
+<img alt="../_images/1131.png" class="align-center" src="../_images/1131.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">일단 레이어가 올라오면 객체확인 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Identify`툴을 선택하고 레이어 아무 곳이나 클릭을 합니다. 온도값이 섭씨로 나타나는 것 혹은 그 위치에서 밴드 1을 보게 됩니다.</p>
 </li>
 </ol>
-<img alt="../_images/269.png" class="align-center" src="../_images/269.png" />
+<img alt="../_images/270.png" class="align-center" src="../_images/270.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">이제 다운로드한 파일  <a href="#id1"><span class="problematic" id="id2">``</span></a>2013_Gaz_ua_national.zip``을 압축해제하고 <a href="#id3"><span class="problematic" id="id4">``</span></a>2013_Gaz_ua_national.txt``를 추출합니다. 메뉴 레이어 &#8211;&gt; 레이어 추가 &#8211;&gt; 구분자로 분리된 텍스트 레이어를 추가  :menuselection:<a href="#id5"><span class="problematic" id="id6">`</span></a>Layer &#8211;&gt; Add Delimited Text Layer`로 갑니다.</p>
 </li>
 </ol>
-<img alt="../_images/338.png" class="align-center" src="../_images/338.png" />
+<img alt="../_images/339.png" class="align-center" src="../_images/339.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">구분자로 분리된 텍스트 레이어 파일 추가  <em class="guilabel">Create a Layer from Delimited Text File</em> 다이알로그에서 탐색 <em class="guilabel">Browse</em> 을 클릭하고  <a href="#id1"><span class="problematic" id="id2">``</span></a>2013_Gaz_ua_national.txt``을 여십시오. 구분자 정의 <em class="guilabel">Custom delimiters`에서 탭 :guilabel:`Tab</em> 을 선택하십시오. 점 좌표는 위도와 경도입니다. 그래서 X필드로 <em class="guilabel">INTPTLONG</em>, Y필드로  :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>INTPTLAT`를 선택합니다. 공간 인덱스 사용 :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>Use spatial index`을 체크하고 확인  :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>OK`을 클릭합니다.</p>
 </li>
 </ol>
-<img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
+<img alt="../_images/429.png" class="align-center" src="../_images/429.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">이제 래스터 레이어에서 온도값을 추출할 준비가 되었습니다.  <a href="#id1"><span class="problematic" id="id2">``</span></a>Point Sampling Tool``플러그인을 설치하십시오. 플러그인을 어떻게 설치하는지는  <a class="reference internal" href="using_plugins.html"><em>플러그인 사용하기</em></a> 를 보시기 바랍니다.</p>
 </li>
 </ol>
-<img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
+<img alt="../_images/530.png" class="align-center" src="../_images/530.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">메뉴 :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Plugins &#8211;&gt; Analyses &#8211;&gt; Point sampling tool`를 엽니다.</p>
 </li>
 </ol>
-<img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
+<img alt="../_images/628.png" class="align-center" src="../_images/628.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first"><em class="guilabel">Point Sampling Tool</em> 다이알로그에서 <em class="guilabel">Layer containing sampling points`로 ``2013_Gaz_ua_national``를 선택합니다. 입력레이어에서 출력 레이어에포함될 수 있도록 반드시 명확하게 필드를 선택해야 합니다. ``2013_Gaz_ua_national``레이어에서  ``GEOID`</em> 와 <a href="#id1"><span class="problematic" id="id2">``</span></a>NAME``를 선택합니다. 한번에 여러개의 래스터 밴드에서 표본 값을 추출할 수 있습니다. 그러나 래스터가 하나의 밴드만 가지므로  <a href="#id3"><span class="problematic" id="id4">``</span></a>us.tmax_nohads_ll_{YYYYMMDD}_float: Band 1``를 선택합니다.  <a href="#id5"><span class="problematic" id="id6">``</span></a>max_temparature_at_urban_locations.shp``로 출력 벡터 레이어 이름을 입력합니다. 표본추출과정을 시작하기 위해 확인 :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>OK`를 클릭합니다. 과정이 종료되면 닫기 :guilabel:<a href="#id9"><span class="problematic" id="id10">`</span></a>Close`를 클릭합니다.</p>
 </li>
@@ -273,7 +274,7 @@
 <li><p class="first">QGIS에 <tt class="docutils literal"><span class="pre">tl_2013_us_county``가</span> <span class="pre">추가될</span> <span class="pre">것입니다.</span> <span class="pre">이</span> <span class="pre">레이어는</span>&nbsp; <span class="pre">``EPSG:4269</span> <span class="pre">NAD83</span></tt> 투영입니다. 이것은 래스터레이어의 투영과 맞지 않습니다. 그래서 이 레이어를  <tt class="docutils literal"><span class="pre">EPSG:4326</span> <span class="pre">WGS84</span></tt> 투영으로 재투영할 것입니다.</p>
 </li>
 </ol>
-<img alt="../_images/1131.png" class="align-center" src="../_images/1131.png" />
+<img alt="../_images/1132.png" class="align-center" src="../_images/1132.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first"><tt class="docutils literal"><span class="pre">tl_2013_us_county</span></tt> 레이어를 우측클릭하고 새 이름으로 저장 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Save As..`을 선택합니다.</p>
 </li>
@@ -354,7 +355,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      최종 업데이트: Oct 03, 2015<br/>
+      최종 업데이트: Oct 08, 2015<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -116,6 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Python-scripts schrijven voor framework Processing</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Taken voor QGIS uitvoeren en in schema zetten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Kaarten op Leaflet Web met qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Google Maps Engine Connector gebruiken voor QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS bronnen om te leren</a></li>
@@ -224,32 +225,32 @@
 <li><p class="first">We zullen eerst door het proces van het handmatig opschonen gaan om de opdrachten te noteren die we zullen gebruiken in het script voor Python. Start QGIS en ga naar <em class="menuselection">Kaartlagen ‣ Laag toevoegen ‣ Vector laag toevoegen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1128.png" class="align-center" src="../_images/1128.png" />
+<img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Blader naar de map die de uitgepakte shapefiles bevat en selecteer het bestand <tt class="docutils literal"><span class="pre">roads.shp</span></tt> en klik op <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/260.png" class="align-center" src="../_images/260.png" />
+<img alt="../_images/268.png" class="align-center" src="../_images/268.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Eerst moeten we de laag roads opnieuw projecteren naar een Geprojecteerd CRS. Dat stelt ons in staat om <em>meters</em> als eenheden te gebruiken bij het uitvoeren van anlyses, in plaats van graden. Open <em class="menuselection">Processing ‣ Toolbox</em>.</p>
 </li>
 </ol>
-<img alt="../_images/337.png" class="align-center" src="../_images/337.png" />
+<img alt="../_images/338.png" class="align-center" src="../_images/338.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Zoek naar het gereedschap <em class="guilabel">Reproject layer</em>. Dubbelklik er op om het dialoogvenster te starten.</p>
 </li>
 </ol>
-<img alt="../_images/427.png" class="align-center" src="../_images/427.png" />
+<img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Selecteer, in het dialoogvenster <em class="guilabel">Reproject layer</em>, de laag <tt class="docutils literal"><span class="pre">roads</span></tt> als <em class="guilabel">Input layer</em>. We zullen CRS <tt class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span> <span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></tt> gebruiken als het <em class="guilabel">Target CRS</em>. Klik op <em class="guilabel">Run</em>.</p>
 </li>
 </ol>
-<img alt="../_images/528.png" class="align-center" src="../_images/528.png" />
+<img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Als het proces eenmaal is voltooid, zult u de  opnieuw geprojecteerde laag zien geladen in QGIS. Ga naar <em class="menuselection">Processing ‣ Historie..</em>.</p>
 </li>
 </ol>
-<img alt="../_images/626.png" class="align-center" src="../_images/626.png" />
+<img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Vergroot, in het dialoogvenster <em class="guilabel">Historie</em>, de map <em class="guilabel">ALGORITHM</em> en selecteer het laatste item. U zult de volledige opdracht voor Processing in het onderste paneel zien staan. Noteer deze opdracht om in ons script te gebruiken.</p>
 </li>
@@ -274,7 +275,7 @@
 <li><p class="first">U kunt meer te weten komen over de verschillende gereedschappen en opties op de tab <em class="guilabel">Help</em>. Voor deze handleiding zullen we het gereedschap <tt class="docutils literal"><span class="pre">snap</span></tt> gebruiken om duplicaat-punten te verwijderen die binnen 1 meter van elkaar liggen. Selecteer de`` laag Opnieuw geprojecteerd`` als de <em class="guilabel">Layer to clean</em>. Kies <tt class="docutils literal"><span class="pre">snap</span></tt> als de <em class="guilabel">Cleaning tool</em>.  Voer <tt class="docutils literal"><span class="pre">1.00</span></tt> als de <em class="guilabel">Threshold</em>. Laat de andere velden leeg en klik op <em class="guilabel">Run</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
+<img alt="../_images/1130.png" class="align-center" src="../_images/1130.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Als de verwerking eenmaal is voltooid zult u 2 nieuwe lagen zien toegevoegd aan QGIS. De laag <tt class="docutils literal"><span class="pre">Cleaned</span> <span class="pre">vector</span></tt> is de laag met gecorrigeerde topologische fouten. U zult ook een laag <tt class="docutils literal"><span class="pre">Errors</span></tt> hebben waarin de objecten zijn geaccentueerd die zijn gerepareerd. U kunt de laag met fouten als richtlijn nemen en inzoomen op de punten die werden verwijderd.</p>
 </li>
@@ -436,7 +437,7 @@ pause
 <li><p class="first">Selecteer een tijdstip naar keuze en klik op <em class="guilabel">Volgende</em>.</p>
 </li>
 </ol>
-<img alt="../_images/268.png" class="align-center" src="../_images/268.png" />
+<img alt="../_images/269.png" class="align-center" src="../_images/269.png" />
 <ol class="arabic simple" start="27">
 <li><p class="first">Kies <tt class="docutils literal"><span class="pre">Een</span> <span class="pre">programma</span> <span class="pre">straten</span></tt> als de <em class="guilabel">Actie</em> en klik op <em class="guilabel">Volgende</em>.</p>
 </li>
@@ -538,7 +539,7 @@ pause
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Oct 03, 2015.<br/>
+      Laatste aanpassing op Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -116,6 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Menulis Skrip Pythin untuk Framework Pemrosessan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Menjalankan dan Menjadwalkan Pekerjaan Pemrosesan QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Menemukan Polygon Neighbor atau Tetangga pada Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Peta Web Leaflet dengan qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">Sumber Pembelajaran QGIS</a></li>
@@ -216,7 +217,7 @@
 <li><p class="first">Akses  <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density/data-download">Population Density Grid, v3 download page.</a>  . Pilih <em class="guilabel">Data Attributes</em> dengan <em class="guilabel">.ascii format</em> , <em class="guilabel">1° resolution</em> dan <em class="guilabel">1990 year</em> . Klik <em class="guilabel">Download</em> . Dalam tahap ini, anda bisa membuat sebuah akun bebas dan masuk, atau menggunakan tombol <em class="guilabel">Guest Download</em> pada bagian bawah untuk segera mengunduh data. Ulang proses tadi untuk data <em class="guilabel">2000 year</em></p>
 </li>
 </ol>
-<img alt="../_images/1109.png" class="align-center" src="../_images/1109.png" />
+<img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
 <p>Sekarang anda akan memiliki 2 file zip yang sudah diunduh.</p>
 <p>For convenience, you can also download a copy of this data by clicking on following links:</p>
 <p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_90_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_90_ascii_one.zip</span></tt></a></p>
@@ -229,27 +230,27 @@
 <li><p class="first">Buka QGIS dan akses <em class="menuselection">Layer ‣ Add Vector Layer..</em>.</p>
 </li>
 </ol>
-<img alt="../_images/259.png" class="align-center" src="../_images/259.png" />
+<img alt="../_images/260.png" class="align-center" src="../_images/260.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Cari lokasi file zip yang sudah diunduh. Tahan tombol <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> dan klik pada kedua file zip untuk memilih mereka. Dengan cara ini anda bisa untuk membuka kedua file dengan satu langkah.</p>
 </li>
 </ol>
-<img alt="../_images/336.png" class="align-center" src="../_images/336.png" />
+<img alt="../_images/337.png" class="align-center" src="../_images/337.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Setiap fil zip memiliki 2 file grid. <tt class="docutils literal"><span class="pre">a</span></tt> dalam nama file berarti perhitungan populasi sudah disesuaikan untuk mencocokkan jumlah UN. Kita akan menggunakan grid yang sudah disesuaikan unutk tutorial ini. Pilih <tt class="docutils literal"><span class="pre">glds00ag60.asc</span></tt> sebagai layer yang akan ditambahkan. Klik <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/426.png" class="align-center" src="../_images/426.png" />
+<img alt="../_images/427.png" class="align-center" src="../_images/427.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Layer belum mempunyai definisi CRS, dan karena grid terdiri dari lintang dan bujur, pilih <cite>EPSG:4326</cite> sebagai CRS .</p>
 </li>
 </ol>
-<img alt="../_images/527.png" class="align-center" src="../_images/527.png" />
+<img alt="../_images/528.png" class="align-center" src="../_images/528.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">karena kita memilih kedua zip file, anda akan melihat dialog serupa sekali lagi. Ulangi proses dan pilih grid <tt class="docutils literal"><span class="pre">glds90ag60.asc</span></tt> sebagai layer yang ditambahkan.</p>
 </li>
 </ol>
-<img alt="../_images/625.png" class="align-center" src="../_images/625.png" />
+<img alt="../_images/626.png" class="align-center" src="../_images/626.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Sekali lagi pilih  <cite>EPSG:4326</cite> sebagai CRS.</p>
 </li>
@@ -274,7 +275,7 @@
 <li><p class="first">Pada tab <em class="guilabel">Style</em>, ubah <em class="guilabel">Render type</em> ke <em class="guilabel">Singleband pseudocolor</em> . kemudian, klik <em class="guilabel">Classify</em> di <em class="guilabel">Generate a new color map</em> . Anda akan lihat 5 nilai warna baru tercipta. Klik <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
+<img alt="../_images/1128.png" class="align-center" src="../_images/1128.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Kembali ke kanvas QGIS, anda akan melihat sebuah hasil render dari raster menyerupai peta panas. Ulangi proses untuk raster yang lain.</p>
 </li>
@@ -365,7 +366,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Terakhir diperbarui pada Oct 03, 2015.<br/>
+      Terakhir diperbarui pada Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

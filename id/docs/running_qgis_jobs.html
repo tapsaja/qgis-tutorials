@@ -116,6 +116,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Menulis Skrip Pythin untuk Framework Pemrosessan</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Menjalankan dan Menjadwalkan Pekerjaan Pemrosesan QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Menemukan Polygon Neighbor atau Tetangga pada Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Peta Web Leaflet dengan qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">Sumber Pembelajaran QGIS</a></li>
@@ -224,32 +225,32 @@
 <li><p class="first">Pertama kita akan melewati proses pembersihan shapfelie secara manual untuk melihat command yang akan kita gunakan pada skript phyton. Luncurkan QGIS dan akses <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1128.png" class="align-center" src="../_images/1128.png" />
+<img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Jelajah folder yang berisi shapefile yang belum di unzip dan pilih file <tt class="docutils literal"><span class="pre">roads.shp</span></tt> dan klik <em class="guilabel">Open</em>.</p>
 </li>
 </ol>
-<img alt="../_images/260.png" class="align-center" src="../_images/260.png" />
+<img alt="../_images/268.png" class="align-center" src="../_images/268.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Pertama kita harus mere-proyeksi layer jalan ke sebuah CRS terproyeksi. Ini akan membuat kita menggunakan <em>meters</em> sebagai unit saat melakukan analisis bukan derajat. Buka <em class="menuselection">Processing ‣ Toolbox</em>.</p>
 </li>
 </ol>
-<img alt="../_images/337.png" class="align-center" src="../_images/337.png" />
+<img alt="../_images/338.png" class="align-center" src="../_images/338.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Caru tool <em class="guilabel">Reproject layer</em> . Dobel-klik untuk meluncurkan dialog.</p>
 </li>
 </ol>
-<img alt="../_images/427.png" class="align-center" src="../_images/427.png" />
+<img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
 <ol class="arabic simple" start="5">
 <li><p class="first">Pada dialog <em class="guilabel">Reproject layer</em> , pilih layer <tt class="docutils literal"><span class="pre">roads</span></tt> sebagai <em class="guilabel">Input layer</em> .Kita akan menggunakan CRS  <tt class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span> <span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></tt>  untuk <em class="guilabel">Target CRS</em> . Klik <em class="guilabel">Run</em>.</p>
 </li>
 </ol>
-<img alt="../_images/528.png" class="align-center" src="../_images/528.png" />
+<img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Ketika proses selesai, anda akan melihat layer yang terproyeksi terbuka di QGIS. Akses <em class="menuselection">Processing ‣ History and Log..</em>.</p>
 </li>
 </ol>
-<img alt="../_images/626.png" class="align-center" src="../_images/626.png" />
+<img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Pada dialog <em class="guilabel">History and Log</em> , telusuri folder <em class="guilabel">Algorithm</em>  dan pilih entry terakhir. Anda akan melihat command pemrosessan penuh pada panel bawah. Perhatikan bahwa command ini untuk digunakan pada skript kita.</p>
 </li>
@@ -274,7 +275,7 @@
 <li><p class="first">Anda dapat membaca lebih dalam tentang berbagai tool dan opsi pada tab <em class="guilabel">Help</em> . Untuk tutorial kali ini, kita akan menggunakan tool <tt class="docutils literal"><span class="pre">snap</span></tt> to menghapus vertices duplikat yang berada pada rentang 1 meter satu sama lain. Pilih <tt class="docutils literal"><span class="pre">Reprojected</span> <span class="pre">layer</span></tt> sebagai <em class="guilabel">Layer to clean</em> . Pilih <tt class="docutils literal"><span class="pre">snap</span></tt> sebagai <em class="guilabel">Cleaning tool</em> . Masukkan  <tt class="docutils literal"><span class="pre">1.00</span></tt> sebagai <em class="guilabel">Threshold</em> . Biarkan field yang lain kosong dan klik <em class="guilabel">Run</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
+<img alt="../_images/1130.png" class="align-center" src="../_images/1130.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Ketika proses selesai, anda akan melihat 2 layer baru ditambahkan ke QGIS. <tt class="docutils literal"><span class="pre">Cleaned</span> <span class="pre">vector</span> <span class="pre">layer</span></tt> adalah layer dengan error topologi yang sudah dikoreski. Anda juga akan memiliki sebuah <tt class="docutils literal"><span class="pre">Errors</span> <span class="pre">layer</span></tt> yang akan menandai fitur yang digantikan. Anda dapat menggunakan layer error sebagai panduan dan zoom ini untuk melihat vertices yang terhapus-</p>
 </li>
@@ -436,7 +437,7 @@ pause
 <li><p class="first">Tentukan waktu sesuai dengan pilihan anda dan klik <em class="guilabel">Next</em>.</p>
 </li>
 </ol>
-<img alt="../_images/268.png" class="align-center" src="../_images/268.png" />
+<img alt="../_images/269.png" class="align-center" src="../_images/269.png" />
 <ol class="arabic simple" start="27">
 <li><p class="first">Pilih <tt class="docutils literal"><span class="pre">Start</span> <span class="pre">a</span> <span class="pre">program</span></tt> sebagai <em class="guilabel">Action</em> dan klik <em class="guilabel">Next</em>.</p>
 </li>
@@ -538,7 +539,7 @@ pause
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Terakhir diperbarui pada Oct 03, 2015.<br/>
+      Terakhir diperbarui pada Oct 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
