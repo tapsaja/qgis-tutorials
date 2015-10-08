@@ -197,34 +197,33 @@
   <div class="section" id="making-a-map">
 <h1>Creando un Mapa<a class="headerlink" href="#making-a-map" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/making_a_map_a4.pdf">A4</a> <a class="reference external" href="../pdf/making_a_map_letter.pdf">Letter</a> ]</p>
-<p>Con frecuencia se necesita crear un mapa que se pueda ser impreso o publicado. QGIS tiene una poderosa herramienta llamada :guilabel: <cite>Compositor de Impresión</cite> que le permite tomar sus capas de SIG y empaquetarlas para crear mapas.</p>
+<p>Con frecuencia se necesita crear un mapa que pueda ser impreso o publicado. QGIS tiene una poderosa herramienta llamada <em class="guilabel">Compositor de Impresión</em> que le permite tomar sus capas de SIG y empaquetarlas para crear mapas.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Resumen de la Tarea<a class="headerlink" href="#overview-of-the-task" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>The tutorial shows how to create a map of Japan with standard map elements like
-map inset, grids, north arrow, scale bar and labels.</p>
+<p>El tutorial muestra cómo crear un mapa de Japón con elementos estándar, como el mapa de inserción, grillas, norte, barra de escala y etiquetas.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Enlazar permanentemente con este título">¶</a></h3>
+<h3>Otras habilidades que aprenderás<a class="headerlink" href="#other-skills-you-will-learn" title="Enlazar permanentemente con este título">¶</a></h3>
 <ul class="simple">
-<li>Using &#8216;on-the-fly&#8217; CRS transformation to visualize your data in a different
-projection.</li>
+<li><p class="first">Utilizando transformación de CRS &#8216;al-vuelo&#8217; para visualizar su información en una proyección diferente.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obtener los Datos<a class="headerlink" href="#get-the-data" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Vamos a utilizar el conjunto de datos &#8220;Natural Earth&#8221; específicamente el &#8220;Natural Earth Quick Start Kit&#8221; que se incluye con capas globales bellamente decoradas que se pueden ser cargadas directamente en QGIS.</p>
-<p>Descargue el  <a class="reference external" href="http://kelso.it/x/nequickstart">Natural Earth Quickstart Kit</a>.</p>
+<p>Vamos a utilizar el conjunto de datos &#8220;Natural Earth&#8221;, más específicamente el &#8220;Natural Earth Quick Start Kit&#8221;, que incluye con capas globales bellamente decoradas que pueden ser cargadas directamente en QGIS.</p>
+<p>Descargue el <a class="reference external" href="http://kelso.it/x/nequickstart">Natural Earth Quickstart Kit</a>.</p>
 <p>Fuente de Datos <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedimiento<a class="headerlink" href="#procedure" title="Enlazar permanentemente con este título">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">Descargue y extraiga los datos del &#8220;Natural Earth Quick Start Kit&#8221;. QGIS Abrir. Haga click en: menuselection: <cite>Archivo -&gt; Abrir proyecto</cite>.</p>
+<li><p class="first">Descargue y extraiga los datos del &#8220;Natural Earth Quick Start Kit&#8221;. Abra QGIS. Haga clic en <em class="menuselection">File ‣ Open Project</em>.</p>
 </li>
 </ol>
 <img alt="../_images/190.png" class="align-center" src="../_images/190.png" />
 <ol class="arabic simple" start="2">
-<li><p class="first">Ubique la carpeta donde extrajo el conjunto de datos de &#8220;Natural Earth&#8221;. Allí usted debería encontrar un archivo llamado  <tt class="file docutils literal"><span class="pre">Natural_Earth_quick_start_for_QGIS.qgs</span></tt>. Este es el archivo del proyecto que contiene las capas con estilos ya creados con el formato de documento de QGIS. Haga click en   <em class="guilabel">Abrir</em>.</p>
+<li><p class="first">Ubique la carpeta donde extrajo el conjunto de datos de &#8220;Natural Earth&#8221;. Allí usted debería encontrar un archivo llamado <tt class="file docutils literal"><span class="pre">Natural_Earth_quick_start_for_QGIS.qgs</span></tt>. Este es el archivo del proyecto que contiene las capas con estilos ya creados con el formato de documento de QGIS. Haga clic en <em class="guilabel">Abrir</em>.</p>
 </li>
 </ol>
 <img alt="../_images/234.png" class="align-center" src="../_images/234.png" />
@@ -239,19 +238,8 @@ projection.</li>
 </ol>
 <img alt="../_images/417.png" class="align-center" src="../_images/417.png" />
 <ol class="arabic simple" start="5">
-<li>You can turn off some map layers for data that we do not need for this map.
-Un-check the box next to <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> and
-<tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt> layers. Before we make a map suitable for printing, we need to choose an appropriate
-projection. This dataset comes in Geographic Coordinate System (GCS) where
-the units are degrees. This is not appropriate for a map where you want the
-distances to be in kilometers or miles. We need to use a Projected
-Coordinate System that minimizes distortions for our region of interest and
-has units in meters. Universal Transverse Mercator (UTM) is a decent choice
-for a projected coordinate system. It is also global, so it&#8217;s a good default
-that you can rely on and  choose a UTM zone that contains your area of
-interest to minimize distortions for your region. In our case, we will use
-UTM Zone 54N. Click the <em class="guilabel">CRS Status</em> button at the bottom-right of
-the QGIS window.</li>
+<li><p class="first">Puede apagar algunas capas de información que no necesitamos en este mapa. Desmarque  al lado de las capas <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> y <tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt>. Antes de hacer un mapa adecuado para la impresión, tenemos que elegir una proyección apropiada. Este conjunto de datos se presenta en Sistema de Coordenadas Geográficas (GCS), donde las unidades son grados. Esto no es apropiado para un mapa en el que se desea que las distancias sean en kilómetros o millas. Tenemos que utilizar un Sistema de Coordenadas Proyectadas que minimiza las distorsiones de nuestra región de interés y tiene unidades en metros. Universal Transverse Mercator (UTM) es una opción de sistema de coordenadas proyectadas decente. También es global, por lo tanto es un buen valor por defecto en el cual confiar y elegir una zona UTM que contenga su área de interés para minimizar distorsiones para su región. En nuestro caso, utilizaremos UTM Zone 54N. Hacer clic en el botón <a href="#id1"><span class="problematic" id="id2">:guilaberl:`CRES Status`</span></a>, abajo a la derecha en la ventana de QGIS</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
@@ -269,13 +257,13 @@ results, select <em class="guilabel">Tokyo / UTM Zone 54N - EPSG:3095</em>. Clic
 </ol>
 <img alt="../_images/616.png" class="align-center" src="../_images/616.png" />
 <ol class="arabic simple" start="7">
-<li>Now we can start to assemble our map. Go to
-<em class="menuselection">Project ‣ New Print Composer</em>.</li>
+<li><p class="first">Ahora podemos comenzar a ensamblar nuestro mapa. Vaya a <em class="menuselection">Project ‣ New Print Composer</em>.</p>
+</li>
 </ol>
 <img alt="../_images/715.png" class="align-center" src="../_images/715.png" />
 <ol class="arabic simple" start="8">
-<li>You will be prompted to enter a title for the composer. You can leave it
-empty and click <em class="guilabel">Ok</em>.</li>
+<li><p class="first">Se le pedirá que introduzca un título para la creación del mapa. Puede dejarlo vacío y hacer clic en <em class="guilabel">Ok</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
@@ -475,7 +463,7 @@ SVG. For this tutorial, let’s export it as an image. Click
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Actualizado por última vez en Oct 08, 2015.<br/>
+      Actualizado por última vez en Oct 09, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

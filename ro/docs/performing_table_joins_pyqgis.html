@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Performing Table Joins (PyQGIS) &mdash; QGIS Tutorials and Tips</title>
+    <title>Realizarea Uniunii Tabelelor (PyQGIS) &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -115,7 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Scriptare în Python pentru Cadrul de Procesare</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Rularea și programarea Activităților de Prelucrare QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Găsirea Poligoanelor Învecinate Dintr-un Strat</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Performing Table Joins (PyQGIS)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Realizarea Uniunii Tabelelor (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Crearea Hărților Web Leaflet cu ajutorul qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Folosirea conectorului Google Maps Engine pentru QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">Resurse de învățare QGIS</a></li>
@@ -194,47 +194,40 @@
       
 
   <div class="section" id="performing-table-joins-pyqgis">
-<h1>Performing Table Joins (PyQGIS)<a class="headerlink" href="#performing-table-joins-pyqgis" title="Permalink to this headline">¶</a></h1>
-<p>[ Download PDF <a class="reference external" href="../pdf/performing_table_joins_pyqgis_a4.pdf">A4</a> <a class="reference external" href="../pdf/performing_table_joins_pyqgisletter.pdf">Letter</a> ]</p>
-<p>This tutorial shows how to use Python scripting in QGIS (PyQGIS) to perform a
-table join and apply a graduated style to the resulting layer. This tutorial
-replicates the steps of the <a class="reference internal" href="performing_table_joins.html"><em>Unificarea tabelelor</em></a> tutorial using only
-python scripting.</p>
+<h1>Realizarea Uniunii Tabelelor (PyQGIS)<a class="headerlink" href="#performing-table-joins-pyqgis" title="Permalink to this headline">¶</a></h1>
+<p>[ Download PDF <a class="reference external" href="../pdf/performing_table_joins_pyqgis_a4.pdf">A4</a> <a class="reference external" href="../pdf/performing_table_joins_pyqgis_letter.pdf">Letter</a> ]</p>
+<p>Acest tutorial vă arată cum să folosiți scripturi Python în QGIS (PyQGIS), pentru a efectua o îmbinare de tabele și pentru a aplica un stil gradat stratului rezultat. Acest tutorial reproduce pașii din tutorialul <a class="reference internal" href="performing_table_joins.html"><em>Unificarea tabelelor</em></a> folosind doar scriptarea Python.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Please refer to <a class="reference internal" href="performing_table_joins.html"><em>Unificarea tabelelor</em></a> tutorial for the overview.</p>
+<h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>Parcurgeți tutorialul <a class="reference internal" href="performing_table_joins.html"><em>Unificarea tabelelor</em></a> pentru o vedere de ansamblu.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<h3>Alte competențe pe care le veți dobândi<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Loading zipped layers in QGIS via Python.</li>
-<li>Using QgsGraduatedSymbolRendererV2 to apply a graduated style to a vector
-layer.</li>
+<li><p class="first">Încărcarea în QGIS a straturilor arhivate, prin intermediul Python.</p>
+</li>
+<li><p class="first">Folosirea QgsGraduatedSymbolRendererV2 pentru a aplica un stil gradat stratului vectorial.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>Download the following files to your computer.</p>
+<h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Descărcați următoarele fișiere în computerul dvs.</p>
 <p><a class="reference external" href="../../downloads/tl_2013_06_tract.zip">tl_2013_06_tract.zip</a></p>
 <p><a class="reference external" href="../../downloads/ca_tracts_pop.csv">ca_tracts_pop.csv</a></p>
 <p><a class="reference external" href="../../downloads/ca_tracts_pop.csvt">ca_tracts_pop.csvt</a></p>
-<p>Data Source <a class="reference internal" href="credits.html#tiger" id="id1">[TIGER]</a> <a class="reference internal" href="credits.html#uscensus" id="id2">[USCENSUS]</a></p>
+<p>Surse de date: <a class="reference internal" href="credits.html#tiger" id="id1">[TIGER]</a> <a class="reference internal" href="credits.html#uscensus" id="id2">[USCENSUS]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
-<p>You can type the following commands in the <em class="guilabel">Python Console</em> or the
-built-in <em class="guilabel">Editor</em> in QGIS.</p>
+<h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<p>Introduceți următoarele comenzi în <em class="guilabel">Consola Python</em> sau în <em class="guilabel">Editorul</em> încorporat în QGIS.</p>
 <ol class="arabic simple">
-<li>Load the shapefile. The Census Tracts file is a zip file containing the
-shapefile. While we can unzip it and load the shapefile, The OGR provider
-has the ability to load the zip file directly via a Virtual Filesystem.
-Adding <tt class="docutils literal"><span class="pre">/vsizip/</span></tt> in the path, we can access the shapefile contained in
-the zip archive.</li>
+<li><p class="first">Încărcați fișierul shape. Fișierul Census Tracts este fișierul zip care conține fisierul shape. În timp ce dezarhivăm și încărcăm fișierul shape, furnizorul OGR are capacitatea de a încărca fișierul zip direct prin unui Sistem de Fișiere Virtual. Prin adăugarea în calea <tt class="docutils literal"><span class="pre">/vsizip/</span></tt>, putem accesa fișierul shape conținut în arhiva zip.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The zip_uri would begin with <tt class="docutils literal"><span class="pre">/vsizip//</span></tt> on Linux and Mac systems.
-(Note the extra /)</p>
+<p class="last">URI-ul zip va începe cu <tt class="docutils literal"><span class="pre">/vsizip//</span></tt> pe sistemele Linux și Mac. (Remarcați caracterul / suplimentar)</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">zip_uri</span> <span class="o">=</span> <span class="s">&#39;/vsizip/C:/Users/Ujaval/Downloads/tl_2013_06_tract.zip&#39;</span>
 <span class="n">shp</span> <span class="o">=</span>  <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">zip_uri</span><span class="p">,</span> <span class="s">&#39;tl_2013_06_tract&#39;</span><span class="p">,</span> <span class="s">&#39;ogr&#39;</span><span class="p">)</span>
@@ -243,8 +236,8 @@ the zip archive.</li>
 </div>
 <img alt="../_images/1105.png" class="align-center" src="../_images/1105.png" />
 <ol class="arabic simple" start="2">
-<li>Load the CSV file. As the CSV file doesn&#8217;t contain any spatial data, we load
-it as a table using the <tt class="docutils literal"><span class="pre">delimitedtext</span></tt> provider.</li>
+<li><p class="first">Încărcați fișierul CSV. Atât timp cât fișierul CSV nu conține date spațiale, îl vom încărca sub forma unui tabel folosind furnizorul <tt class="docutils literal"><span class="pre">delimitedtext</span></tt>.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">csv_uri</span> <span class="o">=</span> <span class="s">&#39;file:///C:/Users/Ujaval/Downloads/ca_tracts_pop.csv?delimiter=,&#39;</span>
 <span class="n">csv</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">csv_uri</span><span class="p">,</span> <span class="s">&#39;ca_tracts_pop&#39;</span><span class="p">,</span> <span class="s">&#39;delimitedtext&#39;</span><span class="p">)</span>
@@ -253,17 +246,12 @@ it as a table using the <tt class="docutils literal"><span class="pre">delimited
 </div>
 <img alt="../_images/248.png" class="align-center" src="../_images/248.png" />
 <ol class="arabic simple" start="3">
-<li>Create the table join. Table joins in QGIS are performed using
-<tt class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></tt> object. We need to specify the <tt class="docutils literal"><span class="pre">GEO.id2</span></tt> field from
-the CSV layer as the <em class="guilabel">Join Field</em> and the <tt class="docutils literal"><span class="pre">GEOID</span></tt> field from the
-shapefile layer as the <em class="guilabel">Target Field</em>. Once you run the following
-code, the shapefile layer will have additional attributes joined from the
-csv layer.</li>
+<li><p class="first">Realizați uniunea tabelelor. Îmbinările tabelelor sunt efectuate folosindu-se obiectul <tt class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></tt>. Avem nevoie de câmpul <tt class="docutils literal"><span class="pre">GEO.id2</span></tt> din stratul CSV ca și <em class="guilabel">câmp de îmbinare</em> și de câmpul <tt class="docutils literal"><span class="pre">GEOID</span></tt> din stratul fișierului shape ca și <em class="guilabel">Câmp Destinație</em>. O dată ce executați următorul cod, stratul fișierului shape va avea atributele suplimentare aduse din stratul csv.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">A common pitfall when using QgsVectorJoinInfo is that both the layers must be
-loaded in the QgsMapLayerRegistry - otherwise the join would not work.</p>
+<p class="last">O capcană comună atunci când se utilizează QgsVectorJoinInfo, este faptul că ambele straturi trebuie să fie încărcate în QgsMapLayerRegistry - în caz contrar, îmbinarea nu ar funcționa.</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">shpField</span><span class="o">=</span><span class="s">&#39;GEOID&#39;</span>
 <span class="n">csvField</span><span class="o">=</span><span class="s">&#39;GEO.id2&#39;</span>
@@ -277,16 +265,12 @@ loaded in the QgsMapLayerRegistry - otherwise the join would not work.</p>
 </div>
 <img alt="../_images/330.png" class="align-center" src="../_images/330.png" />
 <ol class="arabic simple" start="4">
-<li>An easier - and preferred way of accomplishing the same thing is via the
-Processing Framework. You can call the algorithm
-<tt class="docutils literal"><span class="pre">qgis:joinattributestable</span></tt> and create a joined layer.</li>
+<li><p class="first">O modalitate mai ușoară - și preferată, de realizare a acestui lucru este prin intermediul Cadrului de Procesare. Puteți apela algoritmul <tt class="docutils literal"><span class="pre">qgis:joinattributestable</span></tt>, apoi să creați un strat îmbinat.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">We are using the <tt class="docutils literal"><span class="pre">processing.runandload()</span></tt> method to execute the algorithm
-instead of the more common <tt class="docutils literal"><span class="pre">processing.runalg()</span></tt>. Since we want to load
-the resulting joined layer in QGIS, <tt class="docutils literal"><span class="pre">processing.runandload()</span></tt> is a better
-choice.</p>
+<p class="last">Folosim metoda <tt class="docutils literal"><span class="pre">processing.runandload()</span></tt> pentru a executa algoritmul în locul mult mai obișnuitei <tt class="docutils literal"><span class="pre">processing.runalg()</span></tt>. Din moment ce ne dorim să încărcăm stratul îmbinat în QGIS, <tt class="docutils literal"><span class="pre">processing.runandload()</span></tt> reprezintă o alegere mai bună.</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">processing</span>
 <span class="n">shpField</span><span class="o">=</span><span class="s">&#39;GEOID&#39;</span>
@@ -296,12 +280,8 @@ choice.</p>
 </div>
 <img alt="../_images/422.png" class="align-center" src="../_images/422.png" />
 <ol class="arabic simple" start="5">
-<li>We will stick with the original join using <tt class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></tt> for the
-remainder of the tutorial. Now it is time to apply a graduated style to the
-joined layer. The population field name in the joined layer is
-<tt class="docutils literal"><span class="pre">ca_tracts_pop_D001</span></tt>. We will apply a graduated renderer using the
-<tt class="docutils literal"><span class="pre">QgsGraduatedSymbolRendererV2</span></tt> class in the <tt class="docutils literal"><span class="pre">Quantile</span></tt> mode. Refer to
-<a class="reference internal" href="performing_table_joins.html"><em>Unificarea tabelelor</em></a> for the colors and ranges that we need to use.</li>
+<li><p class="first">Vom rămâne cu îmbinarea originală, folosind <tt class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></tt> pentru restul tutorialului. Acum este timpul să aplicăm stratului îmbinat un stil gradat. Denumirea câmpului pentru populație, din stratul îmbinat, este <tt class="docutils literal"><span class="pre">ca_tracts_pop_D001</span></tt>. Vom aplica un render gradat folosind clasa <tt class="docutils literal"><span class="pre">QgsGraduatedSymbolRendererV2</span></tt> în modul <tt class="docutils literal"><span class="pre">Quantile</span></tt>. Parcurgeți <a class="reference internal" href="performing_table_joins.html"><em>Unificarea tabelelor</em></a> pentru culorile și intervalele de care avem nevoie în utilizare.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtGui</span>
 
@@ -357,14 +337,11 @@ joined layer. The population field name in the joined layer is
 </div>
 <img alt="../_images/523.png" class="align-center" src="../_images/523.png" />
 <ol class="arabic simple" start="6">
-<li>Typing the code in the Python Console is useful for small tasks, but it
-is far easier to use the built-in <em class="guilabel">Editor</em>. You can copy the
-entire script in the <em class="guilabel">Editor</em> and click <em class="guilabel">Run</em>. As the
-script finishes, you would have created a table join and styled the
-resulting layer without any manual steps.</li>
+<li><p class="first">Tastarea codului în Consola Python este utilă pentru mici activități, dar este mult mai ușor de utilizat <em class="guilabel">Editorul</em> încorporat. Puteți copia întregul script în <em class="guilabel">Editor</em>, apoi să faceți clic pe <em class="guilabel">Run</em>. O dață ce script-ul se încheie, vom crea o îmbinare de tabel și vom stiliza stratul  rezultat fără pași manuali.</p>
+</li>
 </ol>
 <img alt="../_images/622.png" class="align-center" src="../_images/622.png" />
-<p>Below is the full <tt class="docutils literal"><span class="pre">join_attributes.py</span></tt> file as a reference.</p>
+<p>Mai jos este fișierul <tt class="docutils literal"><span class="pre">join_attributes.py</span></tt> complet, pentru referință.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtGui</span>
 <span class="n">zip_uri</span> <span class="o">=</span> <span class="s">&#39;/vsizip/C:/Users/Ujaval/Downloads/tl_2013_06_tract.zip/tl_2013_06_tract.shp&#39;</span>
 <span class="n">shp</span> <span class="o">=</span>  <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">zip_uri</span><span class="p">,</span> <span class="s">&#39;tl_2013_06_tract&#39;</span><span class="p">,</span> <span class="s">&#39;ogr&#39;</span><span class="p">)</span>
@@ -458,7 +435,7 @@ resulting layer without any manual steps.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Oct 08, 2015.<br/>
+      Last updated on Oct 09, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
