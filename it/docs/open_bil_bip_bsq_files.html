@@ -205,13 +205,18 @@
 <h2>Ottenere i dati necessari<a class="headerlink" href="#get-the-data" title="link permanente per questa intestazione">¶</a></h2>
 <p>Useremo come esempio i dati di <a class="reference external" href="http://glcf.umd.edu/data/landcover/data.shtml">AVHRR Global Land Cover Classification data</a> tratti da <a class="reference external" href="http://glcf.umd.edu/">Global Land Cover Facility</a></p>
 <p>I dataset di Global Coverage sono distribuiti in file di formato <strong>BSQ</strong>. Scaricate il <a class="reference external" href="ftp://ftp.glcf.umd.edu/glcf/Global_Land_Cover/Global/1deg/gl-latlong-1deg-landcover.bsq.gz">1 Degree pixel resolution</a> dataset.</p>
+<p>For convenience, you may directly download a copy of the dataset from the link
+below:</p>
+<p><a class="reference external" href="../../downloads/gl-latlong-1deg-landcover.bsq.gz">gl-latlong-1deg-landcover.bsq.gz</a></p>
 <p>Fonte Dati  <a class="reference internal" href="credits.html#glcf" id="id1">[GLCF]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedimento<a class="headerlink" href="#procedure" title="link permanente per questa intestazione">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">Fate unzip ed estraete dal file archivio il file .bsq. Su Windows, potete usare l&#8217;ottimo <cite>7-Zip utility &lt;http://www.7-zip.org/&gt;`_per leggere ed estrarre file di tipo .gz. Come vedrete disponete soltanto di un file .bsq chiamato ``gl-latlong-1deg-landcover.bsq`</cite>. .Quindi non c&#8217;è alcun file in formato hdr.</p>
-</li>
+<li>Unzip and extract the .bsq file. On Windows, you may use the excellent
+<a class="reference external" href="http://www.7-zip.org/">7-Zip utility</a> to read and extract .gz file. You
+will see that you only have a .bsq file named
+<tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt>.  There is no hdr file.</li>
 </ol>
 <img alt="../_images/1101.png" class="align-center" src="../_images/1101.png" />
 <ol class="arabic simple" start="2">
@@ -240,10 +245,19 @@ byteorder &lt;byte order in which image pixel values are stored, msb or lsb&gt;
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
-<li><p class="first">Adesso aprite un editor di testo e create un file nel formato precisato nel passo precedente. Salvate il file con il nome di <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.hdr</span></tt>. Assicuratevi che il nome del file non abbia l&#8217;estensione <tt class="docutils literal"><span class="pre">.txt</span></tt>  in coda. Alcuni dei valori del file di testo sono di facile comprensione.
-The <strong>ncols</strong> and <strong>nrows</strong> si ricavano facilmente dai metadati e corrispondono al Numero delle Linee e al Numero dei Pixel per Linea. Il <strong>cellsize</strong>  è 1 e corrisponde alla risoluzione del pixel nei metadati.  Le coordinate X e Y dell&#8217;angolo in basso a sinistra saremo invece noi a ricavarle.
-Considerando che il file copre l&#8217;intero pianeta e che l&#8217;unità di misura è in latitudine/longitudine, ne segue che <strong>xllcorner</strong> e <strong>yllcorner</strong>  saranno, rispettivamente, -180 e -90. Non abbiamo alcuna informazione riguardo il nodata_value quindi -9999 è un valore sicuro. Ancora dai metadati ricaviamo che il Pixel Format è Byte così <strong>nbits</strong> sarà uguale a 8 e il pixeltyte sarà  <strong>byte_unsigned</strong>. Non abbiamo informazioni sul byteorder e quindi lasciamo pure msbfirst.</p>
-</li>
+<li>Open a text editor and create a file in the format specified in the previous
+step. Save the file as <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.hdr</span></tt>. Make sure the file
+doesn’t have <tt class="docutils literal"><span class="pre">.txt</span></tt> at the end. Some of the values in the text files are
+easy to understand. The <strong>ncols</strong> and <strong>nrows</strong> come from the metadata as the
+Number of Lines and Number of Pixels per Line. The <strong>cellsize</strong> is 1 as the
+Pixel resolution from the metadata. The X,Y coordinate of lower-left corner
+needs to be worked out by us. Since the file covers the entire world and
+units are lat/long, <strong>xllcorner</strong> and <strong>yllcorner</strong> are -180 and -90
+respectively. We do not have any information about the nodata_value, so -9999
+is a safe bet. From metadata again, Pixel Format is Byte, so <strong>nbits</strong> will
+equal to 8 and pixeltype will be <strong>byte_unsigned</strong>. We do not have
+information about the byteorder, so leave it as msbfirst. You may download
+the correctly formatted HDR file from <a class="reference external" href="../../downloads/gl-latlong-1deg-landcover.hdr">here</a>.</li>
 </ol>
 <img alt="../_images/519.png" class="align-center" src="../_images/519.png" />
 <ol class="arabic simple" start="6">
@@ -281,7 +295,7 @@ Considerando che il file copre l&#8217;intero pianeta e che l&#8217;unità di mi
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Ultimo aggiornamento Oct 09, 2015.<br/>
+      Ultimo aggiornamento Oct 10, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

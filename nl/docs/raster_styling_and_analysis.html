@@ -219,9 +219,10 @@
 </ol>
 <img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
 <p>U zult nu 2 zip-bestanden hebben gedownload.</p>
-<p>For convenience, you can also download a copy of this data by clicking on following links:</p>
-<p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_90_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_90_ascii_one.zip</span></tt></a></p>
-<p><a class="reference download internal" href="../_downloads/gl_gpwv3_pdens_00_ascii_one.zip"><tt class="xref download docutils literal"><span class="pre">gl_gpwv3_pdens_00_ascii_one.zip</span></tt></a></p>
+<p>For convenience, you may directly download a copy of the datasets from the
+links below:</p>
+<p><a class="reference external" href="../../downloads/gl_gpwv3_pdens_90_ascii_one.zip">gl_gpwv3_pdens_90_ascii_one.zip</a></p>
+<p><a class="reference external" href="../../downloads/gl_gpwv3_pdens_00_ascii_one.zip">gl_gpwv3_pdens_00_ascii_one.zip</a></p>
 <p>Gegevensbron <a class="reference internal" href="credits.html#gpw3" id="id1">[GPW3]</a></p>
 </div>
 <div class="section" id="procedure">
@@ -287,8 +288,15 @@
 </ol>
 <img alt="../_images/1322.png" class="align-center" src="../_images/1322.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">In het gedeelte <em class="guilabel">Rasterbanden</em> kunt u de laag selecteren door er op te dubbelklikken. De banden zijn vernoemd naar de naam van het raster, gevolgd door &#64; en het nummer van de band. Omdat onze rasters slechts 1 band hebben, zult u slechts 1 item per band zien. Rasterberekeningen kan rekenkundige bewerkingen toepassen op de pixels van de rasters. In dit geval willen we een eenvoudige formule invoeren om de bevolkingsdichtheid van 1990 af te trekken van die van 2000. Voer <tt class="docutils literal"><span class="pre">glds00ag60&#64;1</span> <span class="pre">-</span> <span class="pre">glds90ag60&#64;1</span></tt> in als de formule. Noem uw uitvoerlaag <em class="guilabel">pop_density_change_2000_1990.tif</em> en selecteer het vak naast <em class="guilabel">Voeg resultaat toe aan project</em>. Klik op <em class="guilabel">OK</em>.</p>
-</li>
+<li>In the <em class="guilabel">Raster bands</em> section, you can select the layer by
+double-clicking on them. The bands are named after the raster name followed
+by &#64; and band number. Since each of our rasters have only 1 band, you will
+see only 1 entry per raster. The raster calculator can apply mathematical
+operations on the raster pixels. In this case we want to enter a simple
+formula to subtract the 1990 population density from 2000. Enter
+<tt class="docutils literal"><span class="pre">glds00ag60&#64;1</span> <span class="pre">-</span> <span class="pre">glds90ag60&#64;1</span></tt> as the formula. Name your output layer as
+<tt class="docutils literal"><span class="pre">pop_density_change_2000_1990.tif</span></tt> and check the box next to
+<em class="guilabel">Add result to project</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/1421.png" class="align-center" src="../_images/1421.png" />
 <ol class="arabic simple" start="15">
@@ -327,9 +335,16 @@
 </ol>
 <img alt="../_images/2117.png" class="align-center" src="../_images/2117.png" />
 <ol class="arabic simple" start="22">
-<li><p class="first">Voer de expressie <tt class="docutils literal"><span class="pre">pop_density_change_2000_1990&#64;1</span> <span class="pre">&lt;</span> <span class="pre">-10</span></tt> in. Wat deze expressie zal doen is de waarde van de pixel op 1 zetten als die voldoet aan de expressie en op 0 als dat niet zo is. Zo zullen we een raster krijgen met een pixelwaarde van 1 waar een negatieve wijziging was en 0 waar dat niet zo was. Noem de uitvoerlaag <tt class="docutils literal"><span class="pre">negative_pop_change_2000_1990</span></tt> en selecteer het vak naast <em class="guilabel">Voeg resultaat toe aan project</em>. Klik op OK.</p>
-</li>
+<li>Enter the expression as shown below What this expression will do is set the
+value of the pixel to 1 is if matches the expression and 0 if it doesn&#8217;t.
+So we will get a raster with pixel value of 1 where there was negative
+change and 0 where there wasn&#8217;t. Name the output layer as
+<tt class="docutils literal"><span class="pre">negative_pop_change_2000_1990</span></tt> and check the box next to <em class="guilabel">Add
+result to project</em>. Click OK.</li>
 </ol>
+<div class="highlight-none"><div class="highlight"><pre>pop_density_change_2000_1990@1 &lt; -10
+</pre></div>
+</div>
 <img alt="../_images/2216.png" class="align-center" src="../_images/2216.png" />
 <ol class="arabic simple" start="23">
 <li><p class="first">Klik met rechts, als de nieuwe laag eenmaal is geladen, op de nieuwe laag en selecteer <em class="guilabel">Eigenschappen</em>. Op de tab <em class="guilabel">Transparantie</em>, voeg 0 toe als de <em class="guilabel">Aanvullende &#8216;no data&#8217; waarde</em>. Deze instelling zal de pixels met de waarden 0 ook transparant maken. Klik op <em class="guilabel">OK</em>.</p>
@@ -366,7 +381,7 @@
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Oct 09, 2015.<br/>
+      Laatste aanpassing op Oct 10, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

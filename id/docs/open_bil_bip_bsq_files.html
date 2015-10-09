@@ -205,13 +205,18 @@
 <h2>Mendapatkan data<a class="headerlink" href="#get-the-data" title="Link permanent untuk headline ini">¶</a></h2>
 <p>Kita akan menggunakan  <a class="reference external" href="http://glcf.umd.edu/data/landcover/data.shtml">AVHRR Global Land Cover Classification data</a>   dari <a class="reference external" href="http://glcf.umd.edu/">Global Land Cover Facility</a> sebagai contoh.</p>
 <p>Dataset Lingkupan Global terdistribusi dalam file <strong>BSQ</strong> . Unduh dataset <a class="reference external" href="ftp://ftp.glcf.umd.edu/glcf/Global_Land_Cover/Global/1deg/gl-latlong-1deg-landcover.bsq.gz">1 Degree pixel resolution</a></p>
+<p>For convenience, you may directly download a copy of the dataset from the link
+below:</p>
+<p><a class="reference external" href="../../downloads/gl-latlong-1deg-landcover.bsq.gz">gl-latlong-1deg-landcover.bsq.gz</a></p>
 <p>Sumber Data <a class="reference internal" href="credits.html#glcf" id="id1">[GLCF]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Prosedur<a class="headerlink" href="#procedure" title="Link permanent untuk headline ini">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">Unzip dan ekstrak file .bsq. Untuk Windows, anda bisa menggunakan <a class="reference external" href="http://www.7-zip.org/">7-Zip utility</a> yang luarbiasa untuk membaca dan mengekstrak file .gz. Anda akan melihat bahwa anda memiliki sebuah file .bsq bernama <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt> . Tidak ada file hdr.</p>
-</li>
+<li>Unzip and extract the .bsq file. On Windows, you may use the excellent
+<a class="reference external" href="http://www.7-zip.org/">7-Zip utility</a> to read and extract .gz file. You
+will see that you only have a .bsq file named
+<tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt>.  There is no hdr file.</li>
 </ol>
 <img alt="../_images/1101.png" class="align-center" src="../_images/1101.png" />
 <ol class="arabic simple" start="2">
@@ -240,8 +245,19 @@ byteorder &lt;byte order in which image pixel values are stored, msb or lsb&gt;
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
-<li><p class="first">Buka sebuah teks editor dan buat file dalam format yang ditentukan pada tahap sebelumnya. Simpan file dengan nama <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.hdr</span></tt> . Pastikan file tidak berakhiran <tt class="docutils literal"><span class="pre">.txt</span></tt> . Beberapa nilai dalan file teks mudah untuk dimengerti. <strong>ncols</strong> dan <strong>nrows</strong> diperoleh dari metadata sebagai jumlah garis dan jumlah pixel per garis. <strong>cellsize</strong> adalah 1 sebagai resolusi pixel dari metadata. Koordinat X,Y dari sudut kiri bawah harus kita kerjakan. Karena file melingkupi seluruh dunia dan unitnya adalah lintang/bujur atau lat/long, <em>xllcorner*</em> dan <strong>yllcorner</strong> adalah -180 dan -90 secara berurutan. Kita tidak memiliki informasi mengenai nodata_value , jadi -9999 adalah angka yang aman. Kembali dari metadata. Format pixel adalah Byte, jadi <strong>nbits</strong>  akan sama dengan 8 dan pixeltypenya <strong>byte_unsigned</strong> . Kita tidak punya informasi mengenai byteorder,  jadi biarkan itu menjadi msbfirst.</p>
-</li>
+<li>Open a text editor and create a file in the format specified in the previous
+step. Save the file as <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.hdr</span></tt>. Make sure the file
+doesn’t have <tt class="docutils literal"><span class="pre">.txt</span></tt> at the end. Some of the values in the text files are
+easy to understand. The <strong>ncols</strong> and <strong>nrows</strong> come from the metadata as the
+Number of Lines and Number of Pixels per Line. The <strong>cellsize</strong> is 1 as the
+Pixel resolution from the metadata. The X,Y coordinate of lower-left corner
+needs to be worked out by us. Since the file covers the entire world and
+units are lat/long, <strong>xllcorner</strong> and <strong>yllcorner</strong> are -180 and -90
+respectively. We do not have any information about the nodata_value, so -9999
+is a safe bet. From metadata again, Pixel Format is Byte, so <strong>nbits</strong> will
+equal to 8 and pixeltype will be <strong>byte_unsigned</strong>. We do not have
+information about the byteorder, so leave it as msbfirst. You may download
+the correctly formatted HDR file from <a class="reference external" href="../../downloads/gl-latlong-1deg-landcover.hdr">here</a>.</li>
 </ol>
 <img alt="../_images/519.png" class="align-center" src="../_images/519.png" />
 <ol class="arabic simple" start="6">
@@ -279,7 +295,7 @@ byteorder &lt;byte order in which image pixel values are stored, msb or lsb&gt;
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Terakhir diperbarui pada Oct 09, 2015.<br/>
+      Terakhir diperbarui pada Oct 10, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
