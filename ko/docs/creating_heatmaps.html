@@ -201,25 +201,40 @@
 <div class="section" id="overview-of-the-task">
 <h2>과업 개요<a class="headerlink" href="#overview-of-the-task" title="제목 주소">¶</a></h2>
 <p>이 예제에서는 2011년 영국 Surrey의 범죄발생위치 데이터셋으로 작업을 할 것이고 군에서 가장 범죄가 많이 발생한 지역을 찾을 것입니다.</p>
+<div class="section" id="other-skills-you-will-learn">
+<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="제목 주소">¶</a></h3>
+<ul class="simple">
+<li>How to perform <em>HotSpot</em> or <em>Cluster</em> analysis on dense point data.</li>
+</ul>
+</div>
 </div>
 <div class="section" id="get-the-data">
 <h2>데이터 획득<a class="headerlink" href="#get-the-data" title="제목 주소">¶</a></h2>
-<p>런던 데이터스토어는  <a href="#id1"><span class="problematic" id="id2">`</span></a>raw data from the Police.uk crime mapping website &lt;<a class="reference external" href="http://data.london.gov.uk/datastore/package/policeuk-crime-data">http://data.london.gov.uk/datastore/package/policeuk-crime-data</a>&gt;`_를 제공합니다.</p>
-<p>Download the <a class="reference external" href="http://data.london.gov.uk/datafiles/crime-community-safety/police-uk-crime-data-surrey.zip">Surrey data</a>.</p>
-<p>For convenience, you can directly download the sample data used in this
-tutorial from link below.</p>
-<p><a class="reference download internal" href="../_downloads/police-uk-crime-data-surrey.zip"><tt class="xref download docutils literal"><span class="pre">police-uk-crime-data-surrey.zip</span></tt></a></p>
+<p><a class="reference external" href="https://data.police.uk">data.police.uk</a> provides street-level crime,
+outcome, and stop and search data in simple CSV format.</p>
+<p>Download the data for <a class="reference external" href="https://data.police.uk/data/">Surrey Police</a> and unzip
+the downloaded archive to extract the CSV file.</p>
+<p>For convenience, you may directly download a copy of the dataset from the link
+below:</p>
+<p><a class="reference external" href="../../downloads/2015-08-surrey-street.csv">2015-08-surrey-street.csv</a></p>
+<p>Data Source <a class="reference internal" href="credits.html#policeuk" id="id1">[POLICEUK]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>과정<a class="headerlink" href="#procedure" title="제목 주소">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">폴더에서 데이터 압축을 해제하고 시작합니다. 데이터는 CSV포맷으로 되어 있습니다. QGIS로 이 데이터를 불러옵니다(자세한 내용은 :doc:<a href="#id1"><span class="problematic" id="id2">`</span></a>importing_spreadsheets_csv`를 보십시오). 메뉴 레이어 &#8211;&gt; 구분자로 분리된 텍스트 레이어  :menuselection:<a href="#id3"><span class="problematic" id="id4">`</span></a>Layer &#8211;&gt; Add Delimited Text Layer`를 클릭합니다.</p>
-</li>
+<li>To start, we will import the CSV file into QGIS. (see
+<a class="reference internal" href="importing_spreadsheets_csv.html"><em>스프레드쉬트 혹은 CSV파일 불러오기</em></a>. for more details). Click
+<em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</li>
 </ol>
 <img alt="../_images/126.png" class="align-center" src="../_images/126.png" />
 <ol class="arabic simple" start="2">
-<li><p class="first">컴퓨터에서  <cite>police-uk-crime-data-surrey.txt`파일을 찾아서 엽니다. 파일 유형으로 :guilabel:`CSV (comma separated values)`를 선택합니다. *Easting*과 *Northing* 열이 자동적으로 X와 Y필드에 선택된 것을 볼 수 있습니다. 공간인덱스사용 :guilabel:`Use spatial index</cite> 옵션이 체크되어 있는지 확인합니다. 이것은 이 레이어의 작동속도를 높여줄 것입니다. :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>OK`를 클릭합니다.</p>
-</li>
+<li>Browse to the <tt class="docutils literal"><span class="pre">2015-08-surrey-street.csv</span></tt> file on your computer and open
+it. (Your filename maybe different if you downloaded a fresh copy of the
+dataset). Select <em class="guilabel">CSV (comma separated values)</em> as the file
+format. You will see the <tt class="docutils literal"><span class="pre">Longitude</span></tt> and <tt class="docutils literal"><span class="pre">Latitude</span></tt> columns automatically
+selected as X and Y fields. Make sure you check the <em class="guilabel">Use spatial
+index</em> option as that will speed up your operations on this layer. Click
+<em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
 <ol class="arabic simple" start="3">
@@ -228,103 +243,170 @@ tutorial from link below.</p>
 </ol>
 <img alt="../_images/310.png" class="align-center" src="../_images/310.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">다음, 좌표계 <a href="#id1"><span class="problematic" id="id2">`</span></a>Coordinate Reference System (CRS)`를 선택합니다. 데이터에 대한 자세한 설명을 읽으면 이 데이터의 공간참조가 <em>British National Grid</em> 임을 알게될 것입니다. CRS로  :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>OSGB 1936 / British National Grid`를 선택합니다. :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>OK`를 클릭합니다.</p>
-</li>
+<li>As the data layer is loaded in QGIS, you will see a warning dialog
+<em class="guilabel">CRS was undefined: defaulting to CRS EPSG:4326 - WGS84</em>. The CSV
+importer assumes the CRS EPSG:4326 if your coordinates are in
+Latitude/Longitude. If your X and Y coordinates were in a projected CRS, you
+will get a dialog prompting you to choose the CRS. As our data is in
+EPSG:4326, you can ignore the warning.</li>
 </ol>
+<div class="admonition note">
+<p class="first admonition-title">주석</p>
+<p class="last">If you need to change the automatically assigned CRS, you can use
+<em class="menuselection">Vector ‣ Data Management Tols ‣ Define Current
+Projection...</em>.</p>
+</div>
 <img alt="../_images/47.png" class="align-center" src="../_images/47.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">이제 QGIS로 데이터가 불러들여지는 것을 볼 것입니다.</p>
+<li><p class="first">데이터를 좀 더 자세히 보기 위해서 확대를 합니다. 데이터가 상당히 조밀하고 점들이 어디에 가장 밀집되어 있는지 알기 어렵다는 것을 알게될 것입니다. 이것이 어디에 열지도가 유용한지를 알려줍니다.</p>
 </li>
 </ol>
 <img alt="../_images/57.png" class="align-center" src="../_images/57.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">데이터를 좀 더 자세히 보기 위해서 확대를 합니다. 데이터가 상당히 조밀하고 점들이 어디에 가장 밀집되어 있는지 알기 어렵다는 것을 알게될 것입니다. 이것이 어디에 열지도가 유용한지를 알려줍니다.</p>
-</li>
+<li>If you need to create a heatmap for purely visual purpose or for printing -
+QGIS has a built-in symbology renderer called <em class="guilabel">Heatmap</em>. Let&#8217;s try
+that first. Right-click on the layer <tt class="docutils literal"><span class="pre">2015-08-surrey-street</span></tt> and select
+<em class="guilabel">Properties</em>.</li>
 </ol>
 <img alt="../_images/66.png" class="align-center" src="../_images/66.png" />
 <ol class="arabic simple" start="7">
-<li>To create the heatmap, you need to enable a core plugin named <tt class="docutils literal"><span class="pre">Heatmap</span></tt>. See <a class="reference internal" href="using_plugins.html"><em>플러그인 사용하기</em></a> to know how to enable built-in plugins. Once you have enabled the plugin, go to <em class="menuselection">Raster ‣ Heatmap ‣ Heatmap</em>.</li>
+<li>In the <em class="guilabel">Properties</em> dialog, switch to the <em class="guilabel">Style</em> tab.
+Select <em class="guilabel">Heatmap</em> as the renderer. You have a lot of choice of
+color-ramps for the heatmap. Choose the <tt class="docutils literal"><span class="pre">Oranges</span></tt> color-ramp. Leave the
+other parameters to default and click <em class="guilabel">OK</em>.</li>
 </ol>
-<div class="admonition warning">
-<p class="first admonition-title">경고</p>
-<p class="last">The Heatmap plugin has a bug in QGIS 2.8.1. See <a class="reference external" href="http://gis.stackexchange.com/questions/137770/why-are-heatmaps-on-qgis-2-8-1-produced-in-the-wrong-crs">this post</a> for workarounds.</p>
-</div>
 <img alt="../_images/76.png" class="align-center" src="../_images/76.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">열지도 플러그인  :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Heatmap Plugin`에서 출력 래스터 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Output raster`sms 파일이름으로  <a href="#id5"><span class="problematic" id="id6">`</span></a>crime_heatmap`를 입력합니다. 반지름 :guilabel:<a href="#id7"><span class="problematic" id="id8">`</span></a>Radius`으로 <a href="#id9"><span class="problematic" id="id10">`</span></a>1000`을 입력합니다. 반지름은 각 포인트의 주변지역으로 픽셀이 갖고 있는 <a href="#id11"><span class="problematic" id="id12">`</span></a>heat`를 계산하는게 사용될 것입니다. 고급 :guilabel:<a href="#id13"><span class="problematic" id="id14">`</span></a>Advanced`을 체크해서 열지도의 출력 크기를 정할 수 있습니다. 셀크기 X :guilabel:<a href="#id15"><span class="problematic" id="id16">`</span></a>Cell Size X`와 셀크기 Y :guilabel:<a href="#id17"><span class="problematic" id="id18">`</span></a>Cell Size Y`로 <a href="#id19"><span class="problematic" id="id20">`</span></a>100`을 입력합니다.  :guilabel:<a href="#id21"><span class="problematic" id="id22">`</span></a>OK`를 클릭합니다.</p>
-</li>
+<li>You will see a nice heatmap of your data and pockets of <em>heat</em> where there
+is a high concentration of crime. There are quite a few options available in
+the heatmap renderer to create the most appropriate visualization for your
+dataset. If you just wanted to create a heatmap for print or visual
+inspection - you are done! But we will explore another more powerful heatmap
+creation option where you can use the results in your analysis also.</li>
 </ol>
 <img alt="../_images/86.png" class="align-center" src="../_images/86.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">일단 과정이 종료되면 캔버스에 회색 열지도를 보게 될 것입니다.</p>
-</li>
+<li>Enable a core plugin named <tt class="docutils literal"><span class="pre">Heatmap</span></tt>. See <a class="reference internal" href="using_plugins.html"><em>플러그인 사용하기</em></a> to know how
+to enable built-in plugins. Once you have enabled the plugin, go to
+<em class="menuselection">Raster ‣ Heatmap ‣ Heatmap</em>.</li>
 </ol>
 <img alt="../_images/96.png" class="align-center" src="../_images/96.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">열지도를 자주 보아왔던 전통적인 열지도로 만들어 보겠습니다. 열지도 레이어를 우측클릭하고 속성 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Properties`을 클릭합니다.</p>
-</li>
+<li>In the <em class="guilabel">Heatmap Plugin</em> dialog, choose <tt class="docutils literal"><span class="pre">crime_heatmap</span></tt> as the
+name out the <em class="guilabel">Output raster</em>. Enter <cite>1000</cite> meters as the
+<em class="guilabel">Radius</em>. Radius is the area around each point that will be used
+to calculate the i`heat` a pixel received. Check the <em class="guilabel">Advanced</em> so
+we can specify the output size of our heatmap. Enter <tt class="docutils literal"><span class="pre">2000</span></tt> as
+<em class="guilabel">Rows</em> value. The <em class="guilabel">Columns</em> value will update
+automatically. Click <em class="guilabel">OK</em> to start the heatmap creation process.</li>
 </ol>
 <img alt="../_images/106.png" class="align-center" src="../_images/106.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">스타일 <em class="guilabel">Style`탭에서 랜터유형 :guilabel:`Render type`으로 단일밴드 의사색채  :guilabel:`Singleband pseudocolor`를 선택합니다. 다음으로, 최소/최대값 불러오기 :guilabel:`Load min/max values</em> 부분에서 정확도 <em class="guilabel">Accuracy`로 실제값 느림 :guilabel:`Actual (slower)`를 선택하고 불러오기 :guilabel:`Load`를 클릭합니다. 이 작업은 열지도를 조사하고 최소 그리고 최대 픽셀값을 찾습니다. 이러한 값들은 적절한 색상표를 만드는데 사용될 것입니다. 새 색상표 작성 :guilabel:`Generate new color map`부분에서 색상표로 :guilabel:`YlOrRd</em> (Yellow-Orange-Red)를 선택하고 분류 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Classify`를 클릭합니다. :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>OK`를 클릭합니다.</p>
-</li>
+<li>Once the processing is finished, you will see a grayscale layer called
+<tt class="docutils literal"><span class="pre">crime_heatmap</span></tt> loaded into the canvas. Uncheck the
+<tt class="docutils literal"><span class="pre">2015-08-surrey-street</span></tt> layer.</li>
 </ol>
 <img alt="../_images/1110.png" class="align-center" src="../_images/1110.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">이제 보다 열지도 답게 표현된 레이어를 보게될 것입니다. 객체 확인 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Identify`툴을 선택해서 열지도의 아무 픽셀이나 클릭을 합니다. 결과 팝업창에서 픽셀 값을 보게될 것입니다. 이 픽셀 값은 픽셀 주변 반경 즉, 명시된 반경 내(예제에서는 - 1000m)에 원래 레이어로부터 얼마나 많은 점들이 포함되어 있는지를 계산한 것입니다.</p>
-</li>
+<li>Let&#8217;s make our heatmap look more like the traditional heatmap similar to
+the earlier visualization. Right-click on the heatmap layer and click
+<em class="guilabel">Properties</em>.</li>
 </ol>
 <img alt="../_images/127.png" class="align-center" src="../_images/127.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">이제 열지도가 완성되었습니다. 이것은 시각적 해석에 유용합니다. 그러나 분석에 이 결과를 사용하기에는 유용하지 않습니다. 여러번 가장 점이 밀집한 곳 즉  <cite>hotspots</cite> 을 찾아내고자 했습니다. 이 열지도를 가지고  <cite>hotspots</cite> 을 찾아보도록 하겠습니다. 메뉴 래스터 &#8211;&gt; 래스터 계산기 :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Raster &#8211;&gt; Raster Calculator`로 가십시오.</p>
-</li>
+<li>In the <em class="guilabel">Style</em> tab, select <em class="guilabel">Singleband pseudocolor</em> as
+the <em class="guilabel">Render type</em>. Next, under the section <em class="guilabel">Load
+min/max values</em>, select the <em class="guilabel">Estimate (faster)</em> as the
+<em class="guilabel">Accuracy</em> and click <em class="guilabel">Load</em>. This will scan the heatmap
+and find the minimum and maximum pixel values. These values will be used to
+generate an appropriate color ramp. In the section <em class="guilabel">Generate new
+color map</em>, select <em class="guilabel">YlOrRd</em> (Yellow-Orange-Red) as the color
+ramp, and click <em class="guilabel">Classify</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/136.png" class="align-center" src="../_images/136.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">첫번째로 임계값을 정해야 합니다. 임계값을 넘는 모든 픽셀값들은 집단으로 간주될 것입니다. 이 데이터에서는 5를 사용해 보겠습니다. 래스터 계산기 <em class="guilabel">Raster calculator`에서 출력 레이어로  `crime_hotspots`로 파일이름을 입력합니다. 래스터밴드 :guilabel:`Raster bands`부분에서 :guilabel:`crime_heatmap&#64;1</em> 를 더블클릭하면 래스터 연산 표현식 <em class="guilabel">Raster calculator expression</em> 텍스트 부분에 추가될 것입니다. <cite>&#8220;crime_heatmap&#64;1&#8221; &gt; 5`로 표현식을 완성합니다. 결과를 프로젝트에 추가 :guilabel:`Add result to project</cite> 옆 상자를 체크하고 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>OK`를 클릭합니다.</p>
+<li><p class="first">이제 보다 열지도 답게 표현된 레이어를 보게될 것입니다. 객체 확인 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Identify`툴을 선택해서 열지도의 아무 픽셀이나 클릭을 합니다. 결과 팝업창에서 픽셀 값을 보게될 것입니다. 이 픽셀 값은 픽셀 주변 반경 즉, 명시된 반경 내(예제에서는 - 1000m)에 원래 레이어로부터 얼마나 많은 점들이 포함되어 있는지를 계산한 것입니다.</p>
 </li>
 </ol>
 <img alt="../_images/146.png" class="align-center" src="../_images/146.png" />
 <ol class="arabic simple" start="15">
-<li><p class="first">QGIS에 새로운 레이어가 추가될 것입니다. 이 레이어의 픽셀들은 0 혹은 1의 값을 갖습니다. 픽셀값이 5보다 큰 입력레이어의 모든 픽셀들은 1의 값을 갖고 나머지 픽셀들은 0이 됩니다. 메뉴 래스터 &#8211;&gt; 변환 &#8211;&gt; 폴리곤화 /래스터를 벡터로 :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Raster &#8211;&gt; Conversion &#8211;&gt; Polygonize (Raster to Vector)`로 갑니다.</p>
-</li>
+<li>Now you have your heatmap layer that can be saved for future use. Many
+times, you want to identify the hotspots where there is
+high-concentration of points. We will now try to identify such hotspots
+using this heatmap. Go to <em class="menuselection">Raster ‣ Raster Calculator</em>.</li>
 </ol>
 <img alt="../_images/156.png" class="align-center" src="../_images/156.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">출력 파일명을 <em class="guilabel">crime_hotspots_vector`로 입력합니다. 필드이름 :guilabel:`Field name`뿐만 아니라 종료시 캔버스로 불러옴 :guilabel:`Load into canvas when finished</em> 옆 상자를 체크합니다. :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>OK`를 클릭합니다.</p>
-</li>
+<li>You will have to decide on a threshold value first. All pixel values above
+that threshold will be considered to be in a cluster. Let&#8217;s use a value of
+<tt class="docutils literal"><span class="pre">10</span></tt> for this data. In <em class="guilabel">Raster calculator</em> dialog, name the
+output layer as <tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt>. Double-click on
+<tt class="docutils literal"><span class="pre">crime_heatmap&#64;1</span></tt> under the <em class="guilabel">Raster bands</em> section and
+it will be added to the <em class="guilabel">Raster calculator expression</em> textarea.
+Complete the expression as shown below.  Check the box next to
+<em class="guilabel">Add result to project</em> and <em class="guilabel">OK</em>.</li>
 </ol>
+<div class="highlight-none"><div class="highlight"><pre>&quot;crime_heatmap@1&quot; &gt; 10
+</pre></div>
+</div>
 <img alt="../_images/166.png" class="align-center" src="../_images/166.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">일단 변환이 종료되면 또 다른 레이어가 QGIS에 추가될 것입니다. 이것은 전단계에서 만들어진 클러스터가 벡터로 표현된 것입니다. 이 레이어는 0과 1값 모두를 가진 클러스터를 포함하고 있습니다. 0값을 걸러내 보도록 하겠습니다. 그러면 핫스팟 클러스터를 얻게됩니다. 레이어를 우측클릭하고 속성테이블 열기 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Open Attribute Table`를 선택합니다.</p>
-</li>
+<li>A new layer called <tt class="docutils literal"><span class="pre">crime_hotspots</span></tt> will be added to QGIS. This layer has
+pixels with values of either 0 or 1. All pixels in the input layer where
+the pixel value was larger than <tt class="docutils literal"><span class="pre">10</span></tt> now have a value of 1 and all
+remianing pixels are 0. Click on <em class="menuselection">Raster ‣ Conversion ‣
+Polygonize (Raster to Vector)</em>.</li>
 </ol>
 <img alt="../_images/175.png" class="align-center" src="../_images/175.png" />
 <ol class="arabic simple" start="18">
-<li><p class="first">속성 테이블 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Attribute table`에서 표현식을 이용해 객체 선택 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Select feature using an expression`을 클릭합니다.</p>
-</li>
+<li>Name the output file as <tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt>. Check the box
+next to <em class="guilabel">Field name</em> as well as <em class="guilabel">Load into canvas when
+finished</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/186.png" class="align-center" src="../_images/186.png" />
 <ol class="arabic simple" start="19">
-<li><p class="first">표현식으로 <a href="#id1"><span class="problematic" id="id2">`</span></a>&#8220;DN&#8221; = 1`를 입력하고 선택  :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Select`을 클릭합니다. 다음 닫기  :guilabel:<a href="#id5"><span class="problematic" id="id6">`</span></a>Close`를 클릭합니다.</p>
-</li>
+<li>Once the conversion finishes, you will have yet another layer named
+<tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt> added to QGIS. This is the vector representation
+of the clusters that were created in the previous step. The layers contain
+clusters with both 0 and 1 values.  Let&#8217;s filter out the 0 values, so we
+get the clusters of hotspots.  Right-click on the layer and select
+<em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
 <img alt="../_images/194.png" class="align-center" src="../_images/194.png" />
 <ol class="arabic simple" start="20">
-<li><p class="first">QGIS 메인 창에서 몇 객체가 노란색으로 빛나는 것을 보게 될 것입니다. 이것들이 조회와 맞게 선정된 객체들입니다. 레이어를 우측클릭하고 다른 이름으로 저장 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Save Selection As...`를 선택합니다.</p>
+<li><p class="first">속성 테이블 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Attribute table`에서 표현식을 이용해 객체 선택 :guilabel:<a href="#id3"><span class="problematic" id="id4">`</span></a>Select feature using an expression`을 클릭합니다.</p>
 </li>
 </ol>
 <img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
 <ol class="arabic simple" start="21">
-<li><p class="first">출력 레이어로 파일이름을 <cite>crime_clusters`로 입력합니다. 저장된 파일을 지도에 추가 :guilabel:`Add saved file to map</cite> 옆 상자를 체크하고 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>OK`를 클릭합니다.</p>
-</li>
+<li>Enter the expression as shown below and click <em class="guilabel">Select</em>. Next,
+click on <em class="guilabel">Close</em>.</li>
 </ol>
+<div class="highlight-none"><div class="highlight"><pre>&quot;DN&quot; = 0
+</pre></div>
+</div>
 <img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
 <ol class="arabic simple" start="22">
-<li><p class="first">완료되었습니다. 최종 레이어는 열지도에서 추출한 <a href="#id1"><span class="problematic" id="id2">`</span></a>hotspots`을 포함하고 있습니다. 이 클러스터는 원자료로부터 모아진 <a href="#id3"><span class="problematic" id="id4">*</span></a>intelligence*이고 유용한 시각을 제공할 뿐만 아니라 추가 행동을 위한 기초입력자료로 제공될 수 있습니다.</p>
-</li>
+<li>In the main attribute table window, you will see some features highlighted.
+These are the features that matched our query. Click the <em class="guilabel">Toggle
+editing mode</em> button in the toolbar and then click the <em class="guilabel">Delete
+selected features (DEL)</em> button.</li>
 </ol>
 <img alt="../_images/222.png" class="align-center" src="../_images/222.png" />
+<ol class="arabic simple" start="23">
+<li>Once the selected features are deleted, click the <em class="guilabel">Save Edits</em>
+button and then <em class="guilabel">Toggle editing mode</em> again to put the layer in
+read-only mode. Close the attribute table window.</li>
+</ol>
+<img alt="../_images/232.png" class="align-center" src="../_images/232.png" />
+<ol class="arabic simple" start="24">
+<li>In the main QGIS window, un-check the <tt class="docutils literal"><span class="pre">crime_hotspots</span></tt> layer. The final
+layer <tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt> contains the cluster extracted from the
+heatmap. These clusters are the <em>intelligence</em> gathered from the raw data
+and  can provide useful insights as well as serve as an input for further
+action.</li>
+</ol>
+<img alt="../_images/242.png" class="align-center" src="../_images/242.png" />
 </div>
 </div>
 

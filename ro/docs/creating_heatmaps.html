@@ -200,25 +200,40 @@
 <div class="section" id="overview-of-the-task">
 <h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
 <p>Vom lucra cu un set de date al locațiilor infracțiunilor din Surrey, Marea Britanie pentru anul 2011 și pentru a găsi zonele fierbinți ale criminalității din ținut.</p>
+<div class="section" id="other-skills-you-will-learn">
+<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>How to perform <em>HotSpot</em> or <em>Cluster</em> analysis on dense point data.</li>
+</ul>
+</div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>Aveți la dispoziție <a class="reference external" href="http://data.london.gov.uk/datastore/package/policeuk-crime-data">datele originale de pe site-ul de cartografiere a criminalității londoneze, Police.uk</a>.</p>
-<p>Descărcați <a class="reference external" href="http://data.london.gov.uk/datafiles/crime-community-safety/police-uk-crime-data-surrey.zip">Surrey data</a>.</p>
-<p>For convenience, you can directly download the sample data used in this
-tutorial from link below.</p>
-<p><a class="reference download internal" href="../_downloads/police-uk-crime-data-surrey.zip"><tt class="xref download docutils literal"><span class="pre">police-uk-crime-data-surrey.zip</span></tt></a></p>
+<p><a class="reference external" href="https://data.police.uk">data.police.uk</a> provides street-level crime,
+outcome, and stop and search data in simple CSV format.</p>
+<p>Download the data for <a class="reference external" href="https://data.police.uk/data/">Surrey Police</a> and unzip
+the downloaded archive to extract the CSV file.</p>
+<p>For convenience, you may directly download a copy of the dataset from the link
+below:</p>
+<p><a class="reference external" href="../../downloads/2015-08-surrey-street.csv">2015-08-surrey-street.csv</a></p>
+<p>Data Source <a class="reference internal" href="credits.html#policeuk" id="id1">[POLICEUK]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">Pentru a începe, dezarhivați datele într-un folder. Datele se află în format CSV. Vom importa aceste date în QGIS. (Pentru mai multe detalii, parcurgeți <a class="reference internal" href="importing_spreadsheets_csv.html"><em>Importul Foilor de Calcul sau a Fișierelor CSV</em></a>). Clic pe <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</p>
-</li>
+<li>To start, we will import the CSV file into QGIS. (see
+<a class="reference internal" href="importing_spreadsheets_csv.html"><em>Importul Foilor de Calcul sau a Fișierelor CSV</em></a>. for more details). Click
+<em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</li>
 </ol>
 <img alt="../_images/126.png" class="align-center" src="../_images/126.png" />
 <ol class="arabic simple" start="2">
-<li><p class="first">Navigați către fișierul <cite>police-uk-crime-data-surrey.txt</cite> de pe computerul dvs, apoi deschideți-l. Selectați <em class="guilabel">CSV (comma separated values)</em> ca format de fișier. Veți vedea coloanele <em>Easting</em> și <em>Northing</em> selectate automat în dreptul câmpurilor X și Y. Asigurați-vă că ați bifat opțiunea <em class="guilabel">Use spatial index</em> care va accelera operațiunile efectuate asupra acestui strat. Clic pe <em class="guilabel">OK</em>.</p>
-</li>
+<li>Browse to the <tt class="docutils literal"><span class="pre">2015-08-surrey-street.csv</span></tt> file on your computer and open
+it. (Your filename maybe different if you downloaded a fresh copy of the
+dataset). Select <em class="guilabel">CSV (comma separated values)</em> as the file
+format. You will see the <tt class="docutils literal"><span class="pre">Longitude</span></tt> and <tt class="docutils literal"><span class="pre">Latitude</span></tt> columns automatically
+selected as X and Y fields. Make sure you check the <em class="guilabel">Use spatial
+index</em> option as that will speed up your operations on this layer. Click
+<em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
 <ol class="arabic simple" start="3">
@@ -227,104 +242,170 @@ tutorial from link below.</p>
 </ol>
 <img alt="../_images/310.png" class="align-center" src="../_images/310.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">În continuare, este nevoie să alegem un <cite>Coordinate Reference System (CRS)</cite>. Dacă ați citit descrierea datelor, veți observa că referința spațială a acestora este <em>British National Grid</em>. Alegeți <em class="guilabel">OSGB 1936 / British National Grid</em> ca CRS. Clic pe <em class="guilabel">OK</em>.</p>
-</li>
+<li>As the data layer is loaded in QGIS, you will see a warning dialog
+<em class="guilabel">CRS was undefined: defaulting to CRS EPSG:4326 - WGS84</em>. The CSV
+importer assumes the CRS EPSG:4326 if your coordinates are in
+Latitude/Longitude. If your X and Y coordinates were in a projected CRS, you
+will get a dialog prompting you to choose the CRS. As our data is in
+EPSG:4326, you can ignore the warning.</li>
 </ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you need to change the automatically assigned CRS, you can use
+<em class="menuselection">Vector ‣ Data Management Tols ‣ Define Current
+Projection...</em>.</p>
+</div>
 <img alt="../_images/47.png" class="align-center" src="../_images/47.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">Acum, veți vedea că datele sunt încărcate în QGIS.</p>
+<li><p class="first">Măriți un pic, pentru a vedea mai bine datele. Veți observa că acestea sunt destul de dense, fiind foarte greu să vă dați seama unde ar exista o concentrare mare de puncte. Acesta este momentul când ar fi bine să aveți o hartă calorică.</p>
 </li>
 </ol>
 <img alt="../_images/57.png" class="align-center" src="../_images/57.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">Măriți un pic, pentru a vedea mai bine datele. Veți observa că acestea sunt destul de dense, fiind foarte greu să vă dați seama unde ar exista o concentrare mare de puncte. Acesta este momentul când ar fi bine să aveți o hartă calorică.</p>
-</li>
+<li>If you need to create a heatmap for purely visual purpose or for printing -
+QGIS has a built-in symbology renderer called <em class="guilabel">Heatmap</em>. Let&#8217;s try
+that first. Right-click on the layer <tt class="docutils literal"><span class="pre">2015-08-surrey-street</span></tt> and select
+<em class="guilabel">Properties</em>.</li>
 </ol>
 <img alt="../_images/66.png" class="align-center" src="../_images/66.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">Pentru a crea o hartă calorică, e nevoie de activarea unui plugin numit <tt class="docutils literal"><span class="pre">Heatmap</span></tt>. Pentru a activa plugin-urile interne, parcurgeți <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a>. O dată ce ați activat plugin-ul, mergeți la <em class="menuselection">Raster ‣ Heatmap ‣ Heatmap</em>.</p>
-</li>
+<li>In the <em class="guilabel">Properties</em> dialog, switch to the <em class="guilabel">Style</em> tab.
+Select <em class="guilabel">Heatmap</em> as the renderer. You have a lot of choice of
+color-ramps for the heatmap. Choose the <tt class="docutils literal"><span class="pre">Oranges</span></tt> color-ramp. Leave the
+other parameters to default and click <em class="guilabel">OK</em>.</li>
 </ol>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Pluginul Heatmap are o eroare în QGIS 2.8.1. Citiți <a class="reference external" href="http://gis.stackexchange.com/questions/137770/why-are-heatmaps-on-qgis-2-8-1-produced-in-the-wrong-crs">această postare</a> pentru prevenirea problemelor.</p>
-</div>
 <img alt="../_images/76.png" class="align-center" src="../_images/76.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">În fereastra de dialog <em class="guilabel">Heatmap Plugin</em>, alegeți <cite>crime_heatmap</cite> ca nume pentru <em class="guilabel">Output raster</em>. Introduceți <cite>1000</cite> unități de hartă pentru <em class="guilabel">Radius</em>. Raza determină acea arie din jurul fiecărui punct, care va fi folosită în calculul <cite>căldurii</cite> pe care o primește un pixel. Bifați <em class="guilabel">Advanced</em> pentru a putea specifica dimensiunea hărții. Întroduceți <cite>100</cite> pentru <em class="guilabel">Cell Size X</em> și <em class="guilabel">Cell Size Y</em>. Clic pe <em class="guilabel">OK</em>.</p>
-</li>
+<li>You will see a nice heatmap of your data and pockets of <em>heat</em> where there
+is a high concentration of crime. There are quite a few options available in
+the heatmap renderer to create the most appropriate visualization for your
+dataset. If you just wanted to create a heatmap for print or visual
+inspection - you are done! But we will explore another more powerful heatmap
+creation option where you can use the results in your analysis also.</li>
 </ol>
 <img alt="../_images/86.png" class="align-center" src="../_images/86.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">O dată ce prelucrarea este terminată, veți vedea o hartă calorică, în tonuri de gri, încărcată pe suportul hărții.</p>
-</li>
+<li>Enable a core plugin named <tt class="docutils literal"><span class="pre">Heatmap</span></tt>. See <a class="reference internal" href="using_plugins.html"><em>Utilizarea Plugin-urilor</em></a> to know how
+to enable built-in plugins. Once you have enabled the plugin, go to
+<em class="menuselection">Raster ‣ Heatmap ‣ Heatmap</em>.</li>
 </ol>
 <img alt="../_images/96.png" class="align-center" src="../_images/96.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">Pentru a face harta noastră să semene cât mai mult cu hărțile calorice tradiționale, pe care le-ați  văzut adesea. Faceți clic dreapta pe stratul zonelor și faceți clic pe <em class="guilabel">Properties</em>.</p>
-</li>
+<li>In the <em class="guilabel">Heatmap Plugin</em> dialog, choose <tt class="docutils literal"><span class="pre">crime_heatmap</span></tt> as the
+name out the <em class="guilabel">Output raster</em>. Enter <cite>1000</cite> meters as the
+<em class="guilabel">Radius</em>. Radius is the area around each point that will be used
+to calculate the i`heat` a pixel received. Check the <em class="guilabel">Advanced</em> so
+we can specify the output size of our heatmap. Enter <tt class="docutils literal"><span class="pre">2000</span></tt> as
+<em class="guilabel">Rows</em> value. The <em class="guilabel">Columns</em> value will update
+automatically. Click <em class="guilabel">OK</em> to start the heatmap creation process.</li>
 </ol>
 <img alt="../_images/106.png" class="align-center" src="../_images/106.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">În fila <em class="guilabel">Style</em>, selectați <em class="guilabel">Singleband pseudocolor</em> ca <em class="guilabel">Render type</em>. Mai departe, în secțiunea <em class="guilabel">Load min/max values</em>, selectați <em class="guilabel">Actual (slower)</em> pentru <em class="guilabel">Accuracy</em> și faceți clic pe <em class="guilabel">Load</em>. În acest mod, harta va fi scanată și se vor găsi valorile minime și maxime ale pixelilor. Valorile respective vor fi folosite în generarea unei game de culori corespunzătoare. În secțiunea <em class="guilabel">Generate new color map</em>, selectați gama de culori <em class="guilabel">YlOrRd</em> (Yellow-Orange-Red) și apăsați <em class="guilabel">Classify</em>. Click pe <em class="guilabel">OK</em>.</p>
-</li>
+<li>Once the processing is finished, you will see a grayscale layer called
+<tt class="docutils literal"><span class="pre">crime_heatmap</span></tt> loaded into the canvas. Uncheck the
+<tt class="docutils literal"><span class="pre">2015-08-surrey-street</span></tt> layer.</li>
 </ol>
 <img alt="../_images/1110.png" class="align-center" src="../_images/1110.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">În continuare, veți vedea o redare mult mai aspectuoasă a zonelor fierbinți ale stratului. Puteți selecta instrumentul <em class="guilabel">Identify</em> și să faceți clic pe oricare pixel al hărții calorice. O valoare va fi afișată într-o fereastră de tip pop-up. Această valoare indică numărul de puncte din stratul sursă, conținute în raza specificată (în cazul nostru 1000m), având în centru pixelul respectiv.</p>
-</li>
+<li>Let&#8217;s make our heatmap look more like the traditional heatmap similar to
+the earlier visualization. Right-click on the heatmap layer and click
+<em class="guilabel">Properties</em>.</li>
 </ol>
 <img alt="../_images/127.png" class="align-center" src="../_images/127.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">Acum aveți propria hartă calorică. Aceasta este utilă în interpretarea vizuală, dar nu și atunci când doriți să folosiți aceste rezultate în analiză. De multe ori, este necesară identificarea <cite>punctelor fierbinți</cite>, în care există o mare concentrare de puncte. Pentru depistarea lor, vom folosi această hartă. Mergeți la <em class="menuselection">Raster ‣ Raster Calculator</em>.</p>
-</li>
+<li>In the <em class="guilabel">Style</em> tab, select <em class="guilabel">Singleband pseudocolor</em> as
+the <em class="guilabel">Render type</em>. Next, under the section <em class="guilabel">Load
+min/max values</em>, select the <em class="guilabel">Estimate (faster)</em> as the
+<em class="guilabel">Accuracy</em> and click <em class="guilabel">Load</em>. This will scan the heatmap
+and find the minimum and maximum pixel values. These values will be used to
+generate an appropriate color ramp. In the section <em class="guilabel">Generate new
+color map</em>, select <em class="guilabel">YlOrRd</em> (Yellow-Orange-Red) as the color
+ramp, and click <em class="guilabel">Classify</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/136.png" class="align-center" src="../_images/136.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">Mai întâi, va trebui să stabiliți o valoare de prag. Toate valorile pixelilor care depășesc acest prag, vor fi considerate ca făcând parte dintr-o aglomerare. Să folosim o valoare de 5 pentru aceste date. În fereastra de dialog <em class="guilabel">Raster calculator</em>, denumiți stratul de ieșire ca <cite>crime_hotspots</cite>. Dublu-clic pe <em class="guilabel">crime_heatmap&#64;1</em> din secțiunea <em class="guilabel">Raster bands</em>, pentru a-l adăuga în zona de text <em class="guilabel">Raster calculator expression</em>. Introduceți expresia <cite>&#8220;crime_heatmap&#64;1&#8221; &gt; 5</cite>. Bifați caseta de lângă <em class="guilabel">Add result to project</em> și apăsați <em class="guilabel">OK</em>.</p>
+<li><p class="first">În continuare, veți vedea o redare mult mai aspectuoasă a zonelor fierbinți ale stratului. Puteți selecta instrumentul <em class="guilabel">Identify</em> și să faceți clic pe oricare pixel al hărții calorice. O valoare va fi afișată într-o fereastră de tip pop-up. Această valoare indică numărul de puncte din stratul sursă, conținute în raza specificată (în cazul nostru 1000m), având în centru pixelul respectiv.</p>
 </li>
 </ol>
 <img alt="../_images/146.png" class="align-center" src="../_images/146.png" />
 <ol class="arabic simple" start="15">
-<li><p class="first">Un nou strat va fi adăugat în QGIS. Acest strat are pixeli cu valori de 0 sau 1. Toți pixelii din stratul de intrare a căror valoare a fost mai mare de 5, au acum valoarea 1, ceilalți pixeli având valoarea 0. Faceți clic pe <em class="menuselection">Raster ‣ Conversion ‣ Polygonize (Raster to Vector)</em>.</p>
-</li>
+<li>Now you have your heatmap layer that can be saved for future use. Many
+times, you want to identify the hotspots where there is
+high-concentration of points. We will now try to identify such hotspots
+using this heatmap. Go to <em class="menuselection">Raster ‣ Raster Calculator</em>.</li>
 </ol>
 <img alt="../_images/156.png" class="align-center" src="../_images/156.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">Alegeți ca nume, pentru fișierul de ieșire, <em class="guilabel">crime_hotspots_vector</em>. Bifați casetele din dreptul <em class="guilabel">Field name</em> și <em class="guilabel">Load into canvas when finished</em>. Clic pe <em class="guilabel">OK</em>.</p>
-</li>
+<li>You will have to decide on a threshold value first. All pixel values above
+that threshold will be considered to be in a cluster. Let&#8217;s use a value of
+<tt class="docutils literal"><span class="pre">10</span></tt> for this data. In <em class="guilabel">Raster calculator</em> dialog, name the
+output layer as <tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt>. Double-click on
+<tt class="docutils literal"><span class="pre">crime_heatmap&#64;1</span></tt> under the <em class="guilabel">Raster bands</em> section and
+it will be added to the <em class="guilabel">Raster calculator expression</em> textarea.
+Complete the expression as shown below.  Check the box next to
+<em class="guilabel">Add result to project</em> and <em class="guilabel">OK</em>.</li>
 </ol>
+<div class="highlight-none"><div class="highlight"><pre>&quot;crime_heatmap@1&quot; &gt; 10
+</pre></div>
+</div>
 <img alt="../_images/166.png" class="align-center" src="../_images/166.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">O dată ce conversia se termină, veți avea încă un strat suplimentar în QGIS. În acesta sunt reprezentate vectorial aglomerările create în etapa anterioară. Straturile conțin grupări atât cu valorile 0 cât și cu 1. Haideți să filtrăm valorile 0, pentru a obține aglomerări de zone fierbinți. Faceți clic-dreapta pe strat și selectați <em class="guilabel">Open Attribute Table</em>.</p>
-</li>
+<li>A new layer called <tt class="docutils literal"><span class="pre">crime_hotspots</span></tt> will be added to QGIS. This layer has
+pixels with values of either 0 or 1. All pixels in the input layer where
+the pixel value was larger than <tt class="docutils literal"><span class="pre">10</span></tt> now have a value of 1 and all
+remianing pixels are 0. Click on <em class="menuselection">Raster ‣ Conversion ‣
+Polygonize (Raster to Vector)</em>.</li>
 </ol>
 <img alt="../_images/175.png" class="align-center" src="../_images/175.png" />
 <ol class="arabic simple" start="18">
-<li><p class="first">În <em class="guilabel">Attribute table</em>, faceți clic pe <em class="guilabel">Select feature using an expression</em>.</p>
-</li>
+<li>Name the output file as <tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt>. Check the box
+next to <em class="guilabel">Field name</em> as well as <em class="guilabel">Load into canvas when
+finished</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/186.png" class="align-center" src="../_images/186.png" />
 <ol class="arabic simple" start="19">
-<li><p class="first">Introduceți expresia <cite>&#8220;DN&#8221; = 1</cite> și faceți clic pe <em class="guilabel">Select</em>. Apoi, apăsați <em class="guilabel">Close</em>.</p>
-</li>
+<li>Once the conversion finishes, you will have yet another layer named
+<tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt> added to QGIS. This is the vector representation
+of the clusters that were created in the previous step. The layers contain
+clusters with both 0 and 1 values.  Let&#8217;s filter out the 0 values, so we
+get the clusters of hotspots.  Right-click on the layer and select
+<em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
 <img alt="../_images/194.png" class="align-center" src="../_images/194.png" />
 <ol class="arabic simple" start="20">
-<li><p class="first">În fereastra principală a QGIS, veți observa unele entități evidențiate în galben. Acestea sunt entitățile care se potrivesc interogării noastre. Faceți clic dreapta pe strat și selectați <em class="guilabel">Save Selection As...</em>.</p>
+<li><p class="first">În <em class="guilabel">Attribute table</em>, faceți clic pe <em class="guilabel">Select feature using an expression</em>.</p>
 </li>
 </ol>
 <img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
 <ol class="arabic simple" start="21">
-<li><p class="first">Alegeți numele <cite>crime_clusters</cite> pentru stratul de ieșire. Bifați caseta din dreptul <em class="guilabel">Add saved file to map</em> și faceți clic pe <em class="guilabel">OK</em>.</p>
-</li>
+<li>Enter the expression as shown below and click <em class="guilabel">Select</em>. Next,
+click on <em class="guilabel">Close</em>.</li>
 </ol>
+<div class="highlight-none"><div class="highlight"><pre>&quot;DN&quot; = 0
+</pre></div>
+</div>
 <img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
 <ol class="arabic simple" start="22">
-<li><p class="first">Și iată-l! Stratul final conține <cite>zonele fierbinți</cite> extrase din harta calorică. Aceste aglomerări reprezintă <em>informaţiile inteligente</em> extrase din datele inițiale, ele oferind o mai bună înțelegere, și servind drept bază de plecare pentru acțiunile viitoare.</p>
-</li>
+<li>In the main attribute table window, you will see some features highlighted.
+These are the features that matched our query. Click the <em class="guilabel">Toggle
+editing mode</em> button in the toolbar and then click the <em class="guilabel">Delete
+selected features (DEL)</em> button.</li>
 </ol>
 <img alt="../_images/222.png" class="align-center" src="../_images/222.png" />
+<ol class="arabic simple" start="23">
+<li>Once the selected features are deleted, click the <em class="guilabel">Save Edits</em>
+button and then <em class="guilabel">Toggle editing mode</em> again to put the layer in
+read-only mode. Close the attribute table window.</li>
+</ol>
+<img alt="../_images/232.png" class="align-center" src="../_images/232.png" />
+<ol class="arabic simple" start="24">
+<li>In the main QGIS window, un-check the <tt class="docutils literal"><span class="pre">crime_hotspots</span></tt> layer. The final
+layer <tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt> contains the cluster extracted from the
+heatmap. These clusters are the <em>intelligence</em> gathered from the raw data
+and  can provide useful insights as well as serve as an input for further
+action.</li>
+</ol>
+<img alt="../_images/242.png" class="align-center" src="../_images/242.png" />
 </div>
 </div>
 

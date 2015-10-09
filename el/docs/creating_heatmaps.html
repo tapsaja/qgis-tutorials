@@ -200,25 +200,40 @@
 <div class="section" id="overview-of-the-task">
 <h2>Επισκόπηση του έργου<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
 <p>Θα εργαστούμε σε ένα σύνολο δεδομένων για τις περιοχές εγκλημάτων στην Surrey, UK για το έτος 2011 και θα βρούμε τα hotspots εγκλημάτων στη χώρα.</p>
+<div class="section" id="other-skills-you-will-learn">
+<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>How to perform <em>HotSpot</em> or <em>Cluster</em> analysis on dense point data.</li>
+</ul>
+</div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Πάρτε τα δεδομένα<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>Η αποθήκη δεδομένων του Λονδίνου παρέχει raw δεδομένα για την Police.uk στην ιστοσελίδα χαρτογράφησης εγκλημάτων &lt;<a class="reference external" href="http://data.london.gov.uk/datastore/package/policeuk-crime-data">http://data.london.gov.uk/datastore/package/policeuk-crime-data</a>&gt;`_.</p>
-<p>Κατεβάστε τα δεδομένα <a class="reference external" href="http://data.london.gov.uk/datafiles/crime-community-safety/police-uk-crime-data-surrey.zip">Surrey</a>.</p>
-<p>For convenience, you can directly download the sample data used in this
-tutorial from link below.</p>
-<p><a class="reference download internal" href="../_downloads/police-uk-crime-data-surrey.zip"><tt class="xref download docutils literal"><span class="pre">police-uk-crime-data-surrey.zip</span></tt></a></p>
+<p><a class="reference external" href="https://data.police.uk">data.police.uk</a> provides street-level crime,
+outcome, and stop and search data in simple CSV format.</p>
+<p>Download the data for <a class="reference external" href="https://data.police.uk/data/">Surrey Police</a> and unzip
+the downloaded archive to extract the CSV file.</p>
+<p>For convenience, you may directly download a copy of the dataset from the link
+below:</p>
+<p><a class="reference external" href="../../downloads/2015-08-surrey-street.csv">2015-08-surrey-street.csv</a></p>
+<p>Data Source <a class="reference internal" href="credits.html#policeuk" id="id1">[POLICEUK]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Διαδικασία<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">Για να ξεκινήσετε,αποσυμπιέστε τα δεδομένα σε ένα φάκελο.Τα δεδομένα είναι σε μορφή CSV.Θα εισάγουμε τα δεδομένα στο QGIS. (δείτε στο <a class="reference internal" href="importing_spreadsheets_csv.html"><em>Εισαγωγή Φύλλα ή αρχεία CSV</em></a>. για περισσότερες πληροφορίες). Κάντε κλικ στο <em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</p>
-</li>
+<li>To start, we will import the CSV file into QGIS. (see
+<a class="reference internal" href="importing_spreadsheets_csv.html"><em>Εισαγωγή Φύλλα ή αρχεία CSV</em></a>. for more details). Click
+<em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</li>
 </ol>
 <img alt="../_images/126.png" class="align-center" src="../_images/126.png" />
 <ol class="arabic simple" start="2">
-<li><p class="first">Αναζητήστε το αρχείο <cite>police-uk-crime-data-surrey.txt</cite> στον υπολογιστή σας και ανοίξτε το.Επιλέξτε <em class="guilabel">CSV (comma separated values)</em> ως μορφή αρχείου.Θα δείτε τις στήλες <em>Easting</em> και <em>Northing</em> να έχουν επιλεχθεί αυτόματα ως Χ και Υ πεδία. Σιγουρευτείτε ότι έχετε τσεκάρει την επιλογή  <em class="guilabel">Use spatial index</em> καθώς αυτό θα επιταχύνει τις λειτουργίες σε αυτό το επίπεδο. Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
-</li>
+<li>Browse to the <tt class="docutils literal"><span class="pre">2015-08-surrey-street.csv</span></tt> file on your computer and open
+it. (Your filename maybe different if you downloaded a fresh copy of the
+dataset). Select <em class="guilabel">CSV (comma separated values)</em> as the file
+format. You will see the <tt class="docutils literal"><span class="pre">Longitude</span></tt> and <tt class="docutils literal"><span class="pre">Latitude</span></tt> columns automatically
+selected as X and Y fields. Make sure you check the <em class="guilabel">Use spatial
+index</em> option as that will speed up your operations on this layer. Click
+<em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
 <ol class="arabic simple" start="3">
@@ -227,104 +242,170 @@ tutorial from link below.</p>
 </ol>
 <img alt="../_images/310.png" class="align-center" src="../_images/310.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">Στη συνέχεια,θα χρειαστεί να διαλέξετε ένα <cite>Coordinate Reference System (CRS)</cite>. Αν διαβάσετε την περιγραφή δεδομένων,θα παρατηρήσετε ότι η χωρική αναφορά για τα δεδομένα είναι <em>British National Grid</em>. Επιλέξτε το <em class="guilabel">OSGB 1936 / British National Grid</em> ως το CRS. Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
-</li>
+<li>As the data layer is loaded in QGIS, you will see a warning dialog
+<em class="guilabel">CRS was undefined: defaulting to CRS EPSG:4326 - WGS84</em>. The CSV
+importer assumes the CRS EPSG:4326 if your coordinates are in
+Latitude/Longitude. If your X and Y coordinates were in a projected CRS, you
+will get a dialog prompting you to choose the CRS. As our data is in
+EPSG:4326, you can ignore the warning.</li>
 </ol>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you need to change the automatically assigned CRS, you can use
+<em class="menuselection">Vector ‣ Data Management Tols ‣ Define Current
+Projection...</em>.</p>
+</div>
 <img alt="../_images/47.png" class="align-center" src="../_images/47.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">Τώρα θα δείτε τα δεδομένα να έχουν φορτωθεί στο QGIS.</p>
+<li><p class="first">Κάντε Zoom-in λίγο πιο κοντά για δείτε καλύτερα τα δεδομένα.Θα παρατηρήσετε ότι τα δεδομένα είναι λίγο πυκνά και είναι δύσκολο να αντιληφθείτε που υπάρχει μεγάλη συγκέντρωση σημείων.Για κάτι τέτοιο ένας χάρτης heatmap θα ήταν εύχρηστος.</p>
 </li>
 </ol>
 <img alt="../_images/57.png" class="align-center" src="../_images/57.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">Κάντε Zoom-in λίγο πιο κοντά για δείτε καλύτερα τα δεδομένα.Θα παρατηρήσετε ότι τα δεδομένα είναι λίγο πυκνά και είναι δύσκολο να αντιληφθείτε που υπάρχει μεγάλη συγκέντρωση σημείων.Για κάτι τέτοιο ένας χάρτης heatmap θα ήταν εύχρηστος.</p>
-</li>
+<li>If you need to create a heatmap for purely visual purpose or for printing -
+QGIS has a built-in symbology renderer called <em class="guilabel">Heatmap</em>. Let&#8217;s try
+that first. Right-click on the layer <tt class="docutils literal"><span class="pre">2015-08-surrey-street</span></tt> and select
+<em class="guilabel">Properties</em>.</li>
 </ol>
 <img alt="../_images/66.png" class="align-center" src="../_images/66.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">Για να δημιουργήσετε έναν χάρτη τύπου heatmap, θα χρειαστεί να ενεργοποιήσετε ένα βασικό πρόσθετο ποθ ονομάζεται  <tt class="docutils literal"><span class="pre">Heatmap</span></tt>.Δείτε το <a class="reference internal" href="using_plugins.html"><em>Χρησιμοποιώντας Πρόσθετες Λειτουργίες</em></a> για να μάθετε πως να ενεργοποιήσετε τα ενσωματωμένα πρόσθετα.Αφού έχετε ενεργοποιήσει το πρόσθετο, πηγαίνετε στο <em class="menuselection">Raster ‣ Heatmap ‣ Heatmap</em>.</p>
-</li>
+<li>In the <em class="guilabel">Properties</em> dialog, switch to the <em class="guilabel">Style</em> tab.
+Select <em class="guilabel">Heatmap</em> as the renderer. You have a lot of choice of
+color-ramps for the heatmap. Choose the <tt class="docutils literal"><span class="pre">Oranges</span></tt> color-ramp. Leave the
+other parameters to default and click <em class="guilabel">OK</em>.</li>
 </ol>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Το πρόσθετο Heatmap έχει ένα σφάλμα στο QGIS 2.8.1. Δείτε την δημοσίευση &lt;<a class="reference external" href="http://gis.stackexchange.com/questions/137770/why-are-heatmaps-on-qgis-2-8-1-produced-in-the-wrong-crs">http://gis.stackexchange.com/questions/137770/why-are-heatmaps-on-qgis-2-8-1-produced-in-the-wrong-crs</a>&gt;`_ για εναλλακτικές επιλογές.</p>
-</div>
 <img alt="../_images/76.png" class="align-center" src="../_images/76.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">Στο παράθυρο διαλόγου  <em class="guilabel">Heatmap Plugin</em>, επιλέξτε <cite>crime_heatmap</cite>  ως όνομα του <em class="guilabel">Output raster</em>. Εισάγετε <cite>1000</cite> μονάδες χάρτη στο <em class="guilabel">Radius</em>.Ακτίνα είναι η περιοχή γύρω από ένα σημείο που θα χρησιμοποιηθεί για να υπολογιστεί το <cite>heat`που δέχεται ένα pixel.Τσεκάρετε το :guilabel:`Advanced</cite> έτσι ώστε να ορίσουμε το εξαγόμενο μέγεθος του χάρτη heatmap.Εισάγετε <cite>100</cite> ως <em class="guilabel">Cell Size X</em> και <em class="guilabel">Cell Size Y</em>. Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
-</li>
+<li>You will see a nice heatmap of your data and pockets of <em>heat</em> where there
+is a high concentration of crime. There are quite a few options available in
+the heatmap renderer to create the most appropriate visualization for your
+dataset. If you just wanted to create a heatmap for print or visual
+inspection - you are done! But we will explore another more powerful heatmap
+creation option where you can use the results in your analysis also.</li>
 </ol>
 <img alt="../_images/86.png" class="align-center" src="../_images/86.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">Μόλις τελειώσει η διαδικασία, θα δείτε ένα χάρτη heatmap σε κλίμακα του γκρι να έχει φορτωθεί στον καμβά.</p>
-</li>
+<li>Enable a core plugin named <tt class="docutils literal"><span class="pre">Heatmap</span></tt>. See <a class="reference internal" href="using_plugins.html"><em>Χρησιμοποιώντας Πρόσθετες Λειτουργίες</em></a> to know how
+to enable built-in plugins. Once you have enabled the plugin, go to
+<em class="menuselection">Raster ‣ Heatmap ‣ Heatmap</em>.</li>
 </ol>
 <img alt="../_images/96.png" class="align-center" src="../_images/96.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">Ας κάνουμε το χάρτη heatmap να μοιάζει περισσότερο με τον παραδοσιακό χάρτη heatmap που βλέπουμε συχνά. Δεξί-κλικ στο επίπεδο του heatmap και κλικ στο <em class="guilabel">Properties</em>.</p>
-</li>
+<li>In the <em class="guilabel">Heatmap Plugin</em> dialog, choose <tt class="docutils literal"><span class="pre">crime_heatmap</span></tt> as the
+name out the <em class="guilabel">Output raster</em>. Enter <cite>1000</cite> meters as the
+<em class="guilabel">Radius</em>. Radius is the area around each point that will be used
+to calculate the i`heat` a pixel received. Check the <em class="guilabel">Advanced</em> so
+we can specify the output size of our heatmap. Enter <tt class="docutils literal"><span class="pre">2000</span></tt> as
+<em class="guilabel">Rows</em> value. The <em class="guilabel">Columns</em> value will update
+automatically. Click <em class="guilabel">OK</em> to start the heatmap creation process.</li>
 </ol>
 <img alt="../_images/106.png" class="align-center" src="../_images/106.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">Στην καρτέλα <em class="guilabel">Style</em>,επιλέξτε guilabel:<cite>Singleband pseudocolor</cite> ως <em class="guilabel">Render type</em>.Έπειτα, κάτω από το τμήμα <em class="guilabel">Load min/max values</em>,επιλέξτε το <em class="guilabel">Actual (slower)</em> ως το:guilabel:<cite>Accuracy</cite> και κάντε κλικ στο <em class="guilabel">Load</em>.Αυτό θα σαρώσει το χάρτη heatmap και θα βρει τις ελάχιστες και μέγιστες τιμές pixel.Αυτές οι τιμές θα χρησιμοποιηθούν για να δημιουργηθεί μια κατάλληλη κλίμακα χρωμάτων. Στο τμήμα  <em class="guilabel">Generate new color map</em>,επιλέξτε <em class="guilabel">YlOrRd</em> (Yellow-Orange-Red) ως τη κλίμακα χρώματος και κάντε κλικ στο <em class="guilabel">Classify</em>.Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
-</li>
+<li>Once the processing is finished, you will see a grayscale layer called
+<tt class="docutils literal"><span class="pre">crime_heatmap</span></tt> loaded into the canvas. Uncheck the
+<tt class="docutils literal"><span class="pre">2015-08-surrey-street</span></tt> layer.</li>
 </ol>
 <img alt="../_images/1110.png" class="align-center" src="../_images/1110.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">Τώρα θα δείτε μια πιο ελκυστική απόδοση του επιπέδου που μοιάζει με χάρτη heatmap.Μπορείτε να επιλέξετε το εργαλείο : guilabel: <cite>Identify</cite> και κάντε κλικ σε οποιοδήποτε pixel του χάρτη heatmap. Θα δείτε την τιμή του  pixel στο αναδυόμενο παράθυρο αποτελεσμάτων. Αυτή η τιμή pixel είναι ένα μέτρο του πώς πολλά σημεία από το πηγαίο επίπεδο περιέχονται εντός της καθορισμένης ακτίνας (στην περίπτωσή μας - 1000m) γύρω από το  pixel.</p>
-</li>
+<li>Let&#8217;s make our heatmap look more like the traditional heatmap similar to
+the earlier visualization. Right-click on the heatmap layer and click
+<em class="guilabel">Properties</em>.</li>
 </ol>
 <img alt="../_images/127.png" class="align-center" src="../_images/127.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">Τώρα έχετε το χάρτη heatmap.Είναι χρήσιμο για την οπτική ερμηνεία, αλλά δεν είναι πολύ χρήσιμο αν θέλετε να χρησιμοποιήσετε αυτά τα αποτελέσματα στην ανάλυση. Πολλές φορές, θέλετε να προσδιοριστούν τα <cite>hotspots</cite> όπου υπάρχει υψηλή συγκέντρωση των σημείων. Θα προσπαθήσουμε τώρα να εντοπίσουμε αυτά τα`hotspots` χρησιμοποιώντας αυτό το χάρτη heatmap.Πηγαίνετε σε: menuselection: <cite>Raster -&gt; Raster Calculator</cite>.</p>
-</li>
+<li>In the <em class="guilabel">Style</em> tab, select <em class="guilabel">Singleband pseudocolor</em> as
+the <em class="guilabel">Render type</em>. Next, under the section <em class="guilabel">Load
+min/max values</em>, select the <em class="guilabel">Estimate (faster)</em> as the
+<em class="guilabel">Accuracy</em> and click <em class="guilabel">Load</em>. This will scan the heatmap
+and find the minimum and maximum pixel values. These values will be used to
+generate an appropriate color ramp. In the section <em class="guilabel">Generate new
+color map</em>, select <em class="guilabel">YlOrRd</em> (Yellow-Orange-Red) as the color
+ramp, and click <em class="guilabel">Classify</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/136.png" class="align-center" src="../_images/136.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">Θα πρέπει να αποφασίσετε πρώτα σχετικά με μια οριακή τιμή. Όλες οι τιμές των pixel πάνω από το όριο αυτό θα θεωρούνται ως μια ομάδα. Ας χρησιμοποιήσουμε την τιμή 5 για αυτά τα δεδομένα. Στο παράθυρό διαλόγου :guilabel: <cite>Raster calculator</cite>, ονομάστε το εξαγόμενο επίπεδο ως` crime_hotspots`. Κάντε διπλό κλικ στο: guilabel: <cite>crime_heatmap &#64; 1</cite> κάτω από το  τμήμα : guilabel:<cite>Raster bands</cite> και αυτό θα προστεθεί στην περιοχή κειμένου <em class="guilabel">Raster calculator expression</em>. Συμπληρώστε την έκφραση ως <cite>&#8221; crime_heatmap &#64; 1 &#8220;&gt; 5</cite>. Τσεκάρετε το κουτάκι δίπλα στο <em class="guilabel">Add result to project</em>  και : guilabel:` OK`.</p>
+<li><p class="first">Τώρα θα δείτε μια πιο ελκυστική απόδοση του επιπέδου που μοιάζει με χάρτη heatmap.Μπορείτε να επιλέξετε το εργαλείο : guilabel: <cite>Identify</cite> και κάντε κλικ σε οποιοδήποτε pixel του χάρτη heatmap. Θα δείτε την τιμή του  pixel στο αναδυόμενο παράθυρο αποτελεσμάτων. Αυτή η τιμή pixel είναι ένα μέτρο του πώς πολλά σημεία από το πηγαίο επίπεδο περιέχονται εντός της καθορισμένης ακτίνας (στην περίπτωσή μας - 1000m) γύρω από το  pixel.</p>
 </li>
 </ol>
 <img alt="../_images/146.png" class="align-center" src="../_images/146.png" />
 <ol class="arabic simple" start="15">
-<li><p class="first">Το νέο επίπεδο θα προστεθεί στο QGIS. Αυτό το επίπεδο έχει pixels με τις τιμές είτε 0 είτε 1.Όλα τα pixels στο επίπεδο εισόδου που έχουν τιμή pixel μεγαλύτερη από 5,τώρα έχει τιμή 1 και όλα τα υπόλοιπα pixels έχουν τιμή 0.Κάντε κλικ στο <em class="menuselection">Raster ‣ Conversion ‣ Polygonize (Raster to Vector)</em>.</p>
-</li>
+<li>Now you have your heatmap layer that can be saved for future use. Many
+times, you want to identify the hotspots where there is
+high-concentration of points. We will now try to identify such hotspots
+using this heatmap. Go to <em class="menuselection">Raster ‣ Raster Calculator</em>.</li>
 </ol>
 <img alt="../_images/156.png" class="align-center" src="../_images/156.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">Ονομάστε το εξαγόμενο αρχείο ως <em class="guilabel">crime_hotspots_vector</em>. Τσεκάρετε το κουτάκι δίπλα στο <em class="guilabel">Field name</em> όπως και το <em class="guilabel">Load into canvas when finished</em>. Κάντε κλικ στο <em class="guilabel">OK</em>.</p>
-</li>
+<li>You will have to decide on a threshold value first. All pixel values above
+that threshold will be considered to be in a cluster. Let&#8217;s use a value of
+<tt class="docutils literal"><span class="pre">10</span></tt> for this data. In <em class="guilabel">Raster calculator</em> dialog, name the
+output layer as <tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt>. Double-click on
+<tt class="docutils literal"><span class="pre">crime_heatmap&#64;1</span></tt> under the <em class="guilabel">Raster bands</em> section and
+it will be added to the <em class="guilabel">Raster calculator expression</em> textarea.
+Complete the expression as shown below.  Check the box next to
+<em class="guilabel">Add result to project</em> and <em class="guilabel">OK</em>.</li>
 </ol>
+<div class="highlight-none"><div class="highlight"><pre>&quot;crime_heatmap@1&quot; &gt; 10
+</pre></div>
+</div>
 <img alt="../_images/166.png" class="align-center" src="../_images/166.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">Αφού τελειώσει η μετατροπή, θα έχετε προσθέσει ακόμα ένα επίπεδο στο QGIS. Αυτό είναι η διανυσματική αναπαράσταση των ομάδων που είχαν  δημιουργηθεί στο προηγούμενο βήμα. Τα επίπεδα περιέχουν ομάδες και με τις δύο τιμές 0 και 1. Ας φιλτράρουμε τις τιμές 0, έτσι ώστε να πάρουμε τις ομάδες των hotspots. Κάντε δεξί κλικ στο επίπεδο και επιλέξτε  <em class="guilabel">Open Attribute Table</em>.</p>
-</li>
+<li>A new layer called <tt class="docutils literal"><span class="pre">crime_hotspots</span></tt> will be added to QGIS. This layer has
+pixels with values of either 0 or 1. All pixels in the input layer where
+the pixel value was larger than <tt class="docutils literal"><span class="pre">10</span></tt> now have a value of 1 and all
+remianing pixels are 0. Click on <em class="menuselection">Raster ‣ Conversion ‣
+Polygonize (Raster to Vector)</em>.</li>
 </ol>
 <img alt="../_images/175.png" class="align-center" src="../_images/175.png" />
 <ol class="arabic simple" start="18">
-<li><p class="first">Στο <em class="guilabel">Attribute table</em>, κάντε κλικ στο <em class="guilabel">Select feature using an expression</em>.</p>
-</li>
+<li>Name the output file as <tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt>. Check the box
+next to <em class="guilabel">Field name</em> as well as <em class="guilabel">Load into canvas when
+finished</em>. Click <em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/186.png" class="align-center" src="../_images/186.png" />
 <ol class="arabic simple" start="19">
-<li><p class="first">Εισάγετε την έκφραση ως <cite>&#8220;DN&#8221; = 1</cite>  και κάντε κλικ στο <em class="guilabel">Select</em>. Στη συνέχεια, κάντε κλικ στο <em class="guilabel">Close</em>.</p>
-</li>
+<li>Once the conversion finishes, you will have yet another layer named
+<tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt> added to QGIS. This is the vector representation
+of the clusters that were created in the previous step. The layers contain
+clusters with both 0 and 1 values.  Let&#8217;s filter out the 0 values, so we
+get the clusters of hotspots.  Right-click on the layer and select
+<em class="guilabel">Open Attribute Table</em>.</li>
 </ol>
 <img alt="../_images/194.png" class="align-center" src="../_images/194.png" />
 <ol class="arabic simple" start="20">
-<li><p class="first">Στο κύριο παράθυρο του QGIS,θα δείτε κάποια χαρακτηριστικά με κίτρινη επισήμανση.Αυτά είναι τα χαρακτηριστικά που ταίριαξαν στο αίτημά μας.Κάντε δεξί-κλικ στο επίπεδο και επιλέξτε <em class="guilabel">Save Selection As...</em>.</p>
+<li><p class="first">Στο <em class="guilabel">Attribute table</em>, κάντε κλικ στο <em class="guilabel">Select feature using an expression</em>.</p>
 </li>
 </ol>
 <img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
 <ol class="arabic simple" start="21">
-<li><p class="first">Ονομάστε το εξαγόμενο επίπεδο ως <cite>crime_clusters</cite>. Τσεκάρετε το κουτάκι δίπλα στο <em class="guilabel">Add saved file to map</em> και κάντε κλικ στο <em class="guilabel">OK</em>.</p>
-</li>
+<li>Enter the expression as shown below and click <em class="guilabel">Select</em>. Next,
+click on <em class="guilabel">Close</em>.</li>
 </ol>
+<div class="highlight-none"><div class="highlight"><pre>&quot;DN&quot; = 0
+</pre></div>
+</div>
 <img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
 <ol class="arabic simple" start="22">
-<li><p class="first">Ορίστε το έχετε. Το τελικό επίπεδο περιέχει τα <cite>hotspots</cite> που έχουν εξαχθεί από το χάρτη heatmap. Οι ομάδες αυτές είναι η* νοημοσύνη * που συγκεντρώθηκε από raw δεδομένα και μπορούν να προσφέρουν χρήσιμες πληροφορίες, καθώς και να χρησιμοποιηθούν ως είσοδος για περαιτέρω ενέργειες.</p>
-</li>
+<li>In the main attribute table window, you will see some features highlighted.
+These are the features that matched our query. Click the <em class="guilabel">Toggle
+editing mode</em> button in the toolbar and then click the <em class="guilabel">Delete
+selected features (DEL)</em> button.</li>
 </ol>
 <img alt="../_images/222.png" class="align-center" src="../_images/222.png" />
+<ol class="arabic simple" start="23">
+<li>Once the selected features are deleted, click the <em class="guilabel">Save Edits</em>
+button and then <em class="guilabel">Toggle editing mode</em> again to put the layer in
+read-only mode. Close the attribute table window.</li>
+</ol>
+<img alt="../_images/232.png" class="align-center" src="../_images/232.png" />
+<ol class="arabic simple" start="24">
+<li>In the main QGIS window, un-check the <tt class="docutils literal"><span class="pre">crime_hotspots</span></tt> layer. The final
+layer <tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt> contains the cluster extracted from the
+heatmap. These clusters are the <em>intelligence</em> gathered from the raw data
+and  can provide useful insights as well as serve as an input for further
+action.</li>
+</ol>
+<img alt="../_images/242.png" class="align-center" src="../_images/242.png" />
 </div>
 </div>
 
