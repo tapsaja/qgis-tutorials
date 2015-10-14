@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Performing Table Joins (PyQGIS) &mdash; QGIS Tutorials and Tips</title>
+    <title>Samenvoegen van tabellen uitvoeren (PyQGIS) &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -116,11 +116,10 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Python-scripts schrijven voor framework Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Taken voor QGIS uitvoeren en in schema zetten</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Naburige polygonen in een laag zoeken</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Performing Table Joins (PyQGIS)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Samenvoegen van tabellen uitvoeren (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Kaarten op Leaflet Web met qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Google Maps Engine Connector gebruiken voor QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS bronnen om te leren</a></li>
-<li class="toctree-l1"><a class="reference internal" href="teach_qgis.html">Lesgeven in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">Gebruik van gegevens</a></li>
 </ul>
 </ul>
@@ -195,47 +194,40 @@
       
 
   <div class="section" id="performing-table-joins-pyqgis">
-<h1>Performing Table Joins (PyQGIS)<a class="headerlink" href="#performing-table-joins-pyqgis" title="Permalink naar deze titel">¶</a></h1>
+<h1>Samenvoegen van tabellen uitvoeren (PyQGIS)<a class="headerlink" href="#performing-table-joins-pyqgis" title="Permalink naar deze titel">¶</a></h1>
 <p>[ Download PDF <a class="reference external" href="../pdf/performing_table_joins_pyqgis_a4.pdf">A4</a> <a class="reference external" href="../pdf/performing_table_joins_pyqgis_letter.pdf">Letter</a> ]</p>
-<p>This tutorial shows how to use Python scripting in QGIS (PyQGIS) to perform a
-table join and apply a graduated style to the resulting layer. This tutorial
-replicates the steps of the <a class="reference internal" href="performing_table_joins.html"><em>Samenvoegen van tabellen uitvoeren</em></a> tutorial using only
-python scripting.</p>
+<p>Deze handleiding laat zien hoe scripten in  Python te gebruiken in QGIS (PyQGIS) om tabellen samen te voegen en een graduele stijl toe te passen op de resulterende laag. Deze handleiding repliceert de stappen van de handleiding <a class="reference internal" href="performing_table_joins.html"><em>Samenvoegen van tabellen uitvoeren</em></a> waarbij alleen scripten in Python wordt gebruikt.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
-<p>Please refer to <a class="reference internal" href="performing_table_joins.html"><em>Samenvoegen van tabellen uitvoeren</em></a> tutorial for the overview.</p>
+<h2>Overzicht van de taak<a class="headerlink" href="#overview-of-the-task" title="Permalink naar deze titel">¶</a></h2>
+<p>Bekijk de handleiding <a class="reference internal" href="performing_table_joins.html"><em>Samenvoegen van tabellen uitvoeren</em></a> voor het overzicht.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
+<h3>Andere vaardigheden die u zult leren<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink naar deze titel">¶</a></h3>
 <ul class="simple">
-<li>Loading zipped layers in QGIS via Python.</li>
-<li>Using QgsGraduatedSymbolRendererV2 to apply a graduated style to a vector
-layer.</li>
+<li><p class="first">Gezipte lagen laden in QGIS via Python.</p>
+</li>
+<li><p class="first">QgsGraduatedSymbolRendererV2 gebruiken om een graduele stijl toe te passen op een vectorlaag.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
-<p>Download the following files to your computer.</p>
+<h2>De gegevens ophalen<a class="headerlink" href="#get-the-data" title="Permalink naar deze titel">¶</a></h2>
+<p>Download de volgende bestanden naar uw computer.</p>
 <p><a class="reference external" href="../../downloads/tl_2013_06_tract.zip">tl_2013_06_tract.zip</a></p>
 <p><a class="reference external" href="../../downloads/ca_tracts_pop.csv">ca_tracts_pop.csv</a></p>
 <p><a class="reference external" href="../../downloads/ca_tracts_pop.csvt">ca_tracts_pop.csvt</a></p>
-<p>Data Source <a class="reference internal" href="credits.html#tiger" id="id1">[TIGER]</a> <a class="reference internal" href="credits.html#uscensus" id="id2">[USCENSUS]</a></p>
+<p>Gegevensbron <a class="reference internal" href="credits.html#tiger" id="id1">[TIGER]</a> <a class="reference internal" href="credits.html#uscensus" id="id2">[USCENSUS]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedure<a class="headerlink" href="#procedure" title="Permalink naar deze titel">¶</a></h2>
-<p>You can type the following commands in the <em class="guilabel">Python Console</em> or the
-built-in <em class="guilabel">Editor</em> in QGIS.</p>
+<p>U kunt de volgende opdrachten typen in de <em class="guilabel">Python Console</em> of de ingebouwde <em class="guilabel">Editor</em> in QGIS.</p>
 <ol class="arabic simple">
-<li>Load the shapefile. The Census Tracts file is a zip file containing the
-shapefile. While we can unzip it and load the shapefile, The OGR provider
-has the ability to load the zip file directly via a Virtual Filesystem.
-Adding <tt class="docutils literal"><span class="pre">/vsizip/</span></tt> in the path, we can access the shapefile contained in
-the zip archive.</li>
+<li><p class="first">Laad het shapefile. Het Census Tracts-bestand is een zip-bestand dat het shapefile bevat. Waar we het kunnen uitpakken en het shapefile laden, heeft de OGR- provider de mogelijkheid om het zip-bestand direct te laden via een Virtual Filesystem. Door <tt class="docutils literal"><span class="pre">/vsizip/</span></tt> toe te voegen aan het pad, kunnen we toegang verkrijgen tot het shapefile dat is opgenomen in het zip-archief.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Notitie</p>
-<p class="last">The zip_uri would begin with <tt class="docutils literal"><span class="pre">/vsizip//</span></tt> on Linux and Mac systems.
-(Note the extra /)</p>
+<p class="last">De zip_uri zou moeten beginnen met <tt class="docutils literal"><span class="pre">/vsizip//</span></tt> op systemen van Linux en Mac. (Let op de extra /)</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">zip_uri</span> <span class="o">=</span> <span class="s">&#39;/vsizip/C:/Users/Ujaval/Downloads/tl_2013_06_tract.zip&#39;</span>
 <span class="n">shp</span> <span class="o">=</span>  <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">zip_uri</span><span class="p">,</span> <span class="s">&#39;tl_2013_06_tract&#39;</span><span class="p">,</span> <span class="s">&#39;ogr&#39;</span><span class="p">)</span>
@@ -244,8 +236,8 @@ the zip archive.</li>
 </div>
 <img alt="../_images/1105.png" class="align-center" src="../_images/1105.png" />
 <ol class="arabic simple" start="2">
-<li>Load the CSV file. As the CSV file doesn&#8217;t contain any spatial data, we load
-it as a table using the <tt class="docutils literal"><span class="pre">delimitedtext</span></tt> provider.</li>
+<li><p class="first">Laad het CSV-bestand. Omdat het CSV-bestand geen ruimtelijke gegevens bevat, laden we het als een tabel met behulp van de provider <tt class="docutils literal"><span class="pre">tekstgescheiden</span></tt>.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">csv_uri</span> <span class="o">=</span> <span class="s">&#39;file:///C:/Users/Ujaval/Downloads/ca_tracts_pop.csv?delimiter=,&#39;</span>
 <span class="n">csv</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">csv_uri</span><span class="p">,</span> <span class="s">&#39;ca_tracts_pop&#39;</span><span class="p">,</span> <span class="s">&#39;delimitedtext&#39;</span><span class="p">)</span>
@@ -254,17 +246,12 @@ it as a table using the <tt class="docutils literal"><span class="pre">delimited
 </div>
 <img alt="../_images/250.png" class="align-center" src="../_images/250.png" />
 <ol class="arabic simple" start="3">
-<li>Create the table join. Table joins in QGIS are performed using
-<tt class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></tt> object. We need to specify the <tt class="docutils literal"><span class="pre">GEO.id2</span></tt> field from
-the CSV layer as the <em class="guilabel">Join Field</em> and the <tt class="docutils literal"><span class="pre">GEOID</span></tt> field from the
-shapefile layer as the <em class="guilabel">Target Field</em>. Once you run the following
-code, the shapefile layer will have additional attributes joined from the
-csv layer.</li>
+<li><p class="first">De samenvoeging van de tabellen maken. Samenvoegingen van tabellen in QGIS worden uitgevoerd met behulp van het object <tt class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></tt>. We dienen het veld <tt class="docutils literal"><span class="pre">GEO.id2</span></tt> van de CSV-laag te specificeren als het <em class="guilabel">Join Field</em> en het veld <tt class="docutils literal"><span class="pre">GEOID</span></tt> uit de laag van het shapefile als het <em class="guilabel">Target Field</em>. Als u eenmaal de volgende heeft uitgevoerd, zal de laag van het shapefile aanvullende attributen hebben die zijn samengevoegd vanuit de CSV-laag.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Notitie</p>
-<p class="last">A common pitfall when using QgsVectorJoinInfo is that both the layers must be
-loaded in the QgsMapLayerRegistry - otherwise the join would not work.</p>
+<p class="last">Een veel voorkomende valkuil bij het gebruiken van QgsVectorJoinInfo is dat beide lagen moeten zijn geladen in de QgsMapLayerRegistry - anders zal de samenvoeging niet werken.</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">shpField</span><span class="o">=</span><span class="s">&#39;GEOID&#39;</span>
 <span class="n">csvField</span><span class="o">=</span><span class="s">&#39;GEO.id2&#39;</span>
@@ -278,16 +265,12 @@ loaded in the QgsMapLayerRegistry - otherwise the join would not work.</p>
 </div>
 <img alt="../_images/330.png" class="align-center" src="../_images/330.png" />
 <ol class="arabic simple" start="4">
-<li>An easier - and preferred way of accomplishing the same thing is via the
-Processing Framework. You can call the algorithm
-<tt class="docutils literal"><span class="pre">qgis:joinattributestable</span></tt> and create a joined layer.</li>
+<li><p class="first">Een gemakkelijker - en aanbevolen manier van het bereiken van hetzelfde is via het Framework Processing. U kunt het algoritme <tt class="docutils literal"><span class="pre">qgis:joinattributestable</span></tt> aanroepen en een samengevoegde laag maken.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Notitie</p>
-<p class="last">We are using the <tt class="docutils literal"><span class="pre">processing.runandload()</span></tt> method to execute the algorithm
-instead of the more common <tt class="docutils literal"><span class="pre">processing.runalg()</span></tt>. Since we want to load
-the resulting joined layer in QGIS, <tt class="docutils literal"><span class="pre">processing.runandload()</span></tt> is a better
-choice.</p>
+<p class="last">We gebruiken de methode <tt class="docutils literal"><span class="pre">processing.runandload()</span></tt> om het algoritme uit te voeren in plaats van het meer algemene <tt class="docutils literal"><span class="pre">processing.runalg()</span></tt>. Omdat we de resulterende, samengevoegde laag willen laden in QGIS, is <tt class="docutils literal"><span class="pre">processing.runandload()</span></tt> een betere kueze.</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">processing</span>
 <span class="n">shpField</span><span class="o">=</span><span class="s">&#39;GEOID&#39;</span>
@@ -297,12 +280,8 @@ choice.</p>
 </div>
 <img alt="../_images/422.png" class="align-center" src="../_images/422.png" />
 <ol class="arabic simple" start="5">
-<li>We will stick with the original join using <tt class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></tt> for the
-remainder of the tutorial. Now it is time to apply a graduated style to the
-joined layer. The population field name in the joined layer is
-<tt class="docutils literal"><span class="pre">ca_tracts_pop_D001</span></tt>. We will apply a graduated renderer using the
-<tt class="docutils literal"><span class="pre">QgsGraduatedSymbolRendererV2</span></tt> class in the <tt class="docutils literal"><span class="pre">Quantile</span></tt> mode. Refer to
-<a class="reference internal" href="performing_table_joins.html"><em>Samenvoegen van tabellen uitvoeren</em></a> for the colors and ranges that we need to use.</li>
+<li><p class="first">We zullen bij de originele samenvoeging met behulp van <tt class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></tt> blijven voor de rest van de handleiding. Nu is het tijd om een graduele stijl toe te passen op de samengevoegde laag. De veldnaam voor de bevolking in de samengevoegde laag is <tt class="docutils literal"><span class="pre">ca_tracts_pop_D001</span></tt>. We zullen een renderer Gradueel toepassen met behulp van de klasse <tt class="docutils literal"><span class="pre">QgsGraduatedSymbolRendererV2</span></tt> in de modus <tt class="docutils literal"><span class="pre">Kwantiel</span></tt>. Bekijk <a class="reference internal" href="performing_table_joins.html"><em>Samenvoegen van tabellen uitvoeren</em></a> voor de kleuren en bereiken die we moeten gebruiken.</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtGui</span>
 
@@ -358,14 +337,11 @@ joined layer. The population field name in the joined layer is
 </div>
 <img alt="../_images/523.png" class="align-center" src="../_images/523.png" />
 <ol class="arabic simple" start="6">
-<li>Typing the code in the Python Console is useful for small tasks, but it
-is far easier to use the built-in <em class="guilabel">Editor</em>. You can copy the
-entire script in the <em class="guilabel">Editor</em> and click <em class="guilabel">Run</em>. As the
-script finishes, you would have created a table join and styled the
-resulting layer without any manual steps.</li>
+<li><p class="first">Typen van de code in de Python Console is nuttig voor kleine taken, maar het is eenvoudiger de ingebouwde <em class="guilabel">Editor</em> te gebruiken. U kunt het volledige script kopiëren naar de <em class="guilabel">Editor</em> en klikken op <em class="guilabel">Run</em>. Al het script is voltooid, zou u een samenvoeging van tabellen hebben gemaakt en de resulterende laag hebben opgemaakt, zonder handmatige stappen.</p>
+</li>
 </ol>
 <img alt="../_images/622.png" class="align-center" src="../_images/622.png" />
-<p>Below is the full <tt class="docutils literal"><span class="pre">join_attributes.py</span></tt> file as a reference.</p>
+<p>Hieronder staat, als referentie, het volledige bestand <tt class="docutils literal"><span class="pre">join_attributes.py</span></tt>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtGui</span>
 <span class="n">zip_uri</span> <span class="o">=</span> <span class="s">&#39;/vsizip/C:/Users/Ujaval/Downloads/tl_2013_06_tract.zip/tl_2013_06_tract.shp&#39;</span>
 <span class="n">shp</span> <span class="o">=</span>  <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">zip_uri</span><span class="p">,</span> <span class="s">&#39;tl_2013_06_tract&#39;</span><span class="p">,</span> <span class="s">&#39;ogr&#39;</span><span class="p">)</span>
@@ -459,7 +435,7 @@ resulting layer without any manual steps.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Oct 10, 2015.<br/>
+      Laatste aanpassing op Oct 14, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
