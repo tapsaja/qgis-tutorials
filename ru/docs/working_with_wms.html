@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Географическая привязка топографических листов и сканированных карт" href="georeferencing_basics.html" />
+    <link rel="next" title="Working with Projections" href="working_with_projections.html" />
     <link rel="prev" title="Работа с данными о местности" href="working_with_terrain.html" />
 
 <meta charset='utf-8'>
@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Создание мозаик и обрезка растров</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Работа с данными о местности</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Работа с данными WMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">Working with Projections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Географическая привязка топографических листов и сканированных карт</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Привязка аэрофотоснимков</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Оцифровка картографических данных</a></li>
@@ -135,7 +136,7 @@
     </a>
   </li>
   <li>
-    <a href="georeferencing_basics.html" title="Next Chapter: Географическая привязка топографических листов и сканированных карт"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Географическая п... &raquo;</span>
+    <a href="working_with_projections.html" title="Next Chapter: Working with Projections"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Working with Pro... &raquo;</span>
     </a>
   </li>
               
@@ -217,22 +218,22 @@ target="_blank">Letter</a> ]</p><p>Часто вам нужны слои дан�
 <li><p class="first">Откройте QGIS и перейдите к меню <em class="menuselection">Layer ‣ Add WMS Layer...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1142.png" class="align-center" src="../_images/1142.png" />
+<img alt="../_images/1144.png" class="align-center" src="../_images/1144.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Во вкладке <em class="guilabel">Layers</em> нажмите на кнопку <em class="guilabel">New</em>.</p>
 </li>
 </ol>
-<img alt="../_images/298.png" class="align-center" src="../_images/298.png" />
+<img alt="../_images/299.png" class="align-center" src="../_images/299.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Озаглавьте ваше соединение. Это не имя слоя, а имя сервиса, который предоставляет слой WMS. Обычно один сервис предлагает несколько слоев, которые можно добавить к вашему проекту. Адрес, который нужен, чтобы получить доступ к слою WMS, называется <em>GetCapabilities</em>. При доступе к серверу WMS с помощью этого параметра в строке адреса, он возвращает список имеющихся слоев с различными метаданными. В данном случае назовите соединение <tt class="docutils literal"><span class="pre">MRDATA</span> <span class="pre">USGS</span></tt> и введите в строку GetCapabilities URL как <tt class="docutils literal"><span class="pre">http://mrdata.usgs.gov/services/ca?request=getcapabilities&amp;service=WMS&amp;version=1.1.1&amp;</span></tt>.  Нажмите <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/348.png" class="align-center" src="../_images/348.png" />
+<img alt="../_images/349.png" class="align-center" src="../_images/349.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Затем нажмите на кнопку <em class="guilabel">Connect</em>  чтобы получить список имеющихся слоев. Вы заметите, что напротив слоев перечислены различные идентификаторы. Идентификатор <tt class="docutils literal"><span class="pre">0</span></tt> означает, что вы добавите на карту все слои. Если вам нужны не все слои, вы можете раскрыть список, нажав на  <em class="guilabel">+</em> и выбрав интересующий слой. Для этого урока выберите слой <tt class="docutils literal"><span class="pre">0</span></tt>.</p>
 </li>
 </ol>
-<img alt="../_images/435.png" class="align-center" src="../_images/435.png" />
+<img alt="../_images/436.png" class="align-center" src="../_images/436.png" />
 <ol class="arabic" start="5">
 <li><p class="first">В разделе <em class="guilabel">Image encoding</em> вам нужно выбрать формат изображения. Формат изображения имеет большое значение, и ваш выбор зависит от конкретного случая использования. Вот несколько советов.</p>
 <ul class="simple">
@@ -248,22 +249,22 @@ target="_blank">Letter</a> ]</p><p>Часто вам нужны слои дан�
 <p>Для этого урока выберите формат <em class="guilabel">JPEG</em>. Изменение <em class="guilabel">Layer name</em>, если хотите, и нажмите <em class="guilabel">Add</em>.</p>
 </li>
 </ol>
-<img alt="../_images/536.png" class="align-center" src="../_images/536.png" />
+<img alt="../_images/537.png" class="align-center" src="../_images/537.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Вы увидите, что слой загружен в QGIS. Вы можете масштабировать/перемещать его, как и любой другой слой. WMS работает так: каждый раз, когда вы масштабируете/перемещаете слой, он посылает координаты вашей области просмотра на сервер, и сервер создает изображение для этой области и возвращает его клиенту. Так что будет некоторая задержка, прежде чем вы увидите изображение для области после приближения. Кроме того, поскольку данные, которые Вы видите, являются изображением, нет никакого способа, чтобы запросить атрибуты, как в обычном векторном слое или снимке.</p>
 </li>
 </ol>
-<img alt="../_images/634.png" class="align-center" src="../_images/634.png" />
+<img alt="../_images/635.png" class="align-center" src="../_images/635.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Можно, однако,посмотреть некоторые метаданные о слое. Щелкните правой кнопкой мыши на слое и выберите <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/733.png" class="align-center" src="../_images/733.png" />
+<img alt="../_images/734.png" class="align-center" src="../_images/734.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Вы заметите, что диалоговое окно <em class="guilabel">Properties</em> выглядит по-другому и имеет меньше вкладок. Вы можете перейти на вкладку <em class="guilabel">Metadata</em>, чтобы узнать больше об сервисе WMS и слоях.</p>
 </li>
 </ol>
-<img alt="../_images/832.png" class="align-center" src="../_images/832.png" />
+<img alt="../_images/833.png" class="align-center" src="../_images/833.png" />
 </div>
 </div>
 
@@ -289,7 +290,7 @@ target="_blank">Letter</a> ]</p><p>Часто вам нужны слои дан�
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Обновлено: Nov 02, 2015.<br/>
+      Обновлено: Nov 04, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

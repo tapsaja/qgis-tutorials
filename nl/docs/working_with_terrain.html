@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Rasters mozaieken en clippen</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Werken met gegevens over het terrein</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Werken met gegevens van WMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">Working with Projections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Topobladen en gescande kaarten voorzien van geoverwijzingen</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Geo-verwijzingen voor satellietbeelden</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Kaartgegevens digitaliseren</a></li>
@@ -227,22 +228,22 @@ target="_blank">Letter</a> ]</p><p>Terrein- of hoogtegegevens zijn nuttig voor v
 <li><p class="first">Ga naar <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> . op de tab <em class="guilabel">Search Criteria</em>, zoek naar de plaatsnaam <cite>Mt. Everest</cite>. Klik op het resultaat om de locatie te selecteren.</p>
 </li>
 </ol>
-<img alt="../_images/1140.png" class="align-center" src="../_images/1140.png" />
+<img alt="../_images/1142.png" class="align-center" src="../_images/1142.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Op de tab <em class="guilabel">Data Sets</em>, vergroot de groep <em class="guilabel">Digital Elevation</em> en selecteer <em class="guilabel">GMTED2010</em>.</p>
 </li>
 </ol>
-<img alt="../_images/297.png" class="align-center" src="../_images/297.png" />
+<img alt="../_images/298.png" class="align-center" src="../_images/298.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">U kunt nu doorgaan naar de tab <em class="guilabel">Results</em> en het gedeelte van de gegevensset zien dat kruist met  uw zoekcriteria. Klik op de knop <em class="guilabel">Download Options</em>. U zult op dit punt op de site in moeten loggen. U kunt een gratis account maken als u er nog geen heeft.</p>
 </li>
 </ol>
-<img alt="../_images/347.png" class="align-center" src="../_images/347.png" />
+<img alt="../_images/348.png" class="align-center" src="../_images/348.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Selecteer de optie <em class="guilabel">30 ARC SEC</em> en klik op <em class="guilabel">Select Download Option</em>.</p>
 </li>
 </ol>
-<img alt="../_images/434.png" class="align-center" src="../_images/434.png" />
+<img alt="../_images/435.png" class="align-center" src="../_images/435.png" />
 <p>U zult nu een bestand hebben dat is genaamd <cite>GMTED2010N10E060_300.zip</cite>. Hoogtegegevens worden gedistribueerd in verschillende rasterindelingen, zoals ASC, BIL, GeoTiff etc. QGIS ondersteunt een grote <cite>variëteit</cite> aan rasterindelingen &lt;<a class="reference external" href="http://www.gdal.org/formats_list.html">http://www.gdal.org/formats_list.html</a>&gt;`_ via de bibliotheek GDAL. De gegevens GMTED komen als GeoTiff-bestanden die zijn opgenomen in dit zip-archief.</p>
 <p>Gemakshalve kunt u een kopie van de gegevens direct downloaden vanaf de koppeling hieronder.</p>
 <p><a class="reference external" href="../../downloads/GMTED2010N10E060_300.zip">GMTED2010N10E060_300.zip</a></p>
@@ -254,22 +255,22 @@ target="_blank">Letter</a> ]</p><p>Terrein- of hoogtegegevens zijn nuttig voor v
 <li><p class="first">Open <em class="menuselection">Kaartlagen ‣ Laag toevoegen ‣ Rasterlaag toevoegen</em> en blader naar het gedownloade zip-bestand.</p>
 </li>
 </ol>
-<img alt="../_images/535.png" class="align-center" src="../_images/535.png" />
+<img alt="../_images/536.png" class="align-center" src="../_images/536.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Er zijn vele verschillende bestanden gegenereerd vanuit verschillende algoritmen. Voor deze handleiding zullen we het bestand gebruiken dat is genaamd <cite>10n060e_20101117_gmted_mea300.tif</cite>.</p>
 </li>
 </ol>
-<img alt="../_images/633.png" class="align-center" src="../_images/633.png" />
+<img alt="../_images/634.png" class="align-center" src="../_images/634.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">U zult de terreingegevens zien worden gerenderd in het kaartvenster van QGIS. Elke pixel in het raster van het terrein staat voor de gemiddelde hoogte in meters op die locatie. De donkere pixels vertegenwoordigen gebieden met lage hoogte en lichtere pixels vertegenwoordigen gebieden van grote hoogte.</p>
 </li>
 </ol>
-<img alt="../_images/732.png" class="align-center" src="../_images/732.png" />
+<img alt="../_images/733.png" class="align-center" src="../_images/733.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Laten we ons interessegebied eens opzoeken. Van <a class="reference external" href="http://en.wikipedia.org/wiki/Mount_Everest">Wikipedia</a>, leren we dat de coördinaten vo ons interessegebied - Mt. Everest - is gesitueerd op de coördinaten 27.9881° N, 86.9253° E. Onthoud dat QGIS de coördinaten gebruikt in de indeling (X,Y) , dus u moet de coördinaten gebruiken als (Longitude, Latitude). Plak deze <cite>86.9253,27.9881</cite> onder in het venster van QGIS waar staat <em class="guilabel">Coördinaat</em> en druk op Enter. De weergave zal worden gecentreerd op dit coördinaat. Voer <cite>1:1000000</cite> in in het veld <em class="guilabel">Schaal</em> en druk op Enter om in te zoomen. U zult zien dat de weergave zoomt naar het gebied rondom de Himalaya.</p>
 </li>
 </ol>
-<img alt="../_images/831.png" class="align-center" src="../_images/831.png" />
+<img alt="../_images/832.png" class="align-center" src="../_images/832.png" />
 <ol class="arabic simple" start="9">
 <li><p class="first">We zullen nu het raster bijsnijden tot dit interessegebied. Selecteer het gereedschap Clipper uit <em class="menuselection">Raster ‣ Extractie ‣ Clipper</em>.</p>
 </li>
@@ -278,87 +279,87 @@ target="_blank">Letter</a> ]</p><p>Terrein- of hoogtegegevens zijn nuttig voor v
 <p class="first admonition-title">Notitie</p>
 <p class="last">Het menu <em class="guilabel">Raster</em> in QGIS komt uit een bronplug-in, genaamd <em class="guilabel">GdalTools</em>. Indien u het menu <em class="guilabel">Raster</em> niet ziet, schakel dan de plug-in <em class="guilabel">GdalTools</em> in via <em class="menuselection">Plug-ins ‣ Plug-ins beheren en installeren ‣ Geïnstalleerd</em>. Zie <a class="reference internal" href="using_plugins.html"><em>Plug-ins gebruiken</em></a> voor meer details.</p>
 </div>
-<img alt="../_images/929.png" class="align-center" src="../_images/929.png" />
+<img alt="../_images/930.png" class="align-center" src="../_images/930.png" />
 <ol class="arabic simple" start="10">
 <li><p class="first">In het venster <em class="guilabel">Clipper</em>, noem uw uitvoerbestand <cite>everest_gmted30.tif</cite>. Selecteer de <em class="guilabel">Clipping modus</em> als <em class="guilabel">Bereik</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1030.png" class="align-center" src="../_images/1030.png" />
+<img alt="../_images/1031.png" class="align-center" src="../_images/1031.png" />
 <ol class="arabic simple" start="11">
 <li><p class="first">Houdt het venster <em class="guilabel">Clipper</em> open en schakel naar het hoofdvenster van QGIS. Houd uw linker muisknop ingedrukt en teken een rechthoek die het gehele kaartvenster bedekt.</p>
 </li>
 </ol>
-<img alt="../_images/1141.png" class="align-center" src="../_images/1141.png" />
+<img alt="../_images/1143.png" class="align-center" src="../_images/1143.png" />
 <ol class="arabic simple" start="12">
 <li><p class="first">Terug in het venster <em class="guilabel">Clipper</em> zult u zien dat de coördinaten automatisch zijn gevuld, vanuit uw selectie. Zorg er voor dat de optie <em class="guilabel">Na afloop in kaartvenster laden</em> is geselecteerd en klik op <em class="guilabel">OK.</em></p>
 </li>
 </ol>
-<img alt="../_images/1230.png" class="align-center" src="../_images/1230.png" />
+<img alt="../_images/1231.png" class="align-center" src="../_images/1231.png" />
 <ol class="arabic simple" start="13">
 <li><p class="first">Als dit proces is voltooid ziet u de nieuwe laag zijn geladen in QGIS. Deze kaag bedekt alleen het gebied rondom Mount Everest. Nu zijn we klaar om contouren te genereren. Selecteer het gereedschap Contour via <em class="menuselection">Raster ‣ Extractie ‣ Contour</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1328.png" class="align-center" src="../_images/1328.png" />
+<img alt="../_images/1329.png" class="align-center" src="../_images/1329.png" />
 <ol class="arabic simple" start="14">
 <li><p class="first">Selecteer, in het dialoogvenster <em class="guilabel">Contour</em>, <cite>everest_gmted30</cite> als het <em class="guilabel">Invoer bestand (raster)</em>. Noem het <em class="guilabel">Uitvoerbestand voor contourlijnen (vector)</em> <cite>everest_countours.shp</cite>. We zullen contourlijnen genereren met ene interval van 100m, voer dus 100 in als de <em class="guilabel">Interval voor contourlijnen.</em> Selecteer ook de optie <em class="guilabel">Attribuutnaam</em> zodat de waarde voor de hoogte zal worden opgenomen als attribuut van elke contourlijn. Klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1427.png" class="align-center" src="../_images/1427.png" />
+<img alt="../_images/1428.png" class="align-center" src="../_images/1428.png" />
 <ol class="arabic simple" start="15">
 <li><p class="first">Als de verwerking is voltooid zult u de  contourlijnen zien geladen in het kaartvenster. Elke lijn op deze laag vertegenwoordigt een bepaalde hoogte. Alle punten langs een contourlijn in het onderliggende raster zou op dezelfde hoogte liggen. Hoe dichter de lijnen bij elkaar liggen, des te steiler de helling. Laten we de contouren iets meer inspecteren. Klik met rechts op de laag met contouren en kies <em class="guilabel">Open attributentabel</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1525.png" class="align-center" src="../_images/1525.png" />
+<img alt="../_images/1526.png" class="align-center" src="../_images/1526.png" />
 <ol class="arabic simple" start="16">
 <li><p class="first">U zult zien dat elk lijnobject een attribuut heeft genaamd <em class="guilabel">ELEV</em>. Dat is de hoogte in meters die elke lijn vertegenwoordigt. Klik een aantal malen op de kolomkop om de waarden in aflopende volgorde te sorteren. Hier zult u de lijn vinden die de grootste hoogte in onze gegevens vertegenwoordigt, d.i. Mount Everest.</p>
 </li>
 </ol>
-<img alt="../_images/1624.png" class="align-center" src="../_images/1624.png" />
+<img alt="../_images/1625.png" class="align-center" src="../_images/1625.png" />
 <ol class="arabic simple" start="17">
 <li><p class="first">Selecteer de bovenste rij en klik op de knop <em class="guilabel">Zoom naar de geselecteerde rijen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1722.png" class="align-center" src="../_images/1722.png" />
+<img alt="../_images/1723.png" class="align-center" src="../_images/1723.png" />
 <ol class="arabic simple" start="18">
 <li><p class="first">Schakel naar het hoofdvenster van QGIS. U zult de geselecteerde contour zien, geaccentueerd in geel. Dat is het gebied van de grootste hoogte in onze gegevensset.</p>
 </li>
 </ol>
-<img alt="../_images/1822.png" class="align-center" src="../_images/1822.png" />
+<img alt="../_images/1823.png" class="align-center" src="../_images/1823.png" />
 <ol class="arabic simple" start="19">
 <li><p class="first">Laten we nu een kaart met heuvels met schaduw maken voor het raster. Selecteer <em class="menuselection">Raster ‣ Analyse ‣ DEM (Hoogtemodellen)</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1920.png" class="align-center" src="../_images/1920.png" />
+<img alt="../_images/1921.png" class="align-center" src="../_images/1921.png" />
 <ol class="arabic simple" start="20">
 <li><p class="first">Kies, in het dialoogvenster <em class="guilabel">DEM (Hoogtemodellen)</em>, <cite>everest_gmted30</cite> als het <em class="guilabel">Invoer bestand 9 DEM raster)</em>. Noem het <em class="guilabel">Uitvoerbestand</em> <cite>everest_hillshade.tif</cite>. Kies <em class="guilabel">Hillshade</em> als de <em class="guilabel">Modus</em>. Laat alle andere opties zoals ze zijn. Zorg er voor dat de optie <em class="guilabel">Na afloop in kaartvenster laden</em> is geselecteerd en klik op <em class="guilabel">OK.</em></p>
 </li>
 </ol>
-<img alt="../_images/2017.png" class="align-center" src="../_images/2017.png" />
+<img alt="../_images/2018.png" class="align-center" src="../_images/2018.png" />
 <ol class="arabic simple" start="21">
 <li><p class="first">Als het proces is voltooid zult u nog ene ander raster zien geladen in het QGIS kaartvenster. Omdat u misschien bent ingezoomd op de regio nabij de Mount Everest, klik met rechts op de laag <cite>everest_hillshade</cite> en kies <em class="guilabel">Op kaartlaag inzoomen</em>.</p>
 </li>
 </ol>
-<img alt="../_images/2121.png" class="align-center" src="../_images/2121.png" />
+<img alt="../_images/2122.png" class="align-center" src="../_images/2122.png" />
 <ol class="arabic simple" start="22">
 <li><p class="first">Nu zult u het volledige bereik zien van het raster met de heuvels met schaduw.</p>
 </li>
 </ol>
-<img alt="../_images/2220.png" class="align-center" src="../_images/2220.png" />
+<img alt="../_images/2221.png" class="align-center" src="../_images/2221.png" />
 <ol class="arabic simple" start="23">
 <li><p class="first">U kunt ook uw contourenlaag visualiseren en uw analyse verifiëren door de contourenlaag te exporteren als KML en dat te bekijken in Google Earth. Klik met rechts op de contourenlaag, selecteer <em class="guilabel">Opslaan als..</em>.</p>
 </li>
 </ol>
-<img alt="../_images/2316.png" class="align-center" src="../_images/2316.png" />
+<img alt="../_images/2317.png" class="align-center" src="../_images/2317.png" />
 <ol class="arabic simple" start="24">
 <li><p class="first">Selecteer <em class="guilabel">Keyhole Markup Language [KML]</em> als het <em class="guilabel">Formaat</em>. Noem uw uitvoer <cite>contours.kml</cite> en klik op <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/2414.png" class="align-center" src="../_images/2414.png" />
+<img alt="../_images/2415.png" class="align-center" src="../_images/2415.png" />
 <ol class="arabic simple" start="25">
 <li><p class="first">Blader naar het uitvoerbestand op uw schijf en dubbelklik erop om het te openen in Google Earth.</p>
 </li>
 </ol>
-<img alt="../_images/2512.png" class="align-center" src="../_images/2512.png" />
+<img alt="../_images/2513.png" class="align-center" src="../_images/2513.png" />
 </div>
 </div>
 
@@ -384,7 +385,7 @@ target="_blank">Letter</a> ]</p><p>Terrein- of hoogtegegevens zijn nuttig voor v
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Laatste aanpassing op Nov 02, 2015.<br/>
+      Laatste aanpassing op Nov 04, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -29,7 +29,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Γεω-αναφορά Τοπογραφικών Φύλλων και Σαρωμένων Χαρτών" href="georeferencing_basics.html" />
+    <link rel="next" title="Working with Projections" href="working_with_projections.html" />
     <link rel="prev" title="Δουλεύοντας με Δεδομένα Εδάφους" href="working_with_terrain.html" />
 
 <meta charset='utf-8'>
@@ -93,6 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Δημιουργία Μωσαϊκού και Περικοπής σε Πλέγμα</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Δουλεύοντας με Δεδομένα Εδάφους</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Χρήση WMS Δεδομένων</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">Working with Projections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Γεω-αναφορά Τοπογραφικών Φύλλων και Σαρωμένων Χαρτών</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Γεω-αναφορά Αεροφωτογραφιών</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Ψηφιοποίηση Δεδομένων Χάρτη</a></li>
@@ -134,7 +135,7 @@
     </a>
   </li>
   <li>
-    <a href="georeferencing_basics.html" title="Next Chapter: Γεω-αναφορά Τοπογραφικών Φύλλων και Σαρωμένων Χαρτών"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Γεω-αναφορά Τοπο... &raquo;</span>
+    <a href="working_with_projections.html" title="Next Chapter: Working with Projections"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Working with Pro... &raquo;</span>
     </a>
   </li>
               
@@ -216,22 +217,22 @@ target="_blank">Letter</a> ]</p><p>Συχνά χρειάζεστε αναφορ�
 <li><p class="first">Ανοίξτε το QGIS και πηγαίνετε στο <em class="menuselection">Layer ‣ Add WMS Layer...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1142.png" class="align-center" src="../_images/1142.png" />
+<img alt="../_images/1144.png" class="align-center" src="../_images/1144.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Στην καρτέλα <em class="guilabel">Layers</em>, κάντε κλικ στο <em class="guilabel">New</em>.</p>
 </li>
 </ol>
-<img alt="../_images/298.png" class="align-center" src="../_images/298.png" />
+<img alt="../_images/299.png" class="align-center" src="../_images/299.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Ονομάστε τη σύνδεση σας. Αυτό δεν είναι το όνομα του επιπέδου αλλά το όνομα της υπηρεσίας που προσφέρει το WMS επίπεδο. Μια μόνο υπηρεσία συνήθως προσφέρει πολλαπλά επίπεδα τα οποία μπορούν να προστεθούν στο έργο σας. Το URL που χρειάζεστε για να αποκτήσετε πρόσβαση σε ένα WMS επίπεδο, ονομάζεται <em>GetCapabilities</em>. Όταν συνδέεστε  σε ένα WMS διακομιστή με αυτήν την παράμετρο στο URL, επιστρέφει μια λίστα διαθέσιμων επιπέδων μαζί με ποικίλα δεδομένα. Σε αυτή την περίπτωση, ονομάστε τη σύνδεση ως <tt class="docutils literal"><span class="pre">MRDATA</span> <span class="pre">USGS</span></tt> και το GetCapabilities URL ως <tt class="docutils literal"><span class="pre">http://mrdata.usgs.gov/services/ca?request=getcapabilities&amp;service=WMS&amp;version=1.1.1&amp;</span></tt>. Πατήστε <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/348.png" class="align-center" src="../_images/348.png" />
+<img alt="../_images/349.png" class="align-center" src="../_images/349.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Έπειτα, πατήστε το κουμπί <em class="guilabel">Connect</em> για να γίνει η λίστα των επιπέδων διαθέσιμη. Θα παρατηρήσετε διάφορα αναγνωριστικά στη λίστα δίπλα από τα επίπεδα. Το αναγνωριστικό <tt class="docutils literal"><span class="pre">0</span></tt> σημαίνει ότι θα πάρετε ένα χάρτη για όλα τα επίπεδα. Αν δε θέλετε όλα τα επίπεδα, μπορείτε να επεκτείνετε τη λίστα κάνοντας κλικ στο εικονίδιο <em class="guilabel">+</em> και επιλέγοντας το επίπεδο που σας ενδιαφέρει. Επιλέξτε το επίπεδο <tt class="docutils literal"><span class="pre">0</span></tt> για αυτό το tutorial.</p>
 </li>
 </ol>
-<img alt="../_images/435.png" class="align-center" src="../_images/435.png" />
+<img alt="../_images/436.png" class="align-center" src="../_images/436.png" />
 <ol class="arabic" start="5">
 <li><p class="first">Στην περιοχή <em class="guilabel">Image encoding</em>, πρέπει να επιλέξετε έναν τύπο εικόνας. Οι τύποι εικόνας παίζουν σημαντικό ρόλο και ποιον από αυτούς θα χρησιμοποιήσετε εξαρτάται από την περίπτωση χρήσης σας. Εδώ είναι κάποιοι δείκτες</p>
 <ul class="simple">
@@ -247,22 +248,22 @@ target="_blank">Letter</a> ]</p><p>Συχνά χρειάζεστε αναφορ�
 <p>Για αυτό το tutorial, επιλέξτε <em class="guilabel">JPEG</em> ως τύπο. Αλλάξτε το <em class="guilabel">Layer name</em> εάν το επιθυμείτε και πατήστε <em class="guilabel">Add</em>.</p>
 </li>
 </ol>
-<img alt="../_images/536.png" class="align-center" src="../_images/536.png" />
+<img alt="../_images/537.png" class="align-center" src="../_images/537.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Θα δείτε το επίπεδο να έχει φορτώσει στον καμβά του QGIS. Μπορείτε να κάνετε μεγέθυνση/μετακίνηση γύρω όπως με κάθε άλλο επίπεδο. Ο τρόπος με τον οποίο η WMS υπηρεσία λειτουργεί, είναι ότι κάθε φορά που κάνετε μεγέθυνση/μετακίνηση, στέλνει το παράθυρο συντεταγμένων σας στο διακομιστή και ο διακομιστής δημιουργεί μια εικόνα για αυτό το παράθυρο και την επιστρέφει στον πελάτη. Οπότε θα υπάρξει μια καθυστέρηση μέχρι να δείτε την εικόνα της περιοχής που έχετε μεγεθύνει.</p>
 </li>
 </ol>
-<img alt="../_images/634.png" class="align-center" src="../_images/634.png" />
+<img alt="../_images/635.png" class="align-center" src="../_images/635.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Παρ&#8217;όλα αυτά, μπορείτε να δείτε κάποια δεδομένα σχετικά με το επίπεδο. Κάντε δεξί κλικ στο επίπεδο και επιλέξτε <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/733.png" class="align-center" src="../_images/733.png" />
+<img alt="../_images/734.png" class="align-center" src="../_images/734.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Θα παρατηρήσετε ότι το παράθυρο διαλόγου <em class="guilabel">Properties</em> μοιάζει διαφορετικό και έχει λιγότερες καρτέλες. Μπορείτε να πάτε στην καρτέλα :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Metadata`για να μάθετε περισσότερα για την WMS υπηρεσία και τα επίπεδα.</p>
 </li>
 </ol>
-<img alt="../_images/832.png" class="align-center" src="../_images/832.png" />
+<img alt="../_images/833.png" class="align-center" src="../_images/833.png" />
 </div>
 </div>
 
@@ -288,7 +289,7 @@ target="_blank">Letter</a> ]</p><p>Συχνά χρειάζεστε αναφορ�
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Nov 02, 2015.<br/>
+      Last updated on Nov 04, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

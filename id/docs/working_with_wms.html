@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Georeferensi Lembaran Topo dan Peta hasil Scan" href="georeferencing_basics.html" />
+    <link rel="next" title="Working with Projections" href="working_with_projections.html" />
     <link rel="prev" title="Bekerja dengan Data Permukaan Medan" href="working_with_terrain.html" />
 
 <meta charset='utf-8'>
@@ -94,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Mosaik Raster dan Klipping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Bekerja dengan Data Permukaan Medan</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Bekerja dengan data WMS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">Working with Projections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferensi Lembaran Topo dan Peta hasil Scan</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferensi Citra Udara</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitalisasi Data Peta</a></li>
@@ -135,7 +136,7 @@
     </a>
   </li>
   <li>
-    <a href="georeferencing_basics.html" title="Next Chapter: Georeferensi Lembaran Topo dan Peta hasil Scan"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Georeferensi Lem... &raquo;</span>
+    <a href="working_with_projections.html" title="Next Chapter: Working with Projections"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Working with Pro... &raquo;</span>
     </a>
   </li>
               
@@ -217,22 +218,22 @@ target="_blank">Letter</a> ]</p><p>Seringkali anda memerlukan layer data referen
 <li><p class="first">Buka Qgis dan akses <em class="menuselection">Layer ‣ Add WMS Layer...</em>.</p>
 </li>
 </ol>
-<img alt="../_images/1142.png" class="align-center" src="../_images/1142.png" />
+<img alt="../_images/1144.png" class="align-center" src="../_images/1144.png" />
 <ol class="arabic simple" start="2">
 <li><p class="first">Pada tab <em class="guilabel">Layers</em> , klik <em class="guilabel">New</em>.</p>
 </li>
 </ol>
-<img alt="../_images/298.png" class="align-center" src="../_images/298.png" />
+<img alt="../_images/299.png" class="align-center" src="../_images/299.png" />
 <ol class="arabic simple" start="3">
 <li><p class="first">Beri nama koneksi anda. Ini bukan untuk nama layer anda melainkan nama service yang menyediakan layer WMS. Sebuah service tunggal biasanya mempunya multi layer yang bisa ditambahkan ke dalam proyek. URL yang anda perlukan untuk mengakses layer WMS disebut <em>GetCapabilities</em> . Ketika anda mengakses sebuah server dengan parameter ini di URL, ini akan menghasilkan sebuah daftar layer yang tersedia berikut metadatanya. Dalam kasus ini, nama koneksinya adalah  <tt class="docutils literal"><span class="pre">MRDATA</span> <span class="pre">USGS</span></tt> dan isi GetCapabilities URL dengan  <tt class="docutils literal"><span class="pre">http://mrdata.usgs.gov/services/ca?request=getcapabilities&amp;service=WMS&amp;version=1.1.1&amp;</span></tt> . Klik <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
-<img alt="../_images/348.png" class="align-center" src="../_images/348.png" />
+<img alt="../_images/349.png" class="align-center" src="../_images/349.png" />
 <ol class="arabic simple" start="4">
 <li><p class="first">Berikutnya, klik tombol <em class="guilabel">Connect</em> untuk menarik daftar layer yang tersedia. Anda akan melihat id-id yang berbeda terdaftar di sebelah layer. ID <tt class="docutils literal"><span class="pre">0</span></tt> berarti anda memngambil sebuah peta dengan semua layernya. Jika anda ingin tidak semua lyer, anda dapat menelusuri daftar dengan mengklik ikon <em class="guilabel">+</em> dan memilih layer yang bersangkutan. Pilih layer <tt class="docutils literal"><span class="pre">0</span></tt> untuk tutorial ini.</p>
 </li>
 </ol>
-<img alt="../_images/435.png" class="align-center" src="../_images/435.png" />
+<img alt="../_images/436.png" class="align-center" src="../_images/436.png" />
 <ol class="arabic" start="5">
 <li><p class="first">Pada bagian <em class="guilabel">Image encoding</em> , anda perlu untuk memilih sebuah format gambar. Format gambar berdampak sangat besar dan yang mana yang anda pilih bergantung pada kasus anda. Berikut beberapa petunjuk</p>
 <ul class="simple">
@@ -248,22 +249,22 @@ target="_blank">Letter</a> ]</p><p>Seringkali anda memerlukan layer data referen
 <p>Untuk tutorial ini, pilih <em class="guilabel">JPEG</em> untuk formatnya. Pilih <em class="guilabel">Layer name</em> sesuai selera anda dan klik <em class="guilabel">Add</em>.</p>
 </li>
 </ol>
-<img alt="../_images/536.png" class="align-center" src="../_images/536.png" />
+<img alt="../_images/537.png" class="align-center" src="../_images/537.png" />
 <ol class="arabic simple" start="6">
 <li><p class="first">Anda akan melihat layer yang dibuka di kanvas QGIS. Anda dapat melakukan zoom/pan seperti pada layer lain. Cara WMS Service bekerja adalah setiap anda melakukan zoom/pan, service ini mengirim koordinat viewport ke server dan server membuat sebuah gambar untuk viewport itu dan mengembalikannya ke client. Jadi akan ada penundaan sebelum anda melihat area yang anda zoom. Dan juga, karena data yang anda lihat adalah hanya gambar, tidak memungkinkan melakukan query untuk attribut seperti layer vector/raster pada umumnya.</p>
 </li>
 </ol>
-<img alt="../_images/634.png" class="align-center" src="../_images/634.png" />
+<img alt="../_images/635.png" class="align-center" src="../_images/635.png" />
 <ol class="arabic simple" start="7">
 <li><p class="first">Walau begitu, anda dapat melihat metadata tentang layer tersebut. Klik kanan pada layer dan pilih <em class="guilabel">Properties</em>.</p>
 </li>
 </ol>
-<img alt="../_images/733.png" class="align-center" src="../_images/733.png" />
+<img alt="../_images/734.png" class="align-center" src="../_images/734.png" />
 <ol class="arabic simple" start="8">
 <li><p class="first">Anda akan melihat bahwa dialog <em class="guilabel">Properties</em> terlihat berbeda dan memiliki tab yang lebih sedikit. Anda dapat akses tab <em class="guilabel">Metadata</em> untuk mempelajari lebih lanjut tentang WMS Service dan layer.</p>
 </li>
 </ol>
-<img alt="../_images/832.png" class="align-center" src="../_images/832.png" />
+<img alt="../_images/833.png" class="align-center" src="../_images/833.png" />
 </div>
 </div>
 
@@ -289,7 +290,7 @@ target="_blank">Letter</a> ]</p><p>Seringkali anda memerlukan layer data referen
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Terakhir diperbarui pada Nov 02, 2015.<br/>
+      Terakhir diperbarui pada Nov 04, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
