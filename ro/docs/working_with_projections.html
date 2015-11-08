@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Working with Projections &mdash; QGIS Tutorials and Tips</title>
+    <title>Lucrul cu Proiecții &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -93,7 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Mozaicarea și Tăierea Rasterelor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Lucrul cu date despre teren</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Lucrul cu Date WMS</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Working with Projections</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Lucrul cu Proiecții</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferențierea Foilor Topografice și a Hărților Scanate</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferențierea Imaginilor Aeriene</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitizarea datelor provenite din hărți</a></li>
@@ -196,7 +196,7 @@
       
 
   <div class="section" id="working-with-projections">
-<h1>Working with Projections<a class="headerlink" href="#working-with-projections" title="Permalink to this headline">¶</a></h1>
+<h1>Lucrul cu Proiecții<a class="headerlink" href="#working-with-projections" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF
 <a class="reference external" href="../pdf/working_with_projections_a4.pdf"
 onClick="ga('send', 'event', 'PDF Download', 'working_with_projections_a4');"
@@ -205,97 +205,77 @@ target="_blank">A4</a>
 <a class="reference external"
 href="../pdf/working_with_projections_letter.pdf" onClick="ga('send',
 'event', 'PDF Download', 'working_with_projections_letter');"
-target="_blank">Letter</a> ]</p><p>Map projections - or Coordinate Reference System (CRS) - often cause a lot of
-frustration when working with GIS data.  But proper understanding of the
-concepts and access to the right tools will make it much easier to deal with
-projections. In this tutorial, we will explore how projections work in QGIS and
-learn about tools available for vector and rasters - particularly re-projecting
-vector and raster data, enabling on-the-fly re-projection and assigning
-projection to data without projection.</p>
+target="_blank">Letter</a> ]</p><p>Proiecțiile hărții - sau Sistemul de Coordonate de Referință (CRS) - de multe ori cauzează o mulțime de frustrări în lucrul cu datele GIS. Dar înțelegerea corectă a conceptelor și accesul la uneltele potrivite, va facilita utilizarea proiecțiilor. În acest tutorial, vom explora modul în care lucrează proiecțiile în QGIS, învățând instrumentele disponibile pentru vectori și rastere - în special re-proiectarea datelor vectoriale și a celor raster, permițând re-proiectarea &#8220;din zbor&#8221; și atribuirea unei proiecții datelor care nu posedă una deja.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>The task is to re-project and overlay data layers of difference projections
-together in QGIS.</p>
+<h2>Privire de ansamblu asupra activității<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<p>Sarcina este de a reproiecta și de a suprapune straturile de date ale diferitelor proiecții în QGIS.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
+<h3>Alte competențe pe care le veți dobândi<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Use <tt class="docutils literal"><span class="pre">.tfw</span></tt> files to georeference to rasters.</li>
-<li>How to save selected features from a layer to a new layer.</li>
-<li>How to view metadata information for layers in QGIS.</li>
+<li><p class="first">Folosiți fișierele <tt class="docutils literal"><span class="pre">.tfw</span></tt> pentru a georeferenția rasterele.</p>
+</li>
+<li><p class="first">Cum să salvați entitățile selectate dintr-un strat, într-altul nou.</p>
+</li>
+<li><p class="first">Cum să vizualizați informațiile metadatelor pentru straturile din QGIS.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>Natural Earth has <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/">Admin 0 - Countries</a>
-dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">countries</a></p>
+<h2>Obținerea datelor<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
+<p>Natural Earth deține setul de date <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/">Admin 0 - Countries</a>. Descărcați <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">countries</a></p>
 <p><a class="reference external" href="https://www.ordnancesurvey.co.uk/">UK&#8217;s Ordnance Survey</a> provides open data
 for download. Download the <a class="reference external" href="https://www.ordnancesurvey.co.uk/opendatadownload/products.html">MiniScale raster product</a> for Great
 Britain and extract it to a folder on your computer.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">You will need to enter your personal details to be able to download the
-Ordnance Survey dataset.</p>
+<p class="last">Va trebui să vă introduceți datele personale pentru a putea descărca setul de date Ordnance Survey.</p>
 </div>
-<p>For convenience, you may directly download a copy of the dataset from the link
-below:</p>
+<p>Pentru comoditate, puteți descărca o copie a setului de date, făcând clic pe link-ul următor:</p>
 <p><a class="reference external" href="../../downloads/ne_10m_admin_0_countries.zip">ne_10m_admin_0_countries.zip</a></p>
-<p><a class="reference external" href="../../downloads/minisc_gb.zip">minisc_gb.zip</a> (Contains only the files
-required for this tutorial)</p>
-<p>Data Sources: <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a> <a class="reference internal" href="credits.html#osopendata" id="id2">[OSOPENDATA]</a></p>
+<p><a class="reference external" href="../../downloads/minisc_gb.zip">minisc_gb.zip</a> (Conține doar fișierele cerute de acest tutorial)</p>
+<p>Surse de date: <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a> <a class="reference internal" href="credits.html#osopendata" id="id2">[OSOPENDATA]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
+<h2>Procedura<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS. Go to <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector
-Layer...</em>.</li>
+<li><p class="first">Deschideți QGIS. Mergeți la <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer...</em></p>
+</li>
 </ol>
 <img alt="../_images/1140.png" class="align-center" src="../_images/1140.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt> file and click
-<em class="guilabel">Open</em>.</li>
+<li><p class="first">Navigați la fișierul descărcat, <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt>, apoi faceți clic pe <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/297.png" class="align-center" src="../_images/297.png" />
 <ol class="arabic simple" start="3">
-<li>At the bottom of QGIS window, you will notice the label
-<em class="guilabel">Coordinate</em>. As you move your cursor over the map, it will show
-you the X and Y coordinates at that location. At the bottom-right corner you
-will see <em class="guilabel">EPSG:4326</em>. This is the code for the current CRS
-(Projection) for the project.</li>
+<li><p class="first">În partea de jos a ferestrei QGIS, veți observa eticheta: guilabel: <cite>Coordonate</cite>. După cum mutați cursorul peste hartă, veți vedea coordonatele X și Y, în acea locație. În colțul din dreapta jos, veți vedea <em class="guilabel">EPSG:4326</em>. Acesta este codul pentru CRS-ul curent (Proiecția) pentru proiect.</p>
+</li>
 </ol>
 <img alt="../_images/347.png" class="align-center" src="../_images/347.png" />
 <ol class="arabic simple" start="4">
-<li>As you will later see, the project&#8217;s CRS may not match the layer&#8217;s CRS. To
-determine a layer’s projection, we can look into the metadata. Right click
-on <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> layer and select <em class="guilabel">Properties</em>.</li>
+<li><p class="first">După cum veți vedea mai târziu, CRS-ul proiectului nu corespunde CRS-ului stratului. Pentru a determina proiecția unui strat, putem privi în metadate. Faceți clic dreapta pe stratul <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> și selectați <em class="guilabel">Proprietăți</em>.</p>
+</li>
 </ol>
 <img alt="../_images/434.png" class="align-center" src="../_images/434.png" />
 <ol class="arabic simple" start="5">
-<li>Switch to the <em class="guilabel">Metadata</em> tab in the <em class="guilabel">Layer Properties</em>
-dialog. Expand the <em class="guilabel">Properties</em> section. At the bottom, you will
-see the definition for the projection under <em class="guilabel">Layer Spatial
-Reference System</em>. This definition is in the <a class="reference external" href="https://en.wikipedia.org/wiki/PROJ.4">PROJ.4 format</a>.</li>
+<li><p class="first">Mergeți în fila <em class="guilabel">Metadate</em> din dialogul <em class="guilabel">Proprietăților Stratului</em>. Extindeți secțiunea <em class="guilabel">Proprităților</em>. În partea de jos, veți vedea definiția pentru proiecție sub <em class="guilabel">Sistemul de Referință Spațială a Stratului</em>. Această definiție este în <a class="reference external" href="https://en.wikipedia.org/wiki/PROJ.4">Formatul PROJ.4</a>.</p>
+</li>
 </ol>
 <img alt="../_images/535.png" class="align-center" src="../_images/535.png" />
 <ol class="arabic simple" start="6">
-<li>Now let&#8217;s see how we can change the layer&#8217;s projection. This operation is
-called <strong>Re-Projection</strong>. Rather than re-projecting the entire layer, we can
-also re-project some features from the layer. Use the <em class="guilabel">Select
-features by area or single click</em> tool and click on United States feature to
-select it.</li>
+<li><p class="first">Acum, să vedem cum putem schimba proiecția stratului. Această operațiune se numește <strong>Re-Proiectare</strong>. De asemenea, mai degrabă decât re-proiectarea întregului strat, putem re-proiecta unele caracteristici din strat. Folosiți instrumentul de <em class="guilabel">Selectare a entităților după suprafață sau printr-un unic clic</em>, apoi faceți clic pe entitatea Statele Unite ale Americii, pentru a o selecta.</p>
+</li>
 </ol>
 <img alt="../_images/633.png" class="align-center" src="../_images/633.png" />
 <ol class="arabic simple" start="7">
-<li>Right-click the <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> layer and select
-<em class="guilabel">Save As</em>.</li>
+<li><p class="first">Faceți clic dreapta pe stratul <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> și selectați <em class="guilabel">Save Selection As</em>.</p>
+</li>
 </ol>
 <img alt="../_images/732.png" class="align-center" src="../_images/732.png" />
 <ol class="arabic simple" start="8">
-<li>In the <em class="guilabel">Save vector layer as...</em> dialog, name the output layer as
-<tt class="docutils literal"><span class="pre">united_states.shp</span></tt>. Also check the <em class="guilabel">Save only selected
-features</em> box. This will ensure that only the selected feature gets
-re-projected and exported. Next, we choose the new projection for the layer.
-Click on the <em class="guilabel">Select CRS</em> button.</li>
+<li><p class="first">În dialogul de <em class="guilabel">Salvare strat vectorial ca...</em>, denumiți stratul de ieșire <tt class="docutils literal"><span class="pre">united_states.shp</span></tt>. De asemenea, bifați caseta <em class="guilabel">Salvare doar entități selectate</em>. Acest lucru vă asigură că numai entitatea selectată va fi re-proiectată și exportată. Apoi, vom alege noua proiecție pentru strat. Faceți clic pe butonul <em class="guilabel">Selectare CRS</em>.</p>
+</li>
 </ol>
 <img alt="../_images/831.png" class="align-center" src="../_images/831.png" />
 <ol class="arabic simple" start="9">
@@ -314,22 +294,18 @@ for a good overview of Projections.</p>
 </div>
 <img alt="../_images/929.png" class="align-center" src="../_images/929.png" />
 <ol class="arabic simple" start="10">
-<li>You will see the new CRS selected in the <em class="guilabel">Save vector layer
-as...</em> dialog. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Veți vedea noul CRS selectat în dialogul <em class="guilabel">Save vector layer as...</em>. Clic pe <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1030.png" class="align-center" src="../_images/1030.png" />
 <ol class="arabic simple" start="11">
-<li>Once the re-projected layer gets loaded, you will notice that the new
-<tt class="docutils literal"><span class="pre">united_states</span></tt> layer overlays perfectly on top of
-<tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> layer - even though they are in different
-projections. This is because QGIS has a feature called <strong>On-the-fly CRS
-transformation</strong>. The projection text at the bottom-right of QGIS now has
-the words <tt class="docutils literal"><span class="pre">OTF</span></tt> next the <em class="guilabel">EPSG:4326`</em>. To learn more, let&#8217;s
-explore the CRS option in QGIS.</li>
+<li><p class="first">După ce stratul de re-proiectat se încarcă, veți observa că noul strat <tt class="docutils literal"><span class="pre">united_states</span></tt> se suprapune perfect deasupra stratului <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> - chiar dacă ele sunt în proiecții diferite. Acest lucru se datorează faptului că QGIS are o caracteristică denumită  <strong>Transformare Din-Zbor a CRS-ului</strong>. Textul proiecției, din partea de jos-dreapta a QGIS, are înscris de  acum acronimul <tt class="docutils literal"><span class="pre">OTF</span></tt> lângă <em class="guilabel">EPSG:4326`</em>. Pentru a afla mai multe, haideți să explorăm opțiunea CRS din QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/1141.png" class="align-center" src="../_images/1141.png" />
 <ol class="arabic simple" start="12">
-<li>Go to <em class="menuselection">Settings ‣ Options...</em>.</li>
+<li><p class="first">Mergeți la <em class="menuselection">Settings ‣ Options...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1230.png" class="align-center" src="../_images/1230.png" />
 <ol class="arabic simple" start="13">
@@ -464,7 +440,7 @@ as the other layer.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Nov 04, 2015.<br/>
+      Last updated on Nov 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
