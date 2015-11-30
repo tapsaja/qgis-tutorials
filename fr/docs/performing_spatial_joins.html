@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Performing Spatial Joins &mdash; QGIS Tutorials and Tips</title>
+    <title>Effectuer des jointures spatiales &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -99,7 +99,7 @@
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Image aérienne géoreferencee</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitizing Map Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Les Jointures de tables (JOIN)</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Performing Spatial Joins</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Effectuer des jointures spatiales</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
@@ -159,6 +159,7 @@
   <option value="ro">Romanian</option>
   <option value="ru">Russian</option>
   <option value="es">Spanish</option>
+  <option value="th">Thai</option>
   <option value="vi">Vietnamese</option>
 </select>
 </form>
@@ -197,7 +198,7 @@
       
 
   <div class="section" id="performing-spatial-joins">
-<h1>Performing Spatial Joins<a class="headerlink" href="#performing-spatial-joins" title="Lien permanent vers ce titre">¶</a></h1>
+<h1>Effectuer des jointures spatiales<a class="headerlink" href="#performing-spatial-joins" title="Lien permanent vers ce titre">¶</a></h1>
 <p>[ Download PDF
 <a class="reference external" href="../pdf/performing_spatial_joins_a4.pdf"
 onClick="ga('send', 'event', 'PDF Download', 'performing_spatial_joins_a4');"
@@ -206,57 +207,50 @@ target="_blank">A4</a>
 <a class="reference external"
 href="../pdf/performing_spatial_joins_letter.pdf" onClick="ga('send',
 'event', 'PDF Download', 'performing_spatial_joins_letter');"
-target="_blank">Letter</a> ]</p><p>Spatial Join is a classic GIS problem - transferring attributes from one layer
-to another based on their spatial relationship. In QGIS, this functionality is
-available through the <strong>Join Attributes by Location</strong> tool.</p>
+target="_blank">Letter</a> ]</p><p>La jointure spatiale est un problème classique en géomatique – transférer des attributs d&#8217;une couche à une autre en se basant sur leur relation spatiale. Dans QGIS, cette fonctionnalité est disponible à travers l&#8217;outil <strong>Joindre les attributs par localisation</strong>.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Lien permanent vers ce titre">¶</a></h2>
-<p>We will use 2 layers - A shapefile of burough boundaries of New York city and
-another shapefile of nursing home locations in New York city. We will use
-spatial join technique to find the total nursing home capacity for each of the
-buroughs.</p>
+<h2>Description de l&#8217;exercice<a class="headerlink" href="#overview-of-the-task" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Nous utiliserons 2 couches – un fichier shape des limites des arrondissements de la ville de New York et un autre des d&#8217;emplacements de maisons de santé à New York. Nous utiliserons la technique de la jointure spatiale pour trouver l&#8217;occupation en maisons de santé pour chacun des arrondissements.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Autres compétences que vous allez développer<a class="headerlink" href="#other-skills-you-will-learn" title="Lien permanent vers ce titre">¶</a></h3>
 <ul class="simple">
-<li>Deleting columns from the attribute table of a layer.</li>
+<li><p class="first">Supprimer les colonnes depuis la table attributaire d&#8217;une couche.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Lien permanent vers ce titre">¶</a></h2>
-<p><a class="reference external" href="https://data.cityofnewyork.us/">NYC Open Data Portal</a> is an excellent source
-of free data for New York city.</p>
+<h2>Récupérer les données<a class="headerlink" href="#get-the-data" title="Lien permanent vers ce titre">¶</a></h2>
+<p><a class="reference external" href="https://data.cityofnewyork.us/">NYC Open Data Portal</a> est une excellente source de données gratuites pour la ville de New York.</p>
 <ol class="arabic simple">
-<li>Download the <a class="reference external" href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm">Borough Boundaries</a>
-zip file using the Export option on the portal.</li>
+<li><p class="first">Télécharger le fichier <a class="reference external" href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm">Borough Boundaries</a> zip en utilisant l&#8217;option &#8220;Export&#8221; sur le portail.</p>
+</li>
 </ol>
 <img alt="../_images/1102.png" class="align-center" src="../_images/1102.png" />
 <ol class="arabic simple" start="2">
-<li>Download the <a class="reference external" href="https://data.cityofnewyork.us/Health/Nursing-Homes/9tqc-rnkr">Nursing Homes</a>  zip file
-using the Export option on the portal.</li>
+<li><p class="first">Télécharger le fichier <a class="reference external" href="https://data.cityofnewyork.us/Health/Nursing-Homes/9tqc-rnkr">Nursing Homes</a> zip en utilisant l&#8217;option &#8220;Export&#8221; sur le portail.</p>
+</li>
 </ol>
 <img alt="../_images/240.png" class="align-center" src="../_images/240.png" />
-<p>For convenience, you may directly download a copy of the datasets from the
-links below:</p>
+<p>Par soucis de simplicité, vous pouvez télécharger une copie des jeux de données depuis les liens ci-dessous :</p>
 <p><a class="reference external" href="../../downloads/nybb_12c.zip">nybb_12c.zip</a></p>
 <p><a class="reference external" href="../../downloads/OEM_NursingHomes_001.zip">OEM_NursingHomes_001.zip</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procédure<a class="headerlink" href="#procedure" title="Lien permanent vers ce titre">¶</a></h2>
 <ol class="arabic simple" start="3">
-<li>Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>. Browse to the downloaded
-zip file <tt class="docutils literal"><span class="pre">nybb_12c.zip</span></tt> and select <em class="guilabel">Open</em>.</li>
+<li><p class="first">Aller à <em class="menuselection">Couche ‣ Ajouter une couche vectorielle</em>. Parcourir jusqu&#8217;au fichier zip téléchargé zip <tt class="docutils literal"><span class="pre">nybb_12c.zip</span></tt> et sélectionner <em class="guilabel">Ouvrir</em>.</p>
+</li>
 </ol>
 <img alt="../_images/327.png" class="align-center" src="../_images/327.png" />
 <ol class="arabic simple" start="4">
-<li>Select the layer <tt class="docutils literal"><span class="pre">nybb.shp</span></tt> and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Sélectionner la couche <tt class="docutils literal"><span class="pre">nybb.shp</span></tt> et cliquer  sur <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/419.png" class="align-center" src="../_images/419.png" />
 <ol class="arabic simple" start="5">
-<li>Repeat the steps 3 and 4 for the another file <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.zip</span></tt>
-and load the <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.shp</span></tt> layer. Once both the layers are
-loaded, right-click on the <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> layer and select
-<em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Répéter les étapes 3 et 4 pour l&#8217;autre fichier <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.zip</span></tt> et charger la couche <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001.shp</span></tt>. Une fois les deux couches chargées, cliquer droit sur la couche <tt class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></tt> et sélectionner <em class="guilabel">Ouvrir la table des attributs</em>.</p>
+</li>
 </ol>
 <img alt="../_images/520.png" class="align-center" src="../_images/520.png" />
 <ol class="arabic simple" start="6">
@@ -342,7 +336,7 @@ the output file has the desired attributes for each burough feature.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Mis à jour le Nov 18, 2015.<br/>
+      Mis à jour le Nov 30, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
