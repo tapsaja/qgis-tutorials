@@ -208,7 +208,7 @@ onClick="ga('send', 'event', 'PDF Download', 'making_a_map_letter');"
 target="_blank">Letter</a> ]</p><p>Часто виникає потреба створити мапу, придатну для друку чи публікації. Для цієї задачі в QGIS є потужний інструмент під назвою <em class="guilabel">Print Composer</em>, що дозволяє пакувати ваші шари ГІС для створення мапи.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Огляд завдання<a class="headerlink" href="#overview-of-the-task" title="Постійне посилання на цей заголовок">¶</a></h2>
-<p>Цей урок показує, як створити мапу Японії зі стандартними елементами: вставною мапою, сіткою, вказівником півночі, шкалою та мітками.</p>
+<p>В цьому уроці ви дізнаєтесь, як створити мапу Японії зі стандартними елементами: вставною мапою, сіткою, вказівником півночі, шкалою та позначками.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Додаткові навички<a class="headerlink" href="#other-skills-you-will-learn" title="Постійне посилання на цей заголовок">¶</a></h3>
 <ul class="simple">
@@ -226,7 +226,7 @@ target="_blank">Letter</a> ]</p><p>Часто виникає потреба ст
 <div class="section" id="procedure">
 <h2>Виконання<a class="headerlink" href="#procedure" title="Постійне посилання на цей заголовок">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">Завантажте та витягніть дані Natural Earth Quick Start Kit з архіву. Запустіть QGIS. Натисніть на <em class="menuselection">Project ‣ Open</em>.</p>
+<li><p class="first">Завантажте та витягніть дані Natural Earth Quick Start Kit з архіву. Запустіть QGIS. Натисніть <em class="menuselection">Project ‣ Open</em>.</p>
 </li>
 </ol>
 <img alt="../_images/190.png" class="align-center" src="../_images/190.png" />
@@ -236,205 +236,156 @@ target="_blank">Letter</a> ]</p><p>Часто виникає потреба ст
 </ol>
 <img alt="../_images/235.png" class="align-center" src="../_images/235.png" />
 <ol class="arabic simple" start="3">
-<li><p class="first">Ви побачите перелік шарів у таблиці ліворуч, і оформлену мапу світу в робочій області QGIS. Якщо ви бачите сповіщення про помилку у верхній частині робочої області, клацніть по хрестику щоб прибрати його.</p>
+<li><p class="first">Ви побачите перелік шарів у таблиці ліворуч, і оформлену мапу світу в робочому полі QGIS. Якщо ви бачите сповіщення про помилку у верхній частині поля, клацніть по хрестику, щоб прибрати його.</p>
 </li>
 </ol>
 <img alt="../_images/323.png" class="align-center" src="../_images/323.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">В цьому уроці ми оформимо мапу Японії. Клацніть кнопку <em class="guilabel">Zoom In</em>, та обведіть прямокутник довкола Японії для збільшення цієї ділянки.</p>
+<li><p class="first">На цьому уроці ми оформимо мапу Японії. Натисніть кнопку <em class="guilabel">Zoom In</em>, та обведіть прямокутник довкола Японії, щоб збільшити цю ділянку.</p>
 </li>
 </ol>
 <img alt="../_images/417.png" class="align-center" src="../_images/417.png" />
 <ol class="arabic simple" start="5">
-<li>You can turn off some map layers for data that we do not need for this map.
-Un-check the box next to <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> and
-<tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt> layers. Before we make a map suitable for printing, we need to choose an appropriate
-projection. This dataset comes in Geographic Coordinate System (GCS) where
-the units are degrees. This is not appropriate for a map where you want the
-distances to be in kilometers or miles. We need to use a Projected
-Coordinate System that minimizes distortions for our region of interest and
-has units in meters. Universal Transverse Mercator (UTM) is a decent choice
-for a projected coordinate system. It is also global, so it&#8217;s a good default
-that you can rely on and  choose a UTM zone that contains your area of
-interest to minimize distortions for your region. In our case, we will use
-UTM Zone 54N. Click the <em class="guilabel">CRS Status</em> button at the bottom-right of
-the QGIS window.</li>
+<li><p class="first">Ви можете вимкнути шари даних, що не будуть використовуватись у цій мапі. Для цього зніміть прапорці біля шарів <tt class="docutils literal"><span class="pre">10m_geography_marine_polys</span></tt> та <tt class="docutils literal"><span class="pre">10m_admin_0_map_units</span></tt>. Перед створенням придатної для друку мапи, необхідно визначитись із проекцією. Наш набір даних подано у Geographic Coordinate System (GCS), де одиницями виміру є градуси. Але це не підходить для мап, в яких для виміру відстаней потрібно користуватись кілометрами або милями. Ми маємо взяти координатну систему проекцій, яка зменшить спотворення потрібної нам області, і буде мати одиниці виміру у метрах. Universal Transverse Mercator (UTM) є гарним вибором для наших цілей. Вона є глобальною, і тому підійде у більшості випадків. Залишається вибрати відповідну зону UTM, яка містить потрібну нам ділянку — це необхідно зробити для зменшення викривлень (дисторсії). У нашому випадку ми виберемо зону UTM 54N. Натисніть кнопку <em class="guilabel">CRS Status</em> у правому нижньому куті вікна QGIS.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Примітка</p>
-<p class="last">For Japan, Japan Plane Rectangular CS is a projected coordinate reference
-system (CRS) that is designed for minimum distortions. It is divided in 18
-zones and if you are working for a smaller region in Japan, using this CRS
-will be better.</p>
+<p class="last">Для Японії розроблено координатну систему Japan Plane Rectangular CS (частина системи CRS — coordinate reference system), яка дає найменше спотворень. Вона розділена на 18 ділянок, і якщо ви працюєте з маленькою зоною в Японії — ця CRS підходить якнайкраще.</p>
 </div>
 <img alt="../_images/517.png" class="align-center" src="../_images/517.png" />
 <ol class="arabic simple" start="6">
-<li>Check the <em class="guilabel">Enable on-the-fly CRS Transformation</em> box. Type <tt class="docutils literal"><span class="pre">Tokyo</span>
-<span class="pre">utm</span> <span class="pre">zone54n</span></tt> in the <em class="guilabel">Filter</em> search box. Once you see the
-results, select <em class="guilabel">Tokyo / UTM Zone 54N - EPSG:3095</em>. Click
-<em class="guilabel">Apply</em>.</li>
+<li><p class="first">Поставте прапорець <em class="guilabel">Enable on-the-fly CRS Transformation</em>. У пошуковому рядку <em class="guilabel">Filter</em> введіть <tt class="docutils literal"><span class="pre">Tokyo</span> <span class="pre">utm</span> <span class="pre">zone54n</span></tt>. У знайденому виберіть <em class="guilabel">Tokyo / UTM Zone 54N - EPSG:3095</em>. Клацніть <em class="guilabel">Apply</em>.</p>
+</li>
 </ol>
 <img alt="../_images/616.png" class="align-center" src="../_images/616.png" />
 <ol class="arabic simple" start="7">
-<li>Now we can start to assemble our map. Go to
-<em class="menuselection">Project ‣ New Print Composer</em>.</li>
+<li><p class="first">Тепер ми можемо розпочати збирання нашої мапи. Перейдіть до <em class="menuselection">Project ‣ New Print Composer</em> (Ctrl+P).</p>
+</li>
 </ol>
 <img alt="../_images/715.png" class="align-center" src="../_images/715.png" />
 <ol class="arabic simple" start="8">
-<li>You will be prompted to enter a title for the composer. You can leave it
-empty and click <em class="guilabel">Ok</em>.</li>
+<li><p class="first">Вам запропонують ввести назву нашої збірки. Можете залишити поле пустим і натиснути <em class="guilabel">Ok</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Примітка</p>
-<p class="last">Leaving the composer name empty will assign a default name such as
-<tt class="docutils literal"><span class="pre">Composer</span> <span class="pre">1</span></tt>.</p>
+<p class="last">Якщо ви залишили поле назви пустим, буде вжито назву за умовчанням на кшталт <tt class="docutils literal"><span class="pre">Composer</span> <span class="pre">1</span></tt>.</p>
 </div>
 <img alt="../_images/815.png" class="align-center" src="../_images/815.png" />
 <ol class="arabic simple" start="10">
-<li>In the Print Composer window, click on <em class="guilabel">Zoom full</em> to display the
-full extent of the Layout. Now we would have to bring the map view that we
-see in the QGIS Canvas to the composer. Go to <em class="menuselection">Layout ‣
-Add Map</em>.</li>
+<li><p class="first">У вікні Print Composer клацніть по <em class="guilabel">Zoom full</em> для відображення всієї збірки. Тепер ми маємо перенести вид мапи з робочого поля QGIS до вікна Print Composer. Перейдіть до <em class="menuselection">Layout ‣ Add Map</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1014.png" class="align-center" src="../_images/1014.png" />
 <ol class="arabic simple" start="11">
-<li>Once the <em class="guilabel">Add Map</em> button is active, hold the left mouse button
-and drag a rectangle where you want to insert the map.</li>
+<li><p class="first">Після натиснення кнопки <em class="guilabel">Add Map</em>, затисніть ліву кнопку миші і намалюйте прямокутник там, де ви хочете вставити мапу.</p>
+</li>
 </ol>
 <img alt="../_images/1118.png" class="align-center" src="../_images/1118.png" />
 <ol class="arabic simple" start="12">
-<li>You will see that the rectangle window will be rendered with the map from
-the main QGIS canvas. The rendered map may not be covering the full extent
-of our interest area.  Select <em class="menuselection">Layout ‣ Move item content</em>
-to pan the map in the window and center it in the composer.</li>
+<li><p class="first">Ви побачите, що в прямокутнику відрисувалась мапа з робочого поля QGIS. Але вона не завжди відображає всю потрібну нам область. Виберіть <em class="menuselection">Layout ‣ Move content</em> (C) для переміщення мапи у вікні, або <em class="menuselection">Layout ‣ Move item</em> (V) для зміни меж вставки у вікні збірки.</p>
+</li>
 </ol>
 <img alt="../_images/1216.png" class="align-center" src="../_images/1216.png" />
 <ol class="arabic simple" start="13">
-<li>Let us adjust the zoom level for the given map. Click on the
-<em class="guilabel">Item Properties</em> tab and enter <cite>7000000</cite> for <em class="guilabel">Scale</em>
-value.</li>
+<li><p class="first">Давайте настроїмо рівень масштабування для нашої мапи. У закладці <em class="guilabel">Item Properties</em>, введіть значення <cite>7000000</cite> до <em class="guilabel">Scale</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1315.png" class="align-center" src="../_images/1315.png" />
 <ol class="arabic simple" start="14">
-<li>Now we will add a map inset that shows a zoomed in view for the Tokyo area.
-Before we make  any changes to the layers in the main QGIS window, check
-the <em class="guilabel">Lock layers for map item</em> and <em class="guilabel">Lock layer styles
-for map item</em> boxes. This will ensure that if we turn off some layers or
-change their styles, this view will not change.</li>
+<li><p class="first">Тепер ми додамо вставну мапу, в якій покажемо Токіо у збільшеному масштабі. Перш ніж вносити будь-які зміни у шари в робочому полі QGIS, поставте прапорці <em class="guilabel">Lock layers for map item</em> та <em class="guilabel">Lock layer styles for map item</em>. Це забезпечить незмінність вигляду, навіть якщо ми вимкнемо деякі шари, або змінимо їх стилі.</p>
+</li>
 </ol>
 <img alt="../_images/1413.png" class="align-center" src="../_images/1413.png" />
 <ol class="arabic simple" start="15">
-<li>Switch to the main QGIS window. Use the <em class="guilabel">Zoom In</em> button to zoom
-to the area around Tokyo.</li>
+<li><p class="first">Перейдіть у головне вікно QGIS. Скористайтесь кнопкою <em class="guilabel">Zoom In</em> для наближення ділянки біля Токіо.</p>
+</li>
 </ol>
 <img alt="../_images/1513.png" class="align-center" src="../_images/1513.png" />
 <ol class="arabic simple" start="16">
-<li>There are some duplicate labels coming from the <tt class="docutils literal"><span class="pre">ne_10m_populated_places</span></tt>
-layer. You can turn it off for this view.</li>
+<li><p class="first">З’являться деякі дубльовані позначки з шару <tt class="docutils literal"><span class="pre">ne_10m_populated_places</span></tt>. Ви можете вимкнути цей шар для цього виду.</p>
+</li>
 </ol>
 <img alt="../_images/1612.png" class="align-center" src="../_images/1612.png" />
 <ol class="arabic simple" start="17">
-<li>We are now ready to add the map inset. Switch the the <em class="guilabel">Print
-Composer</em> window. Go to <em class="menuselection">Layout ‣ Add Map</em>.</li>
+<li><p class="first">Тепер ми готові додавати вставну мапу. Перейдіть у вікно <em class="guilabel">Print Composer</em>. Виберіть <em class="menuselection">Layout ‣ Add Map</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1711.png" class="align-center" src="../_images/1711.png" />
 <ol class="arabic simple" start="18">
-<li>Drag a rectangle at the place where you want to add the map inset. You will
-now notice that we have 2 map objects in the Print Composer. When making
-changes, make sure you have the correct map selected. Select the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt>
-object that we just added from the <em class="guilabel">Items</em> panel. Select the
-<em class="guilabel">Item properties</em> tab. Scroll down to the <em class="guilabel">Frame</em> panel
-and check the box next to it. You can change the color and thickness of the
-frame border so it is easy to distinguish against the map background.</li>
+<li><p class="first">Протягніть прямокутник там, де ви хочете додати вставну мапу. Тепер у вас дві мапи у вікні збірки. При внесенні змін переконайтесь, що вибрали потрібну мапу. Виберіть об’єкт <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt>, який ми тільки що додали, у закладці <em class="guilabel">Items</em>. Перейдіть до закладки <em class="guilabel">Item properties</em>. Прокрутіть вниз до рядка <em class="guilabel">Frame</em>, і поставте прапорець біля нього. Ви можете змінювати колір та товщину обведення, для того щоб краще вирізнити вставну мапу на тлі основної.</p>
+</li>
 </ol>
 <img alt="../_images/1811.png" class="align-center" src="../_images/1811.png" />
 <ol class="arabic simple" start="19">
-<li>One neat feature of the Print Composer is that it can automatically
-highlight the area from the main map which is represented in our inset.
-Select the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> object from the <em class="guilabel">Items</em> panel. In the
-<em class="guilabel">Item properties</em> tab, scroll down to the <em class="guilabel">Overviews</em>
-section. Click the <em class="guilabel">Add a new overview</em> button.</li>
+<li><p class="first">Зручною функцією вікна збірки є автоматичне підсвічування площі основної мапи, яка представлена у вашій вставці. Виберіть <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> у закладці <em class="guilabel">Items</em>. В закладці <em class="guilabel">Item properties</em> прокрутіть вниз до секції <em class="guilabel">Overviews</em>. Натисніть кнопку <em class="guilabel">Add a new overview</em>.</p>
+</li>
 </ol>
 <img alt="../_images/199.png" class="align-center" src="../_images/199.png" />
 <ol class="arabic simple" start="20">
-<li>Select <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt> as the <em class="guilabel">Map Frame</em>. What this is telling the
-Print Composer is that it must highlight our current object <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> with
-the extent of the map shown in the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt> object.</li>
+<li><p class="first">Виберіть <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">1</span></tt> у <em class="guilabel">Map Frame</em>. У вікні збірки на мапі <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> має підсвітитись площа вставної мапи``Map 1``.</p>
+</li>
 </ol>
 <img alt="../_images/206.png" class="align-center" src="../_images/206.png" />
 <ol class="arabic simple" start="21">
-<li>Now that we have the map inset ready, we will add a grid and zebra border
-to the main map. Select the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt> object from the <em class="guilabel">Items</em>
-panel. In the <em class="guilabel">Item properties</em> tab, scroll down to the
-<em class="guilabel">Grids</em> section. Click the <em class="guilabel">Add a new grid</em> button.</li>
+<li><p class="first">Тепер, коли ми створили вставну мапу, додамо сітку та смугасту обводку до основної мапи. Виберіть об’єкт <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">0</span></tt>  на закладці <em class="guilabel">Items</em>. У закладці <em class="guilabel">Item properties</em> прокрутіть вниз до секції <em class="guilabel">Grids</em>. Натисніть кнопку <em class="guilabel">Add a new grid</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2112.png" class="align-center" src="../_images/2112.png" />
 <ol class="arabic simple" start="22">
-<li>By default, the grid lines use the same units and projections as the
-currently selected map projections. However, it is more common and useful
-to display grid lines in degrees. We can select a different CRS for the
-grid. Click on the <em class="guilabel">change...</em> button next to <em class="guilabel">CRS</em>.</li>
+<li><p class="first">За умовчанням, сітка використовує ті ж одиниці виміру, що й вибрана картографічна проекція. Та все ж, часто потрібно відобразити сітку у градусах. Ми можемо вибрати іншу CRS для сітки. Натисніть кнопку <em class="guilabel">change...</em> праворуч від <em class="guilabel">CRS</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2211.png" class="align-center" src="../_images/2211.png" />
 <ol class="arabic simple" start="23">
-<li>In the <em class="guilabel">Coordinate Reference System Selector</em> dialog, enter
-<tt class="docutils literal"><span class="pre">4326</span></tt> in the <em class="guilabel">Filter</em> box. From the results, select the
-<tt class="docutils literal"><span class="pre">WGS84</span> <span class="pre">EPSG:4326</span></tt> as the CRS. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">В діалоговому вікні <em class="guilabel">Coordinate Reference System Selector</em> введіть у поле пошуку <tt class="docutils literal"><span class="pre">4326</span></tt>. В результатах виберіть <tt class="docutils literal"><span class="pre">WGS</span> <span class="pre">84</span> <span class="pre">EPSG:4326</span></tt> як потрібну CRS. Натисніть <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/236.png" class="align-center" src="../_images/236.png" />
 <ol class="arabic simple" start="24">
-<li>Select the <em class="guilabel">Interval</em> values as <tt class="docutils literal"><span class="pre">5</span></tt> degrees in both
-<em class="guilabel">X</em> and <em class="guilabel">Y</em> direction. You can adjust the
-<em class="guilabel">Offset</em> to change where the grid lines appear.</li>
+<li><p class="first">Введіть 5 градусів як значення проміжків <em class="guilabel">Interval</em> в обох напрямках: <em class="guilabel">X</em> та <em class="guilabel">Y</em>. Також можна використовувати <em class="guilabel">Offset</em> для зміщення ліній сітки.</p>
+</li>
 </ol>
 <img alt="../_images/245.png" class="align-center" src="../_images/245.png" />
 <ol class="arabic simple" start="25">
-<li>Scroll down to the <em class="guilabel">Grid frame</em> section and select a frame style
-that suits your taste. Also check the <em class="guilabel">Draw coordinates</em> box.</li>
+<li><p class="first">Прокрутіть вниз до розділу <em class="guilabel">Grid frame</em>, та виберіть вигляд рамки, який вам найбільше подобається. Також поставте прапорець біля <em class="guilabel">Draw coordinates</em>.</p>
+</li>
 </ol>
 <img alt="../_images/254.png" class="align-center" src="../_images/254.png" />
 <ol class="arabic simple" start="26">
-<li>Adjust the <em class="guilabel">Distance to map frame</em> till the coordinates are
-legible. Change the <em class="guilabel">Coordinate precision</em> to <tt class="docutils literal"><span class="pre">1</span></tt> so the
-coordinates are displayed only upto the first decimal.</li>
+<li><p class="first">Відрегулюйте відстань координат до рамки у полі <em class="guilabel">Distance to map frame</em>. Змініть значення поля <em class="guilabel">Coordinate precision</em> на <tt class="docutils literal"><span class="pre">1</span></tt> для відображення координат з точністю до одного знаку після коми.</p>
+</li>
 </ol>
 <img alt="../_images/264.png" class="align-center" src="../_images/264.png" />
 <ol class="arabic simple" start="27">
-<li>Now we will add a North Arrow to the map. The Print Composer comes with a
-nice collection of map-related images - including many types of North
-Arrows.  Click <em class="menuselection">Layout ‣ Add Image</em>.</li>
+<li><p class="first">Тепер ми додамо на мапу вказівник півночі. Вікно збірки має чудову добірку зображень для мап, включно з великою кількістю вказівників. Натисніть <em class="menuselection">Layout ‣ Add Image</em>.</p>
+</li>
 </ol>
 <img alt="../_images/274.png" class="align-center" src="../_images/274.png" />
 <ol class="arabic simple" start="28">
-<li>Holding your left mouse button, draw a rectangle on the top-right corner of
-the map canvas. On the right-hand panel, click on the <em class="guilabel">Item
-Properties</em> tab and expand the <em class="guilabel">Search directories</em> section and
-select the North Arrow image of your liking.</li>
+<li><p class="first">Затисніть ліву кнопку миші, і намалюйте прямокутник у верхньому правому куті поля мапи. У правій панелі виберіть  закладку <em class="guilabel">Item Properties</em>, розкрийте розділ <em class="guilabel">Search directories</em> і виберіть вказівник півночі, який вам подобається найбільше.</p>
+</li>
 </ol>
 <img alt="../_images/282.png" class="align-center" src="../_images/282.png" />
 <ol class="arabic simple" start="29">
-<li>Now we will add a scale bar. Click on <em class="menuselection">Layout ‣ Add
-Scalebar</em>.</li>
+<li><p class="first">Тепер ми додамо масштабну лінійку. Натисніть <em class="menuselection">Layout ‣ Add Scalebar</em>.</p>
+</li>
 </ol>
 <img alt="../_images/293.png" class="align-center" src="../_images/293.png" />
 <ol class="arabic simple" start="30">
-<li>Click on the layout where you want the scalebar to appear.  In the
-<em class="guilabel">Item Properties</em> tab, make sure you have chosen the correct map
-element for which to display the scalebar. Choose the Style that fit your
-requirement. In the <em class="guilabel">Segments</em> panel, you can adjust the number
-of segments and their size.</li>
+<li><p class="first">Клацніть там, де ви хочете додати мірило. У закладці <em class="guilabel">Item Properties</em> переконайтесь, що ви вибрали правильний елемент мапи, для якої потрібно показати масштабну лінійку. У розділі <em class="guilabel">Segments</em> ви можете настроїти кількість сегментів та їх розмір.</p>
+</li>
 </ol>
 <img alt="../_images/303.png" class="align-center" src="../_images/303.png" />
 <ol class="arabic simple" start="31">
-<li>It is time to label our map. Click on <em class="menuselection">Layout ‣ Add Label</em>.</li>
+<li><p class="first">Саме час підписати нашу мапу. Натисніть <em class="menuselection">Layout ‣ Add Label</em>.</p>
+</li>
 </ol>
 <img alt="../_images/3111.png" class="align-center" src="../_images/3111.png" />
 <ol class="arabic simple" start="32">
-<li>Click on the map and draw a box where the label should be. In the
-<em class="guilabel">Item Properties</em> tab, expand the <em class="guilabel">Label</em> section and
-enter the text as shown below. We can enter the text as HTML as well.
-Check the box <em class="guilabel">Render as Html</em> so the composer will interpret the
-HTML tags.</li>
+<li><p class="first">Клацніть на мапі і намалюйте прямокутник, в якому має розміщуватись підпис. У закладці <em class="guilabel">Item Properties</em> розкрийте розділ <em class="guilabel">Label</em> і введіть текст, як показано нижче. Також можна ввести текст у HTML. Поставте прапорець навпроти <em class="guilabel">Render as Html</em> для того, щоб програма могла розуміти теґи HTML.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&lt;div align=center&gt;
 &lt;h1&gt;Map of Japan&lt;/h1&gt;
@@ -443,18 +394,18 @@ HTML tags.</li>
 </div>
 <img alt="../_images/324.png" class="align-center" src="../_images/324.png" />
 <ol class="arabic simple" start="33">
-<li>Similarly add another label to add the data and software credits.</li>
+<li><p class="first">Так само додайте ще один підпис із вихідними даними та назвою програми.</p>
+</li>
 </ol>
 <img alt="../_images/332.png" class="align-center" src="../_images/332.png" />
 <ol class="arabic simple" start="34">
-<li>Once you are satisfied with the map, you can export it as Image, PDF or
-SVG. For this tutorial, let’s export it as an image. Click
-<em class="menuselection">Composer ‣ Export as Image</em>.</li>
+<li><p class="first">Якщо ви задоволені мапою, її можна експортувати як растрове зображення, PDF або SVG. В цьому уроці збережемо її як растрове зображення. Натисніть <em class="menuselection">Composer ‣ Export as Image</em>.</p>
+</li>
 </ol>
 <img alt="../_images/342.png" class="align-center" src="../_images/342.png" />
 <ol class="arabic simple" start="35">
-<li>Save the image in the format of your liking. Below is the exported PNG
-image.</li>
+<li><p class="first">Збережіть зображення у потрібному вам форматі. Нижче показано результат збереження у форматі PNG.</p>
+</li>
 </ol>
 <img alt="../_images/352.png" class="align-center" src="../_images/352.png" />
 </div>
@@ -482,7 +433,7 @@ image.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Востаннє оновлено Dec 04, 2015.<br/>
+      Востаннє оновлено Dec 08, 2015.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
