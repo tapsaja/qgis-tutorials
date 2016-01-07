@@ -147,6 +147,7 @@
 <form role="form" class="navbar-form navbar-right">
 <select id="languages" class="form-control select-mini">
   <option value="en">English</option>
+  <option value="zh_TW">Chinese (Taiwan)</option>
   <option value="nl">Dutch</option>
   <option value="fi_FI">Finnish</option>
   <option value="fr">French</option>
@@ -213,9 +214,10 @@ target="_blank">Letter</a> ]</p><p>Mapas de calor são uma das melhores ferramen
 <h2>Visão geral da tarefa<a class="headerlink" href="#overview-of-the-task" title="Link permanente para este título">¶</a></h2>
 <p>Vamos trabalhar com um conjunto de dados dos locais de crimes em Surrey, Reino Unido para o ano de 2011 e encontrar hotspots de criminalidade no município.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Link permanente para este título">¶</a></h3>
+<h3>Habilidades para aprender<a class="headerlink" href="#other-skills-you-will-learn" title="Link permanente para este título">¶</a></h3>
 <ul class="simple">
-<li>How to perform <em>HotSpot</em> or <em>Cluster</em> analysis on dense point data.</li>
+<li><p class="first">Como realizar zonas quentes ou analises de agrupamentos a partir de pontos</p>
+</li>
 </ul>
 </div>
 </div>
@@ -223,29 +225,21 @@ target="_blank">Letter</a> ]</p><p>Mapas de calor são uma das melhores ferramen
 <h2>Obter os dados<a class="headerlink" href="#get-the-data" title="Link permanente para este título">¶</a></h2>
 <p><a class="reference external" href="https://data.police.uk">data.police.uk</a> provides street-level crime,
 outcome, and stop and search data in simple CSV format.</p>
-<p>Download the data for <a class="reference external" href="https://data.police.uk/data/">Surrey Police</a> and unzip
-the downloaded archive to extract the CSV file.</p>
-<p>For convenience, you may directly download a copy of the dataset from the link
-below:</p>
+<p>Baixe os dados &#8216;Surrey Police &lt;<a class="reference external" href="https://data.police.uk/data/">https://data.police.uk/data/</a>&gt;&#8217;, descompacte o arquivo para extrair o arquivo CSV</p>
+<p>Por conveniência, você pode baixar o arquivo dos dados diretamente do caminho abaixo:</p>
 <p><a class="reference external" href="../../downloads/2015-08-surrey-street.csv">2015-08-surrey-street.csv</a></p>
 <p>Data Source <a class="reference internal" href="credits.html#policeuk" id="id1">[POLICEUK]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedimento<a class="headerlink" href="#procedure" title="Link permanente para este título">¶</a></h2>
 <ol class="arabic simple">
-<li>To start, we will import the CSV file into QGIS. (see
-<a class="reference internal" href="importing_spreadsheets_csv.html"><em>Importing Spreadsheets or CSV files</em></a>. for more details). Click
-<em class="menuselection">Layer ‣ Add Delimited Text Layer</em>.</li>
+<li><p class="first">Inicie importando o arquivo CSV para o QGIS.  (visualize o procedimento em:doc:<cite>importing_spreadsheets_csv</cite>. for more details). O Caminho para realizar isso é: Camada &#8211;&gt;  Adicionar Texto Delimitado.</p>
+</li>
 </ol>
 <img alt="../_images/126.png" class="align-center" src="../_images/126.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the <tt class="docutils literal"><span class="pre">2015-08-surrey-street.csv</span></tt> file on your computer and open
-it. (Your filename maybe different if you downloaded a fresh copy of the
-dataset). Select <em class="guilabel">CSV (comma separated values)</em> as the file
-format. You will see the <tt class="docutils literal"><span class="pre">Longitude</span></tt> and <tt class="docutils literal"><span class="pre">Latitude</span></tt> columns automatically
-selected as X and Y fields. Make sure you check the <em class="guilabel">Use spatial
-index</em> option as that will speed up your operations on this layer. Click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Procure o arquivo <tt class="docutils literal"><span class="pre">2015-08-surrey-street.csv</span></tt> no seu computador e abrá-o. (Esse nome pode ser diferente se você baixou um arquivo mais atual). Selecione guilabel:<cite>CSV (separado por virgula)</cite> como o formato do arquivo. Você verá &#8220;Longitude&#8221; e &#8220;Latitude&#8221; e automaticamente os campos X  e Y serão escolhidos respectivamente, como coordenadas. Esteja certo que você selecionou a opção:guilabel:<cite>Adicione índice espacial</cite>. Isso irá melhorar a performace do manuseio da camada. Aperte <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
 <ol class="arabic simple" start="3">
@@ -254,18 +248,12 @@ index</em> option as that will speed up your operations on this layer. Click
 </ol>
 <img alt="../_images/310.png" class="align-center" src="../_images/310.png" />
 <ol class="arabic simple" start="4">
-<li>As the data layer is loaded in QGIS, you will see a warning dialog
-<em class="guilabel">CRS was undefined: defaulting to CRS EPSG:4326 - WGS84</em>. The CSV
-importer assumes the CRS EPSG:4326 if your coordinates are in
-Latitude/Longitude. If your X and Y coordinates were in a projected CRS, you
-will get a dialog prompting you to choose the CRS. As our data is in
-EPSG:4326, you can ignore the warning.</li>
+<li><p class="first">Após carregar o arquivo no QGIS será aberta uma janela para que você informe qual o datum da camada a ser criada:guilabel:<cite>Se o CRS ficar indefinida: por padrão aplicar-se-á o CRS EPSG:4326 - WGS84</cite> se o seu dado estiver em Coordenada Geográfica. Caso esteja com coordenadas planas, será necessário definir o datum para a camada através da janela de diálogo. Como nosso dado esta em EPSG:4326 podesse ignorar a menssagem de alerta.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
-<p class="last">If you need to change the automatically assigned CRS, you can use
-<em class="menuselection">Vector ‣ Data Management Tols ‣ Define Current
-Projection...</em>.</p>
+<p class="last">Se for necessário modificar o datum da camada é possível redefinir o sistema de referência espacial:  <em class="menuselection">Vector ‣ Data Management Tols ‣ Define Current Projection...</em>.</p>
 </div>
 <img alt="../_images/47.png" class="align-center" src="../_images/47.png" />
 <ol class="arabic simple" start="5">
@@ -274,74 +262,48 @@ Projection...</em>.</p>
 </ol>
 <img alt="../_images/57.png" class="align-center" src="../_images/57.png" />
 <ol class="arabic simple" start="6">
-<li>If you need to create a heatmap for purely visual purpose or for printing -
-QGIS has a built-in symbology renderer called <em class="guilabel">Heatmap</em>. Let&#8217;s try
-that first. Right-click on the layer <tt class="docutils literal"><span class="pre">2015-08-surrey-street</span></tt> and select
-<em class="guilabel">Properties</em>.</li>
+<li><p class="first">Se for necessário criar um analise de zonas quentes simplesmente para visualização, é possível construir isso através da simbologia da camada <em class="guilabel">Heatmap</em>. Vamos tentar isso. Click com o botão direito do mouse na camada carregada <tt class="docutils literal"><span class="pre">2015-08-surrey-street</span></tt>  e selecione <em class="guilabel">Properties</em>.</p>
+</li>
 </ol>
 <img alt="../_images/66.png" class="align-center" src="../_images/66.png" />
 <ol class="arabic simple" start="7">
-<li>In the <em class="guilabel">Properties</em> dialog, switch to the <em class="guilabel">Style</em> tab.
-Select <em class="guilabel">Heatmap</em> as the renderer. You have a lot of choice of
-color-ramps for the heatmap. Choose the <tt class="docutils literal"><span class="pre">Oranges</span></tt> color-ramp. Leave the
-other parameters to default and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">No <em class="guilabel">Properties</em> acesse a aba <em class="guilabel">Style</em>. Selecione <em class="guilabel">Heatmap</em>. Terá várias possibilidades paletas de cores para que possa escolher. Experimente aquela que trará melhor representação para os seus dados. Escolha &#8220;Orange&#8221; na paleta de cores. Deixe os parametros como padrão e click em: <cite>OK</cite>.</p>
+</li>
 </ol>
 <img alt="../_images/76.png" class="align-center" src="../_images/76.png" />
 <ol class="arabic simple" start="8">
-<li>You will see a nice heatmap of your data and pockets of <em>heat</em> where there
-is a high concentration of crime. There are quite a few options available in
-the heatmap renderer to create the most appropriate visualization for your
-dataset. If you just wanted to create a heatmap for print or visual
-inspection - you are done! But we will explore another more powerful heatmap
-creation option where you can use the results in your analysis also.</li>
+<li><p class="first">Como resultado você vera um elegante mapa de zonas quentes onde regiões com maior consentração de ocorrência de crimes é mais frequente (maior número de pontos) e que será sobresaltada na camara gerada. Existe algumas opções disponíveis para apresentar uma visualização apriopriada do ser conjuto de dados. Se você desejar, somente, uma mapa de zonas quentes para visualização somente, então esta feito. Mas você poderá explorar seu mapa de zonas quentes e o resultado obtido para suas análises também</p>
+</li>
 </ol>
 <img alt="../_images/86.png" class="align-center" src="../_images/86.png" />
 <ol class="arabic simple" start="9">
-<li>Enable a core plugin named <tt class="docutils literal"><span class="pre">Heatmap</span></tt>. See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> to know how
-to enable built-in plugins. Once you have enabled the plugin, go to
-<em class="menuselection">Raster ‣ Heatmap ‣ Heatmap</em>.</li>
+<li><p class="first">Para a segunda possibilidade de tratar seu dado nas suas análises, abilite o plugin chamado de <tt class="docutils literal"><span class="pre">Heatmap</span></tt>. See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a>. Uma vez habilitado o plugin vá para:menuselection:<cite>Raster &#8211;&gt; Heatmap &#8211;&gt; Heatmap</cite>.</p>
+</li>
 </ol>
 <img alt="../_images/96.png" class="align-center" src="../_images/96.png" />
 <ol class="arabic simple" start="10">
-<li>In the <em class="guilabel">Heatmap Plugin</em> dialog, choose <tt class="docutils literal"><span class="pre">crime_heatmap</span></tt> as the
-name out the <em class="guilabel">Output raster</em>. Enter <cite>1000</cite> meters as the
-<em class="guilabel">Radius</em>. Radius is the area around each point that will be used
-to calculate the i`heat` a pixel received. Check the <em class="guilabel">Advanced</em> so
-we can specify the output size of our heatmap. Enter <tt class="docutils literal"><span class="pre">2000</span></tt> as
-<em class="guilabel">Rows</em> value. The <em class="guilabel">Columns</em> value will update
-automatically. Click <em class="guilabel">OK</em> to start the heatmap creation process.</li>
+<li><p class="first">Em <em class="guilabel">Heatmap Plugin</em> escolha <tt class="docutils literal"><span class="pre">crime_heatmap``como</span> <span class="pre">o</span> <span class="pre">nome</span> <span class="pre">do</span> <span class="pre">output</span> <span class="pre">da</span> <span class="pre">camada</span> <span class="pre">a</span> <span class="pre">ser</span> <span class="pre">gerada.</span> <span class="pre">Defina</span> <span class="pre">isso</span> <span class="pre">em:guilabel:`Output</span> <span class="pre">raster`.</span> <span class="pre">Entre</span> <span class="pre">com</span> <span class="pre">1000`</span> <span class="pre">metros</span> <span class="pre">em</span> <span class="pre">:guilabel:`Radius`.</span> <span class="pre">Raio</span> <span class="pre">é</span> <span class="pre">a</span> <span class="pre">area</span> <span class="pre">ao</span> <span class="pre">redor</span> <span class="pre">do</span> <span class="pre">qual</span> <span class="pre">será</span> <span class="pre">calculado</span> <span class="pre">o</span> <span class="pre">pixel</span> <span class="pre">de</span> <span class="pre">interesse.</span> <span class="pre">Confira</span> <span class="pre">:guilabel:`Advanced`</span> <span class="pre">onde</span> <span class="pre">você</span> <span class="pre">pode</span> <span class="pre">definir</span> <span class="pre">o</span> <span class="pre">tamanho</span> <span class="pre">do</span> <span class="pre">pixel</span> <span class="pre">do</span> <span class="pre">raster</span> <span class="pre">produzido.</span> <span class="pre">Entre</span> <span class="pre">com</span> <span class="pre">``2000</span></tt> . em <em class="guilabel">Rows</em> para o número de linhas do raster. O campo  <em class="guilabel">Columns</em> será preenchido automaticamente. Click em <em class="guilabel">OK</em> para iniciar o processamento do mapa zonas quentes.</p>
+</li>
 </ol>
 <img alt="../_images/106.png" class="align-center" src="../_images/106.png" />
 <ol class="arabic simple" start="11">
-<li>Once the processing is finished, you will see a grayscale layer called
-<tt class="docutils literal"><span class="pre">crime_heatmap</span></tt> loaded into the canvas. Uncheck the
-<tt class="docutils literal"><span class="pre">2015-08-surrey-street</span></tt> layer.</li>
+<li><p class="first">Um vez o processamento finalizado, você verá uma imagens em tons de cinzas nomeada como <tt class="docutils literal"><span class="pre">crime_heatmap</span></tt> e adicionada ao canvas do projeto. Desative a camada <tt class="docutils literal"><span class="pre">2015-08-surrey-street</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/1110.png" class="align-center" src="../_images/1110.png" />
 <ol class="arabic simple" start="12">
-<li>Let&#8217;s make our heatmap look more like the traditional heatmap similar to
-the earlier visualization. Right-click on the heatmap layer and click
-<em class="guilabel">Properties</em>.</li>
+<li><p class="first">Vamos tornar o mapa de zonas de calor mais atraentes e representado de maneira mais proxima com o que fizemos anteriormente. Click no botão direito do mouse e acesse <em class="guilabel">Properties</em>.</p>
+</li>
 </ol>
 <img alt="../_images/127.png" class="align-center" src="../_images/127.png" />
 <ol class="arabic simple" start="13">
-<li>In the <em class="guilabel">Style</em> tab, select <em class="guilabel">Singleband pseudocolor</em> as
-the <em class="guilabel">Render type</em>. Next, under the section <em class="guilabel">Load
-min/max values</em>, select the <em class="guilabel">Estimate (faster)</em> as the
-<em class="guilabel">Accuracy</em> and click <em class="guilabel">Load</em>. This will scan the heatmap
-and find the minimum and maximum pixel values. These values will be used to
-generate an appropriate color ramp. In the section <em class="guilabel">Generate new
-color map</em>, select <em class="guilabel">YlOrRd</em> (Yellow-Orange-Red) as the color
-ramp, and click <em class="guilabel">Classify</em>. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Na guia <em class="guilabel">Style</em> selecione <em class="guilabel">Singleband pseudocolor</em>, em <em class="guilabel">Render type</em>. Posteriormente, defina <em class="guilabel">Load min/max values</em>, selecione <em class="guilabel">Estimate (faster)</em>,  <em class="guilabel">Accuracy</em> e aperte em <em class="guilabel">Load</em>. Isso verificará o mapa de zonas de calor para encontrar os valores máximos e mínimos  dos pixels. Estes valores serão utilizados para produzir um paleta de cores mais apropriada. Na seção  <em class="guilabel">Generate new color map</em> selecione <em class="guilabel">YlOrRd</em> (Yellow-Orange-Red)  como a paleta de cores, click em  <em class="guilabel">Classify</em>. Click em:guilabel:<cite>OK</cite>.</p>
+</li>
 </ol>
 <img alt="../_images/136.png" class="align-center" src="../_images/136.png" />
 <ol class="arabic simple" start="14">
-<li>Now you will see a more appealing heatmap-like rendering of the layer. You
-can select the <em class="guilabel">Identify</em> tool and click on any pixel of the
-heatmap. You will see the pixel value in the resulting pop-up. This
-pixel-value is a measure of how many points from the source layer are
-contained within the specified radius ( in our case - 1000m) around the
-pixel.</li>
+<li><p class="first">Agora você vera com maior detalhes o mapa de zonas quentes representado uma camada. Você podera utilizar o <em class="guilabel">Identify</em> para acessar os valores estimados pelo kernel. Verá os valores como em pop-ups. Estes valores de pixels esta dizendo quantos pontos houveram na fonte de dados (pontos) no raio definido na análise (no nosso casso 1000 metros) ao redor do pixel medido.</p>
+</li>
 </ol>
 <img alt="../_images/146.png" class="align-center" src="../_images/146.png" />
 <ol class="arabic simple" start="15">
@@ -352,14 +314,8 @@ using this heatmap. Go to <em class="menuselection">Raster ‣ Raster Calculator
 </ol>
 <img alt="../_images/156.png" class="align-center" src="../_images/156.png" />
 <ol class="arabic simple" start="16">
-<li>You will have to decide on a threshold value first. All pixel values above
-that threshold will be considered to be in a cluster. Let&#8217;s use a value of
-<tt class="docutils literal"><span class="pre">10</span></tt> for this data. In <em class="guilabel">Raster calculator</em> dialog, name the
-output layer as <tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt>. Double-click on
-<tt class="docutils literal"><span class="pre">crime_heatmap&#64;1</span></tt> under the <em class="guilabel">Raster bands</em> section and
-it will be added to the <em class="guilabel">Raster calculator expression</em> textarea.
-Complete the expression as shown below.  Check the box next to
-<em class="guilabel">Add result to project</em> and <em class="guilabel">OK</em>.</li>
+<li><p class="first">Primeiramente, precisará decidir sobre o valor limite das ocorências em cada pixel.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;crime_heatmap@1&quot; &gt; 10
 </pre></div>
@@ -447,7 +403,7 @@ action.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Última atualização em Dec 21, 2015.<br/>
+      Última atualização em Jan 07, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

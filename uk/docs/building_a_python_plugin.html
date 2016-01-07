@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Обчислення довжини ліній та статистики</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Основи растрового моделювання та аналізу</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Зшивання та обрізання растрових мозаїк</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Робота з даними місцевості</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Робота з даними рельєфу</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Робота з даними WMS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">Робота з проекціями</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Геоприв’язування топографічних листів та сканованих мап</a></li>
@@ -146,6 +146,7 @@
 <form role="form" class="navbar-form navbar-right">
 <select id="languages" class="form-control select-mini">
   <option value="en">English</option>
+  <option value="zh_TW">Chinese (Taiwan)</option>
   <option value="nl">Dutch</option>
   <option value="fi_FI">Finnish</option>
   <option value="fr">French</option>
@@ -215,19 +216,18 @@ plugin and writing code to interact with QGIS. Please review the
 <a class="reference internal" href="getting_started_with_pyqgis.html"><em>Перші кроки в програмуванні на Python</em></a> tutorial to get familiar with the basics.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Огляд завдання<a class="headerlink" href="#overview-of-the-task" title="Постійне посилання на цей заголовок">¶</a></h2>
-<p>We will develop a simple plugin called <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></tt> that will allow
-users to pick a vector layer and write its attributes to a CSV file.</p>
+<p>Ми створимо простий плагін, який буде називатися <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></tt> який дозволить користувачам вибрати векторний шар і зберегти його атрибути у CSV файл.</p>
 </div>
 <div class="section" id="get-the-tools">
 <h2>Інструментарій<a class="headerlink" href="#get-the-tools" title="Постійне посилання на цей заголовок">¶</a></h2>
 <div class="section" id="qt-creator">
-<h3>Qt Creator<a class="headerlink" href="#qt-creator" title="Постійне посилання на цей заголовок">¶</a></h3>
+<h3>Середовище розробки Qt Creator<a class="headerlink" href="#qt-creator" title="Постійне посилання на цей заголовок">¶</a></h3>
 <p><a class="reference external" href="http://www.qt.io/">Qt</a> is a software development framework that is used to
 develop applications that run on Windows, Mac, Linux as well as various mobile
 operating systems. QGIS itself is written using the Qt framework. For plugin
 development, we will use an application called <a class="reference external" href="http://doc.qt.io/qtcreator/index.html">Qt Creator</a> to design the interface for our
 plugin.</p>
-<p>Download and install the Qt Creator software from <a class="reference external" href="http://sourceforge.net/projects/qtcreator.mirror/files/latest/download">SourgeForge</a></p>
+<p>Завантажте і встановить програму Qt Creator із <a class="reference external" href="http://sourceforge.net/projects/qtcreator.mirror/files/latest/download">SourgeForge</a></p>
 </div>
 <div class="section" id="python-bindings-for-qt">
 <h3>Python Bindings for Qt<a class="headerlink" href="#python-bindings-for-qt" title="Постійне посилання на цей заголовок">¶</a></h3>
@@ -239,8 +239,7 @@ you are using. For building plugins we need the <tt class="docutils literal"><sp
 Install</em>. Install the package <tt class="docutils literal"><span class="pre">QGIS</span></tt>. After installation, you will be able to access the
 <tt class="docutils literal"><span class="pre">pyrcc4</span></tt> tool via the <em class="guilabel">OSGeo4W Shell</em>.</p>
 <p><strong>Mac</strong></p>
-<p>Install the <a class="reference external" href="http://brew.sh">Homebrew</a> package manager. Install <tt class="docutils literal"><span class="pre">PyQt</span></tt>
-package by running the following command:</p>
+<p>Встановіть пакетний менеджер <a class="reference external" href="http://brew.sh">Homebrew</a>. Встановіть пакет <tt class="docutils literal"><span class="pre">PyQt</span></tt> виконавши наступну команду:</p>
 <div class="highlight-none"><div class="highlight"><pre>brew install pyqt
 </pre></div>
 </div>
@@ -252,7 +251,7 @@ Ubuntu and Debian-based distributions, you can run the following command:</p>
 </div>
 </div>
 <div class="section" id="a-text-editor-or-a-python-ide">
-<h3>A Text Editor or a Python IDE<a class="headerlink" href="#a-text-editor-or-a-python-ide" title="Постійне посилання на цей заголовок">¶</a></h3>
+<h3>Текстовий редактора або середовище розробки Python<a class="headerlink" href="#a-text-editor-or-a-python-ide" title="Постійне посилання на цей заголовок">¶</a></h3>
 <p>Any kind of software development requires a good text editor. If you already
 have a favorite text editor or an IDE (Integrated Development Environment), you
 may use it for this tutorial. Otherwise, each platform offers a wide variety of
@@ -294,8 +293,8 @@ settings if you cannot find it.</p>
 <div class="section" id="procedure">
 <h2>Виконання<a class="headerlink" href="#procedure" title="Постійне посилання на цей заголовок">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS. Go to <em class="menuselection">Plugins ‣ Plugin Builder ‣ Plugin
-Builder</em>.</li>
+<li><p class="first">Відкрийте QGIS. Перейдіть до меню <em class="menuselection">Plugins ‣ Plugin Builder ‣ Plugin Builder</em>.</p>
+</li>
 </ol>
 <img alt="../_images/116.png" class="align-center" src="../_images/116.png" />
 <ol class="arabic simple" start="2">
@@ -792,7 +791,7 @@ upload it to the QGIS plugin repository.</p>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Востаннє оновлено Dec 21, 2015.<br/>
+      Востаннє оновлено Jan 07, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Обчислення довжини ліній та статистики</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Основи растрового моделювання та аналізу</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Зшивання та обрізання растрових мозаїк</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Робота з даними місцевості</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Робота з даними рельєфу</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Робота з даними WMS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">Робота з проекціями</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Геоприв’язування топографічних листів та сканованих мап</a></li>
@@ -146,6 +146,7 @@
 <form role="form" class="navbar-form navbar-right">
 <select id="languages" class="form-control select-mini">
   <option value="en">English</option>
+  <option value="zh_TW">Chinese (Taiwan)</option>
   <option value="nl">Dutch</option>
   <option value="fi_FI">Finnish</option>
   <option value="fr">French</option>
@@ -207,99 +208,63 @@ target="_blank">A4</a>
 <a class="reference external"
 href="../pdf/advanced_georeferencing_letter.pdf" onClick="ga('send',
 'event', 'PDF Download', 'advanced_georeferencing_letter');"
-target="_blank">Letter</a> ]</p><p>In the tutorial <a class="reference internal" href="georeferencing_basics.html"><em>Геоприв’язування топографічних листів та сканованих мап</em></a> we covered the basic process of
-georeferencing in QGIS. That method involved reading the coordinates from your
-scanned map and inputting it manually. Many times though you may not have the
-coordinates printed on your map, or you are trying to georeference an image.
-In that case, you can use another georeferenced data source as your input. In
-this tutorial, you will learn how to use existing open data sources in your
-georeferencing process.</p>
+target="_blank">Letter</a> ]</p><p>В уроці <a class="reference internal" href="georeferencing_basics.html"><em>Геоприв’язування топографічних листів та сканованих мап</em></a>  був розглянутий основний процес геоприв&#8217;язування в QGIS. Цей метод потребував зчитування координат із відсканованої карти і введення їх вручну. Але в багатьох випадках ви можете не мати координат, надрукованих на вашій карті, або ви намагаєтесь геоприв&#8217;язати зображення. В такому випадку ви можете використовувати інше джерело даних для геоприв&#8217;язки на вході. В цьому уроці, ви навчитесь як використовувати існуючі відкриті джерела даних в процесі геоприв&#8217;язування.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Огляд завдання<a class="headerlink" href="#overview-of-the-task" title="Постійне посилання на цей заголовок">¶</a></h2>
-<p>We will georeference high resolution balloon-imagery using reference
-coordinates from OpenStreetMap.</p>
+<p>Виконаємо геоприв&#8217;язку зображення високої роздільної здатності, відзнятого за допомогою повітряної кулі, використовуючи координати для посилання із OpenStreetMap.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Додаткові навички<a class="headerlink" href="#other-skills-you-will-learn" title="Постійне посилання на цей заголовок">¶</a></h3>
 <ul class="simple">
-<li>Downloading super high-resolution public domain imagery.</li>
-<li>Using the OpenLayers plugin in QGIS.</li>
-<li>Converting coordinates between different projection using <strong>cs2cs</strong>
-command-line tool.</li>
-<li>Using an existing georeferenced layer to input GCP points in the Georeferencer
-tool.</li>
-<li>Setting a custom no-data value for a layer.</li>
+<li><p class="first">Завантажувати загальнодоступні знімки з високою роздільною здатністю.</p>
+</li>
+<li><p class="first">Використання плагіну OpenLayers в QGIS.</p>
+</li>
+<li><p class="first">Перерахунок координат між різними проекціями з використанням утиліти командного рядку <strong>cs2cs</strong>.</p>
+</li>
+<li><p class="first">Використовувати існуючий шар із геоприв&#8217;язкою для введення опорних точок у інструменті Геоприв&#8217;язувач.</p>
+</li>
+<li><p class="first">Встановлювати значення без даних для шару.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Отримання даних<a class="headerlink" href="#get-the-data" title="Постійне посилання на цей заголовок">¶</a></h2>
-<p>In this tutorial, we will be using some gorgeous kite and balloon imagery
-collected by <a class="reference external" href="http://publiclaboratory.org/archive">The Public Laboratory</a>.
-They make the georeferenced versions of the images also available, but we will
-download a non-georeferenced JPG image and go through the process of
-georeferencing it in QGIS.  If you like the imagery they provide, you can
-<a class="reference external" href="http://google-latlong.blogspot.in/2012/04/balloon-and-kite-imagery-in-google.html">explore it</a> in Google Earth as well.</p>
-<p>Download the JPG image of <a class="reference external" href="http://publiclaboratory.org/map/washington-square-park-new-york-new-york/2012-10-01">Washington Square Park, New York</a>.
-You can right-click the JPG button and choose <em class="guilabel">Save link as...</em>.</p>
-<p>For convenience, you may directly download a copy of the dataset from the link
-below:</p>
+<p>В цьому уроці ми використаємо чудові знімки із повітряних зміїв і куль зібрані у <a class="reference external" href="http://publiclaboratory.org/archive">The Public Laboratory</a>. Вони також мають геоприв&#8217;язані версії зображень, але ми завантажимо не геоприв&#8217;язані JPG зображення і пройдемо процес геопри&#8217;язуваня їх у QGIS. Якщо вам сподобалися зображення, ви можете також <a class="reference external" href="http://google-latlong.blogspot.in/2012/04/balloon-and-kite-imagery-in-google.html">переглянути їх</a> у Google Earth.</p>
+<p>Завантажте JPG  зображення <a class="reference external" href="http://publiclaboratory.org/map/washington-square-park-new-york-new-york/2012-10-01">Вашингтонського Сквер Парту в Нью Йорку</a>. Ви можете натиснути праву кнопку миші на кнопці JPG і вибрати <em class="guilabel">Save link as...</em>.</p>
+<p>Для зручності, ви можете безпосередньо завантажити копію набору даних за допомогою наведеного нижче посилання</p>
 <p><a class="reference external" href="../../downloads/newyorkcity-washingtonsquarepark.jpg">newyorkcity-washingtonsquarepark.jpg</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Виконання<a class="headerlink" href="#procedure" title="Постійне посилання на цей заголовок">¶</a></h2>
 <ol class="arabic simple">
-<li>For this tutorial, we will be using the OpenStreetMap layer as our reference
-layer. Install the OpenLayers plugin from <em class="menuselection">Plugins ‣ Manage
-and install plugins ‣ Get more</em>. See <a class="reference internal" href="using_plugins.html"><em>Використання додатків</em></a> for more
-information on using plugins in QGIS.</li>
+<li><p class="first">Для цього уроку, ми використаємо шар із OpenStreetMap в якості шару для посилання. Встановіть плагін OpenLayers із меню <em class="menuselection">Plugins ‣ Manage and install plugins ‣ Get more</em>. Дивіться <a class="reference internal" href="using_plugins.html"><em>Використання додатків</em></a> для більш детальної інформації про те як використовувати плагіни в QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/1.png" class="align-center" src="../_images/1.png" />
 <ol class="arabic simple" start="2">
-<li>Once installed, go to <em class="menuselection">Plugins ‣ OpenLayers plugin ‣ Add
-OpenStreetMap layer</em>. This will add a layer of pre-rendered tiles created
-from <a class="reference external" href="http://www.openstreetmap.org/">OpenStreetMap data</a>.</li>
+<li><p class="first">Після встановлення, перейдіть у меню <em class="menuselection">Plugins ‣ OpenLayers plugin ‣ Add OpenStreetMap layer</em>. Ця дія додасть новий шар із попередньо візуалізованими плитками створеними з <a class="reference external" href="http://www.openstreetmap.org/">даних OpenStreetMap</a>.</p>
+</li>
 </ol>
 <img alt="../_images/2.png" class="align-center" src="../_images/2.png" />
 <ol class="arabic simple" start="3">
-<li>Now you have the OpenStreetMap layer loaded in QGIS. Note the Coordinate
-Reference System (CRS) for this layer. It is set as EPSG 3857 Pseudo
-Mercator. This is important to note, since the coordinates we infer from
-this layer will be in this CRS.</li>
+<li><p class="first">Тепер у вас є шар OpenStreetMap завантажений в QGIS. Вкажіть систему координат  (СК) для вашого шару. Вибрана EPSG 3857 Pseudo Mercator. Це важливо вибрати, оскільки координати, які ми беремо з цього шару, будуть в цій СК.</p>
+</li>
 </ol>
 <img alt="../_images/3.png" class="align-center" src="../_images/3.png" />
 <ol class="arabic simple" start="4">
-<li>Now the task is to locate the general vicinity of the area that we are
-trying to georeference. You can just use Pan and Zoom tools to locate that
-area on the OpenStreetMap layer. But we can take this opportunity to
-demonstrate another tool that may help you in future. We know that the image
-we downloaded is for Washington Square Park in New York. If you search for
-that place, you will be able to locate the wikipedia page for it. The
-coordinates for the park are listed there.</li>
+<li><p class="first">Тепер задачею є знайти загальні околиці області, яку ми збираємося геоприв&#8217;язувати. Ви можете користуватися лише прокруткою і збільшенням аби знайти цю місцевість на  шарі OpenStreetMap. Але ми можемо скористатися цією можливістю аби продемонструвати інший інструмент, який може допомогти в майбутньому. Ми знаємо, що зображення які ми завантажили є парком Вашингтон-сквер в Нью Йорку. Якщо ви пошукаєте це місце, ви зможете знайти сторінку вікіпедії про нього. Координати парку вказані там.</p>
+</li>
 </ol>
 <img alt="../_images/4.png" class="align-center" src="../_images/4.png" />
 <ol class="arabic simple" start="5">
-<li>You will notice that the coordinates are in Degrees/Minute/Seconds and are
-Latitude and Longitude. But since our layer is in Mercator projection, we
-will need Mercator coordinates to locate the park. Here’s where a
-command-line tool called <strong>cs2cs</strong> comes handy. If you have installed QGIS
-from OSGeo4W installer, you will already have it installed on your system.
-On Linux and Mac too, it comes pre-installed with QGIS. Launch a terminal
-window and type <tt class="docutils literal"><span class="pre">cs2cs</span></tt> to check if it is available. Windows users can find
-a terminal at <em class="menuselection">Start ‣ OSGeo4W ‣ MSYS</em>.</li>
+<li><p class="first">Ви помітите, що ті координати вказані Градусах/Хвилинах/Секундах і є широтою і довготою. Але оскільки наш шар створений в проекції Меркатор, нам потрібні координати Меркатора, щоб знайти парк. Ось де інструмент командної строки, що називається <strong>cs2cs</strong> буде корисним. Якщо ви встановили  QGIS за допомогою інсталятору OSGeo4W, ви вже маєте його встановленим у вашій системі. У системах Linux і Mac також, він попередньо встановлений разом з QGIS. Запустіть вікно терміналу і наберіть <tt class="docutils literal"><span class="pre">cs2cs</span></tt>, щоб перевірити його наявність. Користувачі Windows можуть знайти термінал в меню <em class="menuselection">Start ‣ OSGeo4W ‣ MSYS</em>.</p>
+</li>
 </ol>
 <img alt="../_images/5.png" class="align-center" src="../_images/5.png" />
 <ol class="arabic simple" start="6">
-<li>Once you have verified that the cs2cs tool exists on your system, it is time
-to convert out Latitude and Longitude to Mercator coordinates. The way this
-tool works is that you need to specify a <em class="guilabel">source</em> and
-<em class="guilabel">destination</em> CRS. The CRS definition could be a <a class="reference external" href="http://trac.osgeo.org/proj/wiki/GenParms">PROJ4 string</a> or an <a class="reference external" href="http://www.epsg-registry.org/">EPSG code</a>. Since we already know the EPSG code for
-out input and output CRS, we will use this. The simplest way to use the tool
-is to supply the input coordinates on the command line itself. Note that the
-tool accepts coordinates in the order <cite>X Y</cite>, so we need to enter <cite>Longitude
-Latitude</cite>. Enter the following command in the terminal and press Enter. Note
-that we need to escape the quotes (&#8221;) with a backslash (\). Once you press
-enter, you will see the tool process the coordinates and print out output X Y
-coordinates in EPSG 3857 CRS.</li>
+<li><p class="first">Після того, як ви переконалися, що інструмент cs2cs існує у вашій системі, час перетворити відомі нам Широту і Довготу в координати Меркатора. Відповідно до того, як працює цей інструмент вам необхідно вказати <em class="guilabel">source</em> і <em class="guilabel">destination</em> СК. Визначення СК може бути <a class="reference external" href="http://trac.osgeo.org/proj/wiki/GenParms">рядок формату PROJ4</a> або <a class="reference external" href="http://www.epsg-registry.org/">код EPSG</a>. Оскільки ми вже знаємо код EPSG для початкової і вихідної СК, ми використаємо їх. Найпростішим способом використання цього інструменту це задати вхідні координати в командний рядок самостійно. Зверніть увагу, що інструмент приймає координати в порядку <cite>X Y</cite>, тому нам потрібно ввести <cite>Довготу Широту</cite>. ведіть наступну команду в термінал і натисніть Enter. Зверніть увагу, що ми повинні перед лапками (&#8221;) вказати зворотній слеш (\). Коли ви натиснете Enter, ви побачите як оброблюються ваші координати і виводяться на екран вихідні X Y координати в EPSG 3857 СК.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>echo &quot;-73d59&#39;51\&quot; 40d43&#39;51\&quot;&quot; | cs2cs +init=EPSG:4326 +to +init=EPSG:3857
 
@@ -354,7 +319,8 @@ image and add their coordinates from the reference layer.</li>
 </ol>
 <img alt="../_images/13.png" class="align-center" src="../_images/13.png" />
 <ol class="arabic simple" start="14">
-<li>Now go to <em class="menuselection">Settings ‣ Transformation settings.</em></li>
+<li><p class="first">Тепер перейдіть у меню <em class="menuselection">Settings ‣ Transformation settings.</em></p>
+</li>
 </ol>
 <img alt="../_images/14.png" class="align-center" src="../_images/14.png" />
 <ol class="arabic simple" start="15">
@@ -386,7 +352,8 @@ add 255 as the transparent pixels for each band and enter 100 as the
 </ol>
 <img alt="../_images/18.png" class="align-center" src="../_images/18.png" />
 <ol class="arabic simple" start="19">
-<li>Now you will see your georeferenced image nicely overlaid on the base layer.</li>
+<li><p class="first">Тепер ви бачите, що ваше геоприв&#8217;язане зображення красиво перекриває базовий шар.</p>
+</li>
 </ol>
 <img alt="../_images/19.png" class="align-center" src="../_images/19.png" />
 </div>
@@ -414,7 +381,7 @@ add 255 as the transparent pixels for each band and enter 100 as the
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Востаннє оновлено Dec 21, 2015.<br/>
+      Востаннє оновлено Jan 07, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

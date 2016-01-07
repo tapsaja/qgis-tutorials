@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Обчислення довжини ліній та статистики</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Основи растрового моделювання та аналізу</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Зшивання та обрізання растрових мозаїк</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Робота з даними місцевості</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Робота з даними рельєфу</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Робота з даними WMS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">Робота з проекціями</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Геоприв’язування топографічних листів та сканованих мап</a></li>
@@ -146,6 +146,7 @@
 <form role="form" class="navbar-form navbar-right">
 <select id="languages" class="form-control select-mini">
   <option value="en">English</option>
+  <option value="zh_TW">Chinese (Taiwan)</option>
   <option value="nl">Dutch</option>
   <option value="fi_FI">Finnish</option>
   <option value="fr">French</option>
@@ -207,143 +208,118 @@ target="_blank">A4</a>
 <a class="reference external"
 href="../pdf/working_with_attributes_letter.pdf" onClick="ga('send',
 'event', 'PDF Download', 'working_with_attributes_letter');"
-target="_blank">Letter</a> ]</p><p>GIS data has two parts - features and attributes. Attributes are structured
-data about each feature. This tutorial shows how to view the attributes and do
-basic queries on them in QGIS.</p>
+target="_blank">Letter</a> ]</p><p>Дані ГІС складаються з двох частин - об&#8217;єктів і атрибутів. Атрибути це структуровані дані про кожен об&#8217;єкт. Цей урок показує як переглядати атрибути і виконувати базові запити про них в QGIS.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Огляд завдання<a class="headerlink" href="#overview-of-the-task" title="Постійне посилання на цей заголовок">¶</a></h2>
-<p>The dataset for this tutorial contains information about populated places of
-the world. The task is to query and find all the capital cities in the world
-that have a population greater than 1,000,000.</p>
+<p>Набір даних для цього уроку містить інформацію про населені місця світу. Задача полягає в тому, що необхідно запросити і знайти всі столиці світу, які мають кількість населення більше ніж 1,000,000.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Додаткові навички<a class="headerlink" href="#other-skills-you-will-learn" title="Постійне посилання на цей заголовок">¶</a></h3>
 <ul class="simple">
-<li>Select features from a layer using expressions.</li>
-<li>Deselect features from a layer using the <em class="guilabel">Attributes</em> toolbar.</li>
-<li>Using <em class="guilabel">Query Builder</em> to show a subset of features from a layer.</li>
+<li><p class="first">Вибір об&#8217;єктів шару за допомогою виразів.</p>
+</li>
+<li><p class="first">Зняття виділення з об&#8217;єктів шару за допомогою панелі інструментів <em class="guilabel">Attributes</em></p>
+</li>
+<li><p class="first">Використання <em class="guilabel">Query Builder</em> для показу підмножини об&#8217;єктів шару.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Отримання даних<a class="headerlink" href="#get-the-data" title="Постійне посилання на цей заголовок">¶</a></h2>
-<p>Natural Earth has a nice <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places</a>
-dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simple (less columns) dataset</a></p>
-<p>For convenience, you may directly download a copy of datasets from the link
-below:</p>
+<p>Ресурс Natural Earth має хорошу базу даних <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places</a> . Завантажте  <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simple (less columns) dataset</a></p>
+<p>Для зручності, ви можете безпосередньо завантажити копію наборів даних за допомогою посилання, що надане нижче:</p>
 <p><a class="reference external" href="../../downloads/ne_10m_populated_places_simple.zip">ne_10m_populated_places_simple.zip</a></p>
 <p>Джерело даних <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Виконання<a class="headerlink" href="#procedure" title="Постійне посилання на цей заголовок">¶</a></h2>
 <ol class="arabic simple">
-<li>Once you have downloaded the data, open QGIS. Go to <em class="menuselection">Layer
-‣ Add Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Після завантаження даних відкрийте QGIS. Перейдіть у меню <cite>Шар &#8211;&gt; Додати шар &#8211;&gt; Додати векторний шар</cite>.</p>
+</li>
 </ol>
 <img alt="../_images/1138.png" class="align-center" src="../_images/1138.png" />
 <ol class="arabic simple" start="2">
-<li>Click on <em class="guilabel">Browse</em> and navigate to the folder where you downloaded
-the data.</li>
+<li><p class="first">Натисніть кнопку <em class="guilabel">Browse</em> і перейдіть до папки, в яку ви завантажили дані.</p>
+</li>
 </ol>
 <img alt="../_images/290.png" class="align-center" src="../_images/290.png" />
 <ol class="arabic simple" start="3">
-<li>Locate the downloaded zip file <cite>ne_10m_populated_places_simple.zip</cite>. You do
-not need to unzip the file. QGIS has the ability to read zip files directly.
-Select the file and click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Знайдіть завантажений файл <cite>ne_10m_populated_places_simple.zip</cite>. Вам не потрібно розпаковувати zip архів. QGIS може відкривати zip файли напряму. Виберіть файл і натисніть <em class="guilabel">Open</em>.</p>
+</li>
 </ol>
 <img alt="../_images/346.png" class="align-center" src="../_images/346.png" />
 <ol class="arabic simple" start="4">
-<li>The selected layer will now be loaded in QGIS and you will see many points
-representing the populated places of the world.</li>
+<li><p class="first">Вибраний шар тепер буде завантажений у QGIS і ви побачите багато точок, які представляють собою населені місця світу.</p>
+</li>
 </ol>
 <img alt="../_images/433.png" class="align-center" src="../_images/433.png" />
 <ol class="arabic simple" start="5">
-<li>Right-click the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Натисніть правою кнопкою миші на шар і виберіть <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/534.png" class="align-center" src="../_images/534.png" />
 <ol class="arabic simple" start="6">
-<li>Explore the various attributes and their values.</li>
+<li><p class="first">Дослідіть різні атрибути та їх значення.</p>
+</li>
 </ol>
 <img alt="../_images/632.png" class="align-center" src="../_images/632.png" />
 <ol class="arabic simple" start="7">
-<li>We are interested in the population of each feature, so <cite>pop_max</cite> is the
-field we are looking for. You can click twice on the field header to sort
-the column in descending order.</li>
+<li><p class="first">Нас цікавить кількість населення для кожного об&#8217;єкта, тому нас цікавить поле <cite>pop_max</cite>. Ви можете натиснути мишею двічі на заголовок поля для того, щоб відсортувати його в порядку зменшення.</p>
+</li>
 </ol>
 <img alt="../_images/731.png" class="align-center" src="../_images/731.png" />
 <ol class="arabic simple" start="8">
-<li>Now we are ready to perform our query on these attributes. QGIS uses
-SQL-like expressions to perform queries. Click <em class="guilabel">Select features
-using an expression</em>.</li>
+<li><p class="first">Тепер ми готові здійснити запит по цим атрибутам. QGIS використовує SQL-подібні вирази для здійснення запитів. Натисніть  <em class="guilabel">Select features using an expression</em>.</p>
+</li>
 </ol>
 <img alt="../_images/830.png" class="align-center" src="../_images/830.png" />
 <ol class="arabic simple" start="9">
-<li>In the <em class="guilabel">Select By Expression</em> window, expand the <em class="guilabel">Fields
-and Values</em> section and double-click the <tt class="docutils literal"><span class="pre">pop_max</span></tt> label.  You will notice
-that it is added to the expression section at the bottom.  If you aren&#8217;t
-sure about the field values, you can click the <em class="guilabel">Load all unique
-values</em> to see what the attribute values are present in the dataset. For
-this exercise, we are looking to find all features that have a population
-greater than <tt class="docutils literal"><span class="pre">1,000,000</span></tt>. So complete the expression as below and click
-<em class="guilabel">Select</em>.</li>
+<li><p class="first">У вікні <em class="guilabel">Select By Expression</em>, розгорніть область <em class="guilabel">Fields and Values</em> і натисніть двічі на поле <tt class="docutils literal"><span class="pre">pop_max</span></tt>. Ви побачите, що воно було додане у область виразу в низу. Якщо ви не впевнені щодо значень полів, ви можете натиснути на <em class="guilabel">Load all unique values</em>, щоб побачити які значення атрибуту наявні в наборі даних. В цій вправі, ми хочемо знайти усі об&#8217;єкти, які мають населення більше ніж <tt class="docutils literal"><span class="pre">1,000,000</span></tt>. Тому доповніть вираз як на прикладі нижче і натисніть кнопку  <em class="guilabel">Select</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000
 </pre></div>
 </div>
 <img alt="../_images/928.png" class="align-center" src="../_images/928.png" />
 <ol class="arabic simple" start="10">
-<li>Click on <em class="guilabel">Close</em> and return to the main QGIS window. You will
-notice that a subset of points is now rendered in yellow. This is the
-result of our query and you are seeing all places from the dataset that
-have the <tt class="docutils literal"><span class="pre">pop_max</span></tt> attribute value greater than <tt class="docutils literal"><span class="pre">1,000,000</span></tt>.</li>
+<li><p class="first">Натисніть <em class="guilabel">Close</em>  і поверніться до основного вікна QGIS. Ви помітите, що підмножина точок тепер показуються жовтим. Це результат нашого запиту і ви бачите всі місця із набору даних, які мають значення атрибуту <tt class="docutils literal"><span class="pre">pop_max</span></tt> більше ніж <tt class="docutils literal"><span class="pre">1,000,000</span></tt>.</p>
+</li>
 </ol>
 <img alt="../_images/1029.png" class="align-center" src="../_images/1029.png" />
 <ol class="arabic simple" start="11">
-<li>The goal for this exercise is to find the places that are country capitals.
-The field containing this data is <cite>adm0cap</cite>. The value <tt class="docutils literal"><span class="pre">1</span></tt> indicates that
-the place is a capital. We can add this criteria to our previous expression
-using the <tt class="docutils literal"><span class="pre">and</span></tt> operator. Let’s refine our query to select only those
-places which are capitals.  Click on the <em class="guilabel">Select feature using an
-expression</em> button in the attribute table and enter the expression as below
-and click <em class="guilabel">Select</em> and then <em class="guilabel">Close</em>.</li>
+<li><p class="first">Задачею цього уроку знайти всі місця, що є столицями країн. Поле, яке містить цю інформацію називається <cite>adm0cap</cite>. Значення <tt class="docutils literal"><span class="pre">1</span></tt> вказує, що місто є столицею. Ви можете додати цей критерій вибору до нашого попереднього виразу додавши оператор <tt class="docutils literal"><span class="pre">and</span></tt>. Давайте оновимо наш запит, аби вибрати лише ті міста, що є столицями. Натисніть на кнопку <em class="guilabel">Select feature using an expression</em> в таблиці атрибутів і наберіть вираз як приведено нижче і натисніть <em class="guilabel">Select</em>, а потім <em class="guilabel">Close</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000 and &quot;adm0cap&quot; = 1
 </pre></div>
 </div>
 <img alt="../_images/1139.png" class="align-center" src="../_images/1139.png" />
 <ol class="arabic simple" start="12">
-<li>Return to the main QGIS window. Now you will see a smaller subset of the
-points selected. This is the result of the second query and shows all
-places from the dataset that are country capitals as well as have
-population greater than 1,000,000. If we wanted to do some further analysis
-on this subset of data, we can make this selection persistent. Right-click
-the <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select
-<em class="guilabel">Properties</em>.</li>
+<li><p class="first">Поверніться до головного вікна QGIS. Тепер ви побачите меншу підмножину вибраних точок. Це є результатом другого запиту, який показує нам всі місця із набору даних, які є столицями країн і мають населення більше ніж 1,000,000. Якщо ми хотіли здійснити якийсь подальший аналіз щодо цієї підмножини даних, ми можемо зробити вибір постійним. Правою кнопкою натисніть на шар <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> і виберіть <em class="guilabel">Properties</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1229.png" class="align-center" src="../_images/1229.png" />
 <ol class="arabic simple" start="13">
-<li>In the <em class="guilabel">General</em> tab, scroll down to the <em class="guilabel">Feature
-subset</em> section. Click <em class="guilabel">Query Builder</em>.</li>
+<li><p class="first">На вкладці <em class="guilabel">General</em> прокрутіть вниз до секції <em class="guilabel">Feature subset</em> section. Натисніть Click <em class="guilabel">Query Builder</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1327.png" class="align-center" src="../_images/1327.png" />
 <ol class="arabic simple" start="14">
-<li>Enter the same expression you had entered earlier and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">Введіть той самий вираз, який ви вводили раніше і натисніть кнопку <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;pop_max&quot; &gt; 1000000 and &quot;adm0cap&quot; = 1
 </pre></div>
 </div>
 <img alt="../_images/1426.png" class="align-center" src="../_images/1426.png" />
 <ol class="arabic simple" start="15">
-<li>Back in the main QGIS window, you will see rest of the points disappear.
-You may now perform any other analysis on this layer and only the features
-that match our expression will be used. You will notice that the points
-still appear in yellow. This is because they are still selected. Find the
-<em class="guilabel">Deselect Features from All Layers</em> button under the
-<em class="guilabel">Attributes</em> toolbar and click on it.</li>
+<li><p class="first">Після повернення до головного вікна QGIS, ви побачите що решта точок зникла. Ви тепер можете проводити будь-який інший аналіз щодо цього шару і будуть використані лише ті об&#8217;єкти що відповідають вашому вибору. Ви помітите, що точки досі показуються жовтим. Це тому що вони досі вибрані. Знайдіть кнопку <em class="guilabel">Deselect Features from All Layers</em>, використовуючи панель інструментів <em class="guilabel">Attributes</em>, і натисніть її.</p>
+</li>
 </ol>
 <img alt="../_images/1524.png" class="align-center" src="../_images/1524.png" />
 <ol class="arabic simple" start="16">
-<li>You will see that the points are now de-selected and rendered in their
-original color.</li>
+<li><p class="first">Ви побачите, що з точок тепер зняте виділення і вони пофарбовані в свій початковий колір.</p>
+</li>
 </ol>
 <img alt="../_images/1623.png" class="align-center" src="../_images/1623.png" />
 </div>
@@ -371,7 +347,7 @@ original color.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Востаннє оновлено Dec 21, 2015.<br/>
+      Востаннє оновлено Jan 07, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

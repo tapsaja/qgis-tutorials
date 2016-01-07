@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Обчислення довжини ліній та статистики</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Основи растрового моделювання та аналізу</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Зшивання та обрізання растрових мозаїк</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Робота з даними місцевості</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Робота з даними рельєфу</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Робота з даними WMS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">Робота з проекціями</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Геоприв’язування топографічних листів та сканованих мап</a></li>
@@ -146,6 +146,7 @@
 <form role="form" class="navbar-form navbar-right">
 <select id="languages" class="form-control select-mini">
   <option value="en">English</option>
+  <option value="zh_TW">Chinese (Taiwan)</option>
   <option value="nl">Dutch</option>
   <option value="fi_FI">Finnish</option>
   <option value="fr">French</option>
@@ -207,43 +208,32 @@ target="_blank">A4</a>
 <a class="reference external"
 href="../pdf/counting_vertices_letter.pdf" onClick="ga('send',
 'event', 'PDF Download', 'counting_vertices_letter');"
-target="_blank">Letter</a> ]</p><p>QGIS doesn’t have a built-in function to calculate number of vertices for each
-feature in a layer. But a very handy plugin called <strong>Vertices Counter</strong> fills
-this gap and adds a few handy features as well.</p>
+target="_blank">Letter</a> ]</p><p>QGIS не має власної функції для підрахунку кількості вершин у кожному об&#8217;єкті шару. Але дуже зручний плагін <strong>Vertices Counter</strong> вирішує цю задачу і додає декілька зручних функцій разом з тим.</p>
 <div class="section" id="procedure">
 <h2>Виконання<a class="headerlink" href="#procedure" title="Постійне посилання на цей заголовок">¶</a></h2>
 <ol class="arabic simple">
-<li>Find and install the <strong>Vertices Counter</strong> plugin. See <a class="reference internal" href="using_plugins.html"><em>Використання додатків</em></a>
-for details on installing plugins in QGIS.</li>
+<li><p class="first">Знайдіть і встановіть плагін <strong>Vertices Counter</strong>. Дивіться <a class="reference internal" href="using_plugins.html"><em>Використання додатків</em></a>  для більш детальної інформації про процедуру встановлення плагінів в QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/120.png" class="align-center" src="../_images/120.png" />
 <ol class="arabic simple" start="2">
-<li>Load any polygon or line layer in QGIS. Go to <em class="menuselection">Vector ‣
-Vertices Counter ‣ Vertices Counter</em>.</li>
+<li><p class="first">Завантажте будь-який полігон чи лінію у вигляді шару в QGIS. Перейдіть у  <em class="menuselection">Вектор‣ Vertices Counter ‣ Vertices Counter</em>.</p>
+</li>
 </ol>
 <img alt="../_images/216.png" class="align-center" src="../_images/216.png" />
 <ol class="arabic simple" start="3">
-<li>By default, the active layer will be selected under the <em class="guilabel">Layer
-Selection</em>. You may select any other loaded layers or open layer directly
-from disk as well. The plugin has an option called <em class="guilabel">Create new
-column</em> which can add an number of vertices as an attribute for each
-feature. This is handy for a lot of use cases, so we can select that option.
-Now click on the <em class="guilabel">Count Vertices</em> button and the
-<em class="guilabel">Results</em> section will be populated with vertex count for each
-feature. You can even see the <em class="guilabel">Total Vertices</em> displayed on the
-side.</li>
+<li><p class="first">За замовчанням, активний шар буде вибраний за допомогою <em class="guilabel">Layer Selection</em>. Ви можете вибрати будь-який інший завантажений шар або відкрити шар прямо з диску. Плагін має опцію, що називається <em class="guilabel">Create new column</em>, яка може додавати кількість вершин в якості атрибуту до кожного об&#8217;єкту. Це зручно для багатьох випадків використання, тому ми можемо вибрати цю опцію. Тепер натисніть кнопку <em class="guilabel">Count Vertices</em> і в секція <em class="guilabel">Results</em> буде заповнена значеннями кількості вершин для кожного об&#8217;єкту. Ви навіть можете бачити <em class="guilabel">Total Vertices</em>, показані з боку.</p>
+</li>
 </ol>
 <img alt="../_images/39.png" class="align-center" src="../_images/39.png" />
 <ol class="arabic simple" start="4">
-<li>Back in the main QGIS window, let&#8217;s verify if a new column was added to our
-layer. Right-click the layer and select <em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Поверніться до головного вікна QGIS, давайте перевіримо чи додався новий стовпчик для шару. Натисніть правою кнопкою на шар і виберіть <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/46.png" class="align-center" src="../_images/46.png" />
 <ol class="arabic simple" start="5">
-<li>As you will notice, a column named <em>Vertices</em> will be added at the end with
-values representing the vertex count for each feature. This column can come
-in handy if you want to do a query such as <em>Select all features with Vertices
-&gt; X</em>.</li>
+<li><p class="first">Як ви маєте помітити, колонка під назвою <em>Vertices</em> буде додана в кінець із значеннями, які показують кількість вершин для кожного об&#8217;єкту. Цей стовпчик стає корисним, коли ви хочете виконати запит на кшталт <em>Select all features with Vertices &gt; X</em>.</p>
+</li>
 </ol>
 <img alt="../_images/56.png" class="align-center" src="../_images/56.png" />
 </div>
@@ -271,7 +261,7 @@ in handy if you want to do a query such as <em>Select all features with Vertices
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Востаннє оновлено Dec 21, 2015.<br/>
+      Востаннє оновлено Jan 07, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Обчислення довжини ліній та статистики</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Основи растрового моделювання та аналізу</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Зшивання та обрізання растрових мозаїк</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Робота з даними місцевості</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Робота з даними рельєфу</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Робота з даними WMS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">Робота з проекціями</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Геоприв’язування топографічних листів та сканованих мап</a></li>
@@ -146,6 +146,7 @@
 <form role="form" class="navbar-form navbar-right">
 <select id="languages" class="form-control select-mini">
   <option value="en">English</option>
+  <option value="zh_TW">Chinese (Taiwan)</option>
   <option value="nl">Dutch</option>
   <option value="fi_FI">Finnish</option>
   <option value="fr">French</option>
@@ -207,45 +208,44 @@ target="_blank">A4</a>
 <a class="reference external"
 href="../pdf/batch_processing_letter.pdf" onClick="ga('send',
 'event', 'PDF Download', 'batch_processing_letter');"
-target="_blank">Letter</a> ]</p><p>QGIS 2.0 introduced a new concept called <strong>Processing Framework</strong>. Previously
-known as <strong>Sextante</strong>, the Processing Framework provides an environment within
-QGIS to run native and third-party algorithms for processing data. It contains
-a nice batch processing interface that allows one to execute an algorithm on
-several layers easily. Batch processing is a useful tool that can save manual
-effort and help you automate repetitive tasks.</p>
+target="_blank">Letter</a> ]</p><p>QGIS 2.0 пропонує нову концепцію, яка має назву <strong>Processing Framework</strong>. Раніше відома як <strong>Sextante</strong>, Processing Framework дозволяє середовищу в середині QGIS запускати нативні алгоритми, а також запозичені алгоритми для обробки даних. Він містить хороших інтерфейс виконання пакетів, який дозволяє легко виконувати алгоритм для декількох шарів. Пакетна обробка є корисним інструментом, яка дозволяє уникнути ручної роботи і автоматизувати повторювані задачі.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Огляд завдання<a class="headerlink" href="#overview-of-the-task" title="Постійне посилання на цей заголовок">¶</a></h2>
-<p>We will take several global vector layers and clip them to the extent of Africa
-in a single batch command.</p>
+<p>Візьмемо декілька глобальних векторних шарів і обріжемо їх до меж Африки за допомогою єдиної пакетної команди.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Додаткові навички<a class="headerlink" href="#other-skills-you-will-learn" title="Постійне посилання на цей заголовок">¶</a></h3>
 <ul class="simple">
-<li>Dissolve (merge) polygons from a layer that have the same attribute.</li>
+<li><p class="first">Виконати поєднання (злиття) полігонів шару, які мають однаковий атрибут.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Отримання даних<a class="headerlink" href="#get-the-data" title="Постійне посилання на цей заголовок">¶</a></h2>
-<p><a class="reference external" href="http://naturalearthdata.com">Natural Earth</a> has several global vector
-layers. Download the following layers</p>
+<p><cite>Natural Earth &lt;http://naturalearthdata.com&gt;</cite> містить декілька глобальних векторних шарів. Завантажте наступні шари</p>
 <ul class="simple">
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - Countries</a></li>
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads.zip">Railroads</a></li>
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_ports.zip">Ports</a></li>
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip">Airports</a></li>
+<li><p class="first"><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - Країни</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads.zip">Залізні дороги</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_ports.zip">Порти</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip">Аеропорти</a></p>
+</li>
 </ul>
-<p>Once downloaded, unzip and extract all the shapefiles in a single folder.</p>
-<p>Data Source: <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
+<p>Після завантаження, розархівуйте із zip архіву всі шейп-файли в одну папку.</p>
+<p>Джерело даних: <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Виконання<a class="headerlink" href="#procedure" title="Постійне посилання на цей заголовок">¶</a></h2>
 <ol class="arabic simple">
-<li>Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+<li><p class="first">Перейдіть у <em class="menuselection">Шар ‣ Додати векторний шар</em>.</p>
+</li>
 </ol>
 <img alt="../_images/114.png" class="align-center" src="../_images/114.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded Admin 0 Countries shapefile
-<tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt> and click <em class="guilabel">Open</em>.</li>
+<li><p class="first">Знайдіть завантажений раніше шейп-файл <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt> і натисніть <em class="guilabel">Відкрити</em>.</p>
+</li>
 </ol>
 <img alt="../_images/212.png" class="align-center" src="../_images/212.png" />
 <ol class="arabic simple" start="3">
@@ -388,7 +388,7 @@ properly clipped to the continent boundary that we had specified.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Востаннє оновлено Dec 21, 2015.<br/>
+      Востаннє оновлено Jan 07, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

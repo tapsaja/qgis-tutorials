@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Робота з даними місцевості &mdash; QGIS Tutorials and Tips</title>
+    <title>Робота з даними рельєфу &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Обчислення довжини ліній та статистики</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Основи растрового моделювання та аналізу</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Зшивання та обрізання растрових мозаїк</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Робота з даними місцевості</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Робота з даними рельєфу</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Робота з даними WMS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">Робота з проекціями</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Геоприв’язування топографічних листів та сканованих мап</a></li>
@@ -146,6 +146,7 @@
 <form role="form" class="navbar-form navbar-right">
 <select id="languages" class="form-control select-mini">
   <option value="en">English</option>
+  <option value="zh_TW">Chinese (Taiwan)</option>
   <option value="nl">Dutch</option>
   <option value="fi_FI">Finnish</option>
   <option value="fr">French</option>
@@ -198,7 +199,7 @@
       
 
   <div class="section" id="working-with-terrain-data">
-<h1>Робота з даними місцевості<a class="headerlink" href="#working-with-terrain-data" title="Постійне посилання на цей заголовок">¶</a></h1>
+<h1>Робота з даними рельєфу<a class="headerlink" href="#working-with-terrain-data" title="Постійне посилання на цей заголовок">¶</a></h1>
 <p>[ Download PDF
 <a class="reference external" href="../pdf/working_with_terrain_a4.pdf"
 onClick="ga('send', 'event', 'PDF Download', 'working_with_terrain_a4');"
@@ -207,201 +208,158 @@ target="_blank">A4</a>
 <a class="reference external"
 href="../pdf/working_with_terrain_letter.pdf" onClick="ga('send',
 'event', 'PDF Download', 'working_with_terrain_letter');"
-target="_blank">Letter</a> ]</p><p>Terrain or elevation data is useful for many GIS Analysis and it is often used
-in maps. QGIS has good terrain processing capabilities built-in. In this
-tutorial, we will work through the steps to generate various products from
-elevation data such as contours, hillshade etc.</p>
+target="_blank">Letter</a> ]</p><p>Дані рельєфу або висот бувають корисні в багатьох застосуваннях GIS аналізу і часто використовуються в мапах. QGIS має хороші вбудовані можливості для обробки мап висот. В цьому уроці, ми відпрацюємо всі кроки по створенню різних похідних даних від карт висот, таких як контури, відмивання тіней і т.д.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Огляд завдання<a class="headerlink" href="#overview-of-the-task" title="Постійне посилання на цей заголовок">¶</a></h2>
-<p>The task is to create contours and hillshade map for area around Mt. Everest.</p>
+<p>Задачею є створення карт контурів і затінення схилів для області довкола гори Еверест.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Додаткові навички<a class="headerlink" href="#other-skills-you-will-learn" title="Постійне посилання на цей заголовок">¶</a></h3>
 <ul class="simple">
-<li>Searching and downloading freely available terrain data.</li>
-<li>Exporting a vector layer as KML and viewing it in Google Earth.</li>
+<li><p class="first">Пошук і завантаження вільнодоступних даних рельєфу.</p>
+</li>
+<li><p class="first">Завантаження векторних даних у вигляді KML і перегляд їх у Google Earth.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Отримання даних<a class="headerlink" href="#get-the-data" title="Постійне посилання на цей заголовок">¶</a></h2>
-<p>We will be working with GMTED2010 dataset from USGS. This data can be
-downloaded from the <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> site. <a class="reference external" href="http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/GMTED2010">GMTED (Global Multi-resolution
-Terrain Elevation Data)</a> is a global terrain dataset that is the newer version
-of GTOPO30 dataset.</p>
-<p>Here is how to search and download the revelant data from USGS Earthexplorer.</p>
+<p>Ми будемо працювати із набором даних GMTED2010 від USGS. Ці дані можна завантажити із сайту <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> site. <a class="reference external" href="http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/GMTED2010">GMTED (Global Multi-resolution Terrain Elevation Data)</a> це глобальний набір даних рельєфу, що є новою версією бази даних GTOPO30.</p>
+<p>Ось приклад як здійснюється пошук і завантаження релевантних даних із ресурсу USGS Earthexplorer.</p>
 <ol class="arabic simple">
-<li>Go to the <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> . In the
-<em class="guilabel">Search Criteria</em> tab, search for the place name <cite>Mt. Everest</cite>.
-Click on the result to select the location.</li>
+<li><p class="first">Перейдіть у <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> . На вкладці <em class="guilabel">Search Criteria</em>, знайдіть місцевість за назвою <cite>Mt. Everest</cite>. Натисніть на результат, щоб вибрати місцевість.</p>
+</li>
 </ol>
 <img alt="../_images/1142.png" class="align-center" src="../_images/1142.png" />
 <ol class="arabic simple" start="2">
-<li>In the <em class="guilabel">Data Sets</em> tab, expand the <em class="guilabel">Digital Elevation</em>
-group, and check <em class="guilabel">GMTED2010</em>.</li>
+<li><p class="first">На вкладці <em class="guilabel">Data Sets</em>, розгорніть групу <em class="guilabel">Digital Elevation</em>, і виберіть <em class="guilabel">GMTED2010</em>.</p>
+</li>
 </ol>
 <img alt="../_images/298.png" class="align-center" src="../_images/298.png" />
 <ol class="arabic simple" start="3">
-<li>You can now skip to the <em class="guilabel">Results</em> tab and see the part of the
-dataset intersecting your search criteria. Click the <em class="guilabel">Download
-Options</em> button. You will have to log in to the site at this point. You can
-create a free account if you do not have one.</li>
+<li><p class="first">Тепер ви можете перейти до вкладки <em class="guilabel">Results</em> і переглянути частину набору даних, який відповідає вашому критерію пошуку. Натисніть кнопку <em class="guilabel">Download Options</em>. Вам доведеться увійти на сайт для цього етапу. Ви можете створити собі безкоштовний обліковий запис, якщо в вас такого немає.</p>
+</li>
 </ol>
 <img alt="../_images/348.png" class="align-center" src="../_images/348.png" />
 <ol class="arabic simple" start="4">
-<li>Select the <em class="guilabel">30 ARC SEC</em> option and click <em class="guilabel">Select
-Download Option</em>.</li>
+<li><p class="first">Виберіть пункт <em class="guilabel">30 ARC SEC</em> і натисніть <em class="guilabel">Select Download Option</em>.</p>
+</li>
 </ol>
 <img alt="../_images/435.png" class="align-center" src="../_images/435.png" />
-<p>You will now have a file named <cite>GMTED2010N10E060_300.zip</cite>. Elevation data is
-distributed in various raster formats such as ASC, BIL, GeoTiff etc.
-QGIS supports a wide <a class="reference external" href="http://www.gdal.org/formats_list.html">variety of raster formats</a> via the GDAL library. The GMTED
-data comes as GeoTiff files which are contained in this zip archive.</p>
-<p>For convenience, you can download a copy of the data directly from below.</p>
+<p>У вас буде файл, який називається <cite>GMTED2010N10E060_300.zip</cite>. Дані висот розповсюджуються в різних растрових форматах, таких як ASC, BIL, GeoTiff і т.д.. QGIS підтримує багато растрових форматів &lt;<a class="reference external" href="http://www.gdal.org/formats_list.html">http://www.gdal.org/formats_list.html</a>&gt;`_ завдяки бібліотеці GDAL. Дані GMTED мають формат GeoTiff, які знаходяться в zip архіві.</p>
+<p>Для зручності ви можете завантажити копію даних напряму із вказаної нижче адреси.</p>
 <p><a class="reference external" href="../../downloads/GMTED2010N10E060_300.zip">GMTED2010N10E060_300.zip</a></p>
-<p>Data Source: <a class="reference internal" href="credits.html#gmted2010" id="id2">[GMTED2010]</a></p>
+<p>Джерело даних: <a class="reference internal" href="credits.html#gmted2010" id="id2">[GMTED2010]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Виконання<a class="headerlink" href="#procedure" title="Постійне посилання на цей заголовок">¶</a></h2>
 <ol class="arabic simple" start="5">
-<li>Open <em class="menuselection">Layer ‣ Add Raster Layer</em> and browse to the
-downloaded zip file.</li>
+<li><p class="first">Відкрийте меню  <em class="menuselection">Layer ‣ Add Raster Layer</em> і виберіть завантажений zip файл.</p>
+</li>
 </ol>
 <img alt="../_images/536.png" class="align-center" src="../_images/536.png" />
 <ol class="arabic simple" start="6">
-<li>There are many different files generated from different algorithms.
-For this tutorial, we will use the file named <cite>10n060e_20101117_gmted_mea300.tif</cite>.</li>
+<li><p class="first">Там є декілька різних файлів побудованих за допомогою різних алгоритмів. В цьому уроці, ми використаємо файл, що називається <cite>10n060e_20101117_gmted_mea300.tif</cite>.</p>
+</li>
 </ol>
 <img alt="../_images/634.png" class="align-center" src="../_images/634.png" />
 <ol class="arabic simple" start="7">
-<li>You will see the terrain data rendered in the QGIS Canvas. Each pixel in the
-terrain raster represents the average elevation in meters at that location.
-The dark pixels represent areas with low altitude and lighter pixels
-represent areas with high altitude.</li>
+<li><p class="first">Ви побачите дані карти висот зображені в області роботи QGIS. Кожен піксель на растровому зображенні рельєфу представляє собою середню висоту в метрах в даних координатах. Темні пікселі показують малу висоту а світлі пікселі показують області з більшими висотами.</p>
+</li>
 </ol>
 <img alt="../_images/733.png" class="align-center" src="../_images/733.png" />
 <ol class="arabic simple" start="8">
-<li>Let&#8217;s find our area of interest. From <a class="reference external" href="http://en.wikipedia.org/wiki/Mount_Everest">Wikipedia</a>,
-we find that the coordinates for our area of interest - Mt. Everest - is located
-at the coordinates 27.9881° N, 86.9253° E. Note that QGIS
-uses the coordinates in (X,Y) format , so you must use the coordinates as
-(Longitude, Latitude). Paste <cite>86.9253,27.9881</cite> these at the bottom of QGIS
-window where it says <em class="guilabel">Coordinate</em> and press Enter. The viewport will be
-centered at this coordinate. To zoom in, Enter <cite>1:1000000</cite> in the <em class="guilabel">Scale</em> field
-and press Enter. You will see the viewport zoom to the area around the
-Himalayas.</li>
+<li><p class="first">Давайте знайдемо область що нас цікавить. Із <a class="reference external" href="http://en.wikipedia.org/wiki/Mount_Everest">Вікіпедії</a>, ми знаходимо, що координати області що нас цікавить - гори Еверест - знаходяться в координатах 27.9881° N, 86.9253° E. Відмітимо, що QGIS використовує координати в форматі (X,Y) , тому ви повинні використовувати координати в форматі (Довгота, Широта). Вставте <cite>86.9253,27.9881</cite> в нижню частину вікна QGIS де є напис <em class="guilabel">Coordinate</em> і натисніть клавішу Enter. Область видимості буде центрована в цих координатах. Для збільшення, введіть <cite>1:1000000</cite> в полі <em class="guilabel">Scale</em> і натисніть клавішу Enter. Ви побачите, що область видимості наблизилася до місцевості поблизу Гімалаїв.</p>
+</li>
 </ol>
 <img alt="../_images/832.png" class="align-center" src="../_images/832.png" />
 <ol class="arabic simple" start="9">
-<li>We will now crop the raster to this area of interest. Select the Clipper
-tool from <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</li>
+<li><p class="first">Ми обріжемо растр до області інтересу. Виберіть інструмент Clipper із меню <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Примітка</p>
-<p class="last">The <em class="guilabel">Raster</em> menu in QGIS comes from a core plugin called
-<em class="guilabel">GdalTools</em>. If you do not see the <em class="guilabel">Raster</em> menu, enable
-the <em class="guilabel">GdalTools</em> plugin from <em class="menuselection">Plugins ‣
-Manage and install plugins ‣ Installed</em>. See <a class="reference internal" href="using_plugins.html"><em>Використання додатків</em></a> for more details.</p>
+<p class="last">Меню <em class="guilabel">Raster</em> в QGIS приходить від основного плагіну, що називається  <em class="guilabel">GdalTools</em>. Якщо ви не бачите меню  <em class="guilabel">Raster</em>, ввімкніть плагін  <em class="guilabel">GdalTools</em> у меню <em class="menuselection">Plugins ‣ Manage and install plugins ‣ Installed</em>. Дивіться <a class="reference internal" href="using_plugins.html"><em>Використання додатків</em></a> для більш докладної інформації.</p>
 </div>
 <img alt="../_images/930.png" class="align-center" src="../_images/930.png" />
 <ol class="arabic simple" start="10">
-<li>In the <em class="guilabel">Clipper</em> window, name your output file as
-<cite>everest_gmted30.tif</cite>. Select the <em class="guilabel">Clipping mode</em> as
-<em class="guilabel">Extent</em>.</li>
+<li><p class="first">У вікні <em class="guilabel">Clipper</em> назвіть ваш вихідний файл <cite>everest_gmted30.tif</cite>. Виберіть у полі <em class="guilabel">Clipping mode</em> варіант <em class="guilabel">Extent</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1031.png" class="align-center" src="../_images/1031.png" />
 <ol class="arabic simple" start="11">
-<li>Keep the <em class="guilabel">Clipper</em> window open and switch to the main QGIS
-window. Hold your left mouse button and draw a rectangle covering the full
-canvas.</li>
+<li><p class="first">Залиште вікно <em class="guilabel">Clipper</em> відкритим і перейдіть до головного вікна QGIS. Натисніть і утримуйте ліву кнопку миші і намалюйте на екрані прямокутну область, яка покриє усе полотно.</p>
+</li>
 </ol>
 <img alt="../_images/1143.png" class="align-center" src="../_images/1143.png" />
 <ol class="arabic simple" start="12">
-<li>Now back in the <em class="guilabel">Clipper</em> window, you will see the coordinates
-auto-populated from your selection. Make sure the <em class="guilabel">Load into
-canvas when finished</em> option is checked, and click <em class="guilabel">OK.</em></li>
+<li><p class="first">Тепер поверніться у вікно <em class="guilabel">Clipper</em> , ви побачите авто-заповнені координати вибраної вами області. Переконайтеся, що опція <em class="guilabel">Load into canvas when finished</em> вибрана і натисніть <em class="guilabel">OK.</em></p>
+</li>
 </ol>
 <img alt="../_images/1231.png" class="align-center" src="../_images/1231.png" />
 <ol class="arabic simple" start="13">
-<li>Once the process finishes, you will see a new layer loaded in QGIS. This
-layer covers only the area around Mt. Everest.Now we are ready to generate
-contours. Select the contour tool from <em class="menuselection">Raster ‣ Extraction
-‣ Contour</em>.</li>
+<li><p class="first">Як тільки процес завершиться, ви побачите новий шар, що завантажився в QGIS. Цей шар покриває лише область довкола гори Еверест. Тепер ми готові генерувати контури. Виберіть інструмент для роботи з контурами в меню <em class="menuselection">Raster ‣ Extraction ‣ Contour</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1329.png" class="align-center" src="../_images/1329.png" />
 <ol class="arabic simple" start="14">
-<li>In the <em class="guilabel">Contour</em> dialog, select <cite>everest_gmted30</cite> as the
-<em class="guilabel">Input file</em>. Name the <em class="guilabel">Output file for contour lines</em>
-as <cite>everest_countours.shp</cite>. We will generate contour lines for 100m
-intervals, so put 100 as the <em class="guilabel">Interval between contour lines.</em>
-Also check the <em class="guilabel">Attribute name</em> option so elevation value will be
-recorded as attribute of each contour line. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">В діалоговому вікні <em class="guilabel">Contour</em> виберіть <cite>everest_gmted30</cite> в якості вхідного файлу в полі <em class="guilabel">Input file</em>. Назвіть вихідний файл в полі  <em class="guilabel">Output file for contour lines</em> як <cite>everest_countours.shp</cite>. Ми згенеруємо контурні лінії з інтервалом 100 метрів, тому введіть значення 100 в поле <em class="guilabel">Interval between contour lines.</em>  Також перевірте опцію <em class="guilabel">Attribute name</em>, щоб значення висоти були записані в якості атрибуту до кожної контурної лінії. Натисніть кнопку <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1428.png" class="align-center" src="../_images/1428.png" />
 <ol class="arabic simple" start="15">
-<li>Once the processing is complete, you will see contour lines loaded into the
-canvas. Each line in this layer represents a particular elevation. All
-points along a countour line in the underlying raster would be at the same
-elevation. The closer the lines, the steeper the slope. Let’s inspect the
-contours a bit more. Right click on the contours layer and choose
-<em class="guilabel">Open Attribute Table</em>.</li>
+<li><p class="first">Після того як обробка буде завершена, ви побачите контурні лінії завантажені в область видимості. Кожна лінія на цьому шарі представляє конкретну висоту. Всі точки на контурній лінії в нижньому растрі будуть мати ту саму висоту. Чим ближче лінії, тим крутіший схил. Давайте дослідимо контури трохи більше. Правою кнопкою миші натисніть на шар контурів і виберіть <em class="guilabel">Open Attribute Table</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1526.png" class="align-center" src="../_images/1526.png" />
 <ol class="arabic simple" start="16">
-<li>You will see that each line feature has an attribute named <em class="guilabel">ELEV</em>.
-This is the height in metres that each line represents. Click on the column header
-a couple of times to sort the values in descending order. Here you will
-find the line representing the highest elevation in our data, i.e. Mt.
-Everest.</li>
+<li><p class="first">Ви побачите, що кожен об&#8217;єкт має атрибут, який називається <em class="guilabel">ELEV</em>. Це висота в метрах, якій відповідає кожна лінія. Натисніть на заголовок колонки декілька разів аби відсортувати значення в порядку зменшення. Тут ви знайдете лінію, яка представляє найбільшу висоту в наших даних. тобто це і є гора Еверест.</p>
+</li>
 </ol>
 <img alt="../_images/1625.png" class="align-center" src="../_images/1625.png" />
 <ol class="arabic simple" start="17">
-<li>Select the top row, and click on the <em class="guilabel">Zoom to selection</em>
-button.</li>
+<li><p class="first">Виберіть верхній рядок і натисніть кнопку <em class="guilabel">Zoom to selection</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1723.png" class="align-center" src="../_images/1723.png" />
 <ol class="arabic simple" start="18">
-<li>Switch to the main QGIS window. You will see the selected contour line
-highlighted in yellow. This is the area of the highest elevation in our dataset.</li>
+<li><p class="first">Перейдіть до головного вікна QGIS. Ви маєте побачити вибрану контурну лінію пофарбовану жовтим кольором. Це є найвища область в нашому наборі даних.</p>
+</li>
 </ol>
 <img alt="../_images/1823.png" class="align-center" src="../_images/1823.png" />
 <ol class="arabic simple" start="19">
-<li>Now let us create a hillshade map from the raster. Select
-<em class="menuselection">Raster ‣ Analysis ‣ DEM (Terrain Models)</em>.</li>
+<li><p class="first">Тепер давайте створимо карту відмивання тіней із растру. Виберіть меню <em class="menuselection">Raster ‣ Analysis ‣ DEM (Terrain Models)</em>.</p>
+</li>
 </ol>
 <img alt="../_images/1921.png" class="align-center" src="../_images/1921.png" />
 <ol class="arabic simple" start="20">
-<li>In the <em class="guilabel">DEM (Terrain Models)</em> dialog, choose <cite>everest_gmted30</cite> as
-the <em class="guilabel">Input file</em>. Name the <em class="guilabel">Output file</em> as
-<cite>everest_hillshade.tif</cite>. Choose <em class="guilabel">Hillshade</em> as the
-<em class="guilabel">Mode</em>. Leave all other options as is. Make sure the <em class="guilabel">Load into
-canvas when finished</em> option is checked, and click <em class="guilabel">OK.</em></li>
+<li><p class="first">У діалоговому вікні <em class="guilabel">DEM (Terrain Models)</em>, виберіть everest_gmted30` в якості вхідного файлу в полі <em class="guilabel">Input file</em>. Назвіть вихідний файл <em class="guilabel">Output file</em> як <cite>everest_hillshade.tif</cite>. Виберіть <em class="guilabel">Hillshade</em>  в якості режиму <em class="guilabel">Mode</em>. Залиште всі інші опції як є. Переконайтеся що вибрана опція <em class="guilabel">Load into canvas when finished</em>, і натисніть <em class="guilabel">OK.</em></p>
+</li>
 </ol>
 <img alt="../_images/2018.png" class="align-center" src="../_images/2018.png" />
 <ol class="arabic simple" start="21">
-<li>Once the process finishes, you will see yet another raster loaded into QGIS
-canvas. Since you maybe zoomed-in near the Mt.Everest region, right click
-on the <cite>everest_hillshade</cite> layer and choose <em class="guilabel">Zoom to Layer
-Extent</em>.</li>
+<li><p class="first">Як тільки завершиться процес, ви побачите інший растр завантажений на полотно QGIS. Оскільки ви можливо збільшили область біля Евересту, натисніть правою кнопкою миші на шар <cite>everest_hillshade</cite> і виберіть <em class="guilabel">Zoom to Layer Extent</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2122.png" class="align-center" src="../_images/2122.png" />
 <ol class="arabic simple" start="22">
-<li>Now you will see the full extent of the hillshade raster.</li>
+<li><p class="first">Тепер ви побачите повнорозмірний растр із затіненням схилів.</p>
+</li>
 </ol>
 <img alt="../_images/2221.png" class="align-center" src="../_images/2221.png" />
 <ol class="arabic simple" start="23">
-<li>You can also visualize your contour layer and verify your analysis
-by exporting the contours layer as KML and viewing it in Google Earth.
-Right click on the contours layer, select <em class="guilabel">Save as..</em>.</li>
+<li><p class="first">Ви також можете візуалізувати ваш контурний шар і пересвідчитись що ваш аналіз правильний, експортувавши контури у формат KML і переглянути його в Google Earth. Натисніть праву кнопку миші на вашому контурі і виберіть <em class="guilabel">Зберегти як...</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2317.png" class="align-center" src="../_images/2317.png" />
 <ol class="arabic simple" start="24">
-<li>Select <em class="guilabel">Keyhole Markup Language [KML]</em> as the
-<em class="guilabel">Format</em>. Name your output as <cite>contours.kml</cite> and click
-<em class="guilabel">OK</em>.</li>
+<li><p class="first">Виберіть <em class="guilabel">Keyhole Markup Language [KML]</em> в якості формату в полі  <em class="guilabel">Format</em>. Назвіть ваш вихідний файл як <cite>contours.kml</cite> і натисніть <em class="guilabel">OK</em>.</p>
+</li>
 </ol>
 <img alt="../_images/2415.png" class="align-center" src="../_images/2415.png" />
 <ol class="arabic simple" start="25">
-<li>Browse to the output file on your disk and double-click on it to open Google Earth.</li>
+<li><p class="first">Знайдіть отриманий файл на вашому диску і за допомогою подвійного кліку мишкою відкрийте його в програмі Google Earth.</p>
+</li>
 </ol>
 <img alt="../_images/2513.png" class="align-center" src="../_images/2513.png" />
 </div>
@@ -429,7 +387,7 @@ Right click on the contours layer, select <em class="guilabel">Save as..</em>.</
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Востаннє оновлено Dec 21, 2015.<br/>
+      Востаннє оновлено Jan 07, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

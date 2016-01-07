@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Обчислення довжини ліній та статистики</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Основи растрового моделювання та аналізу</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Зшивання та обрізання растрових мозаїк</a></li>
-<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Робота з даними місцевості</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Робота з даними рельєфу</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Робота з даними WMS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">Робота з проекціями</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Геоприв’язування топографічних листів та сканованих мап</a></li>
@@ -146,6 +146,7 @@
 <form role="form" class="navbar-form navbar-right">
 <select id="languages" class="form-control select-mini">
   <option value="en">English</option>
+  <option value="zh_TW">Chinese (Taiwan)</option>
   <option value="nl">Dutch</option>
   <option value="fi_FI">Finnish</option>
   <option value="fr">French</option>
@@ -207,22 +208,16 @@ target="_blank">A4</a>
 <a class="reference external"
 href="../pdf/downloading_osm_data_letter.pdf" onClick="ga('send',
 'event', 'PDF Download', 'downloading_osm_data_letter');"
-target="_blank">Letter</a> ]</p><p>Getting high quality data is essential for any GIS task. One great resource for
-free and openly licensed data is <a class="reference external" href="http://www.openstreetmap.org/">OpenStreetMap(OSM)</a> . The OSM database consits of streets, local
-data as well as building polygons. Getting access to OSM data in a GIS format
-is integrated in QGIS. This tutorial explains the process for searching,
-downloading and using OSM data in QGIS.</p>
+target="_blank">Letter</a> ]</p><p>Отримання даних високої якості є важливим для будь-якої задачі ГІС. Одним із великих ресурсів із вільними даними з відкритою ліцензією є <a class="reference external" href="http://www.openstreetmap.org/">OpenStreetMap(OSM)</a> . База даних OSM містить вулиці, локальні дані і полігони будівель. В QGIS інтегровані можливості отримання доступу до даних OSM в ГІС форматі. Цей урок пояснює як здійснити процес пошуку, завантаження і використання OSM даних в QGIS.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Огляд завдання<a class="headerlink" href="#overview-of-the-task" title="Постійне посилання на цей заголовок">¶</a></h2>
-<p>Search for <em>London</em> in OSM database, browse and select a part of the city, and
-extract all pub locations as a shapefile.</p>
+<p>Знайдіть <em>Лондон</em> у базі даних OSM, прокрутіть і виділіть частину міста, і виберіть всі пивні у вигляді шейп-файлу.</p>
 </div>
 <div class="section" id="procedure">
 <h2>Виконання<a class="headerlink" href="#procedure" title="Постійне посилання на цей заголовок">¶</a></h2>
 <ol class="arabic simple">
-<li>We will use 2 plugins to accomplish the task. Make sure you have installed
-<strong>OSM Place Search</strong> and <strong>OpenLayers</strong> plugins. See <a class="reference internal" href="using_plugins.html"><em>Використання додатків</em></a> for
-instructions on downloading plugins.</li>
+<li><p class="first">Для виконання задачі ми використаємо 2 плагіни. Переконайтеся що ви маєте встановлені плагіни <strong>OSM Place Search</strong> і <strong>OpenLayers</strong>. Дивіться <a class="reference internal" href="using_plugins.html"><em>Використання додатків</em></a>  для отримання інструкцій по завантаженню плагінів.</p>
+</li>
 </ol>
 <img alt="../_images/139.png" class="align-center" src="../_images/139.png" />
 <ol class="arabic simple" start="2">
@@ -238,13 +233,12 @@ OpenLayers plugin ‣ Add OpenStreetMap layer</em>.</li>
 </ol>
 <img alt="../_images/315.png" class="align-center" src="../_images/315.png" />
 <ol class="arabic simple" start="4">
-<li>You will see a world map loaded in QGIS.</li>
+<li><p class="first">Ви побачите світову мапу завантажену у QGIS.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Примітка</p>
-<p class="last">If you do not see any data - make sure you are online - as the basemap tiles
-are fetched from the internet. You can also use the <em>Pan</em> tool to move the
-map canvas slightly, which will trigger a refresh of the basemap.</p>
+<p class="last">Якщо ви не бачите ніяких даних - пересвідчіться що ви підключені до мережі - оскільки плитки базової мапи завантажуються через інтернет. Ви також можете використовувати інструмент <em>Pan</em> для того, щоб трохи перемістити полотно мапи, що призведе до оновлення базової мапи.</p>
 </div>
 <img alt="../_images/410.png" class="align-center" src="../_images/410.png" />
 <ol class="arabic simple" start="5">
@@ -332,7 +326,8 @@ features using an expression</em> button.</li>
 </ol>
 <img alt="../_images/149.png" class="align-center" src="../_images/149.png" />
 <ol class="arabic simple" start="15">
-<li>Enter the expression <cite>&#8220;amenity&#8221; = &#8216;pub&#8217;</cite> and click <em class="guilabel">Select</em>.</li>
+<li><p class="first">Наберіть вираз <cite>&#8220;amenity&#8221; = &#8216;pub&#8217;</cite> і натисніть <em class="guilabel">Вибрати</em>.</p>
+</li>
 </ol>
 <img alt="../_images/159.png" class="align-center" src="../_images/159.png" />
 <ol class="arabic simple" start="16">
@@ -384,7 +379,7 @@ attributes.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Востаннє оновлено Dec 21, 2015.<br/>
+      Востаннє оновлено Jan 07, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
