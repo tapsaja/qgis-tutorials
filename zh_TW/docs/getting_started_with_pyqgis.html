@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Getting Started With Python Programming &mdash; QGIS Tutorials and Tips</title>
+    <title>Python 程式設計的初步上手 &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Building a Python Plugin" href="building_a_python_plugin.html" />
+    <link rel="next" title="以 Python 製作附加元件" href="building_a_python_plugin.html" />
     <link rel="prev" title="Open BIL, BIP or BSQ files in QGIS" href="open_bil_bip_bsq_files.html" />
 
 <meta charset='utf-8'>
@@ -112,8 +112,8 @@
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Getting Started With Python Programming</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Building a Python Plugin</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Python 程式設計的初步上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
@@ -121,8 +121,8 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS Learning Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credits.html">Data Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 學習資源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">資料來源</a></li>
 </ul>
 </ul>
 </li>
@@ -136,7 +136,7 @@
     </a>
   </li>
   <li>
-    <a href="building_a_python_plugin.html" title="Next Chapter: Building a Python Plugin"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Building a Pytho... &raquo;</span>
+    <a href="building_a_python_plugin.html" title="Next Chapter: 以 Python 製作附加元件"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">以 Python 製作附加元件 &raquo;</span>
     </a>
   </li>
               
@@ -200,7 +200,7 @@
       
 
   <div class="section" id="getting-started-with-python-programming">
-<h1>Getting Started With Python Programming<a class="headerlink" href="#getting-started-with-python-programming" title="Permalink to this headline">¶</a></h1>
+<h1>Python 程式設計的初步上手<a class="headerlink" href="#getting-started-with-python-programming" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF
 <a class="reference external" href="../pdf/getting_started_with_pyqgis_a4.pdf"
 onClick="ga('send', 'event', 'PDF Download', 'getting_started_with_pyqgis_a4');"
@@ -209,81 +209,58 @@ target="_blank">A4</a>
 <a class="reference external"
 href="../pdf/getting_started_with_pyqgis_letter.pdf" onClick="ga('send',
 'event', 'PDF Download', 'getting_started_with_pyqgis_letter');"
-target="_blank">Letter</a> ]</p><p>QGIS has a powerful programming interface that allows you to extend the core
-functionality of the software as well as write scripts to automate your tasks.
-QGIS supports the popular Python scripting language. Even if you are a
-beginner, learning a little bit of Python and QGIS programming interface will
-allow you to be much more productive in your work. This tutorial assumes no
-prior programming knowledge and is intended to give an introduction to
-python scripting in QGIS (PyQGIS).</p>
+target="_blank">Letter</a> ]</p><p>QGIS 具有強大的程式設計介面，支援目前流行的 Python 語言，可以讓你擴展此軟體的核心功能，或是撰寫腳本讓你想做的事情可以自動執行。不論你是否對 QGIS 或 Python 有深入了解，知道一點 QGIS 程式介面的使用方法一定會讓你的工作事半功倍。閱讀本教學不需任何程式設計的背景，我們會從頭開始敘述 QGIS 的 Python 程式設計方法 (PyQGIS)。</p>
 <div class="section" id="overview-of-the-task">
 <h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will load a vector point layer representing all major airports and use
-python scripting to create a text file with the airport name, airport code,
-latitude and longitude for each of the airport in the layer.</p>
+<p>我們要以 Python 腳本處理世界上所有機場位置的點向量圖層，此腳本會輸出圖層中機場名字、機場代碼與經緯度資訊到一個文字檔中。</p>
 </div>
 <div class="section" id="get-the-data">
 <h2>取得資料<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/airports/">Airports</a>
-dataset from Natural Earth.</p>
-<p>Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip">Airports shapefile</a>.</p>
+<p>本教學使用 Natural Earth 提供的 <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/airports/">機場</a> 資料集。</p>
+<p>下載 <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip">機場 shapefile</a></p>
 <p>資料來源  <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>In QGIS, go to <em class="menuselection">Layers ‣ Add Vector Layer</em>. Browse to the
-downloaded <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt> file and click <em class="guilabel">Open</em>. Select
-the <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt> layer and click <em class="guilabel">OK</em>.</li>
+<li><p class="first">在 QGIS 中選擇 <em class="menuselection">圖層 ‣ 加入向量圖層</em>，找到剛下載的 <tt class="docutils literal"><span class="pre">ne_10m_airports.zip</span></tt> 檔案，按下 <em class="guilabel">開啟</em>，選擇 <tt class="docutils literal"><span class="pre">ne_10m_airports.shp</span></tt>，最後按 <em class="guilabel">確定</em>。</p>
+</li>
 </ol>
 <img alt="../_images/160.png" class="align-center" src="../_images/160.png" />
 <ol class="arabic simple" start="2">
-<li>You will see the <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> layer loaded in QGIS.</li>
+<li><p class="first">接著 QGIS 中就可以看到 <tt class="docutils literal"><span class="pre">ne_10m_airports</span></tt> 圖層。</p>
+</li>
 </ol>
 <img alt="../_images/227.png" class="align-center" src="../_images/227.png" />
 <ol class="arabic simple" start="3">
-<li>Select the <em class="guilabel">Identify</em> tool and click on any of the points to
-examine the available attributes. You will see that the name of the airport
-and it&#8217;s 3 digit code are contained in the attributes <tt class="docutils literal"><span class="pre">name</span></tt> and
-<tt class="docutils literal"><span class="pre">iata_code</span></tt> respectively.</li>
+<li><p class="first">使用 <em class="guilabel">識別圖徵</em> 按鈕，選擇任一個點看一下有哪些屬性。你會發現機場的名字是記在 <tt class="docutils literal"><span class="pre">name</span></tt> 屬性，而機場的 3 位英文代碼則是記在 <tt class="docutils literal"><span class="pre">iata_code</span></tt> 屬性。</p>
+</li>
 </ol>
 <img alt="../_images/318.png" class="align-center" src="../_images/318.png" />
 <ol class="arabic simple" start="4">
-<li>QGIS provides a built-in console where you can type python commands and get
-the result. This console is a great way to learn scripting and also to do
-quick data processing. Open the <em class="guilabel">Python Console</em> by going to
-<em class="menuselection">Plugins ‣ Python Console</em>.</li>
+<li><p class="first">QGIS 有內建終端機模式，可以讓你輸入 Python 指令和查閱輸出，對於學習和快速的資料處理很有幫助。選擇 <em class="menuselection">附加元件 ‣ Python 主控台</em>，就可以進入該模式。</p>
+</li>
 </ol>
 <img alt="../_images/413.png" class="align-center" src="../_images/413.png" />
 <ol class="arabic simple" start="5">
-<li>You will see a new panel open at the bottom of QGIS canvas. You will see a
-prompt like <tt class="docutils literal"><span class="pre">&gt;&gt;&gt;</span></tt> at the bottom where you can type commands. For
-interacting with the QGIS environment, we must use the <tt class="docutils literal"><span class="pre">iface</span></tt> variable.
-To access the currently active layer in QGIS, you can type the following and
-press <tt class="kbd docutils literal"><span class="pre">Enter</span></tt>. This command fetches the reference to the currently
-loaded layer and stores it in the <tt class="docutils literal"><span class="pre">layer</span></tt> variable.</li>
+<li><p class="first">這時有個新面板會出現在 QGIS 畫布下方，而且最底下會有一個左側有 <tt class="docutils literal"><span class="pre">&gt;&gt;&gt;</span></tt> 的欄位，這裡就是輸入指令的地方。在此模式下方所有與 QGIS 環境的互動，都會透過一個叫做 <tt class="docutils literal"><span class="pre">iface</span></tt> 的變數來達成。例如要存取現在顯示在 QGIS 中的圖層的話，可輸入如下指令後按下 <tt class="kbd docutils literal"><span class="pre">Enter</span></tt> 鍵，<tt class="docutils literal"><span class="pre">layer</span></tt> 這個變數就會被設定成此圖層。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">layer</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
 </pre></div>
 </div>
 <img alt="../_images/513.png" class="align-center" src="../_images/513.png" />
 <ol class="arabic simple" start="6">
-<li>There is a handy function called <tt class="docutils literal"><span class="pre">dir()</span></tt> in python that shows you all
-available methods for any object. This is useful when you are not sure
-what functions are available for the object. Run the following command to
-see what operations we can do on the <tt class="docutils literal"><span class="pre">layer</span></tt> variable.</li>
+<li><p class="first">Python 中有個蠻實用的函數叫做 <tt class="docutils literal"><span class="pre">dir()</span></tt>，它會秀出某物件的所有可操作方法。當你不太了解這個物件該怎麼操作時，這個函數相當管用。所以我們就輸入如下指令，看看接下來我們可以對 <tt class="docutils literal"><span class="pre">layer</span></tt> 變數做什麼事情。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="nb">dir</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
 </pre></div>
 </div>
 <img alt="../_images/612.png" class="align-center" src="../_images/612.png" />
 <ol class="arabic simple" start="7">
-<li>You will see a long list of available functions. For now, we will use a
-function called <tt class="docutils literal"><span class="pre">getFeatures()</span></tt> which will gets you the reference to all
-features of a layer. In our case, each feature will be a point representing
-an airport. You can type the following command to iterate through each of the
-features in the current layer. Make sure to add 2 spaces before typing the
-second line.</li>
+<li><p class="first">這下子你就會看到一長串的可用函數。在這裡，我們試著用 <tt class="docutils literal"><span class="pre">getFeatures()</span></tt>，這是幫助取得某個在圖層中的圖徵的函數，在我們的例子中，它可以幫我們取得圖層中代表「機場」的點。使用下面的指令就可以逐一取得圖層中的所有圖徵，不過記得一定要在第二行的最前面加上 2 個空格。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
   <span class="k">print</span> <span class="n">f</span>
@@ -291,11 +268,8 @@ second line.</li>
 </div>
 <img alt="../_images/712.png" class="align-center" src="../_images/712.png" />
 <ol class="arabic simple" start="8">
-<li>As you will see in the output, each line contains a reference to a feature
-within the layer. The reference to the feature is stored in the <tt class="docutils literal"><span class="pre">f</span></tt>
-variable. We can use the <tt class="docutils literal"><span class="pre">f</span></tt> variable to access the attributes of each
-feature. Type the following to print the <tt class="docutils literal"><span class="pre">name</span></tt> and <tt class="docutils literal"><span class="pre">iata_code</span></tt> for each
-airport feature.</li>
+<li><p class="first">接著在輸出畫面中就可以看到每一行都是圖層中的一個特定圖徵。圖徵的資訊會存在 <tt class="docutils literal"><span class="pre">f</span></tt> 變數當中，所以只要對 <tt class="docutils literal"><span class="pre">f</span></tt> 進行一些操作，就可以取得圖徵的屬性，像是輸入下面的指令，就可以印出每個機場的 <tt class="docutils literal"><span class="pre">name</span></tt> 和 <tt class="docutils literal"><span class="pre">iata_code</span></tt> 屬性。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
   <span class="k">print</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="s">&#39;iata_code&#39;</span><span class="p">]</span>
@@ -303,15 +277,8 @@ airport feature.</li>
 </div>
 <img alt="../_images/812.png" class="align-center" src="../_images/812.png" />
 <ol class="arabic simple" start="9">
-<li>So now you know how to programatically access the attribute of each feature
-in a layer. Now, let&#8217;s see how we can access the coordinates of the feature.
-The coordinates of a vector feature can be accessed by calling the
-<tt class="docutils literal"><span class="pre">geometry()</span></tt> function. This function returns a geometry object that we can
-store in the variable <tt class="docutils literal"><span class="pre">geom</span></tt>. You can run <tt class="docutils literal"><span class="pre">asPoint()</span></tt> function on the
-geometry object to get the x and y coordinates of the point. If your feature
-is a line or a polygon, you can use <tt class="docutils literal"><span class="pre">asPolyline()</span></tt> or <tt class="docutils literal"><span class="pre">asPolygon()</span></tt>
-functions. Type the following code at the prompt and press <tt class="kbd docutils literal"><span class="pre">Enter</span></tt> to see
-the x and y coordinates of each feature.</li>
+<li><p class="first">現在我們已經知道要怎麼用指令取得圖層中的圖徵屬性了，接下來我們還得取得圖徵的座標。向量圖徵的座標可以使用一個叫做 <tt class="docutils literal"><span class="pre">geometry()</span></tt> 的函數來取得，此函數會輸出一種「幾何物件」，這裡我們把它存在 <tt class="docutils literal"><span class="pre">geom</span></tt> 變數中，而「點幾何物件」可以透過 <tt class="docutils literal"><span class="pre">asPoint()</span></tt> 函數來取得這個物件的 x 與 y 座標。如果圖徵是線或是多邊形的話，取得座標的函數會變成 <tt class="docutils literal"><span class="pre">asPolyline()</span></tt> 或 <tt class="docutils literal"><span class="pre">asPolygon()</span></tt>。請輸入以下指令後按下 <tt class="kbd docutils literal"><span class="pre">Enter</span></tt>，就可以看到每個圖徵的座標。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
   <span class="n">geom</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span>
@@ -320,8 +287,8 @@ the x and y coordinates of each feature.</li>
 </div>
 <img alt="../_images/911.png" class="align-center" src="../_images/911.png" />
 <ol class="arabic simple" start="10">
-<li>What if we wanted to get only the <tt class="docutils literal"><span class="pre">x</span></tt> cordinate of the feature? You can
-call the <tt class="docutils literal"><span class="pre">x()</span></tt> function on the point object and get its x coordinate.</li>
+<li><p class="first">如果我們只想要秀出 <tt class="docutils literal"><span class="pre">x</span></tt> 座標的話要怎麼辦? 只要在點幾何物件上多套入一個 <tt class="docutils literal"><span class="pre">x()</span></tt> 函數就行了，如下所示。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
   <span class="n">geom</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span>
@@ -330,10 +297,8 @@ call the <tt class="docutils literal"><span class="pre">x()</span></tt> function
 </div>
 <img alt="../_images/1011.png" class="align-center" src="../_images/1011.png" />
 <ol class="arabic simple" start="11">
-<li>Now we have all the pieces that we can stitch together to generate our
-desired output. Type the following code to print the name, iata_code,
-latitude and longitude of each of the airport features. The <tt class="docutils literal"><span class="pre">%s</span></tt> and
-<tt class="docutils literal"><span class="pre">%f</span></tt> notations are ways to format a string and number variables.</li>
+<li><p class="first">以上所講的各種操作，只要把它們拼湊起來，就可以產生我們想要的輸出結果。像是底下的程式碼可以印出每個機場的名字、iata_code 以及經緯度，程式碼中的 <tt class="docutils literal"><span class="pre">%s</span></tt> 和 <tt class="docutils literal"><span class="pre">%f</span></tt> 是用來調整字串和數字的輸出格式的記號。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
   <span class="n">geom</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span>
@@ -343,15 +308,8 @@ latitude and longitude of each of the airport features. The <tt class="docutils 
 </div>
 <img alt="../_images/1115.png" class="align-center" src="../_images/1115.png" />
 <ol class="arabic simple" start="12">
-<li>You can see the output printed on the console. A more useful way to store
-the output would be in a file. You can type the following code to create a
-file and write the output there. Replace the file path with a path on your
-own system. Note that we add <tt class="docutils literal"><span class="pre">\n</span></tt> at the end of our line formatting. This
-is to add a newline after we add the data for each feature. You should also
-note the <tt class="docutils literal"><span class="pre">unicode_line</span> <span class="pre">=</span> <span class="pre">line.encode('utf-8')</span></tt> line. Since our layer
-contains some features with unicode characters, we can&#8217;t simply write it to
-a text file. We encode the text using the UTF-8 encoding and then write to
-the text file.</li>
+<li><p class="first">到目前為止，所有的輸出都直接顯示在螢幕上，但其實如果能夠存成檔案，應該會更好用。你可以輸入如下的程式碼，第一行的檔名和路徑記得改成你想存在你電腦中的樣子，剛才的結果就會另存成新檔。注意我們在每行的結尾都加上了 <tt class="docutils literal"><span class="pre">\n</span></tt>，這是用來告訴電腦存完每個圖徵資料後應該要換到下一行繼續存。另外，<tt class="docutils literal"><span class="pre">unicode_line</span> <span class="pre">=</span> <span class="pre">line.encode('utf-8')</span></tt> 這一行的用意在於，有些圖徵的屬性使用了 Unicode 字元，我們要先把它們編碼成 UTF-8 格式，才能正確地存到文字檔當中。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">output_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&#39;c:/Users/Ujaval/Desktop/airports.txt&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
@@ -365,9 +323,8 @@ the text file.</li>
 </div>
 <img alt="../_images/1213.png" class="align-center" src="../_images/1213.png" />
 <ol class="arabic simple" start="13">
-<li>You can go to the output file location you specified and open the text file.
-You will see the data from the airports shapefile that we extracted using
-python scripting.</li>
+<li><p class="first">最後就可以在輸出的文字檔中，查看我們剛剛利用 Python 指令從 shapefile 中轉存出來的資料了！</p>
+</li>
 </ol>
 <img alt="../_images/1312.png" class="align-center" src="../_images/1312.png" />
 </div>
@@ -395,7 +352,7 @@ python scripting.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      最後更新日期是 Jan 07, 2016.<br/>
+      最後更新日期是 Jan 14, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

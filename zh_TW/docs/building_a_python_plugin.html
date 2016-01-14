@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Building a Python Plugin &mdash; QGIS Tutorials and Tips</title>
+    <title>以 Python 製作附加元件 &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -31,7 +31,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Using Custom Python Expression Functions" href="custom_python_functions.html" />
-    <link rel="prev" title="Getting Started With Python Programming" href="getting_started_with_pyqgis.html" />
+    <link rel="prev" title="Python 程式設計的初步上手" href="getting_started_with_pyqgis.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -112,8 +112,8 @@
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Building a Python Plugin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">以 Python 製作附加元件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
@@ -121,8 +121,8 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
-<li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS Learning Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="credits.html">Data Credits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 學習資源</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">資料來源</a></li>
 </ul>
 </ul>
 </li>
@@ -132,7 +132,7 @@
               
                 
   <li>
-    <a href="getting_started_with_pyqgis.html" title="Previous Chapter: Getting Started With Python Programming"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Getting Started ...</span>
+    <a href="getting_started_with_pyqgis.html" title="Previous Chapter: Python 程式設計的初步上手"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Python 程式設計的初步上手</span>
     </a>
   </li>
   <li>
@@ -200,7 +200,7 @@
       
 
   <div class="section" id="building-a-python-plugin">
-<h1>Building a Python Plugin<a class="headerlink" href="#building-a-python-plugin" title="Permalink to this headline">¶</a></h1>
+<h1>以 Python 製作附加元件<a class="headerlink" href="#building-a-python-plugin" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF
 <a class="reference external" href="../pdf/building_a_python_plugin_a4.pdf"
 onClick="ga('send', 'event', 'PDF Download', 'building_a_python_plugin_a4');"
@@ -214,14 +214,14 @@ plugins using Python that can range from adding a simple button to
 sohpisticated toolkits. This tutorial will outline the process involved in
 setting up your development environment, designing the user interface for a
 plugin and writing code to interact with QGIS. Please review the
-<a class="reference internal" href="getting_started_with_pyqgis.html"><em>Getting Started With Python Programming</em></a> tutorial to get familiar with the basics.</p>
+<a class="reference internal" href="getting_started_with_pyqgis.html"><em>Python 程式設計的初步上手</em></a> tutorial to get familiar with the basics.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the Task<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
+<h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
 <p>We will develop a simple plugin called <tt class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></tt> that will allow
 users to pick a vector layer and write its attributes to a CSV file.</p>
 </div>
 <div class="section" id="get-the-tools">
-<h2>Get the Tools<a class="headerlink" href="#get-the-tools" title="Permalink to this headline">¶</a></h2>
+<h2>取得工具<a class="headerlink" href="#get-the-tools" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="qt-creator">
 <h3>Qt Creator<a class="headerlink" href="#qt-creator" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://www.qt.io/">Qt</a> is a software development framework that is used to
@@ -232,7 +232,7 @@ plugin.</p>
 <p>Download and install the Qt Creator software from <a class="reference external" href="http://sourceforge.net/projects/qtcreator.mirror/files/latest/download">SourgeForge</a></p>
 </div>
 <div class="section" id="python-bindings-for-qt">
-<h3>Python Bindings for Qt<a class="headerlink" href="#python-bindings-for-qt" title="Permalink to this headline">¶</a></h3>
+<h3>Qt 的 Python Bindings<a class="headerlink" href="#python-bindings-for-qt" title="Permalink to this headline">¶</a></h3>
 <p>Since we are developing the plugin in Python, we need to install the python
 bindings for Qt. The method for installing these will depend on the platform
 you are using. For building plugins we need the <tt class="docutils literal"><span class="pre">pyrcc4</span></tt> command-line tool.</p>
@@ -254,12 +254,12 @@ Ubuntu and Debian-based distributions, you can run the following command:</p>
 </div>
 </div>
 <div class="section" id="a-text-editor-or-a-python-ide">
-<h3>A Text Editor or a Python IDE<a class="headerlink" href="#a-text-editor-or-a-python-ide" title="Permalink to this headline">¶</a></h3>
+<h3>編輯器或 Python IDE<a class="headerlink" href="#a-text-editor-or-a-python-ide" title="Permalink to this headline">¶</a></h3>
 <p>Any kind of software development requires a good text editor. If you already
 have a favorite text editor or an IDE (Integrated Development Environment), you
 may use it for this tutorial. Otherwise, each platform offers a wide variety of
 free or paid options for text editors. Choose the one that fits your needs.</p>
-<p>This tutorial uses Notepad++ editor on Windows.</p>
+<p>本教學中使用的是 Windows 版本的 Notepad++ 編輯器。</p>
 <p><strong>Windows</strong></p>
 <p><a class="reference external" href="http://notepad-plus-plus.org/">Notepad++</a> is a good free editor for windows.
 Download and install the <a class="reference external" href="http://notepad-plus-plus.org/repository/6.x/6.7.5/npp.6.7.5.Installer.exe">Notepad++ editor</a>.</p>
@@ -272,14 +272,14 @@ are treated properly.</p>
 </div>
 </div>
 <div class="section" id="plugin-builder-plugin">
-<h3>Plugin Builder plugin<a class="headerlink" href="#plugin-builder-plugin" title="Permalink to this headline">¶</a></h3>
+<h3>附加元件「Plugin Builder」<a class="headerlink" href="#plugin-builder-plugin" title="Permalink to this headline">¶</a></h3>
 <p>There is a helpful QGIS plugin named <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> which creates all the
 necessary files and the boilerplate code for a plugin. Find and install the
 <tt class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></tt> plugin. See <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a> for more details on how to
 install plugins.</p>
 </div>
 <div class="section" id="plugins-reloader-plugin">
-<h3>Plugins Reloader plugin<a class="headerlink" href="#plugins-reloader-plugin" title="Permalink to this headline">¶</a></h3>
+<h3>附加元件「Plugin Reloader」<a class="headerlink" href="#plugins-reloader-plugin" title="Permalink to this headline">¶</a></h3>
 <p>This is another helper plugin which allows iterative development of plugins.
 Using this plugin, you can change your plugin code and have it reflected in
 QGIS without having to restart QGIS every time. Find and install the <tt class="docutils literal"><span class="pre">Plugin</span>
@@ -296,8 +296,8 @@ settings if you cannot find it.</p>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS. Go to <em class="menuselection">Plugins ‣ Plugin Builder ‣ Plugin
-Builder</em>.</li>
+<li><p class="first">開啟 QGIS，選擇 <em class="menuselection">附加元件 ‣ Plugin Builder ‣ Plugin Builder</em>。</p>
+</li>
 </ol>
 <img alt="../_images/116.png" class="align-center" src="../_images/116.png" />
 <ol class="arabic simple" start="2">
@@ -517,7 +517,7 @@ is because we have not added the logic to pull attribute information from
 the layer and write it to the text file. We now have all the pieces in
 place to do just that. Find the place in the <tt class="docutils literal"><span class="pre">run</span></tt> method where it says
 <tt class="docutils literal"><span class="pre">pass</span></tt>.  Replace it with the code below. The explanation for this code
-can be found in <a class="reference internal" href="getting_started_with_pyqgis.html"><em>Getting Started With Python Programming</em></a>.</li>
+can be found in <a class="reference internal" href="getting_started_with_pyqgis.html"><em>Python 程式設計的初步上手</em></a>.</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">lineEdit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
 <span class="n">output_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
@@ -794,7 +794,7 @@ upload it to the QGIS plugin repository.</p>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      最後更新日期是 Jan 07, 2016.<br/>
+      最後更新日期是 Jan 14, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

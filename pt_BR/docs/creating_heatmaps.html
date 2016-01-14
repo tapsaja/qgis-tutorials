@@ -228,7 +228,7 @@ outcome, and stop and search data in simple CSV format.</p>
 <p>Baixe os dados &#8216;Surrey Police &lt;<a class="reference external" href="https://data.police.uk/data/">https://data.police.uk/data/</a>&gt;&#8217;, descompacte o arquivo para extrair o arquivo CSV</p>
 <p>Por conveniência, você pode baixar o arquivo dos dados diretamente do caminho abaixo:</p>
 <p><a class="reference external" href="../../downloads/2015-08-surrey-street.csv">2015-08-surrey-street.csv</a></p>
-<p>Data Source <a class="reference internal" href="credits.html#policeuk" id="id1">[POLICEUK]</a></p>
+<p>Fonte de dados <a class="reference internal" href="credits.html#policeuk" id="id1">[POLICEUK]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Procedimento<a class="headerlink" href="#procedure" title="Link permanente para este título">¶</a></h2>
@@ -314,7 +314,7 @@ using this heatmap. Go to <em class="menuselection">Raster ‣ Raster Calculator
 </ol>
 <img alt="../_images/156.png" class="align-center" src="../_images/156.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">Primeiramente, precisará decidir sobre o valor limite das ocorências em cada pixel.</p>
+<li><p class="first">Primeiramente, precisará decidir sobre o valor limite das ocorrências em cada pixel. Todos os pixels acima desse valor será considerado um conjunto de dados. Vamos utilizar, como exemplo, o valor &#8220;10&#8221; para este primeiro dado. Na caixa de dialogo  <em class="guilabel">Raster calculator</em>,  defina o nome do arquivo de saída como <tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt>. Dê duplo click em <tt class="docutils literal"><span class="pre">crime_heatmap&#64;1</span></tt> debaixo de  <em class="guilabel">Raster bands</em>  seção e será adicionado <em class="guilabel">Raster calculator expression</em> a expressão textarea. Complete a expressao como apresentado abaixo. Confira a próxima caixa <em class="guilabel">Add result to project</em> e click em <em class="guilabel">OK</em>.</p>
 </li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;crime_heatmap@1&quot; &gt; 10
@@ -322,11 +322,8 @@ using this heatmap. Go to <em class="menuselection">Raster ‣ Raster Calculator
 </div>
 <img alt="../_images/166.png" class="align-center" src="../_images/166.png" />
 <ol class="arabic simple" start="17">
-<li>A new layer called <tt class="docutils literal"><span class="pre">crime_hotspots</span></tt> will be added to QGIS. This layer has
-pixels with values of either 0 or 1. All pixels in the input layer where
-the pixel value was larger than <tt class="docutils literal"><span class="pre">10</span></tt> now have a value of 1 and all
-remianing pixels are 0. Click on <em class="menuselection">Raster ‣ Conversion ‣
-Polygonize (Raster to Vector)</em>.</li>
+<li><p class="first">A nova camada chamada de <tt class="docutils literal"><span class="pre">crime_hotspots</span></tt> será adicionada no Qgis. Esta camada possui pixels com valores entre 0 e 1. Todos as camadas de entrada onde os calores dos pixels são maiores do que &#8220;10&#8221; apresentaram valores 1 e todo o restante dos pixels terão valores 0. Click em  <em class="menuselection">Raster ‣ Conversion ‣ Polygonize (Raster to Vector)</em>.</p>
+</li>
 </ol>
 <img alt="../_images/175.png" class="align-center" src="../_images/175.png" />
 <ol class="arabic simple" start="18">
@@ -403,7 +400,7 @@ action.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Última atualização em Jan 07, 2016.<br/>
+      Última atualização em Jan 14, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
