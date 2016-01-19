@@ -95,8 +95,8 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">地形資料的操作</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">WMS 資料的操作</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">投影的操作</a></li>
-<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">為紙本地圖進行空間對位</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">為空照圖進行空間對位</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitizing Map Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">連接資料表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
@@ -225,7 +225,7 @@ target="_blank">Letter</a> ]</p><p>地形，或稱之為高程資料，是在 GI
 </div>
 <div class="section" id="get-the-data">
 <h2>取得資料<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>我們要用的是美國地質調查局（USGS）所釋出的 <a href="#id3"><span class="problematic" id="id4">`GMTED (全球多解析度地形高度資料)&lt;http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/GMTED2010&gt;`_</span></a> 資料集 2010 年版，它算是繼 GTOPO30 之後，更新版本的全球地形資料庫。GMTED 可以從美國地質調查局的 <a class="reference external" href="http://earthexplorer.usgs.gov/">Earthexplorer</a> 網站下載。</p>
+<p>我們要用的是美國地質調查局（USGS）所釋出的 <a class="reference external" href="http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/GMTED2010">GMTED (全球多解析度地形高度資料)</a> 資料集 2010 年版，它算是繼 GTOPO30 之後，更新版本的全球地形資料庫。GMTED 可以從美國地質調查局的 <a class="reference external" href="http://earthexplorer.usgs.gov/">Earthexplorer</a> 網站下載。</p>
 <p>以下說明如何從 USGS Earthexplorer 搜尋與下載相關資料。</p>
 <ol class="arabic simple">
 <li><p class="first">前往 <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a>，然後在 <em class="guilabel">Search Criteria</em> 的分頁中，直接輸入 <cite>Mt. Everest</cite> 然後按 <em class="guilabel">Show</em> 搜尋，接著選擇底下的結果進行定位。</p>
@@ -247,7 +247,7 @@ target="_blank">Letter</a> ]</p><p>地形，或稱之為高程資料，是在 GI
 </li>
 </ol>
 <img alt="../_images/435.png" class="align-center" src="../_images/435.png" />
-<p>接著你應該會得到一個叫 <cite>GMTED2010N10E060_300.zip</cite> 的檔案。基本上地形資料會使用許多不同的影像格式發佈，像是 ASC、BIL、GeoTiff 格式等等。QGIS 目前透過 GDAL 函式庫，可以支援`多種格式的資料&lt;<a class="reference external" href="http://www.gdal.org/formats_list.html">http://www.gdal.org/formats_list.html</a>&gt;`_。這裡的 GMTED 資料是屬於 GeoTiff 格式，不過它目前是以被壓縮的 zip 檔儲存。</p>
+<p>接著你應該會得到一個叫 <cite>GMTED2010N10E060_300.zip</cite> 的檔案。基本上地形資料會使用許多不同的影像格式發佈，像是 ASC、BIL、GeoTiff 格式等等。QGIS 目前透過 GDAL 函式庫，可以支援<a href="#id3"><span class="problematic" id="id4">`多種格式的資料&lt;http://www.gdal.org/formats_list.html&gt;`_</span></a>。這裡的 GMTED 資料是屬於 GeoTiff 格式，不過它目前是以被壓縮的 zip 檔儲存。</p>
 <p>為了方便起見，你也可以直接用下面的連結下載：</p>
 <p><a class="reference external" href="../../downloads/GMTED2010N10E060_300.zip">GMTED2010N10E060_300.zip</a></p>
 <p>資料來源 <a class="reference internal" href="credits.html#gmted2010" id="id2">[GMTED2010]</a></p>
@@ -270,7 +270,7 @@ target="_blank">Letter</a> ]</p><p>地形，或稱之為高程資料，是在 GI
 </ol>
 <img alt="../_images/733.png" class="align-center" src="../_images/733.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">來找一下要我們看的區域吧。從`維基百科 &lt;<a class="reference external" href="http://en.wikipedia.org/wiki/Mount_Everest">http://en.wikipedia.org/wiki/Mount_Everest</a>&gt;`_中，可以知道聖母峰的經緯度座標是 27.9881° N 與 86.9253° E，記得 QGIS 的座標使用 (X, Y) 格式，所以經緯度座標要表示成 (緯度, 經度) 才行。因此，把 <cite>86.9253,27.9881</cite> 複製貼上到 QGIS 底部的 <em class="guilabel">坐標</em> 欄位後按下 Enter 鍵，就會看到上方的畫布中心移動到這個坐標了。在 <em class="guilabel">比例</em> 的地方輸入 <cite>1:1000000</cite> 後再次按下 Enter 鍵，就可以把畫布範圍縮到喜馬拉雅山脈周邊地區。</p>
+<li><p class="first">來找一下要我們看的區域吧。從<a class="reference external" href="http://en.wikipedia.org/wiki/Mount_Everest">維基百科</a>中，可以知道聖母峰的經緯度座標是 27.9881° N 與 86.9253° E，記得 QGIS 的座標使用 (X, Y) 格式，所以經緯度座標要表示成 (緯度, 經度) 才行。因此，把 <cite>86.9253,27.9881</cite> 複製貼上到 QGIS 底部的 <em class="guilabel">坐標</em> 欄位後按下 Enter 鍵，就會看到上方的畫布中心移動到這個坐標了。在 <em class="guilabel">比例</em> 的地方輸入 <cite>1:1000000</cite> 後再次按下 Enter 鍵，就可以把畫布範圍縮到喜馬拉雅山脈周邊地區。</p>
 </li>
 </ol>
 <img alt="../_images/832.png" class="align-center" src="../_images/832.png" />
@@ -304,7 +304,7 @@ target="_blank">Letter</a> ]</p><p>地形，或稱之為高程資料，是在 GI
 </ol>
 <img alt="../_images/1329.png" class="align-center" src="../_images/1329.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">在 <em class="guilabel">等高線</em> 視窗中，選 <cite>everest_gmted30</cite> 作為:guilabel:<cite>輸入檔</cite>，<em class="guilabel">輸出檔`則命名為 `everest_countours.shp</em>。在 <em class="guilabel">等高線之間隔</em> 中輸入 100，就可以製作以 100 公尺為區間的等高線圖。順便把 <em class="guilabel">屬性名稱</em> 給打開，這樣的話每條等高線的高度就會記錄在 shapefile 中的每等高線屬性內。最後按下 <em class="guilabel">確定</em>。</p>
+<li><p class="first">在 <em class="guilabel">等高線</em> 視窗中，選 <cite>everest_gmted30</cite> 作為<em class="guilabel">輸入檔</em>，<em class="guilabel">輸出檔`則命名為 `everest_countours.shp</em>。在 <em class="guilabel">等高線之間隔</em> 中輸入 100，就可以製作以 100 公尺為區間的等高線圖。順便把 <em class="guilabel">屬性名稱</em> 給打開，這樣的話每條等高線的高度就會記錄在 shapefile 中的每等高線屬性內。最後按下 <em class="guilabel">確定</em>。</p>
 </li>
 </ol>
 <img alt="../_images/1428.png" class="align-center" src="../_images/1428.png" />
@@ -388,7 +388,7 @@ target="_blank">Letter</a> ]</p><p>地形，或稱之為高程資料，是在 GI
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      最後更新日期是 Jan 14, 2016.<br/>
+      最後更新日期是 Jan 19, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

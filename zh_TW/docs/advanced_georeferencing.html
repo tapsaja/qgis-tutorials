@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Georeferencing Aerial Imagery &mdash; QGIS Tutorials and Tips</title>
+    <title>為空照圖進行空間對位 &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -31,7 +31,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Digitizing Map Data" href="digitizing_basics.html" />
-    <link rel="prev" title="Georeferencing Topo Sheets and Scanned Maps" href="georeferencing_basics.html" />
+    <link rel="prev" title="為紙本地圖進行空間對位" href="georeferencing_basics.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -95,8 +95,8 @@
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">地形資料的操作</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">WMS 資料的操作</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">投影的操作</a></li>
-<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Georeferencing Aerial Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">為紙本地圖進行空間對位</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">為空照圖進行空間對位</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitizing Map Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">連接資料表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
@@ -132,7 +132,7 @@
               
                 
   <li>
-    <a href="georeferencing_basics.html" title="Previous Chapter: Georeferencing Topo Sheets and Scanned Maps"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Georeferencing T...</span>
+    <a href="georeferencing_basics.html" title="Previous Chapter: 為紙本地圖進行空間對位"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; 為紙本地圖進行空間對位</span>
     </a>
   </li>
   <li>
@@ -200,7 +200,7 @@
       
 
   <div class="section" id="georeferencing-aerial-imagery">
-<h1>Georeferencing Aerial Imagery<a class="headerlink" href="#georeferencing-aerial-imagery" title="Permalink to this headline">¶</a></h1>
+<h1>為空照圖進行空間對位<a class="headerlink" href="#georeferencing-aerial-imagery" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF
 <a class="reference external" href="../pdf/advanced_georeferencing_a4.pdf"
 onClick="ga('send', 'event', 'PDF Download', 'advanced_georeferencing_a4');"
@@ -209,7 +209,7 @@ target="_blank">A4</a>
 <a class="reference external"
 href="../pdf/advanced_georeferencing_letter.pdf" onClick="ga('send',
 'event', 'PDF Download', 'advanced_georeferencing_letter');"
-target="_blank">Letter</a> ]</p><p>In the tutorial <a class="reference internal" href="georeferencing_basics.html"><em>Georeferencing Topo Sheets and Scanned Maps</em></a> we covered the basic process of
+target="_blank">Letter</a> ]</p><p>In the tutorial <a class="reference internal" href="georeferencing_basics.html"><em>為紙本地圖進行空間對位</em></a> we covered the basic process of
 georeferencing in QGIS. That method involved reading the coordinates from your
 scanned map and inputting it manually. Many times though you may not have the
 coordinates printed on your map, or you are trying to georeference an image.
@@ -218,18 +218,20 @@ this tutorial, you will learn how to use existing open data sources in your
 georeferencing process.</p>
 <div class="section" id="overview-of-the-task">
 <h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will georeference high resolution balloon-imagery using reference
-coordinates from OpenStreetMap.</p>
+<p>我們要使用高解析度的氣球影像（Balloon-imagery），以 OpenStreetMap 的參考座標進行空間對位。</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>你還會學到這些<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Downloading super high-resolution public domain imagery.</li>
-<li>Using the OpenLayers plugin in QGIS.</li>
+<li><p class="first">下載超高解析度的公領域影像資料</p>
+</li>
+<li><p class="first">在 QGIS 中使用 OpenLayers 附加元件</p>
+</li>
 <li>Converting coordinates between different projection using <strong>cs2cs</strong>
 command-line tool.</li>
 <li>Using an existing georeferenced layer to input GCP points in the Georeferencer
 tool.</li>
-<li>Setting a custom no-data value for a layer.</li>
+<li><p class="first">為某圖層自訂「無資料值」（No-data Value）</p>
+</li>
 </ul>
 </div>
 </div>
@@ -331,8 +333,8 @@ raster</em>. Navigate to the downloaded JPG file and click <em class="guilabel">
 </ol>
 <img alt="../_images/9.png" class="align-center" src="../_images/9.png" />
 <ol class="arabic simple" start="10">
-<li>In the <em class="guilabel">Coordinate Reference System Selector</em>,
-choose <em class="guilabel">EPSG:3857 Pseudo Mercator</em></li>
+<li><p class="first">在 <em class="guilabel">選擇座標參考系統</em> 視窗中，選擇 <em class="guilabel">EPSG:3857 Pseudo Mercator</em>。</p>
+</li>
 </ol>
 <img alt="../_images/10.png" class="align-center" src="../_images/10.png" />
 <ol class="arabic simple" start="11">
@@ -415,7 +417,7 @@ add 255 as the transparent pixels for each band and enter 100 as the
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      最後更新日期是 Jan 14, 2016.<br/>
+      最後更新日期是 Jan 19, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

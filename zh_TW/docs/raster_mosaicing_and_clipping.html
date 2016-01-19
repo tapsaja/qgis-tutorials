@@ -95,8 +95,8 @@
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">地形資料的操作</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">WMS 資料的操作</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">投影的操作</a></li>
-<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
+<li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">為紙本地圖進行空間對位</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">為空照圖進行空間對位</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitizing Map Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">連接資料表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
@@ -278,7 +278,7 @@ target="_blank">Letter</a> ]</p><p>本教學會來介紹在 QGIS 中操作網格
 </div>
 <img alt="../_images/625.png" class="align-center" src="../_images/625.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">在 <em class="guilabel">合併影像</em> 對話框中，按下 <em class="guilabel">輸入檔案</em> 旁邊的 <em class="guilabel">選擇...</em> 鈕，前往你存放所有 geotiff 檔的資料夾，按住 <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> 鍵選取所有檔案。接著按下 <em class="guilabel">輸出檔案</em> 旁邊的 <em class="guilabel">選擇...</em> 鈕，然後把輸出檔命名為 <tt class="docutils literal"><span class="pre">Brazil_mosaic.tif</span></tt>。在底下的地方，勾選 <em class="guilabel">處理完成後載入QGIS地圖中，最後按下 :guilabel:`確定</em>。</p>
+<li><p class="first">在 <em class="guilabel">合併影像</em> 對話框中，按下 <em class="guilabel">輸入檔案</em> 旁邊的 <em class="guilabel">選擇...</em> 鈕，前往你存放所有 geotiff 檔的資料夾，按住 <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> 鍵選取所有檔案。接著按下 <em class="guilabel">輸出檔案</em> 旁邊的 <em class="guilabel">選擇...</em> 鈕，然後把輸出檔命名為 <tt class="docutils literal"><span class="pre">Brazil_mosaic.tif</span></tt>。在底下的地方，勾選 <em class="guilabel">處理完成</em> 後載入QGIS地圖中，最後按下 <em class="guilabel">確定</em>。</p>
 </li>
 </ol>
 <img alt="../_images/724.png" class="align-center" src="../_images/724.png" />
@@ -288,7 +288,7 @@ target="_blank">Letter</a> ]</p><p>本教學會來介紹在 QGIS 中操作網格
 </ol>
 <img alt="../_images/823.png" class="align-center" src="../_images/823.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">另外一種影像操作則是`裁切`影像，只要用一個多邊形的向量圖層，就可以把一幅影像沿著這個多邊形給剪下。所以來把剛才從 Natural Earth 下載的國界多邊形給讀進來看看吧。選擇 <em class="menuselection">圖層 ‣ 加入向量圖層</em>，</p>
+<li><p class="first">另外一種影像操作則是<cite>裁切</cite>影像，只要用一個多邊形的向量圖層，就可以把一幅影像沿著這個多邊形給剪下。所以來把剛才從 Natural Earth 下載的國界多邊形給讀進來看看吧。選擇 <em class="menuselection">圖層 ‣ 加入向量圖層</em>，</p>
 </li>
 </ol>
 <img alt="../_images/921.png" class="align-center" src="../_images/921.png" />
@@ -308,12 +308,12 @@ target="_blank">Letter</a> ]</p><p>本教學會來介紹在 QGIS 中操作網格
 </ol>
 <img alt="../_images/1223.png" class="align-center" src="../_images/1223.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">在 <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> 圖層上按右鍵然後選擇 <em class="guilabel">儲存選取區域為...</em> （或是:guilabel:<cite>存檔為...</cite>），</p>
+<li><p class="first">在 <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> 圖層上按右鍵然後選擇 <em class="guilabel">儲存選取區域為...</em> （或是 <em class="guilabel">存檔為...</em>），</p>
 </li>
 </ol>
 <img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">把新檔案命名為 <a href="#id1"><span class="problematic" id="id2">``</span></a>brazil_boundary.shp``（譯註：如果有的話，要勾選 <em class="guilabel">儲存僅選取的圖徵</em>），確認一下 <em class="guilabel">加入儲存檔案至地圖中</em> 有開啟，最後按下 <em class="guilabel">確定</em>。</p>
+<li><p class="first">把新檔案命名為 <tt class="docutils literal"><span class="pre">brazil_boundary.shp</span></tt>（譯註：如果有的話，要勾選 <em class="guilabel">儲存僅選取的圖徵</em>），確認一下 <em class="guilabel">加入儲存檔案至地圖中</em> 有開啟，最後按下 <em class="guilabel">確定</em>。</p>
 </li>
 </ol>
 <img alt="../_images/1420.png" class="align-center" src="../_images/1420.png" />
@@ -372,7 +372,7 @@ target="_blank">Letter</a> ]</p><p>本教學會來介紹在 QGIS 中操作網格
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      最後更新日期是 Jan 14, 2016.<br/>
+      最後更新日期是 Jan 19, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
