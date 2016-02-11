@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Digitizing Map Data" href="digitizing_basics.html" />
+    <link rel="next" title="把地圖數位化" href="digitizing_basics.html" />
     <link rel="prev" title="為紙本地圖進行空間對位" href="georeferencing_basics.html" />
 
 <meta charset='utf-8'>
@@ -97,20 +97,20 @@
 <li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">投影的操作</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">為紙本地圖進行空間對位</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">為空照圖進行空間對位</a></li>
-<li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitizing Map Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">把地圖數位化</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">連接資料表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">找出在多邊形中的點</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">製作熱區圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">點資料內插法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
@@ -136,7 +136,7 @@
     </a>
   </li>
   <li>
-    <a href="digitizing_basics.html" title="Next Chapter: Digitizing Map Data"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Digitizing Map D... &raquo;</span>
+    <a href="digitizing_basics.html" title="Next Chapter: 把地圖數位化"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">把地圖數位化 &raquo;</span>
     </a>
   </li>
               
@@ -209,13 +209,7 @@ target="_blank">A4</a>
 <a class="reference external"
 href="../pdf/advanced_georeferencing_letter.pdf" onClick="ga('send',
 'event', 'PDF Download', 'advanced_georeferencing_letter');"
-target="_blank">Letter</a> ]</p><p>In the tutorial <a class="reference internal" href="georeferencing_basics.html"><em>為紙本地圖進行空間對位</em></a> we covered the basic process of
-georeferencing in QGIS. That method involved reading the coordinates from your
-scanned map and inputting it manually. Many times though you may not have the
-coordinates printed on your map, or you are trying to georeference an image.
-In that case, you can use another georeferenced data source as your input. In
-this tutorial, you will learn how to use existing open data sources in your
-georeferencing process.</p>
+target="_blank">Letter</a> ]</p><p>在<a class="reference internal" href="georeferencing_basics.html"><em>為紙本地圖進行空間對位</em></a>教學中，我們介紹了一種 QGIS 中進行空間對位的方法。這種方法可運用在掃描版地圖上，我們可以尋找地圖上的座標點當作控制點。但有的時候，地圖上會沒有這種網格點，又或是你要為影像進行空間對位，這方法也行不通。在這種情況下，我們可以使用其他的空間對位資料來源來當作輸入。本教學中，我們會學習如何在空間對位的操作中使用這些開放的資料來源。</p>
 <div class="section" id="overview-of-the-task">
 <h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
 <p>我們要使用高解析度的氣球影像（Balloon-imagery），以 OpenStreetMap 的參考座標進行空間對位。</p>
@@ -226,10 +220,10 @@ georeferencing process.</p>
 </li>
 <li><p class="first">在 QGIS 中使用 OpenLayers 附加元件</p>
 </li>
-<li>Converting coordinates between different projection using <strong>cs2cs</strong>
-command-line tool.</li>
-<li>Using an existing georeferenced layer to input GCP points in the Georeferencer
-tool.</li>
+<li><p class="first">使用 <strong>cs2cs</strong> 指令工具在不同的投影系統之間轉換坐標</p>
+</li>
+<li><p class="first">使用手邊已經過空間對位的圖層，提供空間對位時的控制點座標資訊</p>
+</li>
 <li><p class="first">為某圖層自訂「無資料值」（No-data Value）</p>
 </li>
 </ul>
@@ -237,72 +231,41 @@ tool.</li>
 </div>
 <div class="section" id="get-the-data">
 <h2>取得資料<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>In this tutorial, we will be using some gorgeous kite and balloon imagery
-collected by <a class="reference external" href="http://publiclaboratory.org/archive">The Public Laboratory</a>.
-They make the georeferenced versions of the images also available, but we will
-download a non-georeferenced JPG image and go through the process of
-georeferencing it in QGIS.  If you like the imagery they provide, you can
-<a class="reference external" href="http://google-latlong.blogspot.in/2012/04/balloon-and-kite-imagery-in-google.html">explore it</a> in Google Earth as well.</p>
-<p>Download the JPG image of <a class="reference external" href="http://publiclaboratory.org/map/washington-square-park-new-york-new-york/2012-10-01">Washington Square Park, New York</a>.
-You can right-click the JPG button and choose <em class="guilabel">Save link as...</em>.</p>
+<p>本教學中，我們要使用 <a class="reference external" href="http://publiclaboratory.org/archive">The Public Laboratory</a> 收集的一系列絕美的氣球、風箏空拍影像。他們其實也有釋出空間對位過的版本，不過為了練習，我們在這裡要下載的是未經空間對位的 JPG 檔，然後再於 QGIS 中進行空間對位。如果你喜歡他們提供的影像，可以在 <a class="reference external" href="http://google-latlong.blogspot.in/2012/04/balloon-and-kite-imagery-in-google.html">Google Earth</a> 中進一步探索。</p>
+<p>下載<a class="reference external" href="http://publiclaboratory.org/map/washington-square-park-new-york-new-york/2012-10-01">紐約市 Washington Square Park</a> 的 JPG 影像。你可以直接在 JPG 的按鈕上按右鍵然後選 <em class="guilabel">Save link as...</em>。</p>
 <p>為了方便起見，你也可以直接用下面的連結下載：</p>
 <p><a class="reference external" href="../../downloads/newyorkcity-washingtonsquarepark.jpg">newyorkcity-washingtonsquarepark.jpg</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>For this tutorial, we will be using the OpenStreetMap layer as our reference
-layer. Install the OpenLayers plugin from <em class="menuselection">Plugins ‣ Manage
-and install plugins ‣ Get more</em>. See <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a> for more
-information on using plugins in QGIS.</li>
+<li><p class="first">本教學會使用開放街圖來當作參考圖層。請到 <em class="menuselection">附加元件 ‣ 管理與安裝附加元件</em> 中安裝 OpenLayers Plugin。有關在 QGIS 中如何使用附加元件，可參考 <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a>。</p>
+</li>
 </ol>
 <img alt="../_images/1.png" class="align-center" src="../_images/1.png" />
 <ol class="arabic simple" start="2">
-<li>Once installed, go to <em class="menuselection">Plugins ‣ OpenLayers plugin ‣ Add
-OpenStreetMap layer</em>. This will add a layer of pre-rendered tiles created
-from <a class="reference external" href="http://www.openstreetmap.org/">OpenStreetMap data</a>.</li>
+<li><p class="first">安裝後，就可選擇 <a href="#id1"><span class="problematic" id="id2">:menuselection:`附加元件（或網路） &#8211;&gt; OpenLayers plugin &#8211;&gt; Add OpenStreetMap layer`_</span></a>，如此一來 QGIS 會載入 <a class="reference external" href="http://www.openstreetmap.org/">OpenStreetMap</a>預先處理好的資料塊。</p>
+</li>
 </ol>
 <img alt="../_images/2.png" class="align-center" src="../_images/2.png" />
 <ol class="arabic simple" start="3">
-<li>Now you have the OpenStreetMap layer loaded in QGIS. Note the Coordinate
-Reference System (CRS) for this layer. It is set as EPSG 3857 Pseudo
-Mercator. This is important to note, since the coordinates we infer from
-this layer will be in this CRS.</li>
+<li><p class="first">現在開放街圖的資料已經讀到 QGIS 中了。注意此圖層的座標參考系統 (CRS) 是 EPSG 3857 - 偽麥卡托投影（Pseudo Mercator），我們接下來在此圖層中使用的座標都會是這個 CRS，所以值得在此一提。</p>
+</li>
 </ol>
 <img alt="../_images/3.png" class="align-center" src="../_images/3.png" />
 <ol class="arabic simple" start="4">
-<li>Now the task is to locate the general vicinity of the area that we are
-trying to georeference. You can just use Pan and Zoom tools to locate that
-area on the OpenStreetMap layer. But we can take this opportunity to
-demonstrate another tool that may help you in future. We know that the image
-we downloaded is for Washington Square Park in New York. If you search for
-that place, you will be able to locate the wikipedia page for it. The
-coordinates for the park are listed there.</li>
+<li><p class="first">下一件事是尋找我們要進行空間對位的地區。開放街圖的圖層可以自由縮放尋找地點，不過這裏我們來用另外一種未來可能會有用的工具進行搜尋。我們知道剛剛下載的圖片是位在紐約的 Washington Square Park，如果你把這個地點丟到網路上搜尋，就可以在維基百科的頁面中找到此條目，內容還包括公園的座標。</p>
+</li>
 </ol>
 <img alt="../_images/4.png" class="align-center" src="../_images/4.png" />
 <ol class="arabic simple" start="5">
-<li>You will notice that the coordinates are in Degrees/Minute/Seconds and are
-Latitude and Longitude. But since our layer is in Mercator projection, we
-will need Mercator coordinates to locate the park. Here’s where a
-command-line tool called <strong>cs2cs</strong> comes handy. If you have installed QGIS
-from OSGeo4W installer, you will already have it installed on your system.
-On Linux and Mac too, it comes pre-installed with QGIS. Launch a terminal
-window and type <tt class="docutils literal"><span class="pre">cs2cs</span></tt> to check if it is available. Windows users can find
-a terminal at <em class="menuselection">Start ‣ OSGeo4W ‣ MSYS</em>.</li>
+<li><p class="first">你會發現這裡的座標是經緯度，以度/分/秒的方式顯現，但我們的圖層是麥卡托投影，需要把它轉換成麥卡托直角坐標才能定位。因此，我們要使用一個方便的指令叫做 <strong>cs2cs</strong> 來幫我們這個忙。一般來說，在 Windows 安裝 QGIS 時，應該會把一個稱為 OSGEO4W 的套件也一併安裝，而在 Linux 和 Mac 上亦然。在後兩個作業系統上，可以進入終端機，輸入 <tt class="docutils literal"><span class="pre">cs2cs</span></tt> 查看此程式是否存在，而 Windows 使用者可以去 <em class="menuselection">開始（所有程式） ‣ OSGeo4W ‣ MSYS</em> 啟動終端機（譯按：或是 <em class="menuselection">開始（所有程式） ‣ QGIS ‣ OSGeo4W Shell</em>。）</p>
+</li>
 </ol>
 <img alt="../_images/5.png" class="align-center" src="../_images/5.png" />
 <ol class="arabic simple" start="6">
-<li>Once you have verified that the cs2cs tool exists on your system, it is time
-to convert out Latitude and Longitude to Mercator coordinates. The way this
-tool works is that you need to specify a <em class="guilabel">source</em> and
-<em class="guilabel">destination</em> CRS. The CRS definition could be a <a class="reference external" href="http://trac.osgeo.org/proj/wiki/GenParms">PROJ4 string</a> or an <a class="reference external" href="http://www.epsg-registry.org/">EPSG code</a>. Since we already know the EPSG code for
-out input and output CRS, we will use this. The simplest way to use the tool
-is to supply the input coordinates on the command line itself. Note that the
-tool accepts coordinates in the order <cite>X Y</cite>, so we need to enter <cite>Longitude
-Latitude</cite>. Enter the following command in the terminal and press Enter. Note
-that we need to escape the quotes (&#8221;) with a backslash (\). Once you press
-enter, you will see the tool process the coordinates and print out output X Y
-coordinates in EPSG 3857 CRS.</li>
+<li><p class="first">確定 cs2cs 指令有安裝在系統中後，就可以著手來把經緯度座標轉換成麥卡托座標。使用這個工具時，必須要指定<em class="guilabel">初始</em>和<em class="guilabel">目標</em>的 CRS，指定的方法可以為 <a class="reference external" href="http://trac.osgeo.org/proj/wiki/GenParms">PROJ4 字串</a>或是 <a class="reference external" href="http://www.epsg-registry.org/">EPSG 代碼</a>。因為我們已經知道目標圖層的 CRS，所以直接使用後者即可。此指令最簡單的使用方法是直接在命令列中輸入座標，這個指令讀入座標的順序是 <cite>X Y</cite>，所以我們要輸入的是「<cite>經度 緯度</cite>」。輸入如下所示的指令並按下 Enter 鍵（指令中的反斜線 () 是雙引號 (&#8221;) 的逃脫字符。在某些終端機版本中，不用加上逃脫字符和字串前後的雙引號）。完成之後，可以看到螢幕上會顯示 EPSG 3857 座標系統的 X Y 座標。</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>echo &quot;-73d59&#39;51\&quot; 40d43&#39;51\&quot;&quot; | cs2cs +init=EPSG:4326 +to +init=EPSG:3857
 
@@ -311,25 +274,18 @@ coordinates in EPSG 3857 CRS.</li>
 </div>
 <img alt="../_images/6.png" class="align-center" src="../_images/6.png" />
 <ol class="arabic simple" start="7">
-<li>Copy these coordinates and switch to QGIS. At the bottom of the QGIS window,
-you will see a textbox labeled Coordinates. Enter the coordinates there in
-X,Y form. Press Enter.  You will see the map shift a bit, but not zoom. To
-zoom to the area, select 1:2500 scale from the Scale drop-down next to the
-Coordinate box and press Enter.</li>
+<li><p class="first">複製輸出的座標，然後在 QGIS 視窗最下端的坐標欄位中，把剛才複製的坐標貼上，記得格是要符合 X,Y 的樣子。按下 Enter 鍵之後，可以看到地圖有稍微平移但沒有放大，我們必須要自己調整右側的比例選單，例如調到 1:2500 後再按下 Enter（譯按：如果地圖空白一片，請試試 1:5000。）</p>
+</li>
 </ol>
 <img alt="../_images/7.png" class="align-center" src="../_images/7.png" />
 <ol class="arabic simple" start="8">
-<li>Voila! you now see Washington Square Park area on your canvas. Now it is
-time to start georeferencing. Launch the <strong>Georeferencer</strong> from
-<em class="menuselection">Raster ‣ Georeferencer ‣ Georeferencer</em>. If you do not
-see that menu item, you will need to enable the <em class="guilabel">Georeferencer
-GDAL</em> plugin from <em class="menuselection">Plugins ‣ Manage and install Plugins ‣
-Installed</em>.</li>
+<li><p class="first">太棒了，Washington Square Park 出現在畫面中了！總算可以開始來進行空間對位，請選擇 <em class="menuselection">影像 ‣ 空間對位 ‣ 空間對位</em>，如果你找不到此選項的話，要到 <em class="menuselection">附加元件 ‣ 管理與安裝附加元件 ‣ 已安裝</em> 的分頁中啟用 <em class="guilabel">空間對位 GDAL</em> 這個附加元件。</p>
+</li>
 </ol>
 <img alt="../_images/8.png" class="align-center" src="../_images/8.png" />
 <ol class="arabic simple" start="9">
-<li>In the <em class="guilabel">Georeferencer</em> window, go to <em class="menuselection">File ‣ Open
-raster</em>. Navigate to the downloaded JPG file and click <em class="guilabel">Open</em>.</li>
+<li><p class="first">在 <em class="guilabel">空間對位</em> 視窗中選擇 <em class="menuselection">檔案 ‣ Open raster</em>，選擇剛下載的 JPG 檔，然後按 <em class="guilabel">開啟</em>。</p>
+</li>
 </ol>
 <img alt="../_images/9.png" class="align-center" src="../_images/9.png" />
 <ol class="arabic simple" start="10">
@@ -338,58 +294,48 @@ raster</em>. Navigate to the downloaded JPG file and click <em class="guilabel">
 </ol>
 <img alt="../_images/10.png" class="align-center" src="../_images/10.png" />
 <ol class="arabic simple" start="11">
-<li>Now click on the <em class="guilabel">Add Point</em> button on the toolbar and select an easily
-identifiable location on the image. Corners, intersections, poles etc. make
-good control points.</li>
+<li><p class="first">接下來按下在工具列上的 <em class="guilabel">Add Point</em> 鈕，然後選擇幾個比較容易定位的特徵點，例如轉角、十字路口、雕像等等，這些點稍後要拿來當作控制點。</p>
+</li>
 </ol>
 <img alt="../_images/11.png" class="align-center" src="../_images/11.png" />
 <ol class="arabic simple" start="12">
-<li>Once you click on the image at a control point location, you will see a
-pop-up asking you to enter map coordinates. Click the button
-<em class="guilabel">From map canvas</em>.</li>
+<li><p class="first">當你在圖上按下點位時，會有個視窗跳出來要求輸入地圖坐標。選擇 <em class="guilabel">從地圖畫面取得坐標</em>。</p>
+</li>
 </ol>
 <img alt="../_images/12.png" class="align-center" src="../_images/12.png" />
 <ol class="arabic simple" start="13">
-<li>Find the same location in your reference layer, i.e. the OpenStreetMap
-layer and click there. The coordinates are auto-populated from your click
-on the map canvas. Click Ok. Similarly, choose at least 4 points on the
-image and add their coordinates from the reference layer.</li>
+<li><p class="first">在我們用來當作參考圖層的開放街圖上找到相同的位置點一下，地圖上的坐標就會自動被使用為控制點坐標。使用同樣的方法選擇並記錄至少 4 個點位的坐標。</p>
+</li>
 </ol>
 <img alt="../_images/13.png" class="align-center" src="../_images/13.png" />
 <ol class="arabic simple" start="14">
-<li>Now go to <em class="menuselection">Settings ‣ Transformation settings.</em></li>
+<li><p class="first">接下來選擇 <em class="menuselection">設定 ‣ Transformation settings</em>。</p>
+</li>
 </ol>
 <img alt="../_images/14.png" class="align-center" src="../_images/14.png" />
 <ol class="arabic simple" start="15">
-<li>Choose the settings as shown below. Make sure you the <em class="guilabel">Load in
-QGIS when done</em> button is checked. Click OK. Back in the
-<em class="guilabel">Georeferencer</em> window, go to <em class="menuselection">File ‣
-Start georeferencing</em>. This will start the process of warping the image
-using the GCPs and creating the target raster.</li>
+<li><p class="first">輸入如圖所示的參數設定，記得勾選回到 <em class="guilabel">處理完畢後載入 QGIS 中</em>。按下確定鈕回到 <em class="guilabel">空間對位</em> 的視窗中，點選 <em class="menuselection">檔案 ‣ Start georeferencing</em>，程式就會開始使用控制點轉換產生新影像。</p>
+</li>
 </ol>
 <img alt="../_images/15.png" class="align-center" src="../_images/15.png" />
 <ol class="arabic simple" start="16">
-<li>Once the process finishes, you will see the georeferenced layer loaded in
-QGIS. If all went well, you will see it nicely overlay the OpenStreetMap
-layer.</li>
+<li><p class="first">處理程式結束後，已經過空間對位修正的圖層會被載入到 QGIS 中。沒意外的話，你會看到新影像與開放街圖的圖層疊合得相當不錯。</p>
+</li>
 </ol>
 <img alt="../_images/16.png" class="align-center" src="../_images/16.png" />
 <ol class="arabic simple" start="17">
-<li>To make our output look nicer, let’s remove the black and white no-data
-values. Right click on the image layer and choose <em class="guilabel">Properties</em>.</li>
+<li><p class="first">如要讓它看起來更順眼，得要移除掉影像周圍的黑色和白色無資料值。在這個圖層上按右鍵，選擇 <em class="guilabel">屬性</em>。</p>
+</li>
 </ol>
 <img alt="../_images/17.png" class="align-center" src="../_images/17.png" />
 <ol class="arabic simple" start="18">
-<li>Switch to the <em class="guilabel">Transparency</em> tab. We want to indicate that any
-black or white pixels in the image are <cite>no-data</cite> values and should be made
-transparent. Input 0 as the <em class="guilabel">No data value</em>. Also, in the
-<em class="guilabel">Custom transparency options</em>, click the <em class="guilabel">+</em> button and
-add 255 as the transparent pixels for each band and enter 100 as the
-:<em class="guilabel">Percent transparent</em>. Click <em class="guilabel">OK</em>.</li>
+<li><p class="first">切到 <em class="guilabel">透明度</em> 分頁，我們要把黑色和白色的像素通通指定為<cite>無資料值</cite>，就可以讓他們都變透明。在 <em class="guilabel">附加無資料值</em> 中輸入 0，接著在下方的 <em class="guilabel">自訂透明度選項</em>中，按下 <em class="guilabel">+</em> 按鈕然後在每個波段中都輸入 255，<em class="guilabel">透明百分比</em>則輸入 100，最後按下 <em class="guilabel">確定</em>。</p>
+</li>
 </ol>
 <img alt="../_images/18.png" class="align-center" src="../_images/18.png" />
 <ol class="arabic simple" start="19">
-<li>Now you will see your georeferenced image nicely overlaid on the base layer.</li>
+<li><p class="first">現在，影像看起來就很漂亮的疊在地圖上了。</p>
+</li>
 </ol>
 <img alt="../_images/19.png" class="align-center" src="../_images/19.png" />
 </div>
@@ -417,7 +363,7 @@ add 255 as the transparent pixels for each band and enter 100 as the
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      最後更新日期是 Jan 19, 2016.<br/>
+      最後更新日期是 Feb 11, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

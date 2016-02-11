@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Interpolating Point Data &mdash; QGIS Tutorials and Tips</title>
+    <title>點資料內插法 &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -97,20 +97,20 @@
 <li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">投影的操作</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">為紙本地圖進行空間對位</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">為空照圖進行空間對位</a></li>
-<li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitizing Map Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">把地圖數位化</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">連接資料表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">找出在多邊形中的點</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">製作熱區圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Interpolating Point Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">點資料內插法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
@@ -200,7 +200,7 @@
       
 
   <div class="section" id="interpolating-point-data">
-<h1>Interpolating Point Data<a class="headerlink" href="#interpolating-point-data" title="Permalink to this headline">¶</a></h1>
+<h1>點資料內插法<a class="headerlink" href="#interpolating-point-data" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF
 <a class="reference external" href="../pdf/interpolating_point_data_a4.pdf"
 onClick="ga('send', 'event', 'PDF Download', 'interpolating_point_data_a4');"
@@ -209,45 +209,40 @@ target="_blank">A4</a>
 <a class="reference external"
 href="../pdf/interpolating_point_data_letter.pdf" onClick="ga('send',
 'event', 'PDF Download', 'interpolating_point_data_letter');"
-target="_blank">Letter</a> ]</p><p>Interpolation is a commonly used GIS technique to create continuous surface
-from discrete points. A lot of real world phenomena are continuous -
-elevations, soils, temperatures etc. If we wanted to model these surfaces for
-analysis, it is impossible to take measurements throughout the surface. Hence,
-the field measurements are taken at various points along the surface and the
-intermediate values are inferred by a process called &#8216;interpolation&#8217;. In QGIS,
-interpolation is achieved using the built-in <tt class="docutils literal"><span class="pre">Interpolation</span> <span class="pre">plugin</span></tt>.</p>
+target="_blank">Letter</a> ]</p><p>GIS 系統常常把離散的點資料以內插法創造連續的面資料。自然界中很多東西都是連續的，像是海拔、土壤、溫度等等，如果我們想要分析這種面資料，是不可能把整個表面全部測量一次的。實際上的做法會是我們˙在野外只取幾個測量點，然後測量點之外的其他地方就靠<cite>內插法</cite>求得其值。在 QGIS 之中，可以透過內建的 <tt class="docutils literal"><span class="pre">內插工具</span></tt> 附加元件來執行以上所述的事情。</p>
 <div class="section" id="overview-of-the-task">
 <h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will take field depth measurements for a Lake Arlington in Texas and create
-an elevation relief map and contours from these measurements.</p>
+<p>我們要使用位於德州的 Arlington 湖的水深測量數據，再根據這些數據製作地形圖和等高線圖。</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>你還會學到這些<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Creating contours from point data.</li>
-<li>Masking no-data values from a raster layer.</li>
-<li>Adding labels to a vector layer.</li>
+<li><p class="first">從點資料計算等高線</p>
+</li>
+<li><p class="first">套用遮罩於影像圖層中的無資料值</p>
+</li>
+<li><p class="first">為向量圖層加上標籤</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>取得資料<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>Texas Water Development Board provides the <a class="reference external" href="http://www.twdb.texas.gov/surfacewater/surveys/completed/list/index.asp">shapefiles for completed lake
-surveys</a>.</p>
-<p>Download the <a class="reference external" href="http://www.twdb.texas.gov/hydro_survey/Arlington/2007-12/Shapefiles.zip">2007-12 survey shapefiles for Lake Arlington</a>.</p>
-<p>For convenience, you can directly download the sample data used in this
-tutorial from link below.</p>
+<p>Texas Water Development Board 提供了<a class="reference external" href="http://www.twdb.texas.gov/surfacewater/surveys/completed/list/index.asp">此湖完整的野外調查的 shapefiles</a>。</p>
+<p>可以從這裡下載 <a class="reference external" href="http://www.twdb.texas.gov/hydro_survey/Arlington/2007-12/Shapefiles.zip">2007-12 survey shapefiles for Lake Arlington</a></p>
+<p>為了方便起見，你也可以直接從以下連結下載：</p>
 <p><a class="reference external" href="../../downloads/Shapefiles.zip">Shapefiles.zip</a></p>
-<p>Data Sources: <a class="reference internal" href="credits.html#twdb" id="id1">[TWDB]</a></p>
+<p>資料來源 <a class="reference internal" href="credits.html#twdb" id="id1">[TWDB]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS. Go to <em class="menuselection">Layer ‣ Add Layer  ‣ Add Vector Layer..</em></li>
+<li><p class="first">打開 QGIS，選擇 <em class="menuselection">圖層 ‣ 加入圖層 ‣ 加入向量圖層</em>。</p>
+</li>
 </ol>
 <img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">Shapefiles.zip</span></tt> file and select it. Click
-<em class="guilabel">Open</em>.</li>
+<li><p class="first">選擇 <tt class="docutils literal"><span class="pre">Shapefiles.zip</span></tt> 並按下 <em class="guilabel">確定</em>。</p>
+</li>
 </ol>
 <img alt="../_images/229.png" class="align-center" src="../_images/229.png" />
 <ol class="arabic simple" start="3">
@@ -407,7 +402,7 @@ elevation along the line.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      最後更新日期是 Jan 19, 2016.<br/>
+      最後更新日期是 Feb 11, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>

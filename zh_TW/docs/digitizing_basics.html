@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Digitizing Map Data &mdash; QGIS Tutorials and Tips</title>
+    <title>把地圖數位化 &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -97,20 +97,20 @@
 <li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">投影的操作</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">為紙本地圖進行空間對位</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">為空照圖進行空間對位</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Digitizing Map Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">把地圖數位化</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">連接資料表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
-<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">找出在多邊形中的點</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">製作熱區圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">Interpolating Point Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">點資料內插法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
@@ -200,7 +200,7 @@
       
 
   <div class="section" id="digitizing-map-data">
-<h1>Digitizing Map Data<a class="headerlink" href="#digitizing-map-data" title="Permalink to this headline">¶</a></h1>
+<h1>把地圖數位化<a class="headerlink" href="#digitizing-map-data" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF
 <a class="reference external" href="../pdf/digitizing_basics_a4.pdf"
 onClick="ga('send', 'event', 'PDF Download', 'digitizing_basics_a4');"
@@ -209,20 +209,17 @@ target="_blank">A4</a>
 <a class="reference external"
 href="../pdf/digitizing_basics_letter.pdf" onClick="ga('send',
 'event', 'PDF Download', 'digitizing_basics_letter');"
-target="_blank">Letter</a> ]</p><p>Digitizing is one of the most common tasks that a GIS Specialist has to do.
-Often a large amount of <em>GIS time</em> is spent in digitizing raster data to create
-vector layers that you use in your analysis. QGIS has powerful on-screen
-digitizing and editing capabilities that we will explore in this tutorial.</p>
+target="_blank">Letter</a> ]</p><p>數位化操作是 GIS 專家最常進行的工作之一。把影像資料數位化、轉成向量圖層常常會花費許多的 <em>GIS 操作時間</em>。不過在 QGIS 中，有著強大的數位化螢幕編修功能，我們將會本教學中做個簡介。</p>
 <div class="section" id="overview-of-the-task">
 <h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will use a raster topographic map and create several vector layers
-representing features around a park.</p>
+<p>我們要把一張地形圖的圖檔轉化成數個向量圖層，內容包括地圖中一個公園附近的一些地理標記。</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>你還會學到這些<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Building pyramids for large raster datasets to speed up zoom and pan
-operations.</li>
-<li>Working with a Spatialite database.</li>
+<li><p class="first">為大尺寸影像建立快取金字塔，增快瀏覽地圖的速度</p>
+</li>
+<li><p class="first">Spatialite 資料庫的操作</p>
+</li>
 </ul>
 </div>
 </div>
@@ -231,45 +228,36 @@ operations.</li>
 <p><a class="reference external" href="http://www.linz.govt.nz/">Land Information New Zealand (LINZ)</a> provides
 raster topographic maps at 1:50,000 scale for the New Zealand mainland and
 Chatham Islands.</p>
-<p>Download the <a class="reference external" href="http://topo.linz.govt.nz/Topo50_raster_images/GeoTIFFTopo50/BX24_GeoTifv1-02.tif">GeoTIFF Image file</a>
-from the <a class="reference external" href="http://www.linz.govt.nz/topography/topo-maps/map-chooser/christchurch/christchurch#digitalfile">Christchurch Topo50 map download page</a>.</p>
-<p>為了方便起見，你也可以直接用下面的連結下載：</p>
+<p>從 <a class="reference external" href="http://www.linz.govt.nz/topography/topo-maps/map-chooser/christchurch/christchurch#digitalfile">Christchurch Topo50 map download page</a> 下載 <a class="reference external" href="http://topo.linz.govt.nz/Topo50_raster_images/GeoTIFFTopo50/BX24_GeoTifv1-02.tif">GeoTIFF 影像</a> 。</p>
+<p>為了方便起見，你也可以直接用下面的連結下載（裁切過的版本）：</p>
 <p><a class="reference external" href="../../downloads/BX24_GeoTifv1-02-clip.tif">BX24_GeoTifv1-02-clip.tif</a></p>
-<p>Data Source <a class="reference internal" href="credits.html#linz" id="id1">[LINZ]</a></p>
+<p>資料來源 <a class="reference internal" href="credits.html#linz" id="id1">[LINZ]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Go to <em class="menuselection">Layer ‣ Add Raster Layer</em>. Locate the downloaded
-<tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02.tif</span></tt> and click <em class="guilabel">Open</em>.</li>
+<li><p class="first">選擇 <em class="menuselection">圖層 ‣ 加入影像圖層</em>，選擇剛才下載的 <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02.tif</span></tt> ，然後按 <em class="guilabel">開啟</em>。</p>
+</li>
 </ol>
 <img alt="../_images/130.png" class="align-center" src="../_images/130.png" />
 <ol class="arabic simple" start="2">
-<li>This is a large raster file and you may notice that when you zoom or pan
-around the map, the map takes a little time to render the image. QGIS offers
-a simple solution to make rasters load much faster by using <strong>Image
-Pyramids</strong>. QGIS creates pre-rendered tiles at different resolutions and
-these are presented to you instead of the full raster. This makes map
-navigation snappy and responsive. Right-click the <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02</span></tt> layer
-and choose <em class="guilabel">Properties</em>.</li>
+<li><p class="first">這是張相當大的影像，當我們要拖曳或是縮放地圖時，都要花上一點時間讓程式調整影像的解析尺寸。QGIS 提供了簡單的解決方法來增進這些動作的速度，稱之為「<strong>影像金字塔</strong>」。這種方法其實就是預先產生不同解析度的相同影像，在地圖操作時，可以直接使用而不用再從全尺寸的影像做處理，加快瀏覽速度。請在 <tt class="docutils literal"><span class="pre">BX24_GeoTifv1-02</span></tt> 圖層上按右鍵選擇 <em class="guilabel">屬性</em>。</p>
+</li>
 </ol>
 <img alt="../_images/220.png" class="align-center" src="../_images/220.png" />
 <ol class="arabic simple" start="3">
-<li>Choose the <em class="guilabel">Pyramids</em> tab. Hold the <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> key and select all
-the resolutios offered in the <em class="guilabel">Resolutions</em> panel. Leave other
-options to defaults and click <em class="guilabel">Build pyramids</em>. Once the process
-finishes, click <em class="guilabel">OK</em>.</li>
+<li><p class="first">切換到 <em class="guilabel">影像金字塔</em> 分頁，在 <em class="guilabel">解析度</em> 欄位中把所有解析度都選取，其他選項使用預設值，然後按 <em class="guilabel">建立快取金字塔</em>。程式執行完畢後，按下 <em class="guilabel">確定</em>。</p>
+</li>
 </ol>
 <img alt="../_images/313.png" class="align-center" src="../_images/313.png" />
 <ol class="arabic simple" start="4">
-<li>Back in the main QGIS window, use the <em class="guilabel">Zoom</em> tool to locate
-<em>Hagley Park</em> area in Christchurch. This is the park that we will be
-digitizing.</li>
+<li><p class="first">回到 QGIS 主視窗，使用 <em class="guilabel">放大</em> 鈕搜尋基督城的 <em>Hagley Park</em>，這就是等一下要數位化的區域。</p>
+</li>
 </ol>
 <img alt="../_images/49.png" class="align-center" src="../_images/49.png" />
 <ol class="arabic simple" start="5">
-<li>Before we start, we need to set default <strong>Digitizing Options</strong>. Go to
-<em class="menuselection">Settings ‣ Options...</em>.</li>
+<li><p class="first">在開始之前，先來調整預設的 <strong>數位化選項</strong>。選擇 <em class="menuselection">設定 ‣ 選項...</em>。</p>
+</li>
 </ol>
 <img alt="../_images/59.png" class="align-center" src="../_images/59.png" />
 <ol class="arabic simple" start="6">
@@ -530,7 +518,7 @@ data you created.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      最後更新日期是 Jan 19, 2016.<br/>
+      最後更新日期是 Feb 11, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
