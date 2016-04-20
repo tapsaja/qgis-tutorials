@@ -101,14 +101,14 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">找出在多邊形中的點</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">製作熱區圖</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">空間查詢</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">點資料內插法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
@@ -143,27 +143,6 @@
             
 
             
-<form role="form" class="navbar-form navbar-right">
-<select id="languages" class="form-control select-mini">
-  <option value="en">English</option>
-  <option value="zh_TW">Chinese (Taiwan)</option>
-  <option value="nl">Dutch</option>
-  <option value="fi_FI">Finnish</option>
-  <option value="fr">French</option>
-  <option value="de">German</option>
-  <option value="el">Greek</option>
-  <option value="id">Indonesian</option>
-  <option value="it">Italian</option>
-  <option value="ko">Korean</option>
-  <option value="pt_BR">Portuguese</option>
-  <option value="ro">Romanian</option>
-  <option value="ru">Russian</option>
-  <option value="es">Spanish</option>
-  <option value="th">Thai</option>
-  <option value="uk">Ukrainian</option>
-  <option value="vi">Vietnamese</option>
-</select>
-</form>
 
             
               <li class="hidden-sm"></li>
@@ -193,6 +172,29 @@
 
 <h4>Share</h4>
 <div class="addthis_sharing_toolbox"></div>
+
+<h4>Change Language</h4>
+<form role="form" class="sidebar-form sidebar-left">
+<select id="languages" class="form-control select-mini">
+  <option value="en">English</option>
+  <option value="zh_TW">Chinese (Taiwan)</option>
+  <option value="nl">Dutch</option>
+  <option value="fi_FI">Finnish</option>
+  <option value="fr">French</option>
+  <option value="de">German</option>
+  <option value="el">Greek</option>
+  <option value="id">Indonesian</option>
+  <option value="it">Italian</option>
+  <option value="ko">Korean</option>
+  <option value="pt_BR">Portuguese</option>
+  <option value="ro">Romanian</option>
+  <option value="ru">Russian</option>
+  <option value="es">Spanish</option>
+  <option value="th">Thai</option>
+  <option value="uk">Ukrainian</option>
+  <option value="vi">Vietnamese</option>
+</select>
+</form>
         </div>
       </div>
     <div class="col-md-9">
@@ -224,9 +226,7 @@ target="_blank">Letter</a> ]</p><p>數位化操作是 GIS 專家最常進行的�
 </div>
 <div class="section" id="get-the-data">
 <h2>取得資料<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://www.linz.govt.nz/">Land Information New Zealand (LINZ)</a> provides
-raster topographic maps at 1:50,000 scale for the New Zealand mainland and
-Chatham Islands.</p>
+<p>我們要使用 <a class="reference external" href="http://www.linz.govt.nz/">Land Information New Zealand (LINZ)</a> 提供的 1:50,000 地形圖，包括紐西蘭本土與查塔姆群島（Chatham Islands）。</p>
 <p>從 <a class="reference external" href="http://www.linz.govt.nz/topography/topo-maps/map-chooser/christchurch/christchurch#digitalfile">Christchurch Topo50 map download page</a> 下載 <a class="reference external" href="http://topo.linz.govt.nz/Topo50_raster_images/GeoTIFFTopo50/BX24_GeoTifv1-02.tif">GeoTIFF 影像</a> 。</p>
 <p>為了方便起見，你也可以直接用下面的連結下載（裁切過的版本）：</p>
 <p><a class="reference external" href="../../downloads/BX24_GeoTifv1-02-clip.tif">BX24_GeoTifv1-02-clip.tif</a></p>
@@ -260,236 +260,167 @@ Chatham Islands.</p>
 </ol>
 <img alt="../_images/59.png" class="align-center" src="../_images/59.png" />
 <ol class="arabic simple" start="6">
-<li>Select the <span class="guilabel">Digitizing</span> tab in the <span class="guilabel">Options</span> dialog.
-Set the <span class="guilabel">Default snap mode</span> to <span class="guilabel">To vertex and segment</span>.
-This will allow you to snap to the nearest vertex or line segment. I also
-prefer to set the <span class="guilabel">Default snapping tolerance</span> and
-<span class="guilabel">Search radius for vertex edits</span> in pixels instead of map units.
-This will ensure that the snapping distance remains constant regardless of
-zoom level. Depending on your computer screen resolution, you
-may choose an appropriate value. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">在 <span class="guilabel">選項</span> 頁面中切換到 <span class="guilabel">數位化</span> 分頁，<span class="guilabel">預設接合模式</span> 選擇 <span class="guilabel">自動接合 轉折點與線段</span>。這個選項可以使相近的轉折點與線段黏在一起。筆者個人也偏好把 <span class="guilabel">預設接合容許範圍</span> 和 <span class="guilabel">編輯轉控點的搜尋半徑</span> 設成以像素為單位，而非以地圖單位為單位，這樣在不同的縮放尺度下，自動接合的距離會保持一樣。接著你可以依照你螢幕的解析度選擇適合的值，最後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/68.png" class="align-center" src="../_images/68.png" />
 <ol class="arabic simple" start="7">
-<li>Now we are ready to start digitizing. We will first create a roads layer and
-digitize the roads around the park area. Select <span class="menuselection">Layer ‣ New
-‣ New Spatialite Layer...</span>. You may also choose to create a <span class="guilabel">New
-Shapefile Layer...</span> instead if you prefer. Spatialite is an open database
-format similar to ESRI&#8217;s geodatabase format. Spatialite database is
-contained within a single file on your hard drive and can contain diferent
-types of spatial (point, line, polygon) as well as non-spatial layers. This
-makes is much easier to move it around instead of a bunch of shapefiles. In
-this tutorial, we are creating a couple of polygon layers and a line layer,
-so a Spatialite database will be better suited. You can always load a
-spatialite layer and save it as a shapefile or any other format you want.</li>
+<li><p class="first">現在可以開始數位化了！我們先來做個道路的圖層，然後把公園附近的道路數位化到此圖層上。選擇 <span class="menuselection">圖層 ‣ 新增圖層 ‣ 「新增 Spatialite 圖層...」或「新增 Shape 檔圖層」</span>，看你喜歡哪個都可以。Spatialite 是和 ESRI 的地理資料庫（包含 Shapefile）格式相似的開放資料庫，它的特點是可以在一個檔案內塞進不同種類的空間資料 (點、線、多邊形) 與其他種類的圖層，所以在複製或移動檔案時，不用像 shapefiles 那樣每次都得移動一堆檔案。本教學中，我們會建立數個多邊形和一個線圖層，所以 Spatialite 會比較適合我們。你當然也可以在讀取 Spatialite 檔案後，另存成 shapefile 或其他類型的檔案格式。</p>
+</li>
 </ol>
 <img alt="../_images/78.png" class="align-center" src="../_images/78.png" />
 <ol class="arabic simple" start="8">
-<li>In the <span class="guilabel">New Spatialite Layer</span> dialog, click the <span class="guilabel">...</span>
-button and save a new spatialite database named <code class="docutils literal"><span class="pre">nztopo.sqlite</span></code>. Choose
-the <span class="guilabel">Layer name</span> as <code class="docutils literal"><span class="pre">Roads</span></code> and select <code class="docutils literal"><span class="pre">Line</span></code> as the
-<span class="guilabel">Type</span>. The base topographic map is in the
-<code class="docutils literal"><span class="pre">EPSG:2193</span> <span class="pre">-</span> <span class="pre">NZGD</span> <span class="pre">2000</span></code> CRS, so we can select
-the same for our roads layer. Check the <span class="guilabel">Create an
-autoincrementing primary key</span> box. This will create a field called <strong>pkuid</strong>
-in the attribute table and assign a unique numeric id automatically to each
-feature. When creating a GIS layer, you must decide on the attributes that
-each feature will have. Since this is a roads layer, we will have 2 basic
-attributes - Name and Class. Enter <code class="docutils literal"><span class="pre">Name</span></code> as the <span class="guilabel">Name</span>
-of the attribute in the <span class="guilabel">New attribute</span> section and click
-<span class="guilabel">Add to attribute list.</span></li>
+<li><p class="first">在 <span class="guilabel">新增 Spatilaite 圖層</span> 視窗中，按下 <span class="guilabel">...</span> 鈕，把圖層存成新的名為 <code class="docutils literal"><span class="pre">nztopo.sqlite</span></code> 的資料庫。在 <span class="guilabel">圖層名稱</span> 中輸入 <code class="docutils literal"><span class="pre">Roads</span></code>，然後在 <span class="guilabel">類別</span> 中選擇 <code class="docutils literal"><span class="pre">線</span></code>。我們的地形底圖使用的 CRS 是  <code class="docutils literal"><span class="pre">EPSG:2193</span> <span class="pre">-</span> <span class="pre">NZGD</span> <span class="pre">2000</span></code>，所以這邊就選個跟底圖一樣的 CRS 即可。請勾選 <span class="guilabel">建立自動遞增的主鍵</span>，這個功能會在屬性表格中新增一個叫做 <strong>pkuid</strong> 的欄位，程式會自動為每個圖徵指定獨特的數值到此欄位中。因為這是個道路圖層，我們應還需要 2 個基本屬性：道路名和道路種類。所以請在 <span class="guilabel">新增屬性</span> 欄位中加入 <code class="docutils literal"><span class="pre">Name</span></code>，然後按下 <span class="guilabel">加入屬性列表</span>。</p>
+</li>
 </ol>
 <img alt="../_images/88.png" class="align-center" src="../_images/88.png" />
 <ol class="arabic simple" start="9">
-<li>Similarly create a new attribute <code class="docutils literal"><span class="pre">Class</span></code> of the type <span class="guilabel">Text data</span>.
-Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">以同樣的方法建立新屬性 <code class="docutils literal"><span class="pre">Class</span></code>，類別選 <span class="guilabel">文字資料</span>。建立好後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/98.png" class="align-center" src="../_images/98.png" />
 <ol class="arabic simple" start="10">
-<li>Once the layer is loaded, click the <span class="guilabel">Toggle Editing</span> button to
-put the layer in editing mode.</li>
+<li><p class="first">圖層載入後，按一下 <span class="guilabel">切換編輯狀態</span> 以進入圖層編輯模式。</p>
+</li>
 </ol>
 <img alt="../_images/108.png" class="align-center" src="../_images/108.png" />
 <ol class="arabic simple" start="11">
-<li>Click the <span class="guilabel">Add feature</span> button. Click on the map canvas to add a
-new vertex. Add new vertices along the road feature. Once you have digitized
-a road segment, right-click to end the feature.</li>
+<li><p class="first">按下 <span class="guilabel">加入圖徵</span> 按鈕，然後在地圖上按滑鼠，就可以加入線段端點。沿著道路加入新的端點，直到全部的路都繞過後，按下右鍵結束圖徵的編輯。</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">You can use the scroll wheel of the mouse to zoom in or out while digitizing.
-You can also hold the scroll button and move the mouse to pan around.</p>
+<p class="last">滑動滑鼠的滾輪鍵可以用來放大或縮小地圖，按住滾輪鍵則可以拖曳地圖。</p>
 </div>
 <img alt="../_images/1112.png" class="align-center" src="../_images/1112.png" />
 <ol class="arabic simple" start="12">
-<li>After you right-click to end the feature, you will get a pop-up dialog
-called <span class="guilabel">Attributes</span>. Here you can enter attributes of the newly
-created feature. Since the <strong>pkuid</strong> is an auto-incrementing field, you
-will not be able to enter a value manually. Leave it blank and enter the
-road name as it appears on the topo map. Optionally, assign a Road Class
-value as well. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">按下右鍵之後，會有一個視窗跳出，你可以在其中為剛剛創造的圖徵輸入屬性。因為 <strong>pkuid</strong> 已經被自動指定了，所以只有它是不能手動設定的。輸入在地圖中的道路名字，以及道路的種類，當然你也可以都不輸入就是了。完成後，按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1210.png" class="align-center" src="../_images/1210.png" />
 <ol class="arabic simple" start="13">
-<li>The default style of the new line layer is a thin line. Let&#8217;s change it so
-we can better see the digitized features on the canvas. Right click the
-<code class="docutils literal"><span class="pre">Roads</span></code> layer and select <span class="guilabel">Properties</span>.</li>
+<li><p class="first">線圖層的預設樣式是非常細的線，我們要把它改粗一點，以方便在地圖上瀏覽。在 <code class="docutils literal"><span class="pre">Roads</span></code> 圖層上按右鍵選擇 <span class="guilabel">屬性</span>。</p>
+</li>
 </ol>
 <img alt="../_images/138.png" class="align-center" src="../_images/138.png" />
 <ol class="arabic simple" start="14">
-<li>Select the <span class="guilabel">Style</span> tab in the <span class="guilabel">Layer Properties</span>
-dialog. Choose a thicker line style such as <span class="guilabel">Primary</span> from the
-predefined styles. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">在 <span class="guilabel">圖層屬性</span> 視窗中切換到 <span class="guilabel">樣式</span> 分頁，再從樣式庫中選擇一個較粗的樣式，像是 <span class="guilabel">Primary</span>。最後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/148.png" class="align-center" src="../_images/148.png" />
 <ol class="arabic simple" start="15">
-<li>Now you will see the digitized road feature clearly. Click <span class="guilabel">Save
-Layer Edits</span> to commit the new feature to disk.</li>
+<li><p class="first">現在就很容易在地圖上找到此圖徵了。按下 <span class="guilabel">儲存圖層編輯</span>，就可以把剛才的更動寫到檔案內。</p>
+</li>
 </ol>
 <img alt="../_images/158.png" class="align-center" src="../_images/158.png" />
 <ol class="arabic simple" start="16">
-<li>Before we digitize remaining roads, it is important to update some other
-settings that are important to create an error free layer. Go to
-<span class="menuselection">Settings ‣ Snapping Options...</span>.</li>
+<li><p class="first">在把其他道路數位化之前，有些設定還需要更新，才能保證接下來創造圖層時不會發生錯誤。選擇 <span class="menuselection">選項 ‣ 自動接合選項</span>。</p>
+</li>
 </ol>
 <img alt="../_images/167.png" class="align-center" src="../_images/167.png" />
 <ol class="arabic simple" start="17">
-<li>In the <span class="guilabel">Snapping Options</span> dialog, check the <span class="guilabel">Enable
-topological editing</span>. This option will ensure that the common boundaries
-are maintained correctly in polygon layers. Also check the
-<span class="guilabel">Enable snapping on intersection</span> which allows you to snap on an
-intersection of a background layer.</li>
+<li><p class="first">在 <span class="guilabel">自動接合選項</span> 視窗中，勾選 <span class="guilabel">使用拓撲（topological）編輯</span>，這個選項可以確保圖徵共同的邊界可以在多邊形圖層中正確的調整。再來，勾選 <span class="guilabel">開啟在相交處使用自動接合</span>，此選項可以自動連接圖徵的截切點，例如底圖的道路轉角。</p>
+</li>
 </ol>
 <img alt="../_images/176.png" class="align-center" src="../_images/176.png" />
 <ol class="arabic simple" start="18">
-<li>Now you can click <span class="guilabel">Add feature</span> button and digitize other roads
-around the park. Make sure to click <span class="guilabel">Save Edits</span> after you add a
-new feaure to save your work. A useful tool to help you with digitizing is
-the <strong>Node Tool</strong>. Click the <span class="guilabel">Node Tool</span> button.</li>
+<li><p class="first">接下來就繼續使用 <span class="guilabel">加入圖徵</span> 鈕，加入其他環繞公園的道路吧。記得每一次加入新圖徵後，都要按下 <span class="guilabel">儲存圖層編輯</span> 才會儲存起來。有一個稱為 <strong>節點工具</strong> 的功能也非常的方便，我們就來試試看。請按下 <span class="guilabel">節點工具</span> 鈕。</p>
+</li>
 </ol>
 <img alt="../_images/187.png" class="align-center" src="../_images/187.png" />
 <ol class="arabic simple" start="19">
-<li>Once the node tool is activated, click on any feature to show the vertices.
-Click on any vertex to select it. The vertex will change the color once it
-is selected. Now you can click and drag your mouse to move the vertex. This
-is useful when you want to make adjustments after the feature is created.
-You can also delete a selected vertex by clicking the <code class="kbd docutils literal"><span class="pre">Delete</span></code> key.
-(<code class="kbd docutils literal"><span class="pre">Option+Delete</span></code> on a mac)</li>
+<li><p class="first">節點工具啟用後，點選任一個圖徵，節點就會顯現出來。點選任一節點後，它的顏色會改變，以表示這個節點已經被選取了，這時就可以使用滑鼠拖曳此節點。此操作對修改已有的圖層非常的方便，如果我們要刪掉選取的節點，只要按下 <code class="kbd docutils literal"><span class="pre">Delete</span></code> 鍵即可。(Mac 上是 <code class="kbd docutils literal"><span class="pre">Option+Delete</span></code> 鍵)</p>
+</li>
 </ol>
 <img alt="../_images/195.png" class="align-center" src="../_images/195.png" />
 <ol class="arabic simple" start="20">
-<li>Once you have finished digitizing all the roads, click the
-<span class="guilabel">Toggle Editing</span> button.</li>
+<li><p class="first">所有的道路都數位化了之後，按一下 <span class="guilabel">切換編輯狀態</span> 關閉圖層編輯模式。</p>
+</li>
 </ol>
 <img alt="../_images/203.png" class="align-center" src="../_images/203.png" />
 <ol class="arabic simple" start="21">
-<li>Now we will create a polygon layer representing the park boundaries. Go to
-<span class="menuselection">Layer ‣ New ‣ New Spatialite Layer...</span>. Select the
-<code class="docutils literal"><span class="pre">nztopo.sqlite</span></code> database from the dropdown list. Name the new layer as
-<code class="docutils literal"><span class="pre">Parks</span></code>. Select <code class="docutils literal"><span class="pre">Polygon</span></code> as the <span class="guilabel">Type</span>. Create a new
-attribute called <code class="docutils literal"><span class="pre">Name</span></code>. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">接下來我們要製作的是公園邊界的多邊形圖層。選擇 <span class="menuselection">圖層 ‣ 新增圖層 ‣ 新增 Spatialite 圖層</span>，資料庫要從下拉選單中選擇剛才的 <code class="docutils literal"><span class="pre">nztopo.sqlite</span></code>，新的圖層命名為 <code class="docutils literal"><span class="pre">Parks</span></code>， <span class="guilabel">類別</span> 選擇 <code class="docutils literal"><span class="pre">多邊形</span></code>。另外，新增一個稱為 <code class="docutils literal"><span class="pre">Name</span></code> 的屬性，最後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/2110.png" class="align-center" src="../_images/2110.png" />
 <ol class="arabic simple" start="22">
-<li>Click the <span class="guilabel">Add feature</span> button and click on the map canvas to add
-a polygon vertex. Digitize the polygon representing the park. Make sure you
-snap to the roads vertices so there are no gaps between the park polygons
-and road lines. Right-click to finish the polygon.</li>
+<li><p class="first">按下 <span class="guilabel">加入圖徵</span> 鈕，然後在地圖上點出多邊形的頂點。這些頂點圈住的多邊形，就是以數位化方式呈現的公園邊界。在用右鍵完成多邊形之前，請再次確認你有開啟自動接合選項，這樣公園多邊形和道路的線條中間就不會有任何空隙。</p>
+</li>
 </ol>
 <img alt="../_images/223.png" class="align-center" src="../_images/223.png" />
 <ol class="arabic simple" start="23">
-<li>Enter the park name in the <span class="guilabel">Attributes</span> pop-up.</li>
+<li><p class="first">在跳出的 <span class="guilabel">圖徵屬性</span> 視窗中，輸入公園名字。</p>
+</li>
 </ol>
 <img alt="../_images/233.png" class="align-center" src="../_images/233.png" />
 <ol class="arabic simple" start="24">
-<li>Polygon layers offer another very useful setting called <strong>Avoid
-intersections of new polygons</strong>. Go to <span class="menuselection">Settings ‣
-Snapping Options...</span>. Check the box in the <span class="guilabel">Avoid Int</span> column in
-the row for the <code class="docutils literal"><span class="pre">Parks</span></code> layer. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">我們還可以為多邊形圖層選擇一個很有用的設定，稱為 <strong>避免相交</strong>。再次進入 <span class="menuselection">選項 ‣ 自動接合選項</span>，然後把 <code class="docutils literal"><span class="pre">Parks</span></code> 圖層後方的 <span class="guilabel">避免相交</span> 欄勾選起來，最後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/243.png" class="align-center" src="../_images/243.png" />
 <ol class="arabic simple" start="25">
-<li>Now click on <span class="guilabel">Add feature</span> to add a polygon. With the <strong>Avoid
-intersections of new polygons</strong>, you will be able quickly digitize a new
-polygon without worrying about snapping exactly to the neighboring polygons.</li>
+<li><p class="first">接著使用 <span class="guilabel">加入圖徵</span> 再加入另一個多邊形。當 <strong>避免相交</strong> 功能啟用時，我們就可以快速地創造另一個圖徵，不用擔心它跟先前的圖徵的接合點是否在正確的位置上。</p>
+</li>
 </ol>
 <img alt="../_images/252.png" class="align-center" src="../_images/252.png" />
 <ol class="arabic simple" start="26">
-<li>Right-click to finish the polygon and enter the attributes. Magically the
-new polygon is shrunk and snapped exactly to the boundary of the neighboring
-polygons! This is very useful when digitizing complex boundaries where you
-need not be very precise and still have topologically correct polygon.
-Click <span class="guilabel">Toggle Editing</span> to finish editing the <code class="docutils literal"><span class="pre">Parks</span></code> layer.</li>
+<li><p class="first">按下右鍵完成此多邊形，然後輸入屬性的內容。新的多邊形會與鄰接的多邊形完美的接在一起！這功能對比較複雜的邊界非常有用，我們在設定邊界時可以不需要非常的精確，就可以製作已校正的多邊形。最後，再次按下 <span class="guilabel">切換編輯狀態</span>，結束 <code class="docutils literal"><span class="pre">Parks</span></code> 圖層的編輯。</p>
+</li>
 </ol>
 <img alt="../_images/262.png" class="align-center" src="../_images/262.png" />
 <ol class="arabic simple" start="27">
-<li>Now it is time to digitize a buildings layer. Create a new polygon layer named
-<code class="docutils literal"><span class="pre">Buildings</span></code> by going to <span class="menuselection">Layer ‣ New ‣ New Spatialite
-Layer</span>.</li>
+<li><p class="first">是時候來數位化地圖上的建築了。這次我們選擇 <span class="menuselection">圖層 ‣ 新增圖層 ‣ 新增 Spatialite 圖層</span>，建立一個新的多邊形圖層，稱為 <code class="docutils literal"><span class="pre">Buildings</span></code>。</p>
+</li>
 </ol>
 <img alt="../_images/272.png" class="align-center" src="../_images/272.png" />
 <ol class="arabic simple" start="28">
-<li>Once the <code class="docutils literal"><span class="pre">Buildings</span></code> layer is added, turn off the <code class="docutils literal"><span class="pre">Parks</span></code> and <code class="docutils literal"><span class="pre">Roads</span></code>
-layer so the base topo map is visible. Select the <code class="docutils literal"><span class="pre">Buildings</span></code> layer and
-click <span class="guilabel">Toggle Editing</span>.</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">Buildings</span></code> 圖層加入後，關掉 <code class="docutils literal"><span class="pre">Parks</span></code> 和 <code class="docutils literal"><span class="pre">Roads</span></code> 圖層，讓底下的地圖顯現出來，然後選擇 <code class="docutils literal"><span class="pre">Buildings</span></code> 圖層，再按下 <span class="guilabel">切換編輯狀態</span>。</p>
+</li>
 </ol>
 <img alt="../_images/262.png" class="align-center" src="../_images/262.png" />
 <ol class="arabic simple" start="29">
-<li>Digitizing buildings can be a cumbersome task. Also it is difficult to add
-vertices manually so that the edges are perpendicular and form a rectangle.
-We will use a plugin called <strong>Rectangles Ovals Digitizing</strong> to help with
-this task. See <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a> to see how to search and install
-plugins. Once the <strong>Rectangles Ovals Digitizing</strong> plugin is installed, you
-will see a new toolbar appear above the canvas.</li>
+<li><p class="first">建築的數位化通常是件繁瑣的任務，而且有個困難點是要手動設定垂直的節點以形成長方形的多邊形。這裡我們要使用一個稱為 <strong>Rectangles Ovals Digitizing</strong> 的附加元件來幫助我們數位化。關於如何搜尋和安裝附加元件，請參考 <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a>。當 <strong>Rectangles Ovals Digitizing</strong> 安裝完成後，會看到一個新的工具列出現在畫布上方區塊。</p>
+</li>
 </ol>
 <img alt="../_images/291.png" class="align-center" src="../_images/291.png" />
 <ol class="arabic simple" start="30">
-<li>Zoom to an area with the buildings and click <span class="guilabel">Rectangle by
-Extent</span> button. Click and drag the mouse to draw a perfect rectangle.
-Similarly, add remaining buildings.</li>
+<li><p class="first">放大到有建築的地方，然後按下 <span class="guilabel">Rectangle by Extent</span> 鈕，然後用滑鼠按下並拖曳出長方形。用類似的方法完成其餘的建築多邊形。</p>
+</li>
 </ol>
 <img alt="../_images/301.png" class="align-center" src="../_images/301.png" />
 <ol class="arabic simple" start="31">
-<li>You will notice that some buildings are not vertical. We will need to draw
-a rectangle at an angle to match the building footprint. Click the
-<span class="guilabel">Rectangle from center</span>.</li>
+<li><p class="first">你會看到有些建築不是垂直的，這些形狀大概是傾斜成某種角度的多邊形。按下 <span class="guilabel">Rectangle from center</span>。</p>
+</li>
 </ol>
 <img alt="../_images/314.png" class="align-center" src="../_images/314.png" />
 <ol class="arabic simple" start="32">
-<li>Click at the center of the building and drag the mouse to draw a vertical
-rectangle.</li>
+<li><p class="first">在建築物的中心按一下，用滑鼠拖曳出一個垂直的長方形。</p>
+</li>
 </ol>
 <img alt="../_images/321.png" class="align-center" src="../_images/321.png" />
 <ol class="arabic simple" start="33">
-<li>We need to rotate this rectangle to match the image on the topo map. The
-rotate tool is available in the <strong>Advanced Digitizing</strong> toolbar.
-Right-click on an empty area on the toolbar section and enable the
-<span class="guilabel">Advanced Digitizing</span> toolbar.</li>
+<li><p class="first">接下來我們要旋轉此長方形，讓它符合地圖上的形狀。旋轉工具是放在 <strong>Advanced Digitizing</strong> 工具列中，在工具列上空白的地方按下右鍵，然後勾選 :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>Advanced Digitizing**，就可以讓它呈現在工具列上。</p>
+</li>
 </ol>
 <img alt="../_images/331.png" class="align-center" src="../_images/331.png" />
 <ol class="arabic simple" start="34">
-<li>Click the <span class="guilabel">Rotate Feature(s)</span> button.</li>
+<li><p class="first">按下 <span class="guilabel">旋轉(多個)圖徵</span> 鈕，</p>
+</li>
 </ol>
 <img alt="../_images/341.png" class="align-center" src="../_images/341.png" />
 <ol class="arabic simple" start="35">
-<li>Use the <span class="guilabel">Select Single feature</span> tool to select the polygon that
-you want to rotate. Once the <span class="guilabel">Rotate Feature(s)</span> tool is
-activated, you will see crosshairs at the center of the polygon. Click
-exactly on that crosshairs and drag the mouse while holding the left-click
-button. A preview of the rotated feature will appear. Let go of the mouse
-button when the polygon aligns with the building footprint.</li>
+<li><p class="first">使用 <span class="guilabel">選擇單一圖徵</span> 工具選擇你要旋轉的圖徵。在 <span class="guilabel">旋轉(多個)圖徵</span> 工具啟用的狀況下，被選取的圖徵中心會出現一個準心，點選此準心然後移動滑鼠，就會看到旋轉圖徵的預覽結果。在適當的角度按下滑鼠按鈕，讓多邊形對齊房屋的底座邊界。</p>
+</li>
 </ol>
 <img alt="../_images/351.png" class="align-center" src="../_images/351.png" />
 <ol class="arabic simple" start="36">
-<li>Save the layer edits and click <span class="guilabel">Toggle Editing</span> once you finish
-digitizing all buildings. You can drag the layers to change their order of
-appearance.</li>
+<li><p class="first">儲存編輯的結果，全部完成後再次按下 <span class="guilabel">切換編輯狀態</span>。現在你可以拖曳調整圖層的顯示順序。</p>
+</li>
 </ol>
 <img alt="../_images/361.png" class="align-center" src="../_images/361.png" />
 <ol class="arabic simple" start="37">
-<li>The digitizing task is now complete. You can play with the styling and
-labelling options in layer properties to create a nice looking map from the
-data you created.</li>
+<li><p class="first">數位化的工作到此告一段落，接下來你可以在圖層屬性中調整標籤與樣式，利用你剛剛創造的資料製作一幅好看的地圖。</p>
+</li>
 </ol>
 <img alt="../_images/371.png" class="align-center" src="../_images/371.png" />
 </div>

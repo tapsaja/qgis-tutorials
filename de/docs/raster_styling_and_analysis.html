@@ -143,27 +143,6 @@
             
 
             
-<form role="form" class="navbar-form navbar-right">
-<select id="languages" class="form-control select-mini">
-  <option value="en">English</option>
-  <option value="zh_TW">Chinese (Taiwan)</option>
-  <option value="nl">Dutch</option>
-  <option value="fi_FI">Finnish</option>
-  <option value="fr">French</option>
-  <option value="de">German</option>
-  <option value="el">Greek</option>
-  <option value="id">Indonesian</option>
-  <option value="it">Italian</option>
-  <option value="ko">Korean</option>
-  <option value="pt_BR">Portuguese</option>
-  <option value="ro">Romanian</option>
-  <option value="ru">Russian</option>
-  <option value="es">Spanish</option>
-  <option value="th">Thai</option>
-  <option value="uk">Ukrainian</option>
-  <option value="vi">Vietnamese</option>
-</select>
-</form>
 
             
               <li class="hidden-sm"></li>
@@ -193,6 +172,29 @@
 
 <h4>Share</h4>
 <div class="addthis_sharing_toolbox"></div>
+
+<h4>Change Language</h4>
+<form role="form" class="sidebar-form sidebar-left">
+<select id="languages" class="form-control select-mini">
+  <option value="en">English</option>
+  <option value="zh_TW">Chinese (Taiwan)</option>
+  <option value="nl">Dutch</option>
+  <option value="fi_FI">Finnish</option>
+  <option value="fr">French</option>
+  <option value="de">German</option>
+  <option value="el">Greek</option>
+  <option value="id">Indonesian</option>
+  <option value="it">Italian</option>
+  <option value="ko">Korean</option>
+  <option value="pt_BR">Portuguese</option>
+  <option value="ro">Romanian</option>
+  <option value="ru">Russian</option>
+  <option value="es">Spanish</option>
+  <option value="th">Thai</option>
+  <option value="uk">Ukrainian</option>
+  <option value="vi">Vietnamese</option>
+</select>
+</form>
         </div>
       </div>
     <div class="col-md-9">
@@ -208,146 +210,113 @@ target="_blank">A4</a>
 <a class="reference external"
 href="../pdf/raster_styling_and_analysis_letter.pdf" onClick="ga('send',
 'event', 'PDF Download', 'raster_styling_and_analysis_letter');"
-target="_blank">Letter</a> ]</p><p>A lot of scientific observations and research produces raster datasets. Rasters
-are essentially grids of pixels that have a specific value assigned to them. By
-doing mathematical operations on these values, one can do some interesting
-analysis. QGIS has some basic analysis capabilities built-in via <cite>Raster
-Calculator</cite>. In this tutorial, we will explore basics on using <cite>Raster Calculator</cite>
-and options available for styling rasters.</p>
+target="_blank">Letter</a> ]</p><p>Viele wissenschaftliche Beobachtungen und Forschungen erzeugen Rasterdatensätze. Raster sind im wesentlich Pixelgitter, denen ein spezieller Wert zugeordnet wurde. Wenn man mit diesen Werten mathematische Operationen durchführt, kann man einige interessante Analysen anstellen. QGIS hat einige grundsätzliche Analysemöglichkeiten durch den &#8216;Rasterrechner&#8217; integriert. In diesem Tutorial werden wir die Grundlagen der Benutzung des &#8216;Rasterrechners&#8217; und den Möglichkeiten des Rasterstylings erkunden.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Link zu dieser Überschrift">¶</a></h2>
-<p>We will use population density grid data to find and visualize areas of the world
-that have seen dramatic population density change between year 1990 and 2000.</p>
+<h2>Aufgabenübersicht<a class="headerlink" href="#overview-of-the-task" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Wir werden Bevölkerungsdichtegitterdaten benutzen um Gebiete auf der Welt zu finden und zu visualisieren, die eine dramatische Bevölkerungsdichteänderung  zwischen den Jahren 1990 und 2000 erlebt haben.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Link zu dieser Überschrift">¶</a></h3>
+<h3>Andere Fähigkeiten, die Sie erlernen<a class="headerlink" href="#other-skills-you-will-learn" title="Link zu dieser Überschrift">¶</a></h3>
 <ul class="simple">
-<li>Selecting and loading multiple datasets in a single step in QGIS.</li>
+<li><p class="first">Auswählen und laden von verschiedenen Datensätzen in einem einzigen Schritt in QGIS.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Link zu dieser Überschrift">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/collection/gpw-v3">Gridded Population of the World (GPW) v3</a> dataset from
-Columbia University. Specifically, we need the Population Density Grid for the
-entire globe in ASCII format and for the year 1990 and 2000.</p>
-<p>Here is how to search and download the revelant data.</p>
+<h2>Daten besorgen<a class="headerlink" href="#get-the-data" title="Link zu dieser Überschrift">¶</a></h2>
+<p>Wir werden den Datensatz &#8216;Gridded Population of the World (GPW) v3 &lt;<a class="reference external" href="http://sedac.ciesin.columbia.edu/data/collection/gpw-v3">http://sedac.ciesin.columbia.edu/data/collection/gpw-v3</a>&gt;` von der Columbia Universität benutzen. Genauer gesagt, wir benötigen das Bevölkerungsdichtegitter der ganzen Welt im ASCII Format und für die Jahre 1990 und 2000</p>
+<p>Nun im folgenden wie man die relevanten Daten sucht und runterlädt.</p>
 <ol class="arabic simple">
-<li>Go to the <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density/data-download">Population Density Grid, v3 download page.</a>
-Select the <span class="guilabel">Data Attributes</span> as <span class="guilabel">.ascii format</span>,
-<span class="guilabel">1° resolution</span> and <span class="guilabel">1990 year</span>. Click
-<span class="guilabel">Download</span>. At this point, you may create a free account and
-login, or use the <span class="guilabel">Guest Download</span> button at the bottom to
-immediately download the data. Repeat the process for <span class="guilabel">2000 year</span>
-data.</li>
+<li><p class="first">Gehen Sie auf die <a class="reference external" href="http://sedac.ciesin.columbia.edu/data/set/gpw-v3-population-density/data-download">Population Density Grid, v3 Download Seite.</a> Wählen Sie <span class="guilabel">Data Attributes</span> als <span class="guilabel">.ascii format</span>, <span class="guilabel">1° resolution</span> und <span class="guilabel">1990 year</span>. Klicken Sie auf <span class="guilabel">Download</span>. An diesem Punkt können Sie einen freien Account erstellen und sich einloggen, oder Sie benutzen den <span class="guilabel">Guest Download</span> Button am Ende der Seite um die Daten sofort runterzuladen. Wiederholen Sie den Vorgang für den <span class="guilabel">2000 year</span> Datensatz.</p>
+</li>
 </ol>
 <img alt="../_images/1127.png" class="align-center" src="../_images/1127.png" />
-<p>You will now have 2 zip files downloaded.</p>
-<p>For convenience, you may directly download a copy of the datasets from the
-links below:</p>
+<p>Sie haben nun 2 ZIP Datensätze runtergeladen.</p>
+<p>Der einfachheitshalber können Sie auch eine Kopie der Datensätze direkt von den folgenden Links runterladen:</p>
 <p><a class="reference external" href="../../downloads/gl_gpwv3_pdens_90_ascii_one.zip">gl_gpwv3_pdens_90_ascii_one.zip</a></p>
 <p><a class="reference external" href="../../downloads/gl_gpwv3_pdens_00_ascii_one.zip">gl_gpwv3_pdens_00_ascii_one.zip</a></p>
-<p>Data Source <a class="reference internal" href="credits.html#gpw3" id="id1">[GPW3]</a></p>
+<p>Datenquelle <a class="reference internal" href="credits.html#gpw3" id="id1">[GPW3]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Link zu dieser Überschrift">¶</a></h2>
+<h2>Arbeitsablauf<a class="headerlink" href="#procedure" title="Link zu dieser Überschrift">¶</a></h2>
 <ol class="arabic simple" start="2">
-<li>Open QGIS and go to <span class="menuselection">Layer ‣ Add Raster Layer..</span>.</li>
+<li><p class="first">Öffnen Sie QGIS und wählen dann <span class="menuselection">Layer ‣ Rasterlayer hinzufügen..</span>.</p>
+</li>
 </ol>
 <img alt="../_images/269.png" class="align-center" src="../_images/269.png" />
 <ol class="arabic simple" start="3">
-<li>Locate the downloaded zip files. Hold down the <code class="kbd docutils literal"><span class="pre">Ctrl</span></code> key and click on
-both the zip files to select them. This way you are able to load both the
-files in a single step.</li>
+<li><p class="first">Suchen Sie die runtergeladenen ZIP Ordner. Halten Sie die <code class="kbd docutils literal"><span class="pre">Strg</span></code> Taste gedrückt und klicken Sie auf die beiden ZIP Ordner um sie auszuwählen. Auf diese Weise können Sie beide Ordner in einem einzigen Schritt laden.</p>
+</li>
 </ol>
 <img alt="../_images/337.png" class="align-center" src="../_images/337.png" />
 <ol class="arabic simple" start="4">
-<li>Each zip file contain 2 grid files. The <code class="docutils literal"><span class="pre">a</span></code> in the filename
-suggests that the population counts were adjusted to match the UN totals. We
-will use the adjusted grids for this tutorial. Select <code class="docutils literal"><span class="pre">glds00ag60.asc</span></code> as
-the layer to add. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">Jeder ZIP Ordner enthält 2 Gitterdatein. Das &#8220;a&#8221; in den Dateinamen deutet an, dass die Bevölkerungszahlen angepasst wurden um den UN Summen zu entsprechen. Wir werden die angepassten Gitter für dieses Tutorial verwenden. Wählen Sie <code class="docutils literal"><span class="pre">glds00ag60.asc</span></code> als den Layer zum hinzufügen aus. Klicken Sie <span class="guilabel">OK</span>.</p>
+</li>
 </ol>
 <img alt="../_images/427.png" class="align-center" src="../_images/427.png" />
 <ol class="arabic simple" start="5">
-<li>The layer doesn’t have a CRS defined, and since the grids are in lat/long,
-choose <cite>EPSG:4326</cite> as the coordinate reference system.</li>
+<li><p class="first">Der Layer hat noch kein KBS definiert, und da die Gitter in Längen- und Breitengraden angegeben sind, wählen Sie <cite>EPSG:4326</cite> als das Koordinatenreferenzsystem.</p>
+</li>
 </ol>
 <img alt="../_images/528.png" class="align-center" src="../_images/528.png" />
 <ol class="arabic simple" start="6">
-<li>Since we selected both the zip files, you will see similar dialogs once
-again. Repeat the process and select <code class="docutils literal"><span class="pre">glds90ag60.asc</span></code> grid as the layer to
-add.</li>
+<li><p class="first">Da wir beide ZIP Ordner ausgewählt haben, werden Sie einen ähnlichen Dialog nochmal sehen. Wiederholen Sie den Vorgang und wählen Sie das <code class="docutils literal"><span class="pre">glds90ag60.asc</span></code> Gitter als den Layer zum hinzufügen aus.</p>
+</li>
 </ol>
 <img alt="../_images/626.png" class="align-center" src="../_images/626.png" />
 <ol class="arabic simple" start="7">
-<li>Once again, choose <cite>EPSG:4326</cite> as the CRS.</li>
+<li><p class="first">Wählen Sie <cite>EPSG:4326</cite> wieder als das KBS aus.</p>
+</li>
 </ol>
 <img alt="../_images/725.png" class="align-center" src="../_images/725.png" />
 <ol class="arabic simple" start="8">
-<li>Now you will see both the rasters loaded in QGIS. The raster is rendered as
-in grayscale, where darker pixels indicate lower values and lighter pixels
-indicate higher values.</li>
+<li><p class="first">Sie sehen nun beide Raster in QGIS geladen. Das Raster wird in einer Grauskala herausgegeben, bei denen die dunkleren Pixel niedrigere Werte und die helleren Pixel höhere Werte aufzeigen.</p>
+</li>
 </ol>
 <img alt="../_images/824.png" class="align-center" src="../_images/824.png" />
 <ol class="arabic simple" start="9">
-<li>Each pixel in the raster has a value assigned. This value is the population
-density for that grid. Click on <span class="guilabel">Identify Features</span> button to
-select the tool and click anywhere on the raster to see the value of that
-pixel.</li>
+<li><p class="first">Jedes Rasterpixel hat einen zugewiesenen Wert. Dieser Wert steht für die Bevölkerungsdichte des jeweiligen Gitters. Klicken Sie auf den <span class="guilabel">Objekte abfragen</span> Button um das Werkzeug auszuwählen und klicken Sie irgendwo auf das Raster um den Wert dieses Pixels zu sehen.</p>
+</li>
 </ol>
 <img alt="../_images/922.png" class="align-center" src="../_images/922.png" />
 <ol class="arabic simple" start="10">
-<li>To better visualize the pattern of population density, we would need to
-style it. Right-click on the layer name and select <span class="guilabel">Properties</span>.
-You can also double-click on the layer name in the TOC to bring up the
-Layer Properties dialog.</li>
+<li><p class="first">Um das Muster der Bevölkerungsdichte besser sichtbar machen zu können, müssen wir es stylen. Machen Sie dafür einen Rechtsklick auf den Layernamen und wählen <span class="guilabel">Eigenschaften</span> aus. Sie können aber auch einen Doppelklick auf den Layernamen im Inhaltsverzeichnis machen um die Layereigenschaften aufzurufen.</p>
+</li>
 </ol>
 <img alt="../_images/1023.png" class="align-center" src="../_images/1023.png" />
 <ol class="arabic simple" start="11">
-<li>Under the <span class="guilabel">Style</span> tab, change the <span class="guilabel">Render type</span>
-to <span class="guilabel">Singleband pseudocolor</span>. Next, click <span class="guilabel">Classify</span>
-under <span class="guilabel">Generate a new color map</span>. You will see 5 new color
-values created. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">Unter dem Eintrag <span class="guilabel">Style</span> wechseln Sie die <span class="guilabel">Darstellungsart</span> zu <span class="guilabel">Einkanalpseudofarbe</span>. Als nächstes drücken Sie auf <span class="guilabel">Klassifizieren</span> unter <span class="guilabel">Neue Farbabbildung generieren</span>. Sie sehen nun 5 neu hergestellte Farbwerte. Klicken Sie auf <span class="guilabel">OK</span>.</p>
+</li>
 </ol>
 <img alt="../_images/1128.png" class="align-center" src="../_images/1128.png" />
 <ol class="arabic simple" start="12">
-<li>Back in the QGIS Canvas, you will see a heatmap-like rendering of the
-raster. Repeat the same process for the other raster as well.</li>
+<li><p class="first">Zurück im QGIS Hauptfenster sehen Sie eine Heatmap-artige Umwandlung des Rasters. Wiederholen Sie diesen Vorgang ebenfalls für das andere Raster.</p>
+</li>
 </ol>
 <img alt="../_images/1224.png" class="align-center" src="../_images/1224.png" />
 <ol class="arabic simple" start="13">
-<li>For our analysis, we would like to find areas with largest population
-change between 1990 and 2000. The way to accomplish this is by finding the
-difference between each grid’s pixel value in both the layers. Select
-<span class="menuselection">Raster ‣ Raster calculator</span>.</li>
+<li><p class="first">Für unsere Analyse wollen wir die Gebiete mit der größten Bevölkerungsänderung zwischen den Jahren 1990 und 2000 finden. Um das zu erreichen, müssen wir die Unterschiede zwischen jedem Gitterpixelwert der beiden Layer finden. Wählen Sie  <span class="menuselection">Raster ‣ Rasterrechner ...</span>. aus.</p>
+</li>
 </ol>
 <img alt="../_images/1322.png" class="align-center" src="../_images/1322.png" />
 <ol class="arabic simple" start="14">
-<li>In the <span class="guilabel">Raster bands</span> section, you can select the layer by
-double-clicking on them. The bands are named after the raster name followed
-by &#64; and band number. Since each of our rasters have only 1 band, you will
-see only 1 entry per raster. The raster calculator can apply mathematical
-operations on the raster pixels. In this case we want to enter a simple
-formula to subtract the 1990 population density from 2000. Enter
-<code class="docutils literal"><span class="pre">glds00ag60&#64;1</span> <span class="pre">-</span> <span class="pre">glds90ag60&#64;1</span></code> as the formula. Name your output layer as
-<code class="docutils literal"><span class="pre">pop_density_change_2000_1990.tif</span></code> and check the box next to
-<span class="guilabel">Add result to project</span>. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">Im Abschnitt <span class="guilabel">Rasterkanäle</span> können Sie den Layer durch einen Doppel-Klick auswählen. Die Kanäle sind benannt nach dem Rasternamen gefolgt von einem &#64; und der Kanalnummer. Da jeder unserer Raster nur 1 Kanal besitzt, sehen Sie nur 1 Eintrag pro Raster. Der Rasterrechner kann mathematische Operationen an den Rasterpixel durchführen. In diesem Fall wollen wir eine einfache Formel einsetzen um die 1990 Bevölkerungsdichte von der von 2000 abzuziehen. Geben Sie <cite>glds00ag60&#64;1 - glds90ag60&#64;1`</cite> als die Formel ein. Benennen Sie Ihren Ausgabelayer als <code class="docutils literal"><span class="pre">pop_density_change_2000_1990.tif</span></code> und klicken Sie das Kästchen neben <span class="guilabel">Das Ergebnis zum Projekt hinzufügen</span> an. Klicken Sie auf <span class="guilabel">OK</span>.</p>
+</li>
 </ol>
 <img alt="../_images/1421.png" class="align-center" src="../_images/1421.png" />
 <ol class="arabic simple" start="15">
-<li>Once the operation is complete, you will see the new layer load in QGIS.</li>
+<li><p class="first">Sobald die Berechnung abgeschlossen ist, sehen Sie ein neues Layer in QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/1520.png" class="align-center" src="../_images/1520.png" />
 <ol class="arabic simple" start="16">
-<li>This grayscale visualization is useful, but we can create a much more
-informative output. Right-click on the <code class="docutils literal"><span class="pre">pop_density_change_2000_1990</span></code>
-layer and select <span class="guilabel">Properties</span>.</li>
+<li><p class="first">Diese Graustufenvisualizierung ist nützlich, aber wir können eine noch informativere Ausgabe erstellen. Machen Sie einen Rechts-Klick auf den <code class="docutils literal"><span class="pre">pop_density_change_2000_1990</span></code> Layer und wählen <span class="guilabel">Eigenschaften</span> aus.</p>
+</li>
 </ol>
 <img alt="../_images/1619.png" class="align-center" src="../_images/1619.png" />
 <ol class="arabic simple" start="17">
-<li>We want to style the layer so pixel values in certain ranges get the same
-color. Before we dive in to that, go to the <span class="guilabel">Metadata</span> tab and
-look at the properties of the raster. Note the minimum and maximum values
-of this layer.</li>
+<li><p class="first">Wir wollen den Layer so gestalten, so dass Pixelwerte in einem bestimmten Bereich die gleiche Farbe erhalten. Bevor wir uns darum kümmern, gehen Sie zum  <span class="guilabel">Metadata</span> Bereich und schauen Sie sich die Rastereigenschaften an. Beachten Sie dabei die minimal und die maximal Werte des Layers.</p>
+</li>
 </ol>
 <img alt="../_images/1718.png" class="align-center" src="../_images/1718.png" />
 <ol class="arabic simple" start="18">

@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Performing Spatial Queries &mdash; QGIS Tutorials and Tips</title>
+    <title>空間查詢 &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -101,14 +101,14 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">找出在多邊形中的點</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">製作熱區圖</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Performing Spatial Queries</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">空間查詢</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">點資料內插法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS Browser</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
@@ -143,27 +143,6 @@
             
 
             
-<form role="form" class="navbar-form navbar-right">
-<select id="languages" class="form-control select-mini">
-  <option value="en">English</option>
-  <option value="zh_TW">Chinese (Taiwan)</option>
-  <option value="nl">Dutch</option>
-  <option value="fi_FI">Finnish</option>
-  <option value="fr">French</option>
-  <option value="de">German</option>
-  <option value="el">Greek</option>
-  <option value="id">Indonesian</option>
-  <option value="it">Italian</option>
-  <option value="ko">Korean</option>
-  <option value="pt_BR">Portuguese</option>
-  <option value="ro">Romanian</option>
-  <option value="ru">Russian</option>
-  <option value="es">Spanish</option>
-  <option value="th">Thai</option>
-  <option value="uk">Ukrainian</option>
-  <option value="vi">Vietnamese</option>
-</select>
-</form>
 
             
               <li class="hidden-sm"></li>
@@ -193,13 +172,36 @@
 
 <h4>Share</h4>
 <div class="addthis_sharing_toolbox"></div>
+
+<h4>Change Language</h4>
+<form role="form" class="sidebar-form sidebar-left">
+<select id="languages" class="form-control select-mini">
+  <option value="en">English</option>
+  <option value="zh_TW">Chinese (Taiwan)</option>
+  <option value="nl">Dutch</option>
+  <option value="fi_FI">Finnish</option>
+  <option value="fr">French</option>
+  <option value="de">German</option>
+  <option value="el">Greek</option>
+  <option value="id">Indonesian</option>
+  <option value="it">Italian</option>
+  <option value="ko">Korean</option>
+  <option value="pt_BR">Portuguese</option>
+  <option value="ro">Romanian</option>
+  <option value="ru">Russian</option>
+  <option value="es">Spanish</option>
+  <option value="th">Thai</option>
+  <option value="uk">Ukrainian</option>
+  <option value="vi">Vietnamese</option>
+</select>
+</form>
         </div>
       </div>
     <div class="col-md-9">
       
 
   <div class="section" id="performing-spatial-queries">
-<h1>Performing Spatial Queries<a class="headerlink" href="#performing-spatial-queries" title="Permalink to this headline">¶</a></h1>
+<h1>空間查詢<a class="headerlink" href="#performing-spatial-queries" title="Permalink to this headline">¶</a></h1>
 <p>[ Download PDF
 <a class="reference external" href="../pdf/performing_spatial_queries_a4.pdf"
 onClick="ga('send', 'event', 'PDF Download', 'performing_spatial_queries_a4');"
@@ -208,48 +210,47 @@ target="_blank">A4</a>
 <a class="reference external"
 href="../pdf/performing_spatial_queries_letter.pdf" onClick="ga('send',
 'event', 'PDF Download', 'performing_spatial_queries_letter');"
-target="_blank">Letter</a> ]</p><p>Spatial queries are core to many types of GIS analysis. In QGIS, this
-functionality is available via the <strong>Spatial Query</strong> plugin.</p>
+target="_blank">Letter</a> ]</p><p>空間查詢是許多種 GIS 分析技巧的核心。在 QGIS 中，這個功能可以透過 <strong>Spatial Query</strong> 這個附加元件來達成。</p>
 <div class="section" id="overview-of-the-task">
 <h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will be working with 2 datasets - a lines layer representing rivers and a
-point layer representing cities. The task is to run a spatial query to find all
-cities that are within 10 kms of a river.</p>
+<p>我們使用的 2 個資料庫分別為河流的線圖層以及城市的點圖層，要做的事情是尋找所有與河流的距離小於 10 公里的城市。</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>你還會學到這些<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Opening .zip files directly in QGIS.</li>
+<li><p class="first">在 QGIS 中直接開啟 zip 檔</p>
+</li>
 <li>Choosing an appropriate projection and re-projecting vector data.</li>
 <li>Creating buffers.</li>
 <li>Selecting features using SQL-like expressions.</li>
-<li>Coverting a shpefile to a KML file.</li>
-<li>Validating your results using Google Earth.</li>
+<li><p class="first">把 shapefile 轉換為 KML 檔</p>
+</li>
+<li><p class="first">利用 Google Earth 來驗證結果</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>取得資料<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use <code class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines</span></code> and
-<code class="docutils literal"><span class="pre">10m_populated_places_simple</span></code> datasets from Natural Earth.</p>
-<p>Download <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_rivers_lake_centerlines.zip">Rivers and Lake Centerlines</a></p>
-<p>Download <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">Populated Places</a>.</p>
-<p>Data Source: <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
+<p>我們要使用 Natural Earth 提供的 <code class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines</span></code> 和 <code class="docutils literal"><span class="pre">10m_populated_places_simple</span></code> 這兩個資料庫。</p>
+<p>下載 <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_rivers_lake_centerlines.zip">河流與湖泊中心線</a></p>
+<p>下載 <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">人口居住地</a></p>
+<p>資料來源  <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Once you have downloaded the data, open QGIS. Go to
-<span class="menuselection">Layer ‣ Add Vector Layer</span>.</li>
+<li><p class="first">載好資料以後，打開 QGIS，選擇 <span class="menuselection">圖層 ‣ 加入圖層 ‣ 加入向量圖層</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1103.png" class="align-center" src="../_images/1103.png" />
 <ol class="arabic simple" start="2">
-<li>Click <span class="guilabel">Browse</span> and navigate to the folder where you downloaded the
-zip files.</li>
+<li><p class="first">點選 <span class="guilabel">瀏覽</span> 然後移到你下載資料的地方。</p>
+</li>
 </ol>
 <img alt="../_images/247.png" class="align-center" src="../_images/247.png" />
 <ol class="arabic simple" start="3">
-<li>Hold the <code class="kbd docutils literal"><span class="pre">Shift</span></code> key and click on both the zip files to select them.
-Click <span class="guilabel">Open</span>.</li>
+<li><p class="first">按住 <code class="kbd docutils literal"><span class="pre">Shift</span></code> 鍵後點選兩個 zip 檔，全部選起來後按下 <span class="guilabel">開啟</span>。</p>
+</li>
 </ol>
 <img alt="../_images/328.png" class="align-center" src="../_images/328.png" />
 <ol class="arabic simple" start="4">
@@ -263,7 +264,8 @@ Select 10m_populated_places_simple.shp and click <span class="guilabel">OK</span
 </ol>
 <img alt="../_images/521.png" class="align-center" src="../_images/521.png" />
 <ol class="arabic simple" start="6">
-<li>You will see both the shapefiles now loaded in QGIS.</li>
+<li><p class="first">接著 QGIS 中就可以看到這兩個圖層。</p>
+</li>
 </ol>
 <img alt="../_images/620.png" class="align-center" src="../_images/620.png" />
 <ol class="arabic simple" start="7">

@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Building a Python Plugin &mdash; QGIS Tutorials and Tips</title>
+    <title>Construir una extension Python &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -100,7 +100,7 @@
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">Performing Table Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">Points in Polygon Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creating Heatmaps</a></li>
+<li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">Creando Mapas de Calor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">Performing Spatial Queries</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
@@ -109,10 +109,10 @@
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">Using the QGIS Browser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Counting Number of Vertices in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">Contando el numero de vertices en una capa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Getting Started With Python Programming</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Building a Python Plugin</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Construir una extension Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
@@ -143,27 +143,6 @@
             
 
             
-<form role="form" class="navbar-form navbar-right">
-<select id="languages" class="form-control select-mini">
-  <option value="en">English</option>
-  <option value="zh_TW">Chinese (Taiwan)</option>
-  <option value="nl">Dutch</option>
-  <option value="fi_FI">Finnish</option>
-  <option value="fr">French</option>
-  <option value="de">German</option>
-  <option value="el">Greek</option>
-  <option value="id">Indonesian</option>
-  <option value="it">Italian</option>
-  <option value="ko">Korean</option>
-  <option value="pt_BR">Portuguese</option>
-  <option value="ro">Romanian</option>
-  <option value="ru">Russian</option>
-  <option value="es">Spanish</option>
-  <option value="th">Thai</option>
-  <option value="uk">Ukrainian</option>
-  <option value="vi">Vietnamese</option>
-</select>
-</form>
 
             
               <li class="hidden-sm"></li>
@@ -193,13 +172,36 @@
 
 <h4>Share</h4>
 <div class="addthis_sharing_toolbox"></div>
+
+<h4>Change Language</h4>
+<form role="form" class="sidebar-form sidebar-left">
+<select id="languages" class="form-control select-mini">
+  <option value="en">English</option>
+  <option value="zh_TW">Chinese (Taiwan)</option>
+  <option value="nl">Dutch</option>
+  <option value="fi_FI">Finnish</option>
+  <option value="fr">French</option>
+  <option value="de">German</option>
+  <option value="el">Greek</option>
+  <option value="id">Indonesian</option>
+  <option value="it">Italian</option>
+  <option value="ko">Korean</option>
+  <option value="pt_BR">Portuguese</option>
+  <option value="ro">Romanian</option>
+  <option value="ru">Russian</option>
+  <option value="es">Spanish</option>
+  <option value="th">Thai</option>
+  <option value="uk">Ukrainian</option>
+  <option value="vi">Vietnamese</option>
+</select>
+</form>
         </div>
       </div>
     <div class="col-md-9">
       
 
   <div class="section" id="building-a-python-plugin">
-<h1>Building a Python Plugin<a class="headerlink" href="#building-a-python-plugin" title="Enlazar permanentemente con este título">¶</a></h1>
+<h1>Construir una extension Python<a class="headerlink" href="#building-a-python-plugin" title="Enlazar permanentemente con este título">¶</a></h1>
 <p>[ Download PDF
 <a class="reference external" href="../pdf/building_a_python_plugin_a4.pdf"
 onClick="ga('send', 'event', 'PDF Download', 'building_a_python_plugin_a4');"
@@ -215,12 +217,11 @@ setting up your development environment, designing the user interface for a
 plugin and writing code to interact with QGIS. Please review the
 <a class="reference internal" href="getting_started_with_pyqgis.html"><em>Getting Started With Python Programming</em></a> tutorial to get familiar with the basics.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the Task<a class="headerlink" href="#overview-of-the-task" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>We will develop a simple plugin called <code class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></code> that will allow
-users to pick a vector layer and write its attributes to a CSV file.</p>
+<h2>Vision general de la actividad<a class="headerlink" href="#overview-of-the-task" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>Desarrollaremos una extension simple llamada &#8220;Guardar Atributos&#8221; que permitira al usuario escoger una capa vectorial y escribir sus atributos en un archivo CSV.</p>
 </div>
 <div class="section" id="get-the-tools">
-<h2>Get the Tools<a class="headerlink" href="#get-the-tools" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2>Consigue las herramientas<a class="headerlink" href="#get-the-tools" title="Enlazar permanentemente con este título">¶</a></h2>
 <div class="section" id="qt-creator">
 <h3>Qt Creator<a class="headerlink" href="#qt-creator" title="Enlazar permanentemente con este título">¶</a></h3>
 <p><a class="reference external" href="http://www.qt.io/">Qt</a> is a software development framework that is used to
@@ -246,19 +247,18 @@ package by running the following command:</p>
 </pre></div>
 </div>
 <p><strong>Linux</strong></p>
-<p>Depending on your distribution, find and install the <code class="docutils literal"><span class="pre">python-qt4</span></code> package. On
-Ubuntu and Debian-based distributions, you can run the following command:</p>
+<p>Dependiendo de tu distribución, busca e instala el paquete &#8220;python-qt4&#8221;. En las distribuciones basadas en Ubuntu y Debian, puedes correr el siguiente comando:</p>
 <div class="highlight-none"><div class="highlight"><pre>sudo apt-get install python-qt4
 </pre></div>
 </div>
 </div>
 <div class="section" id="a-text-editor-or-a-python-ide">
-<h3>A Text Editor or a Python IDE<a class="headerlink" href="#a-text-editor-or-a-python-ide" title="Enlazar permanentemente con este título">¶</a></h3>
+<h3>Un editor de texto o un entorno de desarrollo integrado de Python<a class="headerlink" href="#a-text-editor-or-a-python-ide" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>Any kind of software development requires a good text editor. If you already
 have a favorite text editor or an IDE (Integrated Development Environment), you
 may use it for this tutorial. Otherwise, each platform offers a wide variety of
 free or paid options for text editors. Choose the one that fits your needs.</p>
-<p>This tutorial uses Notepad++ editor on Windows.</p>
+<p>Este tutorial usa el editor Notepad++ en Windows</p>
 <p><strong>Windows</strong></p>
 <p><a class="reference external" href="http://notepad-plus-plus.org/">Notepad++</a> is a good free editor for windows.
 Download and install the <a class="reference external" href="http://notepad-plus-plus.org/repository/6.x/6.7.5/npp.6.7.5.Installer.exe">Notepad++ editor</a>.</p>
@@ -271,7 +271,7 @@ are treated properly.</p>
 </div>
 </div>
 <div class="section" id="plugin-builder-plugin">
-<h3>Plugin Builder plugin<a class="headerlink" href="#plugin-builder-plugin" title="Enlazar permanentemente con este título">¶</a></h3>
+<h3>Extension de constructor de extension<a class="headerlink" href="#plugin-builder-plugin" title="Enlazar permanentemente con este título">¶</a></h3>
 <p>There is a helpful QGIS plugin named <code class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></code> which creates all the
 necessary files and the boilerplate code for a plugin. Find and install the
 <code class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></code> plugin. See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> for more details on how to
@@ -293,7 +293,7 @@ settings if you cannot find it.</p>
 </div>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2>Procedimiento<a class="headerlink" href="#procedure" title="Enlazar permanentemente con este título">¶</a></h2>
 <ol class="arabic simple">
 <li>Open QGIS. Go to <span class="menuselection">Plugins ‣ Plugin Builder ‣ Plugin
 Builder</span>.</li>
@@ -405,7 +405,8 @@ plugin dialog.</li>
 </ol>
 <img alt="../_images/134.png" class="align-center" src="../_images/134.png" />
 <ol class="arabic simple" start="14">
-<li>Click on the label text and enter <code class="docutils literal"><span class="pre">Select</span> <span class="pre">a</span> <span class="pre">layer</span></code>.</li>
+<li><p class="first">Selecciona la etiqueta del texto y  escribe &#8220;Seleccionar una capa&#8221;.</p>
+</li>
 </ol>
 <img alt="../_images/144.png" class="align-center" src="../_images/144.png" />
 <ol class="arabic simple" start="15">
@@ -545,10 +546,9 @@ be able to find and download your plugin.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
-<p class="last">This plugin is for demonstration purpose only. Do not publish this plugin or
-upload it to the QGIS plugin repository.</p>
+<p class="last">Esta extension es solamente para propósitos de demostración. No publicar esta extension o subirla al repositorio de extensiones de QGIS.</p>
 </div>
-<p>Below is the full <code class="docutils literal"><span class="pre">save_attributes.py</span></code> file as a reference.</p>
+<p>Abajo esta el archivo entero de &#8220;save_attributes.py&#8221; como referencia.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">/***************************************************************************</span>
