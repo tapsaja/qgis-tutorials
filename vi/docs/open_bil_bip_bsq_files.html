@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -24,9 +24,10 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Làm quen với lập trình Python" href="getting_started_with_pyqgis.html" />
@@ -51,7 +52,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -69,7 +70,6 @@
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -131,11 +131,11 @@
               
                 
   <li>
-    <a href="counting_vertices.html" title="Previous Chapter: Đếm số lượng nút trong một lớp"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Đếm số lượng nút...</span>
+    <a href="counting_vertices.html" title="Previous Chapter: Đếm số lượng nút trong một lớp"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Đếm số lượng nút...</span>
     </a>
   </li>
   <li>
-    <a href="getting_started_with_pyqgis.html" title="Next Chapter: Làm quen với lập trình Python"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Làm quen với lập... &raquo;</span>
+    <a href="getting_started_with_pyqgis.html" title="Next Chapter: Làm quen với lập trình Python"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Làm quen với lập... &raquo;</span>
     </a>
   </li>
               
@@ -216,14 +216,14 @@ QGIS.</p>
 <p>Band interleaved by line (BIL), band interleaved by pixel (BIP), and band
 sequential (BSQ) are common methods of organizing image data for multiband
 images. (<a class="reference external" href="http://webhelp.esri.com/arcgisdesktop/9.2/index.cfm?TopicName=BIL,_BIP,_and_BSQ_raster_files">Read more about these formats</a>)</p>
-<p>Typically, these files are accompanies by a <tt class="docutils literal"><span class="pre">.hdr</span></tt> file. If your dataset came
-with a <tt class="docutils literal"><span class="pre">.hdr</span></tt> file, make sure the root name of the .bil, .bsq or .bip file and
+<p>Typically, these files are accompanies by a <code class="docutils literal"><span class="pre">.hdr</span></code> file. If your dataset came
+with a <code class="docutils literal"><span class="pre">.hdr</span></code> file, make sure the root name of the .bil, .bsq or .bip file and
 the .hdf files match and they are in the same directory. For example, if the
-file is called <tt class="docutils literal"><span class="pre">image.bil</span></tt> , the associated file should be named <tt class="docutils literal"><span class="pre">image.hdr</span></tt> and
-present in the same directory as the <tt class="docutils literal"><span class="pre">image.bil</span></tt> file. Then when you go to
-<em class="menuselection">Layer ‣ Add Raster Layer</em>, select the <tt class="docutils literal"><span class="pre">image.bil</span></tt> file and
+file is called <code class="docutils literal"><span class="pre">image.bil</span></code> , the associated file should be named <code class="docutils literal"><span class="pre">image.hdr</span></code> and
+present in the same directory as the <code class="docutils literal"><span class="pre">image.bil</span></code> file. Then when you go to
+<span class="menuselection">Layer ‣ Add Raster Layer</span>, select the <code class="docutils literal"><span class="pre">image.bil</span></code> file and
 it will open without problems.</p>
-<p>Many a times, the files do not come with an associated <tt class="docutils literal"><span class="pre">.hdr</span></tt> file. In such
+<p>Many a times, the files do not come with an associated <code class="docutils literal"><span class="pre">.hdr</span></code> file. In such
 cases, you must create this file by hand as shown in this tutorial.</p>
 <div class="section" id="get-the-data">
 <h2>Nhận dữ liệu<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
@@ -240,16 +240,16 @@ below:</p>
 <li>Unzip and extract the .bsq file. On Windows, you may use the excellent
 <a class="reference external" href="http://www.7-zip.org/">7-Zip utility</a> to read and extract .gz file. You
 will see that you only have a .bsq file named
-<tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt>.  There is no hdr file.</li>
+<code class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></code>.  There is no hdr file.</li>
 </ol>
 <img alt="../_images/1101.png" class="align-center" src="../_images/1101.png" />
 <ol class="arabic simple" start="2">
-<li>Note that if you try to open the <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt> file in
+<li>Note that if you try to open the <code class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></code> file in
 QGIS as it is, you will get an error message.</li>
 </ol>
 <img alt="../_images/239.png" class="align-center" src="../_images/239.png" />
 <ol class="arabic simple" start="3">
-<li>To overcome this error, we will create a header file with <tt class="docutils literal"><span class="pre">.hdr</span></tt> extension.
+<li>To overcome this error, we will create a header file with <code class="docutils literal"><span class="pre">.hdr</span></code> extension.
 The header file contains information about the dataset and how it is organized.
 Usually, this information is supplied as part of Metadata for the dataset.
 If you do not have the metadata, look at the website or documentation for
@@ -276,8 +276,8 @@ byteorder &lt;byte order in which image pixel values are stored, msb or lsb&gt;
 </div>
 <ol class="arabic simple" start="5">
 <li>Open a text editor and create a file in the format specified in the previous
-step. Save the file as <tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.hdr</span></tt>. Make sure the file
-doesn’t have <tt class="docutils literal"><span class="pre">.txt</span></tt> at the end. Some of the values in the text files are
+step. Save the file as <code class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.hdr</span></code>. Make sure the file
+doesn’t have <code class="docutils literal"><span class="pre">.txt</span></code> at the end. Some of the values in the text files are
 easy to understand. The <strong>ncols</strong> and <strong>nrows</strong> come from the metadata as the
 Number of Lines and Number of Pixels per Line. The <strong>cellsize</strong> is 1 as the
 Pixel resolution from the metadata. The X,Y coordinate of lower-left corner
@@ -292,9 +292,9 @@ the correctly formatted HDR file from <a class="reference external" href="../../
 <img alt="../_images/519.png" class="align-center" src="../_images/519.png" />
 <ol class="arabic simple" start="6">
 <li>Now that you have the header file, put it in the same directory as
-<tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt>. Then in QGIS, go to
-<em class="menuselection">Layer ‣ Add Raster Layer</em>. Select
-<tt class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></tt> as your input and click <em class="guilabel">Open</em>.</li>
+<code class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></code>. Then in QGIS, go to
+<span class="menuselection">Layer ‣ Add Raster Layer</span>. Select
+<code class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></code> as your input and click <span class="guilabel">Open</span>.</li>
 </ol>
 <img alt="../_images/618.png" class="align-center" src="../_images/618.png" />
 <ol class="arabic simple" start="7">
@@ -327,9 +327,9 @@ dataset loaded in QGIS.</li>
       
     </p>
     <p>
-        &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Feb 11, 2016.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+        &copy; Bản quyền thuộc 2015, Ujaval Gandhi.<br/>
+      Cập nhật mới nhất vào Apr 20, 2016.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

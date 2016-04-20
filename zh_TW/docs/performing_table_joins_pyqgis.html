@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Leaflet Web Maps with qgis2leaf" href="leaflet_maps_with_qgis2leaf.html" />
@@ -52,7 +52,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -70,7 +70,6 @@
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -132,11 +131,11 @@
               
                 
   <li>
-    <a href="find_neighbor_polygons.html" title="Previous Chapter: Find Neighbor Polygons in a Layer"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Find Neighbor Po...</span>
+    <a href="find_neighbor_polygons.html" title="Previous Chapter: Find Neighbor Polygons in a Layer"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Find Neighbor Po...</span>
     </a>
   </li>
   <li>
-    <a href="leaflet_maps_with_qgis2leaf.html" title="Next Chapter: Leaflet Web Maps with qgis2leaf"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Leaflet Web Maps... &raquo;</span>
+    <a href="leaflet_maps_with_qgis2leaf.html" title="Next Chapter: Leaflet Web Maps with qgis2leaf"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Leaflet Web Maps... &raquo;</span>
     </a>
   </li>
               
@@ -236,18 +235,18 @@ layer.</li>
 </div>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
-<p>You can type the following commands in the <em class="guilabel">Python Console</em> or the
-built-in <em class="guilabel">Editor</em> in QGIS.</p>
+<p>You can type the following commands in the <span class="guilabel">Python Console</span> or the
+built-in <span class="guilabel">Editor</span> in QGIS.</p>
 <ol class="arabic simple">
 <li>Load the shapefile. The Census Tracts file is a zip file containing the
 shapefile. While we can unzip it and load the shapefile, The OGR provider
 has the ability to load the zip file directly via a Virtual Filesystem.
-Adding <tt class="docutils literal"><span class="pre">/vsizip/</span></tt> in the path, we can access the shapefile contained in
+Adding <code class="docutils literal"><span class="pre">/vsizip/</span></code> in the path, we can access the shapefile contained in
 the zip archive.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">The zip_uri would begin with <tt class="docutils literal"><span class="pre">/vsizip//</span></tt> on Linux and Mac systems.
+<p class="last">The zip_uri would begin with <code class="docutils literal"><span class="pre">/vsizip//</span></code> on Linux and Mac systems.
 (Note the extra /)</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">zip_uri</span> <span class="o">=</span> <span class="s">&#39;/vsizip/C:/Users/Ujaval/Downloads/tl_2013_06_tract.zip&#39;</span>
@@ -258,7 +257,7 @@ the zip archive.</li>
 <img alt="../_images/1105.png" class="align-center" src="../_images/1105.png" />
 <ol class="arabic simple" start="2">
 <li>Load the CSV file. As the CSV file doesn&#8217;t contain any spatial data, we load
-it as a table using the <tt class="docutils literal"><span class="pre">delimitedtext</span></tt> provider.</li>
+it as a table using the <code class="docutils literal"><span class="pre">delimitedtext</span></code> provider.</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">csv_uri</span> <span class="o">=</span> <span class="s">&#39;file:///C:/Users/Ujaval/Downloads/ca_tracts_pop.csv?delimiter=,&#39;</span>
 <span class="n">csv</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">csv_uri</span><span class="p">,</span> <span class="s">&#39;ca_tracts_pop&#39;</span><span class="p">,</span> <span class="s">&#39;delimitedtext&#39;</span><span class="p">)</span>
@@ -268,9 +267,9 @@ it as a table using the <tt class="docutils literal"><span class="pre">delimited
 <img alt="../_images/250.png" class="align-center" src="../_images/250.png" />
 <ol class="arabic simple" start="3">
 <li>Create the table join. Table joins in QGIS are performed using
-<tt class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></tt> object. We need to specify the <tt class="docutils literal"><span class="pre">GEO.id2</span></tt> field from
-the CSV layer as the <em class="guilabel">Join Field</em> and the <tt class="docutils literal"><span class="pre">GEOID</span></tt> field from the
-shapefile layer as the <em class="guilabel">Target Field</em>. Once you run the following
+<code class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></code> object. We need to specify the <code class="docutils literal"><span class="pre">GEO.id2</span></code> field from
+the CSV layer as the <span class="guilabel">Join Field</span> and the <code class="docutils literal"><span class="pre">GEOID</span></code> field from the
+shapefile layer as the <span class="guilabel">Target Field</span>. Once you run the following
 code, the shapefile layer will have additional attributes joined from the
 csv layer.</li>
 </ol>
@@ -293,13 +292,13 @@ loaded in the QgsMapLayerRegistry - otherwise the join would not work.</p>
 <ol class="arabic simple" start="4">
 <li>An easier - and preferred way of accomplishing the same thing is via the
 Processing Framework. You can call the algorithm
-<tt class="docutils literal"><span class="pre">qgis:joinattributestable</span></tt> and create a joined layer.</li>
+<code class="docutils literal"><span class="pre">qgis:joinattributestable</span></code> and create a joined layer.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">We are using the <tt class="docutils literal"><span class="pre">processing.runandload()</span></tt> method to execute the algorithm
-instead of the more common <tt class="docutils literal"><span class="pre">processing.runalg()</span></tt>. Since we want to load
-the resulting joined layer in QGIS, <tt class="docutils literal"><span class="pre">processing.runandload()</span></tt> is a better
+<p class="last">We are using the <code class="docutils literal"><span class="pre">processing.runandload()</span></code> method to execute the algorithm
+instead of the more common <code class="docutils literal"><span class="pre">processing.runalg()</span></code>. Since we want to load
+the resulting joined layer in QGIS, <code class="docutils literal"><span class="pre">processing.runandload()</span></code> is a better
 choice.</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">processing</span>
@@ -310,11 +309,11 @@ choice.</p>
 </div>
 <img alt="../_images/422.png" class="align-center" src="../_images/422.png" />
 <ol class="arabic simple" start="5">
-<li>We will stick with the original join using <tt class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></tt> for the
+<li>We will stick with the original join using <code class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></code> for the
 remainder of the tutorial. Now it is time to apply a graduated style to the
 joined layer. The population field name in the joined layer is
-<tt class="docutils literal"><span class="pre">ca_tracts_pop_D001</span></tt>. We will apply a graduated renderer using the
-<tt class="docutils literal"><span class="pre">QgsGraduatedSymbolRendererV2</span></tt> class in the <tt class="docutils literal"><span class="pre">Quantile</span></tt> mode. Refer to
+<code class="docutils literal"><span class="pre">ca_tracts_pop_D001</span></code>. We will apply a graduated renderer using the
+<code class="docutils literal"><span class="pre">QgsGraduatedSymbolRendererV2</span></code> class in the <code class="docutils literal"><span class="pre">Quantile</span></code> mode. Refer to
 <a class="reference internal" href="performing_table_joins.html"><em>連接資料表</em></a> for the colors and ranges that we need to use.</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtGui</span>
@@ -372,13 +371,13 @@ joined layer. The population field name in the joined layer is
 <img alt="../_images/523.png" class="align-center" src="../_images/523.png" />
 <ol class="arabic simple" start="6">
 <li>Typing the code in the Python Console is useful for small tasks, but it
-is far easier to use the built-in <em class="guilabel">Editor</em>. You can copy the
-entire script in the <em class="guilabel">Editor</em> and click <em class="guilabel">Run</em>. As the
+is far easier to use the built-in <span class="guilabel">Editor</span>. You can copy the
+entire script in the <span class="guilabel">Editor</span> and click <span class="guilabel">Run</span>. As the
 script finishes, you would have created a table join and styled the
 resulting layer without any manual steps.</li>
 </ol>
 <img alt="../_images/622.png" class="align-center" src="../_images/622.png" />
-<p>Below is the full <tt class="docutils literal"><span class="pre">join_attributes.py</span></tt> file as a reference.</p>
+<p>Below is the full <code class="docutils literal"><span class="pre">join_attributes.py</span></code> file as a reference.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtGui</span>
 <span class="n">zip_uri</span> <span class="o">=</span> <span class="s">&#39;/vsizip/C:/Users/Ujaval/Downloads/tl_2013_06_tract.zip/tl_2013_06_tract.shp&#39;</span>
 <span class="n">shp</span> <span class="o">=</span>  <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">zip_uri</span><span class="p">,</span> <span class="s">&#39;tl_2013_06_tract&#39;</span><span class="p">,</span> <span class="s">&#39;ogr&#39;</span><span class="p">)</span>
@@ -472,8 +471,8 @@ resulting layer without any manual steps.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      最後更新日期是 Feb 11, 2016.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+      最後更新日期是 Apr 20, 2016.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

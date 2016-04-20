@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Performing Spatial Queries" href="performing_spatial_queries.html" />
@@ -52,7 +52,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -70,7 +70,6 @@
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -132,11 +131,11 @@
               
                 
   <li>
-    <a href="points_in_polygon.html" title="Previous Chapter: 找出在多邊形中的點"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; 找出在多邊形中的點</span>
+    <a href="points_in_polygon.html" title="Previous Chapter: 找出在多邊形中的點"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; 找出在多邊形中的點</span>
     </a>
   </li>
   <li>
-    <a href="performing_spatial_queries.html" title="Next Chapter: Performing Spatial Queries"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Performing Spati... &raquo;</span>
+    <a href="performing_spatial_queries.html" title="Next Chapter: Performing Spatial Queries"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Performing Spati... &raquo;</span>
     </a>
   </li>
               
@@ -232,22 +231,22 @@ target="_blank">Letter</a> ]</p><p>熱區圖（Heatmap）最適合用來呈現�
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">首先，要把 CSV 檔匯入 QGIS 中 (細節請參考 <a class="reference internal" href="importing_spreadsheets_csv.html"><em>匯入工作表或 CSV 檔</em></a>)。選擇 <em class="menuselection">圖層 ‣ 加入分隔文字圖層</em>。</p>
+<li><p class="first">首先，要把 CSV 檔匯入 QGIS 中 (細節請參考 <a class="reference internal" href="importing_spreadsheets_csv.html"><em>匯入工作表或 CSV 檔</em></a>)。選擇 <span class="menuselection">圖層 ‣ 加入分隔文字圖層</span>。</p>
 </li>
 </ol>
 <img alt="../_images/126.png" class="align-center" src="../_images/126.png" />
 <ol class="arabic simple" start="2">
-<li><p class="first">找到並開啟 <tt class="docutils literal"><span class="pre">2015-08-surrey-street.csv</span></tt> (如果你是從他們網站直接下載的話，檔名可能會有些許不同)。檔案格式選擇 <em class="guilabel">CSV (逗號分欄值)</em> 後，可以看到 <tt class="docutils literal"><span class="pre">Longitude</span></tt> 和 <tt class="docutils literal"><span class="pre">Latitude</span></tt> 欄位自動帶入到 X 和 Y 座標了。勾選 <em class="guilabel">使用空間索引</em>，可以加快在此圖層上操作的速度，最後按下 <em class="guilabel">確定</em>。</p>
+<li><p class="first">找到並開啟 <code class="docutils literal"><span class="pre">2015-08-surrey-street.csv</span></code> (如果你是從他們網站直接下載的話，檔名可能會有些許不同)。檔案格式選擇 <span class="guilabel">CSV (逗號分欄值)</span> 後，可以看到 <code class="docutils literal"><span class="pre">Longitude</span></code> 和 <code class="docutils literal"><span class="pre">Latitude</span></code> 欄位自動帶入到 X 和 Y 座標了。勾選 <span class="guilabel">使用空間索引</span>，可以加快在此圖層上操作的速度，最後按下 <span class="guilabel">確定</span>。</p>
 </li>
 </ol>
 <img alt="../_images/217.png" class="align-center" src="../_images/217.png" />
 <ol class="arabic simple" start="3">
-<li><p class="first">載入時可能會看到一些錯誤，在本教學中可以先忽略它們。按下 <em class="guilabel">關閉</em> 即可。</p>
+<li><p class="first">載入時可能會看到一些錯誤，在本教學中可以先忽略它們。按下 <span class="guilabel">關閉</span> 即可。</p>
 </li>
 </ol>
 <img alt="../_images/310.png" class="align-center" src="../_images/310.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">資料被讀到 QGIS 後，你會看到一個警告框寫著 <em class="guilabel">CRS was undefined: defaulting to CRS EPSG:4326 - WGS84</em>。這是因為 CSV 載入程式的設定是如果你的座標是經緯度，那麼預設會用 EPSG:4326 來處理投影。在其他狀況下，會有一個視窗跳出來問你資料所使用的座標系統。因為我們的資料是以 EPSG:4326 投影，所以儘管忽略此警告沒關係。（譯按：隨著 QGIS 版本不同，也有可能會要求你輸入座標系統，這時選 EPSG:4326 即可。）</p>
+<li><p class="first">資料被讀到 QGIS 後，你會看到一個警告框寫著 <span class="guilabel">CRS was undefined: defaulting to CRS EPSG:4326 - WGS84</span>。這是因為 CSV 載入程式的設定是如果你的座標是經緯度，那麼預設會用 EPSG:4326 來處理投影。在其他狀況下，會有一個視窗跳出來問你資料所使用的座標系統。因為我們的資料是以 EPSG:4326 投影，所以儘管忽略此警告沒關係。（譯按：隨著 QGIS 版本不同，也有可能會要求你輸入座標系統，這時選 EPSG:4326 即可。）</p>
 </li>
 </ol>
 <div class="admonition note">
@@ -261,12 +260,12 @@ target="_blank">Letter</a> ]</p><p>熱區圖（Heatmap）最適合用來呈現�
 </ol>
 <img alt="../_images/57.png" class="align-center" src="../_images/57.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">如果你是要製作純粹用來視覺化或是列印出來的熱區圖，QGIS 有個內建的圖例樣式就叫做 <em class="guilabel">熱區圖</em>，先來試試看這個吧。在 <tt class="docutils literal"><span class="pre">2015-08-surrey-street</span></tt> 圖層上按右鍵，選擇 <em class="guilabel">屬性</em>。</p>
+<li><p class="first">如果你是要製作純粹用來視覺化或是列印出來的熱區圖，QGIS 有個內建的圖例樣式就叫做 <span class="guilabel">熱區圖</span>，先來試試看這個吧。在 <code class="docutils literal"><span class="pre">2015-08-surrey-street</span></code> 圖層上按右鍵，選擇 <span class="guilabel">屬性</span>。</p>
 </li>
 </ol>
 <img alt="../_images/66.png" class="align-center" src="../_images/66.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">在 <em class="guilabel">屬性</em> 視窗中切換到 <em class="guilabel">樣式</em> 的分頁，樣式類別設定成 <em class="guilabel">熱區圖</em>，你會看到有許多種不同的色階可以選，這裡我們來選個 <tt class="docutils literal"><span class="pre">Oranges</span></tt> 色階。其他參數保持不變，按下 <em class="guilabel">確定</em> 即可。</p>
+<li><p class="first">在 <span class="guilabel">屬性</span> 視窗中切換到 <span class="guilabel">樣式</span> 的分頁，樣式類別設定成 <span class="guilabel">熱區圖</span>，你會看到有許多種不同的色階可以選，這裡我們來選個 <code class="docutils literal"><span class="pre">Oranges</span></code> 色階。其他參數保持不變，按下 <span class="guilabel">確定</span> 即可。</p>
 </li>
 </ol>
 <img alt="../_images/76.png" class="align-center" src="../_images/76.png" />
@@ -276,42 +275,42 @@ target="_blank">Letter</a> ]</p><p>熱區圖（Heatmap）最適合用來呈現�
 </ol>
 <img alt="../_images/86.png" class="align-center" src="../_images/86.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">啟用核心附加元件 <tt class="docutils literal"><span class="pre">熱區圖</span></tt>，可參考 <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a> 進行操作。啟用後，選擇 <em class="menuselection">影像 ‣ 熱區圖 ‣ 熱區圖</em>。</p>
+<li><p class="first">啟用核心附加元件 <code class="docutils literal"><span class="pre">熱區圖</span></code>，可參考 <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a> 進行操作。啟用後，選擇 <span class="menuselection">影像 ‣ 熱區圖 ‣ 熱區圖</span>。</p>
 </li>
 </ol>
 <img alt="../_images/96.png" class="align-center" src="../_images/96.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">在 <em class="guilabel">Heatmap附加元件</em> 的視窗中，<em class="guilabel">輸出影像</em> 欄位填上 <tt class="docutils literal"><span class="pre">crime_heatmap</span></tt> 當作輸出檔名，<em class="guilabel">半徑</em> 欄位填上 <cite>1000</cite>。這裡的「半徑」是指對每個像素而言，要使用多大的圓來計算有多少點涵蓋在內。把 <em class="guilabel">進階設定</em> 選項打開，這樣我們就能進一步設定輸出熱區圖的尺寸。在 <em class="guilabel">行</em> 欄位中輸入 <tt class="docutils literal"><span class="pre">2000</span></tt>，你會看到 <em class="guilabel">列</em> 欄位會自動更新。按下 <em class="guilabel">確定後</em> 就會開始製作熱區圖。</p>
+<li><p class="first">在 <span class="guilabel">Heatmap附加元件</span> 的視窗中，<span class="guilabel">輸出影像</span> 欄位填上 <code class="docutils literal"><span class="pre">crime_heatmap</span></code> 當作輸出檔名，<span class="guilabel">半徑</span> 欄位填上 <cite>1000</cite>。這裡的「半徑」是指對每個像素而言，要使用多大的圓來計算有多少點涵蓋在內。把 <span class="guilabel">進階設定</span> 選項打開，這樣我們就能進一步設定輸出熱區圖的尺寸。在 <span class="guilabel">行</span> 欄位中輸入 <code class="docutils literal"><span class="pre">2000</span></code>，你會看到 <span class="guilabel">列</span> 欄位會自動更新。按下 <span class="guilabel">確定後</span> 就會開始製作熱區圖。</p>
 </li>
 </ol>
 <img alt="../_images/106.png" class="align-center" src="../_images/106.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">程式跑完後，會有一個叫做 <tt class="docutils literal"><span class="pre">crime_heatmap</span></tt> 的圖層出現在畫布上。現在可以把 <tt class="docutils literal"><span class="pre">2015-08-surrey-street</span></tt> 圖層取消勾選了。</p>
+<li><p class="first">程式跑完後，會有一個叫做 <code class="docutils literal"><span class="pre">crime_heatmap</span></code> 的圖層出現在畫布上。現在可以把 <code class="docutils literal"><span class="pre">2015-08-surrey-street</span></code> 圖層取消勾選了。</p>
 </li>
 </ol>
 <img alt="../_images/1110.png" class="align-center" src="../_images/1110.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">讓我們來把這它弄得更像熱區圖，就像是早些時候的版本那樣。在熱區圖圖層上按右鍵選擇 <em class="guilabel">屬性</em>。</p>
+<li><p class="first">讓我們來把這它弄得更像熱區圖，就像是早些時候的版本那樣。在熱區圖圖層上按右鍵選擇 <span class="guilabel">屬性</span>。</p>
 </li>
 </ol>
 <img alt="../_images/127.png" class="align-center" src="../_images/127.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">在 <em class="guilabel">樣式</em> 分頁中，<em class="guilabel">繪圖類型</em> 選擇 <em class="guilabel">單波段偽彩色</em>，然後在 <em class="guilabel">載入最小/最大值</em> 欄位下方的 <em class="guilabel">精確程度</em>，勾選 <em class="guilabel">估算(較快)</em>，接著按下 <em class="guilabel">載入</em>。程式會找出熱區圖的像素最小值和最大值，以供我們製作適當的色階。接下來在 <em class="guilabel">產生新的色彩對映表</em> 欄位中，選擇 <em class="guilabel">YlOrRd</em> (黃-橘-紅) 當作色階，接著按下 <em class="guilabel">分類</em>，最後按 <em class="guilabel">確定</em>。</p>
+<li><p class="first">在 <span class="guilabel">樣式</span> 分頁中，<span class="guilabel">繪圖類型</span> 選擇 <span class="guilabel">單波段偽彩色</span>，然後在 <span class="guilabel">載入最小/最大值</span> 欄位下方的 <span class="guilabel">精確程度</span>，勾選 <span class="guilabel">估算(較快)</span>，接著按下 <span class="guilabel">載入</span>。程式會找出熱區圖的像素最小值和最大值，以供我們製作適當的色階。接下來在 <span class="guilabel">產生新的色彩對映表</span> 欄位中，選擇 <span class="guilabel">YlOrRd</span> (黃-橘-紅) 當作色階，接著按下 <span class="guilabel">分類</span>，最後按 <span class="guilabel">確定</span>。</p>
 </li>
 </ol>
 <img alt="../_images/136.png" class="align-center" src="../_images/136.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">現在就可以看到這個圖層變得比較像是熱區圖的感覺了。你可以使用 <em class="guilabel">識別圖徵</em> 工具，在熱區圖上的任一區點一下，就可以在結果視窗裡面看到這個像素的值。這個值代表圖層中有多少點落在這個像素周圍指定的區域內 (我們的例子是方圓 1000 公尺)。</p>
+<li><p class="first">現在就可以看到這個圖層變得比較像是熱區圖的感覺了。你可以使用 <span class="guilabel">識別圖徵</span> 工具，在熱區圖上的任一區點一下，就可以在結果視窗裡面看到這個像素的值。這個值代表圖層中有多少點落在這個像素周圍指定的區域內 (我們的例子是方圓 1000 公尺)。</p>
 </li>
 </ol>
 <img alt="../_images/146.png" class="align-center" src="../_images/146.png" />
 <ol class="arabic simple" start="15">
-<li><p class="first">這張熱區圖可以儲存下來供未來使用，在許多時候，我們要找的是那些地方有相當高的點密度（也就是熱點，Hotspot），接下來我們就來看要怎麼操作。選擇 <em class="menuselection">影像 ‣ 影像計算</em>，</p>
+<li><p class="first">這張熱區圖可以儲存下來供未來使用，在許多時候，我們要找的是那些地方有相當高的點密度（也就是熱點，Hotspot），接下來我們就來看要怎麼操作。選擇 <span class="menuselection">影像 ‣ 影像計算</span>，</p>
 </li>
 </ol>
 <img alt="../_images/156.png" class="align-center" src="../_images/156.png" />
 <ol class="arabic simple" start="16">
-<li><p class="first">第一步是要決定一個門檻值，值比這個門檻還高的像素，會被當作位於高濃度區域。對於此筆資料，我們先來試試看 <tt class="docutils literal"><span class="pre">10</span></tt> 吧。在 <em class="guilabel">影像計算</em> 視窗中，把輸出圖層命名為 <tt class="docutils literal"><span class="pre">crime_hotspots</span></tt>，然後按兩下在 <em class="guilabel">影像波段</em> 欄位中的 <tt class="docutils literal"><span class="pre">cirme_heatmap&#64;1</span></tt>，它就會被加入到下方的 <em class="guilabel">影像計算表示式</em> 當中。依照如下所示完成表示式，然後勾選 <em class="guilabel">將結果加入專案</em>，最後按下 <em class="guilabel">確定</em>。</p>
+<li><p class="first">第一步是要決定一個門檻值，值比這個門檻還高的像素，會被當作位於高濃度區域。對於此筆資料，我們先來試試看 <code class="docutils literal"><span class="pre">10</span></code> 吧。在 <span class="guilabel">影像計算</span> 視窗中，把輸出圖層命名為 <code class="docutils literal"><span class="pre">crime_hotspots</span></code>，然後按兩下在 <span class="guilabel">影像波段</span> 欄位中的 <code class="docutils literal"><span class="pre">cirme_heatmap&#64;1</span></code>，它就會被加入到下方的 <span class="guilabel">影像計算表示式</span> 當中。依照如下所示完成表示式，然後勾選 <span class="guilabel">將結果加入專案</span>，最後按下 <span class="guilabel">確定</span>。</p>
 </li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;crime_heatmap@1&quot; &gt; 10
@@ -319,27 +318,27 @@ target="_blank">Letter</a> ]</p><p>熱區圖（Heatmap）最適合用來呈現�
 </div>
 <img alt="../_images/166.png" class="align-center" src="../_images/166.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">接著 <tt class="docutils literal"><span class="pre">crime_hotspots</span></tt> 這個新圖層就會被加到 QGIS 中。這個圖層的像素值不是 0 就是 1，他們分別表示像素值小於等於 <tt class="docutils literal"><span class="pre">10</span></tt> 或大於 <tt class="docutils literal"><span class="pre">10</span></tt>。下一步選擇 <em class="menuselection">影像 ‣ 轉換 ‣ 轉換成多邊形 (影像轉為向量)</em>。</p>
+<li><p class="first">接著 <code class="docutils literal"><span class="pre">crime_hotspots</span></code> 這個新圖層就會被加到 QGIS 中。這個圖層的像素值不是 0 就是 1，他們分別表示像素值小於等於 <code class="docutils literal"><span class="pre">10</span></code> 或大於 <code class="docutils literal"><span class="pre">10</span></code>。下一步選擇 <span class="menuselection">影像 ‣ 轉換 ‣ 轉換成多邊形 (影像轉為向量)</span>。</p>
 </li>
 </ol>
 <img alt="../_images/175.png" class="align-center" src="../_images/175.png" />
 <ol class="arabic simple" start="18">
-<li><p class="first">把輸出檔命名為 <tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt>，勾選 <em class="guilabel">欄位名稱</em> 以及 <em class="guilabel">處理完成後載入 QGIS 地圖中</em>，最後按 <em class="guilabel">確定</em>。（譯註：<em class="guilabel">欄位名稱</em> 請填上 <cite>DN</cite>。）</p>
+<li><p class="first">把輸出檔命名為 <code class="docutils literal"><span class="pre">crime_hotspots_vector</span></code>，勾選 <span class="guilabel">欄位名稱</span> 以及 <span class="guilabel">處理完成後載入 QGIS 地圖中</span>，最後按 <span class="guilabel">確定</span>。（譯註：<span class="guilabel">欄位名稱</span> 請填上 <cite>DN</cite>。）</p>
 </li>
 </ol>
 <img alt="../_images/186.png" class="align-center" src="../_images/186.png" />
 <ol class="arabic simple" start="19">
-<li><p class="first">轉換完成後，QGIS 就會載入 <tt class="docutils literal"><span class="pre">crime_hotspots_vector</span></tt>。這是我們在前一步驟所製作的熱點分布圖的向量化表示法。目前此圖層包含了 0 與 1 的集合，所以我們還要把 0 的集合濾掉之後，剩下 1 的集合才是熱點的分布區。在圖層上按右鍵，選擇 <em class="guilabel">開啟屬性表格</em>。</p>
+<li><p class="first">轉換完成後，QGIS 就會載入 <code class="docutils literal"><span class="pre">crime_hotspots_vector</span></code>。這是我們在前一步驟所製作的熱點分布圖的向量化表示法。目前此圖層包含了 0 與 1 的集合，所以我們還要把 0 的集合濾掉之後，剩下 1 的集合才是熱點的分布區。在圖層上按右鍵，選擇 <span class="guilabel">開啟屬性表格</span>。</p>
 </li>
 </ol>
 <img alt="../_images/194.png" class="align-center" src="../_images/194.png" />
 <ol class="arabic simple" start="20">
-<li><p class="first">在 <em class="guilabel">屬性表格</em> 視窗中按下 <em class="guilabel">使用表示式選取圖徵</em> 的按鈕。</p>
+<li><p class="first">在 <span class="guilabel">屬性表格</span> 視窗中按下 <span class="guilabel">使用表示式選取圖徵</span> 的按鈕。</p>
 </li>
 </ol>
 <img alt="../_images/202.png" class="align-center" src="../_images/202.png" />
 <ol class="arabic simple" start="21">
-<li><p class="first">輸入如圖所示的表達式，按下 <em class="guilabel">選取</em>，然後 <em class="guilabel">關閉</em>。</p>
+<li><p class="first">輸入如圖所示的表達式，按下 <span class="guilabel">選取</span>，然後 <span class="guilabel">關閉</span>。</p>
 </li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;DN&quot; = 0
@@ -347,17 +346,17 @@ target="_blank">Letter</a> ]</p><p>熱區圖（Heatmap）最適合用來呈現�
 </div>
 <img alt="../_images/218.png" class="align-center" src="../_images/218.png" />
 <ol class="arabic simple" start="22">
-<li><p class="first">在屬性視窗中，可以看到符合條件的圖徵被選取了。按下工具列的 <em class="guilabel">切換編輯模式</em>，然後再按下 <em class="guilabel">刪除已選取圖徵 (DEL)</em> 按鈕。</p>
+<li><p class="first">在屬性視窗中，可以看到符合條件的圖徵被選取了。按下工具列的 <span class="guilabel">切換編輯模式</span>，然後再按下 <span class="guilabel">刪除已選取圖徵 (DEL)</span> 按鈕。</p>
 </li>
 </ol>
 <img alt="../_images/222.png" class="align-center" src="../_images/222.png" />
 <ol class="arabic simple" start="23">
-<li><p class="first">把選取的圖徵刪除後，按下 <em class="guilabel">儲存編輯</em> 鈕，然後再按下 <em class="guilabel">切換編輯模式</em> 鈕把此圖層再次設定為唯讀。現在可以關閉屬性表視窗了。</p>
+<li><p class="first">把選取的圖徵刪除後，按下 <span class="guilabel">儲存編輯</span> 鈕，然後再按下 <span class="guilabel">切換編輯模式</span> 鈕把此圖層再次設定為唯讀。現在可以關閉屬性表視窗了。</p>
 </li>
 </ol>
 <img alt="../_images/232.png" class="align-center" src="../_images/232.png" />
 <ol class="arabic simple" start="24">
-<li><p class="first">在 QGIS 主視窗中，取消 <tt class="docutils literal"><span class="pre">crime_hotspots</span></tt> 圖層的勾選。我們的最終圖層 <tt class="docutils literal"><span class="pre">crime_hotspot_vector</span></tt> 現已包含從熱區圖中擷取出來的熱點。至此為止，我們已從原始資料中使用精巧的方法收集了熱點，或許你可以從中發現什麼洞見，或是為這些資料做進一步的處理分析。</p>
+<li><p class="first">在 QGIS 主視窗中，取消 <code class="docutils literal"><span class="pre">crime_hotspots</span></code> 圖層的勾選。我們的最終圖層 <code class="docutils literal"><span class="pre">crime_hotspot_vector</span></code> 現已包含從熱區圖中擷取出來的熱點。至此為止，我們已從原始資料中使用精巧的方法收集了熱點，或許你可以從中發現什麼洞見，或是為這些資料做進一步的處理分析。</p>
 </li>
 </ol>
 <img alt="../_images/242.png" class="align-center" src="../_images/242.png" />
@@ -386,8 +385,8 @@ target="_blank">Letter</a> ]</p><p>熱區圖（Heatmap）最適合用來呈現�
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      最後更新日期是 Feb 11, 2016.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+      最後更新日期是 Apr 20, 2016.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

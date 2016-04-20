@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Find Neighbor Polygons in a Layer" href="find_neighbor_polygons.html" />
@@ -51,7 +51,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -69,7 +69,6 @@
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -131,11 +130,11 @@
               
                 
   <li>
-    <a href="processing_python_scripts.html" title="Previous Chapter: Writing Python Scripts for Processing Framework"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Writing Python S...</span>
+    <a href="processing_python_scripts.html" title="Previous Chapter: Writing Python Scripts for Processing Framework"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Writing Python S...</span>
     </a>
   </li>
   <li>
-    <a href="find_neighbor_polygons.html" title="Next Chapter: Find Neighbor Polygons in a Layer"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Find Neighbor Po... &raquo;</span>
+    <a href="find_neighbor_polygons.html" title="Next Chapter: Find Neighbor Polygons in a Layer"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Find Neighbor Po... &raquo;</span>
     </a>
   </li>
               
@@ -247,81 +246,81 @@ unzip it to a folder on your disk.</p>
 <ol class="arabic simple">
 <li>We will first run through the process of cleaning the shapefile manually to
 note the commands that we will use in the python script. Launch QGIS and go
-to <em class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</em>.</li>
+to <span class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</span>.</li>
 </ol>
 <img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
 <ol class="arabic simple" start="2">
 <li>Browse to the folder containing the unzipped shapefiles and select the
-<tt class="docutils literal"><span class="pre">roads.shp</span></tt> file and click <em class="guilabel">Open</em>.</li>
+<code class="docutils literal"><span class="pre">roads.shp</span></code> file and click <span class="guilabel">Open</span>.</li>
 </ol>
 <img alt="../_images/270.png" class="align-center" src="../_images/270.png" />
 <ol class="arabic simple" start="3">
 <li>First we must re-project the roads layer to a Projected CRS. This will allow
 us to use <em>meters</em> as units when performing analysis instead of degrees.
-Open <em class="menuselection">Processing ‣ Toolbox</em>.</li>
+Open <span class="menuselection">Processing ‣ Toolbox</span>.</li>
 </ol>
 <img alt="../_images/338.png" class="align-center" src="../_images/338.png" />
 <ol class="arabic simple" start="4">
-<li>Search for the <em class="guilabel">Reproject layer</em> tool. Double-click it to launch
+<li>Search for the <span class="guilabel">Reproject layer</span> tool. Double-click it to launch
 the dialog.</li>
 </ol>
 <img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
 <ol class="arabic simple" start="5">
-<li>In the <em class="guilabel">Reproject layer</em> dialog, select the <tt class="docutils literal"><span class="pre">roads</span></tt> layer as
-<em class="guilabel">Input layer</em>. We will use <tt class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span> <span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></tt>
-CRS as the <em class="guilabel">Target CRS</em>. Click <em class="guilabel">Run</em>.</li>
+<li>In the <span class="guilabel">Reproject layer</span> dialog, select the <code class="docutils literal"><span class="pre">roads</span></code> layer as
+<span class="guilabel">Input layer</span>. We will use <code class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span> <span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></code>
+CRS as the <span class="guilabel">Target CRS</span>. Click <span class="guilabel">Run</span>.</li>
 </ol>
 <img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
 <ol class="arabic simple" start="6">
 <li>Once the process finishes, you will see the reprojected layer loaded in
-QGIS. Go to <em class="menuselection">Processing ‣ History and Log..</em>.</li>
+QGIS. Go to <span class="menuselection">Processing ‣ History and Log..</span>.</li>
 </ol>
 <img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
 <ol class="arabic simple" start="7">
-<li>In the <em class="guilabel">History and Log</em> dialog, expand the <em class="guilabel">Algorithm</em>
+<li>In the <span class="guilabel">History and Log</span> dialog, expand the <span class="guilabel">Algorithm</span>
 folder and select the latest entry. You will see the full processing command
 shown in the bottom panel. Note this command for use in our script.</li>
 </ol>
 <img alt="../_images/726.png" class="align-center" src="../_images/726.png" />
 <ol class="arabic simple" start="8">
-<li>Back in the main QGIS Window, click at the <em class="guilabel">CRS</em> button in the
+<li>Back in the main QGIS Window, click at the <span class="guilabel">CRS</span> button in the
 bottom-right corner.</li>
 </ol>
 <img alt="../_images/825.png" class="align-center" src="../_images/825.png" />
 <ol class="arabic simple" start="9">
-<li>In the <em class="guilabel">Project Properties | CRS</em> dialog, check the
-<em class="guilabel">Enable on-the-fly CRS transformation</em> and select <tt class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span>
-<span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></tt> as the CRS. This will ensure that our original and
+<li>In the <span class="guilabel">Project Properties | CRS</span> dialog, check the
+<span class="guilabel">Enable on-the-fly CRS transformation</span> and select <code class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span>
+<span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></code> as the CRS. This will ensure that our original and
 reprojected layers will line up correctly.</li>
 </ol>
 <img alt="../_images/923.png" class="align-center" src="../_images/923.png" />
 <ol class="arabic simple" start="10">
 <li>Now we will run the cleaning operation. GRASS has a very powerful set of
-topological cleaning tools. These are available in QGIS via the <tt class="docutils literal"><span class="pre">v.clean</span></tt>
-algorithm. Search for this algorithm in the <em class="guilabel">Processing Toolbox</em>
+topological cleaning tools. These are available in QGIS via the <code class="docutils literal"><span class="pre">v.clean</span></code>
+algorithm. Search for this algorithm in the <span class="guilabel">Processing Toolbox</span>
 and double-click it to launch the dialog.</li>
 </ol>
 <img alt="../_images/1024.png" class="align-center" src="../_images/1024.png" />
 <ol class="arabic simple" start="11">
-<li>You can read more about various tools and options in the <em class="guilabel">Help</em>
-tab. For this tutorial, we will be using the <tt class="docutils literal"><span class="pre">snap</span></tt> tool to remove
+<li>You can read more about various tools and options in the <span class="guilabel">Help</span>
+tab. For this tutorial, we will be using the <code class="docutils literal"><span class="pre">snap</span></code> tool to remove
 duplicate vertices that are within 1 meter of each other. Select
-<tt class="docutils literal"><span class="pre">Reprojected</span> <span class="pre">layer</span></tt> as the <em class="guilabel">Layer to clean</em>. Choose <tt class="docutils literal"><span class="pre">snap</span></tt> as
-the <em class="guilabel">Cleaning tool</em>.  Enter <tt class="docutils literal"><span class="pre">1.00</span></tt> as the
-<em class="guilabel">Threshold</em>. Leave the other fields blank and click
-<em class="guilabel">Run</em>.</li>
+<code class="docutils literal"><span class="pre">Reprojected</span> <span class="pre">layer</span></code> as the <span class="guilabel">Layer to clean</span>. Choose <code class="docutils literal"><span class="pre">snap</span></code> as
+the <span class="guilabel">Cleaning tool</span>.  Enter <code class="docutils literal"><span class="pre">1.00</span></code> as the
+<span class="guilabel">Threshold</span>. Leave the other fields blank and click
+<span class="guilabel">Run</span>.</li>
 </ol>
 <img alt="../_images/1130.png" class="align-center" src="../_images/1130.png" />
 <ol class="arabic simple" start="12">
 <li>Once the processing finishes, you will see 2 new layers added to QGIS. The
-<tt class="docutils literal"><span class="pre">Cleaned</span> <span class="pre">vector</span> <span class="pre">layer</span></tt> is the layer with topological errors corrected.
-You will also have a <tt class="docutils literal"><span class="pre">Errors</span> <span class="pre">layer</span></tt> which will highlight the features
+<code class="docutils literal"><span class="pre">Cleaned</span> <span class="pre">vector</span> <span class="pre">layer</span></code> is the layer with topological errors corrected.
+You will also have a <code class="docutils literal"><span class="pre">Errors</span> <span class="pre">layer</span></code> which will highlight the features
 which were repaired. You can use the errors layer as a guide and zoom in to
 see vertices that were removed.</li>
 </ol>
 <img alt="../_images/1225.png" class="align-center" src="../_images/1225.png" />
 <ol class="arabic simple" start="13">
-<li>Go to <em class="menuselection">Processing ‣ History and Log</em> dialog and note the
+<li>Go to <span class="menuselection">Processing ‣ History and Log</span> dialog and note the
 full processing command for later use.</li>
 </ol>
 <img alt="../_images/1323.png" class="align-center" src="../_images/1323.png" />
@@ -330,13 +329,13 @@ full processing command for later use.</li>
 section in the <a class="reference internal" href="building_a_python_plugin.html"><em>Building a Python Plugin</em></a> tutorial for instructions to
 setup your text editor or IDE. For running standalone python scripts that
 use QGIS, we must set various configuration options. A good way to run
-standalone scripts is to launch them via a <tt class="docutils literal"><span class="pre">.bat</span></tt> file. This file will
+standalone scripts is to launch them via a <code class="docutils literal"><span class="pre">.bat</span></code> file. This file will
 first set the correct configuration options and then call the python
-script. Create a new file named <tt class="docutils literal"><span class="pre">launch.bat</span></tt> and enter the following
+script. Create a new file named <code class="docutils literal"><span class="pre">launch.bat</span></code> and enter the following
 text. Change the values according to your QGIS configuration. Don&#8217;t forget
 to replace the username with your own username in the path to the python
 script.  The paths in this file will be the same on your system if you
-installed QGIS via the <tt class="docutils literal"><span class="pre">OSGeo4W</span> <span class="pre">Installer</span></tt>. Save the file on your
+installed QGIS via the <code class="docutils literal"><span class="pre">OSGeo4W</span> <span class="pre">Installer</span></code>. Save the file on your
 Desktop.</li>
 </ol>
 <div class="admonition note">
@@ -364,7 +363,7 @@ pause
 <img alt="../_images/1422.png" class="align-center" src="../_images/1422.png" />
 <ol class="arabic simple" start="15">
 <li>Create a new python file and enter the following code. Name the file as
-<tt class="docutils literal"><span class="pre">download_and_clean.py</span></tt> and save it on your Desktop.</li>
+<code class="docutils literal"><span class="pre">download_and_clean.py</span></code> and save it on your Desktop.</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="k">print</span> <span class="s">&#39;Hello QGIS!&#39;</span>
@@ -372,21 +371,21 @@ pause
 </div>
 <img alt="../_images/1521.png" class="align-center" src="../_images/1521.png" />
 <ol class="arabic simple" start="16">
-<li>Switch to your Desktop and locate the <tt class="docutils literal"><span class="pre">launch.bat</span></tt> icon. Double-click it
-to launch a new command window and run the script. If you see <tt class="docutils literal"><span class="pre">Hello</span>
-<span class="pre">QGIS!</span></tt> printed in the command window, your configuration and setup worked
-fine. If you see errors or do not see the text, check your <tt class="docutils literal"><span class="pre">launch.bat</span></tt>
+<li>Switch to your Desktop and locate the <code class="docutils literal"><span class="pre">launch.bat</span></code> icon. Double-click it
+to launch a new command window and run the script. If you see <code class="docutils literal"><span class="pre">Hello</span>
+<span class="pre">QGIS!</span></code> printed in the command window, your configuration and setup worked
+fine. If you see errors or do not see the text, check your <code class="docutils literal"><span class="pre">launch.bat</span></code>
 file and make sure all the paths match the locations on your system.</li>
 </ol>
 <img alt="../_images/1620.png" class="align-center" src="../_images/1620.png" />
 <ol class="arabic simple" start="17">
-<li>Back in your text editor, modify the <tt class="docutils literal"><span class="pre">download_and_clean.py</span></tt> script to
+<li>Back in your text editor, modify the <code class="docutils literal"><span class="pre">download_and_clean.py</span></code> script to
 add the following code. This is the bootstrap code to initialize QGIS.
 These are unnecessary if you are running the script within QGIS. But since
 we are running it outside QGIS, we need to add these at the beginning. Make
 sure you replace the username with your username. After making these
-changes, save the file and run <tt class="docutils literal"><span class="pre">launch.bat</span></tt> again. If you see <tt class="docutils literal"><span class="pre">Hello</span>
-<span class="pre">QGIS!</span></tt> printed, you are all set to do add the processing logic to the
+changes, save the file and run <code class="docutils literal"><span class="pre">launch.bat</span></code> again. If you see <code class="docutils literal"><span class="pre">Hello</span>
+<span class="pre">QGIS!</span></code> printed, you are all set to do add the processing logic to the
 script.</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
@@ -414,7 +413,7 @@ script.</li>
 was the command to re-project a layer. Paste the command to your script and
 add the surrounding code as follows. Note that processing commands return
 the path to the output layers as a dictionary. We are storing this as the
-<tt class="docutils literal"><span class="pre">ret</span></tt> value and printing the path to the reprojected layer.</li>
+<code class="docutils literal"><span class="pre">ret</span></code> value and printing the path to the reprojected layer.</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">roads_shp_path</span> <span class="o">=</span> <span class="s">&quot;C:</span><span class="se">\\</span><span class="s">Users</span><span class="se">\\</span><span class="s">Ujaval</span><span class="se">\\</span><span class="s">Downloads</span><span class="se">\\</span><span class="s">fiji-latest.shp</span><span class="se">\\</span><span class="s">roads.shp&quot;</span>
 <span class="n">ret</span> <span class="o">=</span> <span class="n">processing</span><span class="o">.</span><span class="n">runalg</span><span class="p">(</span><span class="s">&#39;qgis:reprojectlayer&#39;</span><span class="p">,</span> <span class="n">roads_shp_path</span><span class="p">,</span> <span class="s">&#39;EPSG:3460&#39;</span><span class="p">,</span>
@@ -425,14 +424,14 @@ the path to the output layers as a dictionary. We are storing this as the
 </div>
 <img alt="../_images/1819.png" class="align-center" src="../_images/1819.png" />
 <ol class="arabic simple" start="19">
-<li>Run the script via <tt class="docutils literal"><span class="pre">launch.bat</span></tt> and you will see the path to the newly
+<li>Run the script via <code class="docutils literal"><span class="pre">launch.bat</span></code> and you will see the path to the newly
 created reprojected layer.</li>
 </ol>
 <img alt="../_images/1917.png" class="align-center" src="../_images/1917.png" />
 <ol class="arabic simple" start="20">
 <li>Now add the code for cleaning the topology. Since this is our final output,
 we will add the output file paths as the last 2 arguments for the
-<tt class="docutils literal"><span class="pre">grass.v.clean</span></tt> algorithm. If you left these blank, the output will be
+<code class="docutils literal"><span class="pre">grass.v.clean</span></code> algorithm. If you left these blank, the output will be
 created in a temporary directory.</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">processing</span><span class="o">.</span><span class="n">runalg</span><span class="p">(</span><span class="s">&quot;grass:v.clean&quot;</span><span class="p">,</span>
@@ -484,9 +483,9 @@ data will be downloaded and processed.</li>
 </ol>
 <img alt="../_images/2217.png" class="align-center" src="../_images/2217.png" />
 <ol class="arabic simple" start="23">
-<li>To automate running on this script on a daily basis, we can use the <tt class="docutils literal"><span class="pre">Task</span>
-<span class="pre">Scheduler</span></tt> in Windows. Launch the Task Scheduler and click
-<em class="guilabel">Create Basic Task</em>.</li>
+<li>To automate running on this script on a daily basis, we can use the <code class="docutils literal"><span class="pre">Task</span>
+<span class="pre">Scheduler</span></code> in Windows. Launch the Task Scheduler and click
+<span class="guilabel">Create Basic Task</span>.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -494,34 +493,34 @@ data will be downloaded and processed.</li>
 </div>
 <img alt="../_images/2314.png" class="align-center" src="../_images/2314.png" />
 <ol class="arabic simple" start="24">
-<li>Name the task as <tt class="docutils literal"><span class="pre">Daily</span> <span class="pre">Download</span> <span class="pre">and</span> <span class="pre">Cleanup</span></tt> and click <em class="guilabel">Next</em>.</li>
+<li>Name the task as <code class="docutils literal"><span class="pre">Daily</span> <span class="pre">Download</span> <span class="pre">and</span> <span class="pre">Cleanup</span></code> and click <span class="guilabel">Next</span>.</li>
 </ol>
 <img alt="../_images/2412.png" class="align-center" src="../_images/2412.png" />
 <ol class="arabic simple" start="25">
-<li>Select <tt class="docutils literal"><span class="pre">Daily</span></tt> as the <em class="guilabel">Trigger</em> and click <em class="guilabel">Next</em></li>
+<li>Select <code class="docutils literal"><span class="pre">Daily</span></code> as the <span class="guilabel">Trigger</span> and click <span class="guilabel">Next</span></li>
 </ol>
 <img alt="../_images/2510.png" class="align-center" src="../_images/2510.png" />
 <ol class="arabic simple" start="26">
-<li>Select a time as per your liking and click <em class="guilabel">Next</em>.</li>
+<li>Select a time as per your liking and click <span class="guilabel">Next</span>.</li>
 </ol>
 <img alt="../_images/2610.png" class="align-center" src="../_images/2610.png" />
 <ol class="arabic simple" start="27">
-<li>Choose <tt class="docutils literal"><span class="pre">Start</span> <span class="pre">a</span> <span class="pre">program</span></tt> as the <em class="guilabel">Action</em> and click
-<em class="guilabel">Next</em>.</li>
+<li>Choose <code class="docutils literal"><span class="pre">Start</span> <span class="pre">a</span> <span class="pre">program</span></code> as the <span class="guilabel">Action</span> and click
+<span class="guilabel">Next</span>.</li>
 </ol>
 <img alt="../_images/278.png" class="align-center" src="../_images/278.png" />
 <ol class="arabic simple" start="28">
-<li>Click <em class="guilabel">Browse</em> and locate the <tt class="docutils literal"><span class="pre">launch.bat</span></tt> script. Click
-<em class="guilabel">Next</em>.</li>
+<li>Click <span class="guilabel">Browse</span> and locate the <code class="docutils literal"><span class="pre">launch.bat</span></code> script. Click
+<span class="guilabel">Next</span>.</li>
 </ol>
 <img alt="../_images/286.png" class="align-center" src="../_images/286.png" />
 <ol class="arabic simple" start="29">
-<li>Click <em class="guilabel">Finish</em> at the last screen to schedule the task. Now the
+<li>Click <span class="guilabel">Finish</span> at the last screen to schedule the task. Now the
 script will automatically launch at the specified time to give you a fresh
 copy of cleaned data everyday.</li>
 </ol>
 <img alt="../_images/295.png" class="align-center" src="../_images/295.png" />
-<p>Below is the full <tt class="docutils literal"><span class="pre">download_and_clean.py</span></tt> script for your reference.</p>
+<p>Below is the full <code class="docutils literal"><span class="pre">download_and_clean.py</span></code> script for your reference.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -607,8 +606,8 @@ copy of cleaned data everyday.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Feb 11, 2016.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+      Last updated on Apr 20, 2016.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

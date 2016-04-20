@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="최근린 분석" href="nearest_neighbor_analysis.html" />
@@ -52,7 +52,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -70,7 +70,6 @@
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -132,11 +131,11 @@
               
                 
   <li>
-    <a href="creating_heatmaps.html" title="Previous Chapter: 열지도 만들기"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; 열지도 만들기</span>
+    <a href="creating_heatmaps.html" title="Previous Chapter: 열지도 만들기"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; 열지도 만들기</span>
     </a>
   </li>
   <li>
-    <a href="nearest_neighbor_analysis.html" title="Next Chapter: 최근린 분석"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">최근린 분석 &raquo;</span>
+    <a href="nearest_neighbor_analysis.html" title="Next Chapter: 최근린 분석"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">최근린 분석 &raquo;</span>
     </a>
   </li>
               
@@ -233,7 +232,7 @@ target="_blank">Letter</a> ]</p><p>공간조회는 QGIS 분석의 많은 유형�
 </div>
 <div class="section" id="get-the-data">
 <h2>데이터 획득<a class="headerlink" href="#get-the-data" title="제목 주소">¶</a></h2>
-<p>Natural Earth에서 <tt class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines``와</span> <span class="pre">``10m_populated_places_simple</span></tt> 데이터셋을 사용합니다.</p>
+<p>Natural Earth에서 <code class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines``와</span> <span class="pre">``10m_populated_places_simple</span></code> 데이터셋을 사용합니다.</p>
 <p>Download <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_rivers_lake_centerlines.zip">Rivers and Lake Centerlines</a></p>
 <p><a href="#id1"><span class="problematic" id="id2">`</span></a>Populated Places &lt;<a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/">http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/</a> 10m/cultural/ne_10m_populated_places_simple.zip&gt;`_를 다운로드 합니다.</p>
 <p>데이터 출처: <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
@@ -276,12 +275,12 @@ target="_blank">Letter</a> ]</p><p>공간조회는 QGIS 분석의 많은 유형�
 </ol>
 <img alt="../_images/719.png" class="align-center" src="../_images/719.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">새 이름으로 벡터 레이어 저장하기  <em class="guilabel">Save vector layer as...</em> 다이알로그 박스에서 새임으로 저장 <em class="guilabel">Save as</em> 옆에 있는 탐색 <em class="guilabel">Browse`을 클릭합니다. 출력파일 이름을 ``populated_places_reprojected.shp``로 입력합니다. 다음으로, 좌표계 :guilabel:`CRS</em> 옆에 있는 탐색 <em class="guilabel">Browse</em> 버튼을 클릭합니다.</p>
+<li><p class="first">새 이름으로 벡터 레이어 저장하기  <span class="guilabel">Save vector layer as...</span> 다이알로그 박스에서 새임으로 저장 <span class="guilabel">Save as</span> 옆에 있는 탐색 <span class="guilabel">Browse`을 클릭합니다. 출력파일 이름을 ``populated_places_reprojected.shp``로 입력합니다. 다음으로, 좌표계 :guilabel:`CRS</span> 옆에 있는 탐색 <span class="guilabel">Browse</span> 버튼을 클릭합니다.</p>
 </li>
 </ol>
 <img alt="../_images/818.png" class="align-center" src="../_images/818.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">이제 목적에 맞는 적절한 CRS를 선택해야 합니다. 버퍼를 만들기 위해서는 Azimuthal Equidistant 투영이 투영중앙부의 반경거리가 정확해야 하므로 가장 적절할 것입니다. 예제에서는 데이터셋이 전 지구적이므로  세계 투영을 선택할 것입니다. 좌표계 선택  <em class="guilabel">Coordinate Reference System Selector</em> 다이알로그에서 <cite>world az..`라고 좌표계를 찾기위한 입력을 시작하면 몇가지 결과들이 나타납니다. `World_Azimuthal_Equidistant</cite> 를 선택하고  :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>OK`를 클릭합니다.</p>
+<li><p class="first">이제 목적에 맞는 적절한 CRS를 선택해야 합니다. 버퍼를 만들기 위해서는 Azimuthal Equidistant 투영이 투영중앙부의 반경거리가 정확해야 하므로 가장 적절할 것입니다. 예제에서는 데이터셋이 전 지구적이므로  세계 투영을 선택할 것입니다. 좌표계 선택  <span class="guilabel">Coordinate Reference System Selector</span> 다이알로그에서 <cite>world az..`라고 좌표계를 찾기위한 입력을 시작하면 몇가지 결과들이 나타납니다. `World_Azimuthal_Equidistant</cite> 를 선택하고  :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>OK`를 클릭합니다.</p>
 </li>
 </ol>
 <div class="admonition note">
@@ -292,7 +291,7 @@ within +/- 90 degrees longitude will be converted.</p>
 </div>
 <img alt="../_images/916.png" class="align-center" src="../_images/916.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">새 이름으로 벡터레이어 저장하기 <em class="guilabel">Save vector layer as ...</em> 다아일로그로 되돌아가서 저장된 파일을 지도에 추가 <em class="guilabel">Add saved file to map</em> 옆에 있는 박스를 체크하고 <a href="#id1"><span class="problematic" id="id2">`</span></a>OK`를 클릭합니다.</p>
+<li><p class="first">새 이름으로 벡터레이어 저장하기 <span class="guilabel">Save vector layer as ...</span> 다아일로그로 되돌아가서 저장된 파일을 지도에 추가 <span class="guilabel">Add saved file to map</span> 옆에 있는 박스를 체크하고 <a href="#id1"><span class="problematic" id="id2">`</span></a>OK`를 클릭합니다.</p>
 </li>
 </ol>
 <img alt="../_images/1017.png" class="align-center" src="../_images/1017.png" />
@@ -302,12 +301,12 @@ within +/- 90 degrees longitude will be converted.</p>
 </ol>
 <img alt="../_images/1121.png" class="align-center" src="../_images/1121.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">이제 레이어 판넬 <em class="guilabel">Layers Panel`에 4개의 레이어가 생깁니다. 원래의 레이어 옆에 있는 박스에서 체크해제하고 오로지 재투영된 레이어만 나타냅니다. 재투영된 레이어는 여전히 `Geographic CRS`로 보여지는데 이는 세팅때문입니다. 이것을 꺼보도록 하겠습니다. 프로젝트 속성 :guilabel:`Project Properties</em> 단추를 클릭합니다. 이 세팅은 메뉴 프로젝트 &#8211;&gt; 프로젝트 속성 :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Project &#8211;&gt; Project Properties`에서도 접근할 수 있습니다.</p>
+<li><p class="first">이제 레이어 판넬 <span class="guilabel">Layers Panel`에 4개의 레이어가 생깁니다. 원래의 레이어 옆에 있는 박스에서 체크해제하고 오로지 재투영된 레이어만 나타냅니다. 재투영된 레이어는 여전히 `Geographic CRS`로 보여지는데 이는 세팅때문입니다. 이것을 꺼보도록 하겠습니다. 프로젝트 속성 :guilabel:`Project Properties</span> 단추를 클릭합니다. 이 세팅은 메뉴 프로젝트 &#8211;&gt; 프로젝트 속성 :menuselection:<a href="#id1"><span class="problematic" id="id2">`</span></a>Project &#8211;&gt; Project Properties`에서도 접근할 수 있습니다.</p>
 </li>
 </ol>
 <img alt="../_images/1219.png" class="align-center" src="../_images/1219.png" />
 <ol class="arabic simple" start="13">
-<li><p class="first">프로젝트 속성 <em class="guilabel">Project Properties</em> 다이알로그의 좌표계 <em class="guilabel">CRS`탭에서 &#8216;실시간&#8217; 좌표계 변환 활성화 :guilabel:`Enable on-the-fly CRS transformation</em> 옆에 있는 박스를 체크해제 합니다. :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>OK`를 클릭합니다.</p>
+<li><p class="first">프로젝트 속성 <span class="guilabel">Project Properties</span> 다이알로그의 좌표계 <span class="guilabel">CRS`탭에서 &#8216;실시간&#8217; 좌표계 변환 활성화 :guilabel:`Enable on-the-fly CRS transformation</span> 옆에 있는 박스를 체크해제 합니다. :guilabel:<a href="#id1"><span class="problematic" id="id2">`</span></a>OK`를 클릭합니다.</p>
 </li>
 </ol>
 <img alt="../_images/1317.png" class="align-center" src="../_images/1317.png" />
@@ -411,8 +410,8 @@ within +/- 90 degrees longitude will be converted.</p>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      최종 업데이트: Feb 11, 2016<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+      최종 업데이트: Apr 20, 2016<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

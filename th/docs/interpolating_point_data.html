@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Batch Processing using Processing Framework" href="batch_processing.html" />
@@ -51,7 +51,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -69,7 +69,6 @@
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -131,11 +130,11 @@
               
                 
   <li>
-    <a href="sampling_raster_data.html" title="Previous Chapter: Sampling Raster Data using Points or Polygons"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Sampling Raster ...</span>
+    <a href="sampling_raster_data.html" title="Previous Chapter: Sampling Raster Data using Points or Polygons"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Sampling Raster ...</span>
     </a>
   </li>
   <li>
-    <a href="batch_processing.html" title="Next Chapter: Batch Processing using Processing Framework"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Batch Processing... &raquo;</span>
+    <a href="batch_processing.html" title="Next Chapter: Batch Processing using Processing Framework"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Batch Processing... &raquo;</span>
     </a>
   </li>
               
@@ -214,7 +213,7 @@ elevations, soils, temperatures etc. If we wanted to model these surfaces for
 analysis, it is impossible to take measurements throughout the surface. Hence,
 the field measurements are taken at various points along the surface and the
 intermediate values are inferred by a process called &#8216;interpolation&#8217;. In QGIS,
-interpolation is achieved using the built-in <tt class="docutils literal"><span class="pre">Interpolation</span> <span class="pre">plugin</span></tt>.</p>
+interpolation is achieved using the built-in <code class="docutils literal"><span class="pre">Interpolation</span> <span class="pre">plugin</span></code>.</p>
 <div class="section" id="overview-of-the-task">
 <h2>ภาพรวมของงาน<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
 <p>We will take field depth measurements for a Lake Arlington in Texas and create
@@ -241,64 +240,64 @@ tutorial from link below.</p>
 <div class="section" id="procedure">
 <h2>ขั้นตอนการทำงาน<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS. Go to <em class="menuselection">Layer ‣ Add Layer  ‣ Add Vector Layer..</em></li>
+<li>Open QGIS. Go to <span class="menuselection">Layer ‣ Add Layer  ‣ Add Vector Layer..</span></li>
 </ol>
 <img alt="../_images/178.png" class="align-center" src="../_images/178.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">Shapefiles.zip</span></tt> file and select it. Click
-<em class="guilabel">Open</em>.</li>
+<li>Browse to the downloaded <code class="docutils literal"><span class="pre">Shapefiles.zip</span></code> file and select it. Click
+<span class="guilabel">Open</span>.</li>
 </ol>
 <img alt="../_images/229.png" class="align-center" src="../_images/229.png" />
 <ol class="arabic simple" start="3">
-<li>In the <em class="guilabel">Select layers to add...</em> dialog, hold the <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> key
-and select <tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83.shp</span></tt> and
-<tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83.shp</span></tt> layers. Click <em class="guilabel">OK</em>.</li>
+<li>In the <span class="guilabel">Select layers to add...</span> dialog, hold the <code class="kbd docutils literal"><span class="pre">Shift</span></code> key
+and select <code class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83.shp</span></code> and
+<code class="docutils literal"><span class="pre">Boundary2004_550_stpl83.shp</span></code> layers. Click <span class="guilabel">OK</span>.</li>
 </ol>
 <img alt="../_images/320.png" class="align-center" src="../_images/320.png" />
 <ol class="arabic simple" start="4">
-<li>You will see the 2 layers loaded in QGIS. The <tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83</span></tt>
+<li>You will see the 2 layers loaded in QGIS. The <code class="docutils literal"><span class="pre">Boundary2004_550_stpl83</span></code>
 layer represents the boundary of the lake. Un-check the box next to it in
 the Table of Contents.</li>
 </ol>
 <img alt="../_images/415.png" class="align-center" src="../_images/415.png" />
 <ol class="arabic simple" start="5">
 <li>This will reveal the data from the second layer
-<tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></tt>. Though the data looks like lines, it is
+<code class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></code>. Though the data looks like lines, it is
 a series of points that are very close.</li>
 </ol>
 <img alt="../_images/515.png" class="align-center" src="../_images/515.png" />
 <ol class="arabic simple" start="6">
-<li>Click the <em class="guilabel">Zoom</em> icon and select a small area on the screen. As
+<li>Click the <span class="guilabel">Zoom</span> icon and select a small area on the screen. As
 you zoom closer, you will see the points. Each point represents a reading
 taken by a <em>Depth Sounder</em> at the location recorded by a <em>DGPS</em> equipment.</li>
 </ol>
 <img alt="../_images/614.png" class="align-center" src="../_images/614.png" />
 <ol class="arabic simple" start="7">
-<li>Select the <em class="guilabel">Identify</em> tool and click on a point. You will see the
-<em class="guilabel">Identify Results</em> panel show up on the left with the attribute
-value of the point. In this case, the <tt class="docutils literal"><span class="pre">ELEVATION</span></tt> attribute contains the
+<li>Select the <span class="guilabel">Identify</span> tool and click on a point. You will see the
+<span class="guilabel">Identify Results</span> panel show up on the left with the attribute
+value of the point. In this case, the <code class="docutils literal"><span class="pre">ELEVATION</span></code> attribute contains the
 depth of the lake at the location. As our task is to create a depth profile
 and elevation contours, we will use this values as input for the
 interpolation.</li>
 </ol>
 <img alt="../_images/713.png" class="align-center" src="../_images/713.png" />
 <ol class="arabic simple" start="8">
-<li>Make sure you have the <tt class="docutils literal"><span class="pre">Interpolation</span> <span class="pre">plugin</span></tt> enabled. See
+<li>Make sure you have the <code class="docutils literal"><span class="pre">Interpolation</span> <span class="pre">plugin</span></code> enabled. See
 <a class="reference internal" href="using_plugins.html"><em>การใช้งาน Plugin</em></a> for how to enable plugins. Once enabled, go to
-<em class="menuselection">Raster ‣ Interpolation ‣ Interpolation</em>.</li>
+<span class="menuselection">Raster ‣ Interpolation ‣ Interpolation</span>.</li>
 </ol>
 <img alt="../_images/813.png" class="align-center" src="../_images/813.png" />
 <ol class="arabic simple" start="9">
-<li>In the <em class="guilabel">Interpolation</em> dialog, select
-<tt class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></tt> as the <em class="guilabel">Vector layers</em> in the
-<em class="guilabel">Input</em> panel. Select <tt class="docutils literal"><span class="pre">ELEVATION</span></tt> as the
-<em class="guilabel">Interpolation attribute</em>. Click <em class="guilabel">Add</em>. Change the
-<em class="guilabel">Cellsize X</em> and <em class="guilabel">Cellsize Y</em> values to <tt class="docutils literal"><span class="pre">5</span></tt>. This
+<li>In the <span class="guilabel">Interpolation</span> dialog, select
+<code class="docutils literal"><span class="pre">Arlington_Soundings_2007_stpl83</span></code> as the <span class="guilabel">Vector layers</span> in the
+<span class="guilabel">Input</span> panel. Select <code class="docutils literal"><span class="pre">ELEVATION</span></code> as the
+<span class="guilabel">Interpolation attribute</span>. Click <span class="guilabel">Add</span>. Change the
+<span class="guilabel">Cellsize X</span> and <span class="guilabel">Cellsize Y</span> values to <code class="docutils literal"><span class="pre">5</span></code>. This
 value is the size of each pixel in the output grid. Since our source data is
 in a projected CRS with <strong>Feet-US</strong> as units, based on our selection, the
-grid size will be <strong>5 feet</strong>. Click on the <em class="guilabel">...</em> button next to
-<em class="guilabel">Output file</em> and name the output file as <tt class="docutils literal"><span class="pre">elevation_tin.tif</span></tt>.
-CLick <em class="guilabel">OK</em>.</li>
+grid size will be <strong>5 feet</strong>. Click on the <span class="guilabel">...</span> button next to
+<span class="guilabel">Output file</span> and name the output file as <code class="docutils literal"><span class="pre">elevation_tin.tif</span></code>.
+CLick <span class="guilabel">OK</span>.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -312,68 +311,68 @@ module of the QGIS documentation for more details.</p>
 </div>
 <img alt="../_images/912.png" class="align-center" src="../_images/912.png" />
 <ol class="arabic simple" start="10">
-<li>You will see the new later <tt class="docutils literal"><span class="pre">elevation_tin</span></tt> loaded in QGIS. Right-click
-the layer and select <em class="guilabel">Zoom to layer</em>.</li>
+<li>You will see the new later <code class="docutils literal"><span class="pre">elevation_tin</span></code> loaded in QGIS. Right-click
+the layer and select <span class="guilabel">Zoom to layer</span>.</li>
 </ol>
 <img alt="../_images/1012.png" class="align-center" src="../_images/1012.png" />
 <ol class="arabic simple" start="11">
 <li>Now you will see the full extent of the created surface. Interpolation does
 not give accurate results outside the collection area. Let&#8217;s clip the
-resulting surface with the lake boundary. Go to <em class="menuselection">Raster ‣
-Extraction ‣ Clipper</em>.</li>
+resulting surface with the lake boundary. Go to <span class="menuselection">Raster ‣
+Extraction ‣ Clipper</span>.</li>
 </ol>
 <img alt="../_images/1116.png" class="align-center" src="../_images/1116.png" />
 <ol class="arabic simple" start="12">
-<li>Name the <em class="guilabel">Output file</em> as <tt class="docutils literal"><span class="pre">elevation_tin_clipped.tif</span></tt>. Select the
-<em class="guilabel">Cliiped mode</em> as <em class="guilabel">Mask layer</em>. Select
-<tt class="docutils literal"><span class="pre">Boundary2004_550_stpl83</span></tt> as the <em class="guilabel">Mask layer`</em>. Click
-<em class="guilabel">OK</em>.</li>
+<li>Name the <span class="guilabel">Output file</span> as <code class="docutils literal"><span class="pre">elevation_tin_clipped.tif</span></code>. Select the
+<span class="guilabel">Cliiped mode</span> as <span class="guilabel">Mask layer</span>. Select
+<code class="docutils literal"><span class="pre">Boundary2004_550_stpl83</span></code> as the <span class="guilabel">Mask layer`</span>. Click
+<span class="guilabel">OK</span>.</li>
 </ol>
 <img alt="../_images/1214.png" class="align-center" src="../_images/1214.png" />
 <ol class="arabic simple" start="13">
-<li>A new raster <tt class="docutils literal"><span class="pre">elevation_tin_clipped</span></tt> will be loaded in QGIS. We will now
+<li>A new raster <code class="docutils literal"><span class="pre">elevation_tin_clipped</span></code> will be loaded in QGIS. We will now
 style this layer to show the difference in elevations. Note the min and max
-elevation values from the <tt class="docutils literal"><span class="pre">elevation_tin</span></tt> layer. Right-click the
-<tt class="docutils literal"><span class="pre">elevation_tin_clipped</span></tt> layer and select <em class="guilabel">Properties</em>.</li>
+elevation values from the <code class="docutils literal"><span class="pre">elevation_tin</span></code> layer. Right-click the
+<code class="docutils literal"><span class="pre">elevation_tin_clipped</span></code> layer and select <span class="guilabel">Properties</span>.</li>
 </ol>
 <img alt="../_images/1313.png" class="align-center" src="../_images/1313.png" />
 <ol class="arabic simple" start="14">
-<li>Go to the <em class="guilabel">Style</em> tab. Select <em class="guilabel">Render type</em> as
-<tt class="docutils literal"><span class="pre">Singleband</span> <span class="pre">pseudocolor</span></tt>. In the <em class="guilabel">Generate new color map</em>
-panel, select <tt class="docutils literal"><span class="pre">Spectral</span></tt> color ramp. As we want to create a depth-map as
-opposed to a height-map, check the <em class="guilabel">Invert</em> box. This will assign
-blues to deep areas and reds to shallow areas. Click <em class="guilabel">Classify</em>.</li>
+<li>Go to the <span class="guilabel">Style</span> tab. Select <span class="guilabel">Render type</span> as
+<code class="docutils literal"><span class="pre">Singleband</span> <span class="pre">pseudocolor</span></code>. In the <span class="guilabel">Generate new color map</span>
+panel, select <code class="docutils literal"><span class="pre">Spectral</span></code> color ramp. As we want to create a depth-map as
+opposed to a height-map, check the <span class="guilabel">Invert</span> box. This will assign
+blues to deep areas and reds to shallow areas. Click <span class="guilabel">Classify</span>.</li>
 </ol>
 <img alt="../_images/1411.png" class="align-center" src="../_images/1411.png" />
 <ol class="arabic simple" start="15">
-<li>Switch to the <em class="guilabel">Tranparency</em> tab. We want to remove the
-black-pixels from our output. Enter <tt class="docutils literal"><span class="pre">0</span></tt> as the <em class="guilabel">Additional no
-data value</em>. Click <em class="guilabel">OK</em>.</li>
+<li>Switch to the <span class="guilabel">Tranparency</span> tab. We want to remove the
+black-pixels from our output. Enter <code class="docutils literal"><span class="pre">0</span></code> as the <span class="guilabel">Additional no
+data value</span>. Click <span class="guilabel">OK</span>.</li>
 </ol>
 <img alt="../_images/1511.png" class="align-center" src="../_images/1511.png" />
 <ol class="arabic simple" start="16">
 <li>Now you have a elevation relief map for the lake generated from the
 individual depth readings. Let&#8217;s generate contours now. Go to
-<em class="menuselection">Raster ‣ Extraction ‣ Contours</em>.</li>
+<span class="menuselection">Raster ‣ Extraction ‣ Contours</span>.</li>
 </ol>
 <img alt="../_images/1610.png" class="align-center" src="../_images/1610.png" />
 <ol class="arabic simple" start="17">
-<li>In the <em class="guilabel">Contour</em> dialog, enter <tt class="docutils literal"><span class="pre">contours</span></tt> as the
-<em class="guilabel">Output  file for contour lines</em>. We will generate contour lines
-at 5ft intervals, so enter <tt class="docutils literal"><span class="pre">5.00</span></tt> as the <em class="guilabel">Interval between
-contour lines</em>. Check the <em class="guilabel">Attribute name</em> box. Click
-<em class="guilabel">OK</em>.</li>
+<li>In the <span class="guilabel">Contour</span> dialog, enter <code class="docutils literal"><span class="pre">contours</span></code> as the
+<span class="guilabel">Output  file for contour lines</span>. We will generate contour lines
+at 5ft intervals, so enter <code class="docutils literal"><span class="pre">5.00</span></code> as the <span class="guilabel">Interval between
+contour lines</span>. Check the <span class="guilabel">Attribute name</span> box. Click
+<span class="guilabel">OK</span>.</li>
 </ol>
 <img alt="../_images/179.png" class="align-center" src="../_images/179.png" />
 <ol class="arabic simple" start="18">
-<li>The contour lines will be loaded as <tt class="docutils literal"><span class="pre">contours</span></tt> layer once the processing
-is finished. Right-click the layer and select <em class="guilabel">Properties</em>.</li>
+<li>The contour lines will be loaded as <code class="docutils literal"><span class="pre">contours</span></code> layer once the processing
+is finished. Right-click the layer and select <span class="guilabel">Properties</span>.</li>
 </ol>
 <img alt="../_images/189.png" class="align-center" src="../_images/189.png" />
 <ol class="arabic simple" start="19">
-<li>Go to the <em class="guilabel">Labels</em> tab. Check the <em class="guilabel">Label this layer
-with</em> box and select <tt class="docutils literal"><span class="pre">ELEV</span></tt> as the field. Select <tt class="docutils literal"><span class="pre">Curved</span></tt> as the
-<em class="guilabel">Placement</em> type and click <em class="guilabel">OK</em>.</li>
+<li>Go to the <span class="guilabel">Labels</span> tab. Check the <span class="guilabel">Label this layer
+with</span> box and select <code class="docutils literal"><span class="pre">ELEV</span></code> as the field. Select <code class="docutils literal"><span class="pre">Curved</span></code> as the
+<span class="guilabel">Placement</span> type and click <span class="guilabel">OK</span>.</li>
 </ol>
 <img alt="../_images/197.png" class="align-center" src="../_images/197.png" />
 <ol class="arabic simple" start="20">
@@ -406,8 +405,8 @@ elevation along the line.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Feb 11, 2016.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+      Last updated on Apr 20, 2016.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

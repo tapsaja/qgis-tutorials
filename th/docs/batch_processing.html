@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Automating Complex Workflows using Processing Modeler" href="processing_graphical_modeler.html" />
@@ -51,7 +51,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -69,7 +69,6 @@
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -131,11 +130,11 @@
               
                 
   <li>
-    <a href="interpolating_point_data.html" title="Previous Chapter: Interpolating Point Data"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Interpolating Po...</span>
+    <a href="interpolating_point_data.html" title="Previous Chapter: Interpolating Point Data"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Interpolating Po...</span>
     </a>
   </li>
   <li>
-    <a href="processing_graphical_modeler.html" title="Next Chapter: Automating Complex Workflows using Processing Modeler"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Automating Compl... &raquo;</span>
+    <a href="processing_graphical_modeler.html" title="Next Chapter: Automating Complex Workflows using Processing Modeler"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Automating Compl... &raquo;</span>
     </a>
   </li>
               
@@ -241,12 +240,12 @@ layers. Download the following layers</p>
 <div class="section" id="procedure">
 <h2>ขั้นตอนการทำงาน<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+<li>Go to <span class="menuselection">Layer ‣ Add Vector Layer</span>.</li>
 </ol>
 <img alt="../_images/114.png" class="align-center" src="../_images/114.png" />
 <ol class="arabic simple" start="2">
 <li>Browse to the downloaded Admin 0 Countries shapefile
-<tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt> and click <em class="guilabel">Open</em>.</li>
+<code class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></code> and click <span class="guilabel">Open</span>.</li>
 </ol>
 <img alt="../_images/212.png" class="align-center" src="../_images/212.png" />
 <ol class="arabic simple" start="3">
@@ -258,103 +257,103 @@ same continent value and merge them to a single polygon.</li>
 </ol>
 <img alt="../_images/36.png" class="align-center" src="../_images/36.png" />
 <ol class="arabic simple" start="4">
-<li>Open the <em class="guilabel">Dissolve</em> tool from <em class="menuselection">Vector ‣
-Geoprocessing Tools ‣ Dissolve</em>.</li>
+<li>Open the <span class="guilabel">Dissolve</span> tool from <span class="menuselection">Vector ‣
+Geoprocessing Tools ‣ Dissolve</span>.</li>
 </ol>
 <img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
 <ol class="arabic simple" start="5">
-<li>Select <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> as the <em class="guilabel">Input vector layer</em>.
-The <em class="guilabel">Dissolve field</em> would be <tt class="docutils literal"><span class="pre">CONTINENT</span></tt>. Name the output file
-as <tt class="docutils literal"><span class="pre">continents.shp</span></tt> and  check the box next to <em class="guilabel">Add result to
-convas</em>.</li>
+<li>Select <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> as the <span class="guilabel">Input vector layer</span>.
+The <span class="guilabel">Dissolve field</span> would be <code class="docutils literal"><span class="pre">CONTINENT</span></code>. Name the output file
+as <code class="docutils literal"><span class="pre">continents.shp</span></code> and  check the box next to <span class="guilabel">Add result to
+convas</span>.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">If you want to merge <strong>ALL</strong> polygons regardless of their attributes, you
-can select <em class="guilabel">&#8211; Dissolve All &#8211;</em> as the <em class="guilabel">Dissolve field</em>.
+can select <span class="guilabel">&#8211; Dissolve All &#8211;</span> as the <span class="guilabel">Dissolve field</span>.
 This will combine all polygons in the layer and give you a single aggregate
 polygon.</p>
 </div>
 <img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
 <ol class="arabic simple" start="6">
 <li>The dissolve processing may take a while. Once the process finishes, you
-will see the new <tt class="docutils literal"><span class="pre">continent</span></tt> layer added to QGIS. Use the
-<em class="guilabel">Select Single Feature</em> tool from the toolbar and click on Africa
+will see the new <code class="docutils literal"><span class="pre">continent</span></code> layer added to QGIS. Use the
+<span class="guilabel">Select Single Feature</span> tool from the toolbar and click on Africa
 to select the polygon representing the continent.</li>
 </ol>
 <img alt="../_images/63.png" class="align-center" src="../_images/63.png" />
 <ol class="arabic simple" start="7">
-<li>Right-click the <tt class="docutils literal"><span class="pre">continents</span></tt> layer and select <em class="guilabel">Save Selection
-As...</em>.</li>
+<li>Right-click the <code class="docutils literal"><span class="pre">continents</span></code> layer and select <span class="guilabel">Save Selection
+As...</span>.</li>
 </ol>
 <img alt="../_images/73.png" class="align-center" src="../_images/73.png" />
 <ol class="arabic simple" start="8">
-<li>Name the output file as <tt class="docutils literal"><span class="pre">africa.shp</span></tt>. Since we are only interested in the
+<li>Name the output file as <code class="docutils literal"><span class="pre">africa.shp</span></code>. Since we are only interested in the
 shape of the continent and not any attributes, you may check the
-<em class="guilabel">Skip attribute creation</em>. Make sure the <em class="guilabel">Add saved file
-to map</em> box is checked and click <em class="guilabel">OK</em>.</li>
+<span class="guilabel">Skip attribute creation</span>. Make sure the <span class="guilabel">Add saved file
+to map</span> box is checked and click <span class="guilabel">OK</span>.</li>
 </ol>
 <img alt="../_images/83.png" class="align-center" src="../_images/83.png" />
 <ol class="arabic simple" start="9">
-<li>Now you will have the <tt class="docutils literal"><span class="pre">africa</span></tt> layer loaded in QGIS containing a single
+<li>Now you will have the <code class="docutils literal"><span class="pre">africa</span></code> layer loaded in QGIS containing a single
 polygon for the entire continent. Now, it&#8217;s time to start our batch clip
-process. Open <em class="menuselection">Processing ‣ Toolbox</em>.</li>
+process. Open <span class="menuselection">Processing ‣ Toolbox</span>.</li>
 </ol>
 <img alt="../_images/93.png" class="align-center" src="../_images/93.png" />
 <ol class="arabic simple" start="10">
-<li>Browse all available algorithms and find the <em class="guilabel">Clip</em> tool from
-<em class="menuselection">QGIS geoalgorithms ‣ Vector overlay tools ‣ Clip</em>. You
-may also use the <em class="guilabel">Search</em> box to easily find the algorithm as
+<li>Browse all available algorithms and find the <span class="guilabel">Clip</span> tool from
+<span class="menuselection">QGIS geoalgorithms ‣ Vector overlay tools ‣ Clip</span>. You
+may also use the <span class="guilabel">Search</span> box to easily find the algorithm as
 well.</li>
 </ol>
 <img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
 <ol class="arabic simple" start="11">
-<li>Right-click the <em class="guilabel">Clip</em> algorithm and select <em class="guilabel">Execure as
-batch process</em>.</li>
+<li>Right-click the <span class="guilabel">Clip</span> algorithm and select <span class="guilabel">Execure as
+batch process</span>.</li>
 </ol>
 <img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
 <ol class="arabic simple" start="12">
-<li>In the <em class="guilabel">Batch Processing</em> dialog, the first tab is
-<em class="guilabel">Parameters</em> where we define out inputs. Click the
-<em class="guilabel">...</em> next to the first row in the <em class="guilabel">Input layer</em> column.</li>
+<li>In the <span class="guilabel">Batch Processing</span> dialog, the first tab is
+<span class="guilabel">Parameters</span> where we define out inputs. Click the
+<span class="guilabel">...</span> next to the first row in the <span class="guilabel">Input layer</span> column.</li>
 </ol>
 <img alt="../_images/123.png" class="align-center" src="../_images/123.png" />
 <ol class="arabic simple" start="13">
 <li>Browse to the directory containing the global transportation layers that
-you had downloaded. Hold the <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> key and select all the layers that
-you want to clip. You may also use <tt class="kbd docutils literal"><span class="pre">Shift</span></tt> or <tt class="kbd docutils literal"><span class="pre">Ctrl-A</span></tt> to make
-multiple selection. Click <em class="guilabel">Open</em>.</li>
+you had downloaded. Hold the <code class="kbd docutils literal"><span class="pre">Ctrl</span></code> key and select all the layers that
+you want to clip. You may also use <code class="kbd docutils literal"><span class="pre">Shift</span></code> or <code class="kbd docutils literal"><span class="pre">Ctrl-A</span></code> to make
+multiple selection. Click <span class="guilabel">Open</span>.</li>
 </ol>
 <img alt="../_images/133.png" class="align-center" src="../_images/133.png" />
 <ol class="arabic simple" start="14">
-<li>You will notice that the <em class="guilabel">Input layer</em> columns will be
-auto-populated with all layers you had selected. You may use <em class="guilabel">Add
-row</em> button to add more rows and define more inputs. Next, we need to
+<li>You will notice that the <span class="guilabel">Input layer</span> columns will be
+auto-populated with all layers you had selected. You may use <span class="guilabel">Add
+row</span> button to add more rows and define more inputs. Next, we need to
 select the layer containing the boundary to clip our input layers. Click the
-<em class="guilabel">...</em> button for the first row and add the <tt class="docutils literal"><span class="pre">africa.shp</span></tt>
-<em class="guilabel">Clip layer</em>. Since the clip layer is the same for all our inputs,
-you can double-click the column header <em class="guilabel">Clip layer</em> and the same
+<span class="guilabel">...</span> button for the first row and add the <code class="docutils literal"><span class="pre">africa.shp</span></code>
+<span class="guilabel">Clip layer</span>. Since the clip layer is the same for all our inputs,
+you can double-click the column header <span class="guilabel">Clip layer</span> and the same
 layer will be auto-filled for all the rows. Next, we need to define our
-outputs.  Click the <em class="guilabel">...</em> buton next to the first row in the
-<em class="guilabel">Clipped</em> column.</li>
+outputs.  Click the <span class="guilabel">...</span> buton next to the first row in the
+<span class="guilabel">Clipped</span> column.</li>
 </ol>
 <img alt="../_images/143.png" class="align-center" src="../_images/143.png" />
 <ol class="arabic simple" start="15">
 <li>Browse the the directory where you want your output layers. Type the
-filename as <tt class="docutils literal"><span class="pre">clipped_</span></tt> and click <em class="guilabel">Save</em>.</li>
+filename as <code class="docutils literal"><span class="pre">clipped_</span></code> and click <span class="guilabel">Save</span>.</li>
 </ol>
 <img alt="../_images/153.png" class="align-center" src="../_images/153.png" />
 <ol class="arabic simple" start="16">
-<li>You will see a new <em class="guilabel">Autofill settings</em> dialog pop up. Select
-<em class="guilabel">Fill with parameter values</em> as the <em class="guilabel">Autofill mode</em>.
-Select <em class="guilabel">Parameter to use</em> as <em class="guilabel">Input layer</em>. This
+<li>You will see a new <span class="guilabel">Autofill settings</span> dialog pop up. Select
+<span class="guilabel">Fill with parameter values</span> as the <span class="guilabel">Autofill mode</span>.
+Select <span class="guilabel">Parameter to use</span> as <span class="guilabel">Input layer</span>. This
 setting will add the input file name to the output along with the specified
-<tt class="docutils literal"><span class="pre">output_</span></tt> filename. This is important to ensure all the output files have
+<code class="docutils literal"><span class="pre">output_</span></code> filename. This is important to ensure all the output files have
 unique names and they do not overwrite each other.</li>
 </ol>
 <img alt="../_images/163.png" class="align-center" src="../_images/163.png" />
 <ol class="arabic simple" start="17">
-<li>Now we are ready to start the batch procesing. Click <em class="guilabel">Run</em>.</li>
+<li>Now we are ready to start the batch procesing. Click <span class="guilabel">Run</span>.</li>
 </ol>
 <img alt="../_images/172.png" class="align-center" src="../_images/172.png" />
 <ol class="arabic simple" start="18">
@@ -389,8 +388,8 @@ properly clipped to the continent boundary that we had specified.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Feb 11, 2016.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+      Last updated on Apr 20, 2016.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

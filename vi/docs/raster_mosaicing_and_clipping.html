@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -24,9 +24,10 @@
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Làm việc với dữ liệu địa hình" href="working_with_terrain.html" />
@@ -51,7 +52,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -69,7 +70,6 @@
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -131,11 +131,11 @@
               
                 
   <li>
-    <a href="raster_styling_and_analysis.html" title="Previous Chapter: Trình bày và phân tích raster cơ bản"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Trình bày và phâ...</span>
+    <a href="raster_styling_and_analysis.html" title="Previous Chapter: Trình bày và phân tích raster cơ bản"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Trình bày và phâ...</span>
     </a>
   </li>
   <li>
-    <a href="working_with_terrain.html" title="Next Chapter: Làm việc với dữ liệu địa hình"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Làm việc với dữ ... &raquo;</span>
+    <a href="working_with_terrain.html" title="Next Chapter: Làm việc với dữ liệu địa hình"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Làm việc với dữ ... &raquo;</span>
     </a>
   </li>
               
@@ -235,18 +235,18 @@ use 2km resolution FAS subsets for Brazil for this tutorial.</p>
 <p>Here is how to search and download the revelant data.</p>
 <ol class="arabic simple">
 <li>Open the <a class="reference external" href="http://lance-modis.eosdis.nasa.gov/imagery/subsets/?area=sa">South America region subsets</a>. Find the
-Brazil subsets shown in the <em class="guilabel">FAS Subsets</em> section. Click on any
+Brazil subsets shown in the <span class="guilabel">FAS Subsets</span> section. Click on any
 one of them.</li>
 </ol>
 <img alt="../_images/1109.png" class="align-center" src="../_images/1109.png" />
 <ol class="arabic simple" start="2">
-<li>In the details page, click the <em class="guilabel">2km</em> link under the product of
-your choice. Here we will download the <em class="guilabel">NDVI</em> product. <a class="reference external" href="http://en.wikipedia.org/wiki/Normalized_Difference_Vegetation_Index">Learn more
+<li>In the details page, click the <span class="guilabel">2km</span> link under the product of
+your choice. Here we will download the <span class="guilabel">NDVI</span> product. <a class="reference external" href="http://en.wikipedia.org/wiki/Normalized_Difference_Vegetation_Index">Learn more
 about NDVI</a>.</li>
 </ol>
 <img alt="../_images/268.png" class="align-center" src="../_images/268.png" />
 <ol class="arabic simple" start="3">
-<li>Click the <em class="guilabel">Download GeoTIFF file</em> link to download the raster
+<li>Click the <span class="guilabel">Download GeoTIFF file</span> link to download the raster
 image.</li>
 </ol>
 <img alt="../_images/336.png" class="align-center" src="../_images/336.png" />
@@ -265,36 +265,36 @@ image.</li>
 <div class="section" id="procedure">
 <h2>Các bước thực hiện<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple" start="4">
-<li><p class="first">Mở QGIS và vào <em class="menuselection">Layer ‣ Add Raster Layer..</em>.</p>
+<li><p class="first">Mở QGIS và vào <span class="menuselection">Layer ‣ Add Raster Layer..</span>.</p>
 </li>
 </ol>
 <img alt="../_images/426.png" class="align-center" src="../_images/426.png" />
 <ol class="arabic simple" start="5">
-<li>Browse to the directory with the individual images. Hold down the <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt>
+<li>Browse to the directory with the individual images. Hold down the <code class="kbd docutils literal"><span class="pre">Ctrl</span></code>
 key and click on the image files to make a multiple selection. Click
-<em class="guilabel">Open</em>.</li>
+<span class="guilabel">Open</span>.</li>
 </ol>
 <img alt="../_images/527.png" class="align-center" src="../_images/527.png" />
 <ol class="arabic simple" start="6">
 <li>You will see the images load up in the Table of Content on the left panel.
 Now let us create a single <cite>Mosaic</cite> image from all these individual images.
-Click on <em class="menuselection">Raster ‣ Miscellaneous ‣ Merge</em>.</li>
+Click on <span class="menuselection">Raster ‣ Miscellaneous ‣ Merge</span>.</li>
 </ol>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The <em class="guilabel">Raster</em> menu in QGIS comes from a core plugin called
-<em class="guilabel">GdalTools</em>. If you do not see the <em class="guilabel">Raster</em> menu,
-enable the <em class="guilabel">GdalTools</em> plugin from <em class="menuselection">Plugins ‣
-Manage and install plugins ‣ Installed</em>. See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> for more details.</p>
+<p class="first admonition-title">Ghi chú</p>
+<p class="last">The <span class="guilabel">Raster</span> menu in QGIS comes from a core plugin called
+<span class="guilabel">GdalTools</span>. If you do not see the <span class="guilabel">Raster</span> menu,
+enable the <span class="guilabel">GdalTools</span> plugin from <span class="menuselection">Plugins ‣
+Manage and install plugins ‣ Installed</span>. See <a class="reference internal" href="using_plugins.html"><em>Using Plugins</em></a> for more details.</p>
 </div>
 <img alt="../_images/625.png" class="align-center" src="../_images/625.png" />
 <ol class="arabic simple" start="7">
-<li>In the <em class="guilabel">Merge</em> dialog, click <em class="guilabel">Select...</em> next to
-<em class="guilabel">Input files</em> and browse to the directory containing all
-the individual geotiffs. Keep holding <tt class="kbd docutils literal"><span class="pre">Ctrl</span></tt> key and select all the.
-subsets. Now click <em class="guilabel">Select...</em> next to <em class="guilabel">Output file</em>
-and name the output as <tt class="docutils literal"><span class="pre">Brazil_mosaic.tif</span></tt>. At the bottom, check the box next to
-<em class="guilabel">Load into canvas when finished</em>. Click <em class="guilabel">OK</em>.</li>
+<li>In the <span class="guilabel">Merge</span> dialog, click <span class="guilabel">Select...</span> next to
+<span class="guilabel">Input files</span> and browse to the directory containing all
+the individual geotiffs. Keep holding <code class="kbd docutils literal"><span class="pre">Ctrl</span></code> key and select all the.
+subsets. Now click <span class="guilabel">Select...</span> next to <span class="guilabel">Output file</span>
+and name the output as <code class="docutils literal"><span class="pre">Brazil_mosaic.tif</span></code>. At the bottom, check the box next to
+<span class="guilabel">Load into canvas when finished</span>. Click <span class="guilabel">OK</span>.</li>
 </ol>
 <img alt="../_images/724.png" class="align-center" src="../_images/724.png" />
 <ol class="arabic simple" start="8">
@@ -308,18 +308,18 @@ off individual layers by un-checking the box next to them.</li>
 <li>Another Raster operation you can do is to subset or <cite>crop</cite> an image. We can
 use a polygon from a vector layer to crop the raster to the exact shape.
 Let&#8217;s load the country polygons shapefile we downloaded from Natural Earth.
-Go to <em class="menuselection">Layer ‣ Add Vector Layer</em>.</li>
+Go to <span class="menuselection">Layer ‣ Add Vector Layer</span>.</li>
 </ol>
 <img alt="../_images/921.png" class="align-center" src="../_images/921.png" />
 <ol class="arabic simple" start="10">
-<li>Select the <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></tt> file and click
-<em class="guilabel">Open</em>. When prompted to select the layer within the zip file,
-select <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></tt>.</li>
+<li>Select the <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></code> file and click
+<span class="guilabel">Open</span>. When prompted to select the layer within the zip file,
+select <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></code>.</li>
 </ol>
 <img alt="../_images/1022.png" class="align-center" src="../_images/1022.png" />
 <ol class="arabic simple" start="11">
 <li>Once the vector layer is loaded, we want to select and extract the polygon
-for Brazil. Select the <em class="guilabel">Select Single Feature</em> tool from the
+for Brazil. Select the <span class="guilabel">Select Single Feature</span> tool from the
 toolbar.</li>
 </ol>
 <img alt="../_images/1126.png" class="align-center" src="../_images/1126.png" />
@@ -328,13 +328,13 @@ toolbar.</li>
 </ol>
 <img alt="../_images/1223.png" class="align-center" src="../_images/1223.png" />
 <ol class="arabic simple" start="13">
-<li>Right-click the <tt class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></tt> layer and select
-<em class="guilabel">Save Selection As...</em>.</li>
+<li>Right-click the <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> layer and select
+<span class="guilabel">Save Selection As...</span>.</li>
 </ol>
 <img alt="../_images/1321.png" class="align-center" src="../_images/1321.png" />
 <ol class="arabic simple" start="14">
-<li>Name your output as <tt class="docutils literal"><span class="pre">brazil_boundary.shp</span></tt> and make sure <em class="guilabel">Add
-saved file to map</em> box is checked. click <em class="guilabel">OK</em>.</li>
+<li>Name your output as <code class="docutils literal"><span class="pre">brazil_boundary.shp</span></code> and make sure <span class="guilabel">Add
+saved file to map</span> box is checked. click <span class="guilabel">OK</span>.</li>
 </ol>
 <img alt="../_images/1420.png" class="align-center" src="../_images/1420.png" />
 <ol class="arabic simple" start="15">
@@ -342,26 +342,26 @@ saved file to map</em> box is checked. click <em class="guilabel">OK</em>.</li>
 </ol>
 <img alt="../_images/1519.png" class="align-center" src="../_images/1519.png" />
 <ol class="arabic simple" start="16">
-<li>Now go to <em class="menuselection">Raster ‣ Extraction ‣ Clipper</em>.</li>
+<li>Now go to <span class="menuselection">Raster ‣ Extraction ‣ Clipper</span>.</li>
 </ol>
 <img alt="../_images/1618.png" class="align-center" src="../_images/1618.png" />
 <ol class="arabic simple" start="17">
-<li>Select the <em class="guilabel">input file (raster)</em> as <tt class="docutils literal"><span class="pre">Brazil_mosaic</span></tt>. Name the
-<em class="guilabel">Output file</em> as <tt class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></tt>. In the
-<em class="guilabel">Clipping mode</em> section, choose <em class="guilabel">Mask layer</em>. Select
-the newly created <tt class="docutils literal"><span class="pre">brazil_boundary</span></tt> as the mask layer. Check the box next
-to <em class="guilabel">Load into canvas when finished</em>. Click <em class="guilabel">OK</em>.</li>
+<li>Select the <span class="guilabel">input file (raster)</span> as <code class="docutils literal"><span class="pre">Brazil_mosaic</span></code>. Name the
+<span class="guilabel">Output file</span> as <code class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></code>. In the
+<span class="guilabel">Clipping mode</span> section, choose <span class="guilabel">Mask layer</span>. Select
+the newly created <code class="docutils literal"><span class="pre">brazil_boundary</span></code> as the mask layer. Check the box next
+to <span class="guilabel">Load into canvas when finished</span>. Click <span class="guilabel">OK</span>.</li>
 </ol>
 <img alt="../_images/1717.png" class="align-center" src="../_images/1717.png" />
 <ol class="arabic simple" start="18">
 <li>The new cropped layer will be loaded into QGIS. You will notice the black
 pixels surrounding the actual mosaic. Let&#8217;s remove that. Right-click on the
-<tt class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></tt> layer and select <em class="guilabel">Properties</em>.</li>
+<code class="docutils literal"><span class="pre">Brazil_mosaic_clipped</span></code> layer and select <span class="guilabel">Properties</span>.</li>
 </ol>
 <img alt="../_images/1817.png" class="align-center" src="../_images/1817.png" />
 <ol class="arabic simple" start="19">
-<li>Go to the <em class="guilabel">Transparency</em> tab, and add <cite>0</cite> as an
-<em class="guilabel">Additional no data value</em>.</li>
+<li>Go to the <span class="guilabel">Transparency</span> tab, and add <cite>0</cite> as an
+<span class="guilabel">Additional no data value</span>.</li>
 </ol>
 <img alt="../_images/1915.png" class="align-center" src="../_images/1915.png" />
 <ol class="arabic simple" start="20">
@@ -393,9 +393,9 @@ in your project as a background layer or do further analysis on.</li>
       
     </p>
     <p>
-        &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Last updated on Feb 11, 2016.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+        &copy; Bản quyền thuộc 2015, Ujaval Gandhi.<br/>
+      Cập nhật mới nhất vào Apr 20, 2016.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

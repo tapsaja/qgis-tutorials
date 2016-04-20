@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Автоматизація створення мап за допомогою Print Composer Atlas" href="automating_map_creation.html" />
@@ -51,7 +51,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -69,7 +69,6 @@
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -131,11 +130,11 @@
               
                 
   <li>
-    <a href="batch_processing.html" title="Previous Chapter: Пакетна обробка за допомогою Середовища обробки"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Пакетна обробка ...</span>
+    <a href="batch_processing.html" title="Previous Chapter: Пакетна обробка за допомогою Середовища обробки"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Пакетна обробка ...</span>
     </a>
   </li>
   <li>
-    <a href="automating_map_creation.html" title="Next Chapter: Автоматизація створення мап за допомогою Print Composer Atlas"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Автоматизація ст... &raquo;</span>
+    <a href="automating_map_creation.html" title="Next Chapter: Автоматизація створення мап за допомогою Print Composer Atlas"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Автоматизація ст... &raquo;</span>
     </a>
   </li>
               
@@ -236,7 +235,7 @@ and 2012.</p>
 <h2>Виконання<a class="headerlink" href="#procedure" title="Постійне посилання на цей заголовок">¶</a></h2>
 <p>Our workflow for this exercise will have the following steps.</p>
 <ul class="simple">
-<li>Apply a <tt class="docutils literal"><span class="pre">Majority</span> <span class="pre">Filter</span></tt> algorithm to the input landcover raster. This
+<li>Apply a <code class="docutils literal"><span class="pre">Majority</span> <span class="pre">Filter</span></code> algorithm to the input landcover raster. This
 will reduce noise in our output by eliminating isolated pixels.</li>
 <li><p class="first">Перетворення вихідного растру в шар полігону.</p>
 </li>
@@ -246,49 +245,49 @@ create a vector layer for that class.</li>
 <p>The following steps outline the process to code the above process into a model
 and run it on the downloaded datasets.</p>
 <ol class="arabic simple">
-<li>Launch QGIS and go to <em class="menuselection">Processing ‣ Graphical Modeler...</em>.</li>
+<li>Launch QGIS and go to <span class="menuselection">Processing ‣ Graphical Modeler...</span>.</li>
 </ol>
 <img alt="../_images/1107.png" class="align-center" src="../_images/1107.png" />
 <ol class="arabic simple" start="2">
-<li>The <em class="guilabel">Processing modeler</em> dialog contains a left-hand panel and a
-main canvas. Select the <em class="guilabel">Inputs</em> tab in the left-hand panel and
-drag the <em class="guilabel">+ Raster layer</em> to the canvas.</li>
+<li>The <span class="guilabel">Processing modeler</span> dialog contains a left-hand panel and a
+main canvas. Select the <span class="guilabel">Inputs</span> tab in the left-hand panel and
+drag the <span class="guilabel">+ Raster layer</span> to the canvas.</li>
 </ol>
 <img alt="../_images/258.png" class="align-center" src="../_images/258.png" />
 <ol class="arabic simple" start="3">
-<li>A <em class="guilabel">Parameter definition</em> dialog will pop-up. Enter <tt class="docutils literal"><span class="pre">Input</span></tt> as
-the <em class="guilabel">Parameter name</em> and mark <tt class="docutils literal"><span class="pre">Yes</span></tt> to <em class="guilabel">Required</em>.
-Click <em class="guilabel">OK</em>.</li>
+<li>A <span class="guilabel">Parameter definition</span> dialog will pop-up. Enter <code class="docutils literal"><span class="pre">Input</span></code> as
+the <span class="guilabel">Parameter name</span> and mark <code class="docutils literal"><span class="pre">Yes</span></code> to <span class="guilabel">Required</span>.
+Click <span class="guilabel">OK</span>.</li>
 </ol>
 <img alt="../_images/334.png" class="align-center" src="../_images/334.png" />
 <ol class="arabic simple" start="4">
-<li>You will see a box with the name <em class="guilabel">Input</em> appear in the canvas.
+<li>You will see a box with the name <span class="guilabel">Input</span> appear in the canvas.
 This represents the landcover raster that we will use as input. Next step
-is to apply a <tt class="docutils literal"><span class="pre">Majority</span> <span class="pre">filter</span></tt> algorithm. Switch to the
-<em class="guilabel">Algorithm</em> tab from the bottom-left corner. Search for the
-algorithm and you will find it listed under <em class="guilabel">SAGA</em> provider. Drag
+is to apply a <code class="docutils literal"><span class="pre">Majority</span> <span class="pre">filter</span></code> algorithm. Switch to the
+<span class="guilabel">Algorithm</span> tab from the bottom-left corner. Search for the
+algorithm and you will find it listed under <span class="guilabel">SAGA</span> provider. Drag
 it to the canvas.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Примітка</p>
 <p class="last">If you do not see this algorithm or any of the subsequent algorithms
-mentioned in thi tutorial, you may be using the <em class="guilabel">Simplified
-Interface</em> of the Processing Toolbox. Switch to the <em class="guilabel">Advanced
-Interface</em> by using the dropdown at the bottom of the Processing
+mentioned in thi tutorial, you may be using the <span class="guilabel">Simplified
+Interface</span> of the Processing Toolbox. Switch to the <span class="guilabel">Advanced
+Interface</span> by using the dropdown at the bottom of the Processing
 Toolbox in the main QGIS window.</p>
 </div>
 <img alt="../_images/424.png" class="align-center" src="../_images/424.png" />
 <ol class="arabic simple" start="5">
-<li>A configuration dialog for <em class="guilabel">Majority Filter</em> will be presented.
-Leave the values to their default and click <em class="guilabel">OK</em>.</li>
+<li>A configuration dialog for <span class="guilabel">Majority Filter</span> will be presented.
+Leave the values to their default and click <span class="guilabel">OK</span>.</li>
 </ol>
 <img alt="../_images/525.png" class="align-center" src="../_images/525.png" />
 <ol class="arabic simple" start="6">
-<li>You will note that there is now a new box named <em class="guilabel">Majority Filter</em>
-in the canvas and it is connected to the <em class="guilabel">Input</em> box. This is
-because the <em class="guilabel">Majority Filter</em> algorithm uses the <em class="guilabel">Input</em>
+<li>You will note that there is now a new box named <span class="guilabel">Majority Filter</span>
+in the canvas and it is connected to the <span class="guilabel">Input</span> box. This is
+because the <span class="guilabel">Majority Filter</span> algorithm uses the <span class="guilabel">Input</span>
 raster as its input. The next step in our workflow is to convert the output
-of majority filter to vector. Find the <tt class="docutils literal"><span class="pre">Polygonize</span> <span class="pre">(raster</span> <span class="pre">to</span> <span class="pre">vector)</span></tt>
+of majority filter to vector. Find the <code class="docutils literal"><span class="pre">Polygonize</span> <span class="pre">(raster</span> <span class="pre">to</span> <span class="pre">vector)</span></code>
 algorithm and drag it to the canvas.</li>
 </ol>
 <div class="admonition note">
@@ -300,97 +299,97 @@ and out in the model canvas.</p>
 <img alt="../_images/623.png" class="align-center" src="../_images/623.png" />
 <ol class="arabic simple" start="7">
 <li>Select &#8216;Filtered Grid&#8217; from algorithm &#8216;Majority Filter&#8217; as the value for
-<em class="guilabel">Input layer</em>. Click <em class="guilabel">OK</em>.</li>
+<span class="guilabel">Input layer</span>. Click <span class="guilabel">OK</span>.</li>
 </ol>
 <img alt="../_images/722.png" class="align-center" src="../_images/722.png" />
 <ol class="arabic simple" start="8">
 <li>The final step in the workflow is to query for a class value and create a
-new layer from the matching features. Search for the <tt class="docutils literal"><span class="pre">Extract</span> <span class="pre">by</span>
-<span class="pre">attribute</span></tt> algorithm and drag it the canvas.</li>
+new layer from the matching features. Search for the <code class="docutils literal"><span class="pre">Extract</span> <span class="pre">by</span>
+<span class="pre">attribute</span></code> algorithm and drag it the canvas.</li>
 </ol>
 <img alt="../_images/821.png" class="align-center" src="../_images/821.png" />
 <ol class="arabic simple" start="9">
 <li>Select &#8216;Vectorized&#8217; from algorithm &#8216;Polygonize (raster to vector) as the
-<em class="guilabel">Input Layer</em>. We want to extract the pixels that represent
+<span class="guilabel">Input Layer</span>. We want to extract the pixels that represent
 Croplands. The corresponding pixel value for this class will be 12. (see
-<a class="reference external" href="http://www.landcover.org/data/lc/">Code Values</a>). Enter <tt class="docutils literal"><span class="pre">DN</span></tt> as the
-<em class="guilabel">Selection attribute</em> and <tt class="docutils literal"><span class="pre">12</span></tt> as the <em class="guilabel">value</em>. As the
+<a class="reference external" href="http://www.landcover.org/data/lc/">Code Values</a>). Enter <code class="docutils literal"><span class="pre">DN</span></code> as the
+<span class="guilabel">Selection attribute</span> and <code class="docutils literal"><span class="pre">12</span></code> as the <span class="guilabel">value</span>. As the
 output of this operation will be the final result, we need to name the
-output. Enter <tt class="docutils literal"><span class="pre">vectorized</span> <span class="pre">class</span></tt> as the <em class="guilabel">Output</em>.</li>
+output. Enter <code class="docutils literal"><span class="pre">vectorized</span> <span class="pre">class</span></code> as the <span class="guilabel">Output</span>.</li>
 </ol>
 <img alt="../_images/919.png" class="align-center" src="../_images/919.png" />
 <ol class="arabic simple" start="10">
-<li>Enter the <em class="guilabel">Model name</em> as <tt class="docutils literal"><span class="pre">vectorize</span></tt> and <em class="guilabel">Group
-name</em> as <tt class="docutils literal"><span class="pre">raster</span></tt>. Click the <em class="guilabel">Save</em> button.</li>
+<li>Enter the <span class="guilabel">Model name</span> as <code class="docutils literal"><span class="pre">vectorize</span></code> and <span class="guilabel">Group
+name</span> as <code class="docutils literal"><span class="pre">raster</span></code>. Click the <span class="guilabel">Save</span> button.</li>
 </ol>
 <img alt="../_images/1020.png" class="align-center" src="../_images/1020.png" />
 <ol class="arabic simple" start="11">
-<li>Name the model <tt class="docutils literal"><span class="pre">vectorize</span></tt> and click <em class="guilabel">Save</em>.</li>
+<li>Name the model <code class="docutils literal"><span class="pre">vectorize</span></code> and click <span class="guilabel">Save</span>.</li>
 </ol>
 <img alt="../_images/1124.png" class="align-center" src="../_images/1124.png" />
 <ol class="arabic simple" start="12">
 <li>Now it is time to test our model. Close the modeler and switch to the main
-QGIS window. Go to <em class="menuselection">Layer ‣ Add Layer ‣ Add Raster
-Layer...</em>.</li>
+QGIS window. Go to <span class="menuselection">Layer ‣ Add Layer ‣ Add Raster
+Layer...</span>.</li>
 </ol>
 <img alt="../_images/1221.png" class="align-center" src="../_images/1221.png" />
 <ol class="arabic simple" start="13">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">LC_hd_global_2001.tif.gz</span></tt> file and click
-<em class="guilabel">Open</em>. Once the raster is loaded, go to
-<em class="menuselection">Processing ‣ Toolbox</em>.</li>
+<li>Browse to the downloaded <code class="docutils literal"><span class="pre">LC_hd_global_2001.tif.gz</span></code> file and click
+<span class="guilabel">Open</span>. Once the raster is loaded, go to
+<span class="menuselection">Processing ‣ Toolbox</span>.</li>
 </ol>
 <img alt="../_images/1319.png" class="align-center" src="../_images/1319.png" />
 <ol class="arabic simple" start="14">
-<li>Find the newly created model under <em class="menuselection">Models ‣ raster ‣
-vectorize</em>. Double-click to launch the model.</li>
+<li>Find the newly created model under <span class="menuselection">Models ‣ raster ‣
+vectorize</span>. Double-click to launch the model.</li>
 </ol>
 <img alt="../_images/1418.png" class="align-center" src="../_images/1418.png" />
 <ol class="arabic simple" start="15">
-<li>Select <tt class="docutils literal"><span class="pre">LC_hd_global_2001</span></tt> as the <em class="guilabel">Input</em> and click
-<em class="guilabel">Run</em>.</li>
+<li>Select <code class="docutils literal"><span class="pre">LC_hd_global_2001</span></code> as the <span class="guilabel">Input</span> and click
+<span class="guilabel">Run</span>.</li>
 </ol>
 <img alt="../_images/1517.png" class="align-center" src="../_images/1517.png" />
 <ol class="arabic simple" start="16">
 <li>You will see all the steps being executed without any user input. Once the
-processing finishes, a new layer <tt class="docutils literal"><span class="pre">vectorized_class</span></tt> will be added to
+processing finishes, a new layer <code class="docutils literal"><span class="pre">vectorized_class</span></code> will be added to
 QGIS. Let&#8217;s improve the model a little bit. Right-click on the
-<tt class="docutils literal"><span class="pre">vectorize</span></tt> model and select <em class="guilabel">Edit model</em>.</li>
+<code class="docutils literal"><span class="pre">vectorize</span></code> model and select <span class="guilabel">Edit model</span>.</li>
 </ol>
 <img alt="../_images/1616.png" class="align-center" src="../_images/1616.png" />
 <ol class="arabic simple" start="17">
-<li>In Step 12, we hard-coded the value <tt class="docutils literal"><span class="pre">12</span></tt> as the class value. Instead, we
+<li>In Step 12, we hard-coded the value <code class="docutils literal"><span class="pre">12</span></code> as the class value. Instead, we
 can specify it as a input parameter which the user can change. To add this,
-switch to the <em class="guilabel">Inputs</em> tab and drag the <em class="guilabel">+ String</em> to
+switch to the <span class="guilabel">Inputs</span> tab and drag the <span class="guilabel">+ String</span> to
 the model.</li>
 </ol>
 <img alt="../_images/1715.png" class="align-center" src="../_images/1715.png" />
 <ol class="arabic simple" start="18">
-<li>Enter the <em class="guilabel">Parameter Name</em> as <tt class="docutils literal"><span class="pre">Class</span></tt>. Enter <tt class="docutils literal"><span class="pre">12</span></tt> as the
-<em class="guilabel">Default value</em>.</li>
+<li>Enter the <span class="guilabel">Parameter Name</span> as <code class="docutils literal"><span class="pre">Class</span></code>. Enter <code class="docutils literal"><span class="pre">12</span></code> as the
+<span class="guilabel">Default value</span>.</li>
 </ol>
 <img alt="../_images/1815.png" class="align-center" src="../_images/1815.png" />
 <ol class="arabic simple" start="19">
-<li>We will now change the <tt class="docutils literal"><span class="pre">Extract</span> <span class="pre">by</span> <span class="pre">attribute</span></tt> algorithm to use this input
-instead of the hard-coded value. Click the <em class="guilabel">Edit</em> button next to
-the <em class="guilabel">Extract by attribute</em> box.</li>
+<li>We will now change the <code class="docutils literal"><span class="pre">Extract</span> <span class="pre">by</span> <span class="pre">attribute</span></code> algorithm to use this input
+instead of the hard-coded value. Click the <span class="guilabel">Edit</span> button next to
+the <span class="guilabel">Extract by attribute</span> box.</li>
 </ol>
 <img alt="../_images/1913.png" class="align-center" src="../_images/1913.png" />
 <ol class="arabic simple" start="20">
-<li>Click the dropdown arrow for <em class="guilabel">Value</em> and select <tt class="docutils literal"><span class="pre">Class</span></tt>. Click
-<em class="guilabel">OK</em>.</li>
+<li>Click the dropdown arrow for <span class="guilabel">Value</span> and select <code class="docutils literal"><span class="pre">Class</span></code>. Click
+<span class="guilabel">OK</span>.</li>
 </ol>
 <img alt="../_images/2010.png" class="align-center" src="../_images/2010.png" />
 <ol class="arabic simple" start="21">
-<li>You will see from the model diagram that the <em class="guilabel">Extract by
-attribute</em> algorithm now uses 2 inputs. The modeler has a shortcut to
-launch the model and test it. Click the <em class="guilabel">Run</em> button from the
+<li>You will see from the model diagram that the <span class="guilabel">Extract by
+attribute</span> algorithm now uses 2 inputs. The modeler has a shortcut to
+launch the model and test it. Click the <span class="guilabel">Run</span> button from the
 toolbar.</li>
 </ol>
 <img alt="../_images/2115.png" class="align-center" src="../_images/2115.png" />
 <ol class="arabic simple" start="22">
 <li>Notice that the model dialog has a new editable field called
-<em class="guilabel">Class</em>. Enter <tt class="docutils literal"><span class="pre">16</span></tt> as the <em class="guilabel">Class</em> value and click
-<em class="guilabel">Run</em>.</li>
+<span class="guilabel">Class</span>. Enter <code class="docutils literal"><span class="pre">16</span></code> as the <span class="guilabel">Class</span> value and click
+<span class="guilabel">Run</span>.</li>
 </ol>
 <img alt="../_images/2214.png" class="align-center" src="../_images/2214.png" />
 <ol class="arabic simple" start="23">
@@ -401,14 +400,14 @@ class 16.</li>
 <img alt="../_images/2311.png" class="align-center" src="../_images/2311.png" />
 <ol class="arabic simple" start="24">
 <li>Now that our model is ready, we can run it just as easily on a new raster
-layer. Load the <tt class="docutils literal"><span class="pre">LC_hd_global_2012.tif.gz</span></tt> file by going to
-<em class="menuselection">Layer ‣ Add Layer ‣ Add Raster Layer...</em>. Click the
-<em class="guilabel">vectorize`</em> model from the <em class="guilabel">Processing Toolbox</em> panel.</li>
+layer. Load the <code class="docutils literal"><span class="pre">LC_hd_global_2012.tif.gz</span></code> file by going to
+<span class="menuselection">Layer ‣ Add Layer ‣ Add Raster Layer...</span>. Click the
+<span class="guilabel">vectorize`</span> model from the <span class="guilabel">Processing Toolbox</span> panel.</li>
 </ol>
 <img alt="../_images/2410.png" class="align-center" src="../_images/2410.png" />
 <ol class="arabic simple" start="25">
-<li>Pick the <tt class="docutils literal"><span class="pre">LC_hd_global_2012</span></tt> layer as the <em class="guilabel">Input</em> and click
-<em class="guilabel">Run</em>.</li>
+<li>Pick the <code class="docutils literal"><span class="pre">LC_hd_global_2012</span></code> layer as the <span class="guilabel">Input</span> and click
+<span class="guilabel">Run</span>.</li>
 </ol>
 <img alt="../_images/259.png" class="align-center" src="../_images/259.png" />
 <ol class="arabic simple" start="26">
@@ -418,29 +417,29 @@ from 2001 to 2012.</li>
 <img alt="../_images/267.png" class="align-center" src="../_images/267.png" />
 <ol class="arabic simple" start="27">
 <li>It is always a good idea to add documentation to your model. The modeler
-has a built-in <em class="guilabel">Help editor</em> that allows you to embed help
-directly in the model. Right-click the <tt class="docutils literal"><span class="pre">vectorize</span></tt> model and select
-<em class="guilabel">Edit model</em>.</li>
+has a built-in <span class="guilabel">Help editor</span> that allows you to embed help
+directly in the model. Right-click the <code class="docutils literal"><span class="pre">vectorize</span></code> model and select
+<span class="guilabel">Edit model</span>.</li>
 </ol>
 <img alt="../_images/277.png" class="align-center" src="../_images/277.png" />
 <ol class="arabic simple" start="28">
-<li>Click the <em class="guilabel">Edit model help</em> button from the toolbar.</li>
+<li>Click the <span class="guilabel">Edit model help</span> button from the toolbar.</li>
 </ol>
 <img alt="../_images/285.png" class="align-center" src="../_images/285.png" />
 <ol class="arabic simple" start="29">
-<li>In the <em class="guilabel">Help editor</em> dialog, select any item from the
-<em class="guilabel">Select element to edit</em> panel and enter the help text in
-<em class="guilabel">Element description</em>. Click <em class="guilabel">OK</em>. This help will be
-available in the <em class="guilabel">Help</em> tab when you launch the model to run.</li>
+<li>In the <span class="guilabel">Help editor</span> dialog, select any item from the
+<span class="guilabel">Select element to edit</span> panel and enter the help text in
+<span class="guilabel">Element description</span>. Click <span class="guilabel">OK</span>. This help will be
+available in the <span class="guilabel">Help</span> tab when you launch the model to run.</li>
 </ol>
 <img alt="../_images/294.png" class="align-center" src="../_images/294.png" />
 <p>Models can be a great timesaver and allow you to write your workflow once and
 run it multiple times. You can even share your model with other users. The
-model files are saved in the <tt class="docutils literal"><span class="pre">.qgis2</span></tt> directory. You can send the <tt class="docutils literal"><span class="pre">.model</span></tt>
+model files are saved in the <code class="docutils literal"><span class="pre">.qgis2</span></code> directory. You can send the <code class="docutils literal"><span class="pre">.model</span></code>
 file to another user who can copy it to the appropriate directory on their
-computer and it will appear in the <em class="guilabel">Processing toolbox</em>. The models
+computer and it will appear in the <span class="guilabel">Processing toolbox</span>. The models
 directory location will depend on the platform as follows: (Replace
-<tt class="docutils literal"><span class="pre">username</span></tt> with your login name)</p>
+<code class="docutils literal"><span class="pre">username</span></code> with your login name)</p>
 <p><strong>Windows</strong></p>
 <div class="highlight-none"><div class="highlight"><pre>c:\Users\username\.qgis2\processing\models\
 </pre></div>
@@ -478,8 +477,8 @@ directory location will depend on the platform as follows: (Replace
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Востаннє оновлено Feb 11, 2016.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+      Востаннє оновлено Apr 20, 2016.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

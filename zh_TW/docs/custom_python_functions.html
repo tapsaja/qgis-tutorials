@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="Writing Python Scripts for Processing Framework" href="processing_python_scripts.html" />
@@ -52,7 +52,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -70,7 +70,6 @@
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -132,11 +131,11 @@
               
                 
   <li>
-    <a href="building_a_python_plugin.html" title="Previous Chapter: 以 Python 製作附加元件"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; 以 Python 製作附加元件</span>
+    <a href="building_a_python_plugin.html" title="Previous Chapter: 以 Python 製作附加元件"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; 以 Python 製作附加元件</span>
     </a>
   </li>
   <li>
-    <a href="processing_python_scripts.html" title="Next Chapter: Writing Python Scripts for Processing Framework"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Writing Python S... &raquo;</span>
+    <a href="processing_python_scripts.html" title="Next Chapter: Writing Python Scripts for Processing Framework"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Writing Python S... &raquo;</span>
     </a>
   </li>
               
@@ -222,7 +221,7 @@ tip when hovered over the point.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>你還會學到這些<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>How to use the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">Tips</span></tt> tool to display custom text when hovering over a
+<li>How to use the <code class="docutils literal"><span class="pre">Map</span> <span class="pre">Tips</span></code> tool to display custom text when hovering over a
 feature.</li>
 </ul>
 </div>
@@ -238,33 +237,33 @@ below:</p>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS and go to <em class="menuselection">Layers ‣ Add Vector ‣ Add Vector
-Layer</em>.</li>
+<li>Open QGIS and go to <span class="menuselection">Layers ‣ Add Vector ‣ Add Vector
+Layer</span>.</li>
 </ol>
 <img alt="../_images/128.png" class="align-center" src="../_images/128.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded <tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></tt> file and
-click <em class="guilabel">Open</em>.</li>
+<li>Browse to the downloaded <code class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></code> file and
+click <span class="guilabel">Open</span>.</li>
 </ol>
 <img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
 <ol class="arabic simple" start="3">
-<li>Go to <em class="menuselection">View ‣ Select ‣ Select By Expressions...</em>.</li>
+<li>Go to <span class="menuselection">View ‣ Select ‣ Select By Expressions...</span>.</li>
 </ol>
 <img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
 <ol class="arabic simple" start="4">
-<li>Switch to the <em class="guilabel">Function Editor</em> tab. Here you can write any
+<li>Switch to the <span class="guilabel">Function Editor</span> tab. Here you can write any
 PyQGIS code that will be executed by the expression engine.</li>
 </ol>
 <img alt="../_images/48.png" class="align-center" src="../_images/48.png" />
 <ol class="arabic simple" start="5">
-<li>We will define a custom function named <tt class="docutils literal"><span class="pre">GetUtmZone</span></tt> that will calculate
+<li>We will define a custom function named <code class="docutils literal"><span class="pre">GetUtmZone</span></code> that will calculate
 the UTM zone number for each feature. Since custom functions in QGIS work at
 the feature level. We will use the centroid of the feature&#8217;s geometry and
 compute the UTM Zone from the latitude and longitude of the centroid
 geometry. We will also add a &#8216;N&#8217; or &#8216;S&#8217; designation to the zone to indicate
 whether the zone is in the northern or southern hemisphere. Type the
-following code in the editor, enter the name of the file as <tt class="docutils literal"><span class="pre">utm_zones.py</span></tt>
-and click <em class="guilabel">Save file</em>.</li>
+following code in the editor, enter the name of the file as <code class="docutils literal"><span class="pre">utm_zones.py</span></code>
+and click <span class="guilabel">Save file</span>.</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
@@ -294,20 +293,20 @@ cover some special UTM zones.</p>
 </div>
 <img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
 <ol class="arabic simple" start="6">
-<li>Click <em class="guilabel">Run Script</em>. This will execute the python code and register
-the function <tt class="docutils literal"><span class="pre">GetUtmZone</span></tt> with the expression engine. Note that this is
+<li>Click <span class="guilabel">Run Script</span>. This will execute the python code and register
+the function <code class="docutils literal"><span class="pre">GetUtmZone</span></code> with the expression engine. Note that this is
 needed to be done only once. Once the function is registered, it will always
 be available to the expression engine.</li>
 </ol>
 <img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
 <ol class="arabic simple" start="7">
-<li>Switch to the <em class="guilabel">Expression</em> tab in the <em class="guilabel">Select by
-expression</em> dialog. Find and expand the <em class="guilabel">Custom</em> group in the
-<em class="guilabel">Functions</em> section. You will notice a new custom function
-<tt class="docutils literal"><span class="pre">$GetUtmZone</span></tt> in the list. We can now use this function in the expressions
+<li>Switch to the <span class="guilabel">Expression</span> tab in the <span class="guilabel">Select by
+expression</span> dialog. Find and expand the <span class="guilabel">Custom</span> group in the
+<span class="guilabel">Functions</span> section. You will notice a new custom function
+<code class="docutils literal"><span class="pre">$GetUtmZone</span></code> in the list. We can now use this function in the expressions
 just like any other function. Type the following expression in the editor.
-This expression will select all points that fall in the UTM Zone <tt class="docutils literal"><span class="pre">40N</span></tt>.
-Click <em class="guilabel">Select</em>.</li>
+This expression will select all points that fall in the UTM Zone <code class="docutils literal"><span class="pre">40N</span></code>.
+Click <span class="guilabel">Select</span>.</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>$GetUtmZone = &#39;40N&#39;
 </pre></div>
@@ -322,43 +321,43 @@ expression.</li>
 <ol class="arabic simple" start="9">
 <li>You saw how we defined and used a custom function to select features by
 expression. We will now use the same function in another context. One of the
-hidden gems in QGIS is the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">Tip</span></tt> tool. This tool shows user-defined
+hidden gems in QGIS is the <code class="docutils literal"><span class="pre">Map</span> <span class="pre">Tip</span></code> tool. This tool shows user-defined
 text when you hover over a feature. Right-click the
-<tt class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></tt> layer and select <em class="guilabel">Properties</em>.</li>
+<code class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></code> layer and select <span class="guilabel">Properties</span>.</li>
 </ol>
 <img alt="../_images/97.png" class="align-center" src="../_images/97.png" />
 <ol class="arabic simple" start="10">
-<li>Switch to the <em class="guilabel">Display</em> tab and select <em class="guilabel">HTML</em>. Here you
+<li>Switch to the <span class="guilabel">Display</span> tab and select <span class="guilabel">HTML</span>. Here you
 can enter any text that will be displayed when you hover over the features
 of the layer. Even better, you can use layer field values and expressions
-to define a much more useful message. Click on the <em class="guilabel">Insert
-expression...</em> button.</li>
+to define a much more useful message. Click on the <span class="guilabel">Insert
+expression...</span> button.</li>
 </ol>
 <img alt="../_images/107.png" class="align-center" src="../_images/107.png" />
 <ol class="arabic simple" start="11">
 <li>You will see the familiar expression editor again. We will use the
-<tt class="docutils literal"><span class="pre">concat</span></tt> function to join the value of the field <tt class="docutils literal"><span class="pre">name</span></tt> and the result
+<code class="docutils literal"><span class="pre">concat</span></code> function to join the value of the field <code class="docutils literal"><span class="pre">name</span></code> and the result
 of our custom function $GetUtmZone. Enter the following expression and
-click <em class="guilabel">OK</em>.</li>
+click <span class="guilabel">OK</span>.</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>concat(&quot;name&quot;, &#39; | UTM Zone: &#39;, $GetUtmZone)
 </pre></div>
 </div>
 <img alt="../_images/1111.png" class="align-center" src="../_images/1111.png" />
 <ol class="arabic simple" start="12">
-<li>You will see the expression entered as the value of the <em class="guilabel">Display</em>
-text. Click <em class="guilabel">OK</em>.</li>
+<li>You will see the expression entered as the value of the <span class="guilabel">Display</span>
+text. Click <span class="guilabel">OK</span>.</li>
 </ol>
 <img alt="../_images/129.png" class="align-center" src="../_images/129.png" />
 <ol class="arabic simple" start="13">
 <li>Before we proceed, let us de-select the features that were selected in the
-previous step. Go to <em class="menuselection">View ‣ Select ‣ Deselect Features
-from All Layers</em>.</li>
+previous step. Go to <span class="menuselection">View ‣ Select ‣ Deselect Features
+from All Layers</span>.</li>
 </ol>
 <img alt="../_images/137.png" class="align-center" src="../_images/137.png" />
 <ol class="arabic simple" start="14">
-<li>Activate the <tt class="docutils literal"><span class="pre">Map</span> <span class="pre">Tips</span></tt> tool by going to <em class="menuselection">View ‣ Map
-Tips</em>.</li>
+<li>Activate the <code class="docutils literal"><span class="pre">Map</span> <span class="pre">Tips</span></code> tool by going to <span class="menuselection">View ‣ Map
+Tips</span>.</li>
 </ol>
 <img alt="../_images/147.png" class="align-center" src="../_images/147.png" />
 <ol class="arabic simple" start="15">
@@ -392,8 +391,8 @@ the map tip.</li>
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      最後更新日期是 Feb 11, 2016.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+      最後更新日期是 Apr 20, 2016.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>

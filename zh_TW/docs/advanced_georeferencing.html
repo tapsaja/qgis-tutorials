@@ -9,7 +9,7 @@
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/bootswatch-3.1.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
     
     <script type="text/javascript">
@@ -27,7 +27,7 @@
     <script type="text/javascript" src="../_static/translations.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="把地圖數位化" href="digitizing_basics.html" />
@@ -52,7 +52,7 @@
 
 
   </head>
-  <body>
+  <body role="document">
 
   <div id="navbar" class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -70,7 +70,6 @@
 
         <div class="collapse navbar-collapse nav-collapse">
           <ul class="nav navbar-nav">
-            <li class="divider-vertical"></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -132,11 +131,11 @@
               
                 
   <li>
-    <a href="georeferencing_basics.html" title="Previous Chapter: 為紙本地圖進行空間對位"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; 為紙本地圖進行空間對位</span>
+    <a href="georeferencing_basics.html" title="Previous Chapter: 為紙本地圖進行空間對位"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; 為紙本地圖進行空間對位</span>
     </a>
   </li>
   <li>
-    <a href="digitizing_basics.html" title="Next Chapter: 把地圖數位化"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">把地圖數位化 &raquo;</span>
+    <a href="digitizing_basics.html" title="Next Chapter: 把地圖數位化"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">把地圖數位化 &raquo;</span>
     </a>
   </li>
               
@@ -232,14 +231,14 @@ target="_blank">Letter</a> ]</p><p>在<a class="reference internal" href="georef
 <div class="section" id="get-the-data">
 <h2>取得資料<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
 <p>本教學中，我們要使用 <a class="reference external" href="http://publiclaboratory.org/archive">The Public Laboratory</a> 收集的一系列絕美的氣球、風箏空拍影像。他們其實也有釋出空間對位過的版本，不過為了練習，我們在這裡要下載的是未經空間對位的 JPG 檔，然後再於 QGIS 中進行空間對位。如果你喜歡他們提供的影像，可以在 <a class="reference external" href="http://google-latlong.blogspot.in/2012/04/balloon-and-kite-imagery-in-google.html">Google Earth</a> 中進一步探索。</p>
-<p>下載<a class="reference external" href="http://publiclaboratory.org/map/washington-square-park-new-york-new-york/2012-10-01">紐約市 Washington Square Park</a> 的 JPG 影像。你可以直接在 JPG 的按鈕上按右鍵然後選 <em class="guilabel">Save link as...</em>。</p>
+<p>下載<a class="reference external" href="http://publiclaboratory.org/map/washington-square-park-new-york-new-york/2012-10-01">紐約市 Washington Square Park</a> 的 JPG 影像。你可以直接在 JPG 的按鈕上按右鍵然後選 <span class="guilabel">Save link as...</span>。</p>
 <p>為了方便起見，你也可以直接用下面的連結下載：</p>
 <p><a class="reference external" href="../../downloads/newyorkcity-washingtonsquarepark.jpg">newyorkcity-washingtonsquarepark.jpg</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">本教學會使用開放街圖來當作參考圖層。請到 <em class="menuselection">附加元件 ‣ 管理與安裝附加元件</em> 中安裝 OpenLayers Plugin。有關在 QGIS 中如何使用附加元件，可參考 <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a>。</p>
+<li><p class="first">本教學會使用開放街圖來當作參考圖層。請到 <span class="menuselection">附加元件 ‣ 管理與安裝附加元件</span> 中安裝 OpenLayers Plugin。有關在 QGIS 中如何使用附加元件，可參考 <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a>。</p>
 </li>
 </ol>
 <img alt="../_images/1.png" class="align-center" src="../_images/1.png" />
@@ -259,12 +258,12 @@ target="_blank">Letter</a> ]</p><p>在<a class="reference internal" href="georef
 </ol>
 <img alt="../_images/4.png" class="align-center" src="../_images/4.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">你會發現這裡的座標是經緯度，以度/分/秒的方式顯現，但我們的圖層是麥卡托投影，需要把它轉換成麥卡托直角坐標才能定位。因此，我們要使用一個方便的指令叫做 <strong>cs2cs</strong> 來幫我們這個忙。一般來說，在 Windows 安裝 QGIS 時，應該會把一個稱為 OSGEO4W 的套件也一併安裝，而在 Linux 和 Mac 上亦然。在後兩個作業系統上，可以進入終端機，輸入 <tt class="docutils literal"><span class="pre">cs2cs</span></tt> 查看此程式是否存在，而 Windows 使用者可以去 <em class="menuselection">開始（所有程式） ‣ OSGeo4W ‣ MSYS</em> 啟動終端機（譯按：或是 <em class="menuselection">開始（所有程式） ‣ QGIS ‣ OSGeo4W Shell</em>。）</p>
+<li><p class="first">你會發現這裡的座標是經緯度，以度/分/秒的方式顯現，但我們的圖層是麥卡托投影，需要把它轉換成麥卡托直角坐標才能定位。因此，我們要使用一個方便的指令叫做 <strong>cs2cs</strong> 來幫我們這個忙。一般來說，在 Windows 安裝 QGIS 時，應該會把一個稱為 OSGEO4W 的套件也一併安裝，而在 Linux 和 Mac 上亦然。在後兩個作業系統上，可以進入終端機，輸入 <code class="docutils literal"><span class="pre">cs2cs</span></code> 查看此程式是否存在，而 Windows 使用者可以去 <span class="menuselection">開始（所有程式） ‣ OSGeo4W ‣ MSYS</span> 啟動終端機（譯按：或是 <span class="menuselection">開始（所有程式） ‣ QGIS ‣ OSGeo4W Shell</span>。）</p>
 </li>
 </ol>
 <img alt="../_images/5.png" class="align-center" src="../_images/5.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">確定 cs2cs 指令有安裝在系統中後，就可以著手來把經緯度座標轉換成麥卡托座標。使用這個工具時，必須要指定<em class="guilabel">初始</em>和<em class="guilabel">目標</em>的 CRS，指定的方法可以為 <a class="reference external" href="http://trac.osgeo.org/proj/wiki/GenParms">PROJ4 字串</a>或是 <a class="reference external" href="http://www.epsg-registry.org/">EPSG 代碼</a>。因為我們已經知道目標圖層的 CRS，所以直接使用後者即可。此指令最簡單的使用方法是直接在命令列中輸入座標，這個指令讀入座標的順序是 <cite>X Y</cite>，所以我們要輸入的是「<cite>經度 緯度</cite>」。輸入如下所示的指令並按下 Enter 鍵（指令中的反斜線 () 是雙引號 (&#8221;) 的逃脫字符。在某些終端機版本中，不用加上逃脫字符和字串前後的雙引號）。完成之後，可以看到螢幕上會顯示 EPSG 3857 座標系統的 X Y 座標。</p>
+<li><p class="first">確定 cs2cs 指令有安裝在系統中後，就可以著手來把經緯度座標轉換成麥卡托座標。使用這個工具時，必須要指定<span class="guilabel">初始</span>和<span class="guilabel">目標</span>的 CRS，指定的方法可以為 <a class="reference external" href="http://trac.osgeo.org/proj/wiki/GenParms">PROJ4 字串</a>或是 <a class="reference external" href="http://www.epsg-registry.org/">EPSG 代碼</a>。因為我們已經知道目標圖層的 CRS，所以直接使用後者即可。此指令最簡單的使用方法是直接在命令列中輸入座標，這個指令讀入座標的順序是 <cite>X Y</cite>，所以我們要輸入的是「<cite>經度 緯度</cite>」。輸入如下所示的指令並按下 Enter 鍵（指令中的反斜線 () 是雙引號 (&#8221;) 的逃脫字符。在某些終端機版本中，不用加上逃脫字符和字串前後的雙引號）。完成之後，可以看到螢幕上會顯示 EPSG 3857 座標系統的 X Y 座標。</p>
 </li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>echo &quot;-73d59&#39;51\&quot; 40d43&#39;51\&quot;&quot; | cs2cs +init=EPSG:4326 +to +init=EPSG:3857
@@ -279,27 +278,27 @@ target="_blank">Letter</a> ]</p><p>在<a class="reference internal" href="georef
 </ol>
 <img alt="../_images/7.png" class="align-center" src="../_images/7.png" />
 <ol class="arabic simple" start="8">
-<li><p class="first">太棒了，Washington Square Park 出現在畫面中了！總算可以開始來進行空間對位，請選擇 <em class="menuselection">影像 ‣ 空間對位 ‣ 空間對位</em>，如果你找不到此選項的話，要到 <em class="menuselection">附加元件 ‣ 管理與安裝附加元件 ‣ 已安裝</em> 的分頁中啟用 <em class="guilabel">空間對位 GDAL</em> 這個附加元件。</p>
+<li><p class="first">太棒了，Washington Square Park 出現在畫面中了！總算可以開始來進行空間對位，請選擇 <span class="menuselection">影像 ‣ 空間對位 ‣ 空間對位</span>，如果你找不到此選項的話，要到 <span class="menuselection">附加元件 ‣ 管理與安裝附加元件 ‣ 已安裝</span> 的分頁中啟用 <span class="guilabel">空間對位 GDAL</span> 這個附加元件。</p>
 </li>
 </ol>
 <img alt="../_images/8.png" class="align-center" src="../_images/8.png" />
 <ol class="arabic simple" start="9">
-<li><p class="first">在 <em class="guilabel">空間對位</em> 視窗中選擇 <em class="menuselection">檔案 ‣ Open raster</em>，選擇剛下載的 JPG 檔，然後按 <em class="guilabel">開啟</em>。</p>
+<li><p class="first">在 <span class="guilabel">空間對位</span> 視窗中選擇 <span class="menuselection">檔案 ‣ Open raster</span>，選擇剛下載的 JPG 檔，然後按 <span class="guilabel">開啟</span>。</p>
 </li>
 </ol>
 <img alt="../_images/9.png" class="align-center" src="../_images/9.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">在 <em class="guilabel">選擇座標參考系統</em> 視窗中，選擇 <em class="guilabel">EPSG:3857 Pseudo Mercator</em>。</p>
+<li><p class="first">在 <span class="guilabel">選擇座標參考系統</span> 視窗中，選擇 <span class="guilabel">EPSG:3857 Pseudo Mercator</span>。</p>
 </li>
 </ol>
 <img alt="../_images/10.png" class="align-center" src="../_images/10.png" />
 <ol class="arabic simple" start="11">
-<li><p class="first">接下來按下在工具列上的 <em class="guilabel">Add Point</em> 鈕，然後選擇幾個比較容易定位的特徵點，例如轉角、十字路口、雕像等等，這些點稍後要拿來當作控制點。</p>
+<li><p class="first">接下來按下在工具列上的 <span class="guilabel">Add Point</span> 鈕，然後選擇幾個比較容易定位的特徵點，例如轉角、十字路口、雕像等等，這些點稍後要拿來當作控制點。</p>
 </li>
 </ol>
 <img alt="../_images/11.png" class="align-center" src="../_images/11.png" />
 <ol class="arabic simple" start="12">
-<li><p class="first">當你在圖上按下點位時，會有個視窗跳出來要求輸入地圖坐標。選擇 <em class="guilabel">從地圖畫面取得坐標</em>。</p>
+<li><p class="first">當你在圖上按下點位時，會有個視窗跳出來要求輸入地圖坐標。選擇 <span class="guilabel">從地圖畫面取得坐標</span>。</p>
 </li>
 </ol>
 <img alt="../_images/12.png" class="align-center" src="../_images/12.png" />
@@ -309,12 +308,12 @@ target="_blank">Letter</a> ]</p><p>在<a class="reference internal" href="georef
 </ol>
 <img alt="../_images/13.png" class="align-center" src="../_images/13.png" />
 <ol class="arabic simple" start="14">
-<li><p class="first">接下來選擇 <em class="menuselection">設定 ‣ Transformation settings</em>。</p>
+<li><p class="first">接下來選擇 <span class="menuselection">設定 ‣ Transformation settings</span>。</p>
 </li>
 </ol>
 <img alt="../_images/14.png" class="align-center" src="../_images/14.png" />
 <ol class="arabic simple" start="15">
-<li><p class="first">輸入如圖所示的參數設定，記得勾選回到 <em class="guilabel">處理完畢後載入 QGIS 中</em>。按下確定鈕回到 <em class="guilabel">空間對位</em> 的視窗中，點選 <em class="menuselection">檔案 ‣ Start georeferencing</em>，程式就會開始使用控制點轉換產生新影像。</p>
+<li><p class="first">輸入如圖所示的參數設定，記得勾選回到 <span class="guilabel">處理完畢後載入 QGIS 中</span>。按下確定鈕回到 <span class="guilabel">空間對位</span> 的視窗中，點選 <span class="menuselection">檔案 ‣ Start georeferencing</span>，程式就會開始使用控制點轉換產生新影像。</p>
 </li>
 </ol>
 <img alt="../_images/15.png" class="align-center" src="../_images/15.png" />
@@ -324,12 +323,12 @@ target="_blank">Letter</a> ]</p><p>在<a class="reference internal" href="georef
 </ol>
 <img alt="../_images/16.png" class="align-center" src="../_images/16.png" />
 <ol class="arabic simple" start="17">
-<li><p class="first">如要讓它看起來更順眼，得要移除掉影像周圍的黑色和白色無資料值。在這個圖層上按右鍵，選擇 <em class="guilabel">屬性</em>。</p>
+<li><p class="first">如要讓它看起來更順眼，得要移除掉影像周圍的黑色和白色無資料值。在這個圖層上按右鍵，選擇 <span class="guilabel">屬性</span>。</p>
 </li>
 </ol>
 <img alt="../_images/17.png" class="align-center" src="../_images/17.png" />
 <ol class="arabic simple" start="18">
-<li><p class="first">切到 <em class="guilabel">透明度</em> 分頁，我們要把黑色和白色的像素通通指定為<cite>無資料值</cite>，就可以讓他們都變透明。在 <em class="guilabel">附加無資料值</em> 中輸入 0，接著在下方的 <em class="guilabel">自訂透明度選項</em>中，按下 <em class="guilabel">+</em> 按鈕然後在每個波段中都輸入 255，<em class="guilabel">透明百分比</em>則輸入 100，最後按下 <em class="guilabel">確定</em>。</p>
+<li><p class="first">切到 <span class="guilabel">透明度</span> 分頁，我們要把黑色和白色的像素通通指定為<cite>無資料值</cite>，就可以讓他們都變透明。在 <span class="guilabel">附加無資料值</span> 中輸入 0，接著在下方的 <span class="guilabel">自訂透明度選項</span>中，按下 <span class="guilabel">+</span> 按鈕然後在每個波段中都輸入 255，<span class="guilabel">透明百分比</span>則輸入 100，最後按下 <span class="guilabel">確定</span>。</p>
 </li>
 </ol>
 <img alt="../_images/18.png" class="align-center" src="../_images/18.png" />
@@ -363,8 +362,8 @@ target="_blank">Letter</a> ]</p><p>在<a class="reference internal" href="georef
     </p>
     <p>
         &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      最後更新日期是 Feb 11, 2016.<br/>
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.<br/>
+      最後更新日期是 Apr 20, 2016.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>
