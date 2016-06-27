@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Работа с данными о местности &mdash; QGIS Tutorials and Tips</title>
+    <title>Работа с цифровой моделью рельефа &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -91,7 +91,7 @@
 <li class="toctree-l1"><a class="reference internal" href="calculating_line_lengths.html">Подсчёт длины линий и статистики</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_styling_and_analysis.html">Основы работы со стилями и анализа растровых данных</a></li>
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Создание мозаик и обрезка растров</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Работа с данными о местности</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Работа с цифровой моделью рельефа</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Работа с данными WMS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_projections.html">Working with Projections</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Географическая привязка топографических листов и сканированных карт</a></li>
@@ -206,69 +206,60 @@
       
 
   <div class="section" id="working-with-terrain-data">
-<h1>Работа с данными о местности<a class="headerlink" href="#working-with-terrain-data" title="Ссылка на этот заголовок">¶</a></h1>
-<p>Terrain-данные, или данные высот, бывают полезны для многих видов ГИС-анализа, а также часто используются в картах. QGIS имеет обширные встроенные возможности для обработки terrain-данных. В этом уроке мы по шагам пройдем процесс создания различных производных от данных высот, таких как горизонтали, теневая отмывка и т.д.</p>
+<h1>Работа с цифровой моделью рельефа<a class="headerlink" href="#working-with-terrain-data" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Данные рельефа, или высот, бывают полезны для многих видов геоинформационного анализа, а также часто используются в картах. В QGIS встроены обширные возможности для обработки данных высот. В этом уроке мы по шагам пройдем процесс создания из данных высот таких производных, как горизонтали, теневая отмывка и т.д.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Обзор задачи<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
-<p>Задача заключается в создании карты с изолиниями и теневой отмывкой для окрестности горы Эверест.</p>
+<p>Нужно создать карту с изолиниями и теневой отмывкой для окрестности горы Эверест.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Вы научитесь также<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
 <ul class="simple">
-<li><p class="first">искать и загружать бесплатно доступные пространственные данные</p>
+<li><p class="first">искать и загружать бесплатно доступные пространственные данные;</p>
 </li>
-<li><p class="first">Экспортировать векторный слой в формат KML и просматривать в Google Earth.</p>
+<li><p class="first">экспортировать векторный слой в формат KML и просматривать в Google Earth.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>Получение данных<a class="headerlink" href="#get-the-data" title="Ссылка на этот заголовок">¶</a></h2>
-<p>We will be working with GMTED2010 dataset from USGS. This data can be
-downloaded from the <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> site. <a class="reference external" href="http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/GMTED2010">GMTED (Global Multi-resolution
-Terrain Elevation Data)</a> is a global terrain dataset that is the newer version
-of GTOPO30 dataset.</p>
-<p>Here is how to search and download the revelant data from USGS Earthexplorer.</p>
+<p>Мы будем работать с набором данных GMTED2010 от Геологической службы США. Эти данные могут быть загружены с сайта <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a>. <a class="reference external" href="http://eros.usgs.gov/#/Find_Data/Products_and_Data_Available/GMTED2010">GMTED (Global Multi-resolution Terrain Elevation Data)</a> - это глобальный набор данных о рельефе, который является новой версией набора данных GTOPO30.</p>
+<p>Как искать и загружать релевантные данные с сайта USGS Earthexplorer:</p>
 <ol class="arabic simple">
-<li>Go to the <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> . In the
-<span class="guilabel">Search Criteria</span> tab, search for the place name <cite>Mt. Everest</cite>.
-Click on the result to select the location.</li>
+<li><p class="first">Зайдите на сайт <a class="reference external" href="http://earthexplorer.usgs.gov/">USGS Earthexplorer</a> . На вкладке :guilabel: <cite>Search Criteria</cite>, введите в строку поиска <cite>Mt. Everest</cite>. Нажмите на результат поиска, чтобы выбрать место.</p>
+</li>
 </ol>
 <img alt="../_images/1142.png" class="align-center" src="../_images/1142.png" />
 <ol class="arabic simple" start="2">
-<li>In the <span class="guilabel">Data Sets</span> tab, expand the <span class="guilabel">Digital Elevation</span>
-group, and check <span class="guilabel">GMTED2010</span>.</li>
+<li><p class="first">На вкладке <span class="guilabel">Data Sets</span> разверните группу <span class="guilabel">Digital Elevation</span> и выберите <span class="guilabel">GMTED2010</span>.</p>
+</li>
 </ol>
 <img alt="../_images/298.png" class="align-center" src="../_images/298.png" />
 <ol class="arabic simple" start="3">
-<li>You can now skip to the <span class="guilabel">Results</span> tab and see the part of the
-dataset intersecting your search criteria. Click the <span class="guilabel">Download
-Options</span> button. You will have to log in to the site at this point. You can
-create a free account if you do not have one.</li>
+<li><p class="first">Теперь вы можете перейти ко вкладке <span class="guilabel">Results</span> и увидеть часть набора данных, удовлетворяющую критериям поиска. Нажмите кнопку <span class="guilabel">Download Options</span>. Теперь вам нужно будет авторизоваться. Вы можете создать бесплатную учетную запись, если ее у вас нет.</p>
+</li>
 </ol>
 <img alt="../_images/348.png" class="align-center" src="../_images/348.png" />
 <ol class="arabic simple" start="4">
-<li>Select the <span class="guilabel">30 ARC SEC</span> option and click <span class="guilabel">Select
-Download Option</span>.</li>
+<li><p class="first">Выберите опцию <span class="guilabel">30 ARC SEC</span> и нажмите <span class="guilabel">Select Download Option</span>.</p>
+</li>
 </ol>
 <img alt="../_images/435.png" class="align-center" src="../_images/435.png" />
-<p>You will now have a file named <cite>GMTED2010N10E060_300.zip</cite>. Elevation data is
-distributed in various raster formats such as ASC, BIL, GeoTiff etc.
-QGIS supports a wide <a class="reference external" href="http://www.gdal.org/formats_list.html">variety of raster formats</a> via the GDAL library. The GMTED
-data comes as GeoTiff files which are contained in this zip archive.</p>
-<p>For convenience, you can download a copy of the data directly from below.</p>
+<p>Теперь у вас есть файл с именем <cite>GMTED2010N10E060_300.zip</cite>. Данные высот распространяются в различных растровых форматах, таких как ASC, BIL, GeoTiff и т.д. QGIS поддерживает широкий спектр <a class="reference external" href="http://www.gdal.org/formats_list.html">растровых форматов</a> через библиотеку GDAL. Данные GMTED поставляются в виде файлов GeoTiff, содержащихся zip-архиве.</p>
+<p>Для удобства вы можете загрузить копию данных напрямую по приведенной ниже ссылке:</p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/GMTED2010N10E060_300.zip">GMTED2010N10E060_300.zip</a></p>
 <p>Источник данных: <a class="reference internal" href="credits.html#gmted2010" id="id2">[GMTED2010]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>Методика<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
 <ol class="arabic simple" start="5">
-<li>Open <span class="menuselection">Layer ‣ Add Raster Layer</span> and browse to the
-downloaded zip file.</li>
+<li><p class="first">Откройте меню <span class="menuselection">Layer ‣ Add Raster Layer</span> и найдите загруженный zip-файл.</p>
+</li>
 </ol>
 <img alt="../_images/536.png" class="align-center" src="../_images/536.png" />
 <ol class="arabic simple" start="6">
-<li>There are many different files generated from different algorithms.
-For this tutorial, we will use the file named <cite>10n060e_20101117_gmted_mea300.tif</cite>.</li>
+<li><p class="first">В нем содержится много различных файлов, сгенерированных по различным алгоритмам. Для этого урока мы будем использовать файл с именем <cite>10n060e_20101117_gmted_mea300.tif</cite>.</p>
+</li>
 </ol>
 <img alt="../_images/634.png" class="align-center" src="../_images/634.png" />
 <ol class="arabic simple" start="7">
@@ -427,12 +418,15 @@ Right click on the contours layer, select <span class="guilabel">Save as..</span
       
     </p>
     <p>
-        &copy; Copyright 2015, Ujaval Gandhi.<br/>
-      Обновлено: May 13, 2016.<br/>
+        &copy; Copyright 2016, Ujaval Gandhi.<br/>
+      Обновлено: Jun 27, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
 </footer>
+<div class="container">
+  <p>This work is licensed under a <a href="http://creativecommons.org/licenses/by/4.0/deed.en_US">Creative Commons Attribution 4.0 International License</a></p>
+</div>
 <!-- Twitter Button -->
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
