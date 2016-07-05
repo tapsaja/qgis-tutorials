@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>使用 QGIS Browser &mdash; QGIS Tutorials and Tips</title>
+    <title>使用 QGIS 瀏覽器 &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -97,20 +97,20 @@
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">為紙本地圖進行空間對位</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">為空照圖進行空間對位</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">把地圖數位化</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">連接資料表</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">資料表連接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">空間連接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">找出在多邊形中的點</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">製作熱區圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">空間查詢</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">近鄰分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">使用點或多邊形對影像資料取樣</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">點資料內插法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">使用 QGIS Browser</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">使用 QGIS 瀏覽器</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
-<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">在 QGIS 中開啟 BIL、BIP 或 BSQ 格式檔案</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
@@ -206,39 +206,26 @@
       
 
   <div class="section" id="using-the-qgis-browser">
-<h1>使用 QGIS Browser<a class="headerlink" href="#using-the-qgis-browser" title="Permalink to this headline">¶</a></h1>
-<p>QGIS comes with a standalone application called <strong>QGIS Browser</strong>. This is a
-useful companion tool to QGIS and helpful in managing GIS datasets. ArcGIS users
-may think of it as an application similar to ArcCatalog.</p>
+<h1>使用 QGIS 瀏覽器<a class="headerlink" href="#using-the-qgis-browser" title="Permalink to this headline">¶</a></h1>
+<p>QGIS 具有一個稱為 <strong>QGIS 瀏覽器</strong> （QGIS Browser）的獨立應用程式，是 QGIS 的實用附屬工具，用來管理檔案也相當方便。如果你也是 ArcGIS 使用者，你就會知道它的功用其實就與 ArcCatalog 非常類似。</p>
 <div class="section" id="locating-the-qgis-browser">
-<h2>尋找 QGIS Browser<a class="headerlink" href="#locating-the-qgis-browser" title="Permalink to this headline">¶</a></h2>
+<h2>尋找 QGIS 瀏覽器<a class="headerlink" href="#locating-the-qgis-browser" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="qgis-browser-standalone-application">
-<h3>QGIS Browser 獨立應用程式<a class="headerlink" href="#qgis-browser-standalone-application" title="Permalink to this headline">¶</a></h3>
-<p>QGIS Browser 是 QGIS 標準安裝的一部份：</p>
+<h3>QGIS 瀏覽器獨立應用程式<a class="headerlink" href="#qgis-browser-standalone-application" title="Permalink to this headline">¶</a></h3>
+<p>QGIS 瀏覽器（QGIS Browser）是 QGIS 標準安裝的一部份：</p>
 <ul class="simple">
-<li>Windows: If you installed QGIS via OSGEO4W installer, you will see
-<code class="docutils literal"><span class="pre">QGIS</span> <span class="pre">Browser</span></code> in your start menu.</li>
-<li>Mac: The application is located at
-<code class="docutils literal"><span class="pre">QGIS.app/Contents/MacOS/bin/QGIS</span> <span class="pre">Browser.app</span></code>. You can create a symlink to this
-app. Navigate to the Application folder, right-click the QGIS icon and select
-<span class="guilabel">Show Package Contents</span>. Browse to <span class="menuselection">MacOS ‣ bin
-‣ QGIS Browser</span>. Right-click the <code class="docutils literal"><span class="pre">QGIS</span> <span class="pre">Browser</span></code> icon and select
-<span class="guilabel">Make Alias</span>.  Drag the <code class="docutils literal"><span class="pre">QGIS</span> <span class="pre">Browser</span> <span class="pre">alias</span></code> to the
-<span class="guilabel">Applications</span> folder. Now you can access the <code class="docutils literal"><span class="pre">QGIS</span> <span class="pre">Browser</span></code> like
-any other application.</li>
-<li><p class="first">Linux：可以使用 <code class="docutils literal"><span class="pre">qbrowser</span></code> 這個指令執行 QGIS browser。應用程式的位置與 QGIS 主程式的資料夾位置相同。</p>
+<li><p class="first">Windows：如果你是從 OSGEO4W 安裝檔安裝 QGIS 的話，可以在開始 -&gt; 所有程式中找到 <code class="docutils literal"><span class="pre">QGIS</span> <span class="pre">Browser</span></code>。</p>
+</li>
+<li><p class="first">Mac: 應用程式位於 <code class="docutils literal"><span class="pre">QGIS.app/Contents/MacOS/bin/QGIS</span> <span class="pre">Browser.app</span></code>，你也可以建立一個捷徑：前往應用程式所在資料夾，在 QGIS 圖示上按右鍵，選擇 <span class="guilabel">Show Package Contents</span>，前往 <span class="menuselection">MacOS ‣ bin ‣ QGIS Browser</span>，在 <code class="docutils literal"><span class="pre">QGIS</span> <span class="pre">Browser</span></code> 圖示上按右鍵，選擇 <span class="guilabel">Make Alias</span>，然後把 <code class="docutils literal"><span class="pre">QGIS</span> <span class="pre">Browser</span> <span class="pre">alias</span></code> 拖到 <span class="guilabel">應用程式</span> 資料夾，現在你就可以用和其他應用程式一樣的方法開啟 <code class="docutils literal"><span class="pre">QGIS</span> <span class="pre">Browser</span></code>。</p>
+</li>
+<li><p class="first">Linux：可以使用 <code class="docutils literal"><span class="pre">qbrowser</span></code> 這個指令執行 QGIS 瀏覽器。應用程式的位置與 QGIS 主程式的資料夾位置相同。</p>
 </li>
 </ul>
 <img alt="../_images/a.png" class="align-center" src="../_images/a.png" />
 </div>
 <div class="section" id="browser-panel-in-qgis">
 <h3>嵌在 QGIS 中的瀏覽器面板<a class="headerlink" href="#browser-panel-in-qgis" title="Permalink to this headline">¶</a></h3>
-<p>A convenient way to access the QGIS Browser is from within the main QGIS Desktop
-application itself. The browser panel is located at the bottom of the left-hand
-panel in QGIS. Click on the <span class="guilabel">Browser</span> tab to open the <span class="guilabel">QGIS
-Browser</span>. If you do not see the <span class="guilabel">Browser</span> tab, enable it by doing to
-<span class="menuselection">View ‣ Panels ‣ Browser</span> (Windows and Mac) or
-<span class="menuselection">Settings ‣ Panels ‣ Browser</span> (Linux).</p>
+<p>另一個輕鬆使用 QGIS 瀏覽器的方法是透過 QGIS 主程式本身來執行。瀏覽器面板位於 QGIS 左手邊面板 (底部)，點選 <span class="guilabel">Browser</span> 分頁，就可開啟 <span class="guilabel">QGIS 瀏覽器</span>。如果你沒有看到 <span class="guilabel">Browser</span> 分頁，要前往 <span class="menuselection">檢視 ‣ 版面配置 ‣ Browser</span> 以開啟瀏覽器。(舊版 Linux 則是位於 <code class="docutils literal"><span class="pre">設定</span></code> 頁面而不是 <code class="docutils literal"><span class="pre">檢視</span></code> 頁面。)</p>
 <img alt="../_images/b.png" class="align-center" src="../_images/b.png" />
 </div>
 </div>
@@ -335,7 +322,7 @@ left-hand panel in QGIS to view the added layer.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Jun 27, 2016.<br/>
+      最後更新日期是 Jul 05, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

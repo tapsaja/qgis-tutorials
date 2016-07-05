@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Sampling Raster Data using Points or Polygons &mdash; QGIS Tutorials and Tips</title>
+    <title>使用點或多邊形對影像資料取樣 &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -31,7 +31,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="點資料內插法" href="interpolating_point_data.html" />
-    <link rel="prev" title="Nearest Neighbor Analysis" href="nearest_neighbor_analysis.html" />
+    <link rel="prev" title="近鄰分析" href="nearest_neighbor_analysis.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -97,20 +97,20 @@
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">為紙本地圖進行空間對位</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">為空照圖進行空間對位</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">把地圖數位化</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">連接資料表</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">資料表連接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">空間連接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">找出在多邊形中的點</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">製作熱區圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">空間查詢</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Sampling Raster Data using Points or Polygons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">近鄰分析</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">使用點或多邊形對影像資料取樣</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">點資料內插法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS Browser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS 瀏覽器</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
-<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">在 QGIS 中開啟 BIL、BIP 或 BSQ 格式檔案</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
@@ -131,7 +131,7 @@
               
                 
   <li>
-    <a href="nearest_neighbor_analysis.html" title="Previous Chapter: Nearest Neighbor Analysis"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Nearest Neighbor...</span>
+    <a href="nearest_neighbor_analysis.html" title="Previous Chapter: 近鄰分析"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; 近鄰分析</span>
     </a>
   </li>
   <li>
@@ -206,7 +206,7 @@
       
 
   <div class="section" id="sampling-raster-data-using-points-or-polygons">
-<h1>Sampling Raster Data using Points or Polygons<a class="headerlink" href="#sampling-raster-data-using-points-or-polygons" title="Permalink to this headline">¶</a></h1>
+<h1>使用點或多邊形對影像資料取樣<a class="headerlink" href="#sampling-raster-data-using-points-or-polygons" title="Permalink to this headline">¶</a></h1>
 <p>Many scientific and environmental datasets come as gridded rasters. Elevation
 data (DEM) is also distributed as raster files. In these raster files, the
 parameter that is being represented is encoded as the pixel values of the
@@ -221,8 +221,10 @@ each county in the US.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>你還會學到這些<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Re-project a vector layer.</li>
-<li>Select and remove multiple layers from QGIS Table of Contents.</li>
+<li><p class="first">重投影向量圖層</p>
+</li>
+<li><p class="first">在 QGIS 圖層列表中選擇且移除多個圖層</p>
+</li>
 </ul>
 </div>
 </div>
@@ -242,7 +244,7 @@ the <a class="reference external" href="http://www2.census.gov/geo/tiger/TIGER20
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/us.tmax_nohads_ll_20140525_float.tif">us.tmax_nohads_ll_20140525_float.tif</a></p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/2013_Gaz_ua_national.zip">2013_Gaz_ua_national.zip</a></p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/tl_2013_us_county.zip">tl_2013_us_county.zip</a></p>
-<p>Data Sources: <a class="reference internal" href="credits.html#noaacpc" id="id1">[NOAACPC]</a>, <a class="reference internal" href="credits.html#usgazetteer" id="id2">[USGAZETTEER]</a> <a class="reference internal" href="credits.html#tiger" id="id3">[TIGER]</a></p>
+<p>資料來源 <a class="reference internal" href="credits.html#noaacpc" id="id1">[NOAACPC]</a> <a class="reference internal" href="credits.html#usgazetteer" id="id2">[USGAZETTEER]</a> <a class="reference internal" href="credits.html#tiger" id="id3">[TIGER]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
@@ -415,7 +417,7 @@ extracted from the raster grid.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Jun 27, 2016.<br/>
+      最後更新日期是 Jul 05, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

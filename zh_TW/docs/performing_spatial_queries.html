@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Nearest Neighbor Analysis" href="nearest_neighbor_analysis.html" />
+    <link rel="next" title="近鄰分析" href="nearest_neighbor_analysis.html" />
     <link rel="prev" title="製作熱區圖" href="creating_heatmaps.html" />
 
 <meta charset='utf-8'>
@@ -97,20 +97,20 @@
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">為紙本地圖進行空間對位</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">為空照圖進行空間對位</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">把地圖數位化</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">連接資料表</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">資料表連接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">空間連接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">找出在多邊形中的點</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">製作熱區圖</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">空間查詢</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">近鄰分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">使用點或多邊形對影像資料取樣</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">點資料內插法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS Browser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS 瀏覽器</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
-<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">在 QGIS 中開啟 BIL、BIP 或 BSQ 格式檔案</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
@@ -135,7 +135,7 @@
     </a>
   </li>
   <li>
-    <a href="nearest_neighbor_analysis.html" title="Next Chapter: Nearest Neighbor Analysis"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Nearest Neighbor... &raquo;</span>
+    <a href="nearest_neighbor_analysis.html" title="Next Chapter: 近鄰分析"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">近鄰分析 &raquo;</span>
     </a>
   </li>
               
@@ -216,9 +216,12 @@
 <ul class="simple">
 <li><p class="first">在 QGIS 中直接開啟 zip 檔</p>
 </li>
-<li>Choosing an appropriate projection and re-projecting vector data.</li>
-<li>Creating buffers.</li>
-<li>Selecting features using SQL-like expressions.</li>
+<li><p class="first">選擇適合的投影法，重投影向量資料</p>
+</li>
+<li><p class="first">製作「環域〈buffers〉」</p>
+</li>
+<li><p class="first">使用類 SQL 的表示法選擇圖徵</p>
+</li>
 <li><p class="first">把 shapefile 轉換為 KML 檔</p>
 </li>
 <li><p class="first">利用 Google Earth 來驗證結果</p>
@@ -251,13 +254,13 @@
 </ol>
 <img alt="../_images/328.png" class="align-center" src="../_images/328.png" />
 <ol class="arabic simple" start="4">
-<li>You will be asked to choose a layer from the zip archive.
-Select <code class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines.shp</span></code> and click <span class="guilabel">OK</span>.</li>
+<li><p class="first">你可能需要從 zip 檔中選擇圖層載入，選 <code class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines.shp</span></code> 然後按下<span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/420.png" class="align-center" src="../_images/420.png" />
 <ol class="arabic simple" start="5">
-<li>Since you have selected multiple files, repeat the process for the next file.
-Select 10m_populated_places_simple.shp and click <span class="guilabel">OK</span>.</li>
+<li><p class="first">因為我們選了兩個壓縮檔，所以相同步驟要再重複一次。選擇 <code class="docutils literal"><span class="pre">10m_populated_places_simple.shp</span></code> 然後按下<span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/521.png" class="align-center" src="../_images/521.png" />
 <ol class="arabic simple" start="6">
@@ -266,152 +269,117 @@ Select 10m_populated_places_simple.shp and click <span class="guilabel">OK</span
 </ol>
 <img alt="../_images/620.png" class="align-center" src="../_images/620.png" />
 <ol class="arabic simple" start="7">
-<li>We will be created buffers around the point and line layers. The <cite>Buffer</cite>
-geoprocessing tool in QGIS uses <cite>layer units</cite> to calculate buffer distances.
-The layers we have are in <cite>Geographic Coordinate Reference System (CRS)</cite> with
-the unit of <cite>degrees</cite>. This is not appropriate as we want our analysis to use
-<cite>metres</cite> or <cite>kilometres</cite>. To achive this, we must re-project our layers to a
-<cite>Projected Coordinate Reference System (CRS)</cite>. Right-click on the
-<code class="docutils literal"><span class="pre">10m_populated_places_simple</span> <span class="pre">layer</span></code> and choose <span class="guilabel">Save As</span>.</li>
+<li><p class="first">我們的下一步是為點和線圖層製作「環域」，它是一種地理預算函數，QGIS 會使用圖層的單位計算空間中的任一點到圖徵的距離，也就是「環域距離」。目前我們的<cite>地理座標參考系統 (Geographic CRS)</cite> 以<cite>角度</cite>作單位，如果我們要使用<cite>公尺</cite>或<cite>公里</cite>為單位進行分析，可能就不是那麼適當。因此，我們必須先使用一個<cite>投影座標系統 (Projected CRS)</cite>重投影圖層。在 <code class="docutils literal"><span class="pre">10m_populated_places_simple</span> <span class="pre">layer</span></code> 圖層上按右鍵，然後選擇 <span class="guilabel">存檔為...</span>。</p>
+</li>
 </ol>
 <img alt="../_images/719.png" class="align-center" src="../_images/719.png" />
 <ol class="arabic simple" start="8">
-<li>In the <span class="guilabel">Save vector layer as...</span> dialog, click <span class="guilabel">Browse</span>
-next to <span class="guilabel">Save as</span> and select the output file location. Name the
-output file as <code class="docutils literal"><span class="pre">populated_places_reprojected.shp</span></code>. Next, click the
-<span class="guilabel">Browse</span> button next to <span class="guilabel">CRS</span>.</li>
+<li><p class="first">在 <span class="guilabel">儲存向量圖層為...</span> 的視窗中，按下在 <span class="guilabel">另存為</span> 旁邊的 <span class="guilabel">瀏覽</span> 鈕，然後選擇輸出檔的位置。把輸出檔命名為 <code class="docutils literal"><span class="pre">populated_places_reprojected.shp</span></code>，然後按下在 <span class="guilabel">CRS</span> 旁邊的 <span class="guilabel">瀏覽</span> 鈕 〈地球圖示〉。</p>
+</li>
 </ol>
 <img alt="../_images/818.png" class="align-center" src="../_images/818.png" />
 <ol class="arabic simple" start="9">
-<li>Now we must choose an appropriate CRS for our purpose. For creating buffers,
-a Azimuthal Equidistant projection would be best suited as radial distances
-around the center of the projection are accurate. In our case, since the
-dataset is global, we will choose a world projection. In the
-<span class="guilabel">Coordinate Reference System Selector</span> dialog, start searching for
-<cite>world az..</cite> and you will see the results show up. Select the
-<cite>World_Azimuthal_Equidistant</cite> and click <span class="guilabel">OK</span>.</li>
+<li><p class="first">現在要選擇適合我們目的的 CRS。由於我們要製作環域，方位等距投影應會是最好的投影法，因為此投影法具在投影中心附近有非常準確徑向距離。本例中，我們也要選個全球投影，以符合全球性的資料集。在 <span class="guilabel">選擇座標參考系統</span> 視窗中，搜尋 <cite>world az</cite> 後應該就會看到我們要的結果，選擇 <cite>World_Azimuthal_Equidistant</cite> 然後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">The <cite>World_Azimuthal_Equidistant</cite> projection spans 90 degrees from the
-origin. Here the origin being 0 degrees longitude, the only data contained
-within +/- 90 degrees longitude will be converted.</p>
+<p class="last"><cite>World_Azimuthal_Equidistant</cite> 投影只會覆蓋到投影中心延伸出去 90 度角的地方，由於我們的投影中心會是經度 0 度，所以只有在經度正負 90 度以內的資料點會被轉換。</p>
 </div>
 <img alt="../_images/916.png" class="align-center" src="../_images/916.png" />
 <ol class="arabic simple" start="10">
-<li>Back in <span class="guilabel">Save vector layer as ...</span> dialog, check the box next to
-<span class="guilabel">Add saved file to map</span> and click <cite>OK</cite>.</li>
+<li><p class="first">回到 <span class="guilabel">儲存向量圖層為...</span> 的視窗，勾選 <span class="guilabel">加入儲存檔案至地圖中</span>，然後按下 <cite>確定</cite>。</p>
+</li>
 </ol>
 <img alt="../_images/1017.png" class="align-center" src="../_images/1017.png" />
 <ol class="arabic simple" start="11">
-<li>Repeat the re-projection process for the <code class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines</span></code>
-layer and save the new layer as <code class="docutils literal"><span class="pre">rivers_lake_reprojected.shp</span></code>.</li>
+<li><p class="first">對 <code class="docutils literal"><span class="pre">ne_10m_rivers_lake_centerlines</span></code> 重複以上操作，把輸出檔存為 <code class="docutils literal"><span class="pre">rivers_lake_reprojected.shp</span></code>。</p>
+</li>
 </ol>
 <img alt="../_images/1121.png" class="align-center" src="../_images/1121.png" />
 <ol class="arabic simple" start="12">
-<li>Now you will have 4 layers in your <span class="guilabel">Layers Panel</span>. Un-check the
-boxes next to the original layers to display only the re-projected layers.
-The re-projected layers are still being shown in the <cite>Geographic CRS</cite>
-because of a setting. Let&#8217;s turn that off. Click on the
-<span class="guilabel">Project Properties</span> button. This setting can also be accessed
-from <span class="menuselection">Project ‣ Project Properties</span>.</li>
+<li><p class="first">現在我們在 <span class="guilabel">圖層面板</span> 中可以看到 4 個圖層，請把原本的圖層取消勾選，這樣就只有重投影過的圖層會顯示。不過，重投影的圖層目前因為設定的關係，仍然以 <cite>Geographic CRS</cite> 顯示，讓我們把此設定關掉吧。點選 <span class="guilabel">專案屬性</span> 鈕，或是前往 <span class="menuselection">專案 ‣ 專案屬性</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1219.png" class="align-center" src="../_images/1219.png" />
 <ol class="arabic simple" start="13">
-<li>In the <span class="guilabel">CRS</span> tab of the <span class="guilabel">Project Properties</span> dialog,
-un-check the box next to <span class="guilabel">Enable on-the-fly CRS transformation</span>.
-Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">在 <span class="guilabel">專案屬性</span> 視窗中 <span class="guilabel">CRS</span> 的分頁下，取消 <span class="guilabel">開啟即時 CRS 轉換</span> 的勾選，然後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1317.png" class="align-center" src="../_images/1317.png" />
 <ol class="arabic simple" start="14">
-<li>Back in the main QGIS window, right-click on any one of the re-projected
-layers and select <span class="guilabel">Zoom to Layer Extent</span>.</li>
+<li><p class="first">回到 QGIS 主視窗，右鍵點選任一個重投影過的圖層，選擇 <span class="guilabel">縮放到圖層範圍</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1416.png" class="align-center" src="../_images/1416.png" />
 <ol class="arabic simple" start="15">
-<li>Now you will see the data in the layer&#8217;s CRS. We will now create buffers for
-both the datasets. Click <span class="menuselection">Vector ‣ Geoprocessing Tools ‣
-Buffer</span>.</li>
+<li><p class="first">現在我們就可以看到資料使用圖層的 CRS 投影了。接下來就來製作兩個資料集的環域，請前往 <span class="menuselection">向量 ‣ 地理運算工具 ‣ 環域（Buffer）</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1515.png" class="align-center" src="../_images/1515.png" />
 <ol class="arabic simple" start="16">
-<li>In the <span class="guilabel">Buffer</span> tool, select <code class="docutils literal"><span class="pre">populated_places_reprojected</span></code>
-layer as Input. Enter the buffer distance as <cite>10000</cite>. Note that we want a
-buffer of 10kms and since the CRS units are metres, we need to enter 10,000.
-Enter the output file name as <code class="docutils literal"><span class="pre">populated_places_buffer.shp</span></code>. Click
-<span class="guilabel">OK</span>.</li>
+<li><p class="first">在 <span class="guilabel">環域</span> 工具視窗中，選擇 <code class="docutils literal"><span class="pre">populated_places_reprojected</span></code> 作為輸入圖層，環域距離輸入 <cite>10000</cite>。注意本 CRS 的單位是公尺，所以 10,000 意味著 10 公里。輸出檔取名為 <code class="docutils literal"><span class="pre">populated_places_buffer.shp</span></code>，然後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1614.png" class="align-center" src="../_images/1614.png" />
 <ol class="arabic simple" start="17">
-<li>Once the buffer processing is over, click the <span class="guilabel">Yes</span> to add the
-newly created layer to the TOC.</li>
+<li><p class="first">環域處理結束後，按下 <span class="guilabel">是</span> 以加入新建的圖層到 QGIS 中。（較新的 QGIS 版本則需要在上一步驟選擇。）</p>
+</li>
 </ol>
 <img alt="../_images/1713.png" class="align-center" src="../_images/1713.png" />
 <ol class="arabic simple" start="18">
-<li>Repeat the same buffer process for the <code class="docutils literal"><span class="pre">rivers_lake_reprojected</span></code> layer and
-create an output file named <code class="docutils literal"><span class="pre">rivers_lake_buffer.shp</span></code>.</li>
+<li><p class="first">對 <code class="docutils literal"><span class="pre">rivers_lake_reprojected</span></code> 圖層重複以上步驟，輸出檔命名為 <code class="docutils literal"><span class="pre">rivers_lake_buffer.shp</span></code>。</p>
+</li>
 </ol>
 <img alt="../_images/1813.png" class="align-center" src="../_images/1813.png" />
 <ol class="arabic simple" start="19">
-<li>The <code class="docutils literal"><span class="pre">rivers_lake_buffer</span></code> contains features that are both rivers as well as
-lakes. Our analysis calls for using only river features, so we will run a
-query to select only river features. Right-click on the
-<code class="docutils literal"><span class="pre">rivers_lake_buffer</span></code> layer and select <span class="guilabel">Open Attribute Table</span>.</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">rivers_lake_buffer</span></code> 圖層實際上包含了河流與湖泊，我們的目標只需要用到河流圖徵，所以我們還要執行一次查詢工作，把河流選取起來。在 <code class="docutils literal"><span class="pre">rivers_lake_buffer</span></code> 圖層上按右鍵，選擇  <span class="guilabel">開啟屬性表格</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1911.png" class="align-center" src="../_images/1911.png" />
 <ol class="arabic simple" start="20">
-<li>You will see that the <cite>featurecla</cite> attribute contains the information we can
-use to select the river features. Click on <cite>Select features using an
-expression</cite> button.</li>
+<li><p class="first">可以看到，<cite>featurecla</cite> 屬性可以利用來作為選擇河流圖徵的工具。請按下 <cite>使用表示式選取圖徵</cite> 鈕。</p>
+</li>
 </ol>
 <img alt="../_images/208.png" class="align-center" src="../_images/208.png" />
 <ol class="arabic simple" start="21">
-<li>Enter the expression <cite>&#8220;featurecla&#8221; = &#8220;River&#8221;</cite> and click <span class="guilabel">Select</span>
-and then click <span class="guilabel">Close</span> to back to the main QGIS window.</li>
+<li><p class="first">輸入表達式 <cite>&#8220;featurecla&#8221; = &#8216;River&#8217;</cite> 然後按下 <span class="guilabel">選取</span>，接著按下 <span class="guilabel">關閉</span>，回到 QGIS 主視窗。</p>
+</li>
 </ol>
 <img alt="../_images/2114.png" class="align-center" src="../_images/2114.png" />
 <ol class="arabic simple" start="22">
-<li>Now we are ready to perform the spatial query. You need to enable the
-<cite>Spatial Query plugin</cite> to use this functionality. See <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a>
-for more details. Once enabled, go to <span class="menuselection">Vector ‣ Spatial
-Query ‣ Spatial Query</span>.</li>
+<li><p class="first">現在我們可以進行空間查詢了。首先你必須要啟用 <cite>Spatial Query</cite> 附加元件才能使用此功能，如需更多細節請查閱 <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a>。啟用後，前往 <span class="menuselection">向量 ‣ 空間查詢 ‣ 空間查詢</span>。</p>
+</li>
 </ol>
 <img alt="../_images/2213.png" class="align-center" src="../_images/2213.png" />
 <ol class="arabic simple" start="23">
-<li>For our query, we want to select features from the buffered places that
-intersect with the buffered river lines. Make sure the checkbox next to
-<cite>selected geometries</cite> is checked. This is to ensure the query uses only
-river features that we selected previously. Click <span class="guilabel">Apply</span>.</li>
+<li><p class="first">我們的查詢目標是選擇那些自身環域有被河流的環域覆蓋到（也就是當圖徵「相交於」）的城市。請確認 <cite>選中的圖徵</cite> 旁的方框有被勾選起來，這是確保本查詢只會只用到我們之前選擇的河流圖徵。最後按下 <span class="guilabel">套用</span>。</p>
+</li>
 </ol>
 <img alt="../_images/2310.png" class="align-center" src="../_images/2310.png" />
 <ol class="arabic simple" start="24">
-<li>Once the query is complete, you will see a new section named
-<span class="guilabel">Selected features</span>. Click on the <span class="guilabel">Create layer with
-selected</span> button. A new layer will be added to the <cite>Layers Panel</cite>. Click
-<span class="guilabel">Close</span>.</li>
+<li><p class="first">查詢完成後，視窗會出現一個新區域，名為 <span class="guilabel">選中的圖徵</span>。按下 <span class="guilabel">由所選建立圖層</span> 鈕後，有個新圖層就會被加到 QGIS 的<cite>圖層列表</cite>中。最後按下 <span class="guilabel">關閉</span>。</p>
+</li>
 </ol>
 <img alt="../_images/248.png" class="align-center" src="../_images/248.png" />
 <ol class="arabic simple" start="25">
-<li>Zoom-in to any area and compare the results. You will notice that the new
-layer contains only the features that intersect with river buffers.</li>
+<li><p class="first">現在你可以縮放到任一區域察看一下結果，可以發現新的圖層只包含了與河流環域相交的圖徵。</p>
+</li>
 </ol>
 <img alt="../_images/256.png" class="align-center" src="../_images/256.png" />
 <ol class="arabic simple" start="26">
-<li>We should always verify my results to ensure the analysis is not flawed. One
-way to verify the results is to export this layer as a KML file and load it
-up in Google Earth. You can check if the areas you found really are within
-10kms of a river. Right-click the layer and <span class="guilabel">Save As...</span>.</li>
+<li><p class="first">最後，我們應該要隨時檢查我們的結果，確保分析的過程中並沒有出錯。有個驗證的方法是把結果輸出成 KML 檔，然後在 Google 地球中讀取，這樣就可以確認你找到的城市真的距離河流不到 10 公里。請以右鍵點選圖層，選擇 <span class="guilabel">存檔為...</span>。</p>
+</li>
 </ol>
 <img alt="../_images/266.png" class="align-center" src="../_images/266.png" />
 <ol class="arabic simple" start="27">
-<li>In the <span class="guilabel">Save vector layer as...</span>, choose <cite>WGS84</cite> as the CRS. This
-because KML format needs the coordinates to be in this CRS. Name your KML as
-<code class="docutils literal"><span class="pre">cities_near_river.kml</span></code>.</li>
+<li><p class="first">在 <span class="guilabel">儲存向量圖層為...</span> 的視窗中，需要選擇 <cite>WGS84</cite> 為 CRS，這是 KML 檔案格式的需求。把 KML 命名為 <code class="docutils literal"><span class="pre">cities_near_river.kml</span></code>。</p>
+</li>
 </ol>
 <img alt="../_images/276.png" class="align-center" src="../_images/276.png" />
 <ol class="arabic simple" start="28">
-<li>Open Google Earth and verify that the cities represented by these buffers
-are indeed close to rivers.</li>
+<li><p class="first">打開 Google 地球，然後驗證這些城市（環域可表達其約略範圍）真的非常接近河流。</p>
+</li>
 </ol>
 <img alt="../_images/284.png" class="align-center" src="../_images/284.png" />
 </div>
@@ -439,7 +407,7 @@ are indeed close to rivers.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Jun 27, 2016.<br/>
+      最後更新日期是 Jul 05, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

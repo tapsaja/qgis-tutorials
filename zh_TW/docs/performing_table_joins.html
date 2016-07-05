@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>連接資料表 &mdash; QGIS Tutorials and Tips</title>
+    <title>資料表連接 &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Performing Spatial Joins" href="performing_spatial_joins.html" />
+    <link rel="next" title="空間連接" href="performing_spatial_joins.html" />
     <link rel="prev" title="把地圖數位化" href="digitizing_basics.html" />
 
 <meta charset='utf-8'>
@@ -97,20 +97,20 @@
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">為紙本地圖進行空間對位</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">為空照圖進行空間對位</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">把地圖數位化</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">連接資料表</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">資料表連接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">空間連接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">找出在多邊形中的點</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">製作熱區圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">空間查詢</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">Nearest Neighbor Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">近鄰分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">使用點或多邊形對影像資料取樣</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">點資料內插法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS Browser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS 瀏覽器</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
-<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">在 QGIS 中開啟 BIL、BIP 或 BSQ 格式檔案</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
@@ -135,7 +135,7 @@
     </a>
   </li>
   <li>
-    <a href="performing_spatial_joins.html" title="Next Chapter: Performing Spatial Joins"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Performing Spati... &raquo;</span>
+    <a href="performing_spatial_joins.html" title="Next Chapter: 空間連接"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">空間連接 &raquo;</span>
     </a>
   </li>
               
@@ -206,17 +206,17 @@
       
 
   <div class="section" id="performing-table-joins">
-<h1>連接資料表<a class="headerlink" href="#performing-table-joins" title="Permalink to this headline">¶</a></h1>
-<p>你想要用的資料集可能不是 shapefile，或是任何一種空間資料格式。這些資料的格式往往是表格或試算表，要把它們加入你的資料分析中，必須讓它們和你手上的空間資料產生關聯。操作這件事情稱為`連接資料表`。這篇教學會說明 QGIS 如何將資料表連接起來。</p>
+<h1>資料表連接<a class="headerlink" href="#performing-table-joins" title="Permalink to this headline">¶</a></h1>
+<p>你想要用的資料集可能不是 shapefile，或是任何一種空間資料格式。這些資料的格式往往是表格或試算表，要把它們加入你的資料分析中，必須讓它們和你手上的空間資料產生關聯。操作這件事情稱為<cite>資料表連接（Table Join）</cite>。這篇教學會說明在 QGIS 中要如何將資料表連接起來。</p>
 <div class="section" id="overview-of-the-task">
 <h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
 <p>我們會使用美國加州的人口統計分區 shapefile，與美國人口調查局提供的人口數資料表，做一份加州的人口分佈圖。</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>你還會學到這些<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p class="first">為 CSV 檔案製作一份 <cite>.csvt</cite> 檔案，以註明各欄位的資料型態。</p>
+<li><p class="first">為 CSV 檔案製作一份 <cite>.csvt</cite> 檔案，以註明各欄位的資料型態</p>
 </li>
-<li><p class="first">在 QGIS 中載入不含任何地理資訊的 CSV 檔案。</p>
+<li><p class="first">在 QGIS 中載入不含任何地理資訊的 CSV 檔案</p>
 </li>
 </ul>
 </div>
@@ -233,7 +233,7 @@
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><p class="first">我們先載入人口統計分區 shapefile。選擇 <span class="menuselection">圖層 ‣ 加入向量圖層</span>。</p>
+<li><p class="first">我們先載入人口統計分區的 shapefile。選擇 <span class="menuselection">圖層 ‣ 加入向量圖層</span>。</p>
 </li>
 </ol>
 <img alt="../_images/1104.png" class="align-center" src="../_images/1104.png" />
@@ -243,27 +243,27 @@
 </ol>
 <img alt="../_images/249.png" class="align-center" src="../_images/249.png" />
 <ol class="arabic simple" start="3">
-<li><p class="first">選擇 <code class="docutils literal"><span class="pre">tl_2013_06_tract.zip</span></code> 圖層並點擊 <span class="guilabel">OK</span>。</p>
+<li><p class="first">選擇 <code class="docutils literal"><span class="pre">tl_2013_06_tract.zip</span></code> 圖層並點選 <span class="guilabel">確定</span>。</p>
 </li>
 </ol>
 <img alt="../_images/329.png" class="align-center" src="../_images/329.png" />
 <ol class="arabic simple" start="4">
-<li><p class="first">你會看到 QGIS 載入了人口統計分區資料。</p>
+<li><p class="first">QGIS 就會載入人口統計分區資料。</p>
 </li>
 </ol>
 <img alt="../_images/421.png" class="align-center" src="../_images/421.png" />
 <ol class="arabic simple" start="5">
-<li><p class="first">用右鍵點擊圖層，選擇 <span class="guilabel">開啟屬性表格</span>。</p>
+<li><p class="first">圖層上按右鍵，選擇 <span class="guilabel">開啟屬性表格</span>。</p>
 </li>
 </ol>
 <img alt="../_images/522.png" class="align-center" src="../_images/522.png" />
 <ol class="arabic simple" start="6">
-<li><p class="first">檢視分區 shapefile 的屬性。要把表格資料與這份 shapefile 相關聯，圖層中的每個圖徵都需要一個具識別性的屬性。在這個例子，<strong>GEOID</strong> 屬性可以識別每一個分區，這就可以把這份 shapefile 與任何包含同樣 ID 的表格資料「連接」起來。</p>
+<li><p class="first">檢視 shapefile 中每個分區的屬性。要把表格資料與這份 shapefile 相關聯，圖層中的每個圖徵都需有個共同屬性，其值在每個圖徵中各不相同。在這個例子中，<strong>GEOID</strong> 屬性可以識別每一個分區，這就可以把這份 shapefile 與任何包含同樣 ID 的表格資料「連接」起來。</p>
 </li>
 </ol>
 <img alt="../_images/621.png" class="align-center" src="../_images/621.png" />
 <ol class="arabic simple" start="7">
-<li><p class="first">用文字編輯器開啟 <code class="docutils literal"><span class="pre">ca_tracts_pop.csv</span></code> 這份 CSV 檔案。你會注意到，檔案中的每一列都含有關於某個分區的資訊，其中就有我們在上一步驟看到的識別屬性。注意在這份 CSV 中，這個識別屬性欄位叫作 <strong>GEO.id2</strong>。你還會注意到 <strong>D001</strong> 這個欄位記錄了每個分區的人口數。</p>
+<li><p class="first">用文字編輯器開啟 <code class="docutils literal"><span class="pre">ca_tracts_pop.csv</span></code> 這份 CSV 檔案。你會注意到，檔案中的每一列都含有關於某個分區的資訊，其中就有我們在上一步驟看到的識別屬性。注意在這份 CSV 中，有個識別屬性欄位叫作 <strong>GEO.id2</strong>。你還會注意到 <strong>D001</strong> 這個欄位記錄了每個分區的人口數。</p>
 </li>
 </ol>
 <img alt="../_images/720.png" class="align-center" src="../_images/720.png" />
@@ -278,7 +278,7 @@
 </ol>
 <img alt="../_images/917.png" class="align-center" src="../_images/917.png" />
 <ol class="arabic simple" start="10">
-<li><p class="first">瀏覽 CSV 檔所在的目錄，點選它。注意 <span class="guilabel">檔案格式</span> 要選擇 <span class="guilabel">CSV (comma separated values)</span>。這份資料是單純的表格，所以我們得註明檔案中不包含地理資訊。選擇 <span class="guilabel">No geometry (attribute only table)</span> ，再點選 <span class="guilabel">OK</span>。</p>
+<li><p class="first">在目錄下瀏覽並選擇 CSV 檔。注意 <span class="guilabel">檔案格式</span> 要選擇 <span class="guilabel">CSV (逗號分欄值)</span>。這份資料是單純的表格，所以我們得註明檔案中不包含地理資訊。選擇 <span class="guilabel">無幾何欄位 (僅產生屬性表格)</span> ，再點選 <span class="guilabel">確定</span>。</p>
 </li>
 </ol>
 <img alt="../_images/1018.png" class="align-center" src="../_images/1018.png" />
@@ -288,61 +288,48 @@
 </ol>
 <img alt="../_images/1122.png" class="align-center" src="../_images/1122.png" />
 <ol class="arabic simple" start="12">
-<li>Select the <code class="docutils literal"><span class="pre">tl_2013_06_tract</span></code> layer. Right-click on it and select
-<span class="guilabel">Properties</span>.</li>
+<li><p class="first">選擇 <code class="docutils literal"><span class="pre">tl_2013_06_tract</span></code> 圖層，然後按右鍵選擇 <span class="guilabel">屬性</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1220.png" class="align-center" src="../_images/1220.png" />
 <ol class="arabic simple" start="13">
-<li>In the <span class="guilabel">Layer Properties</span> dialog, select the <span class="guilabel">Joins</span>
-tab. Click on the <cite>+</cite> button at the bottom to create a new table join.</li>
+<li><p class="first">在 <span class="guilabel">圖層屬性</span> 視窗中，選擇 <span class="guilabel">連結（Joins）</span> 分頁，按下底端的 <cite>+</cite> 號按鈕，以建立新的資料表連結。</p>
+</li>
 </ol>
 <img alt="../_images/1318.png" class="align-center" src="../_images/1318.png" />
 <ol class="arabic simple" start="14">
-<li>In the <span class="guilabel">Add vector join</span> dialog, select <code class="docutils literal"><span class="pre">ca_tracts_pop</span></code> as the
-<span class="guilabel">Join layer</span>. Next we have to select the field with unique ids in
-both the shapefile and the CSV. Select <cite>GEO.id2</cite> and <cite>GEOID</cite> as the
-<span class="guilabel">Join field</span> and <span class="guilabel">Target field</span> respectively. Click
-<span class="guilabel">OK</span>.</li>
+<li><p class="first">在 <span class="guilabel">加入向量連結</span> 視窗中，<span class="guilabel">連結（Join）圖層</span> 選擇 <code class="docutils literal"><span class="pre">ca_tracts_pop</span></code>，然後我們需要為 shapefile 和 CSV 檔選擇用以連結的獨特屬性，也就是說 <span class="guilabel">連結欄位</span> 要填上 <cite>GEO.id2</cite>，<span class="guilabel">目標欄位</span> 要填上 <cite>GEOID</cite>。最後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1417.png" class="align-center" src="../_images/1417.png" />
 <ol class="arabic simple" start="15">
-<li>Close the <span class="guilabel">Layer Properties</span> dialog and return to the main QGIS
-window. At this point, the fields from the CSV file are joined with the
-shapefile. Right-click on the <code class="docutils literal"><span class="pre">tl_2013_06_tract</span></code> layer and select
-<span class="guilabel">Open Attribute Table</span>.</li>
+<li><p class="first">關閉 <span class="guilabel">圖層屬性</span> 視窗，回到 QGIS 主畫面。現在 CSV 檔中的資料已經與 shapefile 連結在一起了。在 <code class="docutils literal"><span class="pre">tl_2013_06_tract</span></code> 圖層上按右鍵，選擇 <span class="guilabel">開啟屬性表格</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1516.png" class="align-center" src="../_images/1516.png" />
 <ol class="arabic simple" start="16">
-<li>You can now see a new set of fields, including
-<span class="guilabel">ca_tracts_pop_D001</span> field added to each feature. Now you have
-access to the population value of each tract from the CSV file. Close the
-attribute table and return to the main QGIS window.</li>
+<li><p class="first">現在我們可以看見所有的圖徵都多了幾個新的欄位，包括 <span class="guilabel">ca_tracts_pop_D001</span> 這個欄位。現在你可以從 CSV 的資料表連結存取每個分區的人口了，請關掉屬性表格並回到 QGIS 主視窗。</p>
+</li>
 </ol>
 <img alt="../_images/1615.png" class="align-center" src="../_images/1615.png" />
 <ol class="arabic simple" start="17">
-<li>Right-click the <code class="docutils literal"><span class="pre">tl_2013_06_tract</span></code> layer and select <span class="guilabel">Properties</span>.</li>
+<li><p class="first">在 <code class="docutils literal"><span class="pre">tl_2013_06_tract</span></code> 圖層上按右鍵選擇 <span class="guilabel">屬性</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1714.png" class="align-center" src="../_images/1714.png" />
 <ol class="arabic simple" start="18">
-<li>Select the <span class="guilabel">Style</span> tab. Select the <span class="guilabel">Graduated</span> from the
-drop-down menu. As we are looking to create a population map, we want to
-assign different color to each census tract feature based on the population
-count. Select <span class="guilabel">ca_tracts_pop_D001</span> as the <span class="guilabel">Column</span>.
-Select a color ramp of your liking from the <span class="guilabel">Color ramp</span>
-drop-down. In the <span class="guilabel">Mode</span>, select <span class="guilabel">Quantile (Equal
-Count)</span>. Next click <span class="guilabel">Classify</span>. You will see a different color
-assigned to certain population ranges. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">選擇 <span class="guilabel">樣式</span> 分頁，然後從下拉式選單中選擇 <span class="guilabel">漸層</span>。由於我們要製作人口分布圖，最好的顏色配置當然是基於人口的數量多寡來決定。在 <span class="guilabel">行</span> 欄位中選擇 <span class="guilabel">ca_tracts_pop_D001</span>，然後再從 <span class="guilabel">色彩映射表</span> 下拉選單中選擇你喜歡的色條。接著在 <span class="guilabel">模式</span> 中選擇 <span class="guilabel">分位數</span> (每個顏色相同計數)。按下 <span class="guilabel">分類</span> 後，就可看到不同的人口數量被指定成不同顏色，最後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1814.png" class="align-center" src="../_images/1814.png" />
 <ol class="arabic simple" start="19">
-<li>You will now see a nice visualization of the census tracts as styled using
-population values. Use the <span class="guilabel">Zoom in</span> tool to select a smaller
-area from the layer.</li>
+<li><p class="first">這下我們就視覺化了一張不錯的人口分區普查結果地圖。你可以使用 <span class="guilabel">放大</span> 鈕查看圖層中較小的區域。</p>
+</li>
 </ol>
 <img alt="../_images/1912.png" class="align-center" src="../_images/1912.png" />
 <ol class="arabic simple" start="20">
-<li>You have a detailed and accurate population map of California. You can use
-the same technique to create maps based on variety of census data.</li>
+<li><p class="first">精細、準確的加州的人口地圖製作完成。你也可以試著使用同樣的方法針對不同的普查結果製作地圖。</p>
+</li>
 </ol>
 <img alt="../_images/209.png" class="align-center" src="../_images/209.png" />
 </div>
@@ -370,7 +357,7 @@ the same technique to create maps based on variety of census data.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Jun 27, 2016.<br/>
+      最後更新日期是 Jul 05, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

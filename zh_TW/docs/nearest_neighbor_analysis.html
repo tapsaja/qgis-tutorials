@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Nearest Neighbor Analysis &mdash; QGIS Tutorials and Tips</title>
+    <title>近鄰分析 &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Sampling Raster Data using Points or Polygons" href="sampling_raster_data.html" />
+    <link rel="next" title="使用點或多邊形對影像資料取樣" href="sampling_raster_data.html" />
     <link rel="prev" title="空間查詢" href="performing_spatial_queries.html" />
 
 <meta charset='utf-8'>
@@ -97,20 +97,20 @@
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">為紙本地圖進行空間對位</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">為空照圖進行空間對位</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">把地圖數位化</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">連接資料表</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">Performing Spatial Joins</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins.html">資料表連接</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_spatial_joins.html">空間連接</a></li>
 <li class="toctree-l1"><a class="reference internal" href="points_in_polygon.html">找出在多邊形中的點</a></li>
 <li class="toctree-l1"><a class="reference internal" href="creating_heatmaps.html">製作熱區圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_spatial_queries.html">空間查詢</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Nearest Neighbor Analysis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">Sampling Raster Data using Points or Polygons</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">近鄰分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">使用點或多邊形對影像資料取樣</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">點資料內插法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
 <li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS Browser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS 瀏覽器</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
-<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Open BIL, BIP or BSQ files in QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">在 QGIS 中開啟 BIL、BIP 或 BSQ 格式檔案</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
@@ -135,7 +135,7 @@
     </a>
   </li>
   <li>
-    <a href="sampling_raster_data.html" title="Next Chapter: Sampling Raster Data using Points or Polygons"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Sampling Raster ... &raquo;</span>
+    <a href="sampling_raster_data.html" title="Next Chapter: 使用點或多邊形對影像資料取樣"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">使用點或多邊形對影像資料取樣 &raquo;</span>
     </a>
   </li>
               
@@ -206,7 +206,7 @@
       
 
   <div class="section" id="nearest-neighbor-analysis">
-<h1>Nearest Neighbor Analysis<a class="headerlink" href="#nearest-neighbor-analysis" title="Permalink to this headline">¶</a></h1>
+<h1>近鄰分析<a class="headerlink" href="#nearest-neighbor-analysis" title="Permalink to this headline">¶</a></h1>
 <p>GIS is very useful in analyzing spatial relationship between features. One such
 analysis is finding out which features are closest to a given feature. QGIS has
 a tool called <strong>Distance Matrix</strong> which helps with such analysis. In this
@@ -219,8 +219,8 @@ populated place for each location where the earthquake happened.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>你還會學到這些<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>How to do table joins in QGIS. (See <a class="reference internal" href="performing_table_joins.html"><em>連接資料表</em></a> for
-detailed instructions.)</li>
+<li><p class="first">如何在 QGIS 中操作資料表連結 (如需更多介紹請看 <a class="reference internal" href="performing_table_joins.html"><em>資料表連接</em></a>)</p>
+</li>
 <li><p class="first">使用 <span class="guilabel">查詢建構器</span> 來顯示圖層中的次群組</p>
 </li>
 <li>Using MMQGIS plugin to create hub lines to visualize the nearest neighbors.</li>
@@ -235,15 +235,15 @@ layer representing all major earthquakes. Download the <a class="reference exter
 earthquake data</a>.</p>
 <p>Natural Earth <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">上有不錯的 `人口居住地</a> 資料庫，<a href="#id3"><span class="problematic" id="id4">`其中也有 `簡化版 (欄位較少) 的資料庫&lt;http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip&gt;`_</span></a></p>
 <p>為了方便起見，你也可以直接用下面的連結下載這兩份資料集：</p>
-<p><a class="reference external" href="http://www.qgistutorials.com/downloads/signif.txt">signif.txt</a></p>
+<p><a href="#id1"><span class="problematic" id="id2">`</span></a>signif.txt &lt;<a class="reference external" href="http://www.qgistutorials.com/downloads/signif.txt">http://www.qgistutorials.com/downloads/signif.txt</a>&gt;</p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/ne_10m_populated_places_simple.zip">ne_10m_populated_places_simple.zip</a></p>
 <p>資料來源 <a class="reference internal" href="credits.html#ngdc" id="id1">[NGDC]</a> <a class="reference internal" href="credits.html#naturalearth" id="id2">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Open <span class="menuselection">Layer ‣ Add Layer ‣ Add Delimited Text Layer</span> and
-browse to the downloaded <code class="docutils literal"><span class="pre">signif.txt</span></code> file.</li>
+<li><p class="first">打開 QGIS，選擇 <span class="menuselection">圖層 ‣ 加入分隔文字圖層</span>，然後選擇剛下載的 <code class="docutils literal"><span class="pre">signif.txt</span></code>。</p>
+</li>
 </ol>
 <img alt="../_images/1100.png" class="align-center" src="../_images/1100.png" />
 <ol class="arabic simple" start="2">
@@ -263,8 +263,8 @@ the bottom-right corner. Let&#8217;s also open the Populated Places layer. Go to
 </ol>
 <img alt="../_images/325.png" class="align-center" src="../_images/325.png" />
 <ol class="arabic simple" start="4">
-<li>Browse to the downloaded <code class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></code> file and
-click <span class="guilabel">Open</span>.</li>
+<li><p class="first">選擇剛下載的 <code class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></code> 並按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/418.png" class="align-center" src="../_images/418.png" />
 <ol class="arabic simple" start="5">
@@ -276,7 +276,8 @@ layer.</li>
 </ol>
 <img alt="../_images/518.png" class="align-center" src="../_images/518.png" />
 <ol class="arabic simple" start="6">
-<li>Go to <span class="menuselection">Vector ‣ Analysis Tools ‣ Distance Matrix</span>.</li>
+<li><p class="first">選擇 <span class="menuselection">向量 ‣ 分析工具 ‣ 距離矩陣</span>。</p>
+</li>
 </ol>
 <img alt="../_images/617.png" class="align-center" src="../_images/617.png" />
 <ol class="arabic simple" start="7">
@@ -470,7 +471,7 @@ that connects it to the nearest populated place.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Jun 27, 2016.<br/>
+      最後更新日期是 Jul 05, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
