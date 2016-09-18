@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Performing Table Joins (PyQGIS) &mdash; QGIS Tutorials and Tips</title>
+    <title>資料表連接 (PyQGIS) &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -105,19 +105,19 @@
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">近鄰分析</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">使用點或多邊形對影像資料取樣</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">點資料內插法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">使用處理框架進行批次處理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">利用處理建模自動執行複雜的工作流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">利用地圖出版設計的圖輯工具自動創造地圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS 瀏覽器</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">在 QGIS 中開啟 BIL、BIP 或 BSQ 格式檔案</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">使用自訂的 Python 表達式函數</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">撰寫 Python 腳本並在處理框架下執行</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Performing Table Joins (PyQGIS)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">資料表連接 (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 學習資源</a></li>
@@ -207,26 +207,24 @@
       
 
   <div class="section" id="performing-table-joins-pyqgis">
-<h1>Performing Table Joins (PyQGIS)<a class="headerlink" href="#performing-table-joins-pyqgis" title="Permalink to this headline">¶</a></h1>
-<p>This tutorial shows how to use Python scripting in QGIS (PyQGIS) to perform a
-table join and apply a graduated style to the resulting layer. This tutorial
-replicates the steps of the <a class="reference internal" href="performing_table_joins.html"><em>資料表連接</em></a> tutorial using only
-python scripting.</p>
+<h1>資料表連接 (PyQGIS)<a class="headerlink" href="#performing-table-joins-pyqgis" title="Permalink to this headline">¶</a></h1>
+<p>本教學示範如何在 QGIS 中利用 Python 腳本 (PyQGIS) 操作資料表連接，並為輸出的圖層進行漸層樣式設定。我們要重複一次在 <a class="reference internal" href="performing_table_joins.html"><em>資料表連接</em></a> 中進行的步驟，但這一次會只使用 python 腳本來操作。</p>
 <div class="section" id="overview-of-the-task">
 <h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Please refer to <a class="reference internal" href="performing_table_joins.html"><em>資料表連接</em></a> tutorial for the overview.</p>
+<p>請參考 <a class="reference internal" href="performing_table_joins.html"><em>資料表連接</em></a> 的教學說明。</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>你還會學到這些<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Loading zipped layers in QGIS via Python.</li>
-<li>Using QgsGraduatedSymbolRendererV2 to apply a graduated style to a vector
-layer.</li>
+<li><p class="first">利用 Python 載入壓縮的圖層到 QGIS 中</p>
+</li>
+<li><p class="first">使用 QgsGraduatedSymbolRendererV2 為向量圖層設定漸層樣式</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>取得資料<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>Download the following files to your computer.</p>
+<p>請下載以下資料至電腦中：</p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/tl_2013_06_tract.zip">tl_2013_06_tract.zip</a></p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/ca_tracts_pop.csv">ca_tracts_pop.csv</a></p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/ca_tracts_pop.csvt">ca_tracts_pop.csvt</a></p>
@@ -470,7 +468,7 @@ resulting layer without any manual steps.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Jul 12, 2016.<br/>
+      最後更新日期是 Sep 18, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

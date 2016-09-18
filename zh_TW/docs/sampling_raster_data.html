@@ -105,19 +105,19 @@
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">近鄰分析</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">使用點或多邊形對影像資料取樣</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">點資料內插法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">使用處理框架進行批次處理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">利用處理建模自動執行複雜的工作流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">利用地圖出版設計的圖輯工具自動創造地圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS 瀏覽器</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">在 QGIS 中開啟 BIL、BIP 或 BSQ 格式檔案</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">使用自訂的 Python 表達式函數</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">撰寫 Python 腳本並在處理框架下執行</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">資料表連接 (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 學習資源</a></li>
@@ -208,17 +208,10 @@
 
   <div class="section" id="sampling-raster-data-using-points-or-polygons">
 <h1>使用點或多邊形對影像資料取樣<a class="headerlink" href="#sampling-raster-data-using-points-or-polygons" title="Permalink to this headline">¶</a></h1>
-<p>Many scientific and environmental datasets come as gridded rasters. Elevation
-data (DEM) is also distributed as raster files. In these raster files, the
-parameter that is being represented is encoded as the pixel values of the
-raster. Often, one needs to extract the pixel values at certain locations or
-aggregate them over some area. This functionality is available in QGIS via two
-plugins - <code class="docutils literal"><span class="pre">Point</span> <span class="pre">Sampling</span> <span class="pre">Tool</span></code> and <code class="docutils literal"><span class="pre">Zonal</span> <span class="pre">Statistics</span> <span class="pre">plugin</span></code>.</p>
+<p>許多科學與環境的資料庫使用的是網格狀的影像資料，高程資料 (DEM) 同樣的也是以影像檔的方式發行。這些影像檔中，要呈現的資料數值就是影像中每個像素的像素值。有些時候，我們會需要找出在特定地點的像素值，或是把某個區域的所有像素一同囊括以進行後續分析。這些功能在 QGIS 中可以透過兩個附加元件來達成，分別是 <code class="docutils literal"><span class="pre">Point</span> <span class="pre">Sampling</span> <span class="pre">Tool</span></code> 和 <code class="docutils literal"><span class="pre">Zonal</span> <span class="pre">Statistics</span> <span class="pre">plugin</span></code>。</p>
 <div class="section" id="overview-of-the-task">
 <h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Given a raster grid of maximum temperature in the US, we need to extract the
-temperature at all urban areas and also calculate the average temperature for
-each county in the US.</p>
+<p>使用美國的「當日最高溫」資料網格影像，找出所有美國都市區的當日最高溫度，以及美國境內所有縣的平均當日最高溫。</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>你還會學到這些<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -231,16 +224,9 @@ each county in the US.</p>
 </div>
 <div class="section" id="get-the-data">
 <h2>取得資料<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>NOAA’s <a class="reference external" href="http://www.cpc.ncep.noaa.gov/">Climate Prediction Center</a> provides
-<a class="reference external" href="http://www.cpc.ncep.noaa.gov/products/GIS/GIS_DATA/">GIS data</a> related to
-temperature and precipitation in the US. Download the <a class="reference external" href="ftp://ftp.cpc.ncep.noaa.gov/GIS/GRADS_GIS/GeoTIFF/TEMP/us_tmax/">latest grid filei for
-maximum temperatures</a>. The file
-will be named <code class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float.tif</span></code></p>
-<p>We will use a CSV file from <a class="reference external" href="https://www.census.gov/geo/maps-data/data/gazetteer2013.html">2013 US Gazetteer</a> representing
-urban areas in the US.  Download the <a class="reference external" href="http://www2.census.gov/geo/gazetteer/2013_Gazetteer/2013_Gaz_ua_national.zip">Urban Areas Gazetteer File</a>.</p>
-<p>As we want to aggregate temperature over counties, we will use <a class="reference external" href="https://www.census.gov/cgi-bin/geo/shapefiles2013/main">2013 TIGER/Line
-Shapefiles</a>. Download
-the <a class="reference external" href="http://www2.census.gov/geo/tiger/TIGER2013/COUNTY/tl_2013_us_county.zip">Counties (and equivalents) shapefile</a>.</p>
+<p>美國國家海洋暨大氣總署（NOAA）的 <a class="reference external" href="http://www.cpc.ncep.noaa.gov/">Climate Prediction Center</a> 提供了溫度和降雨相關的 <a class="reference external" href="http://www.cpc.ncep.noaa.gov/products/GIS/GIS_DATA/">GIS 資料</a>。下載 <a class="reference external" href="ftp://ftp.cpc.ncep.noaa.gov/GIS/GRADS_GIS/GeoTIFF/TEMP/us_tmax/">最近一筆的當日最高溫資料</a>。檔案會以 <code class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float.tif</span></code> 的分式命名。（Y=年，M=月，D=日）</p>
+<p>接著我們要使用 <a class="reference external" href="https://www.census.gov/geo/maps-data/data/gazetteer2013.html">2013 US Gazetteer</a> 的 CSV 檔，上面記載所有美國的都市區域位置。下載 <a class="reference external" href="http://www2.census.gov/geo/gazetteer/2013_Gazetteer/2013_Gaz_ua_national.zip">Urban Areas Gazetteer File</a>。</p>
+<p>然後我們還要對每個縣計算最高溫的平均值，所以需要 <a class="reference external" href="https://www.census.gov/cgi-bin/geo/shapefiles2013/main">2013 TIGER/Line Shapefiles</a>。下載 <a class="reference external" href="http://www2.census.gov/geo/tiger/TIGER2013/COUNTY/tl_2013_us_county.zip">縣邊界 (及相等行政區) 的 shapefile</a>。</p>
 <p>為了方便起見，你也可以直接用下面的連結下載：</p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/us.tmax_nohads_ll_20140525_float.tif">us.tmax_nohads_ll_20140525_float.tif</a></p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/2013_Gaz_ua_national.zip">2013_Gaz_ua_national.zip</a></p>
@@ -250,147 +236,113 @@ the <a class="reference external" href="http://www2.census.gov/geo/tiger/TIGER20
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Go to <span class="menuselection">Layer ‣ Add Raster Layer</span> and browse to the
-downloaded <code class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float.tif</span></code> file and click
-<span class="guilabel">Open</span>.</li>
+<li><p class="first">選擇 <span class="menuselection">圖層 ‣ 加入影像圖層</span>，選擇剛才下載的 <code class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float.tif</span></code> ，然後按 <span class="guilabel">開啟</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1131.png" class="align-center" src="../_images/1131.png" />
 <ol class="arabic simple" start="2">
-<li>Once the layer is loaded, select the <span class="guilabel">Identify</span> tool and click
-anywhere on the layer. You will see the temperature value in celsius as the
-value or Band 1 at that location.</li>
+<li><p class="first">圖層載入後，選擇 <span class="guilabel">識別圖徵</span> 工具然後點選圖層的任一處。你可以在「波段 1」中看到該點的攝氏溫度值。</p>
+</li>
 </ol>
 <img alt="../_images/279.png" class="align-center" src="../_images/279.png" />
 <ol class="arabic simple" start="3">
-<li>Now unzip the downloaded <code class="docutils literal"><span class="pre">2013_Gaz_ua_national.zip</span></code> file and extract the
-<code class="docutils literal"><span class="pre">2013_Gaz_ua_national.txt</span></code> file on your disk. Go to <span class="menuselection">Layer
-‣ Add Delimited Text Layer</span>.</li>
+<li><p class="first">接著把剛下載的 <code class="docutils literal"><span class="pre">2013_Gaz_ua_national.zip</span></code> 檔案解壓縮，產生 <code class="docutils literal"><span class="pre">2013_Gaz_ua_national.txt</span></code>。選擇 <span class="menuselection">圖層 ‣ 加入分隔文字圖層</span>。</p>
+</li>
 </ol>
 <img alt="../_images/339.png" class="align-center" src="../_images/339.png" />
 <ol class="arabic simple" start="4">
-<li>In the <span class="guilabel">Create a Layer from Delimited Text File</span> dialog, click
-<span class="guilabel">Browse</span> and open <code class="docutils literal"><span class="pre">2013_Gaz_ua_national.txt</span></code>. Choose
-<span class="guilabel">Tab</span> under <span class="guilabel">Custom delimiters</span>. The point coordinates
-are in Latitude and Longitude, so select <span class="guilabel">INTPTLONG</span> as
-<span class="guilabel">X field</span> and <span class="guilabel">INTPTLAT</span> as <span class="guilabel">Y field</span>. Check
-the <span class="guilabel">Use spatial index</span> box and click <span class="guilabel">OK</span>.</li>
+<li><p class="first">在 <span class="guilabel">從分隔文件建立一個圖層</span> 視窗中，點選 <span class="guilabel">瀏覽</span> 然後開啟 <code class="docutils literal"><span class="pre">2013_Gaz_ua_national.txt</span></code>。選擇 <span class="guilabel">自訂分隔符號</span> 中的 <span class="guilabel">定位鍵</span>，由於典座標以經緯度編排，因此 <span class="guilabel">X座標</span> 選擇 <span class="guilabel">INTPTLONG</span>，<span class="guilabel">Y座標</span> 選擇 <span class="guilabel">INTPTLAT</span>。勾選 <span class="guilabel">使用空間索引</span>，然後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/429.png" class="align-center" src="../_images/429.png" />
 <ol class="arabic simple" start="5">
-<li>Now we are ready to extract the temperature values from the raster layer.
-Install the <code class="docutils literal"><span class="pre">Point</span> <span class="pre">Sampling</span> <span class="pre">Tool</span></code> plugin. See <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a> for
-details on how to install plugins.</li>
+<li><p class="first">現在我們已做好從影像圖層中取樣的準備。請安裝 <code class="docutils literal"><span class="pre">Point</span> <span class="pre">Sampling</span> <span class="pre">Tool</span></code> 附加元件，安裝細節請參考 <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a>。</p>
+</li>
 </ol>
 <img alt="../_images/530.png" class="align-center" src="../_images/530.png" />
 <ol class="arabic simple" start="6">
-<li>Open the plugin dialog from <span class="menuselection">Plugins ‣ Analyses ‣ Point
-sampling tool</span>.</li>
+<li><p class="first">選擇 <span class="menuselection">附加元件 ‣ Analyses ‣ Point sampling tool</span>，開啟附加元件視窗。</p>
+</li>
 </ol>
 <img alt="../_images/628.png" class="align-center" src="../_images/628.png" />
 <ol class="arabic simple" start="7">
-<li>In the <span class="guilabel">Point Sampling Tool</span> dialog, select
-<code class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></code> as the <span class="guilabel">Layer containing sampling
-points</span>. We must explicitely pick the fields from the input layer that we
-want in the output layer.  Choose <code class="docutils literal"><span class="pre">GEOID</span></code> and <code class="docutils literal"><span class="pre">NAME</span></code> fields from the
-<code class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></code> layer. We can sample values from multiple raster
-band at once, but since our raster has only 1 band, choose the
-<code class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float:</span> <span class="pre">Band</span> <span class="pre">1</span></code>. Name the output vector layer
-as <code class="docutils literal"><span class="pre">max_temparature_at_urban_locations.shp</span></code>. Click the <span class="guilabel">OK</span> to
-start the sampling process. Click <span class="guilabel">Close</span> once the process
-finishes.</li>
+<li><p class="first">在 <span class="guilabel">Point Sampling Tool</span> 視窗中，<span class="guilabel">Layer containing sampling points</span> 要選擇 <code class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></code>，而且我們必須要明確的指定所有會從輸入圖層轉存到輸出圖層的欄位值，因此請從 <code class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></code> 圖層中選擇 <code class="docutils literal"><span class="pre">GEOID</span></code> 和 <code class="docutils literal"><span class="pre">NAME</span></code> 兩欄位。我們可以一次從許多影像波段中取樣，不過因為我們目前使用的影像只有 1 個波段，所以選擇 <code class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float:</span> <span class="pre">Band</span> <span class="pre">1</span></code> 即可。把輸出向量圖層命名為 <code class="docutils literal"><span class="pre">max_temparature_at_urban_locations.shp</span></code> 後按下 <span class="guilabel">確定</span>，程式就會開始執行，當執行結束後，再按下 <span class="guilabel">關閉</span>。</p>
+</li>
 </ol>
 <img alt="../_images/727.png" class="align-center" src="../_images/727.png" />
 <ol class="arabic simple" start="8">
-<li>You will see a new layer <code class="docutils literal"><span class="pre">max_temparature_at_urban_locations</span></code> loaded in
-QGIS. Use the <span class="guilabel">Identify</span> tool to click on any point to see the
-attributes. You will see the <code class="docutils literal"><span class="pre">us.tmax_no</span></code> field - which contains the
-raster pixel value at the location of the point.</li>
+<li><p class="first">新的圖層 <code class="docutils literal"><span class="pre">max_temparature_at_urban_locations</span></code> 會被載入到 QGIS 中。使用 <span class="guilabel">識別圖徵</span> 工具，在任何一點上按一下，就可以瀏覽其屬性。你會看到有個稱為 <code class="docutils literal"><span class="pre">us.tmax_no</span></code> 的屬性，這就是在此點位置的影像像素值。</p>
+</li>
 </ol>
 <img alt="../_images/826.png" class="align-center" src="../_images/826.png" />
 <ol class="arabic simple" start="9">
-<li>First part of our analysis is over. Let&#8217;s remove the unnecessary layers. Hold
-the <code class="kbd docutils literal"><span class="pre">Shift</span></code> key and select <code class="docutils literal"><span class="pre">max_temparature_at_urban_locations</span></code> and
-<code class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></code> layers. Right-click and select <span class="guilabel">Remove</span>
-to remove them from QGIS TOC.</li>
+<li><p class="first">我們分析的第一部分已經完成，現在來移除一些不需要的圖層。按住 <code class="kbd docutils literal"><span class="pre">Shift</span></code> 鍵然後選擇 <code class="docutils literal"><span class="pre">max_temparature_at_urban_locations</span></code> 和 <code class="docutils literal"><span class="pre">2013_Gaz_ua_national</span></code> 圖層，以右鍵點選 <span class="guilabel">移除</span>，就可把它們從 QGIS 的圖層列表中移除。</p>
+</li>
 </ol>
 <img alt="../_images/924.png" class="align-center" src="../_images/924.png" />
 <ol class="arabic simple" start="10">
-<li>Go to <span class="menuselection">Layer ‣ Add Vector Layer</span>. Browse to the downloaded
-<code class="docutils literal"><span class="pre">tl_2013_us_county.zip</span></code> file and click <span class="guilabel">Open</span>. Select the
-<code class="docutils literal"><span class="pre">tl_2013_us_county.shp</span></code> as the layer and click <span class="guilabel">OK</span>.</li>
+<li><p class="first">選擇 <span class="menuselection">圖層 ‣ 加入向量圖層</span>，選擇剛才下載的 <code class="docutils literal"><span class="pre">tl_2013_us_county.zip</span></code> ，然後按 <span class="guilabel">開啟</span>，選擇 <code class="docutils literal"><span class="pre">tl_2013_us_county.shp</span></code>  圖層然後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1025.png" class="align-center" src="../_images/1025.png" />
 <ol class="arabic simple" start="11">
-<li>The <code class="docutils literal"><span class="pre">tl_2013_us_county</span></code> will be added to QGIS. This layer is in
-<code class="docutils literal"><span class="pre">EPSG:4269</span> <span class="pre">NAD83</span></code> projection. This doesn&#8217;t match the projection of the
-raster layer. We will re-project this layer to <code class="docutils literal"><span class="pre">EPSG:4326</span> <span class="pre">WGS84</span></code>
-projection.</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">tl_2013_us_county</span></code> 會加入到 QGIS 中。本圖層使用的投影法是 <code class="docutils literal"><span class="pre">EPSG:4269</span> <span class="pre">NAD83</span></code> ，與影像的投影法不相符，所以我們必須先把新圖層重投影到 <code class="docutils literal"><span class="pre">EPSG:4326</span> <span class="pre">WGS84</span></code> 才行。</p>
+</li>
 </ol>
 <img alt="../_images/1132.png" class="align-center" src="../_images/1132.png" />
 <ol class="arabic simple" start="12">
-<li>Right-click the <code class="docutils literal"><span class="pre">tl_2013_us_county</span></code> layer and select <span class="guilabel">Save
-As..</span>.</li>
+<li><p class="first">在 <code class="docutils literal"><span class="pre">tl_2013_us_county</span></code> 圖層上按右鍵然後選擇 <span class="guilabel">存檔為...</span>，</p>
+</li>
 </ol>
 <img alt="../_images/1226.png" class="align-center" src="../_images/1226.png" />
 <ol class="arabic simple" start="13">
-<li>In the <span class="guilabel">Save Vector layer as..</span> dialog, click <span class="guilabel">Browse</span>
-and name the output file as <code class="docutils literal"><span class="pre">counties.shp</span></code>. Choose <span class="guilabel">Selected
-CRS</span> from the <span class="guilabel">CRS</span> dropdown menu. Click <span class="guilabel">Browse</span> and
-select <code class="docutils literal"><span class="pre">WGS</span> <span class="pre">84</span></code> as the CRS. Check the <span class="guilabel">Add saved file to map</span>
-and click <span class="guilabel">OK</span>.</li>
+<li><p class="first">在 <span class="guilabel">儲存向量圖層為...</span> 的視窗中，按下 <span class="guilabel">瀏覽</span>然後把新檔案命名為 <code class="docutils literal"><span class="pre">counties.shp</span></code>。點選 <span class="guilabel">選取CRS</span> 鈕，然後選擇 <code class="docutils literal"><span class="pre">WGS</span> <span class="pre">84</span></code> 作為 CRS，勾選 <span class="guilabel">加入儲存檔案至地圖中</span>，最後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1324.png" class="align-center" src="../_images/1324.png" />
 <ol class="arabic simple" start="14">
-<li>A new layer named <code class="docutils literal"><span class="pre">counties</span></code> will be add to QGIS.</li>
+<li><p class="first">名稱為 <code class="docutils literal"><span class="pre">counties</span></code> 的新圖層會加入 QGIS 中。</p>
+</li>
 </ol>
 <img alt="../_images/1423.png" class="align-center" src="../_images/1423.png" />
 <ol class="arabic simple" start="15">
-<li>Enable the <code class="docutils literal"><span class="pre">Zonal</span> <span class="pre">Statistics</span> <span class="pre">Plugins</span></code>. This is a core plugin so it is
-already installed. See <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a> to know to how enable core
-plugins.</li>
+<li><p class="first">啟用 <code class="docutils literal"><span class="pre">區域統計附加元件（Zonal</span> <span class="pre">Statistics</span> <span class="pre">Plugins）</span></code>。由於它屬於核心附加元件，所以 QGIS 已經安裝就緒了。有關於如何啟用核心附加元件，請參考 <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a>。</p>
+</li>
 </ol>
 <img alt="../_images/1522.png" class="align-center" src="../_images/1522.png" />
 <ol class="arabic simple" start="16">
-<li>Go to <span class="menuselection">Raster ‣ Zonal statistics ‣ Zonal statistics</span>.</li>
+<li><p class="first">選擇 <span class="menuselection">影像 ‣ 區域統計 ‣ 區域統計</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1621.png" class="align-center" src="../_images/1621.png" />
 <ol class="arabic simple" start="17">
-<li>Select <code class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float</span></code> as the <span class="guilabel">Raster
-layer</span> and <code class="docutils literal"><span class="pre">counties</span></code> as the <span class="guilabel">Polygon layer containing the
-zones</span>. Enter <code class="docutils literal"><span class="pre">ZS_</span></code> as the <span class="guilabel">Output column prefix</span>. Click
-<span class="guilabel">OK</span>.</li>
+<li><p class="first"><span class="guilabel">影像圖層</span> 的欄位選擇 <code class="docutils literal"><span class="pre">us.tmax_nohads_ll_{YYYYMMDD}_float</span></code>，<span class="guilabel">包含此區域的多邊形圖層</span> 選擇 <code class="docutils literal"><span class="pre">counties</span></code>，<span class="guilabel">輸出的欄位前綴</span> 輸入 <code class="docutils literal"><span class="pre">ZX_</span></code>，然後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1720.png" class="align-center" src="../_images/1720.png" />
 <ol class="arabic simple" start="18">
-<li>The analysis may take some time depending on the size of the dataset.</li>
+<li><p class="first">依照你的資料大小而定，分析可能需要一點時間。</p>
+</li>
 </ol>
 <img alt="../_images/1820.png" class="align-center" src="../_images/1820.png" />
 <ol class="arabic simple" start="19">
-<li>Once the processing finishes, select the <code class="docutils literal"><span class="pre">counties</span></code> layer. Use the
-<span class="guilabel">Identify</span> tool and click on any county polygon. You will see
-three new attributes added to the layer: <code class="docutils literal"><span class="pre">ZS_count</span></code>, <code class="docutils literal"><span class="pre">ZS_mean</span></code> and
-<code class="docutils literal"><span class="pre">ZS_sum</span></code>. These attributes contain the count of raster pixels, mean of
-raster pixel values and sum of raster pixel values respectively. Since we
-are interested in average temperature, the <code class="docutils literal"><span class="pre">ZS_mean</span></code> field will be the
-one to use.</li>
+<li><p class="first">處理結束後，選擇 <code class="docutils literal"><span class="pre">counties</span></code> 圖層，使用 <span class="guilabel">識別圖徵</span> 工具點一下任一個縣市的多邊形圖徵，你可以圖層中出現了新的屬性：<code class="docutils literal"><span class="pre">ZS_count</span></code>、<code class="docutils literal"><span class="pre">ZS_mean</span></code>，和 <code class="docutils literal"><span class="pre">ZS_sum</span></code>。這三個屬性分別為影像像素的總數、像素值的平均，以及像素值的總和。由於我們要求的是平均溫度，<code class="docutils literal"><span class="pre">ZS_mean</span></code> 欄位就是我們所需要的。</p>
+</li>
 </ol>
 <img alt="../_images/1918.png" class="align-center" src="../_images/1918.png" />
 <ol class="arabic simple" start="20">
-<li>Let&#8217;s style this layer to create a temperature map. Right-click the
-<code class="docutils literal"><span class="pre">counties</span></code> layer and select <span class="guilabel">Properties</span>.</li>
+<li><p class="first">讓我們來調整一下圖層樣式，建立一張溫度分布地圖。在 <code class="docutils literal"><span class="pre">counties</span></code> 圖層上按右鍵選擇 <span class="guilabel">屬性</span>。</p>
+</li>
 </ol>
 <img alt="../_images/2015.png" class="align-center" src="../_images/2015.png" />
 <ol class="arabic simple" start="21">
-<li>Switch to the <span class="guilabel">Style</span> tab. Choose <span class="guilabel">Graduated</span> style and
-select <code class="docutils literal"><span class="pre">ZS_mean</span></code> as the <span class="guilabel">Column</span>. Choose a <span class="guilabel">Color
-Ramp</span> and <span class="guilabel">Mode</span> of your chose. Click <span class="guilabel">Classify</span> to
-create the classes. Click <span class="guilabel">OK</span>. (See <a class="reference internal" href="basic_vector_styling.html"><em>基本向量資料樣式設定</em></a>
-for more details on styling.)</li>
+<li><p class="first">切換至 <span class="guilabel">樣式</span> 分業，選擇 <span class="guilabel">漸層</span> 樣式然後 <span class="guilabel">行</span> 選擇 <code class="docutils literal"><span class="pre">ZS_mean</span></code>。選擇一個你喜歡的 <span class="guilabel">色彩映射表</span> 與 <span class="guilabel">模式</span>，然後按下 <span class="guilabel">分類以建立類別，最後按下 :guilabel:`確定</span>。(樣式設定的細節，請參考 <a class="reference internal" href="basic_vector_styling.html"><em>基本向量資料樣式設定</em></a>。)</p>
+</li>
 </ol>
 <img alt="../_images/2119.png" class="align-center" src="../_images/2119.png" />
 <ol class="arabic simple" start="22">
-<li>You will see the county polygons styled using average maximum temperature
-extracted from the raster grid.</li>
+<li><p class="first">最後你會看到縣市界的多邊形地圖現在已依照從影像網格中取出的平均最高氣溫數值設定好樣式了。</p>
+</li>
 </ol>
 <img alt="../_images/2218.png" class="align-center" src="../_images/2218.png" />
 </div>
@@ -418,7 +370,7 @@ extracted from the raster grid.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Jul 12, 2016.<br/>
+      最後更新日期是 Sep 18, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Batch Processing using Processing Framework &mdash; QGIS Tutorials and Tips</title>
+    <title>使用處理框架進行批次處理 &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Automating Complex Workflows using Processing Modeler" href="processing_graphical_modeler.html" />
+    <link rel="next" title="利用處理建模自動執行複雜的工作流程" href="processing_graphical_modeler.html" />
     <link rel="prev" title="點資料內插法" href="interpolating_point_data.html" />
 
 <meta charset='utf-8'>
@@ -105,19 +105,19 @@
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">近鄰分析</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">使用點或多邊形對影像資料取樣</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">點資料內插法</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Batch Processing using Processing Framework</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">使用處理框架進行批次處理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">利用處理建模自動執行複雜的工作流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">利用地圖出版設計的圖輯工具自動創造地圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS 瀏覽器</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">在 QGIS 中開啟 BIL、BIP 或 BSQ 格式檔案</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">使用自訂的 Python 表達式函數</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">撰寫 Python 腳本並在處理框架下執行</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">資料表連接 (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 學習資源</a></li>
@@ -135,7 +135,7 @@
     </a>
   </li>
   <li>
-    <a href="processing_graphical_modeler.html" title="Next Chapter: Automating Complex Workflows using Processing Modeler"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Automating Compl... &raquo;</span>
+    <a href="processing_graphical_modeler.html" title="Next Chapter: 利用處理建模自動執行複雜的工作流程"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">利用處理建模自動執行複雜的工作流... &raquo;</span>
     </a>
   </li>
               
@@ -207,35 +207,33 @@
       
 
   <div class="section" id="batch-processing-using-processing-framework">
-<h1>Batch Processing using Processing Framework<a class="headerlink" href="#batch-processing-using-processing-framework" title="Permalink to this headline">¶</a></h1>
-<p>QGIS 2.0 introduced a new concept called <strong>Processing Framework</strong>. Previously
-known as <strong>Sextante</strong>, the Processing Framework provides an environment within
-QGIS to run native and third-party algorithms for processing data. It contains
-a nice batch processing interface that allows one to execute an algorithm on
-several layers easily. Batch processing is a useful tool that can save manual
-effort and help you automate repetitive tasks.</p>
+<h1>使用處理框架進行批次處理<a class="headerlink" href="#batch-processing-using-processing-framework" title="Permalink to this headline">¶</a></h1>
+<p>QGIS 2.0 引進了一個稱為<strong>處理框架（Processing Framework）</strong>的新概念。它的前身是 <strong>Sextante</strong>，旨在為 QGIS 提供可以用來執行原生或第三方提供的演算法來處理資料的環境。此概念包含一個很棒的批次處理介面，讓使用者可以簡單地對許多圖層執行程式計算。這個批次處理工具可以自動處理重複的工作，為你省去許多時間精力。</p>
 <div class="section" id="overview-of-the-task">
 <h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will take several global vector layers and clip them to the extent of Africa
-in a single batch command.</p>
+<p>我們要只使用一個批次指令，來裁切幾個全球的向量圖層的非洲大陸區域資料。</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>你還會學到這些<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Dissolve (merge) polygons from a layer that have the same attribute.</li>
+<li><p class="first">融合 (Dissolve) 圖層中具有相同屬性的多邊形圖徵</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>取得資料<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://naturalearthdata.com">Natural Earth</a> has several global vector
-layers. Download the following layers</p>
+<p><a class="reference external" href="http://naturalearthdata.com">Natural Earth</a> 可以載到以下幾個向量圖層：</p>
 <ul class="simple">
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - Countries</a></li>
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads.zip">Railroads</a></li>
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_ports.zip">Ports</a></li>
-<li><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip">Airports</a></li>
+<li><p class="first"><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - 國界（Countries）</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads.zip">鐵路（Railroads）</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_ports.zip">港口（Ports）</a></p>
+</li>
+<li><p class="first"><a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip">機場（Airports）</a></p>
+</li>
 </ul>
-<p>Once downloaded, unzip and extract all the shapefiles in a single folder.</p>
+<p>下載後，把所有的 shapefile 都解壓縮到同一個資料夾。</p>
 <p>資料來源  <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="procedure">
@@ -246,8 +244,8 @@ layers. Download the following layers</p>
 </ol>
 <img alt="../_images/114.png" class="align-center" src="../_images/114.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded Admin 0 Countries shapefile
-<code class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></code> and click <span class="guilabel">Open</span>.</li>
+<li><p class="first">選擇剛下載的 Admin 0 - Countries <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries.shp</span></code> 並按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/212.png" class="align-center" src="../_images/212.png" />
 <ol class="arabic simple" start="3">
@@ -390,7 +388,7 @@ properly clipped to the continent boundary that we had specified.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Jul 12, 2016.<br/>
+      最後更新日期是 Sep 18, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

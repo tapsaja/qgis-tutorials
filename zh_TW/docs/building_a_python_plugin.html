@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Using Custom Python Expression Functions" href="custom_python_functions.html" />
+    <link rel="next" title="使用自訂的 Python 表達式函數" href="custom_python_functions.html" />
     <link rel="prev" title="Python 程式設計的初步上手" href="getting_started_with_pyqgis.html" />
 
 <meta charset='utf-8'>
@@ -105,19 +105,19 @@
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">近鄰分析</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">使用點或多邊形對影像資料取樣</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">點資料內插法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">使用處理框架進行批次處理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">利用處理建模自動執行複雜的工作流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">利用地圖出版設計的圖輯工具自動創造地圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS 瀏覽器</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">在 QGIS 中開啟 BIL、BIP 或 BSQ 格式檔案</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">以 Python 製作附加元件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">使用自訂的 Python 表達式函數</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">撰寫 Python 腳本並在處理框架下執行</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">資料表連接 (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 學習資源</a></li>
@@ -135,7 +135,7 @@
     </a>
   </li>
   <li>
-    <a href="custom_python_functions.html" title="Next Chapter: Using Custom Python Expression Functions"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Using Custom Pyt... &raquo;</span>
+    <a href="custom_python_functions.html" title="Next Chapter: 使用自訂的 Python 表達式函數"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">使用自訂的 Python 表達式... &raquo;</span>
     </a>
   </li>
               
@@ -224,9 +224,7 @@
 <h3>Qt 的 Python Bindings<a class="headerlink" href="#python-bindings-for-qt" title="Permalink to this headline">¶</a></h3>
 <p>由於我們要使用 Python 來設計附加元件，因此得安裝 Qt 的 Python binding ，以便在 Python 中可以輕鬆使用 Qt 的功能。此步驟會因作業系統的不同而不同，像是 Windows 命令列下，要裝的程式叫做 <code class="docutils literal"><span class="pre">pyrcc4</span></code>。</p>
 <p><strong>Windows</strong></p>
-<p>Download the <a class="reference external" href="http://trac.osgeo.org/osgeo4w/">OSGeo4W network installer</a> and choose <span class="guilabel">Express Desktop
-Install</span>. Install the package <code class="docutils literal"><span class="pre">QGIS</span></code>. After installation, you will be able to access the
-<code class="docutils literal"><span class="pre">pyrcc4</span></code> tool via the <span class="guilabel">OSGeo4W Shell</span>.</p>
+<p>下載 <a class="reference external" href="http://trac.osgeo.org/osgeo4w/">OSGeo4W network installer</a> 然後選擇 <span class="guilabel">Express Desktop Install</span>，選擇安裝 <code class="docutils literal"><span class="pre">QGIS</span></code> 的套件。安裝完畢後，你就可以經由 <span class="guilabel">OSGeo4W Shell</span> 存取 <code class="docutils literal"><span class="pre">pyrcc4</span></code> 工具。</p>
 <p><strong>Mac</strong></p>
 <p>安裝 <a class="reference external" href="http://brew.sh">Homebrew</a> 套件管理員，然後使用以下指令安裝 <code class="docutils literal"><span class="pre">PyQt</span></code> 套件：</p>
 <div class="highlight-none"><div class="highlight"><pre>brew install pyqt
@@ -240,40 +238,25 @@ Install</span>. Install the package <code class="docutils literal"><span class="
 </div>
 <div class="section" id="a-text-editor-or-a-python-ide">
 <h3>編輯器或 Python IDE<a class="headerlink" href="#a-text-editor-or-a-python-ide" title="Permalink to this headline">¶</a></h3>
-<p>Any kind of software development requires a good text editor. If you already
-have a favorite text editor or an IDE (Integrated Development Environment), you
-may use it for this tutorial. Otherwise, each platform offers a wide variety of
-free or paid options for text editors. Choose the one that fits your needs.</p>
+<p>要進行任何種類的軟體開發，優良的文字編輯器是必不可少的。在本教學中，你可以使用你喜歡的文字編輯器或 IDE (整合開發環境)；如果沒有的話，每個作業系統都有很多免費或付費的文字編輯軟體可使用，挑一個符合你需求的即可。</p>
 <p>本教學中使用的是 Windows 版本的 Notepad++ 編輯器。</p>
 <p><strong>Windows</strong></p>
 <p><a class="reference external" href="http://notepad-plus-plus.org/">Notepad++</a> 是一款好用且免費的編輯器，可安裝於 Windows 下。下載並安裝 <a class="reference external" href="http://notepad-plus-plus.org/repository/6.x/6.7.5/npp.6.7.5.Installer.exe">Notepad++ editor</a></p>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">If you are using Notepad++, makes sure to check <span class="guilabel">Replace by space</span>
-at  <span class="menuselection">Settings ‣ Preferences ‣ Tab Settings</span>. Python is
-very sensitive about whitespace and this setting will ensure tabs and spaces
-are treated properly.</p>
+<p class="last">如果你使用的是 Notepad++，請確認你有在 <span class="menuselection">Settings ‣ Preferences ‣ Tab Settings</span> 的地方勾選 <span class="guilabel">Replace by space</span>。Python 對於空白縮排設定非常敏感，此選項可以確保你使用 tab 和 space 鍵製造的空白可以被適當的設定。</p>
 </div>
 </div>
 <div class="section" id="plugin-builder-plugin">
 <h3>附加元件「Plugin Builder」<a class="headerlink" href="#plugin-builder-plugin" title="Permalink to this headline">¶</a></h3>
-<p>There is a helpful QGIS plugin named <code class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></code> which creates all the
-necessary files and the boilerplate code for a plugin. Find and install the
-<code class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></code> plugin. See <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a> for more details on how to
-install plugins.</p>
+<p>QGIS 有個實用的 <code class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></code> 附加元件，它可以創造附加元件所需檔案和樣板設計的代碼。請尋找並安裝 <code class="docutils literal"><span class="pre">Point</span> <span class="pre">Sampling</span> <span class="pre">Tool</span></code> 附加元件，安裝細節請參考 <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a>。</p>
 </div>
 <div class="section" id="plugins-reloader-plugin">
 <h3>附加元件「Plugin Reloader」<a class="headerlink" href="#plugins-reloader-plugin" title="Permalink to this headline">¶</a></h3>
-<p>This is another helper plugin which allows iterative development of plugins.
-Using this plugin, you can change your plugin code and have it reflected in
-QGIS without having to restart QGIS every time. Find and install the <code class="docutils literal"><span class="pre">Plugin</span>
-<span class="pre">Reloader</span></code> plugin. See <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a> for more details on how to install
-plugins.</p>
+<p>還有一個實用的附加元件，可以讓我們反覆測試不斷更新的附加元件。使用此元件，可以在改變附加元件的程式碼之後，不用重新啟動 QGIS 就能讀取程式碼修改的部分。請尋找並安裝 <code class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Reloader</span></code> 附加元件，安裝細節請參考 <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a>。</p>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">Plugin Reloader is an experimental plugin. Make sure you have checked
-<span class="guilabel">Show also experimental plugins</span> in <span class="guilabel">Plugin Manager</span>
-settings if you cannot find it.</p>
+<p class="last">Plugin Reloader 屬於實驗性的附加元件，所以如果你找不到它，請確認你已在 <span class="guilabel">附加元件的設定分頁</span> 中勾選了 <span class="guilabel">顯示實驗性質的附加元件</span>。</p>
 </div>
 </div>
 </div>
@@ -285,30 +268,13 @@ settings if you cannot find it.</p>
 </ol>
 <img alt="../_images/116.png" class="align-center" src="../_images/116.png" />
 <ol class="arabic simple" start="2">
-<li>You will see the <span class="guilabel">QGIS Plugin Builder</span> dialog with a form. You can
-fill the form with details relating to our plugin. The <span class="guilabel">Class
-name</span> will be the name of the Python Class containing the logic of the
-plugin. This will also be the name of the folder containing all the plugin
-files. Enter <code class="docutils literal"><span class="pre">SaveAttributes</span></code> as the class name. The <span class="guilabel">Plugin
-name</span> is the name under which your plugin will appear in the
-<span class="guilabel">Plugin Manager</span>. Enter the name as <code class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></code>. Add a
-description in the <span class="guilabel">Description</span> field. The <span class="guilabel">Module
-name</span> will be the name of the main python file for the plugin. Enter it as
-<code class="docutils literal"><span class="pre">save_attributes</span></code>. Leave the version numbers as they are. The
-<span class="guilabel">Text for menu item</span> value will be how the users will find your
-plugin in QGIS menu. Enter it as <code class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span> <span class="pre">as</span> <span class="pre">CSV</span></code>. Enter your name
-and email address in the appropriate fields. The <span class="guilabel">Menu</span>  field
-will decide where your plugin item is added in QGIS. Since our plugin is for
-vector data, select <code class="docutils literal"><span class="pre">Vector</span></code>. Check the <span class="guilabel">Flag the plugin as
-experimental</span> box at the bottom. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first"><span class="guilabel">QGIS Plugin Builder</span> 視窗會與資料表格一起出現，你可以在此處把我們要製作的附加元件的相關資訊填在表中。<span class="guilabel">Class name</span> 是本附加元件使用的主要 Python 類別，同時也是儲存所有附加元件檔案的資料夾名稱，請在此輸入 <code class="docutils literal"><span class="pre">SaveAttributes</span></code>。 <span class="guilabel">Plugin name</span> 是你的附加元件會在 <span class="guilabel">Plugin Manager</span> 中顯示的名稱，請輸入 <code class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></code>。<span class="guilabel">Description</span> 欄位中可添加一些相關描述，而 <span class="guilabel">Module name</span> 則是附加元件主要存取的 Python 檔案名稱，請輸入 <code class="docutils literal"><span class="pre">save_attributes</span></code>。版本號碼可先維持預設，<span class="guilabel">Text for menu item</span>  則與附加元件在 QGIS 選單中顯示的文字有關。<span class="guilabel">Menu</span> 欄位則是讓你決定外掛元件會放在選單列中的哪個分類（譯按：新版已移除此欄位）。由於我們的附加元件是針對向量資料，這裡請選 <code class="docutils literal"><span class="pre">Vector</span></code>。勾選底部的 <span class="guilabel">Flag the plugin as experimental</span>，然後按下 <span class="guilabel">OK</span> 或 <span class="guilabel">NEXT</span>（譯按：新版的 QGIS 把此表格分成幾個頁面，所以你可能要按下幾次 NEXT 才可見到所有選項）。</p>
+</li>
 </ol>
 <img alt="../_images/213.png" class="align-center" src="../_images/213.png" />
 <ol class="arabic simple" start="3">
-<li>Next, you will be prompted to choose a directory for your plugin. You need
-to browse to the QGIS python plugin directory on your computer and select
-<span class="guilabel">Select Folder</span>. Typically, a <code class="docutils literal"><span class="pre">.qgis2/</span></code> directory is located in
-your home directory. The <code class="docutils literal"><span class="pre">plugin</span></code> folder location will depend on your
-platform as follows: (Replace <code class="docutils literal"><span class="pre">username</span></code> with your login name)</li>
+<li><p class="first">接下來你要為附加元件指定儲存的路徑。你需要前往你電腦內的 QGIS python 附加元件路徑，然後按下 <span class="guilabel">選擇資料夾</span>。在一般的狀況下，<code class="docutils literal"><span class="pre">.qgis2/</span></code> 資料夾會在你的家目錄底下，然後 <code class="docutils literal"><span class="pre">plugin</span></code> 資料夾的路徑則會根據作業系統的不同而不同，如下所示：(請把 <code class="docutils literal"><span class="pre">username</span></code> 換成你的使用者名稱)</p>
+</li>
 </ol>
 <p><strong>Windows</strong></p>
 <div class="highlight-none"><div class="highlight"><pre>c:\Users\username\.qgis2\python\plugins
@@ -329,52 +295,44 @@ platform as follows: (Replace <code class="docutils literal"><span class="pre">u
 </ol>
 <img alt="../_images/44.png" class="align-center" src="../_images/44.png" />
 <ol class="arabic simple" start="5">
-<li>Before we can use the newly created plugin, we need to compile the
-<code class="docutils literal"><span class="pre">resources.qrc</span></code> file that was created by Plugin Builder. Launch the
-<span class="guilabel">OSGeo4W Shell</span> on windows or a terminal on Mac or Linux.</li>
+<li><p class="first">在我們可以使用新創造的附加元件之前，必須要先編譯由 Plugin Builder 產生的 <code class="docutils literal"><span class="pre">resources.qrc</span></code> 檔案。請在 windows 上開啟 <span class="guilabel">OSGeo4W Shell</span>，或在 Mac 或 Linux 上開啟終端機。</p>
+</li>
 </ol>
 <img alt="../_images/54.png" class="align-center" src="../_images/54.png" />
 <ol class="arabic simple" start="6">
-<li>Browse to the plugin directory where the output of <code class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></code> was
-created. You can use the <code class="docutils literal"><span class="pre">cd</span></code> command followed by the path to the
-directory.</li>
+<li><p class="first">你可以透過 <code class="docutils literal"><span class="pre">cd</span></code> 指令，接續資料夾的路徑名稱，前往 <code class="docutils literal"><span class="pre">Plugin</span> <span class="pre">Builder</span></code> 輸出的附加元件檔案存放的資料夾。</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>cd c:\Users\username\.qgis2\python\plugins\SaveAttributes
 </pre></div>
 </div>
 <img alt="../_images/64.png" class="align-center" src="../_images/64.png" />
 <ol class="arabic simple" start="7">
-<li>Once you are in the directory, type <code class="docutils literal"><span class="pre">make</span></code>. This will run the <code class="docutils literal"><span class="pre">pyrcc4</span></code>
-command that we had installed as part of Qt bindings for Python.</li>
+<li><p class="first">在此目錄之下輸入 <code class="docutils literal"><span class="pre">make</span></code>，之前安裝的 Python 的 Qt bindings 中的 <code class="docutils literal"><span class="pre">pyrcc4</span></code> 指令就會執行。</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>make
 </pre></div>
 </div>
 <img alt="../_images/74.png" class="align-center" src="../_images/74.png" />
 <ol class="arabic simple" start="8">
-<li>Now we are ready to have a first look at the brand new plugin we created.
-Close QGIS and launch it again. Go to <span class="menuselection">Plugins ‣ Manage
-and Install plugins</span> and enable the <code class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></code> plugin in the
-<span class="guilabel">Installed</span> tab. You will notice that there is a new icon
-in the toolbar and a new menu entry under <span class="menuselection">Vector
-‣ Save Attributes ‣ Save Attributes as CSV`</span>. Select it to launch
-the plugin dialog.</li>
+<li><p class="first">現在我們已經準備完畢，來看看我們剛才創造的附加元件吧。關閉 QGIS 後重新啟動，然後前往 <span class="menuselection">附加元件 ‣ 管理與安裝附加元件</span>，在 <span class="guilabel">已安裝</span> 分頁中啟用 <code class="docutils literal"><span class="pre">Save</span> <span class="pre">Attributes</span></code>。然後你會發現在工具列的以下路徑出現了，而且還有新圖示： <span class="menuselection">向量 ‣ Save Attributes ‣ Save Attributes as CSV</span>。點選後可開啟附加元件的視窗。</p>
+</li>
 </ol>
 <img alt="../_images/84.png" class="align-center" src="../_images/84.png" />
 <ol class="arabic simple" start="9">
-<li>You will notice a new blank dialog named <span class="guilabel">Save Attributes</span>. Close
-this dialog.</li>
+<li><p class="first">你會看到一個叫做 <span class="guilabel">Save Attributes</span> 的視窗出現。可以關掉了。</p>
+</li>
 </ol>
 <img alt="../_images/94.png" class="align-center" src="../_images/94.png" />
 <ol class="arabic simple" start="10">
-<li>We will now design our dialog box and add some user interface elements to
-it. Open the <code class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator</span></code> program and to to <span class="guilabel">File &#8211;&gt; Open File
-or Project...</span>.</li>
+<li><p class="first">我們現在要開始設計我們的視窗，並在上面添加一些新元素。開啟 <code class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator</span></code> 程式，選擇 <span class="guilabel">檔案 &#8211;&gt; 開啟檔案或專案...</span></p>
+</li>
 </ol>
 <img alt="../_images/104.png" class="align-center" src="../_images/104.png" />
 <ol class="arabic simple" start="11">
-<li>Browse to the plugin directory and select the
-<code class="docutils literal"><span class="pre">save_attributes_dialog_base.ui</span></code> file. Click <span class="guilabel">Open</span>.</li>
+<li><p class="first">前往附加元件的資料夾，選擇檔案 <code class="docutils literal"><span class="pre">save_attributes_dialog_base.ui</span></code>，然後按 <span class="guilabel">開啟</span>。</p>
+</li>
 </ol>
 <img alt="../_images/117.png" class="align-center" src="../_images/117.png" />
 <ol class="arabic simple" start="12">
@@ -778,7 +736,7 @@ upload it to the QGIS plugin repository.</p>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Jul 12, 2016.<br/>
+      最後更新日期是 Sep 18, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

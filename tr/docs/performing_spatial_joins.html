@@ -211,10 +211,7 @@
 <p>Katman Birleştirme klasik bir CBS problemidir ve basitçe özniteliklerin bir katmandan diğerine mekansal ilişkileri doğrultusunda aktarılmasıdır. Bu işlem QGIS ** Öznitelikleri Konuma Göre Birleştir ** aracı ile gerçekleştirilmektedir.</p>
 <div class="section" id="overview-of-the-task">
 <h2>Görev Özeti<a class="headerlink" href="#overview-of-the-task" title="Bu başlığın kalıcı bağlantısı">¶</a></h2>
-<p>We will use 2 layers - A shapefile of burough boundaries of New York city and
-another shapefile of nursing home locations in New York city. We will use
-spatial join technique to find the total nursing home capacity for each of the
-buroughs.</p>
+<p>İki katman kullanacağız: New York şehri yerleşimlerini gösteren bir shape dosyası ve şehirdeki bakımevlerini gösteren bir shape dosyası. Mekansam birleştirme tekniği ile her yerleşim yerindeki bakımevi toplam kapasitesini hesaplayacağız.</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>Öğreneceğiniz diğer beceriler<a class="headerlink" href="#other-skills-you-will-learn" title="Bu başlığın kalıcı bağlantısı">¶</a></h3>
 <ul class="simple">
@@ -225,11 +222,10 @@ buroughs.</p>
 </div>
 <div class="section" id="get-the-data">
 <h2>Verinin Elde Edilmesi<a class="headerlink" href="#get-the-data" title="Bu başlığın kalıcı bağlantısı">¶</a></h2>
-<p><a class="reference external" href="https://data.cityofnewyork.us/">NYC Open Data Portal</a> is an excellent source
-of free data for New York city.</p>
+<p><a class="reference external" href="https://data.cityofnewyork.us/">NYC Open Data Portal</a>  New York şehri için kapsamlı bir açık veri kaynağıdır.</p>
 <ol class="arabic simple">
-<li>Download the <a class="reference external" href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm">Borough Boundaries</a>
-zip file using the Export option on the portal.</li>
+<li><p class="first">Portaldaki dışa aktar (Export) seçeneğini kullanarak <a class="reference external" href="https://data.cityofnewyork.us/City-Government/Borough-Boundaries/tqmj-j8zm">Borough Boundaries</a> zip dosyasını indirin.</p>
+</li>
 </ol>
 <img alt="../_images/1102.png" class="align-center" src="../_images/1102.png" />
 <ol class="arabic simple" start="2">
@@ -237,85 +233,70 @@ zip file using the Export option on the portal.</li>
 using the Export option on the portal.</li>
 </ol>
 <img alt="../_images/240.png" class="align-center" src="../_images/240.png" />
-<p>For convenience, you may directly download a copy of the datasets from the
-links below:</p>
+<p>Kolaylık açısından bu verileri aşağıdaki bağlantıları kullanarak doğrudan indirebilirsiniz.</p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/nybb_12c.zip">nybb_12c.zip</a></p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/OEM_NursingHomes_001.zip">OEM_NursingHomes_001.zip</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>İşlem Adımları<a class="headerlink" href="#procedure" title="Bu başlığın kalıcı bağlantısı">¶</a></h2>
 <ol class="arabic simple" start="3">
-<li>Go to <span class="menuselection">Layer ‣ Add Vector Layer</span>. Browse to the downloaded
-zip file <code class="docutils literal"><span class="pre">nybb_12c.zip</span></code> and select <span class="guilabel">Open</span>.</li>
+<li><p class="first"><span class="menuselection">Layer ‣ Add Vector Layer</span> menüsüne gidip <code class="docutils literal"><span class="pre">nybb_12c.zip</span></code> dosyasını seçerek <span class="guilabel">Open</span> tıklayın.</p>
+</li>
 </ol>
 <img alt="../_images/327.png" class="align-center" src="../_images/327.png" />
 <ol class="arabic simple" start="4">
-<li>Select the layer <code class="docutils literal"><span class="pre">nybb.shp</span></code> and click <span class="guilabel">OK</span>.</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">nybb.shp</span></code> katmanını seçerek <span class="guilabel">OK</span> butonuna tıklayın.</p>
+</li>
 </ol>
 <img alt="../_images/419.png" class="align-center" src="../_images/419.png" />
 <ol class="arabic simple" start="5">
-<li>Repeat the steps 3 and 4 for the another file <code class="docutils literal"><span class="pre">OEM_NursingHomes_001.zip</span></code>
-and load the <code class="docutils literal"><span class="pre">OEM_NursingHomes_001.shp</span></code> layer. Once both the layers are
-loaded, right-click on the <code class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></code> layer and select
-<span class="guilabel">Open Attribute Table</span>.</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">OEM_NursingHomes_001.zip</span></code> dosyası için 3. ve 4.  adımları tekrarlayarak``OEM_NursingHomes_001.shp`` katmanını ekleyin. Her iki katman da eklenince <code class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></code> katmanını sağ tıklayıp <span class="guilabel">Open Attribute Table</span> seçeneğini tıklayın.</p>
+</li>
 </ol>
 <img alt="../_images/520.png" class="align-center" src="../_images/520.png" />
 <ol class="arabic simple" start="6">
-<li>Examine the attributes available for each feature. Since our task is to
-calculate the total nursing home capacity for each borough, we can use the
-attribute <strong>Capacity</strong> which can join to the boundaries layer.</li>
+<li><p class="first">Öznitelik alanlarını gözden geçirin. Amacımız her bölge için toplam bakımevi kapasitesini bulmak olduğundan <strong>Capacity</strong> alanını sınırlar katmanı ile ilişkilendirmek için kullanabiliriz.</p>
+</li>
 </ol>
 <img alt="../_images/619.png" class="align-center" src="../_images/619.png" />
 <ol class="arabic simple" start="7">
-<li>Go to <span class="menuselection">Vector ‣ Data Mangement Tools ‣ Join attributes by
-location</span>.</li>
+<li><p class="first"><span class="menuselection">Vector ‣ Data Mangement Tools ‣ Join attributes by location</span> menüsüne gidin.</p>
+</li>
 </ol>
 <img alt="../_images/718.png" class="align-center" src="../_images/718.png" />
 <ol class="arabic simple" start="8">
-<li>The <span class="guilabel">Target vector layer</span> is the one we want to add the attributes
-to. In our case, this will be the boroughs boundary <code class="docutils literal"><span class="pre">nybb</span></code> layer. The
-<span class="guilabel">Join vector layer</span> will be the nursing homes
-<code class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></code> layer. As we want to sum the capacity of nursing
-homes, select <span class="guilabel">Take summary of intersecting features</span> and choose
-<span class="guilabel">Sum</span>. Name the output file as <code class="docutils literal"><span class="pre">nyc_borough_join.shp</span></code>. In the
-<span class="guilabel">Output table</span> select <span class="guilabel">Keep all records`</span>.</li>
+<li><p class="first"><span class="guilabel">Target vector layer</span> bizim öznitelik eklemek istediğimiz katmanı gösterir. Bu örnekte sınır katmanı olarak <code class="docutils literal"><span class="pre">nybb</span></code> seçin. <span class="guilabel">Join vector layer</span> olarak bakımevlerini gösteren <code class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></code> katmanını seçin. Toplamları bulmak istediğimizden sırasıyla <span class="guilabel">Take summary of intersecting features</span> ve choose <span class="guilabel">Sum</span> seçin. Yeni oluşturulacak deosya için <code class="docutils literal"><span class="pre">nyc_borough_join.shp</span></code> yazın. guilabel:<cite>Output table</cite> altında <span class="guilabel">Keep all records`</span> seçin.</p>
+</li>
 </ol>
 <img alt="../_images/817.png" class="align-center" src="../_images/817.png" />
 <ol class="arabic simple" start="9">
-<li>Once the process finishes, select <span class="guilabel">Yes</span> when asked if you want to
-add the layer to TOC. The new layer <code class="docutils literal"><span class="pre">nyc_borough_join</span></code> would have the
-features from <code class="docutils literal"><span class="pre">nybb</span></code> layer along with spatially joined attributes from
-<code class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></code> layer. Right-click on the layer and select
-<span class="guilabel">Open Attribute Table</span>.</li>
+<li><p class="first">İşlem tamamlandığında oluşturulan katmanın eklenmesi için  <span class="guilabel">Yes</span> tıklayın. <code class="docutils literal"><span class="pre">nyc_borough_join</span></code> katmanı <code class="docutils literal"><span class="pre">nybb</span></code> katmanından ve mekansal olarak birleştirilen <code class="docutils literal"><span class="pre">OEM_NursingHomes_001</span></code> katmanından alanlar içermelidir. Sağ tıklayıp <span class="guilabel">Open Attribute Table</span> seçerek kontrol edin.</p>
+</li>
 </ol>
 <img alt="../_images/915.png" class="align-center" src="../_images/915.png" />
 <ol class="arabic simple" start="10">
-<li>You will see a column <strong>SUMCapacit</strong> in the attribute table. This is the
-sum of the <strong>Capacity</strong> attribute for the nursing homes that fall within
-each borough feature.</li>
+<li><p class="first">Öznitelik tablosunda <strong>SUMCapacit</strong> alanı göreceksiniz. Bu alan her yerleşim yeri için <strong>Capacity</strong> alan toplamlarını içerir.</p>
+</li>
 </ol>
 <img alt="../_images/1016.png" class="align-center" src="../_images/1016.png" />
 <ol class="arabic simple" start="11">
-<li>This is the answer we are looking for. But there are extra columns that we
-do not need in our output. Let&#8217;s clean up our output. Click on the
-<span class="guilabel">Toggle editing</span> button and then the <span class="guilabel">Delete column</span>
-button.</li>
+<li><p class="first">Hedefimize ulaştık ancak verimizde fazladan alanlar da bulunuyor. Haydi bunları temizleyelim. Sırasıyla <span class="guilabel">Toggle editing</span> ve <span class="guilabel">Delete column</span> butonlarını tıklayın.</p>
+</li>
 </ol>
 <img alt="../_images/1120.png" class="align-center" src="../_images/1120.png" />
 <ol class="arabic simple" start="12">
-<li>Press <code class="kbd docutils literal"><span class="pre">Control-A</span></code> to select all columns in the <span class="guilabel">Delete
-Attributes</span> dialog. Next hold the <code class="kbd docutils literal"><span class="pre">Control</span></code> key and de-select the
-columns you want to keep. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first"><code class="kbd docutils literal"><span class="pre">Control-A</span></code> ile tüm sütunları seçin ve <code class="kbd docutils literal"><span class="pre">Control</span></code> basılı tutarak kalmasını istediğiniz sütunları çıkarın. En son <span class="guilabel">OK</span> tıklayın.</p>
+</li>
 </ol>
 <img alt="../_images/1218.png" class="align-center" src="../_images/1218.png" />
 <ol class="arabic simple" start="13">
-<li>In the attribute table, click <span class="guilabel">Toggle editing</span> button again to
-save the changes.</li>
+<li><p class="first">Değişiklikleri kaydetmek için öznitelik tablosunda <span class="guilabel">Toggle editing</span> butonunu tıklayın.</p>
+</li>
 </ol>
 <img alt="../_images/1316.png" class="align-center" src="../_images/1316.png" />
 <ol class="arabic simple" start="14">
-<li>Back in the QGIS Canvas, use the <span class="guilabel">Identify</span> tool to verify that
-the output file has the desired attributes for each burough feature.</li>
+<li><p class="first">QGIS ana ekranında <span class="guilabel">Identify</span> ile katmanın istenilen sütun özellikleri sahip olup olmadığını kontrol edin.</p>
+</li>
 </ol>
 <img alt="../_images/1415.png" class="align-center" src="../_images/1415.png" />
 </div>
@@ -343,7 +324,7 @@ the output file has the desired attributes for each burough feature.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      Son güncelleme: Jul 12, 2016.<br/>
+      Son güncelleme: Sep 18, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

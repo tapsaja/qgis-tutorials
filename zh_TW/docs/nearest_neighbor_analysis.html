@@ -105,19 +105,19 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">近鄰分析</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">使用點或多邊形對影像資料取樣</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">點資料內插法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">使用處理框架進行批次處理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">利用處理建模自動執行複雜的工作流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">利用地圖出版設計的圖輯工具自動創造地圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS 瀏覽器</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">在 QGIS 中開啟 BIL、BIP 或 BSQ 格式檔案</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">使用自訂的 Python 表達式函數</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">撰寫 Python 腳本並在處理框架下執行</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">資料表連接 (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 學習資源</a></li>
@@ -208,15 +208,10 @@
 
   <div class="section" id="nearest-neighbor-analysis">
 <h1>近鄰分析<a class="headerlink" href="#nearest-neighbor-analysis" title="Permalink to this headline">¶</a></h1>
-<p>GIS is very useful in analyzing spatial relationship between features. One such
-analysis is finding out which features are closest to a given feature. QGIS has
-a tool called <strong>Distance Matrix</strong> which helps with such analysis. In this
-tutorial, we will use 2 datasets and find out which points from one layer are
-closest to which point from the second layer.</p>
+<p>GIS 非常適合用於分析圖徵的空間關係。這些分析的其中之一是為特定的圖徵尋找最接近的另一個圖徵，這時 QGIS 的<strong>距離矩陣（Distance Matrix）</strong>工具就可以派上用場。在本教學中，我們會使用 2 個資料集，並且尋找這兩個圖層中，哪些點彼此最為靠近。</p>
 <div class="section" id="overview-of-the-task">
 <h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Given the locations of all known significant earthquakes, find out the nearest
-populated place for each location where the earthquake happened.</p>
+<p>我們已有許多重要地震的位置，現在要找出這些離地震最近的人口聚居地。</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>你還會學到這些<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -224,16 +219,14 @@ populated place for each location where the earthquake happened.</p>
 </li>
 <li><p class="first">使用 <span class="guilabel">查詢建構器</span> 來顯示圖層中的次群組</p>
 </li>
-<li>Using MMQGIS plugin to create hub lines to visualize the nearest neighbors.</li>
+<li><p class="first">使用 MMQGIS 附加元件畫出樞紐線以呈現近鄰分析的結果</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>取得資料<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use NOAA’s National Geophysical Data Center’s <a class="reference external" href="http://www.ngdc.noaa.gov/nndc/struts/form?t=101650&amp;s=1&amp;d=1">Significant Earthquake
-Database</a> as our
-layer representing all major earthquakes. Download the <a class="reference external" href="http://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&amp;query_0=$ID&amp;t=101650&amp;s=13&amp;d=189&amp;dfn=signif.txt">tab-delimited
-earthquake data</a>.</p>
+<p>這裡我們要使用 NOAA 的美國國立地球物理資料中心（NGDC）的 <a class="reference external" href="http://www.ngdc.noaa.gov/nndc/struts/form?t=101650&amp;s=1&amp;d=1">Significant Earthquake Database</a>，內含所有的全球重大地震。下載 <a class="reference external" href="http://www.ngdc.noaa.gov/nndc/struts/results?type_0=Exact&amp;query_0=$ID&amp;t=101650&amp;s=13&amp;d=189&amp;dfn=signif.txt">地震資料的 tab 分隔檔</a></p>
 <p>Natural Earth <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">上有不錯的 `人口居住地</a> 資料庫，<a href="#id3"><span class="problematic" id="id4">`其中也有 `簡化版 (欄位較少) 的資料庫&lt;http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip&gt;`_</span></a></p>
 <p>為了方便起見，你也可以直接用下面的連結下載這兩份資料集：</p>
 <p><a href="#id1"><span class="problematic" id="id2">`</span></a>signif.txt &lt;<a class="reference external" href="http://www.qgistutorials.com/downloads/signif.txt">http://www.qgistutorials.com/downloads/signif.txt</a>&gt;</p>
@@ -257,10 +250,8 @@ earthquake data</a>.</p>
 </div>
 <img alt="../_images/237.png" class="align-center" src="../_images/237.png" />
 <ol class="arabic simple" start="3">
-<li>As the earthquake dataset has Latitude/Longitude coordinates, it will be
-imported with the default CRS of <code class="docutils literal"><span class="pre">EPSG:</span> <span class="pre">4326</span></code>. Verify that is the case in
-the bottom-right corner. Let&#8217;s also open the Populated Places layer. Go to
-<span class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</span>.</li>
+<li><p class="first">由於地震資料採用經緯度座標，輸入的 CRS 應該會採用 <code class="docutils literal"><span class="pre">EPSG:</span> <span class="pre">4326</span></code>，可在視窗右下角檢查是否正確。接下來來開啟人口聚居地圖層，選擇 <span class="menuselection">圖層 ‣ 加入向量圖層</span>。</p>
+</li>
 </ol>
 <img alt="../_images/325.png" class="align-center" src="../_images/325.png" />
 <ol class="arabic simple" start="4">
@@ -269,11 +260,8 @@ the bottom-right corner. Let&#8217;s also open the Populated Places layer. Go to
 </ol>
 <img alt="../_images/418.png" class="align-center" src="../_images/418.png" />
 <ol class="arabic simple" start="5">
-<li>Zoom around and explore both the datasets. Each purple point represents the
-location of a significant earthquake and each blue point represents the
-location of a populated place. We need a way to find out the nearest point
-from the populated places layer for each of the points in the earthquake
-layer.</li>
+<li><p class="first">稍微縮放一下瀏覽這兩個資料庫。每個紫色的點都是一個重要地震，而每個藍色的點都是一個人口聚居地（譯按：你的點顏色可能會不同，請對照圖層各自的名字）。我們要做的是為每個地震點找出最接近的人口聚居地。</p>
+</li>
 </ol>
 <img alt="../_images/518.png" class="align-center" src="../_images/518.png" />
 <ol class="arabic simple" start="6">
@@ -282,110 +270,81 @@ layer.</li>
 </ol>
 <img alt="../_images/617.png" class="align-center" src="../_images/617.png" />
 <ol class="arabic simple" start="7">
-<li>Here select the earthquake layer <code class="docutils literal"><span class="pre">signif</span></code> as the Input point layer and the
-populated places <code class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></code> as the target layer. You
-also need to select a unique field from each of these layers which is how
-your results will be displayed. In this analysis, we are looking to get only
-<code class="docutils literal"><span class="pre">1</span></code> nearest point, so check the <span class="guilabel">Use only the nearest(k) target
-points</span>, and enter <span class="guilabel">1</span>. Name your output file <code class="docutils literal"><span class="pre">matrix.csv</span></code>, and
-click OK.  Once the processing finishes, click <span class="guilabel">Close</span>.</li>
+<li><p class="first">在開啟的視窗中，「輸入點圖層」選擇 <code class="docutils literal"><span class="pre">signif</span></code>，「目標點圖層」選擇 <code class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></code>。此外，我們還要為這兩個圖層選擇一個「唯一ID欄位」（每個點的此欄位值都不相同），輸出檔將會依照此欄位顯示。在此例中，我們只要尋找最接近的 <code class="docutils literal"><span class="pre">1</span></code> 個點，所以要勾選 <span class="guilabel">僅使用最鄰近(k)目標點</span>，然後輸入 <span class="guilabel">1</span>。把輸出檔命名為 <code class="docutils literal"><span class="pre">matrix.csv</span></code>，然後按下確定。程式執行完畢後，點選 <span class="guilabel">關閉</span>。</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">A useful thing to note is that you can even perform the analysis with only 1
-layer. Select the same layer as both Input and Target. The result would be a
-nearest neighbor from the same layer instead of a different layer as we have
-used here.</p>
+<p class="last">有件事值得一提：你可以只針對單一圖層執行近鄰分析，只需要把輸入點圖層和目標點圖層都設為相同圖層即可。輸入就會是在 1 個圖層中的點的近鄰結果。</p>
 </div>
 <img alt="../_images/716.png" class="align-center" src="../_images/716.png" />
 <ol class="arabic simple" start="8">
-<li>Once the processing finishes, click the <span class="guilabel">Close</span> button in the
-<span class="guilabel">Distance Matrix</span> dialog. You can now view the <code class="docutils literal"><span class="pre">matrix.csv</span></code> file
-in Notepad or any text editor.  QGIS can import CSV files as well, so we
-will add it to QGIS and view it there. Go to <span class="menuselection">Layer ‣ Add
-Layer ‣ Add Delimited Text Layer...</span>.</li>
+<li><p class="first">程式執行完畢後，在 <span class="guilabel">距離矩陣</span> 視窗點選 <span class="guilabel">關閉</span>。現在你可以使用 Notepad 或任何的文字編輯器瀏覽 <code class="docutils literal"><span class="pre">matrix.csv</span></code>。QGIS 也可以把此檔案匯入，這樣就可以把結果加到 QGIS 中瀏覽了。選擇 <span class="menuselection">圖層 ‣ 加入分隔文字圖層</span>。</p>
+</li>
 </ol>
 <img alt="../_images/816.png" class="align-center" src="../_images/816.png" />
 <ol class="arabic simple" start="9">
-<li>Browse to the newly created <code class="docutils literal"><span class="pre">matrix.csv</span></code> file. Since this file is just
-text columns, select <span class="guilabel">No geometry (attribute only table)</span> as the
-<span class="guilabel">Geometry definition</span>. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">選擇剛剛產生的新檔案 <code class="docutils literal"><span class="pre">matrix.csv</span></code>，因為它只包含了文字的欄位，所以要在 <span class="guilabel">幾何欄位定義</span> 選項中勾選 <span class="guilabel">無幾何欄位 (僅產生屬性表格)</span>。按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/914.png" class="align-center" src="../_images/914.png" />
 <ol class="arabic simple" start="10">
-<li>You will see the CSV file loaded as a table. Right-click on the table layer
-and select <span class="guilabel">Open Attribute Table</span>.</li>
+<li><p class="first">現在此 CSV 檔案已以表格的形式匯入 QGIS 中。在這個表格上按右鍵，選擇 <span class="guilabel">開啟屬性表格</span>，</p>
+</li>
 </ol>
 <img alt="../_images/1015.png" class="align-center" src="../_images/1015.png" />
 <ol class="arabic simple" start="11">
-<li>Now you will be able to see the content of our results. The
-<span class="guilabel">InputID</span> field contains the field name from the Earthquake
-layer. The <span class="guilabel">TargetID</span> field contains the name of the feature from
-the Populated Places layer that was the closest to the earthquake point.
-The <span class="guilabel">Distance</span> field is the distance between the 2 points.</li>
+<li><p class="first">現在就可以看到近鄰分析的結果了。<span class="guilabel">InputID</span> 欄位是從地震的圖層過來的，<span class="guilabel">TargetID</span> 則是從人口聚居地的圖層過來的，代表距離地震最近的人口聚居點。<span class="guilabel">Distance</span> 則是 2 個點的距離。</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">Remember that the <em>distance</em> calculation will be done using the layers&#8217;
-Coordinate Reference System. Here the distance will be in <em>decimal degrees</em>
-units because our source layer coordinates are in degrees. If you want
-distance in meters, reproject the layers before running the tool.</p>
+<p class="last">這裡距離的計算是使用圖層的 CRS，也就是說因為我們的來源圖層是經緯度座標，輸入距離的單位也會是<em>角度</em>。如果你想要把距離用公尺呈現，在執行近鄰分析之前，要先重投影輸入的圖層。</p>
 </div>
 <img alt="../_images/1119.png" class="align-center" src="../_images/1119.png" />
 <ol class="arabic simple" start="12">
-<li>This is very close to the result we were looking for. For some users, this
-table would be sufficient. However, we can also integrate this results in
-our original Earthquake layer using a <strong>Table Join</strong>. Right-click on the
-Earthquake layer, and select <span class="guilabel">Properties</span>.</li>
+<li><p class="first">本結果已相當接近我們想要的樣子。對某些使用者來說，得到一張表格已顯足夠；然而，我們可以把結果進一步<strong>連接</strong>到原本的地震圖層屬性表格上。以右鍵點選地震圖層，選擇 <span class="guilabel">屬性</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1217.png" class="align-center" src="../_images/1217.png" />
 <ol class="arabic simple" start="13">
-<li>Go to the <span class="guilabel">Joins</span> tab and click on the <span class="guilabel">+</span> button.</li>
+<li><p class="first">前往 <span class="guilabel">連結（Joins）</span>的分頁，按下 <span class="guilabel">+</span> 按鈕。</p>
+</li>
 </ol>
 <img alt="../_images/1414.png" class="align-center" src="../_images/1414.png" />
 <ol class="arabic simple" start="14">
-<li>We want to join the data from our analysis result to this layer. We need to
-select a field from each of the layers that has the same values. Select
-<code class="docutils literal"><span class="pre">matrix</span></code> as the <span class="guilabel">Join layer`</span> and <code class="docutils literal"><span class="pre">InputID</span></code> as the
-<span class="guilabel">Join field</span>. The <span class="guilabel">Target field</span> would be <code class="docutils literal"><span class="pre">I_D</span></code>.
-Leave other options to their default values and click <span class="guilabel">OK</span>.</li>
+<li><p class="first">我們要作的是連接我們的分析結果到此圖層上，所以必須要為兩個表格各選擇一個能夠連接起來（具有相同數值）的欄位。為 <span class="guilabel">連結（Join）圖層</span> 選擇 <code class="docutils literal"><span class="pre">matrix</span></code>，再為 <span class="guilabel">連結欄位</span> 選擇 <code class="docutils literal"><span class="pre">InputID</span></code>，而 <span class="guilabel">目標欄位</span> 就選擇 <code class="docutils literal"><span class="pre">I_D</span></code>。其他選項使用預設值，最後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1414.png" class="align-center" src="../_images/1414.png" />
 <ol class="arabic simple" start="15">
-<li>You will see the join appear in the <span class="guilabel">Joins</span> tab. Click
-<span class="guilabel">OK</span>.</li>
+<li><p class="first">在 <span class="guilabel">連結（Joins）</span>的分頁中，就出現了一筆連接資訊。按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1514.png" class="align-center" src="../_images/1514.png" />
 <ol class="arabic simple" start="16">
-<li>Now open the attribute table of the <code class="docutils literal"><span class="pre">signif</span></code> layer by right-clicking and
-selecting <span class="guilabel">Open Attribute Table</span>.</li>
+<li><p class="first">現在在 <code class="docutils literal"><span class="pre">signif</span></code> 圖層上按右鍵選 <span class="guilabel">開啟屬性表格</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1613.png" class="align-center" src="../_images/1613.png" />
 <ol class="arabic simple" start="17">
-<li>You will see that for every Earthquake feature, we now have an attribute
-which is the nearest neighbor (closest populated place) and the distance to
-the nearest neighbor.</li>
+<li><p class="first">現在每個地震的圖徵，都多了新屬性顯示最近的 (人口聚居地) 點圖徵，以及其距離。</p>
+</li>
 </ol>
 <img alt="../_images/1712.png" class="align-center" src="../_images/1712.png" />
 <ol class="arabic simple" start="18">
-<li>We will now explore a way to visualize these results. First, we need to
-make the table join permanent by saving it to a new layer. Right-click the
-<code class="docutils literal"><span class="pre">signif</span></code> layer and select <span class="guilabel">Save As...</span>.</li>
+<li><p class="first">接下來我們要來看看怎麼視覺畫這些結果。首先，我們要另存新圖層，把資料表連接的結果永久保存下來。以右鍵點選 <code class="docutils literal"><span class="pre">signif</span></code> 然後選擇 <span class="guilabel">存檔為...</span>，</p>
+</li>
 </ol>
 <img alt="../_images/1812.png" class="align-center" src="../_images/1812.png" />
 <ol class="arabic simple" start="19">
-<li>Click the <span class="guilabel">Browse</span> button next to <span class="guilabel">Save as</span> label and
-name the output layer as <code class="docutils literal"><span class="pre">earthquake_with_places.shp</span></code>. Make sure the
-<span class="guilabel">Add saved file to map</span> box is checked and click <span class="guilabel">OK</span>.</li>
+<li><p class="first">點選在 <span class="guilabel">另存為</span> 欄位側邊的 <span class="guilabel">瀏覽</span> 鈕，把新檔案命名為 <code class="docutils literal"><span class="pre">earthquake_with_places.shp</span></code>，確認一下 <span class="guilabel">加入儲存檔案至地圖中</span> 有開啟，最後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1910.png" class="align-center" src="../_images/1910.png" />
 <ol class="arabic simple" start="20">
-<li>Once the new layer is loaded, you can turn off the visibility of the
-<code class="docutils literal"><span class="pre">signif</span></code> layer. As our dataset is quite large, we can run our
-visualization analysis on a subset of the data. QGIS has a neat feature
-where you can load a subset of features from a layer without having to
-export it to a new layer. Right-click the <code class="docutils literal"><span class="pre">earthquake_with_places</span></code> layer
-and select <span class="guilabel">Properties</span>.</li>
+<li><p class="first">新圖層載入後，就可以把 <code class="docutils literal"><span class="pre">signif</span></code> 圖層取消勾選以隱藏起來。由於本資料集相當大，所以我們可以先對資料集的一部分進行視覺化試試看。QGIS 可以讓你不用另存新檔或匯入新圖層，就載入某個圖層的子集。在 <code class="docutils literal"><span class="pre">earthquake_with_places</span></code> 上以右鍵點選進入 <span class="guilabel">屬性</span>。</p>
+</li>
 </ol>
 <img alt="../_images/207.png" class="align-center" src="../_images/207.png" />
 <ol class="arabic simple" start="21">
@@ -394,57 +353,44 @@ and select <span class="guilabel">Properties</span>.</li>
 </ol>
 <img alt="../_images/2113.png" class="align-center" src="../_images/2113.png" />
 <ol class="arabic simple" start="22">
-<li>For this tutorial, we will visualize the earthquakes and their nearest
-populated places for Mexico. Enter the following expression in the
-<span class="guilabel">Query Builder</span> dialog.</li>
+<li><p class="first">本教學中，我們要把焦點放在墨西哥附近的地震和人口聚居地。因此，請在 <span class="guilabel">查詢建構器</span> 中輸入以下的表達式。</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;COUNTRY&quot; = &#39;MEXICO&#39;
 </pre></div>
 </div>
 <img alt="../_images/2212.png" class="align-center" src="../_images/2212.png" />
 <ol class="arabic simple" start="23">
-<li>You will see that only the points falling within Mexico will be visible in
-the canvas. Let&#8217;s do the same for the populated places layer. Right-click
-on the <code class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></code> layer and select
-<span class="guilabel">Properties</span>.</li>
+<li><p class="first">可以看到在 QGIS 視窗中，只剩下落在墨西哥境內的地震會顯示。接下來對人口聚居地的層進行相同操作，在 <code class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></code> 上以右鍵點選進入 <span class="guilabel">屬性</span>。</p>
+</li>
 </ol>
 <img alt="../_images/238.png" class="align-center" src="../_images/238.png" />
 <ol class="arabic simple" start="24">
-<li>Open the <span class="guilabel">Query Builder</span> dialog from the <span class="guilabel">General</span> tab.
-Enter the following expression.</li>
+<li><p class="first">在「<span class="guilabel">一般</span>」分頁中，開啟 <span class="guilabel">查詢建構器</span>，輸入以下的表達式。</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;adm0name&quot; = &#39;Mexico&#39;
 </pre></div>
 </div>
 <img alt="../_images/246.png" class="align-center" src="../_images/246.png" />
 <ol class="arabic simple" start="25">
-<li>Now we are ready to create our visualization. We will use a plugin named
-<code class="docutils literal"><span class="pre">MMQGIS</span></code>. Find and install the plugin. See <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a> for more
-details on how to work with plugins. Once you have the plugin installed, go
-to <span class="menuselection">MMQGIS ‣ Create ‣ Hub Lines</span>.</li>
+<li><p class="first">資料呈現的準備已經完成。我們接下來要使用一個稱為 <code class="docutils literal"><span class="pre">MMQGIS</span></code> 的核心附加元件，可參考 <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a> 進行搜尋及安裝等相關操作。安裝後，選擇 <span class="menuselection">MMQGIS ‣ Create ‣ Hub Lines</span>。</p>
+</li>
 </ol>
 <img alt="../_images/255.png" class="align-center" src="../_images/255.png" />
 <ol class="arabic simple" start="26">
-<li>Select <code class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></code> as the <span class="guilabel">Hub Point
-Layer</span> and <code class="docutils literal"><span class="pre">name</span></code> as the <span class="guilabel">Hub ID Attribute</span>. Similarly, select
-<code class="docutils literal"><span class="pre">earthquake_with_places</span></code> as the <span class="guilabel">Spoke Point Layer</span> and
-<code class="docutils literal"><span class="pre">matrix_Tar</span></code> as the <span class="guilabel">Spoke Hub ID Attribute</span>. The hub lines
-algorithm will go through each of earthquake points and create a line that
-will join it to the populated place which matches the attribute we
-specified. Click <span class="guilabel">Browse</span> and name the <span class="guilabel">Output
-Shapefile</span> as <code class="docutils literal"><span class="pre">earthquake_hub_lines.shp</span></code>. Click <span class="guilabel">OK</span> to start
-the processing.</li>
+<li><p class="first"><span class="guilabel">Hub Point Layer</span> 欄位選擇 <code class="docutils literal"><span class="pre">ne_10m_populated_places_simple</span></code>，<span class="guilabel">Hub ID Attribute</span> 欄位選 <code class="docutils literal"><span class="pre">name</span></code>，<span class="guilabel">Spoke Point Layer</span> 欄位選擇 <code class="docutils literal"><span class="pre">earthquake_with_places</span></code>，<span class="guilabel">Spoke Hub ID Attribute</span> 欄位選擇 <code class="docutils literal"><span class="pre">matrix_Tar</span></code>。此程式會藉由比對屬性欄位值，把每個地震點和最鄰近的人口點用線連接起來。點選 <span class="guilabel">Browse</span> 然後把 <span class="guilabel">Output Shapefile</span> 命名為 <code class="docutils literal"><span class="pre">earthquake_hub_lines.shp</span></code>，最後按下 <span class="guilabel">確定</span> 開始執行。</p>
+</li>
 </ol>
 <img alt="../_images/265.png" class="align-center" src="../_images/265.png" />
 <ol class="arabic simple" start="27">
-<li>The processing may take a few minutes. You can see the progress on the
-bottom-left corner of the QGIS window.</li>
+<li><p class="first">程式可能會花幾分鐘的時間。你可以在 QGIS 螢幕左下角看到目前進度。</p>
+</li>
 </ol>
 <img alt="../_images/275.png" class="align-center" src="../_images/275.png" />
 <ol class="arabic simple" start="28">
-<li>Once the processing is done, you will see the <code class="docutils literal"><span class="pre">earthquake_hub_lines</span></code>
-layer loaded in QGIS. You can see that each earthquake point now has a line
-that connects it to the nearest populated place.</li>
+<li><p class="first">處理結束後，<code class="docutils literal"><span class="pre">earthquake_hub_lines</span></code> 圖層會載到 QGIS 中，可以看到現在每個地震都附帶一條線，連接到最接近的人口聚居地。</p>
+</li>
 </ol>
 <img alt="../_images/283.png" class="align-center" src="../_images/283.png" />
 </div>
@@ -472,7 +418,7 @@ that connects it to the nearest populated place.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Jul 12, 2016.<br/>
+      最後更新日期是 Sep 18, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

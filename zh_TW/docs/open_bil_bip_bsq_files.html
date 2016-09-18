@@ -105,19 +105,19 @@
 <li class="toctree-l1"><a class="reference internal" href="nearest_neighbor_analysis.html">近鄰分析</a></li>
 <li class="toctree-l1"><a class="reference internal" href="sampling_raster_data.html">使用點或多邊形對影像資料取樣</a></li>
 <li class="toctree-l1"><a class="reference internal" href="interpolating_point_data.html">點資料內插法</a></li>
-<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">Batch Processing using Processing Framework</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">Automating Complex Workflows using Processing Modeler</a></li>
-<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">Automating Map Creation with Print Composer Atlas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="batch_processing.html">使用處理框架進行批次處理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_graphical_modeler.html">利用處理建模自動執行複雜的工作流程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="automating_map_creation.html">利用地圖出版設計的圖輯工具自動創造地圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_qgis_browser.html">使用 QGIS 瀏覽器</a></li>
 <li class="toctree-l1"><a class="reference internal" href="counting_vertices.html">計算向量圖層中的多邊形頂點數</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">在 QGIS 中開啟 BIL、BIP 或 BSQ 格式檔案</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Python 程式設計的初步上手</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
-<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">Using Custom Python Expression Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
+<li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">使用自訂的 Python 表達式函數</a></li>
+<li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">撰寫 Python 腳本並在處理框架下執行</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
-<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">Performing Table Joins (PyQGIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">資料表連接 (PyQGIS)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 學習資源</a></li>
@@ -208,30 +208,14 @@
 
   <div class="section" id="open-bil-bip-or-bsq-files-in-qgis">
 <h1>在 QGIS 中開啟 BIL、BIP 或 BSQ 格式檔案<a class="headerlink" href="#open-bil-bip-or-bsq-files-in-qgis" title="Permalink to this headline">¶</a></h1>
-<p>When dealing with remote sensing and scientific datasets, one often comes
-across data in formats like <strong>BIL</strong>, <strong>BIP</strong> or <strong>BSQ</strong>. <a class="reference external" href="http://www.gdal.org">The GDAL library</a> - which is used by QGIS to read raster files - has
-support for these formats, but it cannot open these files by itself. We will go
-through the process of creating support files so these formats can be read by
-QGIS.</p>
-<p>Band interleaved by line (BIL), band interleaved by pixel (BIP), and band
-sequential (BSQ) are common methods of organizing image data for multiband
-images. (<a class="reference external" href="http://webhelp.esri.com/arcgisdesktop/9.2/index.cfm?TopicName=BIL,_BIP,_and_BSQ_raster_files">Read more about these formats</a>)</p>
-<p>Typically, these files are accompanies by a <code class="docutils literal"><span class="pre">.hdr</span></code> file. If your dataset came
-with a <code class="docutils literal"><span class="pre">.hdr</span></code> file, make sure the root name of the .bil, .bsq or .bip file and
-the .hdf files match and they are in the same directory. For example, if the
-file is called <code class="docutils literal"><span class="pre">image.bil</span></code> , the associated file should be named <code class="docutils literal"><span class="pre">image.hdr</span></code> and
-present in the same directory as the <code class="docutils literal"><span class="pre">image.bil</span></code> file. Then when you go to
-<span class="menuselection">Layer ‣ Add Raster Layer</span>, select the <code class="docutils literal"><span class="pre">image.bil</span></code> file and
-it will open without problems.</p>
-<p>Many a times, the files do not come with an associated <code class="docutils literal"><span class="pre">.hdr</span></code> file. In such
-cases, you must create this file by hand as shown in this tutorial.</p>
+<p>在處理遙測和科學資料時，常會遇到像是 <strong>BIL</strong>、<strong>BIP</strong> 或 <strong>BSQ</strong> 類型的格式。QGIS 用來讀取影像資料的 <a class="reference external" href="http://www.gdal.org">GDAL 函式庫</a>有支援此類格式，但它沒有辦法直接開啟這些檔案。這裡我們要展示如果從此格式建立相關的支援檔案，讓它們可以在 QGIS 中讀取。</p>
+<p>波段依行交錯排列 (Band interleaved by line，BIL)、波段依像素交錯排列 (Band interleaved by pixel，BIP)，與波段序排列 (Band sequential，BSQ) 是三種常用於多波段影像儲存的格式。(<a class="reference external" href="http://webhelp.esri.com/arcgisdesktop/9.2/index.cfm?TopicName=BIL,_BIP,_and_BSQ_raster_files">更多資訊請參考這裡</a>)</p>
+<p>一般來說，這些檔案都會附有一個 <code class="docutils literal"><span class="pre">.hdr</span></code> 檔。如果你的資料集之中有 <code class="docutils literal"><span class="pre">.hdr</span></code> 檔，請務必確認 .bil、.bsq 或 .bip 的主檔名與 .hdr 檔相同，而且他們必須在同一個資料夾之中。舉例來說，如果有個檔案名稱為 <code class="docutils literal"><span class="pre">image.bil</span></code>，伴隨的檔案應為 <code class="docutils literal"><span class="pre">image.hdr</span></code>，而且會與 <code class="docutils literal"><span class="pre">image.bil</span></code> 位在相同資料夾。如此一來，當你選擇 <span class="menuselection">圖層 ‣ 加入影像圖層</span>，然後開啟 <code class="docutils literal"><span class="pre">image.bil</span></code> 時，就不會出現任何問題。</p>
+<p>有些時候，這些檔案偏偏就是沒有 <code class="docutils literal"><span class="pre">.hdr</span></code> 檔。這種情況下，你需要利用本教學的方法自己創造一個才行。</p>
 <div class="section" id="get-the-data">
 <h2>取得資料<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://glcf.umd.edu/data/landcover/data.shtml">AVHRR Global Land Cover Classification data</a> from <a class="reference external" href="http://glcf.umd.edu/">Global Land Cover
-Facility</a> as an example.</p>
-<p>The Global Coverage datasets are distributed as <strong>BSQ</strong> files. Download the <a class="reference external" href="ftp://ftp.glcf.umd.edu/glcf/Global_Land_Cover/Global/1deg/gl-latlong-1deg-landcover.bsq.gz">1
-Degree pixel resolution</a>
-dataset.</p>
+<p>我們要使用 <a class="reference external" href="http://glcf.umd.edu/">全球土地覆蓋設施（Global Land Cover Facility）</a>提供的 <a class="reference external" href="http://glcf.umd.edu/data/landcover/data.shtml">AVHRR 全球土地覆蓋分類資料（Global Land Cover Classification data）</a>作為示例。</p>
+<p>此資料集以 <strong>BSQ</strong> 檔發布。<a class="reference external" href="ftp://ftp.glcf.umd.edu/glcf/Global_Land_Cover/Global/1deg/gl-latlong-1deg-landcover.bsq.gz">下載像素解析度 1 度的資料集</a></p>
 <p>為了方便起見，你也可以直接用下面的連結下載：</p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/gl-latlong-1deg-landcover.bsq.gz">gl-latlong-1deg-landcover.bsq.gz</a></p>
 <p>資料來源 <a class="reference internal" href="credits.html#glcf" id="id1">[GLCF]</a></p>
@@ -239,31 +223,23 @@ dataset.</p>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Unzip and extract the .bsq file. On Windows, you may use the excellent
-<a class="reference external" href="http://www.7-zip.org/">7-Zip utility</a> to read and extract .gz file. You
-will see that you only have a .bsq file named
-<code class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></code>.  There is no hdr file.</li>
+<li><p class="first">解壓縮並取出 .bsq 檔：如使用 Windows，可以使用 <a class="reference external" href="http://www.7-zip.org/">7-Zip</a> 讀取和解壓縮 .gz 檔。你會看到壓縮檔中只有一個叫做 <code class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></code> 的 .bsq 檔，沒有 hdr 檔。</p>
+</li>
 </ol>
 <img alt="../_images/1101.png" class="align-center" src="../_images/1101.png" />
 <ol class="arabic simple" start="2">
-<li>Note that if you try to open the <code class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></code> file in
-QGIS as it is, you will get an error message.</li>
+<li><p class="first">如果你嘗試在 QGIS 中開啟 <code class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></code> 的話，會有錯誤訊息顯示。</p>
+</li>
 </ol>
 <img alt="../_images/239.png" class="align-center" src="../_images/239.png" />
 <ol class="arabic simple" start="3">
-<li>To overcome this error, we will create a header file with <code class="docutils literal"><span class="pre">.hdr</span></code> extension.
-The header file contains information about the dataset and how it is organized.
-Usually, this information is supplied as part of Metadata for the dataset.
-If you do not have the metadata, look at the website or documentation for
-clues. Some of the information can be guessed if you do not know it. In case
-of this dataset, the data download page links to the <a class="reference external" href="ftp://ftp.glcf.umd.edu/glcf/Global_Land_Cover/Global/1deg/gl-latlong-1deg-landcover.glcf">metadata</a>.
-Download the metadata and open it.</li>
+<li><p class="first">如要克服此錯誤，我們得自己創造一個副檔名為 <code class="docutils literal"><span class="pre">.hdr</span></code> 的檔案。hdr 意味著檔頭（header），內含著資料集的結構以及各種資訊。這些資訊通常可以在資料集的詮釋資料（Metadata）中找到，如果你連詮釋資料都沒有，找看看資料來源的網站或文件說明有沒有提供。有些資訊就算你不知道，也可以用猜的。在本例中，資料的下載頁面有提供連結至<a class="reference external" href="ftp://ftp.glcf.umd.edu/glcf/Global_Land_Cover/Global/1deg/gl-latlong-1deg-landcover.glcf">詮釋資料</a>，把它下載下來然後開啟它。</p>
+</li>
 </ol>
 <img alt="../_images/326.png" class="align-center" src="../_images/326.png" />
 <ol class="arabic simple" start="4">
-<li>The .hdr file needs to be a plain text file in the following format. Some of
-these parameters are given to us and some needs to be worked out. <a class="reference external" href="http://www.gdal.org/frmt_various.html">Learn
-more about the format</a>.</li>
+<li><p class="first">.hdr 檔必須要是純文字檔案，並且編排為以下的格式才行。我們已經找到某些參數了，但其他的還需要花點心力。<a class="reference external" href="http://www.gdal.org/frmt_various.html">格式的細節請參考這裡</a>。</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>ncols &lt;number of columns or width of the raster&gt;
 nrows &lt;number of rows or height of the raster&gt;
@@ -277,32 +253,18 @@ byteorder &lt;byte order in which image pixel values are stored, msb or lsb&gt;
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
-<li>Open a text editor and create a file in the format specified in the previous
-step. Save the file as <code class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.hdr</span></code>. Make sure the file
-doesn’t have <code class="docutils literal"><span class="pre">.txt</span></code> at the end. Some of the values in the text files are
-easy to understand. The <strong>ncols</strong> and <strong>nrows</strong> come from the metadata as the
-Number of Lines and Number of Pixels per Line. The <strong>cellsize</strong> is 1 as the
-Pixel resolution from the metadata. The X,Y coordinate of lower-left corner
-needs to be worked out by us. Since the file covers the entire world and
-units are lat/long, <strong>xllcorner</strong> and <strong>yllcorner</strong> are -180 and -90
-respectively. We do not have any information about the nodata_value, so -9999
-is a safe bet. From metadata again, Pixel Format is Byte, so <strong>nbits</strong> will
-equal to 8 and pixeltype will be <strong>byte_unsigned</strong>. We do not have
-information about the byteorder, so leave it as msbfirst. You may download
-the correctly formatted HDR file from <a class="reference external" href="../../downloads/gl-latlong-1deg-landcover.hdr">here</a>.</li>
+<li><p class="first">打開文字編輯器，然後依照前一個步驟的註明的格式輸入，再把檔案另存為 <code class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.hdr</span></code>。務必確認你的檔名結尾不是 <code class="docutils literal"><span class="pre">.txt</span></code>。在文字檔中的某些值很容易理解：<strong>ncols</strong> 和 <strong>nrows</strong> 是影像的行數和每行的像素數目，可以從詮釋資料找到；<strong>cellsize</strong> 是像素解析度，詮釋資料中為 1。左下角的 X 與 Y 座標（<strong>xllcorner</strong> 和 <strong>yllcorner</strong>）要靠我們決定，由於影像覆蓋全球，又使用經緯度編排，<strong>xllcorner</strong> 和 <strong>yllcorner</strong> 可以分別設為 -180 和 -90。無資料值（nodata_value）的資訊也找不到，用猜的話 -9999 是個較保險的數值。從詮釋資料中，我們還可找到像素格式（Pixel Format）是 Byte，所以 <strong>nbits</strong> 要填上 8，然後 <strong>pixeltype</strong> 則為 <a href="#id1"><span class="problematic" id="id2">**</span></a>byte_unsigned**（無號位元組）。我們也沒有位元組順序（byteorder）的資訊，所以來試試看 msbfirst（最高有效位）。你也可以從<a class="reference external" href="../../downloads/gl-latlong-1deg-landcover.hdr">這裡</a>下載正確格式的 hdr 檔。</p>
+</li>
 </ol>
 <img alt="../_images/519.png" class="align-center" src="../_images/519.png" />
 <ol class="arabic simple" start="6">
-<li>Now that you have the header file, put it in the same directory as
-<code class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></code>. Then in QGIS, go to
-<span class="menuselection">Layer ‣ Add Raster Layer</span>. Select
-<code class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></code> as your input and click <span class="guilabel">Open</span>.</li>
+<li><p class="first">現在我們有檔頭檔案了，把它移到與 <code class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></code> 相同的目錄下，然後再 QGIS 中選擇 <span class="menuselection">圖層 ‣ 加入影像圖層</span>，選擇 <code class="docutils literal"><span class="pre">gl-latlong-1deg-landcover.bsq</span></code> 作為輸入檔案然後按下 <span class="guilabel">開啟</span>。</p>
+</li>
 </ol>
 <img alt="../_images/618.png" class="align-center" src="../_images/618.png" />
 <ol class="arabic simple" start="7">
-<li>In the next screen, you may be prompted to choose a CRS. Since the data is
-in Lat/Long, choose <strong>WGS84 EPSG:4326</strong> as your CRS. Now you will see the
-dataset loaded in QGIS.</li>
+<li><p class="first">接下來的視窗會要你選擇 CRS。由於檔案是以經緯度編排，這邊的 CRS 要選 <strong>WGS84 EPSG:4326</strong>。最後，你就可以看到 QGIS 已經載入本資料了。</p>
+</li>
 </ol>
 <img alt="../_images/717.png" class="align-center" src="../_images/717.png" />
 </div>
@@ -330,7 +292,7 @@ dataset loaded in QGIS.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Jul 12, 2016.<br/>
+      最後更新日期是 Sep 18, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
