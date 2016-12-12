@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Using Custom Python Expression Functions &mdash; QGIS Tutorials and Tips</title>
+    <title>Использование пользовательских выражений Python &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -113,7 +113,7 @@
 <li class="toctree-l1"><a class="reference internal" href="open_bil_bip_bsq_files.html">Открытие файлов BIL, BIP или BSQ в QGIS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting_started_with_pyqgis.html">Первые шаги в программировании на Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">Создание модуля на Python</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Using Custom Python Expression Functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Использование пользовательских  выражений Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">Writing Python Scripts for Processing Framework</a></li>
 <li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Нахождение соседних полигонов в слое</a></li>
@@ -207,47 +207,41 @@
       
 
   <div class="section" id="using-custom-python-expression-functions">
-<h1>Using Custom Python Expression Functions<a class="headerlink" href="#using-custom-python-expression-functions" title="Ссылка на этот заголовок">¶</a></h1>
-<p>Expressions in QGIS have a lot of power and are used in many core features -
-selection, calculating field values, styling, labelling etc. QGIS also has
-support for user-defined expressions. With a little bit of python programming,
-you can define your own functions that can be used within the expression
-engine.</p>
+<h1>Использование пользовательских  выражений Python<a class="headerlink" href="#using-custom-python-expression-functions" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Выражения в QGIS имеют большое значение и используются во многих ключевых элементах функционала - выборка, операции со значениями полей, стилизация, подписи итд. QGIS так - же поддерживает выражения определенные пользователями.  С помощью простого программирования на Python, вы можете определить ваши собственные функции которые могут быть использованы в связке с движком выражений.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
-<p>We will define a custom function that finds the UTM Zone of a map feature and
-use this function to write an expression that displays the UTM zone as a map
-tip when hovered over the point.</p>
+<h2>Обзор задачи<a class="headerlink" href="#overview-of-the-task" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Мы определим пользовательскую функцию которая находит на UTM зону на для выбранных объектов и используем эту функцию для написания выражения которое отражает UTM зону как подпись к карте, появляющуюся при наведении на точку.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
+<h3>Вы освоите так же такие навыки:<a class="headerlink" href="#other-skills-you-will-learn" title="Ссылка на этот заголовок">¶</a></h3>
 <ul class="simple">
-<li>How to use the <code class="docutils literal"><span class="pre">Map</span> <span class="pre">Tips</span></code> tool to display custom text when hovering over a
-feature.</li>
+<li><p class="first">Как использовать инструмент &#8220;Интерактивные подписи&#8221; для отображения пользовательского текста при наведении на объект.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Ссылка на этот заголовок">¶</a></h2>
-<p>We will use Natural Earth&#8217;s <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places</a>
-dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">simple (less columns) dataset</a></p>
-<p>For convenience, you may directly download a copy of the dataset from the links
-below:</p>
+<h2>Получение данных<a class="headerlink" href="#get-the-data" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Мы используем  набор данных  &#8220;Natural Earth&#8217;s <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/">Populated Places &#8221; (слой населения Земли)</a>  Скачайте простой (без колонок) набор данных.
+&lt;<a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip">http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip</a>&gt;`_</p>
+<p>Для удобства вы можете скачать копии набора данных по ссылке ниже:</p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/ne_10m_populated_places_simple.zip">ne_10m_populated_places_simple.zip</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
+<h2>Методика<a class="headerlink" href="#procedure" title="Ссылка на этот заголовок">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS and go to <span class="menuselection">Layers ‣ Add Vector ‣ Add Vector
-Layer</span>.</li>
+<li><p class="first">Откройте QGIS и перейдите в Меню - &gt; Слои -&gt; Вектор - &gt; Добавить векторный слой</p>
+</li>
 </ol>
 <img alt="../_images/128.png" class="align-center" src="../_images/128.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded <code class="docutils literal"><span class="pre">ne_10m_populated_places_simple.zip</span></code> file and
-click <span class="guilabel">Open</span>.</li>
+<li><p class="first">Перейдите к загруженному файлу <code class="docutils literal"><span class="pre">Shapefiles.zip</span></code> и выберите его. Нажмите <span class="guilabel">Открыть</span>.</p>
+</li>
 </ol>
 <img alt="../_images/219.png" class="align-center" src="../_images/219.png" />
 <ol class="arabic simple" start="3">
-<li>Go to <span class="menuselection">View ‣ Select ‣ Select By Expressions...</span>.</li>
+<li><p class="first">Перейдите</p>
+</li>
 </ol>
 <img alt="../_images/312.png" class="align-center" src="../_images/312.png" />
 <ol class="arabic simple" start="4">
@@ -256,21 +250,12 @@ PyQGIS code that will be executed by the expression engine.</li>
 </ol>
 <img alt="../_images/48.png" class="align-center" src="../_images/48.png" />
 <ol class="arabic simple" start="5">
-<li>We will define a custom function named <code class="docutils literal"><span class="pre">GetUtmZone</span></code> that will calculate
-the UTM zone number for each feature. Since custom functions in QGIS work at
-the feature level. We will use the centroid of the feature&#8217;s geometry and
-compute the UTM Zone from the latitude and longitude of the centroid
-geometry. We will also add a &#8216;N&#8217; or &#8216;S&#8217; designation to the zone to indicate
-whether the zone is in the northern or southern hemisphere. Type the
-following code in the editor, enter the name of the file as <code class="docutils literal"><span class="pre">utm_zones.py</span></code>
-and click <span class="guilabel">Save file</span>.</li>
+<li><p class="first">Мы определим пользовательскую функцию с именем &#8220;GetUtmZone&#8221;, которая будет рассчитывать номер UTM зоны для каждого объекта.  Пользовательские функции в QGIS работают на уровне объектов. Мы используем центра геометрического объекта и вычислим UTM зону по широте и долготе центра объекта. Мы так же добавим &#8216;N&#8217; и &#8216;S&#8217; обозначения к зоне, для  того что бы определить к какому из полушарий - северному или южному относится зона. Введите следующий код в редактор, именем файла назначьте <a href="#id1"><span class="problematic" id="id2">``</span></a>utm_zones.py` и нажмите  <span class="guilabel">Сохранить файл</span>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Примечание</p>
-<p class="last">UTM Zones are longitudinal projection zones numbered from 1 to 60. Each UTM
-zone is 6 degree wide. Here we use a simple mathematical formula to find the
-appropriate zone for a given longitude value. Note that this formula doesn&#8217;t
-cover some special UTM zones.</p>
+<p class="last">UTM зоны это зависящие от долготы зоны с порядковыми номерами от 1 до 60.  Ширина каждой зоны составляет 6 градусов. Здесь мы используем простую математическую формулу, что бы найти соответствующую зону для заданного значения долготы. Обратите внимания что данная формула не позволяет определить некоторые специальные UTM зоны.</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
@@ -293,20 +278,13 @@ cover some special UTM zones.</p>
 </div>
 <img alt="../_images/58.png" class="align-center" src="../_images/58.png" />
 <ol class="arabic simple" start="6">
-<li>Click <span class="guilabel">Run Script</span>. This will execute the python code and register
-the function <code class="docutils literal"><span class="pre">GetUtmZone</span></code> with the expression engine. Note that this is
-needed to be done only once. Once the function is registered, it will always
-be available to the expression engine.</li>
+<li><p class="first">Нажмите <span class="guilabel">Запустить скрипт</span>.  Это запустит python скрипт и зарегистрирует функцию &#8221; GetUtmZone&#8221; с помощью движка выражений. Обратите внимание что это необходимо делать только один раз. С того момента как функция зарегистрирована, она будет всегда доступна в движке выражений.</p>
+</li>
 </ol>
 <img alt="../_images/67.png" class="align-center" src="../_images/67.png" />
 <ol class="arabic simple" start="7">
-<li>Switch to the <span class="guilabel">Expression</span> tab in the <span class="guilabel">Select by
-expression</span> dialog. Find and expand the <span class="guilabel">Custom</span> group in the
-<span class="guilabel">Functions</span> section. You will notice a new custom function
-<code class="docutils literal"><span class="pre">$GetUtmZone</span></code> in the list. We can now use this function in the expressions
-just like any other function. Type the following expression in the editor.
-This expression will select all points that fall in the UTM Zone <code class="docutils literal"><span class="pre">40N</span></code>.
-Click <span class="guilabel">Select</span>.</li>
+<li><p class="first">Перейдите на вкладку  <span class="guilabel">Выражения</span> в окне <span class="guilabel">выбрать объекты удовлетворяющие условию</span> dialog.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>$GetUtmZone = &#39;40N&#39;
 </pre></div>
@@ -391,7 +369,7 @@ the map tip.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      Обновлено: Sep 18, 2016.<br/>
+      Обновлено: Dec 12, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

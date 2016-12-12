@@ -30,8 +30,8 @@
     <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Leaflet Web Maps with qgis2leaf" href="leaflet_maps_with_qgis2leaf.html" />
-    <link rel="prev" title="Find Neighbor Polygons in a Layer" href="find_neighbor_polygons.html" />
+    <link rel="next" title="製作 Leaflet 線上地圖" href="leaflet_maps_with_qgis2leaf.html" />
+    <link rel="prev" title="在同一圖層中尋找相鄰的多邊形" href="find_neighbor_polygons.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -115,11 +115,11 @@
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">使用自訂的 Python 表達式函數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">撰寫 Python 腳本並在處理框架下執行</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">執行 QGIS 工作排程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">在同一圖層中尋找相鄰的多邊形</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">資料表連接 (PyQGIS)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">製作 Leaflet 線上地圖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">在 QGIS 中使用 Google Maps Engine Connector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 學習資源</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">資料來源</a></li>
 </ul>
@@ -131,11 +131,11 @@
               
                 
   <li>
-    <a href="find_neighbor_polygons.html" title="Previous Chapter: Find Neighbor Polygons in a Layer"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Find Neighbor Po...</span>
+    <a href="find_neighbor_polygons.html" title="Previous Chapter: 在同一圖層中尋找相鄰的多邊形"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; 在同一圖層中尋找相鄰的多邊形</span>
     </a>
   </li>
   <li>
-    <a href="leaflet_maps_with_qgis2leaf.html" title="Next Chapter: Leaflet Web Maps with qgis2leaf"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Leaflet Web Maps... &raquo;</span>
+    <a href="leaflet_maps_with_qgis2leaf.html" title="Next Chapter: 製作 Leaflet 線上地圖"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">製作 Leaflet 線上地圖 &raquo;</span>
     </a>
   </li>
               
@@ -232,19 +232,14 @@
 </div>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
-<p>You can type the following commands in the <span class="guilabel">Python Console</span> or the
-built-in <span class="guilabel">Editor</span> in QGIS.</p>
+<p>你可以在 <span class="guilabel">Python 主控台</span> 或是 QGIS 內建的 <span class="guilabel">編輯器</span> 中輸入以下指令。</p>
 <ol class="arabic simple">
-<li>Load the shapefile. The Census Tracts file is a zip file containing the
-shapefile. While we can unzip it and load the shapefile, The OGR provider
-has the ability to load the zip file directly via a Virtual Filesystem.
-Adding <code class="docutils literal"><span class="pre">/vsizip/</span></code> in the path, we can access the shapefile contained in
-the zip archive.</li>
+<li><p class="first">第一步是載入 shapefile，我們要的檔案包含在檔名含有 tract.zip 的壓縮檔中。雖然我們可以解壓縮然後載入 shapefile，不過 OGR 提供元（provider，這裡就是 QGIS）也可以經由虛擬的檔案系統直接載入 shapefile。只要在路徑最前端加上 <code class="docutils literal"><span class="pre">/vsizip/</span></code> 之後，就能夠載入 zip 格式的 shapefile。</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">The zip_uri would begin with <code class="docutils literal"><span class="pre">/vsizip//</span></code> on Linux and Mac systems.
-(Note the extra /)</p>
+<p class="last">zip_uri 在 Linux 和 Mac 系統上的前綴是 <code class="docutils literal"><span class="pre">/vsizip//</span></code>(注意多出來的 /)</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">zip_uri</span> <span class="o">=</span> <span class="s">&#39;/vsizip/C:/Users/Ujaval/Downloads/tl_2013_06_tract.zip&#39;</span>
 <span class="n">shp</span> <span class="o">=</span>  <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">zip_uri</span><span class="p">,</span> <span class="s">&#39;tl_2013_06_tract&#39;</span><span class="p">,</span> <span class="s">&#39;ogr&#39;</span><span class="p">)</span>
@@ -253,8 +248,8 @@ the zip archive.</li>
 </div>
 <img alt="../_images/1105.png" class="align-center" src="../_images/1105.png" />
 <ol class="arabic simple" start="2">
-<li>Load the CSV file. As the CSV file doesn&#8217;t contain any spatial data, we load
-it as a table using the <code class="docutils literal"><span class="pre">delimitedtext</span></code> provider.</li>
+<li><p class="first">接下來載入 CSV 檔。由於 CSV 檔不包含任何空間資訊，我們要使用 <code class="docutils literal"><span class="pre">delimitedtext</span></code> 做為資料提供元，載入成表格。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">csv_uri</span> <span class="o">=</span> <span class="s">&#39;file:///C:/Users/Ujaval/Downloads/ca_tracts_pop.csv?delimiter=,&#39;</span>
 <span class="n">csv</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">csv_uri</span><span class="p">,</span> <span class="s">&#39;ca_tracts_pop&#39;</span><span class="p">,</span> <span class="s">&#39;delimitedtext&#39;</span><span class="p">)</span>
@@ -263,17 +258,12 @@ it as a table using the <code class="docutils literal"><span class="pre">delimit
 </div>
 <img alt="../_images/250.png" class="align-center" src="../_images/250.png" />
 <ol class="arabic simple" start="3">
-<li>Create the table join. Table joins in QGIS are performed using
-<code class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></code> object. We need to specify the <code class="docutils literal"><span class="pre">GEO.id2</span></code> field from
-the CSV layer as the <span class="guilabel">Join Field</span> and the <code class="docutils literal"><span class="pre">GEOID</span></code> field from the
-shapefile layer as the <span class="guilabel">Target Field</span>. Once you run the following
-code, the shapefile layer will have additional attributes joined from the
-csv layer.</li>
+<li><p class="first">開始進行資料表連接。在 QGIS 中此操作要使用 <code class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></code> 物件，而且我們需要指定 CSV 圖層中的 <code class="docutils literal"><span class="pre">GEO.id2</span></code> 作為 <span class="guilabel">連結欄位</span>，以及 shapefile 圖層中的 <code class="docutils literal"><span class="pre">GEOID</span></code> 作為 <span class="guilabel">目標欄位</span>。執行下列程式碼後，shapefile 的圖層就會多出一個從 CSV 圖層連結過來的屬性。</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">A common pitfall when using QgsVectorJoinInfo is that both the layers must be
-loaded in the QgsMapLayerRegistry - otherwise the join would not work.</p>
+<p class="last">當使用 QgsVectorJoinInfo 時，務必要確認兩個圖層都已載入至 QgsMapLayerRegistry，否則是不會有任何東西被連結的。</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">shpField</span><span class="o">=</span><span class="s">&#39;GEOID&#39;</span>
 <span class="n">csvField</span><span class="o">=</span><span class="s">&#39;GEO.id2&#39;</span>
@@ -287,16 +277,12 @@ loaded in the QgsMapLayerRegistry - otherwise the join would not work.</p>
 </div>
 <img alt="../_images/330.png" class="align-center" src="../_images/330.png" />
 <ol class="arabic simple" start="4">
-<li>An easier - and preferred way of accomplishing the same thing is via the
-Processing Framework. You can call the algorithm
-<code class="docutils literal"><span class="pre">qgis:joinattributestable</span></code> and create a joined layer.</li>
+<li><p class="first">另一個較簡單，而且也較為推薦的方法是使用「處理框架」。你可以呼叫 <code class="docutils literal"><span class="pre">qgis:joinattributestable</span></code> 演算法來創造連接完畢的圖層。</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">We are using the <code class="docutils literal"><span class="pre">processing.runandload()</span></code> method to execute the algorithm
-instead of the more common <code class="docutils literal"><span class="pre">processing.runalg()</span></code>. Since we want to load
-the resulting joined layer in QGIS, <code class="docutils literal"><span class="pre">processing.runandload()</span></code> is a better
-choice.</p>
+<p class="last">我們這邊使用的是 <code class="docutils literal"><span class="pre">processing.runandload()</span></code> 方法，而不是較常見的 <code class="docutils literal"><span class="pre">processing.runalg()</span></code> 來執行演算法，這是因為我們想要把執行的結果圖層也加到 QGIS 中，使用 <code class="docutils literal"><span class="pre">processing.runandload()</span></code> 是較方便的選擇。</p>
 </div>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">processing</span>
 <span class="n">shpField</span><span class="o">=</span><span class="s">&#39;GEOID&#39;</span>
@@ -306,12 +292,8 @@ choice.</p>
 </div>
 <img alt="../_images/422.png" class="align-center" src="../_images/422.png" />
 <ol class="arabic simple" start="5">
-<li>We will stick with the original join using <code class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></code> for the
-remainder of the tutorial. Now it is time to apply a graduated style to the
-joined layer. The population field name in the joined layer is
-<code class="docutils literal"><span class="pre">ca_tracts_pop_D001</span></code>. We will apply a graduated renderer using the
-<code class="docutils literal"><span class="pre">QgsGraduatedSymbolRendererV2</span></code> class in the <code class="docutils literal"><span class="pre">Quantile</span></code> mode. Refer to
-<a class="reference internal" href="performing_table_joins.html"><em>資料表連接</em></a> for the colors and ranges that we need to use.</li>
+<li><p class="first">在本教學剩餘的部分中，我們會繼續使用第一種利用 <code class="docutils literal"><span class="pre">QgsVectorJoinInfo</span></code> 的方法。接下來我們要來為連接後的圖層設定漸層樣式。在連接後的圖層中，人口的欄位是 <code class="docutils literal"><span class="pre">ca_tracts_pop_D001</span></code>，我們要使用 <code class="docutils literal"><span class="pre">QgsGraduatedSymbolRendererV2</span></code>，在 <code class="docutils literal"><span class="pre">分位數</span></code> 模式下設定漸層樣式，相關的顏色和數值範圍設定請參考 <a class="reference internal" href="performing_table_joins.html"><em>資料表連接</em></a>。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtGui</span>
 
@@ -367,14 +349,11 @@ joined layer. The population field name in the joined layer is
 </div>
 <img alt="../_images/523.png" class="align-center" src="../_images/523.png" />
 <ol class="arabic simple" start="6">
-<li>Typing the code in the Python Console is useful for small tasks, but it
-is far easier to use the built-in <span class="guilabel">Editor</span>. You can copy the
-entire script in the <span class="guilabel">Editor</span> and click <span class="guilabel">Run</span>. As the
-script finishes, you would have created a table join and styled the
-resulting layer without any manual steps.</li>
+<li><p class="first">在 Python 主控台中直接輸入程式碼，對於執行小型的工作非常方便，不過對於以上的程式片段，使用內建的 <span class="guilabel">編輯器</span> 會容易得多。你可以複製整段程式碼然後貼上到 <span class="guilabel">編輯器</span> 中，然後按下 <span class="guilabel">執行</span>，當腳本執行完畢後，資料表連接和樣式設定就完成了，不需要多餘的手動操作。</p>
+</li>
 </ol>
 <img alt="../_images/622.png" class="align-center" src="../_images/622.png" />
-<p>Below is the full <code class="docutils literal"><span class="pre">join_attributes.py</span></code> file as a reference.</p>
+<p>以下放上完整的 <code class="docutils literal"><span class="pre">join_attributes.py</span></code> 檔做為參考。</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">PyQt4</span> <span class="kn">import</span> <span class="n">QtGui</span>
 <span class="n">zip_uri</span> <span class="o">=</span> <span class="s">&#39;/vsizip/C:/Users/Ujaval/Downloads/tl_2013_06_tract.zip/tl_2013_06_tract.shp&#39;</span>
 <span class="n">shp</span> <span class="o">=</span>  <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">zip_uri</span><span class="p">,</span> <span class="s">&#39;tl_2013_06_tract&#39;</span><span class="p">,</span> <span class="s">&#39;ogr&#39;</span><span class="p">)</span>
@@ -468,7 +447,7 @@ resulting layer without any manual steps.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Sep 18, 2016.<br/>
+      最後更新日期是 Dec 12, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

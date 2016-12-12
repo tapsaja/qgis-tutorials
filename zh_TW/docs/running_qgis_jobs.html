@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Running and Scheduling QGIS Processing Jobs &mdash; QGIS Tutorials and Tips</title>
+    <title>執行 QGIS 工作排程 &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Find Neighbor Polygons in a Layer" href="find_neighbor_polygons.html" />
+    <link rel="next" title="在同一圖層中尋找相鄰的多邊形" href="find_neighbor_polygons.html" />
     <link rel="prev" title="撰寫 Python 腳本並在處理框架下執行" href="processing_python_scripts.html" />
 
 <meta charset='utf-8'>
@@ -115,11 +115,11 @@
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">使用自訂的 Python 表達式函數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">撰寫 Python 腳本並在處理框架下執行</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Running and Scheduling QGIS Processing Jobs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">執行 QGIS 工作排程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">在同一圖層中尋找相鄰的多邊形</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">資料表連接 (PyQGIS)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">製作 Leaflet 線上地圖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">在 QGIS 中使用 Google Maps Engine Connector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 學習資源</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">資料來源</a></li>
 </ul>
@@ -135,7 +135,7 @@
     </a>
   </li>
   <li>
-    <a href="find_neighbor_polygons.html" title="Next Chapter: Find Neighbor Polygons in a Layer"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Find Neighbor Po... &raquo;</span>
+    <a href="find_neighbor_polygons.html" title="Next Chapter: 在同一圖層中尋找相鄰的多邊形"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">在同一圖層中尋找相鄰的多邊形 &raquo;</span>
     </a>
   </li>
               
@@ -207,142 +207,103 @@
       
 
   <div class="section" id="running-and-scheduling-qgis-processing-jobs">
-<h1>Running and Scheduling QGIS Processing Jobs<a class="headerlink" href="#running-and-scheduling-qgis-processing-jobs" title="Permalink to this headline">¶</a></h1>
-<p>You can automate a lot of tasks in QGIS using Python scripting (PyQGIS) and the
-Processing Framework. Most of the time, you would run these scripts manually
-while QGIS is open. While that is helpful, many times you need a way to run
-this jobs via the command-line and without needing to open QGIS. Fortunately,
-you can write standalone python scripts that use QGIS libraries and can be run
-via the command-line. In this tutorial, we will learn how to write and
-schedule a job that uses the QGIS Processing framework.</p>
+<h1>執行 QGIS 工作排程<a class="headerlink" href="#running-and-scheduling-qgis-processing-jobs" title="Permalink to this headline">¶</a></h1>
+<p>使用 Python 腳本 (PyQGIS) 搭配處理框架，許多工作可以在 QGIS 中自動處理。在一般情況下，我們是在 QGIS 開啟時，手動執行這些腳本；不過有些時候，你或許會希望有方法可以讓這些腳本在不開啟 QGIS 的情況下，直接於指令列中執行。沒問題，在本教學中，我們就來看看要怎麼使用獨立的 Python 環境，使用 QGIS 提供的函數庫與處理框架，撰寫腳本和工作排程，並直接在命令列中執行。</p>
 <div class="section" id="overview-of-the-task">
 <h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>Let&#8217;s say we are working on some analysis using shapefiles of a region. The
-shapefiles are updated on a daily basis and we always need the latest file. But
-before we can use these files, we need to cleanup the data. We can setup a QGIS
-job that automates this process and runs it daily so you have the latest
-cleaned up shapefiles for your work. We will write a standalone Python script
-that downloads a shapefile and run topological cleaning operations on a daily
-basis.</p>
+<p>讓我們假設我們要為某區域的 shapefile 進行分析，此 shapefile 每天會更新一次，而我們隨時都要使用最新的檔案，而且在我們使用檔案內的資料之前，還要稍微「清理」一下它們。因此，我們要設計一個 QGIS 流程，可以每日自動執行以上工作，這樣我們隨時都能把我們的資料分析保持在最新的狀態。以下我們要撰寫一個獨立的 Python 腳本，每日下載最新的 shapefile，然後對其執行拓樸清理（topological cleaning）運算。</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>你還會學到這些<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Downloading and unzipping files using Python.</li>
-<li>Running any Processing algorithm via PyQGIS.</li>
-<li>Fixing topological errors in a vector layer.</li>
+<li><p class="first">使用 Python 下載檔案並解壓縮</p>
+</li>
+<li><p class="first">使用 PyQGIS 執行地理運算</p>
+</li>
+<li><p class="first">修正向量圖層中的拓撲誤差</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>取得資料<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="http://www.geofabrik.de/">Geofabrik</a> provides daily updated shapefiles of
-<a class="reference external" href="http://www.openstreetmap.org/">OpenStreetMap</a> datasets.</p>
-<p>We will use <a class="reference external" href="http://download.geofabrik.de/australia-oceania.html">shapefiles for Fiji</a> for this exercise.
-Download the <a class="reference external" href="http://download.geofabrik.de/australia-oceania/fiji-latest.shp.zip">fiji-latest.shp.zip</a> and
-unzip it to a folder on your disk.</p>
-<p>Data Source <a class="reference internal" href="credits.html#geofabrik" id="id1">[GEOFABRIK]</a></p>
+<p><a class="reference external" href="http://www.geofabrik.de/">Geofabrik</a> 提供每日更新的 <a class="reference external" href="http://www.openstreetmap.org/">OpenStreetMap</a> 資料集的 shapefile。</p>
+<p>我們在本練習中要使用 <a class="reference external" href="http://download.geofabrik.de/australia-oceania.html">斐濟的 shapefiles</a>。下載 <a class="reference external" href="http://download.geofabrik.de/australia-oceania/fiji-latest.shp.zip">fiji-latest.shp.zip</a> 然後解壓到硬碟中。</p>
+<p>資料來源 <a class="reference internal" href="credits.html#geofabrik" id="id1">[GEOFABRIK]</a></p>
 </div>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>We will first run through the process of cleaning the shapefile manually to
-note the commands that we will use in the python script. Launch QGIS and go
-to <span class="menuselection">Layer ‣ Add Layer ‣ Add Vector Layer</span>.</li>
+<li><p class="first">首先我們來手動清理此 shapefile，熟悉一下我們等一下要在 Python 腳本中加入的指令。打開 QGIS，選擇 <span class="menuselection">圖層 ‣ 加入圖層 ‣ 加入向量圖層</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1129.png" class="align-center" src="../_images/1129.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the folder containing the unzipped shapefiles and select the
-<code class="docutils literal"><span class="pre">roads.shp</span></code> file and click <span class="guilabel">Open</span>.</li>
+<li><p class="first">選擇下載後解壓縮的內容中的 <code class="docutils literal"><span class="pre">roads.shp</span></code> 並按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/270.png" class="align-center" src="../_images/270.png" />
 <ol class="arabic simple" start="3">
-<li>First we must re-project the roads layer to a Projected CRS. This will allow
-us to use <em>meters</em> as units when performing analysis instead of degrees.
-Open <span class="menuselection">Processing ‣ Toolbox</span>.</li>
+<li><p class="first">第一件事是重投影道路圖層到專案的 CRS，這樣一來我們就可以使用 <em>公尺</em> 而不是角度來當作等下分析使用的單位。選擇 <span class="menuselection">地理運算 ‣ 工具箱</span>。</p>
+</li>
 </ol>
 <img alt="../_images/338.png" class="align-center" src="../_images/338.png" />
 <ol class="arabic simple" start="4">
-<li>Search for the <span class="guilabel">Reproject layer</span> tool. Double-click it to launch
-the dialog.</li>
+<li><p class="first">尋找 <span class="guilabel">Reproject layer</span> 工具，點兩下開啟對話窗。</p>
+</li>
 </ol>
 <img alt="../_images/428.png" class="align-center" src="../_images/428.png" />
 <ol class="arabic simple" start="5">
-<li>In the <span class="guilabel">Reproject layer</span> dialog, select the <code class="docutils literal"><span class="pre">roads</span></code> layer as
-<span class="guilabel">Input layer</span>. We will use <code class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span> <span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></code>
-CRS as the <span class="guilabel">Target CRS</span>. Click <span class="guilabel">Run</span>.</li>
+<li><p class="first">在 <span class="guilabel">Reproject layer</span> 視窗中，<span class="guilabel">輸入圖層</span> 選擇 <code class="docutils literal"><span class="pre">roads</span></code>，<span class="guilabel">目標 CRS</span> 選擇 <code class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span> <span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></code>，按下 <span class="guilabel">Run</span>。</p>
+</li>
 </ol>
 <img alt="../_images/529.png" class="align-center" src="../_images/529.png" />
 <ol class="arabic simple" start="6">
-<li>Once the process finishes, you will see the reprojected layer loaded in
-QGIS. Go to <span class="menuselection">Processing ‣ History and Log..</span>.</li>
+<li><p class="first">處理完成後可以看到重投影的圖層已載入到 QGIS 中。選擇 <span class="menuselection">地理運算 ‣ 歷程與日誌</span>。</p>
+</li>
 </ol>
 <img alt="../_images/627.png" class="align-center" src="../_images/627.png" />
 <ol class="arabic simple" start="7">
-<li>In the <span class="guilabel">History and Log</span> dialog, expand the <span class="guilabel">Algorithm</span>
-folder and select the latest entry. You will see the full processing command
-shown in the bottom panel. Note this command for use in our script.</li>
+<li><p class="first">在 <span class="guilabel">歷程與日誌</span> 視窗中，展開 <span class="guilabel">Algorithm</span> 資料夾然後選擇最新一筆的紀錄，就會看到完整的處理指令顯示在下方面板中。這就是我們等下要使用在腳本內的指令。</p>
+</li>
 </ol>
 <img alt="../_images/726.png" class="align-center" src="../_images/726.png" />
 <ol class="arabic simple" start="8">
-<li>Back in the main QGIS Window, click at the <span class="guilabel">CRS</span> button in the
-bottom-right corner.</li>
+<li><p class="first">回到 QGIS 視窗，按下右下角的 <span class="guilabel">CRS</span> 按鈕。</p>
+</li>
 </ol>
 <img alt="../_images/825.png" class="align-center" src="../_images/825.png" />
 <ol class="arabic simple" start="9">
-<li>In the <span class="guilabel">Project Properties | CRS</span> dialog, check the
-<span class="guilabel">Enable on-the-fly CRS transformation</span> and select <code class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span>
-<span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></code> as the CRS. This will ensure that our original and
-reprojected layers will line up correctly.</li>
+<li><p class="first">在 <span class="guilabel">專案屬性 | CRS</span> 視窗中，勾選 <span class="guilabel">開啟即時 CRS 轉換</span>，然後選擇 <code class="docutils literal"><span class="pre">EPSG:3460</span> <span class="pre">Fiji</span> <span class="pre">1986</span> <span class="pre">/</span> <span class="pre">Fiji</span> <span class="pre">Map</span> <span class="pre">Grid</span></code> 為專案 CRS，這樣就能確保原本的圖層和重投影過的圖層都會正確顯示。</p>
+</li>
 </ol>
 <img alt="../_images/923.png" class="align-center" src="../_images/923.png" />
 <ol class="arabic simple" start="10">
-<li>Now we will run the cleaning operation. GRASS has a very powerful set of
-topological cleaning tools. These are available in QGIS via the <code class="docutils literal"><span class="pre">v.clean</span></code>
-algorithm. Search for this algorithm in the <span class="guilabel">Processing Toolbox</span>
-and double-click it to launch the dialog.</li>
+<li><p class="first">現在我們要來執行清理操作了。GRASS 具有強大的拓樸清理工具，在 QGIS 中可透過 <code class="docutils literal"><span class="pre">v.clean</span></code> 運算法存取。在 <span class="guilabel">地理運算工具箱</span> 中尋找此演算法，然後點兩下開啟視窗。</p>
+</li>
 </ol>
 <img alt="../_images/1024.png" class="align-center" src="../_images/1024.png" />
 <ol class="arabic simple" start="11">
-<li>You can read more about various tools and options in the <span class="guilabel">Help</span>
-tab. For this tutorial, we will be using the <code class="docutils literal"><span class="pre">snap</span></code> tool to remove
-duplicate vertices that are within 1 meter of each other. Select
-<code class="docutils literal"><span class="pre">Reprojected</span> <span class="pre">layer</span></code> as the <span class="guilabel">Layer to clean</span>. Choose <code class="docutils literal"><span class="pre">snap</span></code> as
-the <span class="guilabel">Cleaning tool</span>.  Enter <code class="docutils literal"><span class="pre">1.00</span></code> as the
-<span class="guilabel">Threshold</span>. Leave the other fields blank and click
-<span class="guilabel">Run</span>.</li>
+<li><p class="first">有關此工具的更多說明，可以在 <span class="guilabel">Help</span> 分頁中找到，而在此教學中，我們要使用 <code class="docutils literal"><span class="pre">snap</span></code> 工具來清除任何在 1 公尺之內多餘的線條頂點。在 <span class="guilabel">Layer to clean</span> 中選擇 <code class="docutils literal"><span class="pre">Reprojected</span> <span class="pre">layer</span></code>，然後在 <span class="guilabel">Cleaning tool</span> 中選擇 <code class="docutils literal"><span class="pre">snap</span></code>，在 <span class="guilabel">Threshold</span> 中輸入 <code class="docutils literal"><span class="pre">1.00</span></code>，其他欄位留白，按下 <span class="guilabel">Run</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1130.png" class="align-center" src="../_images/1130.png" />
 <ol class="arabic simple" start="12">
-<li>Once the processing finishes, you will see 2 new layers added to QGIS. The
-<code class="docutils literal"><span class="pre">Cleaned</span> <span class="pre">vector</span> <span class="pre">layer</span></code> is the layer with topological errors corrected.
-You will also have a <code class="docutils literal"><span class="pre">Errors</span> <span class="pre">layer</span></code> which will highlight the features
-which were repaired. You can use the errors layer as a guide and zoom in to
-see vertices that were removed.</li>
+<li><p class="first">處理完成後，會有 2 個新圖層加入 QGIS 中。<code class="docutils literal"><span class="pre">Cleaned</span></code> 是經過拓樸誤差修正後的圖層，而 <code class="docutils literal"><span class="pre">Errors</span></code> 則顯示了有修改過的圖徵，因此你可以參考 Errors 圖層，縮放地圖以查看被移除的頂點們。</p>
+</li>
 </ol>
 <img alt="../_images/1225.png" class="align-center" src="../_images/1225.png" />
 <ol class="arabic simple" start="13">
-<li>Go to <span class="menuselection">Processing ‣ History and Log</span> dialog and note the
-full processing command for later use.</li>
+<li><p class="first">選擇 <span class="menuselection">地理運算 ‣ 歷程與日誌</span>，然後查看我們等一下要使用的命令列指令。</p>
+</li>
 </ol>
 <img alt="../_images/1323.png" class="align-center" src="../_images/1323.png" />
 <ol class="arabic simple" start="14">
-<li>We are ready to start coding now. See the <strong>A Text Editor or a Python IDE</strong>
-section in the <a class="reference internal" href="building_a_python_plugin.html"><em>以 Python 製作附加元件</em></a> tutorial for instructions to
-setup your text editor or IDE. For running standalone python scripts that
-use QGIS, we must set various configuration options. A good way to run
-standalone scripts is to launch them via a <code class="docutils literal"><span class="pre">.bat</span></code> file. This file will
-first set the correct configuration options and then call the python
-script. Create a new file named <code class="docutils literal"><span class="pre">launch.bat</span></code> and enter the following
-text. Change the values according to your QGIS configuration. Don&#8217;t forget
-to replace the username with your own username in the path to the python
-script.  The paths in this file will be the same on your system if you
-installed QGIS via the <code class="docutils literal"><span class="pre">OSGeo4W</span> <span class="pre">Installer</span></code>. Save the file on your
-Desktop.</li>
+<li><p class="first">現在我們已經做好寫程式碼的準備了！如果你需要設定文字編輯器或 IDE，請參考在 <a class="reference internal" href="building_a_python_plugin.html"><em>以 Python 製作附加元件</em></a> 一章中的 <strong>編輯器或 Python IDE</strong> 的說明。為了要在獨立的 Python 腳本中使用 QGIS，我們必須要先設定好系統配置才行。有個方便的方法是透過 <code class="docutils literal"><span class="pre">.bat</span></code> 檔案來執行，此檔案會先設定好正確的配置選項，然後再呼叫 Python 腳本。因此，請建立稱為 <code class="docutils literal"><span class="pre">launch.bat</span></code> 的新檔案然後輸入以下文字，記得根據你的 QGIS 配置改動其中的一些參數值，也別忘記把存取 Python 檔案的路徑中的使用者名稱替換成你自己的。如果你是透過 <code class="docutils literal"><span class="pre">OSGeo4W</span> <span class="pre">Installer</span></code> 安裝 QGIS 的話，在此檔案中的路徑會與你的系統路徑相同。最後存檔到你的桌面。</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">Linux and Mac users will need to create a shell script to set the paths
-and environment variables.</p>
+<p class="last">Linux 和 Mac 的使用者則需要使用 shell 腳本來設定路徑和環境變數。</p>
 </div>
 <div class="highlight-none"><div class="highlight"><pre>REM Change OSGEO4W_ROOT to point to the base install folder
 SET OSGEO4W_ROOT=C:\OSGeo4W64
@@ -363,8 +324,8 @@ pause
 </div>
 <img alt="../_images/1422.png" class="align-center" src="../_images/1422.png" />
 <ol class="arabic simple" start="15">
-<li>Create a new python file and enter the following code. Name the file as
-<code class="docutils literal"><span class="pre">download_and_clean.py</span></code> and save it on your Desktop.</li>
+<li><p class="first">建立新的 Python 檔然後輸入以下程式碼，檔名取為 <code class="docutils literal"><span class="pre">download_and_clean.py</span></code> 然後儲存至桌面。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="k">print</span> <span class="s">&#39;Hello QGIS!&#39;</span>
@@ -372,22 +333,13 @@ pause
 </div>
 <img alt="../_images/1521.png" class="align-center" src="../_images/1521.png" />
 <ol class="arabic simple" start="16">
-<li>Switch to your Desktop and locate the <code class="docutils literal"><span class="pre">launch.bat</span></code> icon. Double-click it
-to launch a new command window and run the script. If you see <code class="docutils literal"><span class="pre">Hello</span>
-<span class="pre">QGIS!</span></code> printed in the command window, your configuration and setup worked
-fine. If you see errors or do not see the text, check your <code class="docutils literal"><span class="pre">launch.bat</span></code>
-file and make sure all the paths match the locations on your system.</li>
+<li><p class="first">切換到桌面，找到 <code class="docutils literal"><span class="pre">launch.bat</span></code> 然後點它兩下，腳本會開始執行，並會同時開啟一個命令列視窗。如果你在命令列視窗中看到了 <code class="docutils literal"><span class="pre">Hello</span> <span class="pre">QGIS!</span></code> 字樣出現，那就表示之前的設定和操作一切順利。如果你發現錯誤或沒有看到以上文字的話，請檢查 <code class="docutils literal"><span class="pre">launch.bat</span></code> 的內容，然後確認所有的路徑在你的作業系統中都是正確的。</p>
+</li>
 </ol>
 <img alt="../_images/1620.png" class="align-center" src="../_images/1620.png" />
 <ol class="arabic simple" start="17">
-<li>Back in your text editor, modify the <code class="docutils literal"><span class="pre">download_and_clean.py</span></code> script to
-add the following code. This is the bootstrap code to initialize QGIS.
-These are unnecessary if you are running the script within QGIS. But since
-we are running it outside QGIS, we need to add these at the beginning. Make
-sure you replace the username with your username. After making these
-changes, save the file and run <code class="docutils literal"><span class="pre">launch.bat</span></code> again. If you see <code class="docutils literal"><span class="pre">Hello</span>
-<span class="pre">QGIS!</span></code> printed, you are all set to do add the processing logic to the
-script.</li>
+<li><p class="first">回到文字編輯器，編輯 <code class="docutils literal"><span class="pre">download_and_clean.py</span></code> 並加入以下的程式碼。這個段落用來快速啟動 QGIS，如果你在 QGIS 中執行腳本，並不需要此段落；但由於我們要在 QGIS 不開啟的狀況下執行，程式最前端就必須放上這幾行，同時要注意有把使用者名稱改成你自己的才行。完成之後，存檔然後再次執行 <code class="docutils literal"><span class="pre">launch.bat</span></code>，如果你看到 <code class="docutils literal"><span class="pre">Hello</span> <span class="pre">QGIS!</span></code> 列印出來，就表示可以開始在腳本中加入地理運算的流程了。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
@@ -410,11 +362,8 @@ script.</li>
 </div>
 <img alt="../_images/1719.png" class="align-center" src="../_images/1719.png" />
 <ol class="arabic simple" start="18">
-<li>Recall the first processing command that we had saved from the log. This
-was the command to re-project a layer. Paste the command to your script and
-add the surrounding code as follows. Note that processing commands return
-the path to the output layers as a dictionary. We are storing this as the
-<code class="docutils literal"><span class="pre">ret</span></code> value and printing the path to the reprojected layer.</li>
+<li><p class="first">我們從地理運算的歷程日誌中看到的第一個運算指令，就是要放在這邊的重投影指令。因此，貼上此段指令到腳本中，然後前後加入如下所示的幾行。注意運算指令的回傳值為字典（dict）變數，其中包含了輸出圖層的路徑，因此我們在這邊把字典存成 <code class="docutils literal"><span class="pre">ret</span></code> 然後再列印出重投影後圖層的路徑。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">roads_shp_path</span> <span class="o">=</span> <span class="s">&quot;C:</span><span class="se">\\</span><span class="s">Users</span><span class="se">\\</span><span class="s">Ujaval</span><span class="se">\\</span><span class="s">Downloads</span><span class="se">\\</span><span class="s">fiji-latest.shp</span><span class="se">\\</span><span class="s">roads.shp&quot;</span>
 <span class="n">ret</span> <span class="o">=</span> <span class="n">processing</span><span class="o">.</span><span class="n">runalg</span><span class="p">(</span><span class="s">&#39;qgis:reprojectlayer&#39;</span><span class="p">,</span> <span class="n">roads_shp_path</span><span class="p">,</span> <span class="s">&#39;EPSG:3460&#39;</span><span class="p">,</span>
@@ -425,15 +374,13 @@ the path to the output layers as a dictionary. We are storing this as the
 </div>
 <img alt="../_images/1819.png" class="align-center" src="../_images/1819.png" />
 <ol class="arabic simple" start="19">
-<li>Run the script via <code class="docutils literal"><span class="pre">launch.bat</span></code> and you will see the path to the newly
-created reprojected layer.</li>
+<li><p class="first">透過 <code class="docutils literal"><span class="pre">launch.bat</span></code> 執行此腳本，就可以看到新建立的重投影圖層的路徑。</p>
+</li>
 </ol>
 <img alt="../_images/1917.png" class="align-center" src="../_images/1917.png" />
 <ol class="arabic simple" start="20">
-<li>Now add the code for cleaning the topology. Since this is our final output,
-we will add the output file paths as the last 2 arguments for the
-<code class="docutils literal"><span class="pre">grass.v.clean</span></code> algorithm. If you left these blank, the output will be
-created in a temporary directory.</li>
+<li><p class="first">接下來要增加拓樸清理的程式碼。由於這會是我們的最終輸出，所以我們要在 <code class="docutils literal"><span class="pre">grass.v.clean</span></code> 函數中的最後 2 個參數加上輸出檔路徑。如果這兩個參數是空白的話，輸出檔就只會放在一個暫時資料夾之中。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">processing</span><span class="o">.</span><span class="n">runalg</span><span class="p">(</span><span class="s">&quot;grass:v.clean&quot;</span><span class="p">,</span>
                   <span class="n">output</span><span class="p">,</span>
@@ -448,13 +395,8 @@ created in a temporary directory.</li>
 </div>
 <img alt="../_images/2014.png" class="align-center" src="../_images/2014.png" />
 <ol class="arabic simple" start="21">
-<li>Run the script and you will see 2 new shapefiles created on your Desktop.
-This completes the processing part of the script. Let&#8217;s add the code to
-download the data from the original website and unzip it automatically. We
-will also store the path to the unzipped file in a variable that we can
-pass to the processing algorithm later. We will need to import some
-additional modules for doing this. (See the end of the tutorial for the
-full script with all the changes)</li>
+<li><p class="first">執行腳本後可以看到 2 個新的 shapefiles 出現在你的桌面了，到此為止我們已完成腳本的地理運算部分，接下來我們來加入從網頁中下載資料和自動解壓縮的程式碼。我們也順便把解壓縮後的檔案路徑儲存起來，給之後的地理運算函數使用。要做到這些得需要一些額外的模組才行。(本教學最後附有完整的腳本檔案供參考)</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">urllib</span>
@@ -479,49 +421,50 @@ full script with all the changes)</li>
 </div>
 <img alt="../_images/2118.png" class="align-center" src="../_images/2118.png" />
 <ol class="arabic simple" start="22">
-<li>Run the completed script. Everytime you run the script, a fresh copy of the
-data will be downloaded and processed.</li>
+<li><p class="first">執行完成的腳本。每次執行腳本之後，就會有一份新的資料被下載並進行處理。</p>
+</li>
 </ol>
 <img alt="../_images/2217.png" class="align-center" src="../_images/2217.png" />
 <ol class="arabic simple" start="23">
-<li>To automate running on this script on a daily basis, we can use the <code class="docutils literal"><span class="pre">Task</span>
-<span class="pre">Scheduler</span></code> in Windows. Launch the Task Scheduler and click
-<span class="guilabel">Create Basic Task</span>.</li>
+<li><p class="first">為了要每日自動執行腳本，我們可以使用 Windows 中的 <code class="docutils literal"><span class="pre">工作排程器</span></code>。開啟工作排程器之後，按下 <span class="guilabel">建立基本工作</span>。</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">Linux and Mac users can use cron jobs to schedule  tasks.</p>
+<p class="last">Linux 和 Mac 的使用者可以使用 <a class="reference external" href="http://linux.vbird.org/linux_basic/0430cron.php">crontab</a> 執行排程工作。</p>
 </div>
 <img alt="../_images/2314.png" class="align-center" src="../_images/2314.png" />
 <ol class="arabic simple" start="24">
-<li>Name the task as <code class="docutils literal"><span class="pre">Daily</span> <span class="pre">Download</span> <span class="pre">and</span> <span class="pre">Cleanup</span></code> and click <span class="guilabel">Next</span>.</li>
+<li><p class="first">把工作命名為 <code class="docutils literal"><span class="pre">Daily</span> <span class="pre">Download</span> <span class="pre">and</span> <span class="pre">Cleanup</span></code> 然後按下 <span class="guilabel">下一步</span>。</p>
+</li>
 </ol>
 <img alt="../_images/2412.png" class="align-center" src="../_images/2412.png" />
 <ol class="arabic simple" start="25">
-<li>Select <code class="docutils literal"><span class="pre">Daily</span></code> as the <span class="guilabel">Trigger</span> and click <span class="guilabel">Next</span></li>
+<li><p class="first">在 <span class="guilabel">觸發程序</span> 設定中選擇 <code class="docutils literal"><span class="pre">每天</span></code>，然後按 <span class="guilabel">下一步</span>。</p>
+</li>
 </ol>
 <img alt="../_images/2510.png" class="align-center" src="../_images/2510.png" />
 <ol class="arabic simple" start="26">
-<li>Select a time as per your liking and click <span class="guilabel">Next</span>.</li>
+<li><p class="first">選擇你喜歡的時段然後按 <span class="guilabel">下一步</span>。</p>
+</li>
 </ol>
 <img alt="../_images/2610.png" class="align-center" src="../_images/2610.png" />
 <ol class="arabic simple" start="27">
-<li>Choose <code class="docutils literal"><span class="pre">Start</span> <span class="pre">a</span> <span class="pre">program</span></code> as the <span class="guilabel">Action</span> and click
-<span class="guilabel">Next</span>.</li>
+<li><p class="first">在 <span class="guilabel">執行</span> 設定中選擇 <span class="guilabel">啟動程式</span>，按 <span class="guilabel">下一步</span>。</p>
+</li>
 </ol>
 <img alt="../_images/278.png" class="align-center" src="../_images/278.png" />
 <ol class="arabic simple" start="28">
-<li>Click <span class="guilabel">Browse</span> and locate the <code class="docutils literal"><span class="pre">launch.bat</span></code> script. Click
-<span class="guilabel">Next</span>.</li>
+<li><p class="first">按下 <span class="guilabel">瀏覽</span> 然後選擇 <code class="docutils literal"><span class="pre">launch.bat</span></code> 腳本，按下 <span class="guilabel">下一步</span>。</p>
+</li>
 </ol>
 <img alt="../_images/286.png" class="align-center" src="../_images/286.png" />
 <ol class="arabic simple" start="29">
-<li>Click <span class="guilabel">Finish</span> at the last screen to schedule the task. Now the
-script will automatically launch at the specified time to give you a fresh
-copy of cleaned data everyday.</li>
+<li><p class="first">在最後一個視窗按下 <span class="guilabel">完成</span>，就完成了例行排程的設定。從現在開始腳本就會每天在你選擇的時段執行，然後新的、處理過的資料就會每天產生。</p>
+</li>
 </ol>
 <img alt="../_images/295.png" class="align-center" src="../_images/295.png" />
-<p>Below is the full <code class="docutils literal"><span class="pre">download_and_clean.py</span></code> script for your reference.</p>
+<p>以下放上完整的 <code class="docutils literal"><span class="pre">download_and_clean.py</span></code> 檔做為參考。</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="o">*</span>
 
@@ -607,7 +550,7 @@ copy of cleaned data everyday.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Sep 18, 2016.<br/>
+      最後更新日期是 Dec 12, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

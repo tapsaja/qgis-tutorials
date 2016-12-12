@@ -115,11 +115,11 @@
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">使用自訂的 Python 表達式函數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">撰寫 Python 腳本並在處理框架下執行</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">執行 QGIS 工作排程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">在同一圖層中尋找相鄰的多邊形</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">資料表連接 (PyQGIS)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">製作 Leaflet 線上地圖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">在 QGIS 中使用 Google Maps Engine Connector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 學習資源</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">資料來源</a></li>
 </ul>
@@ -208,36 +208,27 @@
 
   <div class="section" id="automating-map-creation-with-print-composer-atlas">
 <h1>利用地圖出版設計的圖輯工具自動創造地圖<a class="headerlink" href="#automating-map-creation-with-print-composer-atlas" title="Permalink to this headline">¶</a></h1>
-<p>If your organization publishes printed or online maps, you often would need to
-create many maps with the same template - usually one for each administrative
-unit or a region of interest. Creating these maps manually can take a long time
-and if you want to update these on a regular basis, it can turn into a chore.
-QGIS has a tool called <code class="docutils literal"><span class="pre">Atlas</span></code> that can help you create a map template and
-easily publish a large number of maps for different geographic regions. If you
-are not familiar with the basics of Print Composer, please go through the
-<a class="reference internal" href="making_a_map.html"><em>製作地圖</em></a> tutorial.</p>
+<p>如果你的所屬單位有出版紙本或線上地圖的話，你或許會常常需要使用同一個範本製作許多地圖，這些地圖通常個別代表不同的行政區或是不同的特定區域。如果你需要時常更新這些地圖的話，手動弄起來會花費許多時間，甚至可能會成為超級麻煩事。不過，QGIS 有個稱為 <code class="docutils literal"><span class="pre">輿圖</span></code> 的工具，可以讓你設計地圖範本並且使用它來製作出版許多不同地區的地圖。如果你對「地圖出版設計（Print Composer）」不熟悉，請先閱讀 <a class="reference internal" href="making_a_map.html"><em>製作地圖</em></a> 中的教學。</p>
 <div class="section" id="overview-of-the-task">
 <h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>This tutorial shows how to create wetlands map for each county in the state of
-Hawaii.</p>
+<p>本教學將示範如何為夏威夷州的每個縣製作濕地地圖。</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>你還會學到這些<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>How to use the <code class="docutils literal"><span class="pre">Inverted</span> <span class="pre">Polygons</span></code> style renderer to fill areas outside of polygons.</li>
-<li>How to use an expression in the <code class="docutils literal"><span class="pre">Rule</span> <span class="pre">Based</span></code> style renderer to show only
-the current feature in Atlas.</li>
-<li>Apply expressions to create dynamic labels in Print Composer.</li>
+<li><p class="first">使用 <code class="docutils literal"><span class="pre">反轉多邊形</span></code> 樣式設定多邊形外側的區域樣式</p>
+</li>
+<li><p class="first">在 <code class="docutils literal"><span class="pre">規則</span></code> 樣式設定中使用表達式，讓輿圖工具只顯示現在選擇的圖徵</p>
+</li>
+<li><p class="first">在地圖出版設計中使用表達式建立動態標記</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
 <h2>取得資料<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://planning.hawaii.gov/gis/download-gis-data/">GIS Data Layers</a> from <a class="reference external" href="http://planning.hawaii.gov/">State of Hawaii -
-Office of Planning</a></p>
-<p>Download the <a class="reference external" href="http://files.hawaii.gov/dbedt/op/gis/data/HI_Wetlands.shp.zip">Wetlands</a> layer from
-Biologic and Ecologic category.</p>
-<p>Download the <a class="reference external" href="http://files.hawaii.gov/dbedt/op/gis/data/county10.shp.zip">Census County Boundaries 2010</a> layer from the
-Cultural and Demographic category.</p>
+<p>本章中我們使用的是<a class="reference external" href="http://planning.hawaii.gov/">夏威夷州 Office of Planning</a>提供的  <a class="reference external" href="http://planning.hawaii.gov/gis/download-gis-data/">GIS 資料圖層</a></p>
+<p>下載隸屬於生物與生態類別的<a class="reference external" href="http://files.hawaii.gov/dbedt/op/gis/data/HI_Wetlands.shp.zip">濕地</a>圖層</p>
+<p>下載隸屬於文化與人口統計類別的 <a class="reference external" href="http://files.hawaii.gov/dbedt/op/gis/data/county10.shp.zip">2010 郡縣邊界</a> 圖層</p>
 <p>為了方便起見，你也可以直接用下面的連結下載這兩份資料集：</p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/HI_Wetlands.shp.zip">HI_Wetlands.shp.zip</a></p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/county10.shp.zip">county10.shp.zip</a></p>
@@ -261,11 +252,8 @@ Cultural and Demographic category.</p>
 </ol>
 <img alt="../_images/31.png" class="align-center" src="../_images/31.png" />
 <ol class="arabic simple" start="4">
-<li>You will see the polygons representing the wetlands in the entire state of
-Hawaii. Since we want to make separate wetlands map for each county in the
-state, we will need the county boundaries layer. Go to <span class="menuselection">Layer
-‣ Add Layer ‣ Add Vector Layer</span> and browse to the <code class="docutils literal"><span class="pre">county10.shp.zip</span></code>
-file. Click <span class="guilabel">Open</span>.</li>
+<li><p class="first">你會看到很多多邊形出現，代表夏威夷州全部的溼地範圍。由於我們要分別製作夏威夷每個縣的溼地地圖，因此還需要一個郡縣邊界的圖層才行。選擇 <span class="menuselection">圖層 ‣ 加入圖層 ‣ 加入向量圖層</span>，然後點選 <code class="docutils literal"><span class="pre">county10.shp.zip</span></code>，按下 <span class="guilabel">開啟</span>。</p>
+</li>
 </ol>
 <img alt="../_images/41.png" class="align-center" src="../_images/41.png" />
 <ol class="arabic simple" start="5">
@@ -279,180 +267,156 @@ file. Click <span class="guilabel">Open</span>.</li>
 </ol>
 <img alt="../_images/61.png" class="align-center" src="../_images/61.png" />
 <ol class="arabic simple" start="7">
-<li>Go to <span class="menuselection">Layout ‣ Add Map</span>.</li>
+<li><p class="first">選擇 <span class="menuselection">圖層 ‣ 加入地圖</span>。</p>
+</li>
 </ol>
 <img alt="../_images/71.png" class="align-center" src="../_images/71.png" />
 <ol class="arabic simple" start="8">
-<li>Drag a rectangle while holding the left mouse button where you would like to
-insert the map.</li>
+<li><p class="first">在地圖版面上拖曳一塊你想插入地圖的區域。</p>
+</li>
 </ol>
 <img alt="../_images/81.png" class="align-center" src="../_images/81.png" />
 <ol class="arabic simple" start="9">
-<li>Scroll down in the <span class="guilabel">Item Properties</span> tab and check the
-<span class="guilabel">Controlled by atlas</span> box. This will indicate the composer that
-the extent of the map displayed in this item will be determined by the
-<code class="docutils literal"><span class="pre">Atlas</span></code> tool.</li>
+<li><p class="first">切換到 <span class="guilabel">項目屬性</span> 分頁然後向下捲動，勾選 <span class="guilabel">由輿圖控制</span> 的方框，此選項用來告訴電腦本地圖的範圍是由<code class="docutils literal"><span class="pre">輿圖</span></code>工具所控制。（譯按：如果這時方框是無法選取的狀態，請先完成後續幾個步驟，再回來勾選。）</p>
+</li>
 </ol>
 <img alt="../_images/91.png" class="align-center" src="../_images/91.png" />
 <ol class="arabic simple" start="10">
-<li>Switch to the <span class="guilabel">Atlas generation</span> tab. Check the
-<span class="guilabel">Generate an atlas</span> box. Select the <code class="docutils literal"><span class="pre">county10</span></code> as the
-<span class="guilabel">Coverage layer</span>. This will indicate that we want to create 1 map
-each for every polygon feature in the <code class="docutils literal"><span class="pre">county10</span></code> layer. You can also
-check the <span class="guilabel">Hidden coverage layer</span> so that the features themselves
-will not appear on the map.</li>
+<li><p class="first">切換到 <span class="guilabel">輿圖設計</span> 分頁，勾選 <span class="guilabel">產生輿圖</span> 方框，<span class="guilabel">覆蓋圖層</span> 選擇 <code class="docutils literal"><span class="pre">county10</span></code>，如此一來電腦就會為每個在 <code class="docutils literal"><span class="pre">county10</span></code> 內的多邊形圖徵創造各自的地圖。你也可以勾選 <span class="guilabel">隱藏覆蓋範圍圖層</span>，這樣一來「覆蓋圖層」內的圖徵就不會顯示在地圖上。</p>
+</li>
 </ol>
 <img alt="../_images/101.png" class="align-center" src="../_images/101.png" />
 <ol class="arabic simple" start="11">
-<li>You will notice that the map image does not change after configuring the
-Atlas settings. Go to <span class="menuselection">Atlas ‣ Preview Atlas</span>.</li>
+<li><p class="first">雖然已經完成了輿圖設定，但這時地圖影像還不會有任何改變。選擇 <span class="menuselection">輿圖 ‣ 預覽輿圖</span>。</p>
+</li>
 </ol>
 <img alt="../_images/111.png" class="align-center" src="../_images/111.png" />
 <ol class="arabic simple" start="12">
-<li>Now you will see the map refresh and show how individual map will look
-like. Notice that it shows the current feature number from the coverage
-layer at the bottom right.</li>
+<li><p class="first">按下去之後地圖會刷新成為其中一張地圖看起來的樣子，注意在右側最底部有個訊息，告訴你現在所使用的多邊形圖徵編號。</p>
+</li>
 </ol>
 <img alt="../_images/121.png" class="align-center" src="../_images/121.png" />
 <ol class="arabic simple" start="13">
-<li>You can preview how the map will look for each of the county polygons. Go
-to <span class="menuselection">Atlas ‣ Next Feature</span>.</li>
+<li><p class="first">你也可以預覽由其他多邊形建立的地圖，請選擇 <span class="guilabel">輿圖 &#8211;&gt; 下一個圖徵</span>，</p>
+</li>
 </ol>
 <img alt="../_images/131.png" class="align-center" src="../_images/131.png" />
 <ol class="arabic simple" start="14">
-<li>Atlas will render the map to the extent of the next feature in the coverage
-layer.</li>
+<li><p class="first">如此一來地圖就會刷新為下一個圖徵覆蓋的範圍。</p>
+</li>
 </ol>
 <img alt="../_images/141.png" class="align-center" src="../_images/141.png" />
 <ol class="arabic simple" start="15">
-<li>Let&#8217;s add a label to the map. Go to <span class="menuselection">Layout ‣ Add Label</span>.</li>
+<li><p class="first">來加點標記吧！選擇 <span class="menuselection">圖層 ‣ 加入標記</span>，</p>
+</li>
 </ol>
 <img alt="../_images/151.png" class="align-center" src="../_images/151.png" />
 <ol class="arabic simple" start="16">
-<li>Under the <span class="guilabel">Item properties</span> tab, click <span class="guilabel">Insert an
-expression...</span> button.</li>
+<li><p class="first">在標記的 <span class="guilabel">項目屬性</span> 分頁中，選擇 <span class="guilabel">插入表示式...</span>。</p>
+</li>
 </ol>
 <img alt="../_images/161.png" class="align-center" src="../_images/161.png" />
 <ol class="arabic simple" start="17">
-<li>The label of the map can use the attributes from the coverage layer.he
-<code class="docutils literal"><span class="pre">concat</span></code> function is used to join multiple text items into a single text
-item. In this case we will join the value of the <code class="docutils literal"><span class="pre">NAME10</span></code> attribute of
-the <code class="docutils literal"><span class="pre">county10</span></code> layer with the text <code class="docutils literal"><span class="pre">County</span> <span class="pre">of</span></code>. Add an expression like
-below and click <span class="guilabel">OK</span>.</li>
+<li><p class="first">在此功能中，標記文字可以使用覆蓋圖層的屬性。我們要使用 <code class="docutils literal"><span class="pre">concat</span></code> 函數來把兩段字串合併，而要合併的字串分別為 <code class="docutils literal"><span class="pre">County</span> <span class="pre">of</span></code> 和 <code class="docutils literal"><span class="pre">county10</span></code> 圖層中的 <code class="docutils literal"><span class="pre">NAME10</span></code> 屬性值。加入以下的表達式後，按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>concat(&#39;County of &#39;, &quot;NAME10&quot;)
 </pre></div>
 </div>
 <ol class="arabic simple" start="18">
-<li>Adjust the font size to your liking.</li>
+<li><p class="first">調整成你喜歡的字體大小。</p>
+</li>
 </ol>
 <img alt="../_images/181.png" class="align-center" src="../_images/181.png" />
 <ol class="arabic simple" start="19">
-<li>Add another label and enter <code class="docutils literal"><span class="pre">Wetlands</span> <span class="pre">Map</span></code> under the <span class="guilabel">Main
-properties</span>. Since there is no expression here, this text will remain the
-same on all maps.</li>
+<li><p class="first">加入另一個標記，然後在 <span class="guilabel">主要屬性</span> 下輸入 <code class="docutils literal"><span class="pre">Wetlands</span> <span class="pre">Map</span></code>。由於沒有使用表達式，此文字在所有的地圖中都會相同。</p>
+</li>
 </ol>
 <img alt="../_images/191.png" class="align-center" src="../_images/191.png" />
 <ol class="arabic simple" start="20">
-<li>Go to <span class="menuselection">Atlas ‣ Last Feature</span> and verify that the map
-labels do work as intended. You will notice that the wetland map has
-polygons extending out in the ocean that looks ugly. We can change the
-style to that areas outside the county boundaries are hidden.</li>
+<li><p class="first">選擇 <span class="menuselection">輿圖 ‣ 最後一個圖徵</span>，然後確認地圖標記有照我們所想的運作。目前濕地地圖上的多邊形也延伸到了海中，看起來不怎麼美觀，所以接著我們就要來改變樣式，隱藏郡縣邊界外側的多邊形圖徵。</p>
+</li>
 </ol>
 <img alt="../_images/20.png" class="align-center" src="../_images/20.png" />
 <ol class="arabic simple" start="21">
-<li>Switch to the main QGIS window. Right-click the <code class="docutils literal"><span class="pre">county10</span></code> layer and
-select <span class="guilabel">Properties</span>.</li>
+<li><p class="first">切換到 QGIS 主視窗，在 <code class="docutils literal"><span class="pre">county10</span></code> 圖層上按右鍵選擇 <span class="guilabel">屬性</span>。</p>
+</li>
 </ol>
 <img alt="../_images/211.png" class="align-center" src="../_images/211.png" />
 <ol class="arabic simple" start="22">
-<li>In the <span class="guilabel">Style</span> tab, select the <span class="guilabel">Inverted polygons</span>
-renderer. This renderer styles the <cite>outside</cite> of the polygon - not inside.
-Select white as the fill color and click <span class="guilabel">OK</span>.</li>
+<li><p class="first">在 <span class="guilabel">樣式</span> 分頁中，選擇 <span class="guilabel">反轉多邊形</span> 的呈現方法，這個特殊的樣式設定的是多邊形的「外部」區域。選擇白色做為填充色彩，然後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/22.png" class="align-center" src="../_images/22.png" />
 <ol class="arabic simple" start="23">
-<li>Switch to the Print Composer window. If we want the effect of the inverted
-polygons to show, we need to uncheck the <span class="guilabel">Hidden coverage layer</span>
-box under <span class="guilabel">Atlas generation</span>. You will now see that the rendered
-image is clean and areas outside the coverage polygon is not visible.</li>
+<li><p class="first">回到地圖設計的視窗，如果我們要讓反轉多邊形的設定出現的話，就得先取消勾選在 <span class="guilabel">輿圖設計</span> 分頁下的 <span class="guilabel">隱藏覆蓋範圍圖層</span> 才行。套用新樣式後的地圖由於多邊形外圍區域已經隱藏起來，看起來乾淨許多。</p>
+</li>
 </ol>
 <img alt="../_images/23.png" class="align-center" src="../_images/23.png" />
 <ol class="arabic simple" start="24">
-<li>There is one problem though. You can see areas of the map that are outside
-the coverage layer boundary but still visible. This is because Atlas
-doesn&#8217;t automatically hide other features. This can be useful in some
-cases, but for our purpose, we only want to show wetlands of the county
-whose map is being generated. To fix this, switch back to the main QGIS
-window and right-click the <code class="docutils literal"><span class="pre">county10</span></code> layer and select
-<span class="guilabel">Properties</span>.</li>
+<li><p class="first">不過目前還有一個問題，你可以看到在位在覆蓋圖層內部，但是屬於其他圖徵的區域仍然可以看見，這是因為輿圖工具並不會自動把其他圖徵也隱藏起來。此設計在某些狀況下很有用，但卻不是我們想要的、每個地圖只呈現單一個多邊形圖徵內的資訊。為了修正此問題，我們要回到 QGIS 主視窗，然後在 <code class="docutils literal"><span class="pre">county10</span></code> 圖層上按右鍵，選擇 <span class="guilabel">屬性</span>。</p>
+</li>
 </ol>
 <img alt="../_images/24.png" class="align-center" src="../_images/24.png" />
 <ol class="arabic simple" start="25">
-<li>In the <span class="guilabel">Style</span> tab, select <span class="guilabel">Rule-based</span> renderer as the
-<span class="guilabel">Sub renderer</span>. Double-click the area under <span class="guilabel">Rule</span>.</li>
+<li><p class="first">在 <span class="guilabel">樣式</span> 分頁中，有個 <span class="guilabel">子繪圖</span> 下拉選單，選擇 <span class="guilabel">規則</span> 的呈現方法。在下方 <span class="guilabel">規則</span> 的欄位上點兩下。</p>
+</li>
 </ol>
 <img alt="../_images/25.png" class="align-center" src="../_images/25.png" />
 <ol class="arabic simple" start="26">
-<li>Click the <span class="guilabel">...</span> button next to <span class="guilabel">Filter</span>.</li>
+<li><p class="first">點選 <span class="guilabel">過濾條件</span> 右側的 <span class="guilabel">...</span> 鈕。</p>
+</li>
 </ol>
 <img alt="../_images/26.png" class="align-center" src="../_images/26.png" />
 <ol class="arabic simple" start="27">
-<li>In the <span class="guilabel">Expression string builder</span>, expand the <span class="guilabel">Atlas</span>
-group of functions. The <code class="docutils literal"><span class="pre">$atlasfeatureid</span></code> function will return the
-currently selected feature. We will construct an expression that will
-select only the currently selected Atlas feature. Enter the expression as
-below:</li>
+<li><p class="first">在 <span class="guilabel">表達式字串建構器</span> 中，展開 <span class="guilabel">Atlas</span> 的群組（譯按：或是 <span class="guilabel">Variables</span> 的群組），然後找到 <code class="docutils literal"><span class="pre">$atlasfeatureid</span></code> 或 <code class="docutils literal"><span class="pre">atlas_featureid</span></code>，此函數會傳回目前輿圖工具選擇的圖徵。我們要做的是建立一個表達式，讓它只選擇輿圖工具選擇的圖徵，因此請輸入以下表達式：</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>$id = $atlasfeatureid
 </pre></div>
 </div>
 <img alt="../_images/27.png" class="align-center" src="../_images/27.png" />
 <ol class="arabic simple" start="28">
-<li>Back in the Print Composer window, click the <span class="guilabel">Update preview</span>
-button under <span class="guilabel">Item properties</span> tab to see the changes. Notice
-that now only the area covering the county boundary is shown.</li>
+<li><p class="first">回到地圖設計的視窗，在地圖項目的 <span class="guilabel">項目屬性</span> 分頁中點選 :guilabel:` 更新預覽` 後，就可以看到改變，現在每張地圖都只會顯示位於本郡縣邊界內的資料了。</p>
+</li>
 </ol>
 <img alt="../_images/28.png" class="align-center" src="../_images/28.png" />
 <ol class="arabic simple" start="29">
-<li>We will now add another dynamic label to show the current date. Go to
-<span class="menuselection">Layout ‣ Add Label</span> and select the area on the map. Click
-<span class="guilabel">Insert an expression</span> button.</li>
+<li><p class="first">我們再來加入另一個新的標記，用來標示現在的日期。選擇 <span class="menuselection">圖層 ‣ 加入標記</span> 然後選擇地圖上的任一區域，完成後按下 <span class="guilabel">插入表示式</span> 鈕。</p>
+</li>
 </ol>
 <img alt="../_images/29.png" class="align-center" src="../_images/29.png" />
 <ol class="arabic simple" start="30">
-<li>Expand the <span class="guilabel">Date and Time</span> functions group and you will find the
-<code class="docutils literal"><span class="pre">$now</span></code> function. This holds the current system time. The function
-<code class="docutils literal"><span class="pre">todate()</span></code> will convert this to a date string. Enter the expression as
-below:</li>
+<li><p class="first">展開 <span class="guilabel">日期與時間</span> 的群組，找到 <code class="docutils literal"><span class="pre">now</span></code> 這個函數，它用來表示現在的系統時間。另外我們要使用 <code class="docutils literal"><span class="pre">todate()``這個函數，用來把</span> <span class="pre">``now</span></code> 的函數值轉換成日期字串。請輸入以下表示式：</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>concat(&#39;Created on: &#39;, todate($now))
 </pre></div>
 </div>
 <img alt="../_images/30.png" class="align-center" src="../_images/30.png" />
 <ol class="arabic simple" start="31">
-<li>Add another label citing the data source. You may also add other map
-elements such as a north arrow, scalebar etc. as described in
-<a class="reference internal" href="making_a_map.html"><em>製作地圖</em></a> tutorial.</li>
+<li><p class="first">再加入另外一個標記，引用資料來源。你也可以順道加入其他的地圖元素，例如指北針等等，請參考 <a class="reference internal" href="making_a_map.html"><em>製作地圖</em></a> 一章的說明。</p>
+</li>
 </ol>
 <img alt="../_images/311.png" class="align-center" src="../_images/311.png" />
 <ol class="arabic simple" start="32">
-<li>Once you are satisfied with the map layout, go to <span class="menuselection">Atlas ‣
-Export Atlas as Images</span>.</li>
+<li><p class="first">當你完成地圖版面後，選擇 <span class="menuselection">輿圖 ‣ 匯出輿圖為影像</span>。</p>
+</li>
 </ol>
 <img alt="../_images/32.png" class="align-center" src="../_images/32.png" />
 <ol class="arabic simple" start="33">
-<li>Select a directory on your computer and click <span class="guilabel">Choose</span>.</li>
+<li><p class="first">選擇電腦中的某資料夾，然後按下 <span class="guilabel">選擇</span> 鈕。</p>
+</li>
 </ol>
 <img alt="../_images/33.png" class="align-center" src="../_images/33.png" />
 <ol class="arabic simple" start="34">
-<li>The Atlas tool will now iterate through each feature in the coverage layer
-and create a separate map image based on the template we created. You can
-see the images in the directory once the process completes.</li>
+<li><p class="first">輿圖工具會自動地使用我們剛剛建立的範本，為覆蓋圖層中的每個圖徵創造各自的地圖。處理完成後，在資料夾中就能找到這些地圖。</p>
+</li>
 </ol>
 <img alt="../_images/34.png" class="align-center" src="../_images/34.png" />
 <ol class="arabic simple" start="35">
-<li>Here are the map images for refeence.</li>
+<li><p class="first">這裡放上完成版地圖以供參考。</p>
+</li>
 </ol>
 <img alt="../_images/35_1.jpg" class="align-center" src="../_images/35_1.jpg" />
 <img alt="../_images/35_2.jpg" class="align-center" src="../_images/35_2.jpg" />
@@ -484,7 +448,7 @@ see the images in the directory once the process completes.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Sep 18, 2016.<br/>
+      最後更新日期是 Dec 12, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

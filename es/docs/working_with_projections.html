@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Working with Projections &mdash; QGIS Tutorials and Tips</title>
+    <title>Trabajando con proyecciones &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -93,7 +93,7 @@
 <li class="toctree-l1"><a class="reference internal" href="raster_mosaicing_and_clipping.html">Raster Mosaicing and Clipping</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_terrain.html">Working with Terrain Data</a></li>
 <li class="toctree-l1"><a class="reference internal" href="working_with_wms.html">Trabajando con datos WMS</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Working with Projections</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Trabajando con proyecciones</a></li>
 <li class="toctree-l1"><a class="reference internal" href="georeferencing_basics.html">Georeferencing Topo Sheets and Scanned Maps</a></li>
 <li class="toctree-l1"><a class="reference internal" href="advanced_georeferencing.html">Georeferencing Aerial Imagery</a></li>
 <li class="toctree-l1"><a class="reference internal" href="digitizing_basics.html">Digitizing Map Data</a></li>
@@ -207,198 +207,141 @@
       
 
   <div class="section" id="working-with-projections">
-<h1>Working with Projections<a class="headerlink" href="#working-with-projections" title="Enlazar permanentemente con este título">¶</a></h1>
-<p>Map projections - or Coordinate Reference System (CRS) - often cause a lot of
-frustration when working with GIS data.  But proper understanding of the
-concepts and access to the right tools will make it much easier to deal with
-projections. In this tutorial, we will explore how projections work in QGIS and
-learn about tools available for vector and rasters - particularly re-projecting
-vector and raster data, enabling on-the-fly re-projection and assigning
-projection to data without projection.</p>
+<h1>Trabajando con proyecciones<a class="headerlink" href="#working-with-projections" title="Enlazar permanentemente con este título">¶</a></h1>
+<p>Proyección de mapas o Sistema Coordinado de Referencias - Coordinate Reference System (CRS) - cuando se trabaja con datos SIG con frecuencia es causante de numerosas frustraciones. Pero entendiendo apropiadamente los conceptos y el acceso a las herramientas correctas nos facilitará lidiar con las proyecciones. En este tutorial, Exploraremos como trabajan las proyecciones en QGIS y se aprenderá sobre las herramientas disponibles para vectores y rasters, particularmente re-proyectar un vector los datos de un raster, permitiendo la re-proyección al vuelo y asignando proyecciones a datos sin proyecciones.</p>
 <div class="section" id="overview-of-the-task">
-<h2>Overview of the task<a class="headerlink" href="#overview-of-the-task" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>The task is to re-project and overlay data layers of difference projections
-together in QGIS.</p>
+<h2>Descripción de la tarea<a class="headerlink" href="#overview-of-the-task" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>La tarea es re-proyectar y superponer datos de capas en diferentes proyecciones en QGIS.</p>
 <div class="section" id="other-skills-you-will-learn">
-<h3>Other skills you will learn<a class="headerlink" href="#other-skills-you-will-learn" title="Enlazar permanentemente con este título">¶</a></h3>
+<h3>Otras habilidades que aprenderás<a class="headerlink" href="#other-skills-you-will-learn" title="Enlazar permanentemente con este título">¶</a></h3>
 <ul class="simple">
-<li>Use <code class="docutils literal"><span class="pre">.tfw</span></code> files to georeference to rasters.</li>
-<li>How to save selected features from a layer to a new layer.</li>
-<li>How to view metadata information for layers in QGIS.</li>
+<li><p class="first">Usar archivos &#8221;.tfw&#8221; para georreferenciar rasters</p>
+</li>
+<li><p class="first">Como guardar una selección de características de una capa a otra nueva.</p>
+</li>
+<li><p class="first">Como ver en QGIS la información de meta datos en las capas.</p>
+</li>
 </ul>
 </div>
 </div>
 <div class="section" id="get-the-data">
-<h2>Get the data<a class="headerlink" href="#get-the-data" title="Enlazar permanentemente con este título">¶</a></h2>
-<p>Natural Earth has <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/">Admin 0 - Countries</a>
-dataset. Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">countries</a></p>
-<p><a class="reference external" href="https://www.ordnancesurvey.co.uk/">UK&#8217;s Ordnance Survey</a> provides open data
-for download. Download the <a class="reference external" href="https://www.ordnancesurvey.co.uk/opendatadownload/products.html">MiniScale raster product</a> for Great
-Britain and extract it to a folder on your computer.</p>
+<h2>Obtener datos<a class="headerlink" href="#get-the-data" title="Enlazar permanentemente con este título">¶</a></h2>
+<p>En Natural Earth <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/">Admin 0 - Countries</a>  se encuentran los conjuntos de datos. Descargar los <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">países</a></p>
+<p><a class="reference external" href="https://www.ordnancesurvey.co.uk/">UK&#8217;s Ordnance Survey</a> provee datos libres para su descarga. Descargar el <a class="reference external" href="https://www.ordnancesurvey.co.uk/opendatadownload/products.html">MiniScale raster product</a> para Gran Bretaña y extraerlo a una carpeta en tu computadora.</p>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
-<p class="last">You will need to enter your personal details to be able to download the
-Ordnance Survey dataset.</p>
+<p class="last">Necesitaras ingresar tus datos personales para habilitar la descarga de los conjuntos de datos en Ordnance Survey.</p>
 </div>
-<p>For convenience, you may directly download a copy of the dataset from the link
-below:</p>
+<p>Para comodidad, puedes descargar directamente una copia del conjuntos de datos desde el enlace de abajo:</p>
 <p><a class="reference external" href="http://www.qgistutorials.com/downloads/ne_10m_admin_0_countries.zip">ne_10m_admin_0_countries.zip</a></p>
-<p><a class="reference external" href="http://www.qgistutorials.com/downloads/minisc_gb.zip">minisc_gb.zip</a> (Contains only the files
-required for this tutorial)</p>
-<p>Data Sources: <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a> <a class="reference internal" href="credits.html#osopendata" id="id2">[OSOPENDATA]</a></p>
+<p><a class="reference external" href="http://www.qgistutorials.com/downloads/minisc_gb.zip">minisc_gb.zip</a> (contiene solo los archivos necesarios para este tutorial)</p>
+<p>Fuente de datos: <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a> <a class="reference internal" href="credits.html#osopendata" id="id2">[OSOPENDATA]</a></p>
 </div>
 <div class="section" id="procedure">
-<h2>Procedure<a class="headerlink" href="#procedure" title="Enlazar permanentemente con este título">¶</a></h2>
+<h2>Procedimiento<a class="headerlink" href="#procedure" title="Enlazar permanentemente con este título">¶</a></h2>
 <ol class="arabic simple">
-<li>Open QGIS. Go to <span class="menuselection">Layer ‣ Add Layer ‣ Add Vector
-Layer...</span>.</li>
+<li><p class="first">Abrir QGIS. Ir a <span class="menuselection">Capas ‣ Añadir capa ‣ Añadir capa vectorial...</span>.</p>
+</li>
 </ol>
 <img alt="../_images/1140.png" class="align-center" src="../_images/1140.png" />
 <ol class="arabic simple" start="2">
-<li>Browse to the downloaded <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></code> file and click
-<span class="guilabel">Open</span>.</li>
+<li><p class="first">Buscar el archivo descargado <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries.zip</span></code> y hacer clic en <span class="guilabel">Abrir</span>.</p>
+</li>
 </ol>
 <img alt="../_images/297.png" class="align-center" src="../_images/297.png" />
 <ol class="arabic simple" start="3">
-<li>At the bottom of QGIS window, you will notice the label
-<span class="guilabel">Coordinate</span>. As you move your cursor over the map, it will show
-you the X and Y coordinates at that location. At the bottom-right corner you
-will see <span class="guilabel">EPSG:4326</span>. This is the code for the current CRS
-(Projection) for the project.</li>
+<li><p class="first">Debajo de la ventana de QGIS, notaras la etiqueta que dice <span class="guilabel">Coordenada</span>. Al mover el cursor sobre el mapa, ahí se muestra la localización de las coordenadas X e Y. En la esquina inferior derecha verás <span class="guilabel">EPSG:4326</span>. Este es el código de la actual CRS (proyección) del proyecto.</p>
+</li>
 </ol>
 <img alt="../_images/347.png" class="align-center" src="../_images/347.png" />
 <ol class="arabic simple" start="4">
-<li>As you will later see, the project&#8217;s CRS may not match the layer&#8217;s CRS. To
-determine a layer’s projection, we can look into the metadata. Right click
-on <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> layer and select <span class="guilabel">Properties</span>.</li>
+<li><p class="first">Como verás luego, los proyectos CRS no coinciden con las capas CRS. Para determinar las proyecciones de las capas, miraremos dentro de los meta datos. Haz clic derecho en la capa <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> y selecciona <span class="guilabel">Propiedades</span>.</p>
+</li>
 </ol>
 <img alt="../_images/434.png" class="align-center" src="../_images/434.png" />
 <ol class="arabic simple" start="5">
-<li>Switch to the <span class="guilabel">Metadata</span> tab in the <span class="guilabel">Layer Properties</span>
-dialog. Expand the <span class="guilabel">Properties</span> section. At the bottom, you will
-see the definition for the projection under <span class="guilabel">Layer Spatial
-Reference System</span>. This definition is in the <a class="reference external" href="https://en.wikipedia.org/wiki/PROJ.4">PROJ.4 format</a>.</li>
+<li><p class="first">Pasa a la pestaña <span class="guilabel">Metadatos</span> se verá el dialogo <span class="guilabel">Propiedades</span>. Expande la sección <span class="guilabel">Propiedades</span>. Al final, verás la definición para la proyección bajo <span class="guilabel">Sistema de referencia espacial de la capa</span>. Esta definición está en <a class="reference external" href="https://en.wikipedia.org/wiki/PROJ.4">PROJ.4 format</a>.</p>
+</li>
 </ol>
 <img alt="../_images/535.png" class="align-center" src="../_images/535.png" />
 <ol class="arabic simple" start="6">
-<li>Now let&#8217;s see how we can change the layer&#8217;s projection. This operation is
-called <strong>Re-Projection</strong>. Rather than re-projecting the entire layer, we can
-also re-project some features from the layer. Use the <span class="guilabel">Select
-features by area or single click</span> tool and click on United States feature to
-select it.</li>
+<li><p class="first">Ahora veamos como cambiar la proyección de capas. Esta operación es llamada &#8220;re-proyección&#8221;. Antes de &#8220;re-proyectar&#8221; la capa entera, podemos también &#8220;re-proyectar&#8221; solo algunas características de la capa. Usando la herramienta <span class="guilabel">Seleccionar objetos espaciales por área o por clic único</span> hacer clic en Estados Unidos para seleccionar sus características.</p>
+</li>
 </ol>
 <img alt="../_images/633.png" class="align-center" src="../_images/633.png" />
 <ol class="arabic simple" start="7">
-<li>Right-click the <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> layer and select
-<span class="guilabel">Save As</span>.</li>
+<li><p class="first">Haciendo clic derecho en la capa <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> elegir <span class="guilabel">Guardar como...</span>.</p>
+</li>
 </ol>
 <img alt="../_images/732.png" class="align-center" src="../_images/732.png" />
 <ol class="arabic simple" start="8">
-<li>In the <span class="guilabel">Save vector layer as...</span> dialog, name the output layer as
-<code class="docutils literal"><span class="pre">united_states.shp</span></code>. Also check the <span class="guilabel">Save only selected
-features</span> box. This will ensure that only the selected feature gets
-re-projected and exported. Next, we choose the new projection for the layer.
-Click on the <span class="guilabel">Select CRS</span> button.</li>
+<li><p class="first">En el diálogo <span class="guilabel">Guardar capa vectorial como...</span>, nombrar la capa de salida como <code class="docutils literal"><span class="pre">united_states.shp</span></code>. También marca la opción <span class="guilabel">Guardar sólo los objetos espaciales seleccionados</span>. Esto asegurará que sólo los objetos seleccionados y sus características serán re-proyectadas y exportadas. Luego, elegiremos la nueva proyección para la capa. Haz clic en el botón <span class="guilabel">Seleccionar CRS</span>.</p>
+</li>
 </ol>
 <img alt="../_images/831.png" class="align-center" src="../_images/831.png" />
 <ol class="arabic simple" start="9">
-<li>In the <span class="guilabel">Coordinate Reference System Selector</span> dialog, enter
-<code class="docutils literal"><span class="pre">north</span> <span class="pre">america</span></code> in the <span class="guilabel">Filter</span> search box. Scroll through the
-results and select <code class="docutils literal"><span class="pre">North_America_Albers_Equal_Area_Conic</span> <span class="pre">(EPSG:102008)</span></code>
-projection and click <span class="guilabel">OK</span>.</li>
+<li><p class="first">En el diálogo <span class="guilabel">Selector de sistema de referencia de coordenadas</span>, en la caja de búsqueda <span class="guilabel">Filtro</span> ingresar <code class="docutils literal"><span class="pre">north</span> <span class="pre">america</span></code>. Desplazarse por los resultados y seleccionar la proyección <code class="docutils literal"><span class="pre">North_America_Albers_Equal_Area_Conic</span> <span class="pre">(EPSG:102008)</span></code>, clic en <span class="guilabel">Aceptar</span>.</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">Nota</p>
-<p class="last">We choose Albers Equal Area Conic projection for this tutorial as it is a
-popular projection choice for thematic maps of the US. The choice of
-projection for your particular use-case will depend on a lot of factors. See
-<a class="reference external" href="http://docs.qgis.org/2.8/en/docs/gentle_gis_introduction/coordinate_reference_systems.html">this guide</a>
-for a good overview of Projections.</p>
+<p class="last">Elegimos la proyección de Albers Equal Area Conic para este tutorial ya que es una proyección en mapas temáticos de EEUU. La elección de la proyección que uses en tus personales dependerán de muchos factores. Ve <a class="reference external" href="http://docs.qgis.org/2.8/en/docs/gentle_gis_introduction/coordinate_reference_systems.html">esta guía</a> para obtener buenas características de las Proyecciones.</p>
 </div>
 <img alt="../_images/929.png" class="align-center" src="../_images/929.png" />
 <ol class="arabic simple" start="10">
-<li>You will see the new CRS selected in the <span class="guilabel">Save vector layer
-as...</span> dialog. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">Verás la nueva CRS seleccionada en el dialogo <span class="guilabel">Guardar capa vectorial como..</span>. Clic en <span class="guilabel">Aceptar</span>.</p>
+</li>
 </ol>
 <img alt="../_images/1030.png" class="align-center" src="../_images/1030.png" />
 <ol class="arabic simple" start="11">
-<li>Once the re-projected layer gets loaded, you will notice that the new
-<code class="docutils literal"><span class="pre">united_states</span></code> layer overlays perfectly on top of
-<code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> layer - even though they are in different
-projections. This is because QGIS has a feature called <strong>On-the-fly CRS
-transformation</strong>. The projection text at the bottom-right of QGIS now has
-the words <code class="docutils literal"><span class="pre">OTF</span></code> next the <span class="guilabel">EPSG:4326`</span>. To learn more, let&#8217;s
-explore the CRS option in QGIS.</li>
+<li><p class="first">Una vez que las capas re-proyectadas estén cargadas, notarás que la nueva capa insertada <code class="docutils literal"><span class="pre">united_states</span></code> queda perfectamente sobre la capa <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code>, aunque las dos estén en proyecciones distintas. Esto se debe a que QGIS posee la característica &#8220;Transformación CRS al vuelo&#8221;. El texto mostrado sobre la proyección en la esquina inferior derecha de QGIS ahora muestra las palabras &#8220;al vuelo&#8221; luego de <span class="guilabel">EPSG:4326`</span>. Para ver mas sobre ésto, buscaremos las opciones CRS en QGIS.</p>
+</li>
 </ol>
 <img alt="../_images/1141.png" class="align-center" src="../_images/1141.png" />
 <ol class="arabic simple" start="12">
-<li>Go to <span class="menuselection">Settings ‣ Options...</span>.</li>
+<li><p class="first">Ir a <span class="menuselection">Configuración ‣ Opciones...</span>.</p>
+</li>
 </ol>
 <img alt="../_images/1230.png" class="align-center" src="../_images/1230.png" />
 <ol class="arabic simple" start="13">
-<li>Switch to the <span class="guilabel">CRS</span> tab in the <span class="guilabel">Options</span> dialog. You
-will see that the default is <span class="guilabel">Automatically enable &#8216;on the fly&#8217;
-reprojection if the layers have different CRS</span>. This means that when QGIS
-detects that you have loaded layers with different CRS, it will
-automatically re-project them back to a common CRS so they line up with
-each other. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">Una vez dentro del diálogo <span class="guilabel">Opciones</span> cambia a la pestaña <span class="guilabel">CRS</span>. Verás que por defecto se encuentra marcado <span class="guilabel">Habilitar automáticamente la re-proyección &#8220;al vuelo&#8221; si las capas tienen un CRS diferente</span>. Esto significa que cuando QGIS detecta que has cargado una capa con una CRS distinta, automáticamente la re-proyectará a una CRS en común, de esa manera se alineará con las otras. Clic en <span class="guilabel">Aceptar</span>.</p>
+</li>
 </ol>
 <img alt="../_images/1328.png" class="align-center" src="../_images/1328.png" />
 <ol class="arabic simple" start="14">
-<li>Let&#8217;s turn-off the <strong>On-the-fly CRS transformation</strong> and see what happens.
-Click on the <span class="guilabel">Current CRS</span> text at the bottom-right corner.</li>
+<li><p class="first">Apaguemos la opción &#8220;Transformación de CRS al vuelo&#8221; y veamos que sucede. Clic en <span class="guilabel">CRS actual</span> ubicado en la esquina inferior derecha.</p>
+</li>
 </ol>
 <img alt="../_images/1427.png" class="align-center" src="../_images/1427.png" />
 <ol class="arabic simple" start="15">
-<li>In the <span class="guilabel">Project Properties</span> dialog, un-check the
-<span class="guilabel">Enable &#8216;on the fly&#8217; CRS transformation</span> box and click
-<span class="guilabel">OK</span>.</li>
+<li><p class="first">En el dialogo <span class="guilabel">Propiedades del proyecto</span> desmarcar  <span class="guilabel">Enable &#8216;on the fly&#8217; CRS transformation</span> y hacer clic en <span class="guilabel">Aceptar</span>.</p>
+</li>
 </ol>
 <img alt="../_images/1525.png" class="align-center" src="../_images/1525.png" />
 <ol class="arabic simple" start="16">
-<li>Back in the main QGIS window, you will see the nice world map disappear.
-This is because the Project CRS changed to
-<code class="docutils literal"><span class="pre">North_America_Albers_Equal_Area_Conic</span></code> and the coordinates and scale are
-different now. Right-click the <code class="docutils literal"><span class="pre">united_states</span></code> layer and select
-<span class="guilabel">Zoom to Layer</span>.</li>
+<li><p class="first">Volviendo a la ventana principal de QGIS, verás que el lindo mapa mundial ha desaparecido. Esto es porque la proyección CRS cambió a <code class="docutils literal"><span class="pre">North_America_Albers_Equal_Area_Conic</span></code> quedando distintas las coordenadas y escalas. Ahora haz clic derecho en la capa <code class="docutils literal"><span class="pre">united_states</span></code> y selecciona <span class="guilabel">Zoom a la capa</span>.</p>
+</li>
 </ol>
 <img alt="../_images/1624.png" class="align-center" src="../_images/1624.png" />
 <ol class="arabic simple" start="17">
-<li>Now you will see the United States in the selected projection. Notice that
-the features from <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> do not appear on the canvas
-as they are in a different coordinate space than the <code class="docutils literal"><span class="pre">united_states</span></code>
-layer. Go back to the <span class="guilabel">Project Properties</span> dialog and turn-on the
-<span class="guilabel">Enable &#8216;on the fly&#8217; CRS transformation</span> option for the remainder
-of the tutorial.</li>
+<li><p class="first">Ahora veremos a Estados Unidos en la proyección seleccionada. Notarás que las características de <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> no se muestran en la vista ya que esta en una coordenada distinta del espacio de la capa <code class="docutils literal"><span class="pre">united_states</span></code>. Vuelve al dialogo <span class="guilabel">Propiedades del proyecto</span> y enciende nuevamente <span class="guilabel">Enable &#8216;on the fly&#8217; CRS transformation</span> para el resto del tutorial.</p>
+</li>
 </ol>
 <img alt="../_images/1722.png" class="align-center" src="../_images/1722.png" />
 <ol class="arabic simple" start="18">
-<li>Now let’s switch gears and add a raster layer to our project. Browse to the
-directory where you had extracted the <code class="docutils literal"><span class="pre">minisc_gb.zip</span></code> file. Locate the
-<code class="docutils literal"><span class="pre">RGB_TIF_COMPRESSED</span></code> folder containing tif files. You will notice that
-the .tif image files are plain TIF files, not GeoTIFF files. That means
-they do not have any projection information. To use these images
-in a GIS, you need to georeference them. A georeference contains 2 types of
-information - image extents and projection. Typically, the extents are
-stored in a file known as <a class="reference external" href="https://en.wikipedia.org/wiki/World_file">World file</a> and they have extensions like
-<code class="docutils literal"><span class="pre">.tfw</span></code> or <code class="docutils literal"><span class="pre">.jgw</span></code>. Most GIS software, including QGIS would be able to
-use information stored in the world files as long as they are stored in the
-same directory as the original image and has the same name. The <code class="docutils literal"><span class="pre">.tfw</span></code>
-files for the MiniScale raster files are in a separate folder named
-<code class="docutils literal"><span class="pre">georeferencing_files</span></code>.</li>
+<li><p class="first">Bueno ahora hagamos un giro y agreguemos una capa raster a nuestro proyecto. Busquemos desde el directorio donde extrajiste el contenido del archivo <code class="docutils literal"><span class="pre">minisc_gb.zip</span></code>. Localiza la carpeta <code class="docutils literal"><span class="pre">RGB_TIF_COMPRESSED</span></code> que contiene los archivos tif. Has de notar que las imágenes tif son archivos planos, no son archivos GeoTiff. Esto refiere a que no contienen información de proyección. Para usar estas imágenes en un GIS, debes georreferenciarlas. Una georreferencia posee 2 clases de información, cobertura de imágen y proyecciones. Generalmente, las coberturas se encuentran almacenadas como archivos <a class="reference external" href="https://en.wikipedia.org/wiki/World_file">World file</a> y poseen extensiones como <code class="docutils literal"><span class="pre">.tfw</span></code> or <code class="docutils literal"><span class="pre">.jgw</span></code>.
+La mayoría de los software GIS, incluyendo QGIS son capaces de usar información almacenada en los word files mientras que estos se encuentren almacenados en el mismo directorio que la imagen original y con el mismo nombre. Los archivos <code class="docutils literal"><span class="pre">.tfw</span></code> para el raster MiniScale se encuentran en carpetas separadas nombradas <code class="docutils literal"><span class="pre">georeferencing_files</span></code>.</p>
+</li>
 </ol>
 <img alt="../_images/1822.png" class="align-center" src="../_images/1822.png" />
 <ol class="arabic simple" start="19">
-<li>Go to the <code class="docutils literal"><span class="pre">ESRI_TFW_FILES</span></code> folder within <code class="docutils literal"><span class="pre">georeferencing_files</span></code>. The
-<code class="docutils literal"><span class="pre">.tfw</span></code> files are plain text files. Open one of the <code class="docutils literal"><span class="pre">.tfw</span></code> files in a
-text editor.</li>
+<li><p class="first">Ve a la carpeta <code class="docutils literal"><span class="pre">ESRI_TFW_FILES</span></code> que se encuentra dentro de <code class="docutils literal"><span class="pre">georeferencing_files</span></code>. Los archivos <code class="docutils literal"><span class="pre">.tfw</span></code> son archivos de texto plano. Abre uno de los <code class="docutils literal"><span class="pre">.tfw</span></code> en un editor de texto.</p>
+</li>
 </ol>
 <img alt="../_images/1920.png" class="align-center" src="../_images/1920.png" />
 <ol class="arabic simple" start="20">
-<li>The world files contain 6 lines with some numbers. As explained below, each
-line signifies some information about the raster file. Knowing this format
-is useful because some data do not come with the world files and you may
-have to create these by hand using the supplied information.</li>
+<li><p class="first">Los word files poseen 6 lineas con varios números. Como se explica a continuación, cada linea contiene cierta información acerca del del archivo raster. Saber esto es importante ya que algunos datos no vienen dentro de los world files y debes crearlos usando información adicional.</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>Line 1: A: pixel size in the x-direction in map units/pixel
 Line 2: D: rotation about y-axis
@@ -410,36 +353,28 @@ Line 6: F: y-coordinate of the center of the upper left pixel
 </div>
 <img alt="../_images/2017.png" class="align-center" src="../_images/2017.png" />
 <ol class="arabic simple" start="21">
-<li>Copy the <code class="docutils literal"><span class="pre">MiniScale_(standard)_R17.tfw</span></code> file from the
-<code class="docutils literal"><span class="pre">georeferencing_files</span></code> folder to the <code class="docutils literal"><span class="pre">RGB_TIF_COMPRESSED</span></code> folder. This
-way the <code class="docutils literal"><span class="pre">.tfw</span></code> and the <code class="docutils literal"><span class="pre">.tif</span></code> files are in the same directory and QGIS
-can use the information.</li>
+<li><p class="first">Copia el archivo <code class="docutils literal"><span class="pre">MiniScale_(standard)_R17.tfw</span></code> contenido en la carpeta <code class="docutils literal"><span class="pre">georeferencing_files</span></code> a la carpeta <code class="docutils literal"><span class="pre">RGB_TIF_COMPRESSED</span></code>. De esta forma el archivo <code class="docutils literal"><span class="pre">.tfw</span></code> y el <code class="docutils literal"><span class="pre">.tif</span></code> quedarán en el mismo lugar y QGIS podrá utilizar la información.</p>
+</li>
 </ol>
 <img alt="../_images/2121.png" class="align-center" src="../_images/2121.png" />
 <ol class="arabic simple" start="22">
-<li>In the QGIS main windows, go to <span class="menuselection">Layer ‣ Add Layer ‣ Add
-Raster Layer...</span>. Browse to the <code class="docutils literal"><span class="pre">MiniScale_(standard)_R17.tif</span></code> file and
-click <span class="guilabel">Open</span>.</li>
+<li><p class="first">Desde la ventana principal de QGIS, ve a <span class="menuselection">Capa ‣ Añadir capa ‣ Añadir capa raster...</span>. Encuentra el archivo <code class="docutils literal"><span class="pre">MiniScale_(standard)_R17.tif</span></code> y da clic a <span class="guilabel">Abrir</span>.</p>
+</li>
 </ol>
 <img alt="../_images/2220.png" class="align-center" src="../_images/2220.png" />
 <ol class="arabic simple" start="23">
-<li>The Ordnance Survey files are in the British National Grid projection. In
-the <span class="guilabel">Coordinate Reference System Selector</span> dialog, search for
-<code class="docutils literal"><span class="pre">british</span> <span class="pre">national</span></code> and pick the <code class="docutils literal"><span class="pre">OSGB</span> <span class="pre">1936</span> <span class="pre">/</span> <span class="pre">British</span> <span class="pre">National</span> <span class="pre">Grid</span>
-<span class="pre">(EPSG:27700)</span></code> CRS. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">Los archivos de Ordnance Survey se encuentran en la proyección de la grilla de British National. En el dialogo <span class="guilabel">Selector de sistema de referencia de coordenadas</span>, buscar como &#8220;british national&#8221; y elegir la CRS <code class="docutils literal"><span class="pre">OSGB</span> <span class="pre">1936</span> <span class="pre">/</span> <span class="pre">British</span> <span class="pre">National</span> <span class="pre">Grid</span> <span class="pre">(EPSG:27700)</span></code>. Finalmente clic en <span class="guilabel">Aceptar</span>.</p>
+</li>
 </ol>
 <img alt="../_images/2316.png" class="align-center" src="../_images/2316.png" />
 <ol class="arabic simple" start="24">
-<li>Once the <code class="docutils literal"><span class="pre">MiniScale_(standard)_R17</span></code> layer is loaded, right-click on it
-and select <span class="guilabel">Zoom to layer</span>.</li>
+<li><p class="first">Una vez que la capa <code class="docutils literal"><span class="pre">MiniScale_(standard)_R17</span></code> haya sido cargada, haz clic derecho en ella y selecciona <span class="guilabel">Zoom a la capa</span>.</p>
+</li>
 </ol>
 <img alt="../_images/2414.png" class="align-center" src="../_images/2414.png" />
 <ol class="arabic simple" start="25">
-<li>You will see the raster layer overlaid on top of the
-<code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> vector layer. Since we have the <code class="docutils literal"><span class="pre">OTF</span></code>
-enabled with EPSG:4326, the <code class="docutils literal"><span class="pre">MiniScale_(standard)_R17</span></code> layer gets
-dynamically reprojected to EPSG:4326 and shown in the same coordinate space
-as the other layer.</li>
+<li><p class="first">Ahora veras la capa raster sobre la capa vectorial <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code>. Ya que la opción &#8220;OTF&#8221; esta habilitada con EPSG:4326, la capa <code class="docutils literal"><span class="pre">MiniScale_(standard)_R17</span></code> se proyecta dinamicamente hacia EPSG:4326 mostrándolo en el mismo espacio de coordenadas de las otras capas.</p>
+</li>
 </ol>
 <img alt="../_images/2512.png" class="align-center" src="../_images/2512.png" />
 </div>
@@ -467,7 +402,7 @@ as the other layer.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      Actualizado por última vez en Sep 18, 2016.<br/>
+      Actualizado por última vez en Dec 12, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

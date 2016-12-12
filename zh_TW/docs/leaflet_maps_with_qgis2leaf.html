@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Leaflet Web Maps with qgis2leaf &mdash; QGIS Tutorials and Tips</title>
+    <title>製作 Leaflet 線上地圖 &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
-    <link rel="next" title="Using Google Maps Engine Connector for QGIS" href="using_gme_connector.html" />
+    <link rel="next" title="在 QGIS 中使用 Google Maps Engine Connector" href="using_gme_connector.html" />
     <link rel="prev" title="資料表連接 (PyQGIS)" href="performing_table_joins_pyqgis.html" />
 
 <meta charset='utf-8'>
@@ -115,11 +115,11 @@
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">使用自訂的 Python 表達式函數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">撰寫 Python 腳本並在處理框架下執行</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">執行 QGIS 工作排程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">在同一圖層中尋找相鄰的多邊形</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">資料表連接 (PyQGIS)</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Leaflet Web Maps with qgis2leaf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">製作 Leaflet 線上地圖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">在 QGIS 中使用 Google Maps Engine Connector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 學習資源</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">資料來源</a></li>
 </ul>
@@ -135,7 +135,7 @@
     </a>
   </li>
   <li>
-    <a href="using_gme_connector.html" title="Next Chapter: Using Google Maps Engine Connector for QGIS"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Using Google Map... &raquo;</span>
+    <a href="using_gme_connector.html" title="Next Chapter: 在 QGIS 中使用 Google Maps Engine Connector"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">在 QGIS 中使用 Googl... &raquo;</span>
     </a>
   </li>
               
@@ -207,26 +207,22 @@
       
 
   <div class="section" id="leaflet-web-maps-with-qgis2leaf">
-<h1>Leaflet Web Maps with qgis2leaf<a class="headerlink" href="#leaflet-web-maps-with-qgis2leaf" title="Permalink to this headline">¶</a></h1>
+<h1>製作 Leaflet 線上地圖<a class="headerlink" href="#leaflet-web-maps-with-qgis2leaf" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
 <p class="first admonition-title">警告</p>
-<p class="last">qgis2leaf plugin is no longer in active development. The functionality of
-this plugin is folded into a new plugin called <strong>qgis2web</strong>.</p>
+<p class="last">qgis2leaf 附加元件由於已不在開發階段，目前它的功能已經整合到另一個新的附加元件 <strong>qgis2web</strong> 中。</p>
 </div>
-<p>Leaflet is a popular open-source Javascript library for building web mapping
-applications. <strong>qgis2leaf</strong> plugin provides a simple way to export your QGIS
-map to a functioning leaflet-based web map. This plugin is a useful way to get
-started with web mapping and create an interactive web map from your static GIS
-data layers.</p>
+<p>Leaflet 是個熱門的開源 Javascript 函數庫，用於線上製圖或其他相關聯的應用程式。<strong>qgis2leaf</strong> 附加元件提供簡單的方法，讓你可以把 QGIS 地圖輸出到基於 Leaflet 建構之下的線上地圖。此附加元件可以讓你快速開始線上製圖，或是由你的靜態 GIS 資料圖層製作互動式地圖。</p>
 <div class="section" id="overview-of-the-task">
 <h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>We will create a leaflet web map of world&#8217;s airports.</p>
+<p>製作世界機場的 leaflet 線上地圖。</p>
 <div class="section" id="other-skills-you-will-learn">
 <h3>你還會學到這些<a class="headerlink" href="#other-skills-you-will-learn" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Using <code class="docutils literal"><span class="pre">CASE</span></code> SQL statement in Field Calculator to create new field values
-based on different conditions.</li>
-<li>Locating and using SVG custom icons in QGIS.</li>
+<li><p class="first">在欄位計算機（Field Calculator）中使用 <code class="docutils literal"><span class="pre">CASE</span></code> 這個 SQL 陳述式，使用不同的條件敘述建立新欄位。</p>
+</li>
+<li><p class="first">在 QGIS 中尋找和使用自訂的 SVG 圖示</p>
+</li>
 </ul>
 </div>
 </div>
@@ -239,47 +235,33 @@ based on different conditions.</li>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Install the <code class="docutils literal"><span class="pre">qgis2leaf</span></code> plugin by going to <span class="menuselection">Plugins ‣
-Manage and Install Plugin</span>. Note that the plugin is currently marked
-<strong>experimental</strong>, so you will need to check <span class="guilabel">Show also
-experimental plugins</span> in Plugin Settings. (See <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a> for more details on
-installing plugins in QGIS)</li>
+<li><p class="first">選擇 <span class="menuselection">附加元件 ‣ 管理與安裝附加元件</span>，然後安裝 <code class="docutils literal"><span class="pre">qgis2leaf``（譯按：現在已是</span> <span class="pre">``qgis2web</span></code>）附加元件。(有關如何安裝 QGIS 的附加元件，請參考 <a class="reference internal" href="using_plugins.html"><em>使用附加元件</em></a> )</p>
+</li>
 </ol>
 <img alt="../_images/180.png" class="align-center" src="../_images/180.png" />
 <ol class="arabic simple" start="2">
-<li>Unzip the downloaded <code class="docutils literal"><span class="pre">ne_10m_airports.zip</span></code> file. Open QGIS and go to
-<span class="menuselection">Layer ‣ Add Vector Layer</span>. Browse to the location when the
-files were extracted and select <code class="docutils literal"><span class="pre">ne_10m_airports.shp</span></code>. Click
-<span class="guilabel">OK</span>.</li>
+<li><p class="first">解壓縮剛下載的 <code class="docutils literal"><span class="pre">ne_10m_airports.zip</span></code>，然後開啟 QGIS，選擇 <span class="menuselection">圖層 ‣ 加入向量圖層</span>，找到剛解壓縮的 <code class="docutils literal"><span class="pre">ne_10m_airports.shp</span></code> 檔案，按下 <span class="guilabel">開啟</span>。</p>
+</li>
 </ol>
 <img alt="../_images/230.png" class="align-center" src="../_images/230.png" />
 <ol class="arabic simple" start="3">
-<li>Once the <code class="docutils literal"><span class="pre">ne_10m_airports</span></code> layer is loaded, use the <span class="guilabel">Identify</span>
-tool to click on any feature and look at the attributes. We will create an
-airport map where we classify the airports into 3 categories. The attribute
-<code class="docutils literal"><span class="pre">type</span></code> will be useful when classifying the features.</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">ne_10m_airports</span></code> 圖層載入後，可使用 <span class="guilabel">識別圖徵</span> 工具點選任一圖徵，查看內含的屬性。我們要製作的地圖會把所有的機場分成 3 種類別，而分類的過程中需要使用到 <code class="docutils literal"><span class="pre">type</span></code> 這個屬性。</p>
+</li>
 </ol>
 <img alt="../_images/322.png" class="align-center" src="../_images/322.png" />
 <ol class="arabic simple" start="4">
-<li>Right-click the <code class="docutils literal"><span class="pre">ne_10m_airports</span></code> layer and select <span class="guilabel">Open
-Attribute Table</span>.</li>
+<li><p class="first">在 <code class="docutils literal"><span class="pre">ne_10m_airports</span></code> 圖層上按右鍵，選擇 <span class="guilabel">開啟屬性表格</span>，</p>
+</li>
 </ol>
 <img alt="../_images/416.png" class="align-center" src="../_images/416.png" />
 <ol class="arabic simple" start="5">
-<li>In the attribute table dialog, click the <span class="guilabel">Toggle Editing</span> button.
-Once the layer is in editing mode, click the <span class="guilabel">Open Field
-Calculator</span> button.</li>
+<li><p class="first">在屬性表格視窗中，按下 <span class="guilabel">切換編輯模式</span> 鈕以進入編輯模式，在此模式中，按下 <span class="guilabel">開啟欄位計算</span> 鈕。</p>
+</li>
 </ol>
 <img alt="../_images/516.png" class="align-center" src="../_images/516.png" />
 <ol class="arabic simple" start="6">
-<li>We want to create a new attribute called <code class="docutils literal"><span class="pre">type_code</span></code> where we give major
-airports a value of 3, mid-sized airports a value of 2 and all others a
-value of 1. We can use the <em>CASE</em> statement and write an expression that
-will look at the value of <code class="docutils literal"><span class="pre">type</span></code> attribute and create a <code class="docutils literal"><span class="pre">type_code</span></code>
-attribute based on the condition. Check the <span class="guilabel">Create a new field</span>
-box and enter <code class="docutils literal"><span class="pre">type_code</span></code> as the <span class="guilabel">Output field name</span>. Select
-<span class="guilabel">Whole number (integer)</span> as the <span class="guilabel">Output field type</span>. In
-the <span class="guilabel">Expression</span> window, enter the following text.</li>
+<li><p class="first">接下來要做的是建立一個稱為 <code class="docutils literal"><span class="pre">type_code</span></code> 的新屬性，所有主要機場的屬性值是 3，中型機場的屬性值是 2，其餘的機場是 1。我們可使用 <em>CASE</em> 流程控制語法，然後撰寫表達式，藉由判斷 <code class="docutils literal"><span class="pre">type</span></code> 屬性的值來給定 <code class="docutils literal"><span class="pre">type_code</span></code> 的值。勾選 <span class="guilabel">建立新欄位</span> 方框然後在 <span class="guilabel">輸出欄位名稱</span> 填入 <code class="docutils literal"><span class="pre">type_code</span></code>，然後在 <span class="guilabel">輸出欄位類別</span> 選擇 <span class="guilabel">數字 (整數)</span>。接著在 <span class="guilabel">表示式</span> 視窗中，輸入以下數行。</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>CASE  WHEN &quot;type&quot; LIKE &#39;%major%&#39;  THEN 3
  WHEN &quot;type&quot; LIKE &#39;%mid%&#39; THEN 2
@@ -289,74 +271,48 @@ END
 </div>
 <img alt="../_images/615.png" class="align-center" src="../_images/615.png" />
 <ol class="arabic simple" start="7">
-<li>Back in the <span class="guilabel">Attribute Table</span> window, you will see a new column at
-the end. Verify that your expression worked correctly and click the
-<span class="guilabel">Toggle Editing</span> button to save the changes.</li>
+<li><p class="first">回到 <span class="guilabel">屬性表格</span>，新的欄位就會出現在表格最末端。檢查表達式有正確運作後，再次按下 <span class="guilabel">切換編輯模式</span> 以儲存剛才所做的修改。</p>
+</li>
 </ol>
 <img alt="../_images/714.png" class="align-center" src="../_images/714.png" />
 <ol class="arabic simple" start="8">
-<li>Now we will style the airports layer using the newly created <code class="docutils literal"><span class="pre">type_code</span></code>
-attribute. Right-click the <code class="docutils literal"><span class="pre">ne_10m_airports</span></code> layer and select
-<span class="guilabel">Properties</span>.</li>
+<li><p class="first">讓我們來使用新建立的 <code class="docutils literal"><span class="pre">type_code</span></code> 屬性調整一下機場圖層的樣式。在 <code class="docutils literal"><span class="pre">ne_10m_airports</span></code>  圖層上按右鍵選擇 <span class="guilabel">屬性</span>。</p>
+</li>
 </ol>
 <img alt="../_images/814.png" class="align-center" src="../_images/814.png" />
 <ol class="arabic simple" start="9">
-<li>Select the <span class="guilabel">Style</span> tab in the <span class="guilabel">Layer Properties</span> dialog.
-Select <span class="guilabel">Categorized</span> style from the drop-down menu and choose
-<code class="docutils literal"><span class="pre">type_code</span></code> as the <span class="guilabel">Column</span>. Choose a color ramp of your choice
-and click <span class="guilabel">Classify</span>. Click <span class="guilabel">OK</span> to go back to the main
-QGIS window.</li>
+<li><p class="first">在 <span class="guilabel">圖層屬性</span> 視窗中切換至 <span class="guilabel">樣式</span> 分頁，在下拉選單中選擇 <span class="guilabel">類別</span> 樣式然後在 <span class="guilabel">行</span> 中選擇 <code class="docutils literal"><span class="pre">type_code</span></code>。選擇一個你喜歡的色彩映射表然後按下 <span class="guilabel">分類，最後按下 :guilabel:`確定</span> 回到 QGIS 主視窗。</p>
+</li>
 </ol>
 <img alt="../_images/913.png" class="align-center" src="../_images/913.png" />
 <ol class="arabic simple" start="10">
-<li>Here you will see a nicely styled airport map. Let&#8217;s export this to create
-an interactive web map. Go to <span class="menuselection">Web ‣ qgis2leaf ‣ Exports
-a QGIS Project to a working leaflet webmap</span>.</li>
+<li><p class="first">現在機場地圖已經設定好不錯的樣式了，讓我們開始製作互動性網頁地圖吧。選擇 <span class="menuselection">網路（Web） ‣ qgis2leaf ‣ Exports a QGIS Project to a working leaflet webmap</span>。（譯按：現在路徑已更改為 <span class="menuselection">網路（Web） ‣ qgis2web ‣ Create web map</span>。以下操作的文字說明將以新版的 <strong>qgis2web</strong> 為主，因此可能會與舊版的 <strong>qgis2leaf</strong> 截圖不符。）</p>
+</li>
 </ol>
 <img alt="../_images/1013.png" class="align-center" src="../_images/1013.png" />
 <ol class="arabic simple" start="11">
-<li>In the <span class="guilabel">QGIS 2 Leaflet</span> dialog, click <span class="guilabel">Get Layers</span> to
-get the refreshed layer list. Select the <span class="guilabel">Full screen</span> option to
-have a full screen web map. Choose <span class="guilabel">layer extent</span> as the
-<span class="guilabel">Extent</span> of the exported map. Choose a <span class="guilabel">Output project
-folder</span> on your system where the plugin will write the output files. Click
-<span class="guilabel">OK</span>.</li>
+<li><p class="first">在 <span class="guilabel">Export to web map</span> 視窗中，點選下方左側的 <span class="guilabel">Leaflet</span> 以切換到 Leaflet 的製圖模式，<span class="guilabel">Data export</span> 中的 <span class="guilabel">Export folder</span> 選擇輸出檔存放的路徑，<span class="guilabel">Scale/Zoom</span> 中的 <span class="guilabel">Extent</span> 選擇 <span class="guilabel">Fit to layers extent</span>，<span class="guilabel">Appearance</span> 中的 <span class="guilabel">Template</span> 選擇 <span class="guilabel">full-screen</span>，右下角的欄位選擇 <span class="guilabel">OSM</span> 作為底圖，最後按下 <span class="guilabel">Export</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1117.png" class="align-center" src="../_images/1117.png" />
 <ol class="arabic simple" start="12">
-<li>Once the export process finishes, locate the output folder on your disk.
-Open the <code class="docutils literal"><span class="pre">index.html</span></code> file in a browser. You will see an interactive web
-map that is a replica of the QGIS map. You can zoom and pan around the map
-and also click on any feature to get an popup window with attribute
-information. You can copy the contents of this folder to a web server to
-have a full featured web map.</li>
+<li><p class="first">輸出完成後，打開瀏覽器，開啟在你剛剛選擇的輸出資料夾中的 <code class="docutils literal"><span class="pre">Index.html</span></code> 檔案，就可以看到你剛剛在 QGIS 中看到的地圖複製品。你可以縮放、移至地圖上的任意區域，而且只要點選任一圖徵，就會看到圖徵的屬性資訊顯示在跳出來的訊息框中。只要把資料夾內的所有內容複製起來，就能夠把此地圖移到網頁伺服器，當作線上展示的互動地圖。</p>
+</li>
 </ol>
 <img alt="../_images/1215.png" class="align-center" src="../_images/1215.png" />
 <ol class="arabic simple" start="13">
-<li>Now we will explore some advanced features of this plugin that will allow
-you to customize the map further. If you noticed, the popup contained all
-the attributes of the feature. Some attributes are not very useful and
-overall the pop up looks ugly. We can replace the default popup with our
-own custom HTML to make it much better. This is achieved by added the
-custom HTML in a column named <code class="docutils literal"><span class="pre">html_exp</span></code>. Right-click the
-<code class="docutils literal"><span class="pre">ne_10m_airports</span></code> layer and select <span class="guilabel">Open Attribute Table</span>.</li>
+<li><p class="first">現在我們要來看看如何進一步使用此附加元件來調整、自訂我們的地圖。你可能已注意到，在網頁地圖跳出的視窗中，記載著圖徵所有屬性的資料，但其中某些屬性並沒有那麼重要，而且預設的跳出式視窗文字格式也實在不怎麼好看。因此我們接著要來換掉預設的格式，使用我們自己的 HTML 語法，讓它能夠漂亮地呈現資訊。具體來說，我們現在要把自訂的 HTML 加到一個新增的 <code class="docutils literal"><span class="pre">html_exp</span></code> 欄位內。在 <code class="docutils literal"><span class="pre">ne_10m_airports</span></code> 圖層上按右鍵，選擇 <span class="guilabel">開啟屬性表格</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1314.png" class="align-center" src="../_images/1314.png" />
 <ol class="arabic simple" start="14">
-<li>In the attribute table dialog, click the <span class="guilabel">Toggle Editing</span> button.
-Once the layer is in editing mode, click the <span class="guilabel">Open Field
-Calculator</span> button.</li>
+<li><p class="first">在屬性表格視窗中，按下 <span class="guilabel">切換編輯模式</span> 鈕以進入編輯模式，在此模式中，按下 <span class="guilabel">開啟欄位計算</span> 鈕。</p>
+</li>
 </ol>
 <img alt="../_images/1412.png" class="align-center" src="../_images/1412.png" />
 <ol class="arabic simple" start="15">
-<li>Check the <span class="guilabel">Create a new field</span> box and enter <code class="docutils literal"><span class="pre">html_exp</span></code> as the
-<span class="guilabel">Output field name</span>. Choose <span class="guilabel">Text (string)</span> as the
-<span class="guilabel">Output field type</span>. Since we will be creating a long HTML
-string, choose <code class="docutils literal"><span class="pre">200</span></code> as the <span class="guilabel">Output field width</span>. Enter the
-following expression in the <span class="guilabel">Expression</span> area. The
-complex-looking expression simply defines a HTML table and substitutes cell
-values from attributes <code class="docutils literal"><span class="pre">iata_code</span></code>, <code class="docutils literal"><span class="pre">name</span></code> and <code class="docutils literal"><span class="pre">type</span></code>. Check the
-<span class="guilabel">Output preview</span> to ensure the expression is correct.</li>
+<li><p class="first">勾選 <span class="guilabel">建立新欄位</span> 方框，在 <span class="guilabel">輸出欄位名稱</span> 內輸入 <code class="docutils literal"><span class="pre">html_exp</span></code>，然後在 <span class="guilabel">輸出欄位類別</span> 內選擇 <span class="guilabel">文字 (字串)</span>。因為我們要建立的是很長的 HTML 字串，所以 <span class="guilabel">輸出欄位寬度</span> 要調成很大，例如 <code class="docutils literal"><span class="pre">200</span></code>。在 <span class="guilabel">表示式</span> 區塊中輸入如下的表達式，雖然表達式看起來很複雜，不過其實內容是在定義 HTML 的 table 元件，然後把 <code class="docutils literal"><span class="pre">lata_code</span></code>、<code class="docutils literal"><span class="pre">name</span></code> 和 <code class="docutils literal"><span class="pre">type</span></code> 欄位的屬性值放到元件內。檢查一下 <span class="guilabel">輸出預覽</span> 以確認表達式是否正確。</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>concat(&#39;&lt;h3&gt;&#39;, &quot;iata_code&quot;, &#39;&lt;/h3&gt;&lt;table&gt;&#39;, &#39;&lt;tr&gt;&lt;td&gt;Airport Name: &lt;b&gt; &#39;,
 &quot;name&quot;, &#39;&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Category: &lt;b&gt; &#39;, &quot;type&quot;,
@@ -365,113 +321,93 @@ values from attributes <code class="docutils literal"><span class="pre">iata_cod
 </div>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">The shapefile format can contain a maximum of 254 characters in a field. If
-you want to store longer text in the field, choose another format.</p>
+<p class="last">shapefile 格式可在一個欄位內放上至多 254 個字元。如果你要在欄位中放入更長的字串，請使用其他格式儲存。</p>
 </div>
 <img alt="../_images/1512.png" class="align-center" src="../_images/1512.png" />
 <ol class="arabic simple" start="16">
-<li>Back in the <span class="guilabel">Attribute Table</span> window, you will see a new column at
-the end. Verify that your expression worked correctly and click the
-<span class="guilabel">Toggle Editing</span> button to save the changes.</li>
+<li><p class="first">回到 <span class="guilabel">屬性表格</span>，新的欄位就會出現在表格最末端。檢查表達式有正確運作後，再次按下 <span class="guilabel">切換編輯模式</span> 以儲存剛才所做的修改。</p>
+</li>
 </ol>
 <img alt="../_images/1611.png" class="align-center" src="../_images/1611.png" />
 <ol class="arabic simple" start="17">
-<li>Now export the map again using <span class="menuselection">Web ‣ qgis2leaf ‣
-Exports a QGIS Project to a working leaflet webmap</span>.</li>
+<li><p class="first">現在請再次選擇 <span class="menuselection">網路（Web） ‣ qgis2web ‣ Create web map</span>。</p>
+</li>
 </ol>
 <img alt="../_images/1710.png" class="align-center" src="../_images/1710.png" />
 <ol class="arabic simple" start="18">
-<li>Choose the options as before.</li>
+<li><p class="first">選擇和之前相同的選項。</p>
+</li>
 </ol>
 <img alt="../_images/1810.png" class="align-center" src="../_images/1810.png" />
 <ol class="arabic simple" start="19">
-<li>Go to the output folder once the export process finishes. You will have a
-subfolder with the present timestamp. Locate the <code class="docutils literal"><span class="pre">index.html</span></code> file inside
-it and open it in a browser. Click on any feature and look at the popup.
-You will notice that it looks a lot cleaner and informative.</li>
+<li><p class="first">當輸出完成後，前往輸出檔案的資料夾，其中會有一個子資料夾，名字包含了現在的時間戳記。使用瀏覽器打開此資料中的 <code class="docutils literal"><span class="pre">Index.html</span></code>，然後再點選任一圖徵查看跳出視窗。現在它提供的資訊看起來清楚多了。</p>
+</li>
 </ol>
 <img alt="../_images/198.png" class="align-center" src="../_images/198.png" />
 <ol class="arabic simple" start="20">
-<li>Another useful feature of the <code class="docutils literal"><span class="pre">qgis2leaf</span></code> plugin is the ability to
-specify a custom icon to use with the web map. This is accomplished by
-specifying the path to the custom icon in a field called <code class="docutils literal"><span class="pre">icon_exp</span></code>. We
-will create a new layer containing only the major airports and style using
-a custom SVG icon.  Locate the <span class="guilabel">Select features using an
-expression</span> tool from the toolbar.</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">qgis2leaf</span></code> 附加元件的另一個好用功能是在線上地圖中使用自訂的圖示，做法是在新欄位 <code class="docutils literal"><span class="pre">icon_exp</span></code> 中指定自訂的圖示路徑。我們接著要建立只包含主要機場的新圖層，然後使用自訂的圖示來設定樣式。點選工具列上的 <span class="guilabel">使用表示式選取圖徵</span> 鈕。</p>
+</li>
 </ol>
 <img alt="../_images/205.png" class="align-center" src="../_images/205.png" />
 <ol class="arabic simple" start="21">
-<li>Enter the expression below and press <span class="guilabel">Select</span> to select all major
-airports.</li>
+<li><p class="first">輸入如下所示的表達式，按下 <span class="guilabel">選取</span> 以選擇所有主要機場。</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&quot;type_code&quot; = 3
 </pre></div>
 </div>
 <img alt="../_images/2111.png" class="align-center" src="../_images/2111.png" />
 <ol class="arabic simple" start="22">
-<li>Right-click the <code class="docutils literal"><span class="pre">ne_10m_airports</span></code> airports and select <span class="guilabel">Save
-Selection As...</span>.</li>
+<li><p class="first">在 <code class="docutils literal"><span class="pre">ne_10m_airports</span></code> 圖層上按右鍵然後選擇 <span class="guilabel">儲存選取區域為...</span> （或是 <span class="guilabel">存檔為...</span>），</p>
+</li>
 </ol>
 <img alt="../_images/2210.png" class="align-center" src="../_images/2210.png" />
 <ol class="arabic simple" start="23">
-<li>In the <span class="guilabel">Save vector layer as...</span> dialog, name the output file as
-<code class="docutils literal"><span class="pre">major_airports.shp</span></code>. Check the <span class="guilabel">Add saved file to map</span> and
-click <span class="guilabel">OK</span>.</li>
+<li><p class="first">在 <span class="guilabel">儲存向量圖層為...</span> 視窗中，把輸出檔命名為 <code class="docutils literal"><span class="pre">major_airports.shp</span></code>，然後勾選 <span class="guilabel">加入儲存檔案至地圖中`（譯註：如果有 :guilabel:`儲存僅選取的圖徵</span>，也應一併勾選），最後按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/234.png" class="align-center" src="../_images/234.png" />
 <ol class="arabic simple" start="24">
-<li>Once the <code class="docutils literal"><span class="pre">major_airports</span></code> layer is loaded in QGIS, right-click it and
-select <span class="guilabel">Open Attribute Table</span>.</li>
+<li><p class="first">當 <code class="docutils literal"><span class="pre">major_airports</span></code> 已載入到 QGIS 中後，右鍵點選圖層然後選擇 <span class="guilabel">開啟屬性表格</span>。</p>
+</li>
 </ol>
 <img alt="../_images/244.png" class="align-center" src="../_images/244.png" />
 <ol class="arabic simple" start="25">
-<li>In the attribute table dialog, click the <span class="guilabel">Toggle Editing</span> button.
-Once the layer is in editing mode, click the <span class="guilabel">Open Field
-Calculator</span> button.</li>
+<li><p class="first">在屬性表格視窗中，按下 <span class="guilabel">切換編輯模式</span> 鈕以進入編輯模式，在此模式中，按下 <span class="guilabel">開啟欄位計算</span> 鈕。</p>
+</li>
 </ol>
 <img alt="../_images/253.png" class="align-center" src="../_images/253.png" />
 <ol class="arabic simple" start="26">
-<li>In <span class="guilabel">Field Calculator</span> dialog, enter <code class="docutils literal"><span class="pre">icon_exp</span></code> as the
-<span class="guilabel">Output field name</span>. Make it a <span class="guilabel">Text (string)</span> type. In
-the <span class="guilabel">Expression</span> area, enter the following expression.</li>
+<li><p class="first">在 <span class="guilabel">欄位計算器</span> 視窗中，<span class="guilabel">輸出欄位名稱</span> 輸入 <code class="docutils literal"><span class="pre">icon_exp</span></code>，並選擇 <span class="guilabel">文字 (字串)</span> 的欄位類別。在 <span class="guilabel">表示式</span> 區塊中，輸入以下的表達式。</p>
+</li>
 </ol>
 <div class="highlight-none"><div class="highlight"><pre>&#39;airport.svg&#39;
 </pre></div>
 </div>
 <img alt="../_images/263.png" class="align-center" src="../_images/263.png" />
 <ol class="arabic simple" start="27">
-<li>Save your edits by clicking the <span class="guilabel">Toggle Editing</span> button in the
-<span class="guilabel">Attribute Table</span>.</li>
+<li><p class="first">按下 <span class="guilabel">切換編輯模式</span> 以儲存剛才的更動。</p>
+</li>
 </ol>
 <img alt="../_images/273.png" class="align-center" src="../_images/273.png" />
 <ol class="arabic simple" start="28">
-<li>Open the <code class="docutils literal"><span class="pre">qgis2leaf</span></code> plugin from <span class="menuselection">Web ‣ qgis2leaf ‣ Exports
-a QGIS Project to a working leaflet webmap</span>. Click <span class="guilabel">Get Layers</span>
-button to fetch both the layers from QGIS. There are many different pre-made tile layers
-availalbe for basemaps. In this map, we can try something different and load the <span class="guilabel">Stamen Watercolor</span> as the
-<span class="guilabel">Basemap</span>. Click <span class="guilabel">OK</span>.</li>
+<li><p class="first">再次選擇 <span class="menuselection">網路（Web） ‣ qgis2web ‣ Create web map</span>，在右下角你還會發現除了 <code class="docutils literal"><span class="pre">OSM</span></code> 以外，還有很多不同的底圖可供選擇。這次我們可以選選看不同的，例如 <span class="guilabel">Stamen Watercolor</span>。按下 <span class="guilabel">Export</span>。</p>
+</li>
 </ol>
 <img alt="../_images/281.png" class="align-center" src="../_images/281.png" />
 <ol class="arabic simple" start="29">
-<li>If you remember we specified <code class="docutils literal"><span class="pre">airport.svg</span></code> as the icon for the airports.
-We need to add that icon manually to the output directory. QGIS comes with
-a large collection of icons. On Windows, these icons are located at
-<span class="menuselection">C: ‣ OSGEO4W64 ‣ apps ‣ qgis ‣ svg</span>. The path may
-differ depending on your platform and install type. Locate that directory
-and choose an icon you like. For our map, we can try the
-<code class="docutils literal"><span class="pre">amenity=airport.svg</span></code> icon located under <code class="docutils literal"><span class="pre">transport</span></code> category.</li>
+<li><p class="first">接下來我們要找尋我們之前指定的 <code class="docutils literal"><span class="pre">airport.svg</span></code> 檔案作為機場的圖示，並手動把它添加到輸出資料夾中。QGIS 本身即帶有許多圖示，在 Windows 系統中，圖示的路徑在  <span class="menuselection">（QGIS 安裝路徑）‣ apps ‣ qgis ‣ svg</span>，不過會隨著安裝方式和作業系統版本而有些微的更改。你可以選擇資料夾中的任何圖示，不過在此教學中，我們可以試試看在 <code class="docutils literal"><span class="pre">transport</span></code> 分類中的 <code class="docutils literal"><span class="pre">amenity=airport.svg</span></code>。</p>
+</li>
 </ol>
 <img alt="../_images/292.png" class="align-center" src="../_images/292.png" />
 <ol class="arabic simple" start="30">
-<li>Copy and paste this icon in the output directory you had specified when exporting
-the map. Rename it as <code class="docutils literal"><span class="pre">airport.svg</span></code>.</li>
+<li><p class="first">把圖示複製貼上到地圖的輸出資料夾，並把它重新命名為 <code class="docutils literal"><span class="pre">airport.svg</span></code>。</p>
+</li>
 </ol>
 <img alt="../_images/302.png" class="align-center" src="../_images/302.png" />
 <ol class="arabic simple" start="31">
-<li>Now open the <code class="docutils literal"><span class="pre">index.html</span></code> file located in the folder. You will see a
-beautiful basemap with our custom icons for the major airports. Also notice
-the layer panel at top-right corner which has layer display control for
-both the layers.</li>
+<li><p class="first">現在打開資料夾中的 <code class="docutils literal"><span class="pre">index.html</span></code> ，這次我們就有了一張漂亮的地圖，使用自訂的圖示表達主要機場的位置。此外，注意右上角的面板，可以讓你控制兩個圖層的顯示設定。</p>
+</li>
 </ol>
 <img alt="../_images/3110.png" class="align-center" src="../_images/3110.png" />
 <p>Hope this tutorial gives you a head start in creating web maps. Below is the
@@ -505,7 +441,7 @@ width="100%" height="600px"></iframe>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Sep 18, 2016.<br/>
+      最後更新日期是 Dec 12, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

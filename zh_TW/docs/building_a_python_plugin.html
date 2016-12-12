@@ -115,11 +115,11 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">以 Python 製作附加元件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">使用自訂的 Python 表達式函數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">撰寫 Python 腳本並在處理框架下執行</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">執行 QGIS 工作排程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">在同一圖層中尋找相鄰的多邊形</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">資料表連接 (PyQGIS)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">製作 Leaflet 線上地圖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">在 QGIS 中使用 Google Maps Engine Connector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 學習資源</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">資料來源</a></li>
 </ul>
@@ -336,52 +336,43 @@
 </ol>
 <img alt="../_images/117.png" class="align-center" src="../_images/117.png" />
 <ol class="arabic simple" start="12">
-<li>You will see the blank dialog from the plugin. You can drag-and-drop
-elements from the left-hand panel on the dialog. We will add a
-<span class="guilabel">Combo Box</span> type of <span class="guilabel">Input Widget</span>. Drag it to the
-plugin dialog.</li>
+<li><p class="first">附加元件的空白視窗就會在這裡出現。你可以從左邊的面板中拖曳加入視窗中的一些元件，這裡我們要加上 <span class="guilabel">Input Widget</span> 中的 <span class="guilabel">Combo Box</span>（組合框），把它拖曳到附加元件的視窗中。</p>
+</li>
 </ol>
 <img alt="../_images/124.png" class="align-center" src="../_images/124.png" />
 <ol class="arabic simple" start="13">
-<li>Resize the combo box and adjust its size. Now drag a <span class="guilabel">Label</span> type
-<span class="guilabel">Display Widget</span> on the dialog.</li>
+<li><p class="first">調整組合框的大小，然後再從 <span class="guilabel">Display Widget</span> 中拖曳一個 <span class="guilabel">Label</span>（標籤）到視窗上。</p>
+</li>
 </ol>
 <img alt="../_images/134.png" class="align-center" src="../_images/134.png" />
 <ol class="arabic simple" start="14">
-<li>Click on the label text and enter <code class="docutils literal"><span class="pre">Select</span> <span class="pre">a</span> <span class="pre">layer</span></code>.</li>
+<li><p class="first">點選標籤的文字然後輸入 <code class="docutils literal"><span class="pre">Select</span> <span class="pre">a</span> <span class="pre">layer</span></code>。</p>
+</li>
 </ol>
 <img alt="../_images/144.png" class="align-center" src="../_images/144.png" />
 <ol class="arabic simple" start="15">
-<li>Save this file by going to <span class="menuselection">File ‣ Save
-save_attributes_dialog_base.ui</span>. Note the name of the combo box object is
-<code class="docutils literal"><span class="pre">comboBox</span></code>. To interact with this object using python code, we will have
-to refer to it by this name.</li>
+<li><p class="first">選擇 <span class="menuselection">檔案 ‣ Save save_attributes_dialog_base.ui</span>，以儲存檔案。注意組合框目前的物件名稱為 <code class="docutils literal"><span class="pre">comboBox</span></code>，如果要使用 Python 操作物件，我們需要記住物件的名稱才行。</p>
+</li>
 </ol>
 <img alt="../_images/154.png" class="align-center" src="../_images/154.png" />
 <ol class="arabic simple" start="16">
-<li>Let&#8217;s reload our plugin so we can see the changes in the dialog
-window. Go to <span class="menuselection">Plugin ‣ Plugin Reloader ‣ Choose a
-plugin to be reloaded</span>.</li>
+<li><p class="first">QGIS 重新載入附加元件之後，我們就能在視窗中看到剛才做的改變。前往 <span class="menuselection">附加元件 ‣ Plugin Reloader ‣ Choose a plugin to be reloaded</span></p>
+</li>
 </ol>
 <img alt="../_images/164.png" class="align-center" src="../_images/164.png" />
 <ol class="arabic simple" start="17">
-<li>Select <code class="docutils literal"><span class="pre">SaveAttributes</span></code> in the <span class="guilabel">Configure Plugin reloader</span>
-dialog.</li>
+<li><p class="first">在 <span class="guilabel">Configure Plugin reloader</span> 視窗中選擇 <code class="docutils literal"><span class="pre">SaveAttributes</span></code>。</p>
+</li>
 </ol>
 <img alt="../_images/173.png" class="align-center" src="../_images/173.png" />
 <ol class="arabic simple" start="18">
-<li>Now click the <span class="guilabel">Save Attributes as CSV</span> button. You will see the
-newly designed dialog box.</li>
+<li><p class="first">現在點選 <span class="guilabel">Save Attributes as CSV</span> 按鈕後，你就會看到新設計的視窗。</p>
+</li>
 </ol>
 <img alt="../_images/184.png" class="align-center" src="../_images/184.png" />
 <ol class="arabic simple" start="19">
-<li>Let&#8217;s add some logic to the plugin that will populate the combo box with
-the layers loaded in QGIS. Go to the plugin directory and load the file
-<code class="docutils literal"><span class="pre">save_attributes.py</span></code> in a text editor. Scroll down and find the
-<code class="docutils literal"><span class="pre">run(self)</span></code> method. This method will be called when you click the toolbar
-button or select the plugin menu item. Add the following code at the
-beginning of the method. This code gets the layers loaded in QGIS and adds
-it to the <code class="docutils literal"><span class="pre">comboBox</span></code> object from the plugin dialog.</li>
+<li><p class="first">讓我們來增加一點東西到組合框中，使 QGIS 載入的圖層能列出來。前往附加元件資料夾，使用文字編輯器開啟  <code class="docutils literal"><span class="pre">save_attributes.py</span></code>，下拉至 <code class="docutils literal"><span class="pre">run(self)</span></code> 的方法，這個方法會在從工具列按鈕或選單點選附加元件時。在此方法的開頭添加以下的程式碼，它會取得 QGIS 中載入的圖層然後把它們加到附加元件視窗中的 <code class="docutils literal"><span class="pre">comboBox</span></code> 物件中。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">layers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">legendInterface</span><span class="p">()</span><span class="o">.</span><span class="n">layers</span><span class="p">()</span>
 <span class="n">layer_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -392,41 +383,28 @@ it to the <code class="docutils literal"><span class="pre">comboBox</span></code
 </div>
 <img alt="../_images/192.png" class="align-center" src="../_images/192.png" />
 <ol class="arabic simple" start="20">
-<li>Back in the main QGIS window, reload the plugin by going to
-<span class="menuselection">Plugins ‣ Plugin Reloader ‣  Reload plugin:
-SaveAttributes</span>. Alternatively, you can just press <code class="kbd docutils literal"><span class="pre">F5</span></code>. To test this
-new functionality, we must load some layers in QGIS. After you load some
-data, launch the plugin by going to <span class="menuselection">Vector ‣ Save
-Attributes ‣ Save Attributes as CSV</span>.</li>
+<li><p class="first">回到 QGIS 主視窗，然後選擇 <span class="menuselection">Plugins ‣ Plugin Reloader ‣ Reload plugin: SaveAttributes</span> 以再次重新啟動附加元件；或是按下 <code class="kbd docutils literal"><span class="pre">F5</span></code> 也可以達到相同目的。為了測試剛才新加的功能，我們要在 QGIS 中載入一些圖層。載入之後，選擇 <span class="menuselection">Vector ‣ Save Attributes ‣ Save Attributes as CSV</span> 以開啟此附加元件。</p>
+</li>
 </ol>
 <img alt="../_images/201.png" class="align-center" src="../_images/201.png" />
 <ol class="arabic simple" start="21">
-<li>You will see that our combo box is now populated with the layer names that
-are loaded in QGIS.</li>
+<li><p class="first">現在你可以看到我們的組合框出現了 QGIS 中載入圖層的名字了。</p>
+</li>
 </ol>
 <img alt="../_images/214.png" class="align-center" src="../_images/214.png" />
 <ol class="arabic simple" start="22">
-<li>Let&#8217;s add remaining user interface elements. Switch back to <code class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator</span></code>
-and load the <code class="docutils literal"><span class="pre">save_attributes_dialog_base.ui</span></code> file. Add a <code class="docutils literal"><span class="pre">Label</span></code>
-<span class="guilabel">Display Widget</span> and change the text to <code class="docutils literal"><span class="pre">Select</span> <span class="pre">output</span> <span class="pre">file</span></code>.
-Add a <code class="docutils literal"><span class="pre">LineEdit</span></code> type <span class="guilabel">Input Widget</span> that will show the output
-file path that the user has chosen. Next, add a <code class="docutils literal"><span class="pre">Push</span> <span class="pre">Button</span></code> type
-<span class="guilabel">Button</span> and change the button label to <code class="docutils literal"><span class="pre">...</span></code>. Note the object
-names of the widgets that we will have to use to interact with them. Save
-the file.</li>
+<li><p class="first">讓我們把剩下的使用者介面元素也添加進來。回到 <code class="docutils literal"><span class="pre">Qt</span> <span class="pre">Creator</span></code> 然後載入 <code class="docutils literal"><span class="pre">save_attributes_dialog_base.ui</span></code>，再從 <span class="guilabel">Display Widget</span> 加入一個 <code class="docutils literal"><span class="pre">Label</span></code>，然後文字改為 <code class="docutils literal"><span class="pre">Select</span> <span class="pre">output</span> <span class="pre">file</span></code>，接著從 <span class="guilabel">Input Widget</span> 加入 <code class="docutils literal"><span class="pre">LineEdit</span></code>，他會秀出使用者選擇的輸出檔檔名；再來從 <span class="guilabel">Button</span> 加入一個 <code class="docutils literal"><span class="pre">Push</span> <span class="pre">Button</span></code> （按鈕），然後把按鈕的標籤改為 <code class="docutils literal"><span class="pre">...</span></code>。記住這些物件的名字，我們要使用它們與物件本體互動。最後請存檔。</p>
+</li>
 </ol>
 <img alt="../_images/221.png" class="align-center" src="../_images/221.png" />
 <ol class="arabic simple" start="23">
-<li>We will now add python code to open a file browser when the user clicks the
-<code class="docutils literal"><span class="pre">...</span></code> push button and show the select path in the line edit widget. Open
-the <code class="docutils literal"><span class="pre">save_attributes.py</span></code> file in a text editor. Add <code class="docutils literal"><span class="pre">QFileDialog</span></code> to
-our list of imports at the top of the file.</li>
+<li><p class="first">現在要做的是加上一段 Python 程式碼，讓使用者在按下 <code class="docutils literal"><span class="pre">...</span></code> 鈕的時候，會開啟一個新視窗選擇檔案路徑，並且把此路徑顯示在 Line Edit 框內。以文字編輯器打開 <code class="docutils literal"><span class="pre">save_attributes.py</span></code>，在檔案開頭部分、匯入模組的清單中加上 <code class="docutils literal"><span class="pre">QFileDialog</span></code>。</p>
+</li>
 </ol>
 <img alt="../_images/231.png" class="align-center" src="../_images/231.png" />
 <ol class="arabic simple" start="24">
-<li>Add a new method called <code class="docutils literal"><span class="pre">select_output_file</span></code> with the following code.
-This code will open a file browser and populate the line edit widget with
-the path of the file that the user chose.</li>
+<li><p class="first">加入名為 <code class="docutils literal"><span class="pre">select_output_file</span></code> 的新方法，內容如下程式碼所示。此程式碼會開啟檔案瀏覽器，並且在 Line Edit 框位中貼上使用者選擇的檔案路徑。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">select_output_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="n">filename</span> <span class="o">=</span> <span class="n">QFileDialog</span><span class="o">.</span><span class="n">getSaveFileName</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="p">,</span> <span class="s">&quot;Select output file &quot;</span><span class="p">,</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="s">&#39;*.txt&#39;</span><span class="p">)</span>
@@ -435,12 +413,8 @@ the path of the file that the user chose.</li>
 </div>
 <img alt="../_images/241.png" class="align-center" src="../_images/241.png" />
 <ol class="arabic simple" start="25">
-<li>Now we need to add code so that when the <cite>...</cite> button is clicked,
-<code class="docutils literal"><span class="pre">select_output_file</span></code> method is called. Scroll up to the <code class="docutils literal"><span class="pre">__init__</span></code>
-method and add the following lines at the bottom. This code will clear the
-previously loaded text (if any) in the line edit widget and also connect
-the <code class="docutils literal"><span class="pre">select_output_file</span></code> method to the <code class="docutils literal"><span class="pre">clicked</span></code> signal of the push
-button widget.</li>
+<li><p class="first">現在我們要加上「當按下 <cite>...</cite> 鈕時，就啟動 <code class="docutils literal"><span class="pre">select_output_file</span></code> 方法」的程式碼。上移至 <code class="docutils literal"><span class="pre">__init__</span></code> 方法，然後在底部加上如下幾行，它們的作用是清除之前在 Line Edit 框中遺留下來的任何文字 (如果有的話)，然後把按鈕的 <code class="docutils literal"><span class="pre">點選</span></code> 訊號與 <code class="docutils literal"><span class="pre">select_output_file</span></code> 方法連結起來。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">lineEdit</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">pushButton</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">select_output_file</span><span class="p">)</span>
@@ -448,18 +422,13 @@ button widget.</li>
 </div>
 <img alt="../_images/251.png" class="align-center" src="../_images/251.png" />
 <ol class="arabic simple" start="26">
-<li>Back in QGIS, reload the plugin and open the <span class="guilabel">Save Attributes`</span>
-dialog. If all went fine, you will be able to click the <code class="docutils literal"><span class="pre">...</span></code> button and
-select an output text file from your disk.</li>
+<li><p class="first">回到 QGIS 中，重新載入附加元件，然後開啟 <span class="guilabel">Save Attributes`</span> 使窗。如果一切正常，你就可以按下 <code class="docutils literal"><span class="pre">...</span></code> 鈕，然後從磁碟中選擇輸出檔檔案。</p>
+</li>
 </ol>
 <img alt="../_images/261.png" class="align-center" src="../_images/261.png" />
 <ol class="arabic simple" start="27">
-<li>When you click <span class="guilabel">OK</span> on the plugin dialog, nothing happens. That
-is because we have not added the logic to pull attribute information from
-the layer and write it to the text file. We now have all the pieces in
-place to do just that. Find the place in the <code class="docutils literal"><span class="pre">run</span></code> method where it says
-<code class="docutils literal"><span class="pre">pass</span></code>.  Replace it with the code below. The explanation for this code
-can be found in <a class="reference internal" href="getting_started_with_pyqgis.html"><em>Python 程式設計的初步上手</em></a>.</li>
+<li><p class="first">當按下 <span class="guilabel">OK</span> 時，什麼事都不會發生。這是因為我們還沒有加上把屬性的資訊轉存到文字檔內的城市部分。我們現在已經有所需的所有元素來做到這件事了，請前往 <code class="docutils literal"><span class="pre">run</span></code> 的方法，其中會看到一個 <code class="docutils literal"><span class="pre">pass</span></code>，再把它以如下的程式碼取代。這段程式碼的解釋可在 <a class="reference internal" href="getting_started_with_pyqgis.html"><em>Python 程式設計的初步上手</em></a> 中找到。</p>
+</li>
 </ol>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dlg</span><span class="o">.</span><span class="n">lineEdit</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
 <span class="n">output_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
@@ -478,20 +447,14 @@ can be found in <a class="reference internal" href="getting_started_with_pyqgis.
 </div>
 <img alt="../_images/271.png" class="align-center" src="../_images/271.png" />
 <ol class="arabic simple" start="28">
-<li>Now our plugin is ready. Reload the plugin and try it out. You will find
-that the output text file you chose will have the attributes from the
-vector layer. You can zip the plugin directory and share it with your
-users. They can unzip the contents to their plugin directory and try out
-your plugin. If this was a real plugin, you would upload it to the <a class="reference external" href="https://plugins.qgis.org/">QGIS
-Plugin Repository</a> so that all QGIS users will
-be able to find and download your plugin.</li>
+<li><p class="first">現在附加元件已完成，重新載入後就來試試看吧，你會發現輸出的文字檔會含有向量圖層中的屬性資訊。附加元件的資料夾可以壓縮後與其他使用者分享，只要重新解壓縮到他們的附加元件資料夾，就可以開始使用。你也可以上傳到官方的 <a class="reference external" href="https://plugins.qgis.org/">QGIS 附加元件儲存庫</a>，這樣所有的 QGIS 使用者都能找到並下載你的附加元件。</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">This plugin is for demonstration purpose only. Do not publish this plugin or
-upload it to the QGIS plugin repository.</p>
+<p class="last">本附加元件僅供示範使用，請勿任意出版或上傳至 QGIS 附加元件儲存庫。</p>
 </div>
-<p>Below is the full <code class="docutils literal"><span class="pre">save_attributes.py</span></code> file as a reference.</p>
+<p>以下放上完整的 <code class="docutils literal"><span class="pre">save_attributes.py</span></code> 檔做為參考。</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">/***************************************************************************</span>
@@ -736,7 +699,7 @@ upload it to the QGIS plugin repository.</p>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Sep 18, 2016.<br/>
+      最後更新日期是 Dec 12, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Find Neighbor Polygons in a Layer &mdash; QGIS Tutorials and Tips</title>
+    <title>在同一圖層中尋找相鄰的多邊形 &mdash; QGIS Tutorials and Tips</title>
     
     <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -31,7 +31,7 @@
     <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
     <link rel="top" title="QGIS Tutorials and Tips" href="../index.html" />
     <link rel="next" title="資料表連接 (PyQGIS)" href="performing_table_joins_pyqgis.html" />
-    <link rel="prev" title="Running and Scheduling QGIS Processing Jobs" href="running_qgis_jobs.html" />
+    <link rel="prev" title="執行 QGIS 工作排程" href="running_qgis_jobs.html" />
 
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -115,11 +115,11 @@
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">使用自訂的 Python 表達式函數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">撰寫 Python 腳本並在處理框架下執行</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Find Neighbor Polygons in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">執行 QGIS 工作排程</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">在同一圖層中尋找相鄰的多邊形</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">資料表連接 (PyQGIS)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">製作 Leaflet 線上地圖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">在 QGIS 中使用 Google Maps Engine Connector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 學習資源</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">資料來源</a></li>
 </ul>
@@ -131,7 +131,7 @@
               
                 
   <li>
-    <a href="running_qgis_jobs.html" title="Previous Chapter: Running and Scheduling QGIS Processing Jobs"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Running and Sche...</span>
+    <a href="running_qgis_jobs.html" title="Previous Chapter: 執行 QGIS 工作排程"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; 執行 QGIS 工作排程</span>
     </a>
   </li>
   <li>
@@ -207,80 +207,65 @@
       
 
   <div class="section" id="find-neighbor-polygons-in-a-layer">
-<h1>Find Neighbor Polygons in a Layer<a class="headerlink" href="#find-neighbor-polygons-in-a-layer" title="Permalink to this headline">¶</a></h1>
-<p>There are some use cases where you want to find all neighboring polygons of
-each of the polygons in a layer. With a little python script, we can accomplish
-this and much more in QGIS. Here is an example script you can use to find all
-polygons that share boundary with each of the polygons in a layer and also add
-their names to the attribute table. As an added bonus, the script also sums up
-an attribute of your choice from all the neighboring polygons.</p>
+<h1>在同一圖層中尋找相鄰的多邊形<a class="headerlink" href="#find-neighbor-polygons-in-a-layer" title="Permalink to this headline">¶</a></h1>
+<p>有些時候，你會想要尋找與圖層中的某個多邊形相鄰的所有多邊形。只要弄一點 Python 程式碼，在 QGIS 中就能完成這件事情，甚至做得更多。這裡有一個範例程式，讓你可以尋找所有與指定的多邊形分享邊界的多邊形，並且把它們的名字加入屬性表格中。除此之外，此腳本也把所有鄰接多邊形的某個指定欄位進行加總運算。</p>
 <div class="section" id="overview-of-the-task">
 <h2>內容說明<a class="headerlink" href="#overview-of-the-task" title="Permalink to this headline">¶</a></h2>
-<p>To demonstrate how the script works, we will use a layer of country polygons
-and find countries that share the border. We also want to compute the total
-population of the country’s neighbors.</p>
+<p>為了展示腳本如何運作，這邊我們使用全球的國界圖層，然後尋找共享國界的國家。我們也會計算與某個國家相鄰的全部國家的總人口數。</p>
 </div>
 <div class="section" id="get-the-data">
 <h2>取得資料<a class="headerlink" href="#get-the-data" title="Permalink to this headline">¶</a></h2>
-<p>We will use the <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/">Admin 0 - Countries</a>
-dataset from Natural Earth.</p>
-<p>Download the <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - countries shapefile.</a>.</p>
+<p>我們要使用 Natural Earth 提供的 <a class="reference external" href="http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-admin-0-countries/">Admin 0 - 國界</a> 資料集。</p>
+<p>下載 <a class="reference external" href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip">Admin 0 - 國界（Countries）shapefile</a></p>
 <p>資料來源  <a class="reference internal" href="credits.html#naturalearth" id="id1">[NATURALEARTH]</a></p>
 </div>
 <div class="section" id="get-the-script">
-<h2>Get the script<a class="headerlink" href="#get-the-script" title="Permalink to this headline">¶</a></h2>
-<p>Download the <a class="reference download internal" href="../_downloads/neighbors.py" download=""><code class="xref download docutils literal"><span class="pre">neighbors.py</span> <span class="pre">script</span></code></a>
-and save it to your disk.</p>
+<h2>取得腳本<a class="headerlink" href="#get-the-script" title="Permalink to this headline">¶</a></h2>
+<p>下載 <a class="reference download internal" href="../_downloads/neighbors.py" download=""><code class="xref download docutils literal"><span class="pre">neighbors.py</span> <span class="pre">腳本</span></code></a> 然後儲存至硬碟中。</p>
 </div>
 <div class="section" id="procedure">
 <h2>操作流程<a class="headerlink" href="#procedure" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li>Load the <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> layer by going to
-<span class="menuselection">Layer ‣ Add Vector Layer</span>.</li>
+<li><p class="first">選擇 <span class="menuselection">圖層 ‣ 加入向量圖層</span>，載入 <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> 圖層。</p>
+</li>
 </ol>
 <img alt="../_images/140.png" class="align-center" src="../_images/140.png" />
 <ol class="arabic simple" start="2">
-<li>The script uses 2 fields to perform the action. A name field and a field
-that you want to sum up. Use the <span class="guilabel">Identify</span> tool to click on any
-feature and examine the attributes. In this case the name field is <strong>NAME</strong> and we want
-to sum up the population estimates from <strong>POP_EST</strong> field.</li>
+<li><p class="first">此腳本使用 2 個欄位執行操作，分別是名稱與用來加總的欄位。使用 <span class="guilabel">識別圖徵</span> 工具點選任何圖徵檢察屬性，在本例中，會使用 <strong>NAME</strong> 欄位當作名稱，與 <strong>POP_EST</strong> 欄位當作人口估計值。</p>
+</li>
 </ol>
 <img alt="../_images/225.png" class="align-center" src="../_images/225.png" />
 <ol class="arabic simple" start="3">
-<li>Go to <span class="menuselection">Plugins ‣ Python Console</span>.</li>
+<li><p class="first">選擇 <span class="menuselection">附加元件 ‣ Python 主控台</span>。</p>
+</li>
 </ol>
 <img alt="../_images/316.png" class="align-center" src="../_images/316.png" />
 <ol class="arabic simple" start="4">
-<li>In the <span class="guilabel">Python Console</span> window, click the <span class="guilabel">Show Editor</span>
-button.</li>
+<li><p class="first">在 <span class="guilabel">Python 主控台</span> 視窗中，按下 <span class="guilabel">顯示編輯器</span> 的按鈕。</p>
+</li>
 </ol>
 <img alt="../_images/411.png" class="align-center" src="../_images/411.png" />
 <ol class="arabic simple" start="5">
-<li>In the <span class="guilabel">Editor</span> panel, click the <span class="guilabel">Open file</span> button and
-browse to downloaded <code class="docutils literal"><span class="pre">neighbors.py</span></code> script and click <span class="guilabel">Open</span>.</li>
+<li><p class="first">在 <span class="guilabel">編輯器</span> 面板中，按下 <span class="guilabel">開啟檔案</span> 鈕，找到剛才下載的 <code class="docutils literal"><span class="pre">neighbors.py</span></code> 腳本，按下 <span class="guilabel">開啟</span>。</p>
+</li>
 </ol>
 <img alt="../_images/511.png" class="align-center" src="../_images/511.png" />
 <ol class="arabic simple" start="6">
-<li>Once the script is loaded, you may want to change the <code class="docutils literal"><span class="pre">_NAME_FIELD</span></code> and
-<code class="docutils literal"><span class="pre">_SUM_FIELD</span></code> values to match the attributes from your own layer. If you
-are working with the <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> layer, you can leave those
-as they are. Click the <span class="guilabel">Save</span> button in the <span class="guilabel">Editor</span>
-panel if you made any changes. Now click the <span class="guilabel">Run script</span> button
-to execute the script.</li>
+<li><p class="first">腳本載入後，或許需要依照圖層屬性，編輯 <code class="docutils literal"><span class="pre">_NAME_FIELD</span></code> 和 <code class="docutils literal"><span class="pre">_SUM_FIELD</span></code> 的值，不過如果你也是載入 <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> 圖層的話，使用預設值即可。如果你有編輯過的話，請先按下 <span class="guilabel">編輯器</span> 面板中的 <span class="guilabel">儲存</span> 鈕。接下來，按下 <span class="guilabel">執行腳本</span> 鈕，程式就會開始執行。</p>
+</li>
 </ol>
 <img alt="../_images/610.png" class="align-center" src="../_images/610.png" />
 <ol class="arabic simple" start="7">
-<li>Once the script finishes, right-click the <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> layer
-and select <span class="guilabel">Open Attribute Table</span>.</li>
+<li><p class="first">當腳本執行完畢後，右鍵點選 <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> 圖層然後選擇 <span class="guilabel">開啟屬性表格</span>。</p>
+</li>
 </ol>
 <img alt="../_images/710.png" class="align-center" src="../_images/710.png" />
 <ol class="arabic simple" start="8">
-<li>You will notice 2 new attributes called <code class="docutils literal"><span class="pre">NEIGHBORS</span></code> and <code class="docutils literal"><span class="pre">SUM</span></code>. These
-were added by the script.</li>
+<li><p class="first">你會發現多了 2 個屬性，分別為 <code class="docutils literal"><span class="pre">NEIGHBORS</span></code> 和 <code class="docutils literal"><span class="pre">SUM</span></code>，這兩個屬性就是剛才的程式新增的。</p>
+</li>
 </ol>
 <img alt="../_images/810.png" class="align-center" src="../_images/810.png" />
-<p>Below is the complete script for reference. You may modify it to suit your
-needs.</p>
+<p>以下放上完整的腳本供各位參考，你也可以依照個人需求編輯調整此檔案。</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="c">################################################################################</span>
 <span class="c"># Copyright 2014 Ujaval Gandhi</span>
 <span class="c">#</span>
@@ -389,7 +374,7 @@ needs.</p>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Sep 18, 2016.<br/>
+      最後更新日期是 Dec 12, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>

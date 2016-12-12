@@ -115,11 +115,11 @@
 <li class="toctree-l1"><a class="reference internal" href="building_a_python_plugin.html">以 Python 製作附加元件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="custom_python_functions.html">使用自訂的 Python 表達式函數</a></li>
 <li class="toctree-l1"><a class="reference internal" href="processing_python_scripts.html">撰寫 Python 腳本並在處理框架下執行</a></li>
-<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">Running and Scheduling QGIS Processing Jobs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">Find Neighbor Polygons in a Layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="running_qgis_jobs.html">執行 QGIS 工作排程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="find_neighbor_polygons.html">在同一圖層中尋找相鄰的多邊形</a></li>
 <li class="toctree-l1"><a class="reference internal" href="performing_table_joins_pyqgis.html">資料表連接 (PyQGIS)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">Leaflet Web Maps with qgis2leaf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">Using Google Maps Engine Connector for QGIS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaflet_maps_with_qgis2leaf.html">製作 Leaflet 線上地圖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gme_connector.html">在 QGIS 中使用 Google Maps Engine Connector</a></li>
 <li class="toctree-l1"><a class="reference internal" href="learning_resources.html">QGIS 學習資源</a></li>
 <li class="toctree-l1"><a class="reference internal" href="credits.html">資料來源</a></li>
 </ul>
@@ -249,118 +249,87 @@
 </ol>
 <img alt="../_images/212.png" class="align-center" src="../_images/212.png" />
 <ol class="arabic simple" start="3">
-<li>As our task is to clip the global layers to the boundary of Africa, we need
-to first prepare a layer containg a polygon for the entire continent. The
-countries layer has an attribute called <strong>CONTINENT</strong>. We can use a
-geoprocessing concept called <em>Dissolve</em> to merge all countries that have the
-same continent value and merge them to a single polygon.</li>
+<li><p class="first">由於我們的任務是裁切全球圖層到非洲大陸的範圍，因此需要先準備一個多邊形圖層，描繪出非洲大陸的外框。本圖層具有一個稱為 <strong>CONTINENT</strong> 的屬性，我們可以利用一個稱為「<em>融合（Dissolve）</em>」的地理運算工具，來融合所有具有相同屬性的非洲國家（多邊形）成為一個大的多邊形。</p>
+</li>
 </ol>
 <img alt="../_images/36.png" class="align-center" src="../_images/36.png" />
 <ol class="arabic simple" start="4">
-<li>Open the <span class="guilabel">Dissolve</span> tool from <span class="menuselection">Vector ‣
-Geoprocessing Tools ‣ Dissolve</span>.</li>
+<li><p class="first">選擇 <span class="menuselection">向量 ‣ 地理運算工具 ‣ 融合</span>，開啟 <span class="guilabel">融合</span> 工具。</p>
+</li>
 </ol>
 <img alt="../_images/43.png" class="align-center" src="../_images/43.png" />
 <ol class="arabic simple" start="5">
-<li>Select <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code> as the <span class="guilabel">Input vector layer</span>.
-The <span class="guilabel">Dissolve field</span> would be <code class="docutils literal"><span class="pre">CONTINENT</span></code>. Name the output file
-as <code class="docutils literal"><span class="pre">continents.shp</span></code> and  check the box next to <span class="guilabel">Add result to
-convas</span>.</li>
+<li><p class="first">在 <span class="guilabel">輸入向量圖層</span> 中輸入 <code class="docutils literal"><span class="pre">ne_10m_admin_0_countries</span></code>，<span class="guilabel">融合欄位</span> 選擇 <code class="docutils literal"><span class="pre">CONTINENT</span></code>，輸出檔命名為 <code class="docutils literal"><span class="pre">continents.shp</span></code>，然後勾選 <span class="guilabel">加入結果至 QGIS 地圖中</span>。</p>
+</li>
 </ol>
 <div class="admonition note">
 <p class="first admonition-title">註解</p>
-<p class="last">If you want to merge <strong>ALL</strong> polygons regardless of their attributes, you
-can select <span class="guilabel">&#8211; Dissolve All &#8211;</span> as the <span class="guilabel">Dissolve field</span>.
-This will combine all polygons in the layer and give you a single aggregate
-polygon.</p>
+<p class="last">如果你想要不管屬性、融合<strong>所有</strong>的多邊形的話，可以在 <span class="guilabel">融合欄位</span> 中選擇 <span class="guilabel">&#8211; 全部融合 &#8211;</span>，這樣的話所有的多邊形就會融合成一個。</p>
 </div>
 <img alt="../_images/53.png" class="align-center" src="../_images/53.png" />
 <ol class="arabic simple" start="6">
-<li>The dissolve processing may take a while. Once the process finishes, you
-will see the new <code class="docutils literal"><span class="pre">continent</span></code> layer added to QGIS. Use the
-<span class="guilabel">Select Single Feature</span> tool from the toolbar and click on Africa
-to select the polygon representing the continent.</li>
+<li><p class="first">融合的處理需要一些時間。當處理完畢後，名為 <code class="docutils literal"><span class="pre">continent</span></code> 的新圖層會加到 QGIS 中，使用工具列上的 <span class="guilabel">選取圖徵</span> 工具，點選非洲大陸，把大陸外框的多邊形選取起來。</p>
+</li>
 </ol>
 <img alt="../_images/63.png" class="align-center" src="../_images/63.png" />
 <ol class="arabic simple" start="7">
-<li>Right-click the <code class="docutils literal"><span class="pre">continents</span></code> layer and select <span class="guilabel">Save Selection
-As...</span>.</li>
+<li><p class="first">在 <code class="docutils literal"><span class="pre">continents</span></code> 圖層上按右鍵選擇 <span class="guilabel">存檔為...</span>，勾選 <span class="guilabel">儲存僅選取的圖徵</span>。（譯按：舊一點的 QGIS 版本可以直接選擇 <span class="guilabel">儲存選取範圍為...</span>）</p>
+</li>
 </ol>
 <img alt="../_images/73.png" class="align-center" src="../_images/73.png" />
 <ol class="arabic simple" start="8">
-<li>Name the output file as <code class="docutils literal"><span class="pre">africa.shp</span></code>. Since we are only interested in the
-shape of the continent and not any attributes, you may check the
-<span class="guilabel">Skip attribute creation</span>. Make sure the <span class="guilabel">Add saved file
-to map</span> box is checked and click <span class="guilabel">OK</span>.</li>
+<li><p class="first">輸出檔案命名為 <code class="docutils literal"><span class="pre">africa.shp</span></code>，由於我們只需要大陸的形狀，不在乎其屬性值，因此 <span class="guilabel">忽略屬性建立</span> 的框框也可以勾選起來。順便確認 <span class="guilabel">加入儲存檔案至地圖中</span> 有勾選後，按下 <span class="guilabel">確定</span>。</p>
+</li>
 </ol>
 <img alt="../_images/83.png" class="align-center" src="../_images/83.png" />
 <ol class="arabic simple" start="9">
-<li>Now you will have the <code class="docutils literal"><span class="pre">africa</span></code> layer loaded in QGIS containing a single
-polygon for the entire continent. Now, it&#8217;s time to start our batch clip
-process. Open <span class="menuselection">Processing ‣ Toolbox</span>.</li>
+<li><p class="first">現在 QGIS 已載入了 <code class="docutils literal"><span class="pre">africa</span></code> 圖層，圖層內只有一個非洲的多邊形。現在我們可以開始批次剪下檔案了。開啟 <span class="menuselection">地理運算 ‣ 工具箱</span>。</p>
+</li>
 </ol>
 <img alt="../_images/93.png" class="align-center" src="../_images/93.png" />
 <ol class="arabic simple" start="10">
-<li>Browse all available algorithms and find the <span class="guilabel">Clip</span> tool from
-<span class="menuselection">QGIS geoalgorithms ‣ Vector overlay tools ‣ Clip</span>. You
-may also use the <span class="guilabel">Search</span> box to easily find the algorithm as
-well.</li>
+<li><p class="first">在所有可用的運算法中搜尋並找到 <span class="guilabel">裁切</span>（Clip）工具。它可能會放在 <span class="menuselection">geoalgorithms ‣ 向量 ‣ 疊層</span> 目錄底下，或是舊版的 <span class="menuselection">QGIS geoalgorithms ‣ Vector overlay tools</span> 底下。你也可以使用 <span class="guilabel">搜尋</span> 框簡單查詢此運算法的位置。</p>
+</li>
 </ol>
 <img alt="../_images/103.png" class="align-center" src="../_images/103.png" />
 <ol class="arabic simple" start="11">
-<li>Right-click the <span class="guilabel">Clip</span> algorithm and select <span class="guilabel">Execure as
-batch process</span>.</li>
+<li><p class="first">右鍵點選 <span class="guilabel">裁切</span> 運算法然後選擇 <span class="guilabel">以批次方式執行</span>。</p>
+</li>
 </ol>
 <img alt="../_images/115.png" class="align-center" src="../_images/115.png" />
 <ol class="arabic simple" start="12">
-<li>In the <span class="guilabel">Batch Processing</span> dialog, the first tab is
-<span class="guilabel">Parameters</span> where we define out inputs. Click the
-<span class="guilabel">...</span> next to the first row in the <span class="guilabel">Input layer</span> column.</li>
+<li><p class="first">在 <span class="guilabel">批次處理中</span> 的視窗中，第一個分頁「<span class="guilabel">參數</span>」就是我們給定輸入檔案的地方。請點選第一行的 <span class="guilabel">輸入圖層</span> 框旁邊的 <span class="guilabel">...</span> 按鈕。</p>
+</li>
 </ol>
 <img alt="../_images/123.png" class="align-center" src="../_images/123.png" />
 <ol class="arabic simple" start="13">
-<li>Browse to the directory containing the global transportation layers that
-you had downloaded. Hold the <code class="kbd docutils literal"><span class="pre">Ctrl</span></code> key and select all the layers that
-you want to clip. You may also use <code class="kbd docutils literal"><span class="pre">Shift</span></code> or <code class="kbd docutils literal"><span class="pre">Ctrl-A</span></code> to make
-multiple selection. Click <span class="guilabel">Open</span>.</li>
+<li><p class="first">切換至你剛下載的有關全球交通的 shapefile 的資料夾，按住 <code class="kbd docutils literal"><span class="pre">Ctrl</span></code> 鍵然後選擇所有你想要裁切的圖層。你也可以使用 <code class="kbd docutils literal"><span class="pre">Shift</span></code> 或 <code class="kbd docutils literal"><span class="pre">Ctrl-A</span></code> 進行多重選取。接著按下 <span class="guilabel">開啟舊檔</span>。</p>
+</li>
 </ol>
 <img alt="../_images/133.png" class="align-center" src="../_images/133.png" />
 <ol class="arabic simple" start="14">
-<li>You will notice that the <span class="guilabel">Input layer</span> columns will be
-auto-populated with all layers you had selected. You may use <span class="guilabel">Add
-row</span> button to add more rows and define more inputs. Next, we need to
-select the layer containing the boundary to clip our input layers. Click the
-<span class="guilabel">...</span> button for the first row and add the <code class="docutils literal"><span class="pre">africa.shp</span></code>
-<span class="guilabel">Clip layer</span>. Since the clip layer is the same for all our inputs,
-you can double-click the column header <span class="guilabel">Clip layer</span> and the same
-layer will be auto-filled for all the rows. Next, we need to define our
-outputs.  Click the <span class="guilabel">...</span> buton next to the first row in the
-<span class="guilabel">Clipped</span> column.</li>
+<li><p class="first">你會看到 <span class="guilabel">輸入圖層</span> 欄位現在已經自動填上我們剛才選擇的檔案。你可以使用 <span class="guilabel">加入一列資料</span> 的按鈕增加更多欄位，一次處理更多資料。接下來，我們要選擇含有裁切邊界的圖層，因此請點選 <span class="guilabel">裁切圖層</span> 旁邊的 <span class="guilabel">...</span> 鈕，選擇 <code class="docutils literal"><span class="pre">africa.shp</span></code>。由於我們要用同一個圖層裁切所有的輸入檔，因此可以在 <span class="guilabel">裁切圖層</span> 的標題地方點兩下，此圖層就會自動填到所有的空白行中。接下來我們要設定輸出檔案，請點選在 <span class="guilabel">剪下</span> 一欄旁邊的 <span class="guilabel">...</span> 鈕。</p>
+</li>
 </ol>
 <img alt="../_images/143.png" class="align-center" src="../_images/143.png" />
 <ol class="arabic simple" start="15">
-<li>Browse the the directory where you want your output layers. Type the
-filename as <code class="docutils literal"><span class="pre">clipped_</span></code> and click <span class="guilabel">Save</span>.</li>
+<li><p class="first">瀏覽到你想要儲存輸出檔的資料夾內，檔名輸入為 <code class="docutils literal"><span class="pre">clipped_</span></code>，然後按下 <span class="guilabel">存檔</span>。</p>
+</li>
 </ol>
 <img alt="../_images/153.png" class="align-center" src="../_images/153.png" />
 <ol class="arabic simple" start="16">
-<li>You will see a new <span class="guilabel">Autofill settings</span> dialog pop up. Select
-<span class="guilabel">Fill with parameter values</span> as the <span class="guilabel">Autofill mode</span>.
-Select <span class="guilabel">Parameter to use</span> as <span class="guilabel">Input layer</span>. This
-setting will add the input file name to the output along with the specified
-<code class="docutils literal"><span class="pre">output_</span></code> filename. This is important to ensure all the output files have
-unique names and they do not overwrite each other.</li>
+<li><p class="first">你會看到有個 <span class="guilabel">自動填滿選項</span> 的視窗出現。<span class="guilabel">自動填滿模式</span> 選擇 <span class="guilabel">填上參數值</span>，<span class="guilabel">使用的參數</span> 選擇 <span class="guilabel">輸入圖層</span>。此設定會讓所有的輸出檔檔名為輸入檔檔名之前再加上 <code class="docutils literal"><span class="pre">output_</span></code> 文字。此步驟非常重要，務必確認出各個輸出檔檔名都是獨一無二的，才不會發生互相覆蓋的情況。</p>
+</li>
 </ol>
 <img alt="../_images/163.png" class="align-center" src="../_images/163.png" />
 <ol class="arabic simple" start="17">
-<li>Now we are ready to start the batch procesing. Click <span class="guilabel">Run</span>.</li>
+<li><p class="first">現在批次處理已經準備就緒，請按下 <span class="guilabel">Run</span>。</p>
+</li>
 </ol>
 <img alt="../_images/172.png" class="align-center" src="../_images/172.png" />
 <ol class="arabic simple" start="18">
-<li>The clip algorithm will run for each of the inputs and create output files
-are we have specified. Once the batch process finishes, you will see the
-layers added to QGIS canvas. As you will notice, all the global layers are
-properly clipped to the continent boundary that we had specified.</li>
+<li><p class="first">裁切運算將執行在你剛剛指定的輸入檔上，然後製作成為輸出檔。批次處理完成後，產生的圖層會載入到 QGIS 中，你會發現這些全球的圖層都被裁切到只剩下非洲大陸的區域了。</p>
+</li>
 </ol>
 <img alt="../_images/183.png" class="align-center" src="../_images/183.png" />
 </div>
@@ -388,7 +357,7 @@ properly clipped to the continent boundary that we had specified.</li>
     </p>
     <p>
         &copy; Copyright 2016, Ujaval Gandhi.<br/>
-      最後更新日期是 Sep 18, 2016.<br/>
+      最後更新日期是 Dec 12, 2016.<br/>
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.6.<br/>
     </p>
   </div>
