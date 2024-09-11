@@ -1,0 +1,784 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# DiGro, 2023
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-06 15:46+0530\n"
+"PO-Revision-Date: 2019-03-29 06:45+0000\n"
+"Last-Translator: DiGro, 2023\n"
+"Language-Team: Dutch (https://app.transifex.com/spatialthoughts/teams/7952/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:2
+msgid "Building a Python Plugin (QGIS3)"
+msgstr "Een plug-in in Python bouwen (QGIS3)"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:4
+msgid ""
+"Plugins are a great way to extend the functionality of QGIS. You can write "
+"plugins using Python that can range from adding a simple button to "
+"sohpisticated toolkits. This tutorial will outline the process involved in "
+"setting up your development environment, designing the user interface for a "
+"plugin and writing code to interact with QGIS. Please review the "
+":doc:`getting_started_with_pyqgis` tutorial to get familiar with the basics."
+msgstr ""
+"Plug-ins zijn een fantastische manier om de functionaliteit van QGIS uit te "
+"breiden. U kunt plug-ins schrijven met behulp van Python die kunnen variëren"
+" van het toevoegen van een eenvoudige knop tot gesofisticeerde "
+"gereedschappen. Deze handleiding zal een overzicht van het proces geven voor"
+" het instellen van uw ontwikkelomgeving, de interface voor een plug-in "
+"ontwerpen en code schrijven voor interactie met QGIS. Bekijk de handleiding "
+":doc:`getting_started_with_pyqgis` om bekend te raken met de "
+"basisbeginselen."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:8
+msgid ""
+"If you are building a new plugin, I strongly recommend building a Processing"
+" Plugin instead of the GUI plugin described in this tutorial. See  "
+":doc:`processing_python_plugin` for details."
+msgstr ""
+"Wanneer u een nieuwe plug-in bouwt, raad ik u sterk aan om een plug-in voor "
+"Processing te maken in plaats van de plug-in voor de GUI, die wordt "
+"beschreven in deze handleiding. Bekijk :doc:`processing_python_plugin` voor "
+"meer details."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:11
+msgid "Overview of the Task"
+msgstr "Overzicht van de taak"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:13
+msgid ""
+"We will develop a simple plugin called ``Save Attributes`` that will allow "
+"users to pick a vector layer and write its attributes to a CSV file."
+msgstr ""
+"We zullen een eenvoudige plug-in ontwikkelen, genaamd ``Attributen opslaan``"
+" die gebruikers in staat zal stellen een vectorlaag uit te zoeken en de "
+"attributen daarvan weg te schrijven naar een CSV-bestand."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:16
+msgid "Get the Tools"
+msgstr "De gereedschappen ophalen"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:19
+msgid "Qt Creator"
+msgstr "Qt Creator"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:20
+msgid ""
+"`Qt <http://www.qt.io/>`_ is a software development framework that is used "
+"to develop applications that run on Windows, Mac, Linux as well as various "
+"mobile operating systems. QGIS itself is written using the Qt framework. For"
+" plugin development, we will use an application called `Qt Creator "
+"<https://doc.qt.io/qt-5/qtdesigner-manual.html>`_ to design the interface "
+"for our plugin."
+msgstr ""
+"`Qt <http://www.qt.io/>`_ is een framewerk voor softwareontwikkeling dat "
+"wordt gebruikt om toepassingen te ontwikkelen die kunnen worden uitgevoerd "
+"op Windows, Mac, Linux als ook op verschillende mobiele besturingssystemen. "
+"QGIS zelf is geschreven met behulp van het framewerk Qt. Voor de "
+"ontwikkeling van plug-ins zullen we een toepassing gebruiken, genaamd `Qt "
+"Creator <https://doc.qt.io/qt-5/qtdesigner-manual.html>`_ om de interface "
+"voor onze plug-in te ontwerpen."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:22
+msgid ""
+"Download and install the Qt Creator installer from `Qt Offline Installers "
+"<https://www.qt.io/offline-installers>`_. Make sure you select **Qt "
+"Creator** on the download page. Note that you will have to create a free Qt "
+"account to install the package."
+msgstr ""
+"Download en installeer het installatieprogramma voor Qt Creator vanaf `Qt "
+"Offline Installers <https://www.qt.io/offline-installers>`_. Zorg er voor "
+"dat u **Qt Creator** selecteert op de pagina voor downloaden. Merk op dat u "
+"een gratis account voor Qt moet maken om het pakket te kunnen installeren."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:26
+msgid ""
+"OSGeo4w installer for QGIS on Windows include a copy of **Qt Designer** "
+"program which is a lightweight version of **Qt Creator** and perfectly "
+"suitable for building plugins. You may skip downloading Qt Creator and use "
+"it instead from :menuselection:`C:\\\\OSGeo4W64\\\\bin\\\\qgis-designer`."
+msgstr ""
+"Het installatieprogramma OSGeo4w voor QGIS op Windows bevat een kopie van "
+"het programma **Qt Designer** dat een lichtgewicht versie is van **Qt "
+"Creator** en perfect geschikt voor het bouwen van plug-ins. U zou het "
+"downloaden van Qt Creator kunnen overslaan en het in plaats daarvan "
+"gebruiken vanuit :menuselection:`C:\\\\OSGeo4W64\\\\bin\\\\qgis-designer`."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:33
+msgid "Python Bindings for Qt"
+msgstr "Python Bindings voor Qt"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:35
+msgid ""
+"Since we are developing the plugin in Python, we need to install the python "
+"bindings for Qt. The method for installing these will depend on the platform"
+" you are using. For building plugins we need the ``pyrcc5`` command-line "
+"tool."
+msgstr ""
+"Omdat we de plug-in ontwikkelen in Python, moeten we de Python bindings voor"
+" Qt installeren. De methode voor het installeren hiervan is afhankelijk van "
+"het platform dat u gebruikt. Voor het bouwen van plug-ins hebben we het "
+"gereedschap voor de opdrachtregel ``pyrcc5`` nodig."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:39
+#: ../../source/docs/3/building_a_python_plugin.rst:84
+#: ../../source/docs/3/building_a_python_plugin.rst:157
+msgid "**Windows**"
+msgstr "**Windows**"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:41
+msgid ""
+"Relevant python bindings are included in the QGIS install on Windows. But to"
+" use them from the plugin folder, we need to indicate the path to the QGIS "
+"install."
+msgstr ""
+"Relevante bindings voor Python zijn opgenomen in de installatie van QGIS op "
+"Windows. We dienen het pad aan te geven in de installatie van QGIS om ze uit"
+" de map Plugin te kunnen gebruiken."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:43
+msgid ""
+"Create a Windows Batch file (.bat extension) with the following content and "
+"save it on your computer as ``compile.bat``. We will later copy this file to"
+" the plugin folder. If you installed QGIS at a different path, replace the "
+"``C:\\OSGeo4W64\\bin\\`` with your path."
+msgstr ""
+"Maak een Windows Batch-bestand (extensie .bat) met de volgende inhoud en sla"
+" dat op uw computer op als ``compile.bat``. We zullen dit bestand later naar"
+" de map Plugin kopiëren. Als u QGIS hebt geïnstalleerd in een ander pad, "
+"vervang dan ``C:\\OSGeo4W64\\bin\\`` door uw pad."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:59
+msgid "**Mac**"
+msgstr "**Mac**"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:61
+msgid ""
+"Install the `Homebrew <http://brew.sh>`_ package manager. Install ``PyQt`` "
+"package by running the following command:"
+msgstr ""
+"Installeer de `Homebrew <http://brew.sh>`_ pakketbeheerder. Installeer het "
+"pakket ``PyQt``  door de volgende opdracht uit te voeren:"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:68
+msgid "**Linux**"
+msgstr "**Linux**"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:68
+msgid ""
+"Depending on your distribution, find and install the ``python-qt5`` package."
+" On Ubuntu and Debian-based distributions, you can run the following "
+"command:"
+msgstr ""
+"Afhankelijk van uw distributie, zoek en installeer het pakket ``python-"
+"qt5``. Op Ubuntu en Debian-gebaseerde distributies kunt u de volgende "
+"opdracht uitvoeren:"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:75
+msgid "You may find that QGIS has already installed this package."
+msgstr "Het zou kunnen zijn dat QGIS dit pakket al heeft geïnstalleerd."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:78
+msgid "A Text Editor or a Python IDE"
+msgstr "Een tekstbewerker of een Python IDE"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:80
+msgid ""
+"Any kind of software development requires a good text editor. If you already"
+" have a favorite text editor or an IDE (Integrated Development Environment),"
+" you may use it for this tutorial. Otherwise, each platform offers a wide "
+"variety of free or paid options for text editors. Choose the one that fits "
+"your needs."
+msgstr ""
+"Elke soort softwareontwikkeling vereist een goede tekstbewerker. Als u al "
+"een favoriete tekstbewerker of een IDE (Integrated Development Environment) "
+"heeft, zou u die kunnen gebruiken voor deze handleiding. Anders biedt elk "
+"platform een grote variëteit van gratis of betaalde opties voor "
+"tekstbewerkers. Kies er een die aan uw wensen voldoet."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:82
+msgid "This tutorial uses Notepad++ editor on Windows."
+msgstr "Deze handleiding gebruikt de bewerker Notepad++ op Windows."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:86
+msgid ""
+"`Notepad++ <http://notepad-plus-plus.org/>`_ is a good free editor for "
+"windows. Download and install the `Notepad++ editor <https://notepad-plus-"
+"plus.org/download/>`_."
+msgstr ""
+"`Notepad++ <http://notepad-plus-plus.org/>`_ is een goede gratis "
+"tekstbewerker voor Windows. Download en installeer de `tekstbewerker "
+"Notepad++ <https://notepad-plus-plus.org/download/>`_."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:92
+msgid ""
+"If you are using Notepad++, makes sure to go to :menuselection:`Settings -->"
+" Preferences --> Tab Settings` and enable :guilabel:`Replace by space`. "
+"Python is very sensitive about whitespace and this setting will ensure tabs "
+"and spaces are treated properly."
+msgstr ""
+"Indien u Notepad++ gebruikt, zorg er dan voor dat u gaat naar "
+":menuselection:`Instellingen --> Voorkeuren --> Tabs`:guilabel: en `Omzetten"
+" in spaties` inschakelt. Python is bijzonder gevoelig voor witruimte en deze"
+" instelling zal er voor zorgen dat tabs en spaties op de juiste manier "
+"worden behandeld."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:95
+msgid "Plugin Builder plugin"
+msgstr "plug-in Plugin Builder"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:97
+msgid ""
+"There is a helpful QGIS plugin named ``Plugin Builder`` which creates all "
+"the necessary files and the boilerplate code for a plugin. Find and install "
+"the ``Plugin Builder`` plugin. See :doc:`../using_plugins` for more details "
+"on how to install plugins."
+msgstr ""
+"Er is een nuttige plug-in voor QGIS, genaamd ``Plugin Builder`` die alle "
+"noodzakelijke bestanden en onderliggende code voor een plug-in maakt. Zoek "
+"en installeer de plug-in ``Plugin Builder``. Bekijk :doc:`../using_plugins` "
+"voor meer details over hoe plug-ins te installeren."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:100
+msgid "Plugins Reloader plugin"
+msgstr "plug-in Plugins Reloader"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:102
+msgid ""
+"This is another helper plugin which allows iterative development of plugins."
+" Using this plugin, you can change your plugin code and have it reflected in"
+" QGIS without having to restart QGIS every time. Find and install the "
+"``Plugin Reloader`` plugin. See :doc:`../using_plugins` for more details on "
+"how to install plugins."
+msgstr ""
+"Dit is een andere nuttige hulpplug-in die het iteratief ontwikkelen van "
+"plug-ins mogelijk maakt. Met behulp van deze plug-in kunt u de code voor uw "
+"plug-in wijzigen en die hebben gereflecteerd in QGIS zonder dat u QGIS elke "
+"keer opnieuw moet starten. Zoek en installeer de plug-in ``Plugin "
+"Reloader``. Bekijk :doc:`../using_plugins` voor meer details over hoe plug-"
+"ins te installeren."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:106
+msgid ""
+"Plugin Reloader is an experimental plugin. Make sure you have checked "
+":guilabel:`Show also experimental plugins` in :guilabel:`Plugin Manager` "
+"settings if you cannot find it."
+msgstr ""
+"Plugin Reloader is een experimentele plug-in. Zorg er voor dat u ook "
+":guilabel:`Ook de experimentele plugins tonen` in de instellingen van "
+":guilabel:`Plug-ins installeren en beheren` te selecteren, als u hem niet "
+"kunt vinden."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:109
+msgid "Procedure"
+msgstr "Procedure"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:111
+msgid ""
+"Open QGIS. Go to :menuselection:`Plugins --> Plugin Builder --> Plugin "
+"Builder`."
+msgstr ""
+"Open QGIS. Ga naar :menuselection:`Plug-ins --> Plugin Builder --> Plugin "
+"Builder`."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:116
+msgid ""
+"You will see the :guilabel:`QGIS Plugin Builder` dialog with a form. You can"
+" fill the form with details relating to our plugin. The :guilabel:`Class "
+"name` will be the name of the Python Class containing the logic of the "
+"plugin. This will also be the name of the folder containing all the plugin "
+"files. Enter ``SaveAttributes`` as the class name. The :guilabel:`Plugin "
+"name` is the name under which your plugin will appear in the    "
+":guilabel:`Plugin Manager`. Enter the name as ``Save Attributes``. Add a "
+"description in the :guilabel:`Description` field. The :guilabel:`Module "
+"name` will be the name of the main python file for the plugin. Enter it as "
+"``save_attributes``. Leave the version numbers as they are and enter your "
+"name and email address in the appropriate fields. Click :guilabel:`Next`."
+msgstr ""
+"U zult het dialoogvenster zien van :guilabel:`QGIS Plugin Builder` met een "
+"formulier. U kunt het formulier vullen met details met betrekking tot onze "
+"plug-in. De :guilabel:`Class name` zal de naam zijn van de Python Class die "
+"de logica van de plug-in bevat. Dit zal ook de naam zijn van de map die alle"
+" bestanden van de plug-in bevat. Voer ``SaveAttributes`` in als de naam van "
+"de klasse. De :guilabel:`Plugin name` is de naam waarmee uw plug-in zal "
+"verschijnen in :guilabel:`Plug-ins beheren en installeren`. Voer de naam in "
+"als ``Attributen opslaan``. Voeg een beschrijving toe in het veld "
+":guilabel:`Description`. De :guilabel:`Module name` zal de naam zijn van het"
+" belangrijkste Python-bestand voor de plug-in. Voer die in als "
+"``save_attributes``. Laat de versienummers zoals zij zijn en voer uw naam en"
+" e-mailadres in in de toepasselijke velden. Klik op :guilabel:`Next`."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:121
+msgid ""
+"Enter a brief description of the plugin for the :guilabel:`About` dialog and"
+" click :guilabel:`Next`."
+msgstr ""
+"Voer een korte beschrijving van de plug-in in voor het dialoogvenster "
+":guilabel:`About` en klik op :guilabel:`Next`."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:126
+msgid ""
+"Select the ``Tool button with dialog`` from the :guilabel:`Template` "
+"selector`. The :guilabel:`Text for menu item` value will be how the users "
+"will find your plugin in QGIS menu. Enter it as ``Save Attributes as CSV``. "
+"The :guilabel:`Menu` field will decide where your plugin item is added in "
+"QGIS. Since our plugin is for vector data, select ``Vector``. Click "
+":guilabel:`Next`."
+msgstr ""
+"Selecteer ``Tool button with dialog`` uit de :guilabel:`Template` selector`."
+" De waarde :guilabel:`Text for menu item` is hoe gebruikers uw plug-in "
+"zullen zien in het menu van QGIS. Voer het in als ``Attributen opslaan als "
+"CSV``. Het veld :guilabel:`Menu` zal bepalen waar uw plug-in zal worden "
+"toegevoegd in QGIS. Selecteer ``Vector`` omdat onze plug-in bestemd is voor "
+"vectorgegevens. Klik op :guilabel:`Next`."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:131
+msgid ""
+"Plugin builder will prompt you for the type of files to generate. Keep the "
+"default selection and click :guilabel:`Next`."
+msgstr ""
+"Plugin builder zal u vragen naar het type van de te genereren bestanden. "
+"Behoud de standaard selectie en klik op :guilabel:`Next`."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:136
+msgid ""
+"As we do not intend to publish the plugin, you may leave the :guilabel:`Bug "
+"tracker`, :guilabel:`Repository` and :guilabel:`Home page` values to "
+"default. Check the :guilabel:`Flag the plugin as experimental` box at the "
+"bottom and click :guilabel:`Next`."
+msgstr ""
+"U kunt, omdat we niet van plan zijn om onze plug-in te publiceren, de "
+"waarden van :guilabel:`Bug tracker`, :guilabel:`Repository` en "
+":guilabel:`Home page` op de standaard laten staan. Selecteer het vak "
+":guilabel:`Flag the plugin as experimental` aan de onderzijde en klik op "
+":guilabel:`Next`."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:141
+msgid ""
+"You will be prompted to choose a directory for your plugin. For now, save it"
+" to a directory you can locate easily on your computer and click "
+":guilabel:`Generate`."
+msgstr ""
+"U zult worden gevraagd een map op te geven voor uw plug-in. Sla die, voor "
+"nu, op in een map die u gemakkelijk kunt vinden op uw computer en klik op "
+":guilabel:`Generate`."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:146
+msgid ""
+"Next, press the :guilabel:`generate` button. You will see a confirmation "
+"dialog once your plugin template is created."
+msgstr ""
+"Druk vervolgens op de knop :guilabel:`generate`. U zult een dialoogvenster "
+"ter bevestiging zien als de sjabloon voor uw plug-in eenmaal is gemaakt."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:153
+msgid ""
+"You may get a prompt saying that pyrcc5 is not found in the path. You can "
+"ignore this message."
+msgstr ""
+"U zou een bericht kunnen krijgen dat zegt dat pyrcc5 niet in het pad is "
+"gevonden. U kunt dit bericht negeren."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:155
+msgid ""
+"Before we can use the newly created plugin, we need to compile the "
+"``resources.qrc`` file that was created by Plugin Builder. This file is part"
+" of the `Qt Resource System <https://doc.qt.io/qt-5/resources.html>`_ which "
+"references all binary files used in the plugin. For this plugin, it will "
+"only have the plugin icon. Compiling this file generates application code "
+"that can be used in the plugin independent which platform the plugin is "
+"being run. Follow the platform specific instruction for this step."
+msgstr ""
+"Voordat we de nieuw gemaakte plug-in kunnen gebruiken, dienen we het bestand"
+" ``resources.qrc`` te compileren dat werd gemaakt door Plugin Builder. Dit "
+"bestand is deel van het `Qt Resource System "
+"<https://doc.qt.io/qt-5/resources.html>`_ wat verwijst naar alle binaire "
+"bestanden die in de plug-in worden gebruikt. Voor deze plug-in, zal het "
+"alleen het p;ictogram voor de plug-in hebben. Compileren van dit bestand "
+"genereert code voor de toepassing die kan worden gebruikt in de plug-in, "
+"onafhankelijk van op welk platform de plug-in wordt uitgevoerd. Volg de "
+"platformspecifieke instructie voor deze stap."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:159
+msgid ""
+"You can now copy the ``compile.bat`` file (created during the *Python "
+"Bindings for Qt* section at the start) to the plugin folder. Once copied, "
+"double-click the file to run it. If the run was successful, you will see a "
+"new file called ``resources.py`` in the folder."
+msgstr ""
+"U kunt nu het bestand ``compile.bat`` kopiëren (gemaakt in het gedeelte "
+"*Python Bindings voor Qt* in het begin) naar de map Plugin. Eenmaal "
+"gekopieerd, dubbelklik op het bestand om het uit te voeren. Als de "
+"uitvoering met succes werd voltooid zult u nu een nieuw bestand, genaamd "
+"``resources.py``, in de map zien staan."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:166
+msgid ""
+"If this step fails, you can launch ``cmd.exe`` and browse to the plugin "
+"folder using ``cd`` command. Run the Batch file by running ``compile.bat`` "
+"to see the error."
+msgstr ""
+"Als deze stap mislukt kunt u ``cmd.exe`` starten en bladeren naar de map "
+"Plugin met behulp van de opdracht ``cd``. Voer het Batch-bestand uit door "
+"``compile.bat`` uit te voeren om de fout te kunnen zien."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:168
+msgid "**Mac and Linux**"
+msgstr "**Mac en Linux**"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:170
+msgid ""
+"You will need to install ``pb_tool`` first. Open a Terminal and install it "
+"via pip."
+msgstr ""
+"U zult eerst het gereedschap ``pb_tool`` moeten installeren. Open een "
+"Terminal en installeer het via pip."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:176
+msgid ""
+"Open a Terminal and go to the plugin directory and type ``pb_tool compile``."
+" This will run the ``pyrcc5`` command that we had installed as part *Python "
+"Bindings for Qt* section."
+msgstr ""
+"Open een Terminal en  ga naar de plugin directory en typ ``pb_tool "
+"compile``. Dit zal de opdracht ``pyrcc5`` uitvoeren die we hadden "
+"geïnstalleerd als deel van het gedeelte *Python Bindings voor Qt*."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:182
+msgid ""
+"Plugins in QGIS are stored in a special folder. We must copy our plugin "
+"directory to that folder before it can be used. In QGIS, locate your current"
+" profile folder by going to :menuselection:`Settings --> User Profiles --> "
+"Open Active Profile Folder`."
+msgstr ""
+"Plugins worden in QGIS opgeslagen in een speciale map. We moeten onze plugin"
+" directory naar die map kopiëren voor we die kunnen gebruiken. Zoek, in "
+"QGIS, de map voor uw huidige profiel door te gaan naar :menuselection:`Extra"
+" --> Gebruikersprofielen --> Actieve profielmap openen`."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:187
+msgid ""
+"In the profile folder, copy the plugin folder to :menuselection:`python --> "
+"plugins` subfolder."
+msgstr ""
+"Kopieer, in de profielmap, de map Plugin naar de submap "
+":menuselection:`python --> plugins`."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:192
+msgid ""
+"Now we are ready to have a first look at the brand new plugin we created. "
+"Close QGIS and launch it again. Go to :menuselection:`Plugins --> Manage and"
+" Install plugins` and enable the ``Save Attributes`` plugin in the    "
+":guilabel:`Installed` tab."
+msgstr ""
+"Nu zijn we klaar om een eerste blik te werpen op de brandnieuwe plug-in die "
+"we hebben gemaakt. Sluit QGIS en start het opnieuw. Ga naar "
+":menuselection:`Plug-ins --> Plug-ins beheren en installeren` en schakel de "
+"plug-in ``Attributen opslaan`` in op de tab :guilabel:`Geïnstalleerd`."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:197
+msgid ""
+"You will notice that there is a new icon in the plugin toolbar and a new "
+"menu entry under :menuselection:`Vector --> Save Attributes --> Save "
+"Attributes as CSV``. Select it to launch the plugin dialog."
+msgstr ""
+"U zult zien dat er een nieuw pictogram op de werkbalk staat en een nieuw "
+"menuitem onder :menuselection:`Vector --> Attributen opslaan --> Attributen "
+"opslaan als CSV``. Selecteer die om het dialoogvenster voor de plug-in te "
+"starten."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:202
+msgid ""
+"You will notice a new blank dialog named :guilabel:`Save Attributes`. Close "
+"this dialog."
+msgstr ""
+"U zult een nieuw blanco dialoogvenster zien, genaamd :guilabel:`Attributen "
+"opslaan`. Sluit dit dialoogvenster."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:207
+msgid ""
+"We will now design our dialog box and add some user interface elements to "
+"it. Open the ``Qt Creator`` program and go to :menuselection:`File --> Open "
+"File or Project`."
+msgstr ""
+"We zullen nu ons nieuw dialoogvenster ontwerpen en enkele elementen voor de "
+"gebruikersinterface er aan toevoegen. Open het programma ``Qt Creator`` en "
+"ga naar :menuselection::`File --> Open File or Project`."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:212
+msgid ""
+"Browse to the plugin directory and select the "
+"``save_attributes_dialog_base.ui`` file. Click :guilabel:`Open`."
+msgstr ""
+"Blader naar de map met de plug-in en selecteer het bestand "
+"``save_attributes_dialog_base.ui`` file. Klik op :guilabel:`Openen`."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:219
+msgid ""
+"Windows hides the ``AppData`` folder so you may not see it in the file "
+"selector dialog. You can enter ``AppData`` in the :guilabel:`File name` "
+"prompt from its parent directory to open it."
+msgstr ""
+"Windows verbergt de map ``AppData``, dus u zou die niet hoeven te zien in "
+"het dialoogvenster voor het selecteren van bestanden. U kunt ``AppData`` "
+"invoeren bij de prompt voor :guilabel:`File name` vanuit de map erboven om "
+"het te openen."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:221
+msgid ""
+"You will see the blank dialog from the plugin. You can drag-and-drop "
+"elements from the left-hand panel on the dialog. We will add a "
+":guilabel:`Combo Box` type of :guilabel:`Input Widgets`. Drag it to the "
+"plugin dialog."
+msgstr ""
+"U zult een blanco dialoogvenster uit de plug-in zien. U kunt met slepen en "
+"neerzetten elementen verplaatsen vanuit het paneel aan de linkerkant naar "
+"het dialoogvenster. We zullen een type :guilabel:`Combo Box` van "
+":guilabel:`Input Widgets` toevoegen. Sleep het naar het dialoogvenster van "
+"de plug-in."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:226
+msgid ""
+"Resize the combo box and adjust its size. Now drag a :guilabel:`Label` type "
+":guilabel:`Display Widget` on the dialog."
+msgstr ""
+"Maak het combinatievak op maat en pas de grootte aan. Sleep nu een type :guilabel:`Label` van\n"
+":guilabel:`Display Widget` in het dialoogvenster."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:231
+msgid "Click on the label text and enter ``Select a layer``."
+msgstr "Klik op de labeltekst en voer in ``Selecteer een laag``."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:236
+msgid ""
+"Save this file by going to :menuselection:`File --> Save "
+"save_attributes_dialog_base.ui`. Note the name of the combo box object is "
+"``comboBox``. To interact with this object using python code, we will have "
+"to refer to it by this name."
+msgstr ""
+"Sla dit bestand op door te gaan naar :menuselection:`File --> Save "
+"save_attributes_dialog_base.ui`. Onthoud dat de naam van het object "
+"combinatievak ``comboBox`` is. We zullen er met die naam naar moeten "
+"verwijzen om interacties uit te kunnen voeren met behulp van code voor "
+"Python."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:241
+msgid ""
+"Let's reload our plugin so we can see the changes in the dialog window. Go "
+"to :menuselection:`Plugin --> Plugin Reloader --> Choose a plugin to be "
+"reloaded`. Select ``SaveAttributes`` in the :guilabel:`Configure Plugin "
+"reloader` dialog."
+msgstr ""
+"Laten we onze plug-in opnieuw laden zodat we de wijzigingen in het venster "
+"van het dialoogvenster kunnen zien. Ga naar :menuselection:`Plug-ins --> "
+"Plugin Reloader --> Choose a plugin to be reloaded`. Selecteer "
+"``SaveAttributes`` in het dialoogvenster :guilabel:`Configure Plugin "
+"reloader`."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:246
+msgid ""
+"Click the :guilabel:`Reload plugin` button to load the latest version of the"
+" plugin. Click the :guilabel:`Save Attributes as CSV` button to open the "
+"newly designed dialog box."
+msgstr ""
+"Klik op de knop :guilabel:`Reload plugin` om de laatste versie van de plug-"
+"in te laden. Klik nu op de knop :guilabel:`Attributen opslaan als CSV`. U "
+"zult het nieuw ontworpen dialoogvenster zien."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:251
+msgid ""
+"Let's add some logic to the plugin that will populate the combo box with the"
+" layers loaded in QGIS. Go to the plugin directory and load the file "
+"``save_attributes.py`` in a text editor.  First, insert at the top of the "
+"file with the other imports:"
+msgstr ""
+"Laten we enige logica toevoegen aan de plug-in die het combinatievak zal "
+"vullen met de in  QGIS geladen lagen. Ga naar de map van de plug-in en laadt"
+" het bestand ``save_attributes.py`` in een tekstbewerker. Als eerste, voeg "
+"aan het begin van het bestand in met de andere imports:"
+
+#: ../../source/docs/3/building_a_python_plugin.rst:258
+msgid ""
+"Then scroll down to the end and find the ``run(self)`` method. This method "
+"will be called when you click the toolbar button or select the plugin menu "
+"item. Add the following code at the beginning of the method. This code gets "
+"the layers loaded in QGIS and adds it to the ``comboBox`` object from the "
+"plugin dialog."
+msgstr ""
+"Scroll dan naar beneden en zoek naar de methode ``run(self)``. Deze methode "
+"zal worden aangeroepen wanneer u op de knop van de werkbalk klikt of het "
+"menuitem van de plug-in selecteert. Voeg de volgende code toe aan het begin "
+"van de methode. Deze code haalt de geladen lagen in QGIS op en voegt die toe"
+" aan het object ``comboBox`` van het dialoogvenster van de plug-in."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:275
+msgid ""
+"Back in the main QGIS window, reload the plugin by clicking on the "
+":guilabel:`Reload plugin` button. To test this new functionality, we must "
+"load some layers in QGIS. After you have loaded some layers, launch the "
+"plugin by going to :menuselection:`Vector --> Save Attributes --> Save "
+"Attributes as CSV`. You will see that our combo box is now populated with "
+"the layer names that are loaded in QGIS."
+msgstr ""
+"Laadt, terug in het hoofdvenster van QGIS, de plug-in opnieuw door te "
+"klikken op de knop  :guilabel:`Reload plugin`. We moeten enkele lagen in "
+"QGIS laden om deze functionaliteit te testen. Nadat u enkele lagen hebt "
+"geladen, start de plug-in door te gaan naar :menuselection:`Vector --> "
+"Attributen opslaan --> Attributen oposlaan als CSV`. U zult nu zien dat ons "
+"combinatievak is gevuld met de laagnamen die zijn geladen in QGIS."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:280
+msgid ""
+"Let's add the remaining user interface elements. Switch back to Qt Creator "
+"and load the ``save_attributes_dialog_base.ui`` file. Add a ``Label``     "
+":guilabel:`Display Widget` and change the text to ``Select output file``."
+"     Add a ``LineEdit`` type :guilabel:`Input Widget` that will show the "
+"output     file path that the user has chosen. Next, add a ``Push Button`` "
+"type     :guilabel:`Button` and change the button label to ``...``. Note the"
+" object     names of the widgets that we will have to use to interact with "
+"them. Save     the file."
+msgstr ""
+"Laten we de resterende elementen van de gebruikersinterface toevoegen. "
+"Schakel terug naar Qt Creator en laadt het bestand "
+"``save_attributes_dialog_base.ui``. Voeg een ``Label`` :guilabel:`Display "
+"Widget` toe en wijzig de tekst naar ``Uitvoerbestand selecteren``. Voeg een "
+"type ``LineEdit`` van :guilabel:`Input Widget` toe dat het pad naar het "
+"uitvoerbestand laat zien dat de gebruiker heeft gekozen. Voeg vervolgens een"
+" type ``Push Button`` van :guilabel:`Button` toe en wijzig het label van de "
+"knop naar ``...``. Onthoud de objectnamen van de widgets die we moeten "
+"gebruiken om er interacties mee uit te kunnen voeren. Sla het bestand op."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:285
+msgid ""
+"We will now add python code to open a file browser when the user clicks the "
+"``...`` push button and show the select path in the line edit widget. Open"
+"     the ``save_attributes.py`` file in a text editor. Add ``QFileDialog`` "
+"to     ``QtWidgets`` list of imports at the top of the file."
+msgstr ""
+"We zullen nu code voor Python toevoegen om een dialoogvenster voor "
+"bestandsselectie te openen als de gebruiker op de knop ``...`` drukt en het "
+"geselecteerde pad weergeven in het widget line edit. Open het bestand "
+"``save_attributes.py`` in een tekstbewerker. Voeg ``QFileDialog`` toe aan de"
+" lijst  ``QtWidgets`` voor import aan het begin van het bestand."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:290
+msgid ""
+"Add a new method called ``select_output_file`` with the following code.     "
+"This code will open a file browser and populate the line edit widget with"
+"     the path of the file that the user chose. Note, how ``getSaveFileName``"
+"     returns a tuple with the filename and the filter used."
+msgstr ""
+"Voeg een nieuwe methode, genaamd ``select_output_file`` toe, met de volgende"
+" code. Deze code zal een dialoogvenster voor bestandsselectie openen en het "
+"widget line edit vullen met het pad van het bestand dat de gebruiker heeft "
+"gekozen. Merk op hoe ``getSaveFileName`` een tuple teruggeeft met de "
+"bestandsnaam en het gebruikte filter."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:302
+msgid ""
+"Now we need to add code so that when the `...` button is clicked,     "
+"``select_output_file`` method is called. Scroll down to the ``run`` method "
+"and add the following line in the block where the dialog is initialized. "
+"This code will connect the ``select_output_file`` method to the ``clicked`` "
+"signal of the push button widget."
+msgstr ""
+"Nu moeten we code toevoegen zodat, als op de knop `...` wordt geklikt, de "
+"methode ``select_output_file`` wordt aangeroepen. Scroll naar beneden naar "
+"de methode ``run`` en voeg de volgende regel toe in het blok waar het "
+"dialoogvenster wordt geïnitialiseerd. Deze code zal de methode "
+"``select_output_file`` verbinden met het signal ``clicked`` van de knop van "
+"het widget."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:311
+msgid ""
+"Back in QGIS, reload the plugin and run it. If all went fine, you will be "
+"able to click the ``...`` button and select an output text file from your "
+"disk."
+msgstr ""
+"Laadt, terug in QGIS, de plug-in opnieuw en voer die uit. Als alles goed "
+"ging kunt u nu op de knop ``...`` drukken en een uitvoer tekstbestand op uw "
+"schijf selecteren."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:316
+msgid ""
+"When you click :guilabel:`OK` on the plugin dialog, nothing happens. That  "
+"is because we have not added the logic to pull attribute information from "
+"the layer and write it to the text file. We now have all the pieces in place"
+" to do just that. Find the place in the ``run`` method where it says "
+"``pass``. Replace it with the code below. The explanation for this code can "
+"be found in :doc:`getting_started_with_pyqgis`."
+msgstr ""
+"Als u op :guilabel:`OK` klikt in het dialoogvenster van de plug-in, gebeurt "
+"er niets. Dat komt omdat we de logica om de informatie over de attributen "
+"uit de laag op te halen en weg te schrijven naar het tekstbestand nog niet "
+"hebben toegevoegd. We hebben nu alle stukken op hun plaats om nu precies dat"
+" te gaan doen. Zoek naar de plek in de methode ``run`` waar ``pass`` staat."
+"  Vervang dat door de code die hieronder staat. De verklaring van deze code "
+"kan worden gevonden in :doc:`getting_started_with_pyqgis`."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:336
+msgid ""
+"We have one last thing to add. When the operation finishes successfully, we "
+"should indicate the same to the user. The preferred way to give "
+"notifications to the user in QGIS is via the "
+"``self.iface.messageBar().pushMessage()`` method. Add ``Qgis`` to "
+"``qgis.core`` list of imports at the top of the file and add the code below "
+"at the end of the ``run`` method."
+msgstr ""
+"We moeten nog één laatste ding toevoegen. Als de bewerking met succes wordt "
+"uitgevoerd, zouden we hetzelfde moeten aangeven aan de gebruiker. De "
+"voorkeur voor het geven van notificaties aan de gebruiker in QGIS is via de "
+"methode ``self.iface.messageBar().pushMessage()``. Voeg ``Qgis`` toe aan de "
+"lijst van imports ``qgis.core`` aan het begin van het bestand en voeg de "
+"hieronder staande code toe aan het einde van de methode ``run``."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:350
+msgid ""
+"Now our plugin is ready. Reload the plugin and try it out. You will find "
+"that the output text file you chose will have the attributes from the vector"
+" layer."
+msgstr ""
+"Nu is onze plug-in klaar. Herlaad de plug-in en probeer hem uit. U zult zien"
+" dat het uitvoer tekstbestand dat u kiest de attributen uit de vectorlaag "
+"zal bevatten."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:355
+msgid ""
+"You can zip the plugin directory and share it with your users. They can "
+"unzip the contents to their plugin directory and try out your plugin. If "
+"this was a real plugin, you would upload it to the `QGIS Plugin Repository "
+"<https://plugins.qgis.org/>`_ so that all QGIS users will be able to find "
+"and download your plugin."
+msgstr ""
+"U kunt de map voor de plug-in zippen en delen met uw gebruikers. Zij kunnen "
+"de inhoud uitpakken naar hun eigen map voor de plug-in en uw plug-in "
+"uitproberen. Als dit een echte plug-in zou zijn zou u die uploaden naar de "
+"`QGIS Plugin Repository <https://plugins.qgis.org/>`_ zodat alle gebruikers "
+"van QGIS hem kunnen vinden en uw plug-in kunnen downloaden."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:359
+msgid ""
+"This plugin is for demonstration purpose only. Do not publish this plugin or"
+" upload it to the QGIS plugin repository."
+msgstr ""
+"Deze plug-in is alleen ter demonstratie. Publiceer deze plug-in niet en "
+"upload hem ook niet naar de opslagplaats van plug-ins voor QGIS."
+
+#: ../../source/docs/3/building_a_python_plugin.rst:362
+msgid "Below is the full ``save_attributes.py`` file as a reference."
+msgstr ""
+"Hieronder staat, als referentie, het volledige bestand "
+"``save_attributes.py``."

@@ -2,7 +2,15 @@
 tutorials = {}
 # List of English langugage tutorials
 tutorials['en'] = [
+        ('3/batch_processing', 'Batch Processing using Processing Framework (QGIS 3)'),
+        ('3/processing_graphical_modeler', 'Automating Complex Workflows using Processing Modeler (QGIS3)'),
+				('3/automating_map_creation', 'Automating Map Creation with Print Layout Atlas (QGIS3)'),
+				('3/processing_python_scripts', 'Writing Python Scripts for Processing Framework (QGIS3)'),
         ('making_a_map', 'Making A Map'),
+				('3/getting_started_with_pyqgis', 'Getting Started with Python Programming (QGIS3)'),
+        ('3/building_a_python_plugin', 'Building a Python Plugin (QGIS3)'),
+        ('3/custom_python_functions', 'Using Custom Python Expression Functions (QGIS3)'),
+        ('3/importing_spreadsheets_csv', 'Importing Spreadsheets or CSV files (QGIS3)'),
         ('working_with_attributes', 'Working with Attributes'),
         ('importing_spreadsheets_csv', 'Importing Spreadsheets or CSV files'),
         ('using_plugins', 'Using Plugins'),
@@ -38,6 +46,8 @@ tutorials['en'] = [
         ('running_qgis_jobs', 'Running and Scheduling QGIS Processing Jobs'),
         ('find_neighbor_polygons', 'Find Neighbor Polygons in a Layer'),
         ('performing_table_joins_pyqgis', 'Performing Table Joins (PyQGIS)'),
+        ('web_mapping_with_qgis2web', 'Web Mapping with QGIS2Web'),
+        ('creating_basemaps_with_qtiles', 'Creating Basemaps with QTiles'),
         ('leaflet_maps_with_qgis2leaf', 'Leaflet Web Maps with qgis2leaf'),
         ('using_gme_connector', 'Using Google Maps Engine Connector for QGIS'),
         ]

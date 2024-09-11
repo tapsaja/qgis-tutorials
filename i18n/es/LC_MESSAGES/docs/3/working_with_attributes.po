@@ -1,0 +1,334 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Santiago Pestarini <santiagonob@gmail.com>, 2019
+# YoViajo, 2021
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-23 16:40+0000\n"
+"PO-Revision-Date: 2019-05-31 06:36+0000\n"
+"Last-Translator: YoViajo, 2021\n"
+"Language-Team: Spanish (https://www.transifex.com/spatialthoughts/teams/7952/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../../source/docs/3/working_with_attributes.rst:2
+msgid "Working with Attributes (QGIS3)"
+msgstr "Trabajando con atributos (QGIS3)"
+
+#: ../../source/docs/3/working_with_attributes.rst:3
+msgid ""
+"GIS data has two parts - features and attributes. Attributes are structured "
+"data about each feature. This tutorial shows how to view the attributes of a"
+" GIS vector layer and do basic queries on them in QGIS."
+msgstr ""
+"Los datos SIG tienen dos partes - objetos espaciales (features) y atributos."
+" Los atributos son datos estructurados sobre cada característica. Este "
+"tutorial muestra cómo ver los atributos de cada capa vectorial SIG y hacer "
+"consultas básicas sobre los mismos en QGIS."
+
+#: ../../source/docs/3/working_with_attributes.rst:6
+msgid "Overview of the task"
+msgstr "Vista general de la tarea"
+
+#: ../../source/docs/3/working_with_attributes.rst:8
+msgid ""
+"The dataset for this tutorial contains information about populated places of"
+" the world. The task is to query and find all the capital cities in the "
+"World that have a population greater than 1 million and save the resulting "
+"subset as a GeoJSON file."
+msgstr ""
+"Los conjuntos de datos para este tutorial contienen información de centros "
+"poblados de todo el mundo. La tarea es buscar y encontrar todas las ciudades"
+" capitales del mundo que tengan una población mayor a 1 millón y guardar el "
+"subconjunto resultante como un archivo GeoJSON"
+
+#: ../../source/docs/3/working_with_attributes.rst:11
+msgid "Other skills you will learn"
+msgstr "Otras habilidades que aprenderá"
+
+#: ../../source/docs/3/working_with_attributes.rst:12
+msgid "Select features from a layer using expressions."
+msgstr "Seleccionar objetos espaciales de una capa usando expresiones."
+
+#: ../../source/docs/3/working_with_attributes.rst:13
+msgid "Using the :guilabel:`Attributes` toolbar."
+msgstr "Usar la barra de herramientas :guilabel:`Atributos`"
+
+#: ../../source/docs/3/working_with_attributes.rst:14
+msgid "Exporting selected features in a layer."
+msgstr "Exportar objetos espaciales seleccionados en una capa."
+
+#: ../../source/docs/3/working_with_attributes.rst:17
+msgid "Get the data"
+msgstr "Obtener los datos"
+
+#: ../../source/docs/3/working_with_attributes.rst:18
+msgid ""
+"Natural Earth provides a `Populated Places "
+"<http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-"
+"populated-places/>`_ dataset. Download the `simple (less columns) dataset "
+"<http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip>`_."
+msgstr ""
+"Natural Earth provee un conjunto de datos  `Centros Poblados "
+"<http://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-"
+"populated-places/>`_. Descargue el `conjunto de datos simple (menos "
+"columnas)  "
+"<http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places_simple.zip>`_"
+
+#: ../../source/docs/3/working_with_attributes.rst:20
+msgid ""
+"For convenience, you may directly download a copy of datasets from the link "
+"below:"
+msgstr ""
+"Para su comodidad, puede descargar directamente una copia de los conjuntos "
+"de datos del enlace abajo:"
+
+#: ../../source/docs/3/working_with_attributes.rst:22
+msgid ""
+"`ne_10m_populated_places_simple.zip "
+"<https://www.qgistutorials.com/downloads/ne_10m_populated_places_simple.zip>`_"
+msgstr ""
+"`ne_10m_populated_places_simple.zip "
+"<https://www.qgistutorials.com/downloads/ne_10m_populated_places_simple.zip>`_"
+
+#: ../../source/docs/3/working_with_attributes.rst:24
+msgid "Data Source [NATURALEARTH]_"
+msgstr "Fuente de Datos [NATURALEARTH]_"
+
+#: ../../source/docs/3/working_with_attributes.rst:27
+msgid "Procedure"
+msgstr "Procedimiento"
+
+#: ../../source/docs/3/working_with_attributes.rst:29
+msgid ""
+"Locate the ``ne_10m_populated_places_simple.zip`` file in the QGIS Browser "
+"and expand it. Select the ``ne_10m_populated_places_simple.shp`` file and "
+"drag it to the canvas."
+msgstr ""
+"Ubique el archivo ``ne_10m_populated_places_simple.zip`` en el Navegador "
+"QGIS y expándalo. Seleccione el archivo "
+"``ne_10m_populated_places_simple.shp`` y arrástrelo al lienzo. "
+
+#: ../../source/docs/3/working_with_attributes.rst:34
+msgid ""
+"A new layer ``ne_10m_populated_places_simple`` will now be loaded in QGIS "
+"and you will see many points representing the populated places of the world."
+" The default view in the QGIS canvas shows the geometry of the GIS layer. "
+"Each point also has associated attributes. Let’s view them. Locate the "
+":guilabel:`Attributes Toolbar`. This toolbar contains many useful tools to "
+"inspect, view, select, and modify attributes of a layer."
+msgstr ""
+"Una nueva capa ``ne_10m_populated_places_simple`` será ahora cargada en QGIS"
+" y verá varios puntos que representan los lugares poblados del mundo. La "
+"vista predeterminada en el lienzo QGIS muestra la geometría de la capa SIG. "
+"Cada punto también tiene asociado atributos. Veámoslos. Ubique la "
+":guilabel:`Barra de Herramientas de Atributos`. Esta barra de herramientas "
+"contiene varias herramientas útil para inspeccionar, ver, seleccionar, y "
+"modificar atributos de una capa."
+
+#: ../../source/docs/3/working_with_attributes.rst:41
+msgid ""
+"If you do not see the toolbar, you can enable it from :menuselection:`View "
+"--> Toolbars --> Attributes Toolbar`."
+msgstr ""
+"Si no ve la barra de herramientas, puede habilitarla desde "
+":menuselection:`Vista --> Barras de Herramientas --> Barra de Herramienta de"
+" Atributos` "
+
+#: ../../source/docs/3/working_with_attributes.rst:43
+msgid ""
+"Click the :guilabel:`Identify` button on the :guilabel:`Attributes Toolbar`."
+" Once the tool is selected, click on any point on the canvas. The associated"
+" attributes of that point will be displayed in a new :guilabel:`Identify "
+"Results` panel. Once you are done exploring attributes of different points, "
+"you can click the :guilabel:`Close` button."
+msgstr ""
+"Clic en el botón :guilabel:`Identificar`. Una vez que la herramienta esté "
+"seleccionada, clic sobre cualquier punto en el lienzo. Los atributos "
+"asociados de ese punto serán mostrados en el nuevo panel "
+":guilabel:`Resultados de Identificar`. Una vez esté listo explorando "
+"atributos de diferentes puntos, puede hacer clic en el botón "
+":guilabel:`Cerrar`."
+
+#: ../../source/docs/3/working_with_attributes.rst:48
+msgid ""
+"Rather than viewing the attribute one feature at a time, we can view them "
+"all together as a table. Click the :guilabel:`Open Attribute Table` button "
+"on the :guilabel:`Attributes Toolbar`. You can also right-click the "
+"``ne_10m_populated_places_simple`` layer and select :guilabel:`Open "
+"Attribute Table`."
+msgstr ""
+"En vez de ver el atributo de una entidad a la vez, queremos verlos todos "
+"juntos como una tabla. Clic en el botón :guilabel:`Abrir Tabla de Atributos`"
+" en la :guilabel:`Barra de Herramientas de Atributos`. También puede hacer "
+"clic-derecho sobre la capa ``ne_10m_populated_places_simple`` y seleccionar "
+":guilabel:`Abrir Tabla de Atributos`."
+
+#: ../../source/docs/3/working_with_attributes.rst:53
+msgid ""
+"You can scroll horizontally and locate the **pop_max** column. This field "
+"contains the population of the associated place. You can click twice on the "
+"field header to sort the column in descending order."
+msgstr ""
+"Puede deslizarse horizontalmente y localizar la columna **pop_max**. Este "
+"campo contiene la población del lugar asociado. Puede hacer clic dos veces "
+"en el encabezado del campo para ordenar la columna en orden descendente. "
+
+#: ../../source/docs/3/working_with_attributes.rst:58
+msgid ""
+"Now we are ready to perform our query on these attributes. QGIS uses SQL-"
+"like expressions to perform queries. Click :guilabel:`Select features using "
+"an expression` button."
+msgstr ""
+"Ahora estamos listos para realizar nuestra consulta sobre estos atributos. "
+"QGIS usa expresiones similares a SQL para realizar consultas. Clic en el "
+"botón  :guilabel:`Seleccionar objetos espaciales usando una expresión`."
+
+#: ../../source/docs/3/working_with_attributes.rst:63
+msgid ""
+"In the :guilabel:`Select By Expression` window, expand the :guilabel:`Fields"
+" and Values` section and double-click the ``pop_max`` label. You will notice"
+" that it is added to the expression section at the bottom. If you aren't "
+"sure about the field values, you can click the :guilabel:`All Unique` button"
+" to see what the attribute values are present in the dataset. For this "
+"exercise, we are looking to find all features that have a population greater"
+" than 1 million. So complete the expression as below and click "
+":guilabel:`Select Features` and then :guilabel:`Close`."
+msgstr ""
+"En la ventana :guilabel:`Seleccionar por Expresión`, expanda la sección "
+":guilabel:`Campos y Valores` y haga doble-clic a la etiqueta ``pop_max``. "
+"Notará que es agregada a la sección expresión abajo. Si no está seguro "
+"acerca de los valores de campo, puede hacer clic en :guilabel:`Cargar todos "
+"los valores únicos` para ver valores de atributos existen en el conjunto de "
+"datos. Para este ejercicio, estamos buscando encontrar todas los objetos "
+"espaciales que tienen una población mayor a un millón. Así que complete la "
+"expresión como está abajo y clic en :guilabel:`Seleccionar Objetos "
+"Espaciales` y luego en :guilabel:`Cerrar`."
+
+#: ../../source/docs/3/working_with_attributes.rst:74
+msgid ""
+"In the QGIS Expression engine, text with double-quotes refers to a field and"
+" text with single-quotes refer to a string value."
+msgstr ""
+"En el motor de Expresión QGIS, el texto con comillas dobles se refiere a un "
+"campo y el texto con comillas simples se refiere a un valor de cadena de "
+"texto."
+
+#: ../../source/docs/3/working_with_attributes.rst:76
+msgid ""
+"You will notice that some rows in the attribute table are now selected. The "
+"label window also changes and shows the count of selected features."
+msgstr ""
+"Notará que algunas filas en la tabla de atributos están ahora seleccionadas."
+" La ventana de etiqueta también cambia y muestra el conteo de objetos "
+"espaciales seleccionados."
+
+#: ../../source/docs/3/working_with_attributes.rst:81
+msgid ""
+"Close the attribute table window and return to the main QGIS window. You "
+"will notice that a subset of points is now rendered in yellow. This is the "
+"result of our query and the selected points are the ones having ``pop_max`` "
+"attribute value greater than ``1000000``."
+msgstr ""
+"Cierre la ventana de la tabla de atributos y retorne a la ventana principal "
+"de QGIS. Notará que un subconjunto de puntos está ahora representado en "
+"amarillo. Esto es el resultado de nuestra consulta y los puntos "
+"seleccionados son aquellos que tiene un valor de atributo ``pop_max`` mayor "
+"a ``1000000``."
+
+#: ../../source/docs/3/working_with_attributes.rst:86
+msgid ""
+"Let's update our query to include a condition that the place should also be "
+"a capital in addition to having a population greater than 1 million. To "
+"quickly get  to the expression editor, you can use the :guilabel:`Select "
+"Features by Expression` button in the :guilabel:`Attributes Toolbar`."
+msgstr ""
+"Actualicemos nuestra consulta para incluir una condición que el lugar "
+"debería ser también una capital además de tener una población mayor a 1 "
+"millón. Para obtener rápidamente el editor de expresión, puede usar el botón"
+" :guilabel:`Seleccionar Objetos Espaciales por Expresión` en la "
+":guilabel:`Barra de Herramientas de Atributos`."
+
+#: ../../source/docs/3/working_with_attributes.rst:91
+msgid ""
+"The field containing data about capitals is **adm0cap**. The value ``1`` "
+"indicates that the place is a capital. We can add this criteria to our "
+"previous expression using the *and* operator. Enter the expression as below "
+"and click :guilabel:`Select Features` and then :guilabel:`Close`."
+msgstr ""
+"El campo que contiene el dato acerca de capitales es **adm0cap**. El valor "
+"``1`` indica que el lugar es una capital. Podemos agregar este criterio a "
+"nuestra expresión previa usando el operador *and*. Ingrese la expresión como"
+" está abajo y clic en :guilabel:`Seleccionar objetos espaciales` y luego "
+":guilabel:`Cerrar`."
+
+#: ../../source/docs/3/working_with_attributes.rst:100
+msgid ""
+"Return to the main QGIS window. Now you will see a smaller subset of the "
+"points selected. This is the result of the second query and shows all places"
+" from the dataset that are country capitals as well as have population "
+"greater than 1 million."
+msgstr ""
+"Regrese a la ventana principal QGIS. Ahora verá un subconjunto más pequeño "
+"de puntos seleccionados. Este es el resultado de una segunda consulta y "
+"muestra todos los lugares del conjunto de datos que son capitales de país "
+"así como tienen una población mayor a 1 millón."
+
+#: ../../source/docs/3/working_with_attributes.rst:105
+msgid ""
+"Now we will export the selected features as a new layer. Right-click the "
+"``ne_10m_populated_places_simple`` layer and go to :menuselection:`Export "
+"--> Save Selected Features As...`"
+msgstr ""
+"Ahora exportaremos los objetos espaciales seleccionados como una nueva capa."
+" Clic-derecho en la capa ``ne_10m_populated_places_simple``  y vaya a "
+":menuselection:`Exportar --> Guardar los Objetos Espaciales Seleccionados "
+"Como...`"
+
+#: ../../source/docs/3/working_with_attributes.rst:110
+msgid ""
+"You may choose any format of your liking as the :guilabel:`Format`. For this"
+" exercise, we will choose ``GeoJSON``. GeoJSON is a text-based format that "
+"is used widely in web mapping. Click the :guilabel:`...` button next to "
+":guilabel:`File name` and enter ``populated_capitals.geojson`` as the output"
+" file."
+msgstr ""
+"Puede elegir cualquier formato de su preferencia en el :guilabel:`Formato`. "
+"Para este ejercicio, escogeremos ``GeoJSON``. GeoJSON es un formato basado "
+"en texto que es usado ampliamente en el mapeo web. Clic en el botón "
+":guilabel:`...` junto a :guilabel:`Nombre de archivo` e ingrese "
+"``populated_capitals.geojson`` como el archivo de salida."
+
+#: ../../source/docs/3/working_with_attributes.rst:115
+msgid ""
+"The input data has many columns. You are able to choose only a subset of the"
+" original columns for export. Expand the :guilabel:`Select fields to export "
+"and their export options` section. Click :guilabel:`Deselect All` and check "
+"the ``name`` and ``pop_max`` columns. Click :guilabel:`OK`."
+msgstr ""
+"Los datos de entrada tienen varias columnas. Sólo puede escoger un "
+"subconjunto de las columnas originales para exportación. Expanda la sección "
+":guilabel:`Seleccionar campos a exportar y sus opciones de exportación`. "
+"Clic en :guilabel:`Deseleccionar Todo` y marque las columnas ``name`` y "
+"``pop_max``. Clic en :guilabel:`Aceptar`."
+
+#: ../../source/docs/3/working_with_attributes.rst:120
+msgid ""
+"A new layer ``populated_capitals`` will be loaded in QGIS. You can un-check "
+"the ``ne_10m_populated_places_simple`` layer to hide it and view the points "
+"from the newly exported layer."
+msgstr ""
+"Una nueva capa ``populated_capitals`` será cargada en QGIS. Puede desmarcar "
+"la capa ``ne_10m_populated_places_simple`` para esconderla y ver los puntos "
+"de la nueva capa exportada."

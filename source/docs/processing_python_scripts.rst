@@ -1,5 +1,9 @@
 Writing Python Scripts for Processing Framework
 ===============================================
+.. warning:: 
+
+   A new version of this tutorial is available at :doc:`3/processing_python_scripts`
+
 One can write standalone pyqgis scripts that can be run via the Python Console
 in QGIS. With a few tweaks, you can make your standalone scripts run via the
 Processing Framework. This has several advantages. First, taking user input and
@@ -14,7 +18,7 @@ Overview of the task
 
 Our script will perform a dissolve operation based on a field chosen by the
 user. It will also sum up values of another field for the dissolved features.
-In the example, we will dissolve a world shapefile based on a ``SUBREGION``
+In the example, we will dissolve a World shapefile based on a ``SUBREGION``
 attribute and sum up ``POP_EST`` field to calculate total population in the
 dissolved region.
 

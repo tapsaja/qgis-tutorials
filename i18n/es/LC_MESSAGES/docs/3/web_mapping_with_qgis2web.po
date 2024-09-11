@@ -1,0 +1,585 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# YoViajo, 2021
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-11 09:07+0000\n"
+"PO-Revision-Date: 2021-06-02 18:47+0000\n"
+"Last-Translator: YoViajo, 2021\n"
+"Language-Team: Spanish (https://www.transifex.com/spatialthoughts/teams/7952/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:2
+msgid "Web Mapping with QGIS2Web (QGIS3)"
+msgstr "Mapeo Web con QGIS2Web (QGIS3)"
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:4
+msgid ""
+"Web mapping is a great medium to publish your GIS data to the web and make "
+"it accessible to other users. Creating a web map is a very different process"
+" than creating one in a GIS. GIS users are typically aren’t web programmers "
+"and it presents a challenge when one needs to create a web map that is of "
+"the same quality as a map creating in a GIS. Fortunately, there are tools "
+"available to easily translate your work in QGIS to web maps. In this "
+"tutorial, you will learn how to use the **QGIS2Web** plugin to create a web "
+"map using OpenLayers or Leaflet libraries from your QGIS project."
+msgstr ""
+"El mapeo web es un medio genial de publicar sus datos SIG a la web y "
+"hacerlos accesibles a otros usuarios. Crear un mapa web es un proceso muy "
+"diferente que crear uno en un SIG. Los usuarios SIG no son típicamente "
+"programadores web y ello presenta un desafío cuando uno necesita crear un "
+"mapa web que es de la misma calidad que un mapa creado en un SIG. "
+"Afortunadamente, hay disponibles herramientas que traducen fácilmente su "
+"trabajo en QGIS a mapas web. En este tutorial, aprenderemos como usar el "
+"complemento **QGIS2Web** para crear un mapa web usando librerías OpenLayers "
+"o Leaflet de su proyecto QGIS."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:8
+msgid "Overview of the task"
+msgstr "Vista general de la tarea"
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:10
+msgid "We will create a leaflet web map of the world's airports."
+msgstr "Crearemos un mapa web leaflet de los aeropuertos del mundo."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:13
+msgid "Other skills you will learn"
+msgstr "Otras habilidades que aprenderá"
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:14
+msgid ""
+"How to use Edit Widgets in QGIS to hide certain fields and set custom types."
+msgstr ""
+"Como usar Editar Widgets en QGIS para esconder ciertos campos y establecer "
+"tipos personalizados."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:15
+msgid "How to create a virtual field using Field Calculator."
+msgstr "Como crear un campo virtual usando la Calculadora de Campo."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:19
+msgid "Get the data"
+msgstr "Obtener los datos"
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:21
+msgid ""
+"We will use the `Airports <http://www.naturalearthdata.com/downloads/10m-"
+"cultural-vectors/airports/>`_ dataset from Natural Earth."
+msgstr ""
+"Usaremos los el conjunto de datos  `Aeropuertos "
+"<http://www.naturalearthdata.com/downloads/10m-cultural-vectors/airports/>`_"
+" de Natural Earth."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:24
+msgid ""
+"Download the `Airports shapefile "
+"<http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip>`_."
+msgstr ""
+"Descargue el  `archivo shape Aeropuertos "
+"<http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_airports.zip>`_."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:27
+msgid ""
+"For convenience, you may directly download a copy of the datasets from the "
+"links below:"
+msgstr ""
+"Para su comodidad, puede descargar directamente una copia de los conjuntos "
+"de datos de los enlaces abajo:"
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:30
+msgid ""
+"`ne_10m_airports.zip "
+"<https://www.qgistutorials.com/downloads/ne_10m_airports.zip>`_"
+msgstr ""
+"`ne_10m_airports.zip "
+"<https://www.qgistutorials.com/downloads/ne_10m_airports.zip>`_"
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:32
+msgid "Data Source [NATURALEARTH]_"
+msgstr "Fuente de Datos [NATURALEARTH]_"
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:35
+msgid "Procedure"
+msgstr "Procedimiento"
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:37
+msgid ""
+"Open QGIS. Using the :guilabel:`Browser` panel, navigate to the folder "
+"containing the downloaded file. Expand the ``ne_10m_airports.zip`` file and "
+"drag the ``ne_10m_airports.shp`` into the canvas."
+msgstr ""
+"Abra QGIS. Usando el panel :guilabel:`Explorador`, navegue a la carpeta que "
+"contiene el archivo descargado. Expanda el archivo ``ne_10m_airports.zip`` y"
+" arrástrelo al lienzo."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:42
+msgid ""
+"Now a new layer will be loaded in the canvas, we will now create a map in "
+"QGIS that looks and behaves just like we would like in the web map. The "
+"plugin ``qgis2web`` will use replicate the QGIS settings and automatically "
+"create the web map without us knowing about web mapping libraries. When a "
+"user clicks on an airport marker, we want an info-window to display useful "
+"information about the airport. This information is already present in the "
+"attribute table of the ``ne_10m_airports`` layers. Right-click on the "
+"``ne_10m_airports`` layer and select :guilabel:`Properties`."
+msgstr ""
+"Ahora se cargará una nueva capa en el lienzo. Crearemos un mapa en QGIS que "
+"se parece y se comporta justo como quisiéramos en el mapa web. El "
+"complemento ``qgis2web``  replicará la configuración QGIS y creará "
+"automáticamente el mapa web si que sepamos sobre las librerías de mapeo web."
+" Cuando un usuario hace clic en un marcador de aeropuerto, queremos una "
+"ventana de información que muestre información útil acerca del aeropuerto. "
+"Esta información ya está presente en la tabla de atributos de la capa "
+"``ne_10m_airports``. Clic-derecho en la capa ``ne_10m_airports`` y "
+"seleccione :guilabel:`Propiedades`."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:51
+msgid ""
+"In the :guilabel:`Layer Properties` dialog box, switch to "
+":guilabel:`Attributes Form`. You will notice all the fields name of the "
+"layer."
+msgstr ""
+"En la caja de diálogo :guilabel:`Propiedades de capa`, cambie a "
+":guilabel:`Formulario de atributos`. Notará todos los nombres de campo de la"
+" capa."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:56
+msgid ""
+"All fields aren't relevant to the user, so fields **except** *name*, "
+"*iata_code*, *type*, and *Wikipedia* are turned off by clicking on the field"
+" and change the :guilabel:`Widget Type` to ``Hidden``."
+msgstr ""
+"Todos los campos no son relevantes al usuario, por lo que los campos "
+"**except** *name*, *iata_code*, *type*, y *Wikipedia* son desactivados "
+"haciendo clic en el campo y cambiando el :guilabel:`Tipo de widget` a "
+"``Escondido``."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:61
+msgid ""
+"In the *wikipedia* field check the ``Multiline`` and ``HTML`` so that the "
+"link present in this field will be rendered as a hyperlink for the user. "
+"After setting the respective Widget Type for each field, click "
+":guilabel:`OK`."
+msgstr ""
+"En el campo *wikipedia*, marque ``Multiline`` y ``HTML`` de manera que el "
+"enlace presente en este campo sea representado como un hiperlance para el "
+"usuario. Después de definir el Tipo de Widget respectivo para cada campo, "
+"clic :guilabel:`Aceptar`."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:66
+msgid "Click on the :guilabel:`Identify Features` button in the toolbar."
+msgstr ""
+"Clic el botón :guilabel:`Identificar objetos espaciales` de la barra de "
+"herramientas."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:71
+msgid ""
+"Click on a point, this will fetch the details of the airport in that "
+"location, only the *type*, *name*, *iata_code* and *wikipedia* fields are "
+"displayed as other fields are hidden. Also, wikipedia field is highlighted "
+"as hyperlink."
+msgstr ""
+"Clic en un punto. Esto irá a buscar los detalles del aeropuerto en esa "
+"ubicación. Sólo los campos *type*, *name*, *iata_code* y *wikipedia* son "
+"mostrados ya que los otros campos están ocultos. También, el campo wikipedia"
+" es resaltado como hiperenlace."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:76
+msgid ""
+"The values in the field *type* can be a bit more informative. Let's create a"
+" new field called *class* and add the word Airport after each entry in type "
+"field. (i.e) an entry as major will become a *Major Airport*."
+msgstr ""
+"Los valores en el campo *type* pueden ser un poco más informativos. Creemos "
+"un nuevo campo llamado *class* y agreguemos la palabra Aeropuerto después de"
+" cada entrada en el campo type. (i.e.) una entrada como principal se volverá"
+" un *Aeropuerto Principal*."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:81
+msgid ""
+"Enter the :guilabel:`Output field name` as ``class``, choose "
+"``Text(String)`` in :guilabel:`Output field type`. The layer field ``type`` "
+"contains values such as ``small``, ``mid``, ``large`` etc. We can add an "
+"expression to change the case of the words to sentence case and append the "
+"word *airport* for better readability. Enter the following expression in the"
+" :guilabel:`Expression` box and click :guilabel:`OK`."
+msgstr ""
+"Ingrese el :guilabel:`Nombre de campo de salida` como ``class``, elija "
+"``Texto(Cadena)`` en :guilabel:`Tipo de campo de salida`. El ``tipo`` de "
+"campo de capa contiene valores como ``small``, ``mid``, ``large``, etc. "
+"Podemos añadir una expresión para cambiar las palabras a estilo de oración y"
+" adjuntar la palabra *aeropuerto* para mayor legibilidad. Ingrese la "
+"siguiente expresión en la caja :guilabel:`Expresión` y clic "
+":guilabel:`Aceptar`."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:92
+msgid ""
+"You can also use concatenation ``||`` operator to join strings. The "
+"expression can be re-written as ``(title(\"type\") || ' Airport')``"
+msgstr ""
+"También puede usar el operador concatenación ``||` para unir cadenas. La "
+"expresión puede ser reescrita como ``(title(\"type\") || ' Airport')``"
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:95
+msgid ""
+"Now we have a better looking field for airport type, we no longer need the "
+"*type* field. Right-click on the layer and select :guilabel:`Properties`, "
+"switch to  :guilabel:`Attributes Form` and turn off the *type* field by "
+"switching the :guilabel:`Widget Type` to ``Hidden``. Click :guilabel:`OK`."
+msgstr ""
+"Ahora tenemos un campo que se ve mejor para el tipo de aeropuerto. Ya no "
+"necesitamos el campo *type*. Clic-derecho en la capa y seleccione "
+":guilabel:`Propiedades`. Cambie a :guilabel:`Formulario de atributos` y "
+"desactive el campo *type* cambiando el :guilabel:`Tipo de widget` a "
+"``Oculto``. Clic :guilabel:`Aceptar`."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:100
+msgid ""
+"Now use :guilabel:`Identify Features` tool and select an airport, you will "
+"see a new field *class* with the category of airport nicely formatted and "
+"the *type* field is removed."
+msgstr ""
+"Ahora use la herramienta :guilabel:`Identificar objetos espaciales` y "
+"seleccione un aeropuerto. Verá un nuevo campo *class* con la categoría de "
+"aeropuerto formateada agradablemente y el campo *type* quitado."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:105
+msgid ""
+"Now let’s style the layer, click on :guilabel:`Open the Layer styling Panel`"
+" icon and change the :guilabel:`Type` to ``Categorized``, in "
+":guilabel:`Value` select ``class`` and click :guilabel:`Classify`."
+msgstr ""
+"Ahora démosle estilo a la capa. Clic en el icono :guilabel:`Abrir el panel "
+"de estilo de capa` y cambie  el :guilabel:`Tipo` a ``Categorizado``. En "
+":guilabel:`Valor`, seleccione ``class`` y clic :guilabel:`Clasificar`."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:110
+msgid ""
+"You will see different colored circle gets assigned to a different type of "
+"airport. For this tutorial, we will restrict the map to civilian airports. "
+"Hold the :kbd:`Ctrl` key and select all categories for military airports. "
+"Once selected, click :guilabel:`Delete`."
+msgstr ""
+"Verá que círculos con diferentes colores son asignados a diferentes tipos de"
+" aeropuerto. Para este tutorial, vamos a restringir el mapa a aeropuertos "
+"civiles. Mantenga presionada la tecla :kbd:`Ctrl` y seleccione todas las "
+"categorías para aeropuertos militares. Una vez seleccionadas, clic en "
+":guilabel:`Eliminar`."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:115
+msgid ""
+"Apart from assigning different color to the category, we can change the size"
+" of the symbol to visually help our users distinguish different types of "
+"airports. Double-click on the symbol icon in ``Major Airport`` to change the"
+" size."
+msgstr ""
+"Aparte de asignar un color diferente a la categoría, podemos cambiar el "
+"tamaño del símbolo para ayudar visualmente a nuestros usuarios a distinguir "
+"tipos diferentes de aeropuertos. Doble-clic en el icono de símbolo en "
+"``Major Airport`` para cambiar el tamaño."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:120
+msgid ""
+"Set the :guilabel:`Size` to ``4`` , now follow the above step to set the "
+"size of ``Mid Airport`` as ``3`` and ``Small Airport`` as ``2``."
+msgstr ""
+"Defina el :guilabel:`Tamaño` como ``4``. Ahora siga el paso de arriba para "
+"definir el tamaño de ``Mid Airport` como ``3`` y ``Small Airport`` como "
+"``2``."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:125
+msgid ""
+"Let's add a base layer for Geo-referencing, ``Stamen Watercolor`` would be a"
+" nice background map for this project, to add the layer select "
+":menuselection:`Web --> QuickMapServices --> Stamen --> Stamen Watercolor`. "
+"To know more about this plugin visit :doc:`using_plugins` tutorials."
+msgstr ""
+"Agreguemos una capa base para la georeferenciación. ``Stamen Watercolor`` "
+"será un mapa de fondo agradable para este proyecto. Para agregar la capa, "
+"seleccione :menuselection:`Web --> QuickMapServices --> Stamen --> Stamen "
+"Watercolor`. Para saber más acerca de este complemento, visite los "
+"tutoriales visit :doc:`using_plugins`."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:130
+msgid ""
+"Our map is now ready. This is a good time to save our work. Click on the "
+":guilabel:`Save Project` icon in toolbar and Enter ``Airports`` as the name "
+"of the project."
+msgstr ""
+"Ahora nuestro mapa está listo. Este es un buen momento para guardar nuestro "
+"trabajo. Clic en el icono :guilabel:`Guardar proyecto` e Ingrese "
+"``Aeropuertos`` como el nombre del proyecto."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:135
+msgid ""
+"Now we are ready to export our project to a web map. Install the "
+"**qgis2web** plugin by going to :menuselection:`Plugins --> Manage and "
+"Install Plugin` (See :doc:`using_plugins` for more details on installing "
+"plugins in QGIS). Once the plugin is installed, go to :menuselection:`Web "
+"--> qgis2web --> Create a web map`."
+msgstr ""
+"Ahora estamos listos para exportar nuestro proyecto como un mapa web. "
+"Instale el complemento **qgis2web** yendo a :menuselection:`Complementos -->"
+" Administrar e Instalar Complemento` (Vea :doc:`using_plugins` para más "
+"detalles sobre la instalación de complementos en QGIS). Una vez que el "
+"complemento esté instalado, vaya a :menuselection:`Web --> qgis2web --> "
+"Crear un mapa web`."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:144
+msgid ""
+"Now :guilabel:`Export to web map` dialog box will appear. This is the "
+"primary console for customizing the web layout of your web map. The left-"
+"hand panel contains all the configuration options. You can change any "
+"setting and preview the updates on the right side by clicking the "
+":guilabel:`Update preview`. The plugin can export the map using many "
+"different web mapping libraries. For this tutorial, we will use the `Leaflet"
+" <https://leafletjs.com/>`_ library. Make sure you have selected the "
+":guilabel:`Leaflet` option at the bottom."
+msgstr ""
+"Ahora aparecerá la caja de diálogo :guilabel:`Exportar a mapa web`. Esta es "
+"la consola principal para personalizar el diseño web de su mapa web. El "
+"panel a la izquierda contiene todas las opciones de configuración. Puede "
+"cambiar cualquier preferencia y previsualizar las actualizaciones a la "
+"derecho haciendo clic en :guilabel:`Actualizar previsualización`. El "
+"complemento puede exportar el mapa usando muchas librerías diferentes de "
+"mapeo web. Para este tutorial, usaremos la librería `Leaflet "
+"<https://leafletjs.com/>`_. Asegúrese que ha seleccionado la opción "
+":guilabel:`Leaflet` abajo."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:149
+msgid ""
+"Now lets change the :guilabel:`Popup fields` of :guilabel:`ne_10m_airport` "
+"layer, change all the fields to ``inline label``, this will give a better "
+"view while inspecting the feature in map."
+msgstr ""
+"Ahora cambiemos los :guilabel:`Campos emergentes` de la capa "
+":guilabel:`ne_10 m_airport`. Cambie todos los campos a ``inline label``. "
+"Esto dará una mejor vista cuando se inspeccione el objeto espacial en el "
+"mapa."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:155
+msgid ""
+"Now switch to the :guilabel:`Appearance` tab. Check the following boxes - "
+":guilabel:`Add address search`, :guilabel:`Geolocate user`, "
+":guilabel:`Highlight on hover`. In :guilabel:`Add layer list:` choose "
+"``Collapsed``. For :guilabel:`Layer search` choose ``ne_10m_airport: "
+"iata_code`` field. This option adds a search box where the user to search "
+"for an airport with its code. Once made all the changes, click "
+":guilabel:`Update preview`."
+msgstr ""
+"Ahora, cambie a la pestaña :guilabel:`Apariencia`. Marque las siguientes "
+"casillas - :guilabel:`Añadir búsqueda de dirección`, :guilabel:`Geolocalizar"
+" usuario`, :guilabel:`Resaltar al pasar por encima`. En :guilabel:`Añadir "
+"lista de capa:` elija ``Colapsado``. Para :guilabel:`Búsqueda de capa` elija"
+" el campo ``ne_10m_airport: iata_code``. Esta opción añade una caja de "
+"búsqueda donde el usuario puede buscar un aeropuerto por su código. Una vez "
+"hechos todos los cambios, clic :guilabel:`Actualizar previsualización`."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:160
+msgid ""
+"Now, let’s check the features added to the map, click on the "
+":guilabel:`Find` (binocular) icon and type ``DXB`` and press enter, this "
+"will center the map to *Dubai international airport*."
+msgstr ""
+"Ahora, revisemos los objetos espaciales añadidos al mapa. Clic sobre el "
+"icono :guilabel:`Encontrar` (binocular) e ingrese ``DXB`` y presione intro. "
+"Esto centrará el mapa en el *Aeropuerto internacional Dubai*."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:165
+msgid ""
+"Click on the airport icon to explore the information about the airport."
+msgstr ""
+"Clic en el icono aeropuerto para explorar la información acerca del "
+"aeropuerto."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:170
+msgid ""
+"Click the :guilabel:`Search` (Magnifying glass) icon, and search for ``new "
+"york`` and press enter."
+msgstr ""
+"Clic el icono :guilabel:`Buscar` (lupa), y busque ``new york`` y presione "
+"intro."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:176
+msgid ""
+"Now the map will be centered to new your city, you can try for any "
+"place/address to get the location, this location is retrieved using by  "
+"**geocoding** the address.  We will also add a measure too to get the linear"
+" distance between any given points in the web map. In :guilabel:`Measure "
+"tool` choose ``Metric``. Click :guilabel:`Update preview`."
+msgstr ""
+"Ahora el mapa estará centrado en la ciudad de Nueva York. Puede intentar "
+"cualquier lugar/dirección para obtener la ubicación. Esta ubicación es "
+"recuperada usando la **geocodificación** de la dirección. También vamos a "
+"añadir una medida también para obtener la distancia lineal entre dos puntos "
+"cualquiera dados en el mapa web. En la :guilabel:`herramienta de medida`, "
+"elija ``Métrico``. Clic :guilabel:`Actualizar previsualización`."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:182
+msgid ""
+"Now lets measure the linear distance in SI units, between *EWR* and *JFK* "
+"airports. Click on the :guilabel:`Measure` (ruler) icon and select "
+":guilabel:`Create a new measurement`. Then, click over the airports once the"
+" point is chosen, the latitude and longitude of the point are captured and "
+"used to compute the distance, now the distance is displayed in *meters*."
+msgstr ""
+"Ahora midamos la distancia lineal en unidades SI, entre los aeropuertos "
+"*EWR* y *JFK* en el icono :guilabel:`Medida` (regla) y seleccione "
+":guilabel:`Crear una nueva medida`. Luego, clic sobre los aeropuertos. Una "
+"vez que el punto es elegido, la latitud y longitud del punto son capturados "
+"y usados para calcular la distancia. Ahora la distancia es mostrada en "
+"*metros*."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:187
+msgid ""
+"Switch to the :guilabel:`Export` tab and check the :guilabel:`Minify GeoJSON"
+" files` box. This reduces the size of the resulting file. Click on the "
+":guilabel:`…` next to :guilabel:`Exporter`."
+msgstr ""
+"Cambie a la pestaña :guilabel:`Exportar` y marque la casilla "
+":guilabel:`Reducir archivos GeoJSON`. Esto reduce el tamaño del archivo "
+"resultante. Clic en :guilabel:`...` junto a :guilabel:`Exportador`."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:192
+msgid ""
+"Choose the desired location (folder) of export and click :guilabel:`Select "
+"Folder`, then click :guilabel:`Export` button."
+msgstr ""
+"Elija la ubicación (carpeta) deseada de exportación y clic "
+":guilabel:`Seleccionar carpeta`. Luego, clic el botón :guilabel:`Exportar`."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:197
+msgid ""
+"Now all *properties*, *styling*, and *customized options* are exported in a "
+"self-contained folder. Upon successful completion, a link will appear in the"
+" Progress popup dialog box, click on the link to open the file location."
+msgstr ""
+"Ahora todas las *propiedades*, *estilo*, y *opciones personalizadas* son "
+"exportadas en una carpeta autocontenida. Cuando se complete exitosamente, "
+"aparecerá un enlace en la caja de diálogo emergente Progreso. Clic en el "
+"enlace para abrir la ubicación del archivo.  "
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:202
+msgid ""
+"This folder will contain all the required file to create a web map. To view "
+"the web map click on ``index.html`` file."
+msgstr ""
+"Esta carpeta contendrá todos los archivos requeridos para crear un mapa web."
+" Para ver el mapa, web clic en el archivo ``index.html``."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:209
+msgid ""
+"The ``qgis2web`` plugin has many limitations and it cannot do everything "
+"that the powerful web mapping libraries ``OpenLayers`` and ``Leaflet`` can "
+"do. This process can act as the starting point in your web mapping process "
+"and save you valuable time by creating a basic template from which you can "
+"further customize the web map. You can edit these files in a code editor to "
+"customize as you wish."
+msgstr ""
+"El complemento ``qgis2web`` tiene muchas limitaciones y no puede hacer todo "
+"lo que permiten hacer las poderosas librerías de mapeo web ``OpenLayers`` y "
+"``Leaflet``. Este proceso puede actuar como el punto de partida en su "
+"proceso de mapeo web y ahorrarle tiempo valioso creando una plantilla básica"
+" a partir de la cual puede personalizar más allá el mapa web. Puede editar "
+"estos archivos en un editor de código para personalizar a su gusto."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:211
+msgid ""
+"The web-map will be rendered in your default web browser. Now, let’s test "
+"the last option added to map, (i.e) *Geolocate user*, click on the "
+":guilabel:`Marker` icon."
+msgstr ""
+"El mapa web será representado en su navegador web  predeterminado. Ahora, "
+"probemos la última opción que se agregó al mapa, (i.e., *Geolocalizar "
+"usuario*). Clic en el icono :guilabel:`Marcador`."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:217
+msgid ""
+"Browser will ask for *Know your location* permission, click ``Allow``, now "
+"the map will center to your current location."
+msgstr ""
+"El Explorador pedirá permiso para *Saber su ubicación*. Clic ``Permitir``. "
+"Ahora el mapa se centrará en su ubicación actual."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:222
+msgid ""
+"The exported map resides on your computer. While you can see it in action, "
+"it is not very useful since you cannot share it with anyone. For others to "
+"be able to see the map, you need to upload it to a web server. While the "
+"upload process will vary on the type of server you have access to - a cheap "
+"and easy way to publish your map on the web would be to use any of the "
+"public cloud storage services. `Amazon S3 <https://aws.amazon.com/s3/>`_ is "
+"a popular storage service that can be used to serve static web pages like "
+"our map. You will need to sign up for an account. Once your account is "
+"setyp, visit the `AWS Console <https://s3.console.aws.amazon.com/s3/home>`_ "
+"and follow the instructions to create a bucket."
+msgstr ""
+"El mapa exportado reside en su computadora. Aunque puede verlo en acción, no"
+" es muy útil ya que no puede compartirlo con nadie. Para que otros sean "
+"capaces de ver el mapa, necesita subirlo a un servidor web. Aunque el "
+"proceso de subida variará dependiendo del tipo de servidor al que tiene "
+"acceso - una manera barata y fácil de publicar su mapa en la web sería usar "
+"cualquier de los los servicios de almacenamiento público en la nube. `Amazon"
+" S3 <https://aws.amazon.com/s3/>`_ es un servicio popular de almacenamiento "
+"que puede ser usado para servir páginas web estáticas como nuestro mapa. "
+"Usted necesitará registrar una cuenta. Una vez que su cuenta esté definida, "
+"visite `AWS Console <https://s3.console.aws.amazon.com/s3/home>`_ y siga las"
+" instrucciones para crear un bucket."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:229
+msgid ""
+"While AWS includes a generious `Free-Tier <https://aws.amazon.com/free/?all-"
+"free-tier>`_, you may get charged fees for using this service if you exceed "
+"the free usage limits."
+msgstr ""
+"Aunque AWS incluye un `Nivel gratuito <https://aws.amazon.com/free/?all-"
+"free-tier>`_ generoso, podría cargársele una tarifa por usar este servicio "
+"si excede los límites de uso gratuito."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:231
+msgid ""
+"Once a bucket is created, you can upload the contents of your exported "
+"folder to the bucket."
+msgstr ""
+"Una vez que su bucket esté creado, puede subir los contenidos de su carpeta "
+"exportada al bucket."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:236
+msgid ""
+"If you want the map to be publicly accessible, make sure to select "
+":guilabel:`Grant public-read access` while uploading."
+msgstr ""
+"Si quiere que su mapa esté accesible públicamente, asegúrese de seleccionar "
+":guilabel:`Otorgar acceso de lectura pública` mientras carga."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:242
+msgid ""
+"Once the data is uploaded, locate the `index.html` file. The "
+":guilabel:`Object URL` is the URL that can be used to access the map."
+msgstr ""
+"Una vez que estén cargados los datos, ubique el archivo `index.html`. La "
+":guilabel:`URL objeto` es la URL que puede ser usada para acceder al mapa."
+
+#: ../../source/docs/3/web_mapping_with_qgis2web.rst:248
+msgid ""
+"I have uploaded the files generated from this exercise to an AWS S3 bucket. "
+"The AWS-hosted version of the map is embedded via an IFrame below. You can "
+"also browse the map directly at https://qgis-tutorials-data.s3.us-"
+"east-2.amazonaws.com/qgis2web/index.html"
+msgstr ""
+"Yo he subido los archivos generados de este ejercicio a un bucket AWS S3. La"
+" versión hospedada en AWS del mapa está incrustada mediante un IFrame abajo."
+" También puede explorar el mapa directamente en https://qgis-tutorials-"
+"data.s3.us-east-2.amazonaws.com/qgis2web/index.html"

@@ -1,5 +1,10 @@
 Nearest Neighbor Analysis
 =========================
+
+.. warning:: 
+
+   This tutorial is now obsolete. A new and updated version is available at :doc:`3/nearest_neighbor_analysis`
+   
 GIS is very useful in analyzing spatial relationship between features. One such
 analysis is finding out which features are closest to a given feature. QGIS has
 a tool called **Distance Matrix** which helps with such analysis. In this
@@ -41,7 +46,7 @@ below:
 
 `ne_10m_populated_places_simple.zip <http://www.qgistutorials.com/downloads/ne_10m_populated_places_simple.zip>`_
 
-Data Sources: [NGDC]_ [NATURALEARTH]_
+Data Sources: [NCEI]_ [NATURALEARTH]_
 
 Procedure
 ---------

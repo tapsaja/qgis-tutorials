@@ -1,0 +1,413 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Eric Armijo, 2024
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-22 13:11+0530\n"
+"PO-Revision-Date: 2019-09-05 10:59+0000\n"
+"Last-Translator: Eric Armijo, 2024\n"
+"Language-Team: Spanish (https://app.transifex.com/spatialthoughts/teams/7952/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:2
+msgid "Locating Nearest Facility with Origin-Destination Matrix (QGIS3)"
+msgstr ""
+"Localizando la Instalación Más Cercana con Matriz Origen-Destino (QGIS3)"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:4
+msgid ""
+"In the previous tutorial, :doc:`basic_network_analysis`, we learned how to "
+"build a network and calculate the shortest path between 2 points. We can "
+"apply that technique to many different types of network-based analysis. One "
+"such application is to compute **Origin-Destination Matrix** or **OD "
+"Matrix**. Given a set of origin points and another set of destination "
+"points, we can calculate the shortest path between each origin-destination "
+"pairs and find out the travel distance/time between them. Such analysis is "
+"useful to locate the closest facility to any given point. For example, a "
+"logistics company may use this analysis to find the closest warehouse to "
+"their customers to optimize delivery routes. Here we use the Distance Matrix"
+" algorithm from **QGIS Network Analysis Toolbox (QNEAT3)** plugin to find "
+"the nearest health facility to each address in the city."
+msgstr ""
+"En el tutorial previo, :doc:`basic_network_analysis`, aprendimos como "
+"construir una red y calcular la ruta más corta entre 2 puntos. Podemos "
+"aplicar esa técnica para varios tipos diferentes de análisis basado en red. "
+"Una de esas aplicaciones es el cálculo **Matriz Origen-Destino** o **Matriz "
+"OD**. Dado un conjunto de puntos de origen y otro conjunto de puntos "
+"destino, podemos calcular la ruta más corta entre cada par de origen-destino"
+" y averiguar la distancia/tiempo de viaje entre ellos. Tal análisis es útil "
+"para ubicar la instalación más cercana a un punto dado. Por ejemplo, la "
+"empresa de logística puede usar este análisis para encontrar el almacen más "
+"cercano a sus clientes para optimizar las rutas de entrega. Aquí usaremos el"
+" algoritmo Matriz de Distancia del complemento **QGIS Network Analysis "
+"Toolbox (QNEAT3)** para encontrar la instalación de salud más cercana a cada"
+" dirección en la ciudad."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:8
+msgid ""
+"This tutorial shows how to use your own network data to compute an origin-"
+"destination matrix. If you do not have your own network data, you can use "
+"**ORS Tools Plugin** and algorithm :menuselection:`ORS Tools --> Matrix -->"
+"  Matrix from Layers` to do a similar analysis using OpenStreetMap data. See"
+" :doc:`service_area_analysis` to learn how to use ORS Tools plugin."
+msgstr ""
+"Este tutorial muestra como usar tus propios datos de red para calcular una "
+"matriz origen-destino. Si no tienes tus propios datos de red, puedes usar "
+"**Complemento ORS Tools** y el algoritmo :menuselection:`ORS Tools --> "
+"Matriz --> Matriz desde Capas` para hacer el análisis similar usando datos "
+"OpenStreetMap. Vea  :doc:`service_area_analysis` para aprender como usar el "
+"complemento ORS Tools."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:11
+msgid "Overview of the task"
+msgstr "Vista general de la tarea"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:13
+msgid ""
+"We will take 2 layers for Washington DC - one with points representing "
+"addresses and another with points representing mental health facilities - "
+"and find out the facility with the least travel distance from each address."
+msgstr ""
+"Tomaremos 2 capas para Washington DC - una con puntos que representan "
+"direcciones y otra con puntos que representan instalaciones de salud mental "
+"- y averiguaremos la instalación con la menor distancia de viaje para cada "
+"dirección."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:16
+msgid "Other skills you will learn"
+msgstr "Otras habilidades que aprenderá"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:17
+msgid "Extract a random sample from a point layer."
+msgstr "Extraer una muestra aleatoria de una capa punto."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:18
+msgid "Use Virtual Layers to run SQL query on a QGIS layer."
+msgstr "Usar Capas Virtuales para ejecutar una consulta SQL en una capa QGIS."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:21
+msgid "Get the data"
+msgstr "Obtener los datos"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:22
+msgid ""
+"District of Columbia government freely shares hundreds of datasets on the "
+"`Open Data Catalog <https://opendata.dc.gov/>`_."
+msgstr ""
+"El gobierno del Distrito de Columbia comparte libremente cientos de "
+"conjuntos de datos en el `Catálogo de Datos Abiertos "
+"<https://opendata.dc.gov/>`_."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:24
+msgid "Download the following data layers as shapefiles."
+msgstr "Descargue las siguientes capas de datos como archivos shape."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:26
+msgid "`Roadway Block <https://opendata.dc.gov/datasets/roadway-block>`_"
+msgstr "`Roadway Block <https://opendata.dc.gov/datasets/roadway-block>`_"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:27
+msgid "`Address Points <https://opendata.dc.gov/datasets/address-points>`_"
+msgstr ""
+"`Puntos de Direcciones <https://opendata.dc.gov/datasets/address-points>`_"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:28
+msgid ""
+"`Community Based Service Provider "
+"<https://opendata.dc.gov/datasets/DCGIS::community-based-service-"
+"providers>`_"
+msgstr ""
+"`Proveedor de servicios comunitarios "
+"<https://opendata.dc.gov/datasets/DCGIS::community-based-service-"
+"providers>`_"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:31
+msgid ""
+"For convenience, you may directly download a copy of the datasets from the "
+"links below:"
+msgstr ""
+"Para su comodidad, puede descargar directamente una copia de los conjuntos "
+"de datos de los enlaces abajo:"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:34
+msgid ""
+"`Roadway_Block-shp.zip "
+"<https://www.qgistutorials.com/downloads/Roadway_Block-shp.zip>`_"
+msgstr ""
+"`Roadway_Block-shp.zip "
+"<https://www.qgistutorials.com/downloads/Roadway_Block-shp.zip>`_"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:36
+msgid ""
+"`Address_Points.zip "
+"<https://www.qgistutorials.com/downloads/Address_Points.zip>`_"
+msgstr ""
+"`Address_Points.zip "
+"<https://www.qgistutorials.com/downloads/Address_Points.zip>`_"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:38
+msgid ""
+"`Community Based Service Provider.zip "
+"<https://www.qgistutorials.com/downloads/Community_Based_Service_Providers.zip>`_"
+msgstr ""
+"`Proveedor de Servicios Comunitarios.zip "
+"<https://www.qgistutorials.com/downloads/Community_Based_Service_Providers.zip>`_"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:40
+msgid "Data Source: [DCOPENDATA]_"
+msgstr "Fuente de Datos: [DCOPENDATA]_"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:43
+msgid "Setup"
+msgstr "Configuración"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:44
+msgid ""
+"Visit :menuselection:`Plugins --> Manage and Install plugins`. Select "
+":guilabel:` All` Search for **QNEAT3** plugin and install it. Click "
+":guilabel:`Close`."
+msgstr ""
+"Visite :menuselection:`Complementos --> Administrar e Instalar "
+"complementos`. Seleccione :guilabel:` Todos` Busque el complemento "
+"**QNEAT3** e instálelo. Clic en :guilabel:`Cerrar`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:50
+msgid "Procedure"
+msgstr "Procedimiento"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:52
+msgid ""
+"Locate the ``Community_Based_Service_Providers.zip`` file, expand it and add"
+" ``Community_Based_Service_Providers.shp`` to the canvas. We will select "
+"only those centres providing facilities to adults. Right-click on the "
+"``Community_Based_Service_Providers.shp`` layer and select "
+":guilabel:`Filter`."
+msgstr ""
+"Localice el archivo ``Community_Based_Service_Providers.zip``, expándalo y "
+"añada ``Community_Based_Service_Providers.shp`` al lienzo. Seleccionaremos "
+"sólo los centros que prestan servicios a adultos. Haga clic con el botón "
+"derecho en la capa ``Community_Based_Service_Providers.shp`` y seleccione "
+":guilabel:`Filtro`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:57
+msgid ""
+"It will open a :guilabel:`Query Builder` dialog box. Enter the following "
+"query in the :guilabel:` Filter Expression`  Click :guilabel:`Run`."
+msgstr ""
+"Se abrirá un cuadro de diálogo :guilabel: `Constructor de consultas`. "
+"Introduzca la siguiente consulta en :guilabel:`Expresión de filtro` Haga "
+"clic en :guilabel:`Ejecutar`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:66
+msgid ""
+"Next, locate the ``Roadway_Block.zip`` file, expand it and add the "
+"``Roadway_Block.shp``. Similarly, locate the ``Address_Points.zip`` file, "
+"expand it and add the ``Address_Points.shp``. You will see a lot of points "
+"around the city. Each point represents a valid address. We will select 1000 "
+"points randomly. This technique is called random sampling. Go to "
+":menuselection:`Processing --> Toolbox`."
+msgstr ""
+"A continuación, localiza el archivo ``Roadway_Block.zip``, expándelo y añade"
+" el archivo ``Roadway_Block.shp``. Del mismo modo, localiza el archivo "
+"``Address_Points.zip``, expándelo y añade el archivo ``Address_Points.shp``."
+" Verás un montón de puntos alrededor de la ciudad. Cada punto representa una"
+" dirección válida. Seleccionaremos 1000 puntos al azar. Esta técnica se "
+"llama muestreo aleatorio. Vaya a :menuselección:`Procesos --> Caja de "
+"herramientas`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:71
+msgid ""
+"Search for and locate the :menuselection:`Vector Selection --> Random "
+"extract` algorithm."
+msgstr ""
+"Busque y localice el algoritmo :menuselection:`Selección de Vector --> "
+"Extracción aleatoria`"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:76
+msgid ""
+"Select ``Address_Points`` as the :guilabel:`Input layer`, ``Number of "
+"feature`` as the :guilabel:`Method` and, enter ``1000`` in the "
+":guilabel:`Number/percentage of features`. In the :guilabel:`Extracted "
+"(random)` choose the ``...``  and click :guilabel:`Save to a file`. Now "
+"choose the directory and enter the name as ``address_point_subset.shp`` and "
+"click :guilabel:`Run`."
+msgstr ""
+"Seleccione ``Address_Points`` como la :guilabel:`Capa de Entrada`, ``Number "
+"of feature`` como el :guilabel:`Método` e, ingrese ``1000`` en "
+":guilabel:`Número/porcentaje de objetos espaciales`. En el "
+":guilabel:`Extraído (aleatorio)` elija el ``...`` y clic :guilabel:`Guardar "
+"a un archivo`. Ahora elija el directorio e ingrese el nombre "
+"``address_point_subset.shp`` y clic :guilabel:`Ejecutar`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:83
+msgid ""
+"As the algorithm will extract 1000 random points from the given data set, to"
+" replicate the exact points used in this exercise you can download the "
+"subset file which we got during the execution of the algorithm here "
+"`address_point_subset.zip "
+"<https://www.qgistutorials.com/downloads/address_point_subset.zip>`_ . After"
+" downloading load ``address_point_subset.shp`` layer into QGIS."
+msgstr ""
+"Como el algoritmo extraerá 1000 puntos aleatorios del conjunto de datos "
+"dado, para replicar los puntos exactos usados en este ejercicio puede "
+"descargar el archivo de subconjunto que obtuvimos durante la ejecución del "
+"algoritmo aquí `address_point_subset.zip "
+"<https://www.qgistutorials.com/downloads/address_point_subset.zip>`_. "
+"Después de descargar, cargue la capa ``address_point_subset.shp`` en QGIS."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:85
+msgid ""
+"A new layer ``address_point_subset`` will be added to the :guilabel:`Layers`"
+" panel, you can turn off the visibility of ``Address_Points`` address points"
+" layer. Let's rename this layer as ``origin_points``. Right-click on the "
+"``address_point_subset`` layer and select :guilabel:`Rename layer`."
+msgstr ""
+"Se añadirá una nueva capa ``address_point_subset`` al panel "
+":guilabel:`Capas`, puede desactivar la visibilidad de la capa de puntos de "
+"dirección ``Address_Points``. Vamos a renombrar esta capa como "
+"``origin_points``. Haga clic con el botón derecho en la capa "
+"``address_point_subset`` y seleccione :guilabel:`Renombrar capa`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:90
+msgid ""
+"Similarly, rename the ``Community_Based_Service_Provider`` layers "
+"representing the health facilities as ``destination_points``. Naming the "
+"layers this way makes it easy to identify them in subsequent processing. "
+"Further we will open processing toolbox to create the distance matrix using "
+"origin and destination layers."
+msgstr ""
+"Del mismo modo, cambie el nombre de las capas "
+"``Community_Based_Service_Provider`` que representan los centros sanitarios "
+"por ``destination_points``. Esta forma de nombrar las capas facilita su "
+"identificación en el procesamiento posterior. A continuación, abriremos la "
+"caja de herramientas de procesamiento para crear la matriz de distancias "
+"utilizando las capas de origen y destino."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:95
+msgid ""
+"Locate the :menuselection:`QNEAT3 --> Distance matrices --> OD Matrix from "
+"Layers as Line (m:n)` algorithm. If you do not see this algorithm in the "
+"toolbox, make sure you have installed the **QNEAT3** plugin."
+msgstr ""
+"Localice el algoritmo :menuselection:`QNEAT3 --> Matrices de distancia --> "
+"OD Matrix from Layers as Line (m:n)`. Si no ve este algoritmo en la caja de "
+"herramientas, asegúrese que tiene instalado el complemento **QNEAT3**."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:100
+msgid ""
+"This algorithm helps find the distances along with the network between "
+"selected origin and destination layers. Select ``Roadway_Block`` as the "
+":guilabel:`Network layer`. Select ``origin_points`` as the :guilabel:`From-"
+"Points layer` and ``OBJECTID`` as the :guilabel:`Unique Point ID field`. "
+"Similarly, set ``destination_points`` as the :guilabel:`To-Points Layer` and"
+" ``OBJECTID`` as  the :guilabel:`Unique Point ID field`. Set the "
+":guilabel:`Optimization Criterion` as ``Shortest Path (distance "
+"optimization)``."
+msgstr ""
+"Este algoritmo ayuda a encontrar las distancias junto con la red entre las "
+"capas de origen y destino seleccionadas. Seleccione ``Roadway_Block`` como "
+":guilabel:`Capa de red`. Seleccione ``origin_points`` como :guilabel: `Capa "
+"de puntos de origen` y ``OBJECTID`` como :guilabel:`Campo de ID de punto "
+"único`. Del mismo modo, establezca ``puntos_destino`` como la capa "
+":guilabel:`Hacia-Puntos` y ``OBJECTID`` como el campo "
+":guilabel:`Identificador de punto único`. Establezca :guilabel:`Criterio de "
+"optimización` como ``Sendero más corto (optimización de la distancia)``."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:105
+msgid ""
+"As many streets in the network are one-way, we need to set the "
+":guilabel:`Advanced parameters` to specify the direction. See "
+":doc:`basic_network_analysis` for more details on how these attributes are "
+"structured. We also have an option to select geometry style of the generated"
+" matrix. We are having a road network with direction information so we can "
+"generate matrix by folling the route. Choose ``Matrix geometry follows "
+"routes``. Choose ``SUMMARYDIR`` as the :guilabel:`Direction field`. Enter "
+"``OB`` as the :guilabel:`Value for the forward direction`, ``IB`` as the "
+":guilabel:`Value for backward direction`, and ``BD`` as the :guilabel:`Value"
+" for the both direction`. Set the :guilabel:`Topology tolerance` as "
+"``0.0000150``. Keep other options to their default values and click "
+":guilabel:`Run`."
+msgstr ""
+"Dado que muchas calles de la red son de sentido único, es necesario "
+"establecer los :guilabel:`Parámetros avanzados` para especificar la "
+"dirección. Véase :doc:`basic_network_analysis` para más detalles sobre cómo "
+"se estructuran estos atributos. También tenemos una opción para seleccionar "
+"el estilo de geometría de la matriz generada. Tenemos una red de carreteras "
+"con información de dirección, por lo que podemos generar la matriz siguiendo"
+" la ruta. Elija ``Matrix geometry follows routes``. Elija ``SUMMARYDIR`` "
+"como :guilabel:`Campo de dirección`. Introduzca ``OB`` como :guilabel:`Valor"
+" para la dirección hacia delante`, ``IB`` como :guilabel:`Valor para la "
+"dirección hacia atrás`, y ``BD`` como :guilabel:`Valor para la dirección "
+"hacia ambos lados`. Establezca :guilabel:`Tolerancia topológica` como "
+"``0.0000150``. Mantenga las demás opciones en sus valores por defecto y haga"
+" clic en :guilabel: `Ejecutar`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:110
+msgid ""
+"A new table layer called ``Output OD Matrix`` will be added to the "
+":guilabel:`Layers` panel. Right-click and select :guilabel:`Open Attributes "
+"Table`. You will see that the table contains *67000* rows. We had 67 origin "
+"points and 1000 destination points - so the output contains *67x1000 = "
+"67000* pairs of origins and destination. The ``total_cost`` column contains "
+"distance in meters between each origin point to every destination point."
+msgstr ""
+"Se añadirá una nueva capa de tabla llamada ``Output OD Matrix`` al panel "
+":guilabel:`Capas`. Haga clic con el botón derecho y seleccione "
+":guilabel:`Abrir tabla de atributos`. Verá que la tabla contiene *67000* "
+"filas. Teníamos 67 puntos de origen y 1000 puntos de destino - por lo que la"
+" salida contiene *67x1000 = 67000* pares de orígenes y destinos. La columna "
+"``total_cost`` contiene la distancia en metros entre cada punto de origen y "
+"cada punto de destino."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:115
+msgid ""
+"For this tutorial, we are interested in only the destination point with the "
+"shortest distance. We can create a SQL query to pick the destination with "
+"the least ``total_cost`` among all destinations. Go to "
+":menuselection:`Processing --> Toolbox`.Search for and locate the "
+":menuselection:`Vector general --> Execute SQL`."
+msgstr ""
+"Para este tutorial, sólo nos interesa el punto de destino con la distancia "
+"más corta. Podemos crear una consulta SQL para elegir el destino con el "
+"menor ``total_cost`` entre todos los destinos. Vaya a "
+":menuselection:`Procesamiento --> Caja de herramientas`.Busque y localice la"
+" opción :menuselection:`Vector general --> Ejecutar SQL`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:120
+msgid ""
+"In :guilabel:`Additional input data sources` select ``...`` and check the "
+":guilabel:`Output OD Matrix` and, click :guilabel:`OK`. Now click the "
+":guilabel:`Summation` under :guilabel:`SQL query`. Enter the following query"
+" in :guilabel:`SQL query` dialog box. Enter ``geometry`` as the "
+":guilabel:`Geometry field` and, select ``LineString`` as the "
+":guilabel:`Geometry type`. Click :guilabel:`Run`."
+msgstr ""
+"En :guilabel: `Fuentes de datos de entrada adicionales` seleccione ``...`` y"
+" marque la opción :guilabel: `Matriz OD de salida` y haga clic en :guilabel:"
+" `Aceptar`. Ahora haga clic en :guilabel:`Summation` bajo :guilabel: "
+"`Consulta SQL`. Introduzca la siguiente consulta en el cuadro de diálogo "
+":guilabel:`Consulta SQL`. Introduzca ``geometry`` como campo "
+":guilabel:`Geometría` y seleccione ``LineString`` como tipo de :guilabel: "
+"`Geometría`. Haga clic en :guilabel:`Ejecutar`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:130
+msgid ""
+"A new virtual layer ``SQL Output`` will be added to the :guilabel:`Layers` "
+"panel. This Layer has the result of our analysis. Nearest service provider "
+"for each of the 1000 origin points."
+msgstr ""
+"Se añadirá una nueva capa virtual ``SQL Output`` al panel :guilabel: "
+"`Capas`. Esta capa contiene el resultado de nuestro análisis. Proveedor de "
+"servicios más cercano para cada uno de los 1000 puntos de origen."

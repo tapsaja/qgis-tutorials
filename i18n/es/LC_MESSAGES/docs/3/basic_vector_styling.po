@@ -1,0 +1,464 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# YoViajo, 2021
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-23 16:40+0000\n"
+"PO-Revision-Date: 2019-06-27 07:52+0000\n"
+"Last-Translator: YoViajo, 2021\n"
+"Language-Team: Spanish (https://www.transifex.com/spatialthoughts/teams/7952/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../../source/docs/3/basic_vector_styling.rst:2
+msgid "Basic Vector Styling (QGIS3)"
+msgstr "Estilo Básico Vectorial (QGIS3)"
+
+#: ../../source/docs/3/basic_vector_styling.rst:4
+msgid ""
+"To create a map, one has to style the GIS data and present it in a form that"
+" is visually informative. There are a large number of options available in "
+"QGIS to apply different types of symbology to the underlying data. In this "
+"tutorial, we will take a text file and apply different data visualization "
+"techniques to highlight spatial patterns in the data."
+msgstr ""
+"Para crear un mapa, se debe dar estilo a los datos SIG y presentarlos en una"
+" forma visualmente informativa. Hay un gran número de opciones disponibles "
+"en QGIS para aplicar diferentes tipos de simbología a los datos por detrás. "
+"En este tutorial, tomaremos un archivo texto y aplicaremos diferentes "
+"técnicas de visualización para resaltar patrones espaciales en los datos."
+
+#: ../../source/docs/3/basic_vector_styling.rst:7
+msgid "Overview of the task"
+msgstr "Vista general de la tarea"
+
+#: ../../source/docs/3/basic_vector_styling.rst:9
+msgid ""
+"We will take a CSV file containing the location of all power plants in the "
+"World and create a visualization showing distribution of renewable and non-"
+"renewable fuels used in these power plants."
+msgstr ""
+"Tomaremos un archivo CSV que contiene la ubicación de todas las plantas de "
+"energía en el mundo y crearemos una visualización que muestra la "
+"distribución de combustibles renovables y no-renovables usados en estas "
+"plantas de energía."
+
+#: ../../source/docs/3/basic_vector_styling.rst:12
+msgid "Other skills you will learn"
+msgstr "Otras habilidades que aprenderá"
+
+#: ../../source/docs/3/basic_vector_styling.rst:13
+msgid ""
+"Use expressions to group multiple attribute values into a single category"
+msgstr ""
+"Usar expresiones para agrupar múltiples valores de atributos en una sola "
+"categoría. "
+
+#: ../../source/docs/3/basic_vector_styling.rst:16
+msgid "Get the data"
+msgstr "Obtener los datos"
+
+#: ../../source/docs/3/basic_vector_styling.rst:18
+msgid ""
+"`World Resources Institute <https://www.wri.org>`_ has compiled a "
+"comprehensive, open source database of power plants around the World "
+"covering over 30000 plants. Download the `The Global Power Plant Database "
+"<http://datasets.wri.org/dataset/globalpowerplantdatabase>`_ from the WRI "
+"Open Data Portal."
+msgstr ""
+"El `World Resources Institute <https://www.wri.org>`_ ha compilado una base "
+"de datos extensa, de código abierto de plantas de energía alrededor del "
+"mundo que cubren más de 30000 plantas. Descargue la `The Global Power Plant "
+"Database <http://datasets.wri.org/dataset/globalpowerplantdatabase>`_ del "
+"Portal WRI Open Data."
+
+#: ../../source/docs/3/basic_vector_styling.rst:20
+msgid ""
+"`Natural Earth <http://naturalearthdata.com>`_ has several global vector "
+"layers. Download the `10m Physical Vectors - Land "
+"<https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_land.zip>`_"
+" containing Land polygons."
+msgstr ""
+"`Natural Earth <http://naturalearthdata.com>`_ tiene varioas capas "
+"vectoriales. Descargue `10m Physical Vectors - Land "
+"<https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_land.zip>`_"
+" que contiene poligonos de Tierra."
+
+#: ../../source/docs/3/basic_vector_styling.rst:23
+msgid ""
+"For convenience, you may directly download a copy of the above layers from "
+"below:"
+msgstr ""
+"Para su comodidad, puede descargar directamente una copia de las capas "
+"mencionadas previamente de aquí abajo:"
+
+#: ../../source/docs/3/basic_vector_styling.rst:25
+msgid ""
+"`globalpowerplantdatabasev120.zip "
+"<https://www.qgistutorials.com/downloads/globalpowerplantdatabasev120.zip>`_"
+msgstr ""
+"`globalpowerplantdatabasev120.zip "
+"<https://www.qgistutorials.com/downloads/globalpowerplantdatabasev120.zip>`_"
+
+#: ../../source/docs/3/basic_vector_styling.rst:27
+msgid ""
+"`ne_10m_land.zip <https://www.qgistutorials.com/downloads/ne_10m_land.zip>`_"
+msgstr ""
+"`ne_10m_land.zip <https://www.qgistutorials.com/downloads/ne_10m_land.zip>`_"
+
+#: ../../source/docs/3/basic_vector_styling.rst:29
+msgid "Data Source [WRI]_ [NATURALEARTH]_"
+msgstr "Fuente de Datos [WRI]_ [NATURALEARTH]_"
+
+#: ../../source/docs/3/basic_vector_styling.rst:32
+msgid "Procedure"
+msgstr "Procedimiento"
+
+#: ../../source/docs/3/basic_vector_styling.rst:34
+msgid ""
+"Unzip both the datasets to a folder on your computer. In the QGIS Browser "
+"Panel, locate the directory where you extracted the data. Expand the "
+"``ne_10m_land`` folder and select the ``ne_10m_land.shp`` layer. Drag the "
+"layer to the canvas."
+msgstr ""
+"Descomprima ambos conjuntos de datos en una carpeta en su computadora. En el"
+" Panel del Explorador QGIS, localice el directorio donde extrajo los datos. "
+"Expanda la carpeta ``ne_10m_land`` y selecciones la capa "
+"``ne_10m_land.shp``. Arrastre la capa a la pantalla."
+
+#: ../../source/docs/3/basic_vector_styling.rst:39
+msgid ""
+"You will get a new layer ``ne_10m_land`` added to the :guilabel:`Layers` "
+"panel. The global power plant database comes as a CSV file, so we will need "
+"to import it. Click the :guilabel:`Open Data Source Manager` button on the "
+":guilabel:`Data Source Toolbar`. You can also use :kbd:`Ctrl + L` keyboard "
+"shortcut."
+msgstr ""
+"Verá una nueva capa ``ne_10m_land`` agregada al panel :guilabel:`Capas`. La "
+"base de datos global de plantas de energía viene como un archivo CSV, por lo"
+" que necesitamos importarlo. Clic en el botón :guilabel:`Abrir el "
+"Administrador de Fuente de Datos` en la :guilabel:`Barra de Herramientas "
+"Fuente de Datos`. También puede usar el atajo de teclado :kbd:`Ctrl + L`. "
+
+#: ../../source/docs/3/basic_vector_styling.rst:44
+msgid ""
+"In the :guilabel:`Data Source Manager` window, switch to the "
+":guilabel:`Delimited Text` tab. Click the :guilabel:`...` button next to "
+":guilabel:`File name` and browse to the directory where you extracted the "
+"``globalpowerplantdatabasev120.zip`` file. Select the "
+"``global_power_plant_database.csv``. QGIS will auto detect the delimiter and"
+" geometry fields. Leave the :guilabel:`Geometry CRS` to the default value of"
+" ``EPSG:4326 - WGS84``. Click :guilabel:`Add` followed by :guilabel:`Close`."
+msgstr ""
+"En la ventana :guilabel:`Administrador de Fuente de Datos`, cambie a la "
+"pestaña :guilabel:`Texto Delimitado`. Clic en el botón :guilabel:`...` junto"
+" a :guilabel:`Nombre de archivo` y explore al  directorio donde extrajo el "
+"archivo ``globalpowerplantdatabasev120.zip``. Seleccione "
+"``global_power_plant_database.csv``. QGIS detectará automáticamente el "
+"delimitador y campos de geometría. Deje la :guilabel:`SRC Geometría` al "
+"valor predeterminado ``EPSG:4326 - WGS84``. Clic en :guilabel:`Agregar` "
+"seguido por :guilabel:`Cerrar`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:49
+msgid ""
+"A new layer ``global_power_plant_database`` will be added to the "
+":guilabel:`Layers` panel and you will see the points representing the power "
+"plants in the canvas. Now we are ready to style both these layers. Click the"
+" :guilabel:`Open the Layer Styling panel` button at the top of the "
+":guilabel:`Layers` panel."
+msgstr ""
+"Una nueva capa ``global_power_plant_database`` será agregada al panel "
+":guilabel:`Capas` y verá los puntos que representan las plantas de energía "
+"en la pantalla. Ahora estamos listos para dar estilo a ambas capas. Clic en "
+"el botón :guilabel:`Abrir el panel de Estilo de Capa` en la parte de arriba "
+"del panel :guilabel:`Capas`. "
+
+#: ../../source/docs/3/basic_vector_styling.rst:54
+msgid ""
+"The :guilabel:`Layer Styling` panel will open on the right. Select the "
+"``ne_10m_land`` layer first. This will be our base layer so we can keep the "
+"styling minimalistic so it is not distracting. Click ``Simple fill`` and "
+"scroll down. Select a :guilabel:`Fill color` as per your liking. Click the "
+"drop-down next to :guilabel:`Stroke color` and select ``Transparent "
+"Stroke``. This will set the outlines of the land polygons to be transparent."
+" You will see the result of your selection applied immediately to the layer."
+msgstr ""
+"El panel :guilabel:`Estilo de Capa` se abrirá a la derecha. Seleccione "
+"primero la capa ``ne_10m_land``. Esta será nuestra capa base por lo que "
+"mantendremos el estilo minimalista para que no distraiga. Clic en ``Llenado "
+"simple`` y deslice hacia abajo. Seleccione un :guilabel:`Color de relleno` a"
+" su gusto. Clic en el menú desplegable junto a :guilabel:`Color de contorno`"
+" y seleccione ``Contorno Transparente``. Esto definirá los contornos de los "
+"polígonos de tierras como transparentes. Verá el resultado de su selección "
+"aplicado inmediatamente a la capa."
+
+#: ../../source/docs/3/basic_vector_styling.rst:59
+msgid ""
+"Next select the ``global_power_plant_database`` layer. Click on ``Simple "
+"marker`` and scroll down. Pick a triangle marker."
+msgstr ""
+"A continuación, seleccione la capa ``global_power_plant_database``. Clic en "
+"``Marcador simple`` y desplácese hacia abajo. Elija un marcador triángulo."
+
+#: ../../source/docs/3/basic_vector_styling.rst:64
+msgid ""
+"Scroll up and select a :guilabel:`Fill color` of your liking. A useful "
+"cartographic technique is to choose a slightly darker version of the fill-"
+"color as the :guilabel:`Stroke color`. Rather than trying to pick that "
+"manually, QGIS provides an expression to control this more precisely. Click "
+"the :guilabel:`Data defined override` button and choose :guilabel:`Edit`."
+msgstr ""
+"Desplácese hacia arriba y seleccione un :guilabel:`Color de relleno` de su "
+"gusto. Un técnica cartográfica útil es elegir una versión ligeramente más "
+"oscura del color de relleno como el :guilabel:`Color de borde`. En vez de "
+"intentar escoger eso manualmente, QGIS provee una expresión para controlar "
+"esto más precisamente. Clic en el botón :guilabel:`Desautorización definida "
+"por datos` y elija :guilabel:`Editar`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:69
+msgid ""
+"Enter the following expression to set the color to be 30% darker shade than "
+"the fill color and click :guilabel:`OK`."
+msgstr ""
+"Ingrese la siguiente expresión para establecer el color como un tono 30% más"
+" oscuro que el color de relleno y clic en :guilabel:`Aceptar`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:80
+msgid ""
+"Note that this expression is independent of the fill color you have chosen. "
+"You will see that this is immensely useful in the following steps where it "
+"automatically sets the border color based on the fill color provided."
+msgstr ""
+"Note que esta expresión es independiente del color de relleno que haya "
+"elegido. Verá que esto es inménsamente útil en los siguiente pasos donde "
+"establece automáticamente el color de borde basado en el color de relleno "
+"provisto."
+
+#: ../../source/docs/3/basic_vector_styling.rst:82
+msgid ""
+"You will notice that the :guilabel:`Data defined override` button next to "
+":guilabel:`Stroke color` has turned yellow - indicating than this property "
+"is controlled by an override. A single symbol rendering of the power plants "
+"layer is not very useful. It doesn't convey much information except the "
+"locations of the power plants. Let's use a different renderer to make it "
+"more useful. Click the :guilabel:`Symbology` drop-down and select "
+"``Categorized`` renderer."
+msgstr ""
+"Notará que el botón de :guilabel:`Desautorización definida por datos` junto "
+"a :guilabel:`Color de borde` se volvió amarillo - indicando que esta "
+"propiedad está controlada por una desautorización. Un símbolo único que "
+"representa a las plantas de energía no es muy útil. No transmite mucha "
+"información excepto las ubicaciones de las plantas de energía. Usemos un "
+"representador diferente para hacerlo más útil. Clic en la "
+":guilabel:`Simbología` desplegable y seleccione el representador "
+"``Categorizado``."
+
+#: ../../source/docs/3/basic_vector_styling.rst:87
+msgid ""
+"The ``global_power_plant_database`` layer contains an attribute indicating "
+"the primary fuel used in each power plant. We can create a style where each "
+"unique fuel type is shown in a different color. Select ``primary_fuel`` as "
+"the :guilabel:`Column`. Click :guilabel:`Classify`. You will multiple "
+"categories appear and the map rendering change accordingly."
+msgstr ""
+"La capa ``global_power_plant_database`` contiene un atributo que indica el "
+"combustible principal usado en cada planta de energía. Podemos crear un "
+"estilo donde cada tipo único de combustible sea mostrado en un color "
+"diferente. Seleccione ``primary_fuel``como la :guilabel:`Columna`. Clic "
+":guilabel:`Clasificar`. Verá que aparecen múltiples categorías y que la "
+"representación del mapa cambia como corresponde."
+
+#: ../../source/docs/3/basic_vector_styling.rst:92
+msgid ""
+"While a Categorized view is useful, this layer contains too-many categories "
+"for one to meaningfully interpret the map. A better approach would be to "
+"group certain type of fuel categories and reduce the number of classes. "
+"Let's try to create 3 categories - **Renewable fuel**, **Non-renewable "
+"fuel** and **Other**. Select ``Rule-based`` renderer. Select all but one "
+"rules by holding the :kbd:`Ctrl` key and clicking on each row. Once "
+"selected, click the :guilabel:`Remove selected rules` button to delete them."
+msgstr ""
+"Mientras una vista Categorizada es útil, esta capa contiene demasiadas "
+"categorías para poder interpretar el mapa significativamente. Un mejor "
+"enfoque sería agrupar cierto tipo de categorías de combustible y reducir el "
+"número de clases. Intentemos crear 3 categorías - **Combustible renovable**,"
+" **Combustible no-renovable** y **Otro**. Seleccione el representador "
+"``Basado en regla``. Seleccione todas menos una regla manteniendo la telc "
+":kbd:`Ctrl` presionada y haciendo clic en cada fila. Una vez seleccionada, "
+"clic el botón :guilabel:`Quitar reglas seleccionadas` para borrarlas."
+
+#: ../../source/docs/3/basic_vector_styling.rst:97
+msgid "Select the remaining rule and click :guilabel:`Edit current rule`."
+msgstr ""
+"Seleccione la regla restante y clic :guilabel:`Editar la regla actual`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:102
+msgid ""
+"Enter ``Renewable fuel`` as the :guilabel:`Label`. Click the "
+":guilabel:`Expression` button next to :guilabel:`Filter`."
+msgstr ""
+"Ingrese ``Combustible renovable`` como la :guilabel:`Etiqueta`. Clic el "
+"botón :guilabel:`Expresión` junto a :guilabel:`Filtro`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:107
+msgid ""
+"In the :guilabel:`Expression String Builder` dialog, enter the following "
+"expression and click :guilabel:`OK`. Here we are grouping multiple renewable"
+" energy categories into a single category."
+msgstr ""
+"En el diálogo :guilabel:`Constructor de Cadena de Expresión`, ingrese la "
+"siguiente expresión y clic en :guilabel:`Aceptar`. Aquí estamos agrupando "
+"múltiples categorías de energía renovable en una sola categoría."
+
+#: ../../source/docs/3/basic_vector_styling.rst:118
+msgid ""
+"The types of fuel chosen for renewable vs. non-renewable categories is based"
+" on `Wikipedia <https://en.wikipedia.org/wiki/Renewable_energy>`_. There are"
+" alternate definitions and classifications that may not match what is chosen"
+" here."
+msgstr ""
+"Los tipos de combustibles elegidos para las categoría renovables vs. no-"
+"renovables están basados en `Wikipedia "
+"<https://es.wikipedia.org/wiki/Energ%C3%ADa_renovable>_. Hay definiciones y "
+"clasificaciones alternas que pueden no coincidir con lo que se eligió aquí."
+
+#: ../../source/docs/3/basic_vector_styling.rst:120
+#: ../../source/docs/3/basic_vector_styling.rst:149
+msgid ""
+"Scroll down and click :guilabel:`Simple marker`. Choose an appropriate "
+":guilabel:`Fill color`. Once done, click the :guilabel:`Back` button."
+msgstr ""
+"Deslice hacia abajo y clic :guilabel:`Marcador simple`. Elija un "
+":guilabel:`Color de relleno` apropiado. Una vez listo, clic el botón "
+":guilabel:`Atrás`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:125
+msgid ""
+"You will see a single rule being applied to the layer for the "
+":guilabel:`Renewable fuel` category. Right-click the row and choose "
+":guilabel:`Copy`. Right-click again and choose :guilabel:`Paste`."
+msgstr ""
+"Verá que se aplica una sola regla a la capa para la categoría "
+":guilabel:`Combustible renovable`. Clic-derecho la fila y elija "
+":guilabel:`Copiar`. Clic-derecho de nuevo y elija :guilabel:`Pegar`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:130
+msgid ""
+"A copy of the existing rule will be added. Select the newly added row and "
+"click :guilabel:`Edit current rule`."
+msgstr ""
+"Una copia de la regla existente será agregada. Selecciona la fila "
+"recientemente agregada y clic :guilabel:`Editar regla actual`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:135
+msgid ""
+"Enter ``Non-renewable fuel`` as the :guilabel:`Label`. Click the "
+":guilabel:`Expression` button next to :guilabel:`Filter`."
+msgstr ""
+"Ingrese ``Combustible no-renovable`` como la :guilabel:`Etiqueta`. Clic el "
+"botón :guilabel:`Expresión` junto a :guilabel:`Filtro`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:140
+msgid ""
+"In the :guilabel:`Expression String Builder` dialog, enter the following "
+"expression and click :guilabel:`OK`."
+msgstr ""
+"En el diálogo :guilabel:`Constructor de Cadena de Expresión`, ingrese la "
+"siguiente expresión y clic en :guilabel:`Aceptar`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:154
+msgid ""
+"Repeat the Copy/Paste process to add a third rule. Select it and click "
+":guilabel:`Edit current rule`."
+msgstr ""
+"Repita el proceso de Copiado/Pegado y agregue una tercera regla. "
+"Selecciónela y clic en :guilabel:`Editar regla actual`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:159
+msgid ""
+"Enter ``Other`` as the :guilabel:`Label`. Choose :guilabel:`Else - Catch all"
+" for other features` instead of a :guilabel:`Filter`. This will ensure that "
+"any category missed in the previous 2 rules, will be styled by this rule.  "
+"Scroll down and click :guilabel:`Simple marker`. Choose an appropriate "
+":guilabel:`Fill color`. Once done, click the :guilabel:`Back` button."
+msgstr ""
+"Ingrese ``Otro`` como la :guilabel:`Etiqueta`. Elija :guilabel:`Sino - "
+"Capturar todos los otros objetos espaciales` en vez de :guilabel:`Filtro`. "
+"Esto asegurará que cualquier categoría no considerada en las 2 reglas "
+"previas recibirá un estilo con esta regla. Deslice hacia abajo y clic "
+":guilabel:`Marcador simple`. Elija un :guilabel:`Color de relleno` "
+"apropiado. Una vez listo, clic en el botón :guilabel:`Atrás`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:164
+msgid ""
+"The re-categorization is complete now. You will see a much cleaner view that"
+" shows the distribution of renewable vs. non-renewable fuel sources used by "
+"power plants and their distribution across countries. This however doesn't "
+"give a complete picture. We can add another variable to the styling. Rather "
+"than displaying all markers with uniform size, we can show the sizes "
+"proportional to the power generation capacity of each plant. This "
+"cartography technique is called *Multivariate mapping*. Right-click the "
+"``Renewable fuel`` rule and select :guilabel:`Change Size`."
+msgstr ""
+"La recategorización ahora está completa. Tendrá una vista más limpia que "
+"muestra la distribución de las fuentes de combustible renovable vs. no-"
+"renovable usada por las plantas de energía y su distribución a través del "
+"país. Esto sin embargo no da una figura completa. Podemos agregar otra "
+"variable al estilo. En vez de mostrar todos los marcadores con tamaño "
+"uniforme, podemos mostrar los tamaños proporcionales a la capacidad de "
+"generación de energía de cada planta. Esta técnica de cartografía es llamada"
+" *Mapeo multivariado*. Clic-derecho a la regla ``Combustible renovable`` y "
+"seleccione :guilabel:`Cambiar de Tamaño`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:169
+msgid ""
+"Click the :guilabel:`Data defined override` button next to :guilabel:`Size`."
+" Select :guilabel:`Edit`."
+msgstr ""
+"Clic en el botón :guilabel:`Desautorización definida por dato` junto a "
+":guilabel:`Tamaño`. Seleccione :guilabel:`Editar`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:174
+msgid ""
+"As the power generation capacity varies a lot among our dataset, an "
+"effective way to get a a small range for size is using the ``log10`` "
+"function. You can experiment with different expressions to arrive at what "
+"works best for your preferred visualization. Enter the following expression "
+"and click :guilabel:`OK`."
+msgstr ""
+"Como la capacidad de generación varía bastante a lo largo de conjunto de "
+"dato, una manera efectiva de obtener un rango pequeño de tamaño es usar la "
+"función ``log10``. Puede experimentar con diferentes expresiones para llegar"
+" a lo que funciona mejor para su visualización preferida. Ingrese la "
+"siguiente expresión clic en :guilabel:`Aceptar`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:183
+msgid "Repeat the same process for other rules."
+msgstr "Repita el mismo proceso para otras reglas."
+
+#: ../../source/docs/3/basic_vector_styling.rst:188
+msgid "Once satisfied, you can close the :guilabel:`Layer Styling panel`."
+msgstr "Una vez satisfecho, puede cerrar :guilabel:`Panel de Estilo de Capa`."
+
+#: ../../source/docs/3/basic_vector_styling.rst:193
+msgid ""
+"Looking at our final visualization, you can immediately see the patterns in "
+"the dataset. For example, over Europe there are more power plants that use "
+"renewable energy source, but they are lower capacity than the plants that "
+"use non-renewable energy source."
+msgstr ""
+"Mirando nuestra visualización final, puede ver inmediatamente los patrones "
+"en el conjunto de datos. Por ejemplo, sobre Europa hay más plantas de "
+"energía que usan fuentes de energía renovable, pero son de menor capacidad  "
+"que las plantas que usan fuentes de energía no-renovable."

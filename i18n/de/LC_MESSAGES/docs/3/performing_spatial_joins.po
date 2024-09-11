@@ -1,0 +1,370 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Matthias Wachholz <matthias.wachholz@lageso.berlin.de>, 2019
+# Jörn Vorwald <joern.vorwald@rostock.de>, 2024
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-01 21:08+0530\n"
+"PO-Revision-Date: 2019-05-04 19:21+0000\n"
+"Last-Translator: Jörn Vorwald <joern.vorwald@rostock.de>, 2024\n"
+"Language-Team: German (https://app.transifex.com/spatialthoughts/teams/7952/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../../source/docs/3/performing_spatial_joins.rst:2
+msgid "Performing Spatial Joins (QGIS3)"
+msgstr "Räumliche Verknüpfungen erstellen (QGIS3)"
+
+#: ../../source/docs/3/performing_spatial_joins.rst:3
+msgid ""
+"Spatial Join is a classic GIS problem - transferring attributes from one "
+"layer to another based on their spatial relationship. In QGIS, this "
+"functionality is available through the ``Join attributes by location`` "
+"Processing algorithm."
+msgstr ""
+"Die räumliche Verknüpfung ist eine klassische GIS-Problemstellung: der "
+"Transfer von Attributwerten eines Layers auf einen anderen basierend auf der"
+" räumlichen Beziehung der Layer zueinander. In QGIS steht diese "
+"Funktionalität durch den Algorithmus ``Attribute nach Position verknüpfen`` "
+"zur Verfügung."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:7
+msgid "Overview of the task"
+msgstr "Überblick über die Aufgabe"
+
+#: ../../source/docs/3/performing_spatial_joins.rst:8
+msgid ""
+"We will use 2 layers - A shapefile of Borough boundaries of New York city "
+"and another shapefile of Street Pavement Rating for all streets in New York "
+"city. The first task will be to find the average rating of streets in each "
+"of the borough using a spatial join with summary algorithm. The second task "
+"will be to add the name of the borough to the street features through a one-"
+"to-many spatial join."
+msgstr ""
+"Wir werden 2 Layer verwenden: eine Shapedatei der Stadtbezirksgrenzen von "
+"New York City und eine Shapedatei mit der Bewertung des Straßenbelages aller"
+" Straßen in New York City. Die erste Aufgabe besteht in der Bestimmung des "
+"mittleren Zustands der Straßen je Stadtbezirk. Dabei wird der Algorithmus "
+"räumliche Verknüpfung mit Zusammenfassung verwendet. Die zweite Aufgabe "
+"besteht darin, zu jeder Straße den Namen des Stadtbezirkes hinzuzufügen. "
+"Dies wird mit Hilfe einer räumlichen Eins-zu-viele-Verknüpfung erreicht."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:11
+msgid "Other skills you will learn"
+msgstr "Weitere Fähigkeiten, die wir erlernen"
+
+#: ../../source/docs/3/performing_spatial_joins.rst:13
+msgid ""
+"Creating filters to temporarily exclude certain features from computation."
+msgstr ""
+"Erstellung von Filtern, um bestimmte Features zeitweise von der Berechnung "
+"auszuschließen"
+
+#: ../../source/docs/3/performing_spatial_joins.rst:16
+msgid "Get the data"
+msgstr "Beschaffung der Daten"
+
+#: ../../source/docs/3/performing_spatial_joins.rst:17
+msgid ""
+"`NYC Open Data Portal <https://data.cityofnewyork.us/>`_ is an excellent "
+"source of free data for New York city."
+msgstr ""
+"`NYC Open Data Portal <https://data.cityofnewyork.us/>`_ ist eine exzellente"
+" Datenquelle für frei verfügbare Daten zu New York City."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:19
+msgid ""
+"Download the `Borough Boundaries  <https://data.cityofnewyork.us/City-"
+"Government/Borough-Boundaries/tqmj-j8zm>`_ zip file using the Export option "
+"on the portal."
+msgstr ""
+"Mit Hilfe der Exportoption des Portals laden wir folgende Daten herunter: "
+"`Borough Boundaries  <https://data.cityofnewyork.us/City-Government/Borough-"
+"Boundaries/tqmj-j8zm>`_."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:24
+msgid ""
+"Download the `Street Pavement Rating "
+"<https://data.cityofnewyork.us/Transportation/Street-Pavement-Rating/2cav-"
+"chmn>`_ zip file using the Export option on the portal."
+msgstr ""
+"Mit Hilfe der Export Option des Portals laden wir auch noch diese Daten "
+"herunter: `Street Pavement Rating "
+"<https://data.cityofnewyork.us/Transportation/Street-Pavement-Rating/2cav-"
+"chmn>`_."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:29
+msgid ""
+"For convenience, you may directly download a copy of the datasets from the "
+"links below:"
+msgstr ""
+"Der Einfachheit halber können wir eine Kopie der Datensätze unter folgenden "
+"Links herunterladen:"
+
+#: ../../source/docs/3/performing_spatial_joins.rst:31
+msgid "`nybb_19a.zip <https://www.qgistutorials.com/downloads/nybb_19a.zip>`_"
+msgstr ""
+"`nybb_19a.zip <https://www.qgistutorials.com/downloads/nybb_19a.zip>`_"
+
+#: ../../source/docs/3/performing_spatial_joins.rst:33
+msgid ""
+"`V_SSS_SEGMENTRATING_1.zip "
+"<https://www.qgistutorials.com/downloads/V_SSS_SEGMENTRATING_1.zip>`_"
+msgstr ""
+"`V_SSS_SEGMENTRATING_1.zip "
+"<https://www.qgistutorials.com/downloads/V_SSS_SEGMENTRATING_1.zip>`_"
+
+#: ../../source/docs/3/performing_spatial_joins.rst:35
+msgid "Data Source [CITYOFNY]_"
+msgstr "Datenquelle [CITYOFNY]_"
+
+#: ../../source/docs/3/performing_spatial_joins.rst:38
+msgid "Procedure"
+msgstr "Arbeitsablauf"
+
+#: ../../source/docs/3/performing_spatial_joins.rst:40
+msgid ""
+"Locate the ``nybb_19a.zip`` file in the QGIS Browser and expand it. Select "
+"the ``nybb_19a/nybb.shp`` layer and drag it to the canvas. This is a polygon"
+" layer representing the borough boundaries in New York city."
+msgstr ""
+"Im QGIS Browser suchen wir die Datei ``nybb_19a.zip`` und erweitern sie. Wir"
+" wählen den Layer ``nybb_19a/nybb.shp`` und ziehen ihn in den "
+"Arbeitsbereich. Es handelt sich um einen Polygonlayer mit den Grenzen der "
+"Stadtbezirke von New York City."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:45
+msgid ""
+"Next, locate the ``V_SSS_SEGMENTRATING_1.zip`` file and expand it. Select "
+"the ``dot_V_SSS_SEGMENTRATING_1_20190129.shp`` layer and add it to the "
+"canvas. This is a line layer of all streets in the city."
+msgstr ""
+"Als nächstes erweitern wir die Datei  ``V_SSS_SEGMENTRATING_1.zip`` und "
+"wählen den Layer ``dot_V_SSS_SEGMENTRATING_1_20190129.shp``; auch diesen "
+"fügen wir zum Arbeitsbereich hinzu. Dieser Linienlayer enthält alle Straßen "
+"der Stadt."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:50
+msgid ""
+"Let's examine the attributes available for each feature of the "
+"``dot_V_SSS_SEGMENTRATING_1_20190129`` layer. Right-click and select "
+":guilabel:`Open Attribute Table`."
+msgstr ""
+"Wir untersuchen die verfügbaren Attribute der im Layer "
+"``dot_V_SSS_SEGMENTRATING_1_20190129`` enthaltenen Objekte. Per Rechtsklick "
+"öffnen wir dasKontextmenü und wählen :guilabel:`Attributtabelle öffnen`."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:55
+msgid ""
+"You will notice the attribute called ``Rating_B`` which has values in the "
+"range 0-10 representing the street segment's rating. The attribute "
+"``RatingWord`` has descriptive rating. We can use the ``Rating_B`` field to "
+"calculate the average rating."
+msgstr ""
+"Wir sehen ein Attribut mit der Bezeichnung ``Rating_B``. Dieses Attribut mit"
+" Werten zwischen 0 und 10 enthält die Bewertung des Zustandes dieses "
+"Straßenabschnittes. Das Attribut ``RatingWord`` enthält eine beschreibende "
+"Bewertung. Wir können das Feld ``Rating_B`` nutzen, um die mittlere "
+"Bewertung zu bestimmen."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:60
+msgid ""
+"You may have notice some features have a rating of ``NR``. These are the "
+"segments that were not rated. Including them in our analysis will not be "
+"correct. Before we do the spatial join, let's set up a **Filter** to exclude"
+" these records. Right-click the ``dot_V_SSS_SEGMENTRATING_1_20190129`` layer"
+" and select :guilabel:`Filter`."
+msgstr ""
+"Für einige Objekte ist die Bewertung ``NR`` vergeben worden. Diese "
+"Abschnitte sind nicht bewertet. Sie in die Analyse mit einzubeziehen, wäre "
+"nicht korrekt. Bevor wir die räumliche Verknüpfung herstellen, erstellen wir"
+" einen **Filter**, um diese Datensätze auszuschließen. Dazu öffnen wir per "
+"Rechtsklick das Kontextmenü des Layers "
+"``dot_V_SSS_SEGMENTRATING_1_20190129`` und wählen :guilabel:`Filter...`."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:65
+msgid ""
+"In the :guilabel:`Query Builder`, type the following expression to select "
+"all records that are not rated ``NR``. You can also build the expression "
+"interactively by clicking on :guilabel:`Field`, :guilabel:`Operator` and "
+"selecting the appropriate :guilabel:`Value`. Click :guilabel:`OK`."
+msgstr ""
+"Im Fenster :guilabel:`Abfrageerstellung` geben wir folgenden Ausdruck ein, "
+"um alle Datensätze mit dem Wert ``NR`` zu selektieren. Man kann den Ausdruck"
+" auch interaktiv mithilfe der einträge bzw. Schaltflächen "
+":guilabel:`Felder`, :guilabel:`Operatoren` und der Auswahl der passenden "
+":guilabel:`Werte` erzeugen. Wir betätigen die Schaltfläche :guilabel:`OK`."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:74
+msgid ""
+"You will notice the ``dot_V_SSS_SEGMENTRATING_1_20190129`` layer now has a "
+"filter icon indicating that there is an active filter applied to this layer."
+" Now we can do a spatial join using this layer. Go to "
+":menuselection:`Processing --> Toolbox`."
+msgstr ""
+"Wir merken, dass der Layer ``dot_V_SSS_SEGMENTRATING_1_20190129`` nun ein "
+"Filtersymbol hat, welches einen aktiven Filter für diesen Layer anzeigt. "
+"Jetzt können wir eine räumliche Verknüpfung zum Layer herstellen und wählen "
+"dazu :menuselection:`Verarbeitung --> Werkzeugkiste`."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:79
+msgid ""
+"Search and locate the :menuselection:`Vector general --> Join attribute by "
+"location (summary)` algorithm. Double-click to launch it."
+msgstr ""
+"Wir suchen den Algorithmus :menuselection:`Vektoren allgemein --> Attribute "
+"nach Position verknüpfen (Zusammenfassung)` und starten ihn per Doppelklick."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:84
+msgid ""
+"In the :guilabel:`Join attribute by location (summary)` dialog, select "
+"``nybb`` as the :guilabel:`Input layer`. The street layer "
+"``dot_V_SSS_SEGMENTRATING_1_20190129`` will be the :guilabel:`Join layer`. "
+"You can leave the :guilabel:`Geometry predicate` to the default "
+"``Intersects``. Click the :guilabel:`...` button next to :guilabel:`Fields "
+"to sumarize`."
+msgstr ""
+"Im Dialogfenster :guilabel:`Attribute nach Position verknüpfen "
+"(Zusammenfassung)` wählen wir den Layer ``nybb`` als "
+":guilabel:`Eingabelayer`. Den Layer mit den Straßen "
+"``dot_V_SSS_SEGMENTRATING_1_20190129`` tragen wir unter :guilabel:`Durch "
+"Vergleich mit` ein. Die Einstellungen unter  :guilabel:`Ort der Objekte` "
+"können wir unverändert bei ``schneidet`` belassen. Wir betätigen die "
+"schaltfläche :guilabel:`...` neben :guilabel:`Zusammenzufassende Felder`."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:91
+msgid ""
+"A tip to help you select the correct input and join layers: The input layer "
+"is the one that will be modified will new attributes in the spatial join. As"
+" we want the average rating field to be added to the borough layer, it will "
+"be the input layer."
+msgstr ""
+"Ein Tipp, um den korrekten Eingabelayer festzulegen: Der Eingabelayer ist "
+"derjenige, der durch die räumliche Verknüpfung durch neue Attribute "
+"erweitert wird. Da wir die mittlere Bewertung zum Layer der Stadtbezirke "
+"hinzufügen wollen, ist dieser Layer der Eingabelayer."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:93
+msgid "Select ``Rating_B`` and click :guilabel:`OK`."
+msgstr "Wir wählen ``Rating_B`` und bestätigen mit :guilabel:`OK`."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:98
+msgid ""
+"Similarly, click the :guilabel:`...` button next to :guilabel:`Summaries to "
+"calculate`."
+msgstr ""
+"Analog betätigen wir die Schaltfläche :guilabel:`...` neben :guilabel:`Zu "
+"berechnende Zusammenfassungen`."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:103
+msgid ""
+"Select ``mean`` as the summary operator and click :guilabel:`OK`. Now we are"
+" ready to start the processing. Click :guilabel:`Run`."
+msgstr ""
+"Wir wählen ``Durchschnitt`` als Operation für die Zusammenfassung und "
+"bestätigen mit :guilabel:`OK`. Jetzt können wir die Berechnung starten und "
+"betätigen dazu die Schaltfläche :guilabel:`Starte`."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:108
+msgid ""
+"The processing algorithm will work through the features and apply the "
+"spatial join. Verify that the processing job was successful and click "
+":guilabel:`Close`."
+msgstr ""
+"Der Algorithmus verarbeit die Objekte und erstellt die räumliche "
+"Verknüpfung. Wir vergewissern uns, dass die Verabeitung erfolgreich "
+"abgeschlossen wurde und betätigen die Schaltfläche :guilabel:`Schließen`."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:113
+msgid ""
+"Back in the main QGIS window, you will see a new ``Joined layer`` layer "
+"added to canvas. Open the attribute table for this layer. You will see a new"
+" column ``Rating_B_mean`` is added to the input borough layer with the "
+"average rating of all streets that are interesecting with that feature."
+msgstr ""
+"Zurück im QGIS-Fenster sehen wir einen neuen Layer ``Zusammengefasster "
+"Layer``, der dem Arbeitsbereich hinzugefügt wurde. Wir öffnen die "
+"Attributtabelle dieses Layers und bemerken eine neue Spalte "
+"``Rating_B_mean``, die die mittlere Bewertung aller Straßen enthält, die "
+"einen Stadtbezirk überschneiden."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:118
+msgid ""
+"Now we can perform a reverse operation. Sometimes your analysis requires "
+"getting attributes from another layer based on the spatial relationship but "
+"not compute any summary. We can use the ``Join attribute by location`` "
+"algorithm for such analysis. The task is to add the name of the borough to "
+"each feature in the streets layer based on which borough polygon it "
+"intersects with. Before we run this algorithm, let's remove the filter from "
+"the ``dot_V_SSS_SEGMENTRATING_1_20190129`` layer. Click the filter icon and "
+"press the :guilabel:`Clear` in the :guilabel:`Query Builder`. Click "
+":guilabel:`OK`."
+msgstr ""
+"Jetzt wenden wir ein umgekehrtes Verfahren an. Manchmal benötigen wir "
+"Attribute eines anderen Layers basierend auf dessen räumlicher Beziehung, "
+"ohne dass eine Summenbildung erfolgen muss. Wir können in diesem Fall den "
+"Algorithmus ``Attribute nach Position zusammenführen`` verwenden. Die "
+"Aufgabe besteht darin, für alle Objekte im Straßenlayer den zugehörigen "
+"Stadtbezirk zu ermitteln. Bevor wir die Berechnung beginnen, entfernen wir "
+"den Filter vom Layer ``dot_V_SSS_SEGMENTRATING_1_20190129``. Dazu klicken "
+"wir auf das Filtersymbol und betätigen im Fenster "
+":guilabel:`Abfrageerstellung` die Schaltfläche :guilabel:`Löschen`. Wir "
+"bestätigen das mit :guilabel:`OK`."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:123
+msgid ""
+"Turn of the ``Joined layer`` in the :guilabel:`Layers` panel. Find the "
+":menuselection:`Vector general --> Join attribute by location` algorithm in "
+"the Processing Toolbox and double-click it to launch."
+msgstr ""
+"Wir schalten die Sichtbarkeit des Layers ``Zusammengefasster Layer`` im "
+":guilabel:`Layer`-Panel ab und wählen in den Verarbeitungswerkzeugen "
+":menuselection:`Vektoren allgemein --> Attribute nach Position verknüpfen`. "
+"Den Algorithmus starten wir durch Doppelklick."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:128
+msgid ""
+"Select ``dot_V_SSS_SEGMENTRATING_1_20190129`` as the :guilabel:`Input layer`"
+" and ``nybb`` as the :guilabel:`Join layer`. You can leave the "
+":guilabel:`Geometry predicate` to the default ``Intersects``. Click the "
+":guilabel:`...` button next to :guilabel:`Fields to add`  and select "
+"``BoroName``. Click :guilabel:`OK`."
+msgstr ""
+"Wir wählen ``dot_V_SSS_SEGMENTRATING_1_20190129`` unter :guilabel:`Mit "
+"Objekten verknüpfen in` und ``nybb`` unter :guilabel:`Durch Vegleich mit`. "
+"Wir können die Einstellung :guilabel:`Ort der Objekte` auf der "
+"Voreinstellung ``schneidet`` belassen. wir betätigen die Schaltfläche "
+":guilabel:`...` neben :guilabel:`Hinzuzufügende Felder`, wählen ``BoroName``"
+" und bestätigen mit :guilabel:`OK`."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:133
+msgid ""
+"The line segment may cross a borough boundary, so we choose the "
+":guilabel:`Join type` as ``Crate separate feature for each located feature "
+"(one-to-many)``. Click :guilabel:`Run`."
+msgstr ""
+"Ein Linienabschnitt kann u. U. in mehreren Stadtbezirken liegen. Wir wählen "
+"daher für :guilabel:`Verknüpfungstyp` ``Separates Objekt für jedes passende "
+"Objekt erzeugen (eins-zu-vielen)`` und betätigen die Schaltfläche "
+":guilabel:`Starte`."
+
+#: ../../source/docs/3/performing_spatial_joins.rst:138
+msgid ""
+"Once the processing finishes, open the attribute table of the newly added "
+"``Joined layer``. You will see that there is a new ``BoroName`` attribute "
+"added to each street feature."
+msgstr ""
+"Nachdem die Berechnung abgeschlossen wurde, öffenen wir die Attributtabelle "
+"des neu hinzugefügten Layers ``Zusammengefasster Layer``. Wir sehen, dass "
+"das neue Attribut ``BoroName`` zu jedem Straßenobjekt hinzugefügt wurde."

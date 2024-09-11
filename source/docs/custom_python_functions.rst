@@ -1,5 +1,10 @@
 Using Custom Python Expression Functions
 ========================================
+
+.. warning:: 
+
+   A new version of this tutorial is available at :doc:`3/custom_python_functions`
+
 Expressions in QGIS have a lot of power and are used in many core features -
 selection, calculating field values, styling, labelling etc. QGIS also has
 support for user-defined expressions. With a little bit of python programming,
@@ -79,7 +84,7 @@ Procedure
    from qgis.core import *
    from qgis.gui import *
 
-   @qgsfunction(args=0, group='Custom')
+   @qgsfunction(args=0, group='Custom', usesgeometry=True)
    def GetUtmZone(value1, feature, parent):
        centroid = feature.geometry()
        longitude = centroid.asPoint().x()

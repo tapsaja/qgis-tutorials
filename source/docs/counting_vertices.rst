@@ -1,5 +1,10 @@
 Counting Number of Vertices in a Layer
 ======================================
+
+.. note::
+
+  For QGIS3, there is much simple solution using the expression num_points($geometry). See `this answer <https://gis.stackexchange.com/a/292003/5160>`_ for details.
+
 QGIS doesn’t have a built-in function to calculate number of vertices for each
 feature in a layer. But a very handy plugin called **Vertices Counter** fills
 this gap and adds a few handy features as well.

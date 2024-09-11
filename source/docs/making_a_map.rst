@@ -1,5 +1,10 @@
 Making a Map
 ============
+
+.. warning:: 
+
+  This tutorial is now obsolete. A new and updated version is available at :doc:`3/making_a_map`
+   
 Often one needs to create a map that can be printed or published. QGIS has a
 powerful tool called :guilabel:`Print Composer` that allows you to take your
 GIS layers and package them to create maps.
@@ -23,7 +28,7 @@ We will use the Natural Earth dataset - specifically the Natural Earth Quick
 Start Kit that comes with beautifully styled global layers that can be loaded
 directly to QGIS.
 
-Download the `Natural Earth Quickstart Kit <http://kelso.it/x/nequickstart>`_.
+Download the `Natural Earth Quickstart Kit <http://naciscdn.org/naturalearth/packages/Natural_Earth_quick_start.zip>`_.
 
 Data Source [NATURALEARTH]_
 
@@ -44,7 +49,7 @@ Procedure
 .. image:: /static/making_a_map/images/2.png
    :align: center
 
-3. You would see a lot of layers in the table of content and a styled world map
+3. You would see a lot of layers in the table of content and a styled World map
    in the QGIS canvas. If you see errors displayed at the top of the canvas,
    click on the cross to close it.
 

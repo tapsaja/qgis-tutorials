@@ -3,7 +3,8 @@
 # https://github.com/qgis/QGIS-Documentation/blob/master/Makefile
 
 # You can set these variables from the command line.
-LANGUAGES     = en tr zh_TW th uk ko vi id el fi_FI ro es pt_BR nl it ru fr de
+# LANGUAGES     = en nl es fa it sl tr zh_TW th uk ko vi id el fi_FI ro pt_BR ru fr de
+LANGUAGES     = en nl es fa it sl zh_TW ko el ro de
 PDF_LANGUAGES = en
 LANG          = en
 SPHINXBUILD   = sphinx-build
@@ -88,14 +89,16 @@ gettext:
 
 # Run this to register .po fles to transifex service
 transifex-push: pretranslate
-	$(SPHINXINTL) update-txconfig-resources --pot-dir i18n/pot --transifex-project-name qgis-tutorials
+	$(SPHINXINTL) update-txconfig-resources --pot-dir i18n/pot --transifex-project-name qgis-tutorials --transifex-organization-name spatialthoughts 
 	tx push -s
 	rm -rf i18n/pot
 
 # Run this to pull latest translations from transifex service
+# There is a newer tx version that needs to be locally installed
+# Currently installed at /usr/local/bin/tx
 transifex-pull:
 	@for LANG in $(LANGUAGES) ; do \
-		tx pull -l $$LANG; \
+		/usr/local/bin/tx pull -l $$LANG; \
 	done
 
 all:
@@ -104,14 +107,11 @@ all:
 	mkdir -p live/html
 	@echo
 	@echo Building html for the following languages: $(LANGUAGES)
+	# The following is needed to overcome a locate error
+	export LC_ALL=C
 	@for LANG in $(LANGUAGES) ; do \
 		 make LANG=$$LANG html; \
 		 mv $(BUILDDIR)/html/$$LANG live/html/; \
-	done
-	@echo Building pdf for the following languages: $(PDF_LANGUAGES)
-	@for LANG in $(PDF_LANGUAGES) ; do \
-		make LANG=$$LANG pdf; \
-		mv $(BUILDDIR)/pdf/$$LANG live/html/$$LANG/pdf; \
 	done
 
 # Deploying generated files in GitHub pages.

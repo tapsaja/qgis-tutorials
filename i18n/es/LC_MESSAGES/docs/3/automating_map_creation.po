@@ -1,0 +1,589 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Krotalo25 <krotalo25@gmail.com>, 2020
+# YoViajo, 2021
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-23 16:40+0000\n"
+"PO-Revision-Date: 2019-02-21 18:16+0000\n"
+"Last-Translator: YoViajo, 2021\n"
+"Language-Team: Spanish (https://www.transifex.com/spatialthoughts/teams/7952/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../../source/docs/3/automating_map_creation.rst:2
+msgid "Automating Map Creation with Print Layout Atlas (QGIS3)"
+msgstr ""
+"Automatización de la creación de mapas con el Atlas de diseñador de "
+"impresiones  (QGIS3)"
+
+#: ../../source/docs/3/automating_map_creation.rst:3
+msgid ""
+"If your organization publishes printed or online maps, you often would need "
+"to create many maps with the same template - usually one for each "
+"administrative unit or a region of interest. Creating these maps manually "
+"can take a long time and if you want to update these on a regular basis, it "
+"can turn into a chore. QGIS has a tool called ``Atlas`` that can help you "
+"create a map template and easily publish a large number of maps for "
+"different geographic regions. If you are not familiar with the basics of "
+"Print Layout, please go through the :doc:`../making_a_map` tutorial."
+msgstr ""
+"Si su organización publica mapas impresos o en línea, a menudo necesitaría "
+"crear muchos mapas con la misma plantilla, generalmente uno para cada unidad"
+" administrativa o región de interés. Crear estos mapas manualmente puede "
+"llevar mucho tiempo y, si desea actualizarlos regularmente, puede "
+"convertirse en un trabajo rutinario. QGIS tiene una herramienta llamada "
+"``Atlas`` que puede ayudarlo a crear una plantilla de mapa y publicar "
+"fácilmente una gran cantidad de mapas para diferentes regiones geográficas. "
+"Si no está familiarizado con los conceptos básicos del Diseñador de "
+"impresiones, consulte el tutorial: doc: `../ making_a_map`."
+
+#: ../../source/docs/3/automating_map_creation.rst:13
+msgid "Overview of the task"
+msgstr "Resumen de la tarea"
+
+#: ../../source/docs/3/automating_map_creation.rst:15
+msgid ""
+"This tutorial shows how to create wetlands map for each county in the state "
+"of Hawaii."
+msgstr ""
+"Este tutorial muestra cómo crear un mapa de humedales para cada condado en "
+"el estado de Hawai."
+
+#: ../../source/docs/3/automating_map_creation.rst:19
+msgid "Other skills you will learn"
+msgstr "Otras habilidades que aprenderás"
+
+#: ../../source/docs/3/automating_map_creation.rst:20
+msgid ""
+"Using ``Inverted Polygons`` style renderer to fill areas outside of "
+"polygons."
+msgstr ""
+"Usando el estilo de representación ``Polígonos invertidos`` para rellenar "
+"áreas fuera de los polígonos."
+
+#: ../../source/docs/3/automating_map_creation.rst:21
+msgid ""
+"Write an expression in the ``Rule Based`` style renderer to show only the "
+"current feature in Atlas."
+msgstr ""
+"Escriba una expresión en el estilo de representación ``Basado en reglas`` "
+"para mostrar sólo el objeto espacial actual en Atlas."
+
+#: ../../source/docs/3/automating_map_creation.rst:23
+msgid "Write an expression to create dynamic labels in Print Layout."
+msgstr ""
+"Escriba una expresión para crear etiquetas dinámicas en el Diseñador de "
+"Impresión."
+
+#: ../../source/docs/3/automating_map_creation.rst:24
+msgid ""
+"Using ``Shapeburst fill`` style renderer to create a dual-tone polygon fill."
+msgstr ""
+"Usando el estilo de representación ``Polígonos invertidos`` para rellenar "
+"áreas fuera de los polígonos."
+
+#: ../../source/docs/3/automating_map_creation.rst:27
+msgid "Get the data"
+msgstr "Obtener los datos"
+
+#: ../../source/docs/3/automating_map_creation.rst:29
+msgid ""
+"We will use the `GIS Data Layers <http://planning.hawaii.gov/gis/download-"
+"gis-data/>`_ from `State of Hawaii - Office of Planning "
+"<http://planning.hawaii.gov/>`_"
+msgstr ""
+"Utilizaremos las `Capas de Datos SIG <http://planning.hawaii.gov/gis"
+"/download-gis-data/>`_ del `State of Hawaii - Office of Planning "
+"<http://planning.hawaii.gov/>`_"
+
+#: ../../source/docs/3/automating_map_creation.rst:33
+msgid ""
+"Download the `Wetlands "
+"<http://files.hawaii.gov/dbedt/op/gis/data/HI_Wetlands.shp.zip>`_ layer from"
+" Biologic and Ecologic category."
+msgstr ""
+"Descarga las capas `Humedales "
+"<http://files.hawaii.gov/dbedt/op/gis/data/HI_Wetlands.shp.zip>`_ de la "
+"categoría Biológica y Ecológica."
+
+#: ../../source/docs/3/automating_map_creation.rst:37
+msgid ""
+"Download the `Census County Boundaries 2010 "
+"<http://files.hawaii.gov/dbedt/op/gis/data/county10.shp.zip>`_ layer from "
+"the Cultural and Demographic category."
+msgstr ""
+"Descargue la capa  `Census County Boundaries "
+"2010<http://files.hawaii.gov/dbedt/op/gis/data/county10.shp.zip>`_ de la "
+"categoría Cultural y Demográfica."
+
+#: ../../source/docs/3/automating_map_creation.rst:41
+msgid ""
+"For convenience, you may directly download a copy of both the datasets from "
+"the links below:"
+msgstr ""
+"Para comodidad, puedes descargar directamente una copia de los conjuntos de "
+"datos desde el enlace de abajo:"
+
+#: ../../source/docs/3/automating_map_creation.rst:44
+msgid ""
+"`HI_Wetlands.shp.zip "
+"<https://www.qgistutorials.com/downloads/HI_Wetlands.shp.zip>`_"
+msgstr ""
+"`HI_Wetlands.shp.zip "
+"<https://www.qgistutorials.com/downloads/HI_Wetlands.shp.zip>`_"
+
+#: ../../source/docs/3/automating_map_creation.rst:46
+msgid ""
+"`county10.shp.zip "
+"<https://www.qgistutorials.com/downloads/county10.shp.zip>`_"
+msgstr ""
+"`county10.shp.zip "
+"<https://www.qgistutorials.com/downloads/county10.shp.zip>`_"
+
+#: ../../source/docs/3/automating_map_creation.rst:48
+msgid "Data Source [HAWAII]_"
+msgstr "Fuente de Datos [HAWAII]_"
+
+#: ../../source/docs/3/automating_map_creation.rst:51
+msgid "Procedure"
+msgstr "Procedimiento"
+
+#: ../../source/docs/3/automating_map_creation.rst:53
+msgid ""
+"Locate the ``HI_Wetlands.shp.zip`` file in the QGIS Browser and expand it. "
+"Select the ``HI_Wetlands_Poly.shp`` file and drag it to the canvas. This "
+"layer contains polygons representing wetlands in the entire state of Hawaii."
+msgstr ""
+"Ubique el archivo ``HI_Wetlands.shp.zip`` en el navegador QGIS y amplíelo. "
+"Seleccione el archivo ``HI_Wetlands_Poly.shp`` y arrástrelo al lienzo. Esta "
+"capa contiene polígonos que representan humedales en todo el estado de "
+"Hawaii."
+
+#: ../../source/docs/3/automating_map_creation.rst:58
+msgid ""
+"Since we want to make separate wetlands map for each county in the state, we"
+" will need the county boundaries layer. Browse to the ``county10.shp.zip`` "
+"file and expand it. Select the ``county10.shp`` file and drag it to the "
+"canvas."
+msgstr ""
+"Ya que queremos hacer un mapa separado de humedales por cada condado en el "
+"estado, necesitaremos la capa de límites de condado. Navegue al archivo "
+"``county10.shp.zip`` y expándalo. Seleccione el archivo ``county10.shp`` y "
+"arrástrelo al lienzo."
+
+#: ../../source/docs/3/automating_map_creation.rst:63
+msgid ""
+"Turn off the visibility of the ``HI_Wetlands_Poly`` layer temporarily. You "
+"will see the polygons from the ``county10`` layer clearly now. There are 5 "
+"features contained in this layer, with each feature having 1 or more "
+"polygons associated with it. The features represent 5 counties. We will use "
+"this layer as the coverage layer and configure QGIS to create 5 separate "
+"maps - one for each feature - automatically."
+msgstr ""
+"Desactive la visibilidad en la capa temporal ``HI_Wetlands_Poly``. Ahora "
+"verá claramente los polígonos de la capa ``county10``. Hay 5 entidades "
+"contenidas en esta capa, donde cada entidad tiene 1 o más polígonos "
+"asociados. Las entidades representan 5 condados. Usaremos esta capa como la "
+"capa cobertura y configuraremos QGIS para crear 5 mapas separados - uno para"
+" cada entidad - automáticamente."
+
+#: ../../source/docs/3/automating_map_creation.rst:68
+msgid ""
+"Turn on the visibility of the ``HI_Wetlands_Poly`` layer. Go to "
+":menuselection:`Project --> New Print Layout..`."
+msgstr ""
+"Active la visibilidad de la capa ``HI_Wetlands_Poly``. Vaya a "
+":menuselection:`Proyecto --> Nueva Composición de Impresión..`."
+
+#: ../../source/docs/3/automating_map_creation.rst:74
+msgid "Leave the print layout title empty and click :guilabel:`OK`."
+msgstr ""
+"Deje vacío el título de la composición de impresión y clic en "
+":guilabel:`Aceptar`."
+
+#: ../../source/docs/3/automating_map_creation.rst:79
+msgid ""
+"In the :guilabel:`Print Layout` window, go to :menuselection:`Layout --> Add"
+" Map`."
+msgstr ""
+"En la ventana :guilabel:`Composición de Impresión`, vaya a "
+":menuselection:`Diseño --> Añadir Mapa`."
+
+#: ../../source/docs/3/automating_map_creation.rst:84
+msgid ""
+"Drag a rectangle while holding the left mouse button where you would like to"
+" insert the map."
+msgstr ""
+"Arrastre un rectángulo mientras mantiene presionado el botón izquierdo del "
+"ratón donde le gustaría insertar el mapa."
+
+#: ../../source/docs/3/automating_map_creation.rst:89
+msgid ""
+"In QGIS3, the :guilabel:`Atlas` tab is not visible by default. Select "
+":menuselection:`View --> Panels --> Atlas`."
+msgstr ""
+"En QGIS3, la pestaña :guilabel:`Atlas` no es visible de forma "
+"predeterminada. Seleccione :menuselection:`Vista --> Paneles --> Atlas`."
+
+#: ../../source/docs/3/automating_map_creation.rst:94
+msgid ""
+"Switch to the :guilabel:`Atlas` tab. Check the :guilabel:`Generate an atlas`"
+" box."
+msgstr ""
+"Cambie a la pestaña :guilabel:`Atlas`. Marque la caja :guilabel:`Generar un "
+"atlas`."
+
+#: ../../source/docs/3/automating_map_creation.rst:99
+msgid ""
+"Select the ``county10`` as the :guilabel:`Coverage layer`. This will "
+"indicate that we want to create 1 map each for every polygon feature in the "
+"``county10`` layer. You can also check the :guilabel:`Hidden coverage layer`"
+" so that the features themselves will not appear on the map."
+msgstr ""
+"Seleccione ``county10`` como la :guilabel:`Capa de cobertura`. Esto indicará"
+" que queremos crear 1 mapa por cada entidad polígono en la capa "
+"``county10``. Puede también marcar :guilabel:`Capa de cobertura escondida` "
+"de manera que las entidades mismas no aparezcan en el mapa."
+
+#: ../../source/docs/3/automating_map_creation.rst:104
+msgid ""
+"Switch to the :guilabel:`Item Properties` tab. Scroll down and check the "
+":guilabel:`Controlled by atlas` box. This will indicate the layout that the "
+"content of the map displayed in this item will be determined by the "
+"``Atlas`` tool."
+msgstr ""
+"Cambie a la pestaña :guilabel:`Propiedades del Elemento` y marque la caja "
+":guilabel:`Controlado por atlas`. Esto indicará al diseño que la extensión "
+"del mapa mostrado en este elemento estará determinada por la herramienta "
+"``Atlas``."
+
+#: ../../source/docs/3/automating_map_creation.rst:108
+msgid ""
+"You must enable the :guilabel:`Generare an atlas` box in the "
+":guilabel:`Atlas` tab, otherwise the :guilabel:`Controlled by atlas` "
+"checkbox will be diasbled."
+msgstr ""
+"Debe activar la caja :guilabel:`Generar un atlas` en la pestaña "
+":guilabel:`Atlas`, de otra forma la casilla de verificación "
+":guilabel:`Controlado por atlas` estará deshabilitada."
+
+#: ../../source/docs/3/automating_map_creation.rst:114
+msgid ""
+"Now that you have configuring the Atlas settings, go to "
+":menuselection:`Atlas --> Preview Atlas`."
+msgstr ""
+"Ahora que ha configurado el Atlas, vaya a :menuselection:`Atlas --> "
+"Previsualizar Atlas`."
+
+#: ../../source/docs/3/automating_map_creation.rst:119
+msgid ""
+"You will see the map refresh and show how individual map will look like. You"
+" can preview how the map will look for each of the county polygons. Go to "
+":menuselection:`Atlas --> Next Feature`. Atlas will render the map to the "
+"extent of the next feature in the coverage layer."
+msgstr ""
+"Verá el mapa actualizarse y mostrar como se verán los mapas individuales. "
+"Puede previsualizar como se verá el mapa para cada uno de los polígonos de "
+"condado. Vaya a :menuselection:`Atlas --> Siguiente Entidad`. El atlas "
+"representará el mapa a la extensión de la siguiente entidad en la capa "
+"cobertura."
+
+#: ../../source/docs/3/automating_map_creation.rst:124
+msgid ""
+"Let's add a label to the map. Go to :menuselection:`Layout --> Add Label`."
+msgstr ""
+"Agreguemos una etiqueta al mapa. Vaya a :menuselection:`Diseño --> Agregar "
+"Etiqueta`."
+
+#: ../../source/docs/3/automating_map_creation.rst:129
+msgid ""
+"Under the :guilabel:`Item properties` tab, locate the :guilabel:`Main "
+"properties` section and click :guilabel:`Insert an Expression...` button."
+msgstr ""
+"Bajo la pestaña :guilabel:`Propiedades del elemento`, localice la sección "
+":guilabel:`Propiedades principales` y clic en el botón :guilabel:`Insertar "
+"una Expresión...`."
+
+#: ../../source/docs/3/automating_map_creation.rst:134
+msgid ""
+"The label of the map can use the attributes from the coverage layer. The "
+"``concat`` function is used to join multiple text items into a single text "
+"item. In this case we will join the value of the ``NAME10`` attribute of the"
+" ``county10`` layer with the text ``County of``. Add an expression like "
+"below and click :guilabel:`OK`."
+msgstr ""
+"La etiqueta del mapa puede usar los atributos de la capa cobertura. La "
+"función ``concat`` es usada para unir múltiples elementos de texto en un "
+"elemento texto único. En este caso uniremos el valor del atributo ``NAME10``"
+" de la capa ``county10`` con el texto ``Condado de ``. Agregue una expresión"
+" como la de abajo y clic en :guilabel:`Aceptar`."
+
+#: ../../source/docs/3/automating_map_creation.rst:143
+msgid ""
+"Delete the leading *Lorem ipsum* placeholder text so that the textbox "
+"contains only the expression. Scroll down to the :guilabel:`Appearance` "
+"section and click on the :guilabel:`Font` dropdown. Choose the font and "
+"adjust the size to your liking."
+msgstr ""
+"Elimine el texto inicial del marcador de posición *Lorem ipsum*  de manera "
+"que la caja de texto sólo contenga la expresión. Deslice hacia abajo a la "
+"sección :guilabel:`Apariencia` y clic en la lista desplegable "
+":guilabel:`Tipo de letra`. Elija el tipo de letra y ajuste el tamaño a su "
+"gusto. "
+
+#: ../../source/docs/3/automating_map_creation.rst:148
+msgid ""
+"Choose ``Center`` as the :guilabel:`Horizontal alignment` and ``Middle`` as "
+"the :guilabel:`Vertical alignment` option."
+msgstr ""
+"Elija ``Centro`` como la :guilabel:`Alineación horizontal` y ``Medio`` como "
+"la opción :guilabel:`Alineación vertical`."
+
+#: ../../source/docs/3/automating_map_creation.rst:153
+msgid ""
+"Add another label and enter ``Wetlands Map`` under the :guilabel:`Main "
+"properties`. Since there is no expression here, this text will remain the "
+"same on all maps."
+msgstr ""
+"Agregue otra etiqueta e ingrese ``Mapa de Humedales`` bajo las "
+":guilabel:`Propiedades principales`. Debido a que no hay una expresión aquí,"
+" este texto permanecerá el mismo en todos los mapas."
+
+#: ../../source/docs/3/automating_map_creation.rst:158
+msgid ""
+"Go to :menuselection:`Atlas --> Last Feature` and verify that the map labels"
+" do work as intended. You will notice that the wetland map has polygons "
+"extending out in the ocean that looks ugly. We can change the style to that "
+"areas outside the county boundaries are hidden."
+msgstr ""
+"Vaya a :menuselection:`Atlas --> Último Objeto Espacial` y verifique que las"
+" etiquetas de mapa trabajan como se lo espera. Notará que el mapa de "
+"humedales tiene polígonos que se extienden hasta el océano, lo que se ve "
+"mal. Podemos cambiar el estilo de manera que esas áreas fuera de los límites"
+" del condado se escondan."
+
+#: ../../source/docs/3/automating_map_creation.rst:163
+msgid ""
+"Switch to the main QGIS window. Right-click the ``county10`` layer and "
+"select :guilabel:`Properties`."
+msgstr ""
+"Cámbiese a la ventana principal QGIS. Clic-derecho la capa ``county10`` y "
+"seleccione :guilabel:`Propiedades`."
+
+#: ../../source/docs/3/automating_map_creation.rst:168
+msgid ""
+"In the :guilabel:`Symbology` tab, select the :guilabel:`Inverted polygons` "
+"renderer. This renderer styles the *outside* of the polygon - not inside. "
+"Select white as the fill color and click :guilabel:`OK`."
+msgstr ""
+"En la pestaña :guilabel:`Simbología`, seleccione el representador "
+":guilabel:`Polígonos invertidos`. Este representador da estilo al *exterior*"
+" del polígono - no el interior. Seleccione blanco como el color de relleno y"
+" clic en :guilabel:`Aceptar`."
+
+#: ../../source/docs/3/automating_map_creation.rst:173
+msgid ""
+"You will notice that the polygons extending outside of the county boundaries"
+" are now disappeared. In reality, they are hidden by the white color fill "
+"extending out from the county polygons because of the *Inverted polygons* "
+"style."
+msgstr ""
+"Notará que los polígonos que se extienden fuera de los límites del condado "
+"desaparecieron. En realidad, están escondidos con el relleno de color blanco"
+" que se extiende hacia afuera desde los polígonos de condado debido al "
+"estilo *Polígonos invertidos*."
+
+#: ../../source/docs/3/automating_map_creation.rst:178
+msgid ""
+"Switch to the :guilabel:`Layout` window. If we want the effect of the "
+"inverted polygons to show, we need to uncheck the :guilabel:`Hidden coverage"
+" layer` box under :guilabel:`Atlas` tab. Once unchecked, the rendered image "
+"will appear clean and areas outside the coverage polygon is not visible."
+msgstr ""
+"Cámbiese a la ventana :guilabel:`Diseño`. Si queremos que se muestre el "
+"efecto de los polígonos invertidos, necesitamos desmarcar la casilla "
+":guilabel:`Esconder la capa cobertura` bajo la pestaña :guilabel:`Atlas`. "
+"Una vez desmarcada, la imagen representada aparecerá limpia y las áreas "
+"fuera del polígono cobertura no será visible. "
+
+#: ../../source/docs/3/automating_map_creation.rst:183
+msgid ""
+"There is one more problem though. You will notice that in some cases, parts "
+"of the map that are outside the coverage layer boundary are still visible. "
+"This is because Atlas doesn't automatically hide other features. This can be"
+" useful in some cases, but for our purpose, we only want to show wetlands of"
+" the county whose map is being generated. To fix this, switch back to the "
+"main QGIS window and right-click the ``county10`` layer and select "
+":guilabel:`Properties`."
+msgstr ""
+"Sin embargo, hay un problema más. Notará que en algunos casos, partes del "
+"mapa que están fuera de la capa cobertura todavía son visibles. Esto es "
+"porque el Atlas no oculta automáticamente los otros objetos espaciales. Esto"
+" puede ser útil en algunos casos, pero para nuestro propósito, sólo queremos"
+" mostrar los humedales del condado cuyo mapa esté siendo generado. Para "
+"corregir esto, cámbiese de vuelta a la ventana principal QGIS y clic-derecho"
+" a la capa ``county10`` y seleccione :guilabel:`Propiedades`."
+
+#: ../../source/docs/3/automating_map_creation.rst:188
+msgid ""
+"In the :guilabel:`Symbology` tab, select ``Rule-based`` as the "
+":guilabel:`Sub renderer`. Double-click the area under :guilabel:`Rule`."
+msgstr ""
+"En la pestaña :guilabel:`Simbología`, seleccione ``Basado en reglas`` como "
+"el :guilabel:`Sub representador`. Doble-clic el área bajo :guilabel:`Regla`."
+
+#: ../../source/docs/3/automating_map_creation.rst:193
+msgid ""
+"In the :guilabel:`Edit rule` dialog, click the :guilabel:`Expression` button"
+" next to :guilabel:`Filter`."
+msgstr ""
+"En el diálogo :guilabel:`Editar regla`, clic el botón :guilabel:`Expresión` "
+"junto a :guilabel:`Filtro`."
+
+#: ../../source/docs/3/automating_map_creation.rst:198
+msgid ""
+"In the :guilabel:`Expression string builder`, expand the "
+":guilabel:`Variables` group of functions. The ``@atlas_featureid`` variable "
+"stores the id of the the currently selected feature. We will construct an "
+"expression that will select only the currently selected Atlas feature. Enter"
+" the expression as below and click :guilabel:`OK`."
+msgstr ""
+"En el :guilabel:`Constructor de cadena de expresión`, expanda el grupo de "
+"funciones :guilabel:`Variables`. La variable ``@atlas_featureid`` almacena "
+"el id del elemento actualmente seleccionado. Construiremos una expresión que"
+" seleccionará sólo el elemento Atlas actualmente seleccionado. Ingrese la "
+"expresión como está abajo y clic en :guilabel:`Aceptar`."
+
+#: ../../source/docs/3/automating_map_creation.rst:207
+msgid ""
+"Close all intermediate dialogs and switch back to the :guilabel:`Layout` "
+"window. Select :guilabel:`Map 1` item and click the :guilabel:`Update "
+"preview` button under :guilabel:`Item properties` tab to see the changes. "
+"Notice that now only the area covering the county boundary is shown."
+msgstr ""
+"Cierre todos los diálogos intermedios y cámbiese de vuelta a la ventana "
+":guilabel:`Diseño`. Seleccione el elemento :guilabel:`Mapa 1` y clic al "
+"botón :guilabel:`Actualizar previsualización` bajo la pestaña "
+":guilabel:`Propiedades del elemento` para ver los cambios. Note que ahora "
+"sólo el área que cubre el límite de condado es mostrada. "
+
+#: ../../source/docs/3/automating_map_creation.rst:210
+msgid ""
+"If you do not see the :guilabel:`Update preview` button, it may help to "
+"select another :guilabel:`Item` element first and then select :guilabel:`Map"
+" 1` again."
+msgstr ""
+"Si no ve el botón :guilabel:`Actualizar previsualización`, puede ayudar "
+"seleccionar otro elemento :guilabel:`Item` antes y luego seleccionar "
+":guilabel:`Mapa  1` de nuevo."
+
+#: ../../source/docs/3/automating_map_creation.rst:215
+msgid ""
+"We will now add another dynamic label to show the current date. Go to "
+":menuselection:`Layout --> Add Label` and select the area on the map. Click "
+":guilabel:`Insert an expression` button."
+msgstr ""
+"Ahora agregaremos otra etiqueta dinámica para mostrar la fecha actual. Vaya "
+"a :menuselection:`Diseño --> Añadir Etiqueta` y seleccione el área en el "
+"mapa. Clic el botón :guilabel:`Insertar una expresión`."
+
+#: ../../source/docs/3/automating_map_creation.rst:220
+msgid ""
+"Expand the :guilabel:`Date and Time` functions group and you will find the "
+"``$now`` function. This holds the current system time. The function "
+"``todate()`` will convert this to a date string. Enter the expression as "
+"below and click :guilabel:`OK`."
+msgstr ""
+"Expanda el grupo de funciones :guilabel:`Fecha y Hora` y encontrará la "
+"función ``$now``. Ésta retiene la hora actual del sistema. La función "
+"``todate()`` convertirá esto a una cadena fecha. Ingrese la expresión de "
+"abajo y clic :guilabel:`Aceptar`."
+
+#: ../../source/docs/3/automating_map_creation.rst:229
+msgid ""
+"Add another label citing the data source. You may also add other map "
+"elements such as a north arrow, scalebar etc. as described in "
+":doc:`../making_a_map` tutorial."
+msgstr ""
+"Agregue otra etiqueta que cite la fuente de datos. Puede también agregar "
+"otros elementos de mapa como la flecha de norte, barra de escala, etc. como "
+"se describe en el tutorial :doc:`../making_a_map`."
+
+#: ../../source/docs/3/automating_map_creation.rst:234
+msgid ""
+"We will make one last styling improvement. Switch back to the main QGIS "
+"window and right-click the ``HI_Wetlands_Poly`` layer and select "
+":guilabel:`Properties`."
+msgstr ""
+"Haremos una última mejora de estilo. Vuelva a la ventana principal de QGIS y"
+" haga clic con el botón derecho en la capa \" HI_Wetlands_Poly '' y "
+"seleccione: guilabel: 'Propiedades'"
+
+#: ../../source/docs/3/automating_map_creation.rst:239
+msgid ""
+"In the :guilabel:`Symbology` tab, click on :guilabel:`Simple fill` and "
+"select ``Shapeburst fill`` as the :guilabel:`Symbol layer type`. Choose the "
+":guilabel:`Two color` option and select shades of green and blue that you "
+"like. Click :guilabel:`OK`."
+msgstr ""
+"En la pestaña :guilabel:`Simbología` tab,  haga clic en Relleno simple y "
+"seleccione ``Relleno con efecto de explosión`` como el  :guilabel:`tipo de "
+"símbolo de la capa`. Elija la opción :guilabel:`Dos colores` y seleccione "
+"los tonos de verde y azul que desee. Haga clic en  :guilabel:`Aceptar`.."
+
+#: ../../source/docs/3/automating_map_creation.rst:244
+msgid ""
+"Select :guilabel:`Map 1` item and click the :guilabel:`Update preview` "
+"button under :guilabel:`Item properties` tab to see the changes."
+msgstr ""
+"Seleccione el elemento :guilabel:`Mapa 1` y clic el botón "
+":guilabel:`Actualizar previsualización` bajo la pestaña "
+":guilabel:`Propiedades del elemento` para ver los cambios."
+
+#: ../../source/docs/3/automating_map_creation.rst:249
+msgid ""
+"Once you are satisfied with the map layout and styling, go to "
+":menuselection:`Atlas --> Export Atlas as Images`."
+msgstr ""
+"Una vez esté satisfecho con el diseño y estilo del mapa, vaya a "
+":menuselection:`Atlas --> Exportar Atlas como Imágenes`."
+
+#: ../../source/docs/3/automating_map_creation.rst:254
+msgid "Select a directory on your computer and click :guilabel:`Choose`."
+msgstr ""
+"Seleccione un directorio en su computadora y clic en :guilabel:`Escoger`."
+
+#: ../../source/docs/3/automating_map_creation.rst:259
+msgid ""
+"Leave the default options in the :guilabel:`Image Export Options` and click "
+":guilabel:`Save`."
+msgstr ""
+"Deje las opciones predeterminadas en :guilabel:`Opciones de Exportación de "
+"Imagen` y clic en :guilabel:`Guardar`."
+
+#: ../../source/docs/3/automating_map_creation.rst:264
+msgid ""
+"The Atlas tool will now iterate through each feature in the coverage layer "
+"and create a separate map image based on the template we created. You can "
+"see the images in the directory once the process completes."
+msgstr ""
+"La herramienta Atlas ahora iterará a través de cada objeto en la capa "
+"cobertura y creará una imagen mapa separada basada en la plantilla que "
+"creamos. Puede ver las imágenes en el directorio una vez que el proceso se "
+"complete."
+
+#: ../../source/docs/3/automating_map_creation.rst:269
+msgid "Here are the map images for refeence."
+msgstr "Aquí están las imágenes del mapa como referencia."

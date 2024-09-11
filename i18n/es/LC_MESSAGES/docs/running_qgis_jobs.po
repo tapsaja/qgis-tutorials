@@ -1,15 +1,17 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2015, Ujaval Gandhi
+# Copyright (C) 2019, Ujaval Gandhi
 # This file is distributed under the same license as the QGIS Tutorials and Tips package.
 # 
 # Translators:
+# Fran Raga <FRANKA1986@gmail.com>, 2017
+# YoViajo, 2020
 msgid ""
 msgstr ""
 "Project-Id-Version: QGIS Tutorials\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-22 07:17+0000\n"
-"PO-Revision-Date: 2015-07-10 09:36+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2020-01-28 07:24+0000\n"
+"PO-Revision-Date: 2020-10-31 13:18+0000\n"
+"Last-Translator: YoViajo\n"
 "Language-Team: Spanish (http://www.transifex.com/spatialthoughts/qgis-tutorials/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +21,7 @@ msgstr ""
 
 #: ../../source/docs/running_qgis_jobs.rst:2
 msgid "Running and Scheduling QGIS Processing Jobs"
-msgstr ""
+msgstr "Ejecutar y Programar Trabajos de Procesamiento QGIS"
 
 #: ../../source/docs/running_qgis_jobs.rst:3
 msgid ""
@@ -30,11 +32,11 @@ msgid ""
 "Fortunately, you can write standalone python scripts that use QGIS libraries"
 " and can be run via the command-line. In this tutorial, we will learn how to"
 " write and schedule a job that uses the QGIS Processing framework."
-msgstr ""
+msgstr "Puede automatizar bastantes tareas en QGIS usando scripts de Python (PyQGIS) y el Marco de Procesamiento. La mayor parte del tiempo, correría estos scripts manualmente mientras QGIS  está abierto. Mientras esto es útil, varias veces necesitará ejecutar estas tareas mediante la línea de comando y sin necesidad de abrir QGIS. Afortunadamente, puede escribir scripts python independientes que usan bibliotecas QGIS y pueden correr mediante la línea de comando. En este tutorial, aprenderemos como escribir y programar una tarea que usa el Marco de Procesamiento QGIS."
 
 #: ../../source/docs/running_qgis_jobs.rst:12
 msgid "Overview of the task"
-msgstr ""
+msgstr "Vista general de la tarea"
 
 #: ../../source/docs/running_qgis_jobs.rst:14
 msgid ""
@@ -45,33 +47,33 @@ msgid ""
 "latest cleaned up shapefiles for your work. We will write a standalone "
 "Python script that downloads a shapefile and run topological cleaning "
 "operations on a daily basis."
-msgstr ""
+msgstr "Digamos que estamos trabajando en algún análisis usando archivos shape de una región. Los archivos shape están actualizados diariamente y siempre necesitamos el último archivo. Pero antes que podamos usar estos archivos, necesitamos limpiar los datos. Podemos establecer un trabajo QGIS que automatice este proceso y se ejecute diariamente de manera que tenga los últimos archivos shape limpiados para su trabajo. Escribiremos un script Python autónomo que descarga un archivo shape y ejecuta operaciones de limpieza topológica diariamente."
 
 #: ../../source/docs/running_qgis_jobs.rst:23
 msgid "Other skills you will learn"
-msgstr "Otras habilidades que aprenderás"
+msgstr "Otras habilidades que aprenderá"
 
 #: ../../source/docs/running_qgis_jobs.rst:24
 msgid "Downloading and unzipping files using Python."
-msgstr ""
+msgstr "Descarga y descompresión de archivos usando Python"
 
 #: ../../source/docs/running_qgis_jobs.rst:25
 msgid "Running any Processing algorithm via PyQGIS."
-msgstr ""
+msgstr "Ejecutar cualquier algoritmo de Procesamiento mediante PyQGIS."
 
 #: ../../source/docs/running_qgis_jobs.rst:26
 msgid "Fixing topological errors in a vector layer."
-msgstr ""
+msgstr "Corregir errores topológicos en una capa vectorial."
 
 #: ../../source/docs/running_qgis_jobs.rst:29
 msgid "Get the data"
-msgstr ""
+msgstr "Obtener los datos"
 
 #: ../../source/docs/running_qgis_jobs.rst:31
 msgid ""
 "`Geofabrik <http://www.geofabrik.de/>`_ provides daily updated shapefiles of"
 " `OpenStreetMap <http://www.openstreetmap.org/>`_ datasets."
-msgstr ""
+msgstr "`Geofabrik <http://www.geofabrik.de/>`_ provee archivos shape actualizados diariamente de conjuntos de datos `OpenStreetMap <http://www.openstreetmap.org/>`_."
 
 #: ../../source/docs/running_qgis_jobs.rst:34
 msgid ""
@@ -79,67 +81,67 @@ msgid ""
 "oceania.html>`_ for this exercise. Download the `fiji-latest.shp.zip "
 "<http://download.geofabrik.de/australia-oceania/fiji-latest.shp.zip>`_ and "
 "unzip it to a folder on your disk."
-msgstr ""
+msgstr "Usaremos `archivos shape para Fiji <http://download.geofabrik.de/australia-oceania.html>`_ en este ejercicio. Descargue `fiji-latest.shp.zip <http://download.geofabrik.de/australia-oceania/fiji-latest.shp.zip>`_  y descomprímalo en una carpeta de su disco."
 
 #: ../../source/docs/running_qgis_jobs.rst:40
 msgid "Data Source [GEOFABRIK]_"
-msgstr ""
+msgstr "Fuente de Datos [GEOFABRIK]_"
 
 #: ../../source/docs/running_qgis_jobs.rst:43
 msgid "Procedure"
-msgstr ""
+msgstr "Procedimiento"
 
 #: ../../source/docs/running_qgis_jobs.rst:45
 msgid ""
 "We will first run through the process of cleaning the shapefile manually to "
 "note the commands that we will use in the python script. Launch QGIS and go "
 "to :menuselection:`Layer --> Add Layer --> Add Vector Layer`."
-msgstr ""
+msgstr "Primero pasaremos por el proceso de limpiar manualmente el archivo shape para anotar los comandos que usaremos en el script python. Inicie QGIS y vaya a :menuselection:`Capa --> Añadir Capa --> Añadir Capa Vectorial`."
 
 #: ../../source/docs/running_qgis_jobs.rst:52
 msgid ""
 "Browse to the folder containing the unzipped shapefiles and select the "
 "``roads.shp`` file and click :guilabel:`Open`."
-msgstr ""
+msgstr "Explore la carpeta que contiene los archivos shape descomprimidos y seleccione el archivo ``roads.shp`` y clic en :guilabel:`Abrir`."
 
 #: ../../source/docs/running_qgis_jobs.rst:58
 msgid ""
 "First we must re-project the roads layer to a Projected CRS. This will allow"
 " us to use *meters* as units when performing analysis instead of degrees. "
 "Open :menuselection:`Processing --> Toolbox`."
-msgstr ""
+msgstr "Primero debemos reproyectar la capa caminos a un SRC Proyectado. Esto nos permitirá usar *metros* como unidades cuando se realice el análisis en vez de grados. Abra :menuselection:`Procesos --> Caja de Herramientas`."
 
 #: ../../source/docs/running_qgis_jobs.rst:65
 msgid ""
 "Search for the :guilabel:`Reproject layer` tool. Double-click it to launch "
 "the dialog."
-msgstr ""
+msgstr "Busque la herramienta :guilabel:`Reproyectar capa`. Doble-clic en ella para iniciar el diálogo."
 
 #: ../../source/docs/running_qgis_jobs.rst:71
 msgid ""
 "In the :guilabel:`Reproject layer` dialog, select the ``roads`` layer as "
 ":guilabel:`Input layer`. We will use ``EPSG:3460 Fiji 1986 / Fiji Map Grid``"
 " CRS as the :guilabel:`Target CRS`. Click :guilabel:`Run`."
-msgstr ""
+msgstr "En el diálogo :guilabel:`Reproyectar Capa`, seleccione la capa ``roads`` como nuestra :guilabel:`Capa de Entrada`. Usaremos el SRC ``EPSG:3460 Fiji 1986 / Fiji Map Grid`` como el :guilabel:`SRC Destino`. Clic en :guilabel:`Ejecutar`."
 
 #: ../../source/docs/running_qgis_jobs.rst:78
 msgid ""
 "Once the process finishes, you will see the reprojected layer loaded in "
 "QGIS. Go to :menuselection:`Processing --> History and Log..`."
-msgstr ""
+msgstr "Una vez que termine el proceso, verá la capa reproyectada cargada en QGIS. Vaya a :menuselection:`Procesos --> Historia y Registro..`."
 
 #: ../../source/docs/running_qgis_jobs.rst:84
 msgid ""
 "In the :guilabel:`History and Log` dialog, expand the :guilabel:`Algorithm` "
 "folder and select the latest entry. You will see the full processing command"
 " shown in the bottom panel. Note this command for use in our script."
-msgstr ""
+msgstr "En diálogo :guilabel:`Historia y Registro`, expanda la carpeta :guilabel:`Algoritmo` y seleccione la última entrada. Verá mostrado el comando completo de procesamiento en el panel de abajo. Anote este comando para usarlo en nuestro script."
 
 #: ../../source/docs/running_qgis_jobs.rst:91
 msgid ""
 "Back in the main QGIS Window, click at the :guilabel:`CRS` button in the "
 "bottom-right corner."
-msgstr ""
+msgstr "De vuelta en la ventana principal de QGIS, clic en el botón :guilabel:`SRC` en la esquina inferior derecha."
 
 #: ../../source/docs/running_qgis_jobs.rst:97
 msgid ""
@@ -147,7 +149,7 @@ msgid ""
 ":guilabel:`Enable on-the-fly CRS transformation` and select ``EPSG:3460 Fiji"
 " 1986 / Fiji Map Grid`` as the CRS. This will ensure that our original and "
 "reprojected layers will line up correctly."
-msgstr ""
+msgstr "En el diálogo :guilabel:`Propiedades del Proyecto | SRC`, marque la :guilabel:`Habilite la transformación SRC al vuelo` y seleccione ``EPSG:3460 Fiji 1986 / Fiji Map Grid`` como el SRC. Esto asegurará que nuestras capas originales y reproyectadas se alineen correctamente."
 
 #: ../../source/docs/running_qgis_jobs.rst:105
 msgid ""
@@ -155,7 +157,7 @@ msgid ""
 "topological cleaning tools. These are available in QGIS via the ``v.clean`` "
 "algorithm. Search for this algorithm in the :guilabel:`Processing Toolbox` "
 "and double-click it to launch the dialog."
-msgstr ""
+msgstr "Ahora ejecutaremos la operación de limpieza. GRASS tiene un conjunto muy poderoso de herramienta de limpieza topológica. Éstas están disponible en QGIS mediante el algoritmo ``v.clean``. Busque este algoritmo en la :guilabel:`Caja de Herramientas de Procesos` y doble-clic en ella para iniciar el diálogo."
 
 #: ../../source/docs/running_qgis_jobs.rst:113
 msgid ""
@@ -165,7 +167,7 @@ msgid ""
 "``Reprojected layer`` as the :guilabel:`Layer to clean`. Choose ``snap`` as "
 "the :guilabel:`Cleaning tool`.  Enter ``1.00`` as the :guilabel:`Threshold`."
 " Leave the other fields blank and click :guilabel:`Run`."
-msgstr ""
+msgstr "Puede leer más acerca de las varias herramientas y opciones en la pestaña :guilabel:`Ayuda`. Para este tutorial, estaremos usando la herramienta ``autoajuste`` para eliminar vértices duplicados  que están a 1 metro de distancia uno del otro. Seleccione ``Capa reproyectada`` como la :guilabel:`Capa a limpiar`. Elija ``autoajuste`` como la :guilabel:`Herramienta de limpieza`. Ingrese ``1.00`` como el :guilabel:`Umbral`. Deje los otros campos en blanco y clic :guilabel:`Ejecutar`."
 
 #: ../../source/docs/running_qgis_jobs.rst:124
 msgid ""
@@ -174,13 +176,13 @@ msgid ""
 " will also have a ``Errors layer`` which will highlight the features which "
 "were repaired. You can use the errors layer as a guide and zoom in to see "
 "vertices that were removed."
-msgstr ""
+msgstr "Una vez que termine el procesamiento, verá 2 capas nuevas agregadas a QGIS. La ``Capa vectorial limpiada`` es la capa con errores topológicos corregidos. También tendrá una ``Capa de errores`` que destaca los elementos espaciales que fueron reparados. Puede usar la capa de errores como una guía y acercarse para ver los vértices que fueron eliminados."
 
 #: ../../source/docs/running_qgis_jobs.rst:133
 msgid ""
 "Go to :menuselection:`Processing --> History and Log` dialog and note the "
 "full processing command for later use."
-msgstr ""
+msgstr "Vaya al diálogo  :menuselection:`Procesos --> Historia y Registro` y anote el comando completo de procesamiento para uso posterior."
 
 #: ../../source/docs/running_qgis_jobs.rst:139
 msgid ""
@@ -195,19 +197,19 @@ msgid ""
 "the username with your own username in the path to the python script.  The "
 "paths in this file will be the same on your system if you installed QGIS via"
 " the ``OSGeo4W Installer``. Save the file on your Desktop."
-msgstr ""
+msgstr "Ahora estamos listos para iniciar la codificación. Vea la sección **Un Editor de Texto o un IDE Python** en el tutorial :doc:`building_a_python_plugin` para instrucciones para establecer su editor de texto o IDE. Para ejecutar scripts python autónomos que usen QGIS, debemos establecer varias opciones de configuración. Una buena manera de ejecutar scripts autónomos es iniciarlos mediante un archivo ``.bat``. Este archivo establecerá primero las opciones de configuración y luego llamará al script de python. Cree un nuevo archivo llamado ``launch.bat`` e ingrese el siguiente texto. Cambie los valores de acuerdo a su configuración QGIS. No olvide reemplazar el nombre de usuario con el suyo en la ruta al script python. Las rutas en este archivo serán las mismas en su sistema si ha instalado QGIS mediante el ``instalador OSGeo4W``. Guarde el archivo en su Escritorio."
 
 #: ../../source/docs/running_qgis_jobs.rst:154
 msgid ""
 "Linux and Mac users will need to create a shell script to set the paths and "
 "environment variables."
-msgstr ""
+msgstr "Los usuarios Linux y Mac necesitarán crear un script shell para establecer las rutas y variables de entorno."
 
 #: ../../source/docs/running_qgis_jobs.rst:178
 msgid ""
 "Create a new python file and enter the following code. Name the file as "
 "``download_and_clean.py`` and save it on your Desktop."
-msgstr ""
+msgstr "Cree un nuevo archivo python e ingrese el siguiente código. Nombre el archivo como ``download_and_clean.py`` y guárdelo en su Escritorio."
 
 #: ../../source/docs/running_qgis_jobs.rst:189
 msgid ""
@@ -216,7 +218,7 @@ msgid ""
 "QGIS!`` printed in the command window, your configuration and setup worked "
 "fine. If you see errors or do not see the text, check your ``launch.bat`` "
 "file and make sure all the paths match the locations on your system."
-msgstr ""
+msgstr "Cámbiese a su Escritorio y localice el icono ``launch.bat``. Haga doble-clic para iniciar una nueva ventana de comando y ejecutar el script. Si ve una ``Hola QGIS!`` impreso en la ventana de comando, su configuración funcionó bien. Si ve errores, o no ve el texto, revise su archivo ``launch.bat`` y asegúrese que todas las rutas coinciden con las ubicaciones en su sistema."
 
 #: ../../source/docs/running_qgis_jobs.rst:198
 msgid ""
@@ -227,7 +229,7 @@ msgid ""
 "you replace the username with your username. After making these changes, "
 "save the file and run ``launch.bat`` again. If you see ``Hello QGIS!`` "
 "printed, you are all set to do add the processing logic to the script."
-msgstr ""
+msgstr "De vuelta en su editor de texto, modifique el script ``download_and_clean.py`` para agregar el siguiente código. Este es el código de arranque para inicializar QGIS. Esto es innecesario si está ejecutando el script dentro de QGIS. Pero debido a que lo estamos ejecutándolo de fuera de QGIS, necesitamos agregarlos al inicio. Asegúrese de reemplazar el nombre de usuario con el suyo. Después de hacer estos campos, guarde el archivo y ejecute de nuevo ``launch.bat``. Si ve impreso ``Hola QGIS!``, está listo para agregar la lógica de procesamiento al script."
 
 #: ../../source/docs/running_qgis_jobs.rst:230
 msgid ""
@@ -236,13 +238,13 @@ msgid ""
 " the surrounding code as follows. Note that processing commands return the "
 "path to the output layers as a dictionary. We are storing this as the "
 "``ret`` value and printing the path to the reprojected layer."
-msgstr ""
+msgstr "Recupere el primer comando de procesamiento que guardamos de la bitácora. Este era el comando para reproyectar una capa. Pegue el comando a su script y agregue el código que le rodea que sigue. Note que los comandos de procesamiento devuelven la ruta a las capas de salida como una diccionario. Estamos almacenando esto como el valor ``ret`` e imprimiendo la ruta a la capa reproyectada. "
 
 #: ../../source/docs/running_qgis_jobs.rst:247
 msgid ""
 "Run the script via ``launch.bat`` and you will see the path to the newly "
 "created reprojected layer."
-msgstr ""
+msgstr "Ejecute el script mediante ``launch.bat`` y verá la ruta a la capa reproyectada recién creada."
 
 #: ../../source/docs/running_qgis_jobs.rst:253
 msgid ""
@@ -250,7 +252,7 @@ msgid ""
 "we will add the output file paths as the last 2 arguments for the "
 "``grass.v.clean`` algorithm. If you left these blank, the output will be "
 "created in a temporary directory."
-msgstr ""
+msgstr "Ahora agregue el código para la limpieza de topología. Debido a que esta es nuestra salida final, agregaremos las rutas de archivos de salida como los últimos 2 argumentos para el algoritmo ``grass.v.clean``. Si dejó vacíos estos, la salida será creada en un directorio temporal."
 
 #: ../../source/docs/running_qgis_jobs.rst:273
 msgid ""
@@ -261,57 +263,57 @@ msgid ""
 " to the processing algorithm later. We will need to import some additional "
 "modules for doing this. (See the end of the tutorial for the full script "
 "with all the changes)"
-msgstr ""
+msgstr "Ejecute el script y verá 2 nuevos archivos shape creados en su Escritorio. Esto completa la parte de procesamiento del script. Agreguemos el código para descargar los datos del sitio web original y para descomprimirlos automáticamente. También almacenaremos la ruta al archivo descomprimido en una variable que podemos pasar después al algoritmo de procesamiento. Necesitaremos importar algunos módulos adicionales para hacer esto. (Vea el final del tutorial para el script completo con todos los cambios)"
 
 #: ../../source/docs/running_qgis_jobs.rst:307
 msgid ""
 "Run the completed script. Everytime you run the script, a fresh copy of the "
 "data will be downloaded and processed."
-msgstr ""
+msgstr "Ejecute el script completado. Cada vez que ejecuta el script, se descargará y procesará una copia fresca de los datos."
 
 #: ../../source/docs/running_qgis_jobs.rst:313
 msgid ""
 "To automate running on this script on a daily basis, we can use the ``Task "
 "Scheduler`` in Windows. Launch the Task Scheduler and click "
 ":guilabel:`Create Basic Task`."
-msgstr ""
+msgstr "Para automatizar la ejecución diaria de este script, podemos usar el ``Programador de Tarea`` en Windows. Inicie el Programador de Tarea y clic en :guilabel:`Crear Tarea Básica`."
 
 #: ../../source/docs/running_qgis_jobs.rst:317
 msgid "Linux and Mac users can use cron jobs to schedule  tasks."
-msgstr ""
+msgstr "Los usuarios de Linux y Mac pueden usar tareas cron para programar tareas."
 
 #: ../../source/docs/running_qgis_jobs.rst:322
 msgid ""
 "Name the task as ``Daily Download and Cleanup`` and click :guilabel:`Next`."
-msgstr ""
+msgstr "Nombre la tarea como ``Descarga y Limpieza Diaria`` y clic en :guilabel:`Siguiente`."
 
 #: ../../source/docs/running_qgis_jobs.rst:327
 msgid "Select ``Daily`` as the :guilabel:`Trigger` and click :guilabel:`Next`"
-msgstr ""
+msgstr "Seleccione ``Diariamente`` como el :guilabel:`Disparador` y clic en :guilabel:`Siguiente`"
 
 #: ../../source/docs/running_qgis_jobs.rst:332
 msgid "Select a time as per your liking and click :guilabel:`Next`."
-msgstr ""
+msgstr "Seleccione una hora a su gusto y clic en :guilabel:`Siguiente`."
 
 #: ../../source/docs/running_qgis_jobs.rst:337
 msgid ""
 "Choose ``Start a program`` as the :guilabel:`Action` and click "
 ":guilabel:`Next`."
-msgstr ""
+msgstr "Escoja ``Iniciar un programa`` como la :guilabel:`Acción` y clic en :guilabel:`Siguiente`."
 
 #: ../../source/docs/running_qgis_jobs.rst:343
 msgid ""
 "Click :guilabel:`Browse` and locate the ``launch.bat`` script. Click "
 ":guilabel:`Next`."
-msgstr ""
+msgstr "Clic :guilabel:`Explorar` y localice el script ``launch.bat``. Clic en :guilabel:`Siguiente`."
 
 #: ../../source/docs/running_qgis_jobs.rst:349
 msgid ""
 "Click :guilabel:`Finish` at the last screen to schedule the task. Now the "
 "script will automatically launch at the specified time to give you a fresh "
 "copy of cleaned data everyday."
-msgstr ""
+msgstr "Clic :guilabel:`Finalizar` en la última pantalla para programar la tarea. Ahora el script se iniciará automáticamente cada día en la hora especificada para darle una copia fresca de los datos limpiados."
 
 #: ../../source/docs/running_qgis_jobs.rst:356
 msgid "Below is the full ``download_and_clean.py`` script for your reference."
-msgstr ""
+msgstr "Abajo está el script ``download_and_clean.py`` completo para su referencia."

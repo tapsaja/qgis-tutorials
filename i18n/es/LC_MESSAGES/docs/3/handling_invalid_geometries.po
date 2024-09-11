@@ -1,0 +1,371 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Eric Armijo, 2024
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-09 22:00+0530\n"
+"PO-Revision-Date: 2020-01-28 07:26+0000\n"
+"Last-Translator: Eric Armijo, 2024\n"
+"Language-Team: Spanish (https://app.transifex.com/spatialthoughts/teams/7952/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:2
+msgid "Handling Invalid Geometries (QGIS3)"
+msgstr "Manejar Geometrías No Válidas (QGIS3)"
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:4
+msgid ""
+"When working with vector data layers, you may encounter geometry errors. "
+"These errors often become part of your data after running geoprocessing, "
+"digitizing, editing or data conversion. QGIS3 comes with build-in tools and "
+"algorithms to detect and fix invalid geometries. This tutorial will show you"
+" a typical workflow for handling invalid geometries in your data."
+msgstr ""
+"Cuando se trabaja con capas de datos vectoriales, puede encontrarse con "
+"errores de geometría. Estos errores a menudo se vuelven parte de tus datos "
+"después de ejecutar geoprocesamiento, digitalización, edición o conversión "
+"de datos. QGIS3 viene con herramientas incorporadas y algoritmos para "
+"detectar y corregir geometrías no válidas. Este tutorial le mostrará un "
+"flujo de trabajo típico para manejar geometrías no válidas en sus datos."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:8
+msgid ""
+"Different software systems implement different notions of geometry validity."
+" But the leading standard for the geometry model for use in a GIS is the OGC"
+" `Simple Features Specifications (SFS) "
+"<https://www.opengeospatial.org/standards/sfs>`_. In this tutorial, we will "
+"use GEOS library to check for geometry validity which uses this standard. "
+"`This post <https://support.safe.com/s/article/invalid-ogc-geometry-"
+"examples>`_ gives a good overview of common geometry errors as defined by "
+"the OGC standard."
+msgstr ""
+"Los distintos sistemas de software aplican diferentes nociones de validez de"
+" la geometría. Pero el estándar principal para el modelo de geometría para "
+"su uso en un SIG es el OGC \"Especificaciones de Características Simples "
+"(SFS) <https://www.opengeospatial.org/standards/sfs>`_. En este tutorial, "
+"utilizaremos la biblioteca GEOS para comprobar la validez de la geometría "
+"que utiliza este estándar. Este artículo "
+"<https://support.safe.com/s/article/invalid-ogc-geometry-examples>`_ da una "
+"buena visión general de los errores comunes de geometría definidos por el "
+"estándar OGC."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:11
+msgid "Overview of the task"
+msgstr "Vista general de la tarea"
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:13
+msgid ""
+"We will work with an admin boundary layer for India and fix a geometry error"
+" for a state polygon."
+msgstr ""
+"Trabajaremos con una capa de límite administrativo para la India y "
+"corregiremos un error de geometría para un polígono de estado."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:16
+msgid "Other skills you will learn"
+msgstr "Otras habilidades que aprenderá"
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:18
+msgid ""
+"Using the *Topological Coloring* algorithm to apply a coloring scheme to a "
+"polygon layer."
+msgstr ""
+"Usar el algoritmo de *Coloración Topológica* para aplicar un esquema de "
+"coloración a una capa polígono."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:22
+msgid "Get the data"
+msgstr "Obtener los datos"
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:24
+msgid ""
+"`Datameet <http://projects.datameet.org/maps/>`_ provides community-created "
+"administrative boundary shapefiles for India."
+msgstr ""
+"`Datameet <http://projects.datameet.org/maps/>`_ provee archivos shape de "
+"límites administrativos creados por la comunidad para la India."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:26
+msgid ""
+"Download the `Datameet Spatial Data Repository [~150 MB] "
+"<https://codeload.github.com/datameet/maps/zip/0fa9fd850eda3d2062e66f2caabc65872639c85a>`_"
+" zipfile. The downloaded archive contains multiple folders. Extract the "
+"archive and use the files in the ``States/`` folder."
+msgstr ""
+"Descargue el archivo zip `Datameet Spatial Data Repository [~150 MB] "
+"<https://codeload.github.com/datameet/maps/zip/0fa9fd850eda3d2062e66f2caabc65872639c85a>`_."
+" El archivo descargado contiene múltiples carpetas. Extraiga el archivo y "
+"use los archivos en la carpeta ``States/``."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:28
+msgid "Data Source: [DATAMEET]_"
+msgstr "Fuente de Datos: [DATAMEET]_"
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:31
+msgid "Procedure"
+msgstr "Procedimiento"
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:34
+msgid ""
+"Browse to the downloaded ``India-States.zip`` file in QGIS Browser. Expand "
+"it and drag the ``India-States.shp`` file to the map canvas."
+msgstr ""
+"Navegue al archivo descargado ``India-States.zip`` en el Explorador QGIS. "
+"Expándalo y arrastre el archivo ``India-States.shp`` al lienzo del mapa."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:39
+msgid ""
+"You will see a new ``India-States`` layer loaded in the :guilabel:`Layers` "
+"panel. Go to :menuselection:`Processing --> Toolbox`."
+msgstr ""
+"Verá cargada una nueva capa ``India-States`` en el panel :guilabel:`Capas`. "
+"Vaya a :menuselection:`Procesos --> Caja de Herramientas`."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:44
+msgid ""
+"We will attemp to run a processing algorithm on the input layer to "
+"demonstrate how invalid geometries can cause problems during geoprocessing "
+"operations. Search for and locate the :menuselection:`Cartography --> "
+"Topological coloring` algorithm. Double-click to launch it."
+msgstr ""
+"Intentaremos ejecutar un algoritmo de procesamiento sobre la capa de entrada"
+" para demostrar cómo las geometrías no válidas pueden causar problema "
+"durante las operaciones de geoprocesamiento. Busque y localice el algoritmo "
+":menuselection:`Cartografía --> Coloración topológica`. Doble-clic para "
+"iniciarlo."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:49
+msgid ""
+"In the :guilabel:`Topological coloring` dialog, select ``India-States`` as "
+"the :guilabel:`Input layer`. Keep all other parameters to default and click "
+":guilabel:`Run`."
+msgstr ""
+"En el diálogo :guilabel:`Coloración topológica`, seleccione ``India-States``"
+" como la :guilabel:`Capa de entrada`. Mantenga todos los parámetros "
+"predeterminados y clic en :guilabel:`Ejecutar`."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:56
+msgid ""
+"The *Topological coloring* algorithm implements an algorithm to color a map "
+"so that no adjacent polygons have the same color. This is a useful "
+"cartography technique and the `Four Color Theorem "
+"<https://en.wikipedia.org/wiki/Four_color_theorem>`_ states that 4 colors "
+"are enough to achieve this result. There is a graph-theory version of this "
+"theorem called `Five color theorem "
+"<https://en.wikipedia.org/wiki/Five_color_theorem>`_. The QGIS algorithm "
+"implementation is based on  graphs so in practive you will see that complex "
+"polygon layers such as this will require upto 5 colors."
+msgstr ""
+"El algoritmo *Coloración topológica* implementa un algoritmo para colorear "
+"un mapa de forma que ningún polígono adyacente tenga el mismo color. Se "
+"trata de una técnica cartográfica muy útil y el `Teorema de los cuatro "
+"colores <https://en.wikipedia.org/wiki/Four_color_theorem>`_ afirma que "
+"bastan cuatro colores para lograr este resultado. Existe una versión de este"
+" teorema basada en la teoría de grafos llamada `Teorema de los cinco colores"
+" <https://en.wikipedia.org/wiki/Five_color_theorem>`_. La implementación del"
+" algoritmo de QGIS se basa en gráficos, por lo que en la práctica verá que "
+"las capas poligonales complejas como ésta requerirán hasta 5 colores."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:58
+msgid ""
+"As the algorithm runs, you will see a warning displayed in the "
+":guilabel:`Log` tab. 1 feature in the input layer had invalid geometry and "
+"was skipped during the processing. The default setting to handle invalid "
+"geometry in the Processing Toolbox is located at :menuselection:`Settings "
+"--> Options --> Processing --> General --> Invalid features filtering` and "
+"is set to ``Skip (ignore) features with invalid geometries``. This is a good"
+" default setting, but if your input is large, you may miss this warning and "
+"may not know that an input feature was skipped. You may want to change the "
+"value to ``Stop algorithm execution when a geometry is invalid``."
+msgstr ""
+"A medida que el algoritmo se ejecuta, verá una advertencia mostrada en la "
+"pestaña :guilabel:`Registro`. 1 entidad en la capa de entrada tiene una "
+"geometría no válida y fue saltada durante el procesamiento. La configuración"
+" predeterminada para manejar geometría no válida en le Caja de Herramientas "
+"de Procesos está ubicada en :menuselection:`Configuración --> Opciones --> "
+"Procesos --> General --> Filtrado de entidades no válidas` y está definido "
+"como ``Saltar (ignorar) entidades con geometrías no válidas``. Este es una "
+"buena definición predeterminada, pero si su entrada es grande, puede perder "
+"esta advertencia y podría no saber que una entidad de entrada fue saltada. "
+"Le podría interesar cambiar el valor a ``Parar la ejecución del algoritmo "
+"cuando una geometría no sea válida``."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:63
+msgid ""
+"Back in the main QGIS window, you will see a new layer ``Colored`` added to "
+"the :guilabel:`Layers` panel. Notice that the new layer is missing a state "
+"which had invalid geometry. We now know that this particular state polygon "
+"had invalid geometry but we don't know what was the cause. We can easily "
+"find that out. Search for and locate the :menuselection:`Vector geometry -->"
+" Check validity` algorithm."
+msgstr ""
+"De vuelta en la ventana principal QGIS, verá una nueva capa ``Colored`` "
+"agregada al panel :guilabel:`Layers`. Note que a la nueva capa le falta un "
+"estado que tenía geoemetría no válida. Ahora sabemos que este polígono "
+"particular de estado tenía geometría no válida pero no sabemos cual era la "
+"causa. Podemos fácilmente averiguarlo. Busque y localice el algoritmo "
+":menuselection:`Geometría vector --> Revisar validez`."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:68
+msgid ""
+"In the :guilabel:`Check Validity` dialog, select ``India-States`` as the "
+":guilabel:`Input layer`. Select ``GEOS`` as the :guilabel:`Method`. Click "
+":guilabel:`Run`."
+msgstr ""
+"En el diálogo :guilabel:`Revisar Validez`, seleccione ``India-States`` como "
+"la :guilabel:`Capa de entrada`. Seleccione ``GEOS`` como el "
+":guilabel:`Método`. Clic en :guilabel:`Ejecutar`."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:73
+msgid ""
+"As the algorithm finishes processing, you will see 3 new layers in the "
+":guilabel:`Layers` panel - ``Valid output``, ``Invalid output`` and ``Error "
+"output``. The layer ``Error output`` contains the locations and description "
+"of the geometry errors. Right-click it and select :guilabel:`Open Attribute "
+"Table`."
+msgstr ""
+"Cuando finalice el procesamiento del algoritmo, verá 3 nuevas capas en el "
+"panel :guilabel:`Capas` - ``Valid output``, ``Invalid output`` y ``Error "
+"output``. La capa ``Error output`` contiene las ubicaciones y descripción de"
+" los errores de geometría. Hagale clic-derecho y seleccione :guilabel:`Abrir"
+" Tabla de Atributos`."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:80
+msgid ""
+"The QGIS documentation has a detailed article on `Types of error messages "
+"and their meanings "
+"<https://docs.qgis.org/testing/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#types-"
+"of-error-messages-and-their-meanings>`_ that explains the causes of all the "
+"errors."
+msgstr ""
+"La documentación QGIS tiene un artículo detallado sobre `Tipos de mensajes "
+"de error y sus significados "
+"<https://docs.qgis.org/testing/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#types-"
+"of-error-messages-and-their-meanings>`_ que explica las causas de todos los "
+"errores."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:82
+msgid ""
+"You will see that the error message is *Ring self-intersection*. Select the "
+"row and click :guilabel:`Zoom map to selected features` button. As you zoom "
+"in, you will see the root cause of the geometry error."
+msgstr ""
+"Verá que el mensaje de error es *Autointersección anillo*. Seleccione la "
+"fila y clic al botón :guilabel:`Acerca mapa a objetos seleccionados`. A "
+"medida que se acerque, verá la causa raíz del error de geometría."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:87
+msgid ""
+"QGIS comes with a built-in algorithm to fix geometry errors automatically. "
+"Search for and locate the :menuselection:`Vector geometry --> Fix "
+"geometries` algorithm. Double-click to run it."
+msgstr ""
+"QGIS viene con un algoritmo incorporado para corregir automáticamente "
+"errores de geometría. Busque y localice el algoritmo "
+":menuselection:`Geometría vectorial --> Corregir geometrías`. Haga doble-"
+"clic para ejecutarlo."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:92
+msgid ""
+"In the :guilabel:`Fix Geometries` dialog, select ``India-States`` as the "
+":guilabel:`Input layer` and click :guilabel:`Run`."
+msgstr ""
+"En el diálogo :guilabel:`Corregir Geometrías`, seleccione ``India-States`` "
+"como la :guilabel:`Capa de entrada` y clic en :guilabel:`Ejecutar`."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:97
+msgid ""
+"A new layer ``Fixed Geometries`` will be added to the :guilabel:`Layers` "
+"panel. At this point, the geometry error is fixed and you can run any "
+"processing algorithm on this layer without problems. But we can see that "
+"there is still a gap between the adjacent polygons that is unexpected and "
+"can cause topological errors down the line. We can fix this too by editing "
+"the polygon. Click the :guilabel:`Toggle Editing` button in the "
+":guilabel:`Digitizing Toolbar`. Select the :guilabel:`Vertex Tool` and from "
+"the drop-down select ``Vertex Tool (Current Layer)``."
+msgstr ""
+"Se agregará una nueva capa ``Fixed Geometries`` al panel :guilabel:`Capas`. "
+"Para este momento, el error de geometría está corregido y puede ejecutar "
+"cualquier algoritmo de procesamiento sobre esta capa sin problemas. Pero "
+"podemos ver que aún existe una brecha inesperada entre los polígonos "
+"adyacentes y que puede causar errores topológicos más adelante. Podemos "
+"corregir esto también editando el polígono. Clic en el botón "
+":guilabel:`Conmutar Edición` en la :guilabel:`Caja de herramientas "
+"Digitalización`. Seleccione :guilabel:`Herramienta de Vértices` y de la "
+"lista desplegable seleccione ``Herramienta de Vértices (Capa Actual)``."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:102
+msgid ""
+"When the vertex tool is active, click on a vertex to select it. You can "
+"press :kbd:`Delete` key to delete a vertex or drag it to move it. You can "
+"move the vertex so that the polygon edge now touches the adjacent polygon."
+msgstr ""
+"Cuando la herramienta de vértice esté activa, haga clic en un vértice para "
+"seleccionarlo. Puede presionar la tecla :kbd:`Borrar` para borrar un vértice"
+" o arrastrarlo para moverlo. Puede mover el vértice de manera que el borde "
+"del polígono ahora toque el polígono adyacente."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:107
+msgid ""
+"Once done, click the :guilabel:`Toggle Editing` button again and click "
+":guilabel:`Save`."
+msgstr ""
+"Una vez listo, haga clic de nuevo en el botón :guilabel:`Conmutar Edición` y"
+" clic en :guilabel:`Guardar`."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:112
+msgid ""
+"Let's run the :menuselection:`Cartography --> Topological coloring` "
+"algorithm again."
+msgstr ""
+"Ejecutemos de nuevo el algoritmo :menuselection:`Cartografía --> Coloreado "
+"topológico`"
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:117
+msgid ""
+"In the :guilabel:`Topological Coloring` dialog, make sure you select ``Fixed"
+" Geometries`` as the :guilabel:`Input layer`. Click :guilabel:`Run`."
+msgstr ""
+"En el diálogo :guilabel:`Coloreado Topológico`, asegúrese que selecciona "
+"``Fixed Geometries`` como la :guilabel:`Capa de entrada`. Clic en "
+":guilabel:`Ejecutar`."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:122
+msgid ""
+"You will see the algorithm run without any errors and a new layer "
+"``Colored`` will be added to the :guilabel:`Layers` panel. Note that the "
+"algorithm doesn't color the layer by itself, but works by adding a new "
+"column called ``color_id`` to each polygon that can be used to assign a "
+"unique color that is different than adjacent polygons. Select the "
+"``Colored`` layer and click the :guilabel:`Open the Layer Styling Panel` "
+"button."
+msgstr ""
+"Verá que el algoritmo se ejecuta sin errores y que se agrega una nueva capa "
+"``Colored`` al panel :guilabel:`Capas`. Note que el algoritmo no asigna "
+"color a la capa misma, pero funciona agregando una nueva columna llamada "
+"``color_id`` para cada polígono que puede ser usada para asignar un color "
+"único que es diferente que los polígonos adyacentes. Seleccione la capa "
+"``Colored`` y haga clic en el botón :guilabel:`Abrir el Panel de Estilo de "
+"Capa`."
+
+#: ../../source/docs/3/handling_invalid_geometries.rst:127
+msgid ""
+"Select ``Categorized`` renderer and the column ``color_id`` as the "
+":guilabel:`Value`. Click :guilabel:`Classify`. You will now see the map "
+"colored so that adjacent polygons have different colors."
+msgstr ""
+"Seleccione el representador ``Categorizado`` y la columna ``color_id`` como "
+"el :guilabel:`Valor`. Clic en :guilabel:`Clasificar`. Ahora verá el mapa "
+"coloreado de manera que los polígonos adyacentes tienen colores diferentes."

@@ -1,5 +1,11 @@
 Georeferencing Topo Sheets and Scanned Maps
 ===========================================
+
+.. warning:: 
+
+   This tutorial is now obsolete. A new and updated version is available at :doc:`3/georeferencing_basics`
+   
+   
 Most GIS projects require georeferencing some raster data. *Georeferencing* is
 the process of assigning real-world coordinates to each pixel of the raster.
 Many times these coordinates are obtained by doing field surveys - collecting
@@ -43,7 +49,7 @@ below:
 Procedure
 ---------
 
-1.Georeferencing in QGIS is done via the ‘Georeferencer GDAL’ plugin. This is a
+1. Georeferencing in QGIS is done via the ‘Georeferencer GDAL’ plugin. This is a
 core plugin - meaning it is already part of your QGIS installation. You just
 need to enable it. Go to :menuselection:`Plugins --> Manage and Install
 Plugins` and enable the :guilabel:`Georeferencer GDAL` plugin in the

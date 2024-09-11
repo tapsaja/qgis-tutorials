@@ -1,0 +1,803 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Eric Armijo, 2024
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-09 22:00+0530\n"
+"PO-Revision-Date: 2023-11-06 10:16+0000\n"
+"Last-Translator: Eric Armijo, 2024\n"
+"Language-Team: Spanish (https://app.transifex.com/spatialthoughts/teams/7952/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#: ../../source/docs/3/creating_landuse_map.rst:2
+msgid "Creating a Landuse Map (QGIS3)"
+msgstr "Creación de un mapa de uso de la tierra (QGIS3)"
+
+#: ../../source/docs/3/creating_landuse_map.rst:4
+msgid ""
+"Zoning designations define and regulate what kinds of uses are allowed on "
+"specific parcels and outline design and development requirements and "
+"guidelines. In this tutorial you will learn how to access parcel datasets, "
+"style them according to zoning attributes and create a map."
+msgstr ""
+"Las designaciones de zonificación definen y regulan qué tipos de usos están "
+"permitidos en parcelas específicas y esbozan los requisitos y directrices de"
+" diseño y desarrollo. En este tutorial aprenderá a acceder a conjuntos de "
+"datos de parcelas, a aplicarles estilos según los atributos de zonificación "
+"y a crear un mapa."
+
+#: ../../source/docs/3/creating_landuse_map.rst:7
+msgid "Overview of the task"
+msgstr "Visión general de la tarea"
+
+#: ../../source/docs/3/creating_landuse_map.rst:9
+msgid ""
+"You will work with a land parcels dataset with zoning information and create"
+" a map showing zoning pattern across the CBD region of Cape Town."
+msgstr ""
+"Trabajará con un conjunto de datos de parcelas con información de "
+"zonificación y creará un mapa que muestre el patrón de zonificación en la "
+"región del CBD de Ciudad del Cabo."
+
+#: ../../source/docs/3/creating_landuse_map.rst:16
+msgid "Other skills you will learn"
+msgstr "Otras competencias que aprenderá"
+
+#: ../../source/docs/3/creating_landuse_map.rst:17
+msgid "How to access and download data from ArcGIS REST in QGIS."
+msgstr "Cómo acceder y descargar datos de ArcGIS REST en QGIS."
+
+#: ../../source/docs/3/creating_landuse_map.rst:18
+msgid "How to extract features from a layer that intersect a boundary layer."
+msgstr ""
+"Cómo extraer objetos espaciales de una capa que intersecta una capa límite."
+
+#: ../../source/docs/3/creating_landuse_map.rst:19
+msgid "How to merge different sub-categories from Categorized renderer."
+msgstr ""
+"Cómo fusionar diferentes subcategorías desde el renderizador Categorizado."
+
+#: ../../source/docs/3/creating_landuse_map.rst:22
+msgid "Get the data"
+msgstr "Obtener los datos"
+
+#: ../../source/docs/3/creating_landuse_map.rst:24
+msgid ""
+"You can find the data for the tutorial from Cape Town Open Data Portal - "
+"https://odp-cctegis.opendata.arcgis.com. We will be importing data from the "
+"portal using ArcGIS REST server URL and will be preparing three layers "
+"mentioned below ."
+msgstr ""
+"Puede encontrar los datos para el tutorial en el Portal de Datos Abiertos de"
+" Ciudad del Cabo - https://odp-cctegis.opendata.arcgis.com. Vamos a importar"
+" datos desde el portal utilizando ArcGIS REST URL del servidor y se "
+"preparará tres capas se mencionan a continuación ."
+
+#: ../../source/docs/3/creating_landuse_map.rst:27
+msgid ""
+"Zoning layer: A polygon shapefile with zoning code and description for land "
+"parcels having a single zoning - clipped to the Cape Town CBD area."
+msgstr ""
+"Capa de zonificación: Un archivo shape de polígonos con el código de "
+"zonificación y la descripción de las parcelas que tienen una única "
+"zonificación - recortada en el área del CBD de Ciudad del Cabo."
+
+#: ../../source/docs/3/creating_landuse_map.rst:28
+msgid ""
+"Split-zoning layer: A polygon shapefile with zoning code and description for"
+" land parcels having multiple zoning - with each polygon split into single "
+"zones polygons."
+msgstr ""
+"Capa de zonificación dividida: Un archivo shape de polígonos con el código "
+"de zonificación y la descripción de las parcelas con zonificación múltiple, "
+"con cada polígono dividido en polígonos de zonas individuales."
+
+#: ../../source/docs/3/creating_landuse_map.rst:29
+msgid "Cape Town CDB Area: A polygon demarcating the Cape Town CBD area."
+msgstr ""
+"Área CDB de Ciudad del Cabo: Un polígono que delimita la zona del CDB de "
+"Ciudad del Cabo."
+
+#: ../../source/docs/3/creating_landuse_map.rst:31
+msgid "Let's see the step wise to prepare the dataset for this tutorial."
+msgstr ""
+"Veamos paso a paso cómo preparar el conjunto de datos para este tutorial."
+
+#: ../../source/docs/3/creating_landuse_map.rst:33
+msgid ""
+"Go to the Data Portal - https://odp-cctegis.opendata.arcgis.com/. We will "
+"search for the Cape Town CBD data in the search bar and click to browse "
+"further."
+msgstr ""
+"Vaya al portal de datos - https://odp-cctegis.opendata.arcgis.com/. "
+"Buscaremos los datos del CBD de Ciudad del Cabo en la barra de búsqueda y "
+"haremos clic para seguir navegando."
+
+#: ../../source/docs/3/creating_landuse_map.rst:38
+msgid ""
+"Click on :guilabel:`View Full Details` to explore services available to get "
+"the data."
+msgstr ""
+"Haga clic en :guilabel:`Ver todos los detalles` para explorar los servicios "
+"disponibles para obtener los datos."
+
+#: ../../source/docs/3/creating_landuse_map.rst:43
+msgid "Scroll down to find :guilabel:`View Data Source` and click on the it."
+msgstr ""
+"Desplácese hacia abajo hasta encontrar :guilabel:`Ver fuente de datos` y "
+"haga clic en él."
+
+#: ../../source/docs/3/creating_landuse_map.rst:48
+msgid ""
+"On the ArcGIS REST Services Directory , Go to :guilabel:`Home` and copy the "
+"URL of that page. The copied URL looks like - "
+"https://citymaps.capetown.gov.za/agsext1/rest/services."
+msgstr ""
+"En el Directorio de Servicios REST de ArcGIS, vaya a :guilabel: `Inicio` y "
+"copie la URL de esa página. La URL copiada tiene el siguiente aspecto - "
+"https://citymaps.capetown.gov.za/agsext1/rest/services."
+
+#: ../../source/docs/3/creating_landuse_map.rst:53
+msgid "Now, Open QGIS and go to :menuselection:`Open Data Source Manager`."
+msgstr ""
+"Ahora, abra QGIS y vaya a :menuselection: `Abrir Gestor de Fuentes de "
+"Datos`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:58
+msgid ""
+"The list of data sources is seen in the left panel. Scroll down to find "
+":menuselection:`ArcGIS REST Server`. Click on :guilabel:`new` to create new "
+"server connection."
+msgstr ""
+"La lista de fuentes de datos se ve en el panel izquierdo. Desplácese hacia "
+"abajo hasta encontrar :menuselection:`ArcGIS REST Server`. Haga clic en "
+":guilabel:`nuevo` para crear una nueva conexión al servidor."
+
+#: ../../source/docs/3/creating_landuse_map.rst:63
+msgid ""
+"In the :guilabel:`Connection Details`, give the :guilabel:`Name` ``Cape Town"
+" Open Data Portal`` and paste the copied url as an input for "
+":guilabel:`URL`."
+msgstr ""
+"En :guilabel:`Detalles de conexión`, indique el :guilabel:`Nombre` ``Cape "
+"Town Open Data Portal`` y pegue la url copiada como entrada para "
+":guilabel:`URL`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:68
+msgid ""
+"Click :guilabel:`Ok` and then :guilabel:`Connect` to see the data folders "
+"available in the server."
+msgstr ""
+"Haga clic en :guilabel: `Aceptar` y luego en :guilabel: `Conectar` para ver "
+"las carpetas de datos disponibles en el servidor."
+
+#: ../../source/docs/3/creating_landuse_map.rst:73
+msgid ""
+"Now we will search for all three layers required for the tutorial from the "
+"database. Firstly, we will open ``Cape Town CBD`` layer in the QGIS. Expand "
+"folders to browse to the layers. Full path to the layer is "
+":menuselection:`Theme_Based --> Open_Data_Service --> Cape Town CBD`. Select"
+" the layer and click :guilabel:`Add`."
+msgstr ""
+"Ahora buscaremos en la base de datos las tres capas necesarias para el "
+"tutorial. En primer lugar, abriremos la capa ``Cape Town CBD`` en QGIS. "
+"Despliegue las carpetas para buscar las capas. La ruta completa a la capa es"
+" :menuselection:`Theme_Based --> Open_Data_Service --> Cape Town CBD`. "
+"Seleccione la capa y haga clic en :guilabel: `Añadir`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:78
+msgid ""
+"Close the :menuselection:`Data Source Manager` to see the layer added to the"
+" QGIS. Click on :menuselection:`Zoom to Layer` to centre and display the "
+"layer on the canvas."
+msgstr ""
+"Cierre :menuselection: `Gestor de fuentes de datos` para ver la capa añadida"
+" al QGIS. Haga clic en :menuselection: `Zoom a Capa` para centrar y mostrar "
+"la capa en el lienzo."
+
+#: ../../source/docs/3/creating_landuse_map.rst:83
+msgid ""
+"Now, will add the ``Zoning`` layer using :guilabel:`Data Source "
+"Manager`.Connect to ``Cape Town Open Data Portal`` and browse to  ``Zoning``"
+" layer. The full path is :menuselection:`Theme_Based --> "
+"Open_Data_Service_Zoning --> Zoning`. This is a very large layer, so make "
+"sure to check the box :guilabel:`Only request features overlapping the "
+"current view extent` to avoid loading all the features available in the "
+"layer. If you forget this, loading of the layer may take a long time. Click"
+"  :guilabel:`Add` to open in the QGIS."
+msgstr ""
+"Ahora, añadiremos la capa ``Zoning`` usando :guilabel:`Gestor de Fuentes de "
+"Datos`. Conéctese al \"Portal de Datos Abiertos de Ciudad del Cabo\" y "
+"busque la capa ``Zoning``. La ruta completa es :menuselection:`Theme_Based "
+"--> Open_Data_Service_Zoning --> Zoning`. Esta es una capa muy grande, así "
+"que asegúrese de marcar la casilla :guilabel:`Only request features "
+"overlapping the current view extent` para evitar cargar todas las "
+"prestaciones disponibles en la capa. Si olvida esto, la carga de la capa "
+"puede tardar mucho tiempo. Haga clic en :guilabel:`Add` para abrir en QGIS."
+
+#: ../../source/docs/3/creating_landuse_map.rst:88
+msgid ""
+"Similarly add ``Split_Zoning`` layer. The full path is - "
+":menuselection:`Theme_Based --> Land_Parcel_Zoning --> Split Zoning`."
+msgstr ""
+"Del mismo modo añadir ``Split_Zoning`` capa. La ruta completa es - "
+":menuselection:`Theme_Based --> Land_Parcel_Zoning --> Split Zoning`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:93
+msgid ""
+"We can see all three source layers are open in QGIS. We want to clip the "
+"``Zoning`` and ``Split Zoning`` layers to the ``Cape Town CBD`` boundary "
+"layer. Firstly, let's save all three layers locally as shapefiles. Right "
+"click on the ``Cape Town CBD`` layer. Look for :guilabel:`Export` and click "
+"on :guilabel:`Save Features As`."
+msgstr ""
+"Podemos ver que las tres capas de origen están abiertas en QGIS. Queremos "
+"recortar las capas ``Zoning`` y ``Split Zoning`` a la capa límite ``Cape "
+"Town CBD``. En primer lugar, vamos a guardar las tres capas localmente como "
+"archivos shape. Haga clic con el botón derecho en la capa ``Cape Town CBD``."
+" Busque :guilabel:`Exportar` y haga clic en :guilabel: `Guardar objetos "
+"espaciales como`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:98
+msgid ""
+"Set the format :guilabel:`ESRI Shapefile` and browse to the local folder "
+"where you want to save the shapefiles. We will save all the layers related "
+"to this tutorial in a single data folder. Save the layer as ``cbd``.  Keep "
+"all other options default and click :guilabel:`OK`. Similarly export other "
+"two layers as ``Zoning.shp`` and ``Split Zoning`` to the same folder."
+msgstr ""
+"Establezca el formato :guilabel:`ESRI Shapefile` y vaya a la carpeta local "
+"donde desea guardar los archivos shape. Guardaremos todas las capas "
+"relacionadas con este tutorial en una única carpeta de datos. Guarde la capa"
+" como ``cbd``. Mantenga el resto de opciones por defecto y haga clic en "
+":guilabel:`Aceptar`. Del mismo modo exportar otras dos capas como "
+"``Zoning.shp`` y ``Split Zoning`` a la misma carpeta."
+
+#: ../../source/docs/3/creating_landuse_map.rst:103
+msgid ""
+"Remove the layers loaded from server. Select all three layers, and click on "
+":guilabel:`Remove Layer/Group` icon. We want to extract features from "
+"``Zoning`` and ``Split Zoning`` layers intersecting with ``cbd`` boundary."
+msgstr ""
+"Elimine las capas cargadas desde el servidor. Seleccione las tres capas, y "
+"haga clic en :guilabel: `Quitar Capa / Grupo` icono. Queremos extraer los "
+"objetos espaciales de las capas ``Zoning`` y ``Split Zoning`` que se cruzan "
+"con el límite ``cbd``."
+
+#: ../../source/docs/3/creating_landuse_map.rst:109
+msgid "Go to :menuselection:`Processing --> Toolbox` from the menubar."
+msgstr ""
+"Vaya a :menuselection:`Procesos --> Caja de herramientas` de la barra de "
+"menús."
+
+#: ../../source/docs/3/creating_landuse_map.rst:114
+msgid ""
+"In the toolbax, search for :guilabel:`Intersection` algorithm and double-"
+"click to open."
+msgstr ""
+"En la caja de herramientas, busque el algoritmo :guilabel: `Intersección` y "
+"haga doble clic para abrirlo."
+
+#: ../../source/docs/3/creating_landuse_map.rst:119
+msgid ""
+"Select ``Zoning`` as :guilabel:`Input layer` and ``cbd`` as "
+":guilabel:`Overlay layer`. Keep other options default and proceed to save "
+"output to file."
+msgstr ""
+"Seleccione ``Zoning`` como :guilabel:`Capa de entrada` y ``cbd`` como "
+":guilabel:`Capa de superposición`. Mantenga las demás opciones por defecto y"
+" proceda a guardar el resultado en un archivo."
+
+#: ../../source/docs/3/creating_landuse_map.rst:124
+msgid ""
+"Save the output layer as ``zoning_cbd`` in the data folder and click "
+":guilabel:`Run`."
+msgstr ""
+"Guarde la capa de salida como ``zoning_cbd`` en la carpeta de datos y haga "
+"clic en :guilabel:`Ejecutar`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:129
+msgid ""
+"Depending on your Processing settings, you will see some errors or warnings "
+"displayed in :guilabel:`Log` tab. The input layer has some invalid "
+"geometries and it is being skipped while running intersection. We will fix "
+"geometries of ``Zoning`` and ``Split Zoning`` layers before taking the "
+"intersection to extract all geometries."
+msgstr ""
+"Dependiendo de la configuración de Procesos, verá algunos errores o "
+"advertencias en la pestaña :guilabel:`Registro`. La capa de entrada tiene "
+"algunas geometrías inválidas y está siendo omitida mientras se ejecuta la "
+"intersección. Corregiremos las geometrías de las capas ``Zoning`` y ``Split "
+"Zoning`` antes de ejecutar la intersección para extraer todas las "
+"geometrías."
+
+#: ../../source/docs/3/creating_landuse_map.rst:134
+msgid ""
+"Remove the intersection output from QGIS and data folder. Search for "
+":menuselection:`Fix geometries` tool in the processing toolbox. Double-click"
+" to open."
+msgstr ""
+"Elimine la salida de intersección de QGIS y de la carpeta de datos. Busque "
+"la herramienta :menuselection:`Corregir geometrías` en la caja de "
+"herramientas de procesamiento. Haga doble clic para abrir."
+
+#: ../../source/docs/3/creating_landuse_map.rst:139
+msgid ""
+"Select ``Zoning`` as :guilabel:`Input layer`. Keep all the other inputs as "
+"default and save the output layer as ``zoning_fixed.shp`` in the data folder"
+" by clicking  :guilabel:`Save to File`. Click :guilabel:`Run`. Repeat the "
+"process for fixing geometries on ``Split Zoning`` layer and save the layer "
+"with fixed geometries as ``split_zoning_fixed.shp``."
+msgstr ""
+"Seleccione ``Zoning`` como :guilabel:`Capa de entrada`. Mantenga el resto de"
+" entradas por defecto y guarde la capa de salida como ``zoning_fixed.shp`` "
+"en la carpeta de datos haciendo clic en :guilabel:`Guardar en archivo`. Haga"
+" clic en :guilabel:`Ejecutar`. Repita el proceso para fijar las geometrías "
+"en la capa ``Split Zoning`` y guarde la capa con geometrías fijas como "
+"``split_zoning_fixed.shp``."
+
+#: ../../source/docs/3/creating_landuse_map.rst:144
+msgid ""
+"Remove ``Zoning`` and ``Split Zoning`` layers. We will move ahead with "
+"extracting features from ``zoning_fixed`` and ``split_zoning_fixed`` layers "
+"which intersect ``cbd``. Search for :menuselection:`Intersection` from the "
+"processing toolbox and double-click to open."
+msgstr ""
+"Eliminar ``Zoning`` y ``Split Zoning`` capas. Vamos a seguir adelante con la"
+" extracción de objetos espaciales de ``zoning_fixed`` y "
+"``split_zoning_fixed`` capas que se cruzan ``cbd``. Busque "
+":menuselection:`Intersección` en la caja de herramientas de procesado y haga"
+" doble clic para abrirla."
+
+#: ../../source/docs/3/creating_landuse_map.rst:149
+msgid ""
+"24.Select ``Zoning_fixed`` as :guilabel:`Input layer` and ``cbd`` as "
+":guilabel:`Overlay layer` to perform intersection as described in steps 18 "
+"and 19. Save the output as ``zoning_cbd`` and repeat the same for "
+"``split_zoning_fixed`` layer and save the output layer as "
+"``split_zoning_cbd``."
+msgstr ""
+"24.Seleccione ``Zoning_fixed`` como :guilabel:`Capa de entrada` y ``cbd`` "
+"como :guilabel:`Capa de superposición`` para realizar la intersección como "
+"se describe en los pasos 18 y 19. Guarde la salida como ``zoning_cbd`` y "
+"repita lo mismo para la capa ``split_zoning_fixed`` y guarde la capa de "
+"salida como ``split_zoning_cbd``. Guarde la salida como ``zoning_cbd`` y "
+"repita lo mismo para la capa ``split_zoning_fixed`` y guarde la capa de "
+"salida como ``split_zoning_cbd``."
+
+#: ../../source/docs/3/creating_landuse_map.rst:155
+msgid ""
+"For convenience, you may directly download a copy of all three pre-processed"
+" layers from the links below:"
+msgstr ""
+"Para mayor comodidad, puede descargar directamente una copia de las tres "
+"capas preprocesadas desde los siguientes enlaces:"
+
+#: ../../source/docs/3/creating_landuse_map.rst:157
+msgid "`cbd.shp <https://www.qgistutorials.com/downloads/cbd.zip>`_"
+msgstr "`cbd.shp <https://www.qgistutorials.com/downloads/cbd.zip>`_"
+
+#: ../../source/docs/3/creating_landuse_map.rst:159
+msgid ""
+"`zoning_cbd.shp <https://www.qgistutorials.com/downloads/zoning_cbd.zip>`_"
+msgstr ""
+"`zoning_cbd.shp <https://www.qgistutorials.com/downloads/zoning_cbd.zip>`_"
+
+#: ../../source/docs/3/creating_landuse_map.rst:161
+msgid ""
+"`split_zoning_cbd.shp "
+"<https://www.qgistutorials.com/downloads/split_zoning_cbd.zip>`_"
+msgstr ""
+"`split_zoning_cbd.shp "
+"<https://www.qgistutorials.com/downloads/split_zoning_cbd.zip>`_"
+
+#: ../../source/docs/3/creating_landuse_map.rst:166
+msgid "Procedure"
+msgstr "Procedimiento"
+
+#: ../../source/docs/3/creating_landuse_map.rst:168
+msgid ""
+"Open QGIS. Click :menuselection:`Open Data Source Manager` icon to add "
+"layers to work on for the tutorial."
+msgstr ""
+"Abra QGIS. Haga clic en el icono :menuselection:`Abrir Gestor de Fuentes de "
+"Datos` para añadir capas con las que trabajar en el tutorial."
+
+#: ../../source/docs/3/creating_landuse_map.rst:173
+msgid ""
+"Switch to the :guilabel:`Vector` tab and use the browsing button to navigate"
+" to the folder where you have kept the processed shapefiles."
+msgstr ""
+"Cambie a la pestaña :guilabel:`Vector` y utilice el botón de navegación para"
+" ir a la carpeta donde ha guardado los archivos shape procesados."
+
+#: ../../source/docs/3/creating_landuse_map.rst:178
+msgid ""
+"Select ``cbd.shp``, ``zoning_cbd.shp`` and ``split_zoning_cbd.shp`` files "
+"and click :guilabel:`Open`."
+msgstr ""
+"Seleccione los archivos ``cbd.shp``, ``zoning_cbd.shp`` y "
+"``split_zoning_cbd.shp`` y haga clic en :guilabel: `Abrir``."
+
+#: ../../source/docs/3/creating_landuse_map.rst:183
+msgid ""
+"You will see all three file paths in the text box beside :guilabel:`Vector "
+"Dataset`. Click :guilabel:`Add` followed by :guilabel:`Close`."
+msgstr ""
+"Verá las tres rutas de archivo en el cuadro de texto junto a "
+":guilabel:`Vector Dataset`. Haga clic en :guilabel:`Añadir` y luego en "
+":guilabel:`Cerrar`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:188
+msgid ""
+"As we work on the exercise, it is important to save our work. Go to "
+":menuselection:`Project --> Save`."
+msgstr ""
+"Mientras trabajamos en el ejercicio, es importante guardar nuestro trabajo. "
+"Vaya a :menuselección:`Proyecto --> Guardar`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:193
+msgid ""
+"Save the project to the data directory as landuse_map.qgz file. The QGIS "
+"Project file contains references to the data layers and saves styles, map "
+"templates etc."
+msgstr ""
+"Guarde el proyecto en el directorio de datos como archivo landuse_map.qgz. "
+"El archivo de proyecto QGIS contiene referencias a las capas de datos y "
+"guarda estilos, plantillas de mapas, etc."
+
+#: ../../source/docs/3/creating_landuse_map.rst:198
+msgid ""
+"Select the ``zoning_cbd`` layer and click the :guilabel:`Open Attribute "
+"Table` button in the :menuselection:`Attributes` Toolbar. Note that the "
+"attribute ``INT_ZONE_C`` has the zoning codes and ``INT_ZONE_D`` has the "
+"zoning description. Close the attribute table."
+msgstr ""
+"Seleccione la capa ``zoning_cbd`` y haga clic en el botón :guilabel:`Abrir "
+"tabla de atributos` de la barra de herramientas :menuselection: `Atributos`."
+" Observe que el atributo ``INT_ZONE_C`` contiene los códigos de zonificación"
+" e ``INT_ZONE_D`` contiene la descripción de la zonificación. Cierre la "
+"tabla de atributos."
+
+#: ../../source/docs/3/creating_landuse_map.rst:203
+msgid ""
+"Now let’s style the layer based on these attributes, so the parcels with the"
+" same zoning codes are styles in the same color. Click the :guilabel:`Open "
+"the Layer Styling panel` button in the Layers panel. Click the dropdown "
+"button next to :guilabel:`Single Symbol`."
+msgstr ""
+"Ahora vamos a dar estilo a la capa basándonos en estos atributos, para que "
+"las parcelas con los mismos códigos de zonificación tengan estilos del mismo"
+" color. Haga clic en el botón :guilabel:`Abrir el panel Estilos de capa` del"
+" panel Capas. Haga clic en el botón desplegable situado junto a "
+":guilabel:`Simbolo único`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:208
+msgid ""
+"Select :guilabel:`Categorized` as the renderer. Select ``INT_ZONE_C`` as the"
+" Value. Click Classify."
+msgstr ""
+"Seleccione :guilabel:`Categorizado` como renderizador. Seleccione "
+"``INT_ZONE_C`` como valor. Haga clic en Clasificar."
+
+#: ../../source/docs/3/creating_landuse_map.rst:213
+msgid ""
+"You will see a series of symbols appear. There is a different color symbol "
+"assigned for every unique code in the layer."
+msgstr ""
+"Verá aparecer una serie de símbolos. Hay un símbolo de color diferente "
+"asignado para cada código único de la capa."
+
+#: ../../source/docs/3/creating_landuse_map.rst:218
+msgid ""
+"Notice that each zoning category has sub-categories. The ``General Business "
+"(GB)`` category has further sub-divisions like ``GB1``, ``GB2``, and so on. "
+"For the purpose of this map, we can merge all the sub-categories to a single"
+" top-level category. Hold the Shift key and select all sub-categories. "
+"Right-click and select :guilabel:`Merge Categories`."
+msgstr ""
+"Observe que cada categoría de zonificación tiene subcategorías. La categoría"
+" ``General Business (GB)`` tiene otras subdivisiones como ``GB1``, ``GB2``, "
+"etc. Para los fines de este mapa, podemos fusionar todas las subcategorías "
+"en una única categoría de nivel superior. Mantenga pulsada la tecla Mayús y "
+"seleccione todas las subcategorías. Haga clic con el botón derecho y "
+"seleccione :guilabel:`Fusionar categorías`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:223
+msgid ""
+"Repeat the process for ``MU`` and ``TR`` categories. Once merged, we can now"
+" change the Legend label to be more descriptive. Click on the "
+":guilabel:`Legend` label to rename a class."
+msgstr ""
+"Repita el proceso para las categorías ``MU`` y ``TR``. Una vez fusionadas, "
+"ahora podemos cambiar la etiqueta Leyenda para que sea más descriptiva. Haga"
+" clic en la etiqueta :guilabel:`Leyenda` para cambiar el nombre de una "
+"clase."
+
+#: ../../source/docs/3/creating_landuse_map.rst:228
+msgid ""
+"Enter descriptions of each zoning category based on the values given in the "
+"``INR_ZONE_D`` column. As you enter those description, you will see the "
+"legend of the layer in the Layers panel also updates."
+msgstr ""
+"Introduzca las descripciones de cada categoría de zonificación basándose en "
+"los valores indicados en la columna ``INR_ZONE_D``. A medida que introduzca "
+"esas descripciones, verá que la leyenda de la capa en el panel Capas también"
+" se actualiza."
+
+#: ../../source/docs/3/creating_landuse_map.rst:233
+msgid ""
+"Now we can update the colors and symbology of each category. Click on the "
+":guilabel:`Symbol` for a category."
+msgstr ""
+"Ahora podemos actualizar los colores y la simbología de cada categoría. Haga"
+" clic en la :guilabel:`Símbolo` de una categoría."
+
+#: ../../source/docs/3/creating_landuse_map.rst:238
+msgid ""
+"Change the :guilabel:`Fill color` and :guilabel:`Stroke color` of the symbol"
+" to a color of your choice."
+msgstr ""
+"Cambie el :guilabel:`Color de relleno` y el :guilabel:`Color de trazo` del "
+"símbolo al color que desee."
+
+#: ../../source/docs/3/creating_landuse_map.rst:243
+msgid ""
+"Repeat the process for each category. The last category is all other values."
+" This category contains all parcels which have NULL values. This is because "
+"those parcels have multiple zoning categories attached to them and are "
+"represented in the split_zoning_cbd.shp layer. We do not need them in this "
+"layer. Select it and click the :guilabel:`-` icon to remove that category."
+msgstr ""
+"Repita el proceso para cada categoría. La última categoría es todos los "
+"demás valores. Esta categoría contiene todas las parcelas que tienen valores"
+" NULL. Esto se debe a que esas parcelas tienen múltiples categorías de "
+"zonificación asociadas y están representadas en la capa "
+"split_zoning_cbd.shp. No las necesitamos en esta capa. Selecciónela y haga "
+"clic en el icono :guilabel:`-` para eliminar esa categoría."
+
+#: ../../source/docs/3/creating_landuse_map.rst:248
+msgid ""
+"Next, select the ``cbd`` layer. Change the symbol to :guilabel:`Simple Line`"
+" and increase the :guilabel:`Stroke width`."
+msgstr ""
+"A continuación, seleccione la capa ``cbd``. Cambie el símbolo a "
+":guilabel:`Línea simple` y aumente el :guilabel: `Ancho de trazo`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:253
+msgid ""
+"The ``split_zoning_cbd.shp`` layer contains all parcels that were missing "
+"zoning codes in the zoning_cbd layer. The attribute table and values for the"
+" zones in the ``split_zoning_cbd`` are the same as the ``zoning_cbd`` layer."
+" Instead of configuring the symbology for this layer manually, we can "
+"copy/paste the styles. Select the zoning_cbd layer, right-click and select "
+":menuselection:`Styles --> Copy Style --> Symbology`."
+msgstr ""
+"La capa ``split_zoning_cbd.shp`` contiene todas las parcelas a las que les "
+"faltaban códigos de zonificación en la capa zoning_cbd. La tabla de "
+"atributos y los valores de las zonas de ``split_zoning_cbd`` son los mismos "
+"que los de la capa ``zoning_cbd``. En lugar de configurar manualmente la "
+"simbología para esta capa, podemos copiar/pegar los estilos. Seleccione la "
+"capa zoning_cbd, haga clic con el botón derecho y seleccione "
+":menuselection:`Estilos --> Copiar Estilo --> Simbología`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:258
+msgid ""
+"Now select the newly added ``split_zoning_cbd`` layer, right-click and "
+"select :menuselection:`Styles --> Paste Style --> Symbology`."
+msgstr ""
+"Ahora seleccione la capa ``split_zoning_cbd`` recién añadida, haga clic con "
+"el botón derecho y seleccione :menuselection:`Estilos --> Pegar Estilo --> "
+"Simbología``."
+
+#: ../../source/docs/3/creating_landuse_map.rst:263
+msgid ""
+"You will see the same symbology being applied to the polygons in the "
+"``split_zoning_cbd`` layer. The styling and legend are complete now."
+msgstr ""
+"Verá que se aplica la misma simbología a los polígonos de la capa "
+"``split_zoning_cbd``. La simbología y la leyenda ya están completas."
+
+#: ../../source/docs/3/creating_landuse_map.rst:268
+msgid ""
+"We have our layers styled and legend labels created. Now let’s create a map "
+"using these styled layers along with map elements like, scale bar, north "
+"arrow, labels etc. QGIS comes with a :guilabel:`Print Layout` that allows "
+"composing maps. Go to :menuselection:`Project --> New Print Layout`. When "
+"prompted for a name, you can leave it blank and click :guilabel:`OK`."
+msgstr ""
+"Ya tenemos nuestras capas estilizadas y las etiquetas de leyenda creadas. "
+"Ahora vamos a crear un mapa utilizando estas capas estilizadas junto con "
+"elementos de mapa como, barra de escala, flecha norte, etiquetas, etc. QGIS "
+"viene con una :guilabel:`Composición de impresión` que permite componer "
+"mapas. Vaya a :menuselection:`Proyecto --> Nuevo Diseño de Impresión`. "
+"Cuando se le pida un nombre, puede dejarlo en blanco y pulsar "
+":guilabel:`Aceptar`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:273
+msgid ""
+"In the Print Layout window, you will see a canvas. Right-click and select "
+":guilabel:`Page Properties`."
+msgstr ""
+"En la ventana Composición de impresión, verá un lienzo. Haga clic con el "
+"botón derecho y seleccione :guilabel:`Propiedades de página`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:278
+msgid ""
+"Set the :guilabel:`Orientation` to ``Portrait``. Next, go to "
+":menuselection:`Add Item --> Add Map`."
+msgstr ""
+"Ajuste la :guilabel:`Orientación` a ``Retrato``. A continuación, vaya a "
+":menuselection:`Añadir elemento --> Añadir mapa`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:283
+msgid ""
+"Hold the left mouse button and draw a rectangle on the canvas. This is the "
+"map frame which will contain the map from the main QGIS window. In the "
+":guilabel:`Item Properties` tab, use the :guilabel:`Interactively Edit Map "
+"Extent` icon to pan/zoom the content of the map frame."
+msgstr ""
+"Mantenga pulsado el botón izquierdo del ratón y dibuje un rectángulo en el "
+"lienzo. Este es el marco del mapa que contendrá el mapa de la ventana "
+"principal de QGIS. En la pestaña :guilabel:`Propiedades del elemento`, "
+"utilice el icono :guilabel:`Edición interactiva de la extensión del mapa` "
+"para desplazar o ampliar el contenido del marco del mapa."
+
+#: ../../source/docs/3/creating_landuse_map.rst:288
+msgid ""
+"Scroll down in the Item Properties tab and check the :guilabel:`Frame` "
+"option. Expand it and select a :guilabel:`Color` for the frame border. You "
+"can also increase the :guilabel:`Thickness`."
+msgstr ""
+"Desplácese hacia abajo en la pestaña Propiedades del elemento y marque la "
+"opción :guilabel:`Marco`. Despliéguela y seleccione un :guilabel:`Color` "
+"para el borde del marco. También puede aumentar el :guilabel:`Grosor`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:293
+msgid ""
+"The map frame is now ready. Let’s add other elements. Go to "
+":menuselection:`Add Item --> Add Legend`."
+msgstr ""
+"El marco del mapa ya está listo. Vamos a añadir otros elementos. Vaya a "
+":menuselection:`Añadir Elemento --> Añadir Leyenda`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:298
+msgid ""
+"Drag a rectangle where you want to place the legend. Once added, scroll down"
+" in the :guilabel:`Item Properties` tab and un-check the :guilabel:`Auto "
+"update` button so we can manually edit the legend items."
+msgstr ""
+"Arrastre un rectángulo donde desee colocar la leyenda. Una vez añadida, "
+"desplácese hacia abajo en la pestaña :guilabel:`Propiedades del elemento` y "
+"desactive el botón :guilabel:`Actualización automática` para poder editar "
+"manualmente los elementos de la leyenda."
+
+#: ../../source/docs/3/creating_landuse_map.rst:303
+msgid ""
+"We have 2 layers with identical legends, so we can remove one of them. "
+"Select the ``split_zoning_cbd`` layer and click the :guilabel:`Remove "
+"selected item(s) from legend` icon. Similarly remove ``cbd`` layer from the "
+"legend."
+msgstr ""
+"Tenemos 2 capas con leyendas idénticas, así que podemos eliminar una de "
+"ellas. Seleccione la capa ``split_zoning_cbd`` y haga clic en el icono "
+":guilabel:`Quitar elemento(s) seleccionado(s) de la leyenda`. Del mismo "
+"modo, elimine la capa ``cbd`` de la leyenda."
+
+#: ../../source/docs/3/creating_landuse_map.rst:308
+msgid "Right-click the ``zoning_cbd`` layer and check the Hidden option."
+msgstr ""
+"Haga clic con el botón derecho en la capa ``zoning_cbd`` y marque la opción "
+"Oculto."
+
+#: ../../source/docs/3/creating_landuse_map.rst:313
+msgid ""
+"Scroll down and expand the :guilabel:`Columns` section. Check the "
+":guilabel:`Split layers` option and increase the Count to 2."
+msgstr ""
+"Desplácese hacia abajo y expanda la sección :guilabel:`Columnas`. Marque la "
+"opción :guilabel:`Dividir capas` y aumente la Cantidad a 2."
+
+#: ../../source/docs/3/creating_landuse_map.rst:318
+msgid ""
+"Scroll down further to the :guilabel:`Spacing` section. Adjust the spacing "
+"between different elements till the legend is clearly legible."
+msgstr ""
+"Desplácese más abajo hasta la sección :guilabel:`Espaciado`. Ajuste el "
+"espaciado entre los distintos elementos hasta que la leyenda sea claramente "
+"legible."
+
+#: ../../source/docs/3/creating_landuse_map.rst:323
+msgid ""
+"You can change style and size of the fonts in legend from :guilabel:`Fonts "
+"and Text Formatting` properties. When done, go to :menuselection:`Add Item "
+"--> Add North Arrow`. Drag a rectangle where you want to place the element "
+"on the map."
+msgstr ""
+"Puede cambiar el estilo y tamaño de las fuentes en la leyenda desde las "
+"propiedades de :guilabel:`Fuentes y Formato de Texto`. Cuando haya "
+"terminado, vaya a :menuselection:`Añadir elemento --> Añadir flecha norte`. "
+"Arrastre un rectángulo donde desee colocar el elemento en el mapa."
+
+#: ../../source/docs/3/creating_landuse_map.rst:328
+msgid ""
+"Pick a symbol of your choice. Scroll down and expand the :guilabel:`SVG "
+"Parameters`. Change the :guilabel:`Fill color` and :guilabel:`Stroke color` "
+"as per your choice."
+msgstr ""
+"Elija el símbolo que desee. Desplácese hacia abajo y despliegue "
+":guilabel:`Parámetros SVG`. Cambie el :guilabel:`Color de relleno` y el "
+":guilabel:`Color de trazo` según su elección."
+
+#: ../../source/docs/3/creating_landuse_map.rst:333
+msgid ""
+"Now we will add a :guilabel:`Scale Bar`. Go to :menuselection:`Add Item --> "
+"Add Scale Bar`. Drag a rectangle where you want to place the element on the "
+"map. Adjust the :guilabel:`Style` and :guilabel:`Segments` parameters for "
+"the scale bar."
+msgstr ""
+"Ahora añadiremos una :guilabel:`Barra de Escala`. Vaya a "
+":menuselection:`Añadir Elemento --> Añadir Barra de Escala`. Arrastre un "
+"rectángulo donde quiera colocar el elemento en el mapa. Ajuste los "
+"parámetros :guilabel:`Estilo` y :guilabel: `Segmentos` para la barra de "
+"escala."
+
+#: ../../source/docs/3/creating_landuse_map.rst:338
+msgid ""
+"Our map needs a title and other information labels. Go to "
+":menuselection:`Add Item --> Add Label`."
+msgstr ""
+"Nuestro mapa necesita un título y otras etiquetas de información. Vaya a "
+":menuselection:`Añadir elemento --> Añadir etiqueta`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:343
+msgid ""
+"Enter a map title in the Main Properties section. Click the Font button "
+"under Appearance section to adjust the font size and style."
+msgstr ""
+"Introduzca un título para el mapa en la sección Propiedades principales. "
+"Haga clic en el botón Fuente de la sección Apariencia para ajustar el tamaño"
+" y el estilo de la fuente."
+
+#: ../../source/docs/3/creating_landuse_map.rst:348
+msgid ""
+"Add other labels indicating the data source and your name. Lastly we will "
+"finish our map by adding a frame around the label block. Go to "
+":menuselection:`Add Item --> Add Shape --> Add Rectangle`."
+msgstr ""
+"Añade otras etiquetas que indiquen la fuente de datos y su nombre. Por "
+"último terminaremos nuestro mapa añadiendo un marco alrededor del bloque de "
+"etiquetas. Vaya a :menuselection:`Añadir Elemento --> Añadir Forma --> "
+"Añadir Rectángulo`."
+
+#: ../../source/docs/3/creating_landuse_map.rst:353
+msgid ""
+"Draw a rectangle. Click the symbol for :guilabel:`Style` and set the "
+":guilabel:`Fill Color` to transparent and :guilabel:`Stroke color` to match "
+"other frames."
+msgstr ""
+"Dibuje un rectángulo. Haga clic en el símbolo de :guilabel:`Estilo` y ajuste"
+" :guilabel:`Color de relleno` a transparente y :guilabel:`Color de trazo` "
+"para que coincida con otros marcos."
+
+#: ../../source/docs/3/creating_landuse_map.rst:358
+msgid ""
+"Once you are satisfied with your composition, you can export the result. Go "
+"to :menuselection:`Layout --> Export as PDF`. Save the PDF in your data "
+"folder as ``capetown_zoning_map.pdf``."
+msgstr ""
+"Una vez que esté satisfecho con su composición, puede exportar el resultado."
+" Vaya a :menuselección:`Diseño --> Exportar como PDF`. Guarde el PDF en su "
+"carpeta de datos como ``capetown_zoning_map.pdf``."

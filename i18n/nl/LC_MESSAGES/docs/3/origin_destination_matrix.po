@@ -1,0 +1,417 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# DiGro, 2023
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-06 15:46+0530\n"
+"PO-Revision-Date: 2019-09-05 10:59+0000\n"
+"Last-Translator: DiGro, 2023\n"
+"Language-Team: Dutch (https://app.transifex.com/spatialthoughts/teams/7952/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:2
+msgid "Locating Nearest Facility with Origin-Destination Matrix (QGIS3)"
+msgstr ""
+"Dichtstbijzijnde faciliteit zoeken met Origin-Destination Matrix (QGIS3)"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:4
+msgid ""
+"In the previous tutorial, :doc:`basic_network_analysis`, we learned how to "
+"build a network and calculate the shortest path between 2 points. We can "
+"apply that technique to many different types of network-based analysis. One "
+"such application is to compute **Origin-Destination Matrix** or **OD "
+"Matrix**. Given a set of origin points and another set of destination "
+"points, we can calculate the shortest path between each origin-destination "
+"pairs and find out the travel distance/time between them. Such analysis is "
+"useful to locate the closest facility to any given point. For example, a "
+"logistics company may use this analysis to find the closest warehouse to "
+"their customers to optimize delivery routes. Here we use the Distance Matrix"
+" algorithm from **QGIS Network Analysis Toolbox (QNEAT3)** plugin to find "
+"the nearest health facility to each address in the city."
+msgstr ""
+"In de vorige handleiding, :doc:`basic_network_analysis`, leerden we hoe een "
+"netwerk te bouwen en het kortste pad tussen 2 punten te berekenen. We kunnen"
+" die techniek ook toepassen voor verschillende typen op netwerken gebaseerde"
+" analyses. Een van die toepassingen is om de **Origin-Destination Matrix** "
+"of **OD Matrix** te berekenen. Gegeven een set van punten van origine en een"
+" andere set voor bestemmingspunten kunnen we het kortste pad berekenen "
+"tussen elke paar van origine-bestemming en de reisafstand/tijd daartussen "
+"berekenen. Een dergelijke analyse is nuttig om de dichtstbijzijnde "
+"faciliteit tot een bepaald punt te lokaliseren. Een logistiek bedrijf zou, "
+"bijvoorbeeld, deze analyse kunnen gebruiken om de dichtstbijzijnde "
+"opslagplaats voor hun klanten te zoeken om bestelroutes te optimaliseren. "
+"Hier gebruiken we het algoritme Distance Matrix uit de plug-in **QGIS "
+"Network Analysis Toolbox (QNEAT3)** om de dichtstbijzijnde "
+"gezondheidsfaciliteit voor elk adres in de stad te zoeken."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:8
+msgid ""
+"This tutorial shows how to use your own network data to compute an origin-"
+"destination matrix. If you do not have your own network data, you can use "
+"**ORS Tools Plugin** and algorithm :menuselection:`ORS Tools --> Matrix -->"
+"  Matrix from Layers` to do a similar analysis using OpenStreetMap data. See"
+" :doc:`service_area_analysis` to learn how to use ORS Tools plugin."
+msgstr ""
+"Deze handleiding laat zien hoe uw eigen gegevens voor een netwerk te "
+"gebruiken om een origin-destination matrix te berekenen. Als u geen gegevens"
+" heeft voor een eigen netwerk kunt u de **ORS Tools Plugin** en het "
+"algoritme :menuselection:`ORS Tools --> Matrix -->  Matrix from Layers` "
+"gebruiken om een soortgelijke analyse uit te voeren met behulp van gegevens "
+"van OpenStreetMap. Bekijk :doc:`service_area_analysis` om te leren hoe de "
+"plug-in ORS Tools te gebruiken."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:11
+msgid "Overview of the task"
+msgstr "Overzicht van de taak"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:13
+msgid ""
+"We will take 2 layers for Washington DC - one with points representing "
+"addresses and another with points representing mental health facilities - "
+"and find out the facility with the least travel distance from each address."
+msgstr ""
+"We zullen 2 lagen nemen voor Washington DC - een met punten die adressen "
+"weergeven en een andere met punten die faciliteiten voor geestelijke "
+"gezondheid weergeven - en de faciliteit zoeken met de minste reisafstand "
+"vanaf elk adres."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:16
+msgid "Other skills you will learn"
+msgstr "Andere vaardigheden die u zult leren"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:17
+msgid "Extract a random sample from a point layer."
+msgstr "Een willekeurig monster uit een puntenlaag uitnemen."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:18
+msgid "Use Virtual Layers to run SQL query on a QGIS layer."
+msgstr ""
+"Virtuele lagen gebruiken om een query van SQL uit te voeren op een laag van "
+"QGIS."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:21
+msgid "Get the data"
+msgstr "De gegevens ophalen"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:22
+msgid ""
+"District of Columbia government freely shares hundreds of datasets on the "
+"`Open Data Catalog <https://opendata.dc.gov/>`_."
+msgstr ""
+"De overheid van het district of Columbia deelt gratis honderden gegevenssets"
+" in de `Open Data Catalog <https://opendata.dc.gov/>`_."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:24
+msgid "Download the following data layers as shapefiles."
+msgstr "Download de volgende gegevenslagen als Shapefiles."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:26
+msgid "`Roadway Block <https://opendata.dc.gov/datasets/roadway-block>`_"
+msgstr "`Roadway Block <https://opendata.dc.gov/datasets/roadway-block>`_"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:27
+msgid "`Address Points <https://opendata.dc.gov/datasets/address-points>`_"
+msgstr "`Address Points <https://opendata.dc.gov/datasets/address-points>`_"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:28
+msgid ""
+"`Community Based Service Provider "
+"<https://opendata.dc.gov/datasets/DCGIS::community-based-service-"
+"providers>`_"
+msgstr ""
+"`Community Based Service Provider "
+"<https://opendata.dc.gov/datasets/DCGIS::community-based-service-"
+"providers>`_"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:31
+msgid ""
+"For convenience, you may directly download a copy of the datasets from the "
+"links below:"
+msgstr ""
+"Voor het gemak kunt u direct een kopie van de gegevensset downloaden vanaf "
+"de links hieronder:"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:34
+msgid ""
+"`Roadway_Block-shp.zip "
+"<https://www.qgistutorials.com/downloads/Roadway_Block-shp.zip>`_"
+msgstr ""
+"`Roadway_Block-shp.zip "
+"<https://www.qgistutorials.com/downloads/Roadway_Block-shp.zip>`_"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:36
+msgid ""
+"`Address_Points.zip "
+"<https://www.qgistutorials.com/downloads/Address_Points.zip>`_"
+msgstr ""
+"`Address_Points.zip "
+"<https://www.qgistutorials.com/downloads/Address_Points.zip>`_"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:38
+msgid ""
+"`Community Based Service Provider.zip "
+"<https://www.qgistutorials.com/downloads/Community_Based_Service_Providers.zip>`_"
+msgstr ""
+"`Community Based Service Provider.zip "
+"<https://www.qgistutorials.com/downloads/Community_Based_Service_Providers.zip>`_"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:40
+msgid "Data Source: [DCOPENDATA]_"
+msgstr "Gegevensbron: [DCOPENDATA]_"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:43
+msgid "Setup"
+msgstr "Instellen"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:44
+msgid ""
+"Visit :menuselection:`Plugins --> Manage and Install plugins`. Select "
+":guilabel:` All` Search for **QNEAT3** plugin and install it. Click "
+":guilabel:`Close`."
+msgstr ""
+"Ga naar :menuselection:`Plug-ins --> Plug-ins beheren en installeren`. "
+"Selecteer :guilabel:` Alles` om te zoeken naar de plug-in **QNEAT3** en "
+"installeer die. Klik op :guilabel:`Close`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:50
+msgid "Procedure"
+msgstr "Procedure"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:52
+msgid ""
+"Locate the ``Community_Based_Service_Providers.zip`` file, expand it and add"
+" ``Community_Based_Service_Providers.shp`` to the canvas. We will select "
+"only those centres providing facilities to adults. Right-click on the "
+"``Community_Based_Service_Providers.shp`` layer and select "
+":guilabel:`Filter`."
+msgstr ""
+"Zoek het bestand ``Community_Based_Service_Providers.zip``, vergroot het en "
+"voeg ``Community_Based_Service_Providers.shp`` toe aan het kaartvenster. We "
+"zullen alleen die centra selecteren die faciliteiten voor volwassenen "
+"verschaffen. Klik met rechts op de laag "
+"``Community_Based_Service_Providers.shp`` en selecteer :guilabel:`Filter`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:56
+msgid ""
+"It will open a :guilabel:`Query Builder` dialog box. Enter the following "
+"query in the :guilabel:` Filter Expression`  Click :guilabel:`Run`."
+msgstr ""
+"Het zal een dialoogvenster voor de :guilabel:`Querybouwer` openen. Voer de "
+"volgende query in bij de :guilabel:` Filter-expressie`  Klik op "
+":guilabel:`Uitvoeren`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:65
+msgid ""
+"Next, locate the ``Roadway_Block.zip`` file, expand it and add the "
+"``Roadway_Block.shp``. Similarly, locate the ``Address_Points.zip`` file, "
+"expand it and add the ``Address_Points.shp``. You will see a lot of points "
+"around the city. Each point represents a valid address. We will select 1000 "
+"points randomly. This technique is called random sampling. Go to "
+":menuselection:`Processing --> Toolbox`."
+msgstr ""
+"Zoek vervolgens naar het bestand ``Roadway_Block.zip``, vergroot het en voeg"
+" ``Roadway_Block.shp`` toe. Zoek op dezelfde wijze naar het bestand "
+"``Address_Points.zip``, vergroot het en voeg het bestand "
+"``Address_Points.shp`` toe. U zult heel veel punten zien in de stad. Elke "
+"punt geeft een geldig adres weer. We zullen nu 1000 willekeurige punten "
+"selecteren. Deze techniek wordt random sampling (willekeurige monsterneming)"
+" genoemd. Ga naar :menuselection:`Processing --> Toolbox`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:70
+msgid ""
+"Search for and locate the :menuselection:`Vector Selection --> Random "
+"extract` algorithm."
+msgstr ""
+"Zoek en lokaliseer het algoritme :menuselection:`Vector selectie --> "
+"Willekeurig uitnemen`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:75
+msgid ""
+"Select ``Address_Points`` as the :guilabel:`Input layer`, ``Number of "
+"feature`` as the :guilabel:`Method` and, enter ``1000`` in the "
+":guilabel:`Number/percentage of features`. In the :guilabel:`Extracted "
+"(random)` choose the ``...``  and click :guilabel:`Save to a file`. Now "
+"choose the directory and enter the name as ``address_point_subset.shp`` and "
+"click :guilabel:`Run`."
+msgstr ""
+"Selecteer ``Address_Points`` als de :guilabel:`Invoerlaag`, ``Number of "
+"feature`` als de :guilabel:`Methode` en voer  in ``1000`` in het "
+":guilabel:`Aantal/percentage objecten`. In het veld :guilabel:`Uitgenomen "
+"(willekeurig)` kies de ``…``  en klik :guilabel:`Opslaan als bestand`. Kies "
+"nu de map en voer als naam in ``address_point_subset.shp`` en klik op "
+":guilabel:`Uitvoeren`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:82
+msgid ""
+"As the algorithm will extract 1000 random points from the given data set, to"
+" replicate the exact points used in this exercise you can download the "
+"subset file which we got during the execution of the algorithm here "
+"`address_point_subset.zip "
+"<https://www.qgistutorials.com/downloads/address_point_subset.zip>`_ . After"
+" downloading load ``address_point_subset.shp`` layer into QGIS."
+msgstr ""
+"Omdat het algoritme 1000 willekeurige punten uit zal nemen uit de verstrekte"
+" gegevensset, om de exacte punten te repliceren voor deze oefening, kunt u "
+"hier `address_point_subset.zip "
+"<https://www.qgistutorials.com/downloads/address_point_subset.zip>`_ het "
+"bestand met de subset downloaden die we bij het uitvoeren van het algoritme "
+"hebben verkregen. Laad, na het downloaden, de laag "
+"``address_point_subset.shp`` in QGIS."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:84
+msgid ""
+"A new layer ``address_point_subset`` will be added to the :guilabel:`Layers`"
+" panel, you can turn off the visibility of ``Address_Points`` address points"
+" layer. Let's rename this layer as ``origin_points``. Right-click on the "
+"``address_point_subset`` layer and select :guilabel:`Rename layer`."
+msgstr ""
+"Een nieuwe laag ``address_point_subset`` zal worden toegevoegd aan het "
+"paneel :guilabel:`Lagen`, u kunt de zichtbaarheid voor de adrespuntenlaag "
+"``Address_Points`` uitschakelen. Laten we deze laag hernoemen naar "
+"``origin_points``. Klik met rechts op de laag ``address_point_subset`` en "
+"selecteer :guilabel:`Laag hernoemen`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:89
+msgid ""
+"Similarly, rename the ``Adult_Mental_Health_Providers`` layers representing "
+"the health facilities as ``destination_points``. Naming the layers this way "
+"makes it easy to identify them in subsequent processing. Further we will "
+"open processing toolbox to create the distance matrix using origin and "
+"destination layers."
+msgstr ""
+"Hernoem op soortgelijke wijze de lagen ``Adult_Mental_Health_Providers`` die"
+" de faciliteiten voor gezondheidszorg weergeven als ``destination_points``. "
+"Hernoemen van de lagen op deze manier maakt het gemakkelijker ze later in de"
+" voortdurende verwerking te identificeren. Verder zullen we de Toolbox van "
+"Processing openen om de afstandsmatrix te maken met de lagen voor origine en"
+" bestemming."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:94
+msgid ""
+"Locate the :menuselection:`QNEAT3 --> Distance matrices --> OD Matrix from "
+"Layers as Line (m:n)` algorithm. If you do not see this algorithm in the "
+"toolbox, make sure you have installed the **QNEAT3** plugin."
+msgstr ""
+"Zoek naar het algoritme :menuselection:`QNEAT3 --> Distance matrices --> OD "
+"Matrix from Layers as Line (m:n)`. Als u dit algoritme niet ziet in de "
+"Toolbox, overtuig u er dan van dat u de plug-in **QNEAT3** hebt "
+"geïnstalleerd."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:99
+msgid ""
+"This algorithm helps find the distances along with the network between "
+"selected origin and destination layers. Select ``Roadway_Block`` as the "
+":guilabel:`Network layer`. Select ``origin_points`` as the :guilabel:`From-"
+"Points layer` and ``OBJECTID_1`` as the :guilabel:`Unique Point ID field`. "
+"Similarly, set ``destination_points`` as the :guilabel:`To-Points Layer` and"
+" ``OBJECTID`` as  the :guilabel:`Unique Point ID field`. Set the "
+":guilabel:`Optimization Criterion` as ``Shortest Path (distance "
+"optimization)``."
+msgstr ""
+"Dit algoritme helpt bij het zoeken naar de afstanden langs het netwerk "
+"tussen geselecteerde lagen voor origine en bestemming. Selecteer "
+"``Roadway_Block`` als de :guilabel:`Network layer`. Selecteer "
+"``origin_points`` als de :guilabel:`From-Points layer` en ``OBJECTID`` als "
+"de :guilabel:`Unique Point ID field`. Stel op dezelfde manier "
+"``destination_points`` in als de :guilabel:`To-Points Layer` en "
+"``OBJECTID_1`` als het :guilabel:`Unique Point ID field`. Stel "
+":guilabel:`Optimization Criterion` in op ``Shortest Path (distance "
+"optimization)``."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:104
+msgid ""
+"As many streets in the network are one-way, we need to set the "
+":guilabel:`Advanced parameters` to specify the direction. See "
+":doc:`basic_network_analysis` for more details on how these attributes are "
+"structured. We also have an option to select geometry style of the generated"
+" matrix. We are having a road network with direction information so we can "
+"generate matrix by folling the route. Choose  ``Matrix geometry follows "
+"routes``.Choose ``SUMMARYDIR`` as the :guilabel:`Direction field`. Enter "
+"``OB`` as the :guilabel:`Value for the forward direction`, ``IB`` as the "
+":guilabel:`Value for backward direction`, and ``BD`` as the :guilabel:`Value"
+" for the both direction`. Set the :guilabel:`Topology tolerance` as "
+"``0.0000150``. Keep other options to their default values and click "
+":guilabel:`Run`."
+msgstr ""
+"Omdat veel straten in het netwerk een-richting zijn, moeten we de "
+":guilabel:`Advanced parameters` instellen om de richting te specificeren. "
+"Bekijk :doc:`basic_network_analysis` voor meer details over hoe deze "
+"attributen zijn gestructureerd. We hebben ook een optie om de stijl voor de "
+"geometrie van de gemaakte matrix te selecteren. We hebben een netwerk van "
+"wegen met informatie over de richting, dus kunnen een matrix maken door de "
+"route te volgen. Kies &#x60;&#x60;Matrix geometry follows "
+"routes&#x60;&#x60;. Kies &#x60;&#x60; ``SUMMARYDIR`` als het "
+":guilabel:`Direction field`. Voer ``OB`` als de waarde voor :guilabel:`Value"
+" for forward direction` en ``IB`` als die voor :guilabel:`Value for backward"
+" direction`, en ``BD`` als de :guilabel:`Value for both directions`. Stel de"
+" :guilabel:`Topology tolerance` in op ``0.0000150``. Laat de andere waarden "
+"op hun standaardwaarden staan en klik op :guilabel:`Uitvoeren`.Selecteren"
+
+#: ../../source/docs/3/origin_destination_matrix.rst:109
+msgid ""
+"A new table layer called ``Output OD Matrix`` will be added to the "
+":guilabel:`Layers` panel. Right-click and select :guilabel:`Open Attributes "
+"Table`. You will see that the table contains *13000* rows. We had 13 origin "
+"points and 1000 destination points - so the output contains *13x1000 = "
+"13000* pairs of origins and destination. The ``total_cost`` column contains "
+"distance in meters between each origin point to every destination point."
+msgstr ""
+"Een nieuwe tabellaag, genaamd ``Output OD Matrix``, zal worden toegevoegd "
+"aan het paneel :guilabel:`Lagen`. Klik met rechts en selecteer "
+":guilabel:`Attributentabel openen`. U zult zien dat de tabel *13000* rijen "
+"bevat. We hadden 13 punten van origine en 1000 bestemmingspunten - dus de "
+"uitvoer bevat *13x1000 = 13000* paren voor origine en bestemming. De kolom "
+"``total_cost`` bevat de afstand in meters tussen elk punt van origine tot "
+"elke bestemmingspunt."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:114
+msgid ""
+"For this tutorial, we are interested in only the destination point with the "
+"shortest distance. We can create a SQL query to pick the destination with "
+"the least ``total_cost`` among all destinations. Go to "
+":menuselection:`Processing --> Toolbox`.Search for and locate the "
+":menuselection:`Vector general --> Execute SQL`."
+msgstr ""
+"Voor deze handleiding zijn we alleen geïnteresseerd in het bestemmingspunt "
+"met de kortste afstand. We kunnen een query voor SQL maken om de bestemming "
+"met de minste ``total_cost`` uit alle bestemmingen te kiezen. Ga naar "
+":menuselection:`Processing --> Toolbox`. Zoek naar en lokaliseer het "
+"algoritme :menuselection:`Vector algemeen --> Execute SQL`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:119
+msgid ""
+"In :guilabel:`Additional input data sources` select ``...`` and check the "
+":guilabel:`Output OD Matrix` and, click :guilabel:`OK`. Now click the "
+":guilabel:`Summation` under :guilabel:`SQL query`. Enter the following query"
+" in :guilabel:`SQL query` dialog box. Enter ``geometry`` as the "
+":guilabel:`Geometry field` and, select ``LineString`` as the "
+":guilabel:`Geometry type`. Click :guilabel:`Run`."
+msgstr ""
+"In :guilabel:`Databronnen voor invoer` selecteer ``...`` en selecteer "
+":guilabel:`Output OD Matrix` en, klik op :guilabel:`OK`. Klik nu in "
+":guilabel:`Sommeren` onder :guilabel:`SQL query`. Voer de volgende query in "
+"het dialoogvak :guilabel:`SQL query` in. Voer ``geometry`` in als het "
+":guilabel:`Geometrie-veld` en selecteer ``Lijn`` als het "
+":guilabel:`Geometrie-type`. Klik op :guilabel:`Run`."
+
+#: ../../source/docs/3/origin_destination_matrix.rst:129
+msgid ""
+"A new virtual layer ``SQL Output`` will be added to the :guilabel:`Layers` "
+"panel. This Layer has the result of our analysis. Nearest service provider "
+"for each of the 1000 origin points."
+msgstr ""
+"Een nieuwe virtuele laag ``SQL-uitvoer`` zal worden toegevoegd aan het "
+"paneel :guilabel:`Lagen`. Deze laag bevat de resultaten van onze analyse. De"
+" dichtstbijzijnde faciliteit voor elk van de 1000 punten van origine."

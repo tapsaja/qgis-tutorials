@@ -1,5 +1,9 @@
 Performing Spatial Queries
 ==========================
+.. warning:: 
+
+   This tutorial is now obsolete. A new and updated version is available at :doc:`3/performing_spatial_queries`
+   
 Spatial queries are core to many types of GIS analysis. In QGIS, this
 functionality is available via the **Spatial Query** plugin.
 
@@ -97,7 +101,7 @@ Procedure
 9. Now we must choose an appropriate CRS for our purpose. For creating buffers,
    a Azimuthal Equidistant projection would be best suited as radial distances
    around the center of the projection are accurate. In our case, since the
-   dataset is global, we will choose a world projection. In the
+   dataset is global, we will choose a World projection. In the
    :guilabel:`Coordinate Reference System Selector` dialog, start searching for
    `world az..` and you will see the results show up. Select the
    `World_Azimuthal_Equidistant` and click :guilabel:`OK`.

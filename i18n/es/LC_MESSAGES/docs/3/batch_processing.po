@@ -1,0 +1,495 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Eric Armijo, 2024
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-04 12:46+0530\n"
+"PO-Revision-Date: 2019-02-05 11:41+0000\n"
+"Last-Translator: Eric Armijo, 2024\n"
+"Language-Team: Spanish (https://app.transifex.com/spatialthoughts/teams/7952/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;\n"
+
+#: ../../source/docs/3/batch_processing.rst:2
+msgid "Batch Processing using Processing Framework (QGIS3)"
+msgstr "Procesamiento por Lotes usando el Marco de Procesamiento (QGIS3)"
+
+#: ../../source/docs/3/batch_processing.rst:3
+msgid ""
+"The *Processing Framework* in QGIS provides an environment within QGIS to "
+"run native and third-party algorithms for processing data. It contains a "
+"nice batch processing interface that allows one to execute an algorithm on "
+"several layers easily. Batch processing is a useful tool that can save "
+"manual effort and help you automate repetitive tasks."
+msgstr ""
+"El *Marco de Procesamiento* en QGIS provee un ambiente dentro de QGIS para "
+"ejecutar algoritmos nativos y de terceros para el procesamiento de datos. "
+"Contiene un agradable interfaz de procesamiento que le permite a uno "
+"ejecutar un algoritmo fácilmente sobre varias capas. El procesamiento por "
+"lotes es una herramienta útil que puede ahorrar esfuerzo manual y ayudarle a"
+" automatizar tareas repetitivas."
+
+#: ../../source/docs/3/batch_processing.rst:10
+msgid "Overview of the task"
+msgstr "Vista general de la tarea"
+
+#: ../../source/docs/3/batch_processing.rst:12
+msgid ""
+"We will take several global vector layers and clip them to the extent of "
+"Africa in a single batch command."
+msgstr ""
+"Tomaremos varias capas capas globales vector para recortarlas a la extensión"
+" de África en un solo comando por lotes."
+
+#: ../../source/docs/3/batch_processing.rst:16
+msgid "Other skills you will learn"
+msgstr "Otras habilidades que aprenderá"
+
+#: ../../source/docs/3/batch_processing.rst:18
+msgid ""
+"Create a **Filter** to remove unwanted features from a layer without "
+"creating a new layer."
+msgstr ""
+"Crear un **Filtro** que eliminará las entidades no deseadas de una capa sin "
+"crear una nueva capa."
+
+#: ../../source/docs/3/batch_processing.rst:19
+msgid "Merge multiple layers into a single Geopackage file."
+msgstr "Fusionar múltiples capas en un solo archivo Geopackage."
+
+#: ../../source/docs/3/batch_processing.rst:22
+msgid "Get the data"
+msgstr "Obtener los datos"
+
+#: ../../source/docs/3/batch_processing.rst:24
+msgid ""
+"`Natural Earth <http://naturalearthdata.com>`_ has several global vector "
+"layers. Download the following layers"
+msgstr ""
+"`Natural Earth <http://naturalearthdata.com>`_ tiene varias capas globales "
+"vector. Descargue las siguientes capas"
+
+#: ../../source/docs/3/batch_processing.rst:27
+msgid ""
+"`Admin 0 - Countries "
+"<https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip>`_"
+msgstr ""
+"`Admin 0 - Países "
+"<https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_0_countries.zip>`_"
+
+#: ../../source/docs/3/batch_processing.rst:29
+msgid ""
+"`Railroads "
+"<https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads.zip>`_"
+msgstr ""
+"Ferrocarriles "
+"<https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_railroads.zip>`_"
+
+#: ../../source/docs/3/batch_processing.rst:31
+msgid ""
+"`Ports "
+"<https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_ports.zip>`_"
+msgstr ""
+"`Puertos "
+"<https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_ports.zip>`_"
+
+#: ../../source/docs/3/batch_processing.rst:33
+msgid ""
+"`Urban Areas "
+"<https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_urban_areas.zip>`_"
+msgstr ""
+"`Áreas Urbanas "
+"<https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_urban_areas.zip>`_"
+
+#: ../../source/docs/3/batch_processing.rst:37
+msgid ""
+"For convenience, you may directly download a geopackage containing the above"
+" layers from below:"
+msgstr ""
+"Para su comodidad, puede descargar directamente un geopackage que contiene "
+"las capas de arriba a continuación:"
+
+#: ../../source/docs/3/batch_processing.rst:39
+msgid ""
+"`ne_global.gpkg <https://www.qgistutorials.com/downloads/ne_global.gpkg>`_"
+msgstr ""
+"`ne_global.gpkg <https://www.qgistutorials.com/downloads/ne_global.gpkg>`_"
+
+#: ../../source/docs/3/batch_processing.rst:41
+msgid "Data Source: [NATURALEARTH]_"
+msgstr "Fuente de Datos: [NATURALEARTH]_"
+
+#: ../../source/docs/3/batch_processing.rst:44
+msgid "Procedure"
+msgstr "Procedimiento"
+
+#: ../../source/docs/3/batch_processing.rst:46
+msgid ""
+"In the QGIS Browser Panel, locate the directory where you saved your "
+"downloaded data. Expand the ``zip`` or the ``gpkg``  entry and select the "
+"``ne_10m_admin_0_countries`` layer. Drag the layer to the canvas."
+msgstr ""
+"En el Panel Explorador QGIS, localice el directorio donde guardó sus datos "
+"descargados. Expanda el ``zip`` o la entrada ``gpkg`` y seleccione la capa "
+"``ne_10m_admin_0_countries``. Arrastre la capa a la pantalla."
+
+#: ../../source/docs/3/batch_processing.rst:51
+msgid ""
+"You will see the layer loaded in the Layers panel. As our task is to clip "
+"the global layers to the boundary of Africa, we need to first prepare a "
+"layer containg features only from that continent. Let's look at the "
+"attribute table to see what column can be used to query features belonging "
+"to a particular continent. Right-click the ``ne_10m_admin_0_countries`` "
+"layer and select :guilabel:`Open Attribute Table`."
+msgstr ""
+"Verá la capa cargada en el panel Capas. Como nuestra tarea es recortar las "
+"capas globales al límite de África, necesitamos primero preparar una capa "
+"que contiene entidades sólo de ese continente. Miremos en la tabla de "
+"atributos para ver que columna puede ser usada para consultar las entidades "
+"que pertenecen a un continente particular. Haga clic-derecho a la capa "
+"``ne_10m_admin_0_countries`` y seleccione :guilabel:`Abrir Tabla de "
+"Atributos`."
+
+#: ../../source/docs/3/batch_processing.rst:55
+msgid ""
+"Tip: You can also use the keyboard shortcut :kbd:`F6` to open the attribute "
+"table of the selected layer."
+msgstr ""
+"Consejo: Puede también usar el atajo de teclado :kbd:`F6` para abrir la "
+"tabla de atributos de la capa seleccionada."
+
+#: ../../source/docs/3/batch_processing.rst:60
+msgid ""
+"In the :guilabel:`Attribute Table` window, as you scroll horizontally, you "
+"will see that the data contains an attribute called **CONTINENT**. We can "
+"use this attribute to filter features."
+msgstr ""
+"En la ventana :guilabel:`Tabla de Atributos`, a medida que desliza "
+"horizontalmente, verá que los datos contienen un atributo llamado "
+"**CONTINENT**. Podemos usar este atributo para filtrar objetos espaciales."
+
+#: ../../source/docs/3/batch_processing.rst:65
+msgid ""
+"Close the attribute table and return to the main QGIS window. Right-click "
+"the ``ne_10m_admin_0_countries`` layer and select :guilabel:`Filter`."
+msgstr ""
+"Cierre la tabla de atributos y retorne a la ventana principal QGIS. Clic-"
+"derecho la capa ``ne_10m_admin_0_countries`` y seleccione "
+":guilabel:`Filtrar`."
+
+#: ../../source/docs/3/batch_processing.rst:70
+msgid ""
+"In the :guilabel:`Query Builder` window, select the **CONTINENT** field and "
+"click :guilabel:`Sample`. This will populate the :guilabel:`Values` panel "
+"with the a subset of values of that attribute from features. This step is "
+"useful to get an understanding of what type of values are present in your "
+"dataset. We can see that our dataset contains a value called **Africa** "
+"among others."
+msgstr ""
+"En la ventana :guilabel:`Constructor de consultas`, seleccione el campo "
+"**CONTINENT** y haga clic en :guilabel:`Muestra`. Esto rellenará el panel "
+":guilabel:`Valores` con un subconjunto de valores de ese atributo de las "
+"prestaciones. Este paso es útil para comprender qué tipo de valores están "
+"presentes en su conjunto de datos. Podemos ver que nuestro conjunto de datos"
+" contiene un valor llamado **Africa** entre otros."
+
+#: ../../source/docs/3/batch_processing.rst:75
+msgid ""
+"Now enter the expression in the :guilabel:`Provider specific filter "
+"expression` textbox. You can click the **CONTINENT** label, followed by "
+":guilabel:`=` button and **Africa** label. Or you can type the following "
+"expression in the textbox. Click :guilabel:`OK` after entering the "
+"expression."
+msgstr ""
+"Ahora ingrese la expresión en la caja de texto :guilabel:`Expresión de "
+"filtrado específica del proveedor`. Puede hacer clic en la etiqueta "
+"**CONTINENT**, seguido por el botón :guilabel:`=` y la etiqueta **Africa**. "
+"O puede escribir la siguiente expresión en la caja de texto. Clic en "
+":guilabel:`Aceptar` después de ingresar la expresión."
+
+#: ../../source/docs/3/batch_processing.rst:84
+msgid ""
+"You will see that the map canvas now contains only the countries from "
+"Africa. Note the filter icon next to the layer name indicating that that "
+"layer a filter applied to it. If you wanted to see and use all the features "
+"from the layer, you can click the filter icon and clear the expression. For "
+"now, we will keep the filter so we can clip other layers to Africa."
+msgstr ""
+"Verá que la pantalla del mapa ahora contiene sólo los países de África. Note"
+" el ícono de filtro junto al nombre de capa, lo que indica que la capa tiene"
+" un filtro aplicado. Si quisiera ver y usar todos los objetos espaciales de "
+"la capa, puede hacer clic en el ícono de filtro y limpiar la expresión. Por "
+"ahora, mantendremos el filtro de manera que podamos recortar otras capas a "
+"África."
+
+#: ../../source/docs/3/batch_processing.rst:89
+msgid ""
+"We are now ready to run the batch process to clip the layers. Locate the "
+"natural earth global layers ``ne_10m_railroads``, ``ne_10m_ports`` and "
+"``ne_10m_urban_areas`` in the :guilabel:`QGIS Browser` panel. Hold the "
+":kbd:`Ctrl` key and click each layer to select them. Once selected, drag "
+"them to the canvas."
+msgstr ""
+"Ahora estamos listos para ejecutar el proceso por lotes para recortar las "
+"capas. Localice las capas globales natural earth ``ne_10m_railroads``, "
+"``ne_10m_ports`` y ``ne_10m_urban_areas`` en el panel :guilabel:`Navegador "
+"QGIS Browser`. Mantenga presionada la tecla :kbd:`Ctrl` y clic en cada capa "
+"para seleccionarlas. Una vez seleccionadas, arrástrelas a la pantalla."
+
+#: ../../source/docs/3/batch_processing.rst:94
+msgid ""
+"Once the layers are loaded, you will notice that they are global layers and "
+"have features spanning all the countries.  Now, it's time to start our batch"
+" clip process to clip these layers to Africa. Open "
+":menuselection:`Processing --> Toolbox`."
+msgstr ""
+"Una vez que las capas estén cargadas, notará que son capas globales y tienen"
+" objetos espaciales que abarcan todos los países. Ahora, es tiempo para "
+"nuestro proceso de recorte por lotes para recortar estas capas a África. "
+"Abra :menuselection:`Procesos --> Caja de herramientas`."
+
+#: ../../source/docs/3/batch_processing.rst:99
+msgid ""
+"Browse all available algorithms and find the :guilabel:`Clip` tool from "
+":menuselection:`Vector overlay --> Clip`. You may also use the "
+":guilabel:`Search` box to easily find the algorithm as well."
+msgstr ""
+"Navegue todos los algoritmos disponibles y encuentre la herramienta "
+":guilabel:`Recortar` de :menuselection:`Superposición vectorial --> Cortar`."
+" También puede usar la caja :guilabel:`Buscar` para encontrar fácilmente el "
+"algoritmo."
+
+#: ../../source/docs/3/batch_processing.rst:104
+msgid ""
+"Right-click the :guilabel:`Clip` algorithm and select :guilabel:`Execute as "
+"Batch Process`."
+msgstr ""
+"Clic-derecho el algoritmo :guilabel:`Cortar` y seleccione "
+":guilabel:`Ejecutar como proceso por lotes`."
+
+#: ../../source/docs/3/batch_processing.rst:110
+msgid ""
+"In the :guilabel:`Batch Processing` dialog, the first tab is "
+":guilabel:`Parameters` where we define our inputs. Each row in the table "
+"represents 1 processing task. Click :guilabel:`Add row` button to add a new "
+"row. As our task involves 3 layers, add 3 rows."
+msgstr ""
+"En el diálogo :guilabel:`Procesamiento por lotes`, la primera pestaña es "
+":guilabel:`Parámetros` donde definiremos nuestras entradas. Cada fila en la "
+"tabla representa 1 tarea de procesamiento. Clic el botón :guilabel:`Añadir "
+"fila` para agregar una nueva fila. Como nuestra tarea involucra 3 capas, "
+"agregue 3 filas."
+
+#: ../../source/docs/3/batch_processing.rst:115
+msgid ""
+"Click the :guilabel:`...` next to the first row in the :guilabel:`Input "
+"layers` column. Select :guilabel:`Select from Open Layers`."
+msgstr ""
+"Clic :guilabel:`...` junto a la primera fila en la columna :guilabel:`Capas "
+"de entrada`. Seleccione :guilabel:`Seleccionar de Open Layers`."
+
+#: ../../source/docs/3/batch_processing.rst:120
+msgid ""
+"In the :guilabel:`Multiple selection` dialog, check the 3 layers that we "
+"want to clip and click :guilabel:`OK`."
+msgstr ""
+"En el diálogo :guilabel:`Selección múltiple`, marque las 3 capas que "
+"queremos recortar y clic en :guilabel:`Aceptar`."
+
+#: ../../source/docs/3/batch_processing.rst:125
+msgid ""
+"You will notice that the :guilabel:`Input layer` columns will be auto-"
+"populated with all layers you had selected. Next, we need to select the "
+"layer containing the boundary to clip our input layers. Click the "
+":guilabel:`...` button for the first row under :guilabel:`Overlay layer` "
+"column and select :guilabel:`Select form Open Layers`."
+msgstr ""
+"Notará que las columnas :guilabel:`Capa de entrada` serán autopobladas con "
+"todas las capas que había seleccionado. A continuación, necesitamos "
+"seleccionar la capa que contiene el límite para recortar todas nuestras "
+"capas de entrada. Clic al botón :guilabel:`...` para la primera fila bajo la"
+" columna :guilabel:`Capa de superposición` y seleccione "
+":guilabel:`Seleccionar de Open Layers`."
+
+#: ../../source/docs/3/batch_processing.rst:130
+msgid ""
+"In the :guilabel:`Multiple selection` dialog, check "
+"``ne_10m_admin_0_countries`` and click :guilabel:`OK`."
+msgstr ""
+"En el diálogo :guilabel:`Selección múltiple`, marque "
+"``ne_10m_admin_0_countries`` y clic :guilabel:`Aceptar`."
+
+#: ../../source/docs/3/batch_processing.rst:135
+msgid ""
+"Since the clip layer is the same for all our inputs, a handy shortcut is to "
+"double-click the column header :guilabel:`Overlay layer` and the same layer "
+"will be auto-filled for all the rows."
+msgstr ""
+"Como la capa de recorte es la misma para todas las entradas, un atajo "
+"práctico es hacer doble-clic al encabezado de la columna :guilabel:`Capa de "
+"superposición` y la misma capa se autollenará para todas las filas."
+
+#: ../../source/docs/3/batch_processing.rst:140
+msgid ""
+"Next, we need to define our outputs.  Click the :guilabel:`...` buton next "
+"to the first row in the :guilabel:`Clipped` column."
+msgstr ""
+"A continuación, necesitamos definir todas nuestras salidas. Clic el botón "
+":guilabel:`...` junto a la primera fila en la columna :guilabel:`Cortado`."
+
+#: ../../source/docs/3/batch_processing.rst:145
+msgid ""
+"Browse the the directory where you want your output layers. Type the "
+"filename as ``clipped_`` and click :guilabel:`Save`."
+msgstr ""
+"Navegue al directorio donde quiere sus capas de salida. Escriba el nombre de"
+" archivo como ``clipped_`` y clic en :guilabel:`Guardar`."
+
+#: ../../source/docs/3/batch_processing.rst:150
+msgid ""
+"You will see a new :guilabel:`Autofill settings` dialog pop up. Select "
+"``Fill with parameter values`` as the :guilabel:`Autofill mode`. Select "
+"``Input layer`` as the :guilabel:`Parameter to use`. This setting will add "
+"the input file name to the output along with the specified ``clipped_`` "
+"filename. This is important to ensure all the output files have unique names"
+" and they do not overwrite each other."
+msgstr ""
+"Verá que aparece un nuevo diálogo :guilabel:`Configuración de autollenado`. "
+"Seleccione ``Llenar con valores de parámetro`` como el :guilabel:`Modo de "
+"autollenado`. Seleccione ``Capa de entrada`` como el :guilabel:`Parámetro a "
+"usar`. Esta configuración agregará el nombre del archivo de entrada a la "
+"salida junto con el nombre de archivo especificado ``clipped_``. Esto es "
+"importante para asegurar que todos los archivos de salida tienen nombres "
+"únicos y no se sobreescriben uno al otro."
+
+#: ../../source/docs/3/batch_processing.rst:155
+msgid ""
+"Now we are ready to start the batch procesing. Make sure to check "
+":guilabel:`Load layers on completion` and click :guilabel:`Run`."
+msgstr ""
+"Ahora estamos listos para iniciar el procesamiento por lotes. Asegúrese de "
+"marcar :guilabel:`Cargar capas al completar` y clic en :guilabel:`Ejecutar`."
+
+#: ../../source/docs/3/batch_processing.rst:160
+msgid ""
+"The clip algorithm will run for each of the inputs and create output files "
+"as we have specified. Once the batch process finishes, click "
+":guilabel:`Close` to return to QGIS."
+msgstr ""
+"El algoritmo de recorte se ejecutará para cada una de las entradas y creará "
+"los archivos de salida que hayamos especificado. Una vez finalizado el "
+"proceso por lotes, haga clic en :guilabel:`Cerrar` para volver a QGIS."
+
+#: ../../source/docs/3/batch_processing.rst:164
+msgid ""
+"Tip: QGIS can now run Processing tasks in the background without blocking "
+"the user interface. So if your batch process is taking long, you can close "
+"the dialog and continue to work on other tasks in QGIS while the process "
+"keeps running in the background."
+msgstr ""
+"Consejo: QGIS puede ahora ejecutar tareas de Procesamiento en segundo plano "
+"sin bloquear el interfaz de usuario. Así si su proceso por lotes está "
+"tomando muncho tiempo, puede cerrar el diálogo y continuar trabajando en "
+"otras tareas en QGIS mientras el proceso sigue corriendo en segundo plano."
+
+#: ../../source/docs/3/batch_processing.rst:169
+msgid ""
+"Back in the main QGIS window, you will see the layers added to QGIS canvas. "
+"As you will notice, all the global layers are properly clipped to the "
+"continent boundary that we had specified."
+msgstr ""
+"De vuelta a la ventana principal QGIS, verá agregadas las capas a la "
+"pantalla QGIS. Como notará, todas las capas globales está debidamente "
+"recortadas al límite continental que habíamos especificado."
+
+#: ../../source/docs/3/batch_processing.rst:174
+msgid ""
+"We have accomplished the task of clipping multiple layers in a batch. But "
+"QGIS3 has another handy feature that will help you save and deliver the "
+"result in a more efficient way. If you wanted to deliver the clipped layers "
+"to someone, you would zip the individual files outside of QGIS. A better "
+"option is to package the output layers in a single Geopackage. In the "
+":guilabel:`QGIS Browser`, locate the clipped output layers. You may have to "
+"click the :guilabel:`Refresh` button to see the newly added files."
+msgstr ""
+"Hemos realizado la tarea de recortar múltiples capas en un lote. Pero QGIS3 "
+"tiene otra prestación muy útil que le ayudará a guardar y entregar el "
+"resultado de una manera más eficiente. Si quisiera entregar las capas "
+"recortadas a alguien, debería comprimir los archivos individuales fuera de "
+"QGIS. Una mejor opción es empaquetar las capas de salida en un único "
+"Geopackage. En la etiqueta :guilabel:`QGIS Navegador`, localice las capas de"
+" salida recortadas. Puede que tenga que hacer clic en el botón "
+":guilabel:`Actualizar` para ver los archivos recién añadidos."
+
+#: ../../source/docs/3/batch_processing.rst:179
+msgid ""
+"Hold :kbd:`Ctrl` key and select the layers. Drag them to the canvas to load "
+"them in QGIS."
+msgstr ""
+"Mantenga presionada la tecla :kbd:`Ctrl` y seleccione las capas. Arrástrelas"
+" a la pantalla para cargarlas en QGIS."
+
+#: ../../source/docs/3/batch_processing.rst:184
+msgid ""
+"In :guilabel:`Processing Toolbox`, locate the :menuselection:`Database --> "
+"Package layers` tool."
+msgstr ""
+"En la :guilabel:`Caja de herramientas`, localice la herramienta "
+":menuselection:`Base de datos --> Empaquetar capas`."
+
+#: ../../source/docs/3/batch_processing.rst:189
+msgid ""
+"In the :guilabel:`Package layers` dialog, click the :guilabel:`...` button "
+"next to :guilabel:`Input layers`."
+msgstr ""
+"En el diálogo :guilabel:`Empaquetar capas`, clic en el botón :guilabel:`...`"
+" junto a :guilabel:`Capas de entrada`."
+
+#: ../../source/docs/3/batch_processing.rst:194
+msgid ""
+"In the :guilabel:`Multiple selection` dialog, check the "
+"``clipped_ne_10m_ports``, ``clipped_ne_10m_railroads`` and "
+"``clipped_ne_10m_urban_areas`` layers. Click :guilabel:`OK`."
+msgstr ""
+"En el diálogo :guilabel:`Selección mútiple`, marque las capas "
+"``clipped_ne_10m_ports``, ``clipped_ne_10m_railroads`` y "
+"``clipped_ne_10m_urban_areas``. Clic en :guilabel:`Aceptar`."
+
+#: ../../source/docs/3/batch_processing.rst:199
+msgid ""
+"Once the input layers are selected, click the :guilabel:`...` next to "
+":guilabel:`Destination Geopackage` and choose :guilabel:`Save To File`."
+msgstr ""
+"Una vez que estén seleccionadas las capas de entrada, clic en "
+":guilabel:`...` junto a :guilabel:`Geopackage destino` y elija "
+":guilabel:`Guardar a Archivo`."
+
+#: ../../source/docs/3/batch_processing.rst:204
+msgid "Enter the output file name as ``clipped_layers``."
+msgstr "Ingrese el nombre del archivo de salida como ``clipped_layers``."
+
+#: ../../source/docs/3/batch_processing.rst:209
+msgid "Click :guilabel:`Run` to start the packaging process."
+msgstr "Clic en :guilabel:`Ejecutar` para iniciar el proceso de empaquetado."
+
+#: ../../source/docs/3/batch_processing.rst:214
+msgid ""
+"Once the process finishes, you will see a new geopackage file in your "
+":guilabel:`QGIS Browser` containing all the clipped output layers. This is a"
+" single file on your computer that contains all the output layers."
+msgstr ""
+"Una vez que termine el proceso, verá un nuevo archivo geopackage en su "
+":guilabel:`Explorador QGIS` que contiene todas las capas de salida "
+"recortadas. Éste es un archivo solo en su computadora que contiene todas las"
+" capas de salida."

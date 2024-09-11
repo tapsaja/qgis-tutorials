@@ -1,0 +1,631 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# YoViajo, 2021
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-23 16:40+0000\n"
+"PO-Revision-Date: 2019-09-24 10:38+0000\n"
+"Last-Translator: YoViajo, 2021\n"
+"Language-Team: Spanish (https://www.transifex.com/spatialthoughts/teams/7952/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../../source/docs/3/processing_python_plugin.rst:2
+msgid "Building a Processing Plugin (QGIS3)"
+msgstr "Construyendo un Complemento de Procesamiento (QGIS3)"
+
+#: ../../source/docs/3/processing_python_plugin.rst:4
+msgid ""
+"In the previous tutorial :doc:`building_a_python_plugin`, you learnt how to "
+"create a python plugin - including the user interface and custom logic for "
+"processing the data. While these type of plugins are useful, it puts the "
+"burden of designing the user interface on the plugin author. This results in"
+" each plugin having different ways to interact with it - which is confusing "
+"to the users. Also, regular plugins do not interact with another parts of "
+"QGIS. For example, you cannot use the plugin functionality from another "
+"algorithm. If the plugin that you want to write is primarily for analysis, "
+"and the user interaction that you want is limited to letting the user pick "
+"inputs and outputs, there is a much easier and preferred way to write "
+"plugins using the Processing Framework. It removes the need for you to "
+"design the user interface - simplifying the process. The built-in processing"
+" library creates a standard processing interface depending on your inputs "
+"that looks and behaves just like any other processing algorithm in QGIS. It "
+"also seamlessly integrates with rest of the Processing framework - so your "
+"plugin algorithms can be used in batch processing, graphical modeler, called"
+" from python console etc."
+msgstr ""
+"En el tutorial previo :doc:`building_a_python_plugin`, aprendió cómo crear "
+"un complemento python - incluyendo el interfaz de usuario y lógica "
+"personalizada para procesar los datos. Mientras este tipo de complemento es "
+"útil, dejan la carga de diseñar el interfaz de usuario en el autor del "
+"complemento. Esto resulta en que cada complemento tiene diferentes maneras "
+"para interactuar con él - lo que es confuso para los usuarios. También, los "
+"complementos regulares no interactúan con otras partes de QGIS. Por ejemplo,"
+" no puedes usar la funcionalidad del complemento para otro algoritmo. Si el "
+"complemento que quieres escribir es principalmente para análisis, y la "
+"interacción del usuario que quieres es limitada a permitir que el usuario "
+"elija entradas y salidas, hay una manera más fácil y preferida para escribir"
+" complementos usando el Marco de Procesamiento. Elimina la necesidad de que "
+"diseñes el interfaz de usuario - simplificando el proceso. La biblioteca "
+"incorporada de procesamiento crea una interfaz estándar de procesamiento que"
+" dependen de tus entradas que lucen y se comportan como cualquier otro "
+"algoritmo de procesamiento en QGIS. También se integra perfectamente con el "
+"resto del marco Procesamiento - con lo que tus algoritmos de complemento "
+"pueden ser usados en procesamiento por lotes, modelador gráfico, llamado "
+"desde la consola de python, etc."
+
+#: ../../source/docs/3/processing_python_plugin.rst:7
+msgid "Overview of the Task"
+msgstr "Vista general de la tarea"
+
+#: ../../source/docs/3/processing_python_plugin.rst:9
+msgid ""
+"We will re-implement a simple plugin from the tutorial  "
+":doc:`building_a_python_plugin` as a processing plugin. It will result in a "
+"new processing provider called ``Save Attributes`` and an algorithm ``Save "
+"Attributes as CSV`` that will allow users to pick a vector layer and write "
+"its attributes to a CSV file."
+msgstr ""
+"Reimplementaremos un complemento simple del tutorial "
+":doc:`building_a_python_plugin` como un complemento de procesamiento. "
+"Resultará en un nuevo proveedor de procesamiento llamado ``Guardar "
+"Atributos`` y un algoritmo ``Guardar Atributos como CSV`` que permitirá a "
+"los usuarios elegir una capa vector y escribir sus atributos como un archivo"
+" CSV."
+
+#: ../../source/docs/3/processing_python_plugin.rst:12
+msgid "Get the Tools"
+msgstr "Obtener las Herramientas"
+
+#: ../../source/docs/3/processing_python_plugin.rst:15
+msgid "A Text Editor or a Python IDE"
+msgstr "Un Editor de Texto o un IDE Python."
+
+#: ../../source/docs/3/processing_python_plugin.rst:17
+msgid ""
+"Any kind of software development requires a good text editor. If you already"
+" have a favorite text editor or an IDE (Integrated Development Environment),"
+" you may use it for this tutorial. Otherwise, each platform offers a wide "
+"variety of free or paid options for text editors. Choose the one that fits "
+"your needs."
+msgstr ""
+"Cualquier tipo de desarrollo de software requiere un buen editor de texto. "
+"Si ya tiene un editor de texto favorito o un IDE (Ambiente Integrado de "
+"Desarrollo, en inglés), puede usarlo para este tutorial. De otra forma, cada"
+" plataforma ofrece una amplia variedad de opciones gratuitas o pagadas para "
+"editores de texto. Elija aquel que se ajuste a sus necesidades."
+
+#: ../../source/docs/3/processing_python_plugin.rst:19
+msgid "This tutorial uses Notepad++ editor on Windows."
+msgstr "Este tutorial usa el editor Notepad++ en Windows."
+
+#: ../../source/docs/3/processing_python_plugin.rst:21
+msgid "**Windows**"
+msgstr "**Windows**"
+
+#: ../../source/docs/3/processing_python_plugin.rst:23
+msgid ""
+"`Notepad++ <http://notepad-plus-plus.org/>`_ is a good free editor for "
+"windows. Download and install the `Notepad++ editor <https://notepad-plus-"
+"plus.org/download/>`_."
+msgstr ""
+"`Notepad++ <http://notepad-plus-plus.org/>`_ es un buen editor gratuito para"
+" windows. Descargue e instale el  `editor Notepad++ <https://notepad-plus-"
+"plus.org/download/>`_."
+
+#: ../../source/docs/3/processing_python_plugin.rst:29
+msgid ""
+"If you are using Notepad++, makes sure to go to :menuselection:`Settings -->"
+" Preferences --> Tab Settings` and enable :guilabel:`Replace by space`. "
+"Python is very sensitive about whitespace and this setting will ensure tabs "
+"and spaces are treated properly."
+msgstr ""
+"Si está usando Notepad++, asegúrese de ir a :menuselection:`Configuración "
+"--> Preferencias --> Configuración de Tab` y active :guilabel:`Reemplazar "
+"por espacio`. Python es muy sensible al espacio en blanco y esta "
+"configuración asegurará que las tabulaciones y espacios sean tratadas "
+"apropiadamente."
+
+#: ../../source/docs/3/processing_python_plugin.rst:32
+msgid "Plugin Builder plugin"
+msgstr "Complemento Plugin Builder"
+
+#: ../../source/docs/3/processing_python_plugin.rst:34
+msgid ""
+"There is a helpful QGIS plugin named ``Plugin Builder`` which creates all "
+"the necessary files and the boilerplate code for a plugin. Find and install "
+"the ``Plugin Builder`` plugin. See :doc:`../using_plugins` for more details "
+"on how to install plugins."
+msgstr ""
+"Hay un complemento útil QGIS llamado ``Plugin Builder`` que crea todos los "
+"archivos necesarios y el código repetitivo para un complemento. Encuentre e "
+"instale el complemento ``Plugin Builder``. Vea :doc:`../using_plugins` para "
+"más detalles de cómo instalar complementos."
+
+#: ../../source/docs/3/processing_python_plugin.rst:37
+msgid "Plugins Reloader plugin"
+msgstr "Complemento Plugins Reloader"
+
+#: ../../source/docs/3/processing_python_plugin.rst:39
+msgid ""
+"This is another helper plugin which allows iterative development of plugins."
+" Using this plugin, you can change your plugin code and have it reflected in"
+" QGIS without having to restart QGIS every time. Find and install the "
+"``Plugin Reloader`` plugin. See :doc:`../using_plugins` for more details on "
+"how to install plugins."
+msgstr ""
+"Este es otro complemento asistente que permite el desarrollo iterativo de "
+"complementos. Usando este complemento, puede cambiar el código del "
+"complemento y tenerlo reflejado en QGIS sin tener que reiniciar QGIS cada "
+"vez. Encuentre e instale el complemento ``Plugin Reloader``. Vea "
+":doc:`../using_plugins` para más detalles sobre como instalar complementos."
+
+#: ../../source/docs/3/processing_python_plugin.rst:43
+msgid ""
+"Plugin Reloader is an experimental plugin. Make sure you have checked "
+":guilabel:`Show also experimental plugins` in :guilabel:`Plugin Manager` "
+"settings if you cannot find it."
+msgstr ""
+"Plugin Reloader es un complemento experimental. Asegúrese que ha marcado "
+":guilabel:`Mostrar también  complementos experimentales` en la configuración"
+" :guilabel:`Administrador de Complementos` si no puede encontrarlo."
+
+#: ../../source/docs/3/processing_python_plugin.rst:46
+msgid "Procedure"
+msgstr "Procedimiento"
+
+#: ../../source/docs/3/processing_python_plugin.rst:48
+msgid ""
+"Open QGIS. Go to :menuselection:`Plugins --> Plugin Builder --> Plugin "
+"Builder`."
+msgstr ""
+"Abra QGIS. Vaya a :menuselection:`Complementos --> Plugin Builder --> Plugin"
+" Builder`."
+
+#: ../../source/docs/3/processing_python_plugin.rst:53
+msgid ""
+"You will see the :guilabel:`QGIS Plugin Builder` dialog with a form. You can"
+" fill the form with details relating to our plugin. The :guilabel:`Class "
+"name` will be the name of the Python Class containing the logic of the "
+"plugin. This will also be the name of the folder containing all the plugin "
+"files. Enter ``SaveAttributes`` as the class name. The :guilabel:`Plugin "
+"name` is the name under which your plugin will appear in the    "
+":guilabel:`Plugin Manager`. Enter the name as ``Save Attributes "
+"(Processing)``. Add a description in the :guilabel:`Description` field. The "
+":guilabel:`Module name` will be the name of the main python file for the "
+"plugin. Enter it as ``save_attributes_processing``. Leave the version "
+"numbers as they are and enter your name and email address in the appropriate"
+" fields. Click :guilabel:`Next`."
+msgstr ""
+"Verá el diálogo :guilabel:`QGIS Plugin Builder` con un formulario. Puede "
+"llenar el formulario con detalles relacionados a nuestro complemento. El "
+":guilabel:`Nombre de clase` será el nombre de la Clase Python que contiene "
+"la lógica del complemento. Éste también será el nombre de la carpeta que "
+"contiene todos los archivos de complementos. Ingrese ``SaveAttributes`` como"
+" el nombre de la clase. El :guilabel:`Nombre de complemento` es el nombre "
+"bajo el que aparecerá el complemento en el :guilabel:`Administrador de "
+"Complemento`. Ingrese el nombre como ``Guardar Attributos (Procesamiento)`` "
+". Agregue una descripción en el campo :guilabel:`Descripción`. El "
+":guilabel:`Nombre del módulo` será el nombre del archivo python principal "
+"para el complemento. Ingréselo como ``save_attributes_processing``. Deje los"
+" números de versión como están e ingrese su nombre y dirección electrónica "
+"en los campos apropiados. Clic en :guilabel:`Siguiente`."
+
+#: ../../source/docs/3/processing_python_plugin.rst:58
+msgid ""
+"Enter a brief description of the plugin for the :guilabel:`About` dialog and"
+" click :guilabel:`Next`."
+msgstr ""
+"Ingrese una breve descripción del complemento para el diálogo "
+":guilabel:`Acerca` y clic en :guilabel:`Siguiente`."
+
+#: ../../source/docs/3/processing_python_plugin.rst:63
+msgid ""
+"Select the ``Processing Provider`` from the :guilabel:`Template` selector. "
+"The :guilabel:`Algorithm name` value will be how the users will find the "
+"processing algorithm in the Processing Toolox. Enter it as ``Save Attributes"
+" as CSV``. Leave the :guilabel:`Algorithm group` blank. Enter the "
+":guilabel:`Provider name` as ``Save Attributes``. Enter a description in the"
+" :guilabel:`Provider description` field. Click :guilabel:`Next`."
+msgstr ""
+"Seleccione el ``Proveedor de Procesamiento`` del selector "
+":guilabel:`Plantilla`. El valor :guilabel:`Nombre de algoritmo` será como "
+"encontrarán los usuarios el algoritmo de procesamiento en la Caja de "
+"Herramientas Procesos. Ingréselo como ``Guardar Atributos como CSV``. Deje "
+":guilabel:`Grupo de algoritmo` en blanco. Ingrese el :guilabel:`Nombre de "
+"proveedor` como ``Guardar Atributos``. Ingrese una descripción en el campo "
+":guilabel:`Descripción de proveedor`. Clic en :guilabel:`Siguiente`."
+
+#: ../../source/docs/3/processing_python_plugin.rst:68
+msgid ""
+"Plugin builder will prompt you for the type of files to generate. Keep the "
+"default selection and click :guilabel:`Next`."
+msgstr ""
+"Plugin Builder le pedirá el tipo de archivos a generar. Mantenga la "
+"selección predeterminada y clic en :guilabel:`Siguiente`."
+
+#: ../../source/docs/3/processing_python_plugin.rst:73
+msgid ""
+"As we do not intend to publish the plugin, you may leave the :guilabel:`Bug "
+"tracker`, :guilabel:`Repository` and :guilabel:`Home page` values to "
+"default. Check the :guilabel:`Flag the plugin as experimental` box at the "
+"bottom and click :guilabel:`Next`."
+msgstr ""
+"Como no tenemos previsto publicar el complemento, puede dejar "
+":guilabel:`Rastreador de errores`, :guilabel:`Repositorio` y "
+":guilabel:`Página de inicio` en sus valores predeterminados. Marque la caja "
+":guilabel:`Señale el complemento como experimental` abajo y clic en "
+":guilabel:`Siguiente`."
+
+#: ../../source/docs/3/processing_python_plugin.rst:78
+msgid ""
+"You will be prompted to choose a directory for your plugin. For now, save it"
+" to a directory you can locate easily on your computer and click "
+":guilabel:`Generate`."
+msgstr ""
+"Se le pedirá escoger un directorio para su complemento. Por ahora, guárdelo "
+"a un directorio que pueda encontrar fácilmente en su computadora y clic en "
+":guilabel:`Generar`."
+
+#: ../../source/docs/3/processing_python_plugin.rst:83
+msgid ""
+"Next, press the :guilabel:`generate` button. You will see a confirmation "
+"dialog once your plugin template is created."
+msgstr ""
+"A continuación, presione el botón :guilabel:`generar`. Verá un diálogo de "
+"confirmación una vez que la plantilla de complemento sea creada."
+
+#: ../../source/docs/3/processing_python_plugin.rst:90
+msgid ""
+"You may get a prompt saying that pyrcc5 is not found in the path. You can "
+"ignore this message."
+msgstr ""
+"Puede que vea un aviso que dice que no se encontró pyrcc5 en su ruta. Puede "
+"ignorar este mensaje."
+
+#: ../../source/docs/3/processing_python_plugin.rst:92
+msgid ""
+"Plugins in QGIS are stored in a special folder. We must copy our plugin "
+"directory to that folder before it can be used. In QGIS, locate your current"
+" profile folder by going to :menuselection:`Settings --> User Profiles --> "
+"Open Active Profile Folder`."
+msgstr ""
+"Los complemento en QGIS son almacenados en una carpeta especial. Debemos "
+"copiar nuestro directorio de complemento a esa carpeta antes que podamos "
+"usarlo. En QGIS, localice la carpeta de su perfil actual yendo a "
+":menuselection:`Configuración --> Perfiles de Usuario --> Abrir la Carpeta "
+"del Perfil Activo`."
+
+#: ../../source/docs/3/processing_python_plugin.rst:97
+msgid ""
+"In the profile folder, copy the plugin folder to :menuselection:`python --> "
+"plugins` subfolder."
+msgstr ""
+"En la carpeta del perfil, copie la carpeta del complemento a la subcarpeta "
+":menuselection:`python --> complementos`"
+
+#: ../../source/docs/3/processing_python_plugin.rst:102
+msgid ""
+"Now we are ready to have a first look at the brand new plugin we created. "
+"Close QGIS and launch it again. Go to :menuselection:`Plugins --> Manage and"
+" Install plugins` and enable the ``Save Attributes (Processing)`` plugin in "
+"the :guilabel:`Installed` tab."
+msgstr ""
+"Ahora estamos listos para darle una primera mirada al complemento nuevo que "
+"creamos. Cierre QGIS e inícielo de nuevo. Vaya a "
+":menuselection:`Complementos --> Administrar e Instalar complementos` y "
+"active el complemento ``Guardar Atributos (Proceso)`` en la pestaña "
+":guilabel:`Instalado`."
+
+#: ../../source/docs/3/processing_python_plugin.rst:107
+msgid ""
+"Go to :menuselection:`Processing --> Toolbox`. You will notice that there is"
+" a new provider at the bottom called ``Save Attributes``. Expand it to find "
+"an algorithm named ``Save Attributes as CSV``. Double-click to launch it."
+msgstr ""
+"Vaya a :menuselection:`Procesos --> Caja de herramientas`. Notará que hay un"
+" nuevo proveedor, abajo, llamado ``Guardar Atributos``. Expándalo para "
+"encontrar un algoritmo llamado ``Guardar Atributos como CSV``. Doble-clic "
+"para iniciarlo."
+
+#: ../../source/docs/3/processing_python_plugin.rst:112
+msgid ""
+"You will notice a familiar processing algorithm dialog with a dropdown for "
+"an input layer and a selector for an output layer. We will now customize "
+"this dialog to suit our needs. Close this dialog."
+msgstr ""
+"Notará un diálogo familiar de algoritmo de procesamiento con un menú "
+"desplegable para una capa de entrada y un selector para una capa de salida. "
+"Ahora personalizaremos este diálogo para ajustarlo a nuestras necesidades. "
+"Cierre este diálogo."
+
+#: ../../source/docs/3/processing_python_plugin.rst:117
+msgid ""
+"Go to the plugin directory and load the file "
+"``save_attributes_processing_algorithm.py`` in a text editor. For our "
+"plugin, we take a vector layer as an input and write out a CSV file as "
+"output. So instead of importing ``QgsProcessingParameterFeatureSink`` as "
+"output - which is for vector layer - add "
+"``QgsProcessingParameterFileDestination`` which is for a file."
+msgstr ""
+"Vaya al directorio del complemento y cargue el archivo "
+"``save_attributes_processing_algorithm.py`` en un editor de texto. Para "
+"nuestro complemento, tomaremos una capa vectorial como una entrada y "
+"escribiremos un archivo CSV como salida. Entonces, en vez de importar "
+"``QgsProcessingParameterFeatureSink`` como salida - que es para capa "
+"vectorial - agregue ``QgsProcessingParameterFileDestination`` que es para un"
+" archivo."
+
+#: ../../source/docs/3/processing_python_plugin.rst:127
+msgid ""
+"Next, scroll down and define the output parameter under ``initAlgorithm()`` "
+"method with the following code."
+msgstr ""
+"A continuación, deslice hacia abajo y defina el parámetro de salida bajo el "
+"método ``initAlgorithm()`` con el siguiente código."
+
+#: ../../source/docs/3/processing_python_plugin.rst:146
+msgid ""
+"Let's reload our plugin so we can see the changes in the dialog window. Go "
+"to :menuselection:`Plugin --> Plugin Reloader --> Choose a plugin to be "
+"reloaded`. Select ``save_attributes_processing`` in the :guilabel:`Configure"
+" Plugin reloader` dialog."
+msgstr ""
+"Volvamos a cargar nuestro complemento de manera que podamos ver los cambios "
+"en la ventana de diálogo. Vaya a :menuselection:`Complemento --> Plugin "
+"Reloader --> Escoger un complemento a ser recargado`. Seleccione "
+"``save_attributes_processing`` en el diálogo :guilabel:`Configurar Plugin "
+"reloader`."
+
+#: ../../source/docs/3/processing_python_plugin.rst:151
+msgid ""
+"Click the :guilabel:`Reload plugin` button to load the latest version of the"
+" plugin. To test this new functionality, we must load some layers in QGIS. "
+"After you have loaded some layers, launch the :menuselection:`Save "
+"Attributes --> Save Attributes as CSV` algorithm. You will see the output is"
+" changed to a file instead of a layer."
+msgstr ""
+"Clic en el botón :guilabel:`Reload plugin` para cargar la versión más "
+"reciente del complemento. Para probar esta funcionalidad, debemos cargar "
+"algunas capas en QGIS. Después de que ha cargado algunas capas, inicie el "
+"algoritmo :menuselection:`Guardar Atributos --> Guardar Atributos como CSV`."
+" Verá que la salida es cambiada a un archivo en vez de una capa."
+
+#: ../../source/docs/3/processing_python_plugin.rst:157
+msgid ""
+"Let's add some logic to the algorithm that takes the selected vector layer "
+"and writes the attributes to a CSV file.  The explanation for this code can "
+"be found in :doc:`getting_started_with_pyqgis`. Notable difference here is "
+"the counter that helps show the progress of the processing. Add the "
+"following code to the ``processAlgorithm`` method and save the file."
+msgstr ""
+"Agreguemos alguna lógica al algoritmo que toma la capa vectorial "
+"seleccionada y escribe los atributos a un archivo CSV. La explicación para "
+"este código puede encontrarse en :doc:`getting_started_with_pyqgis`. Una "
+"diferencia notable aquí es el contador que ayuda a mostrar el progreso del "
+"procesamiento. Agregue el código siguiente al método ``processAlgorithm`` y "
+"guarde el archivo."
+
+#: ../../source/docs/3/processing_python_plugin.rst:197
+msgid ""
+"Back in the main QGIS window, reload the plugin by clicking on the "
+":guilabel:`Reload plugin` button. Launch the :menuselection:`Save Attributes"
+" --> Save Attributes as CSV` algorithm. Select a layer for the "
+":guilabel:`Input layer`. Next, click the :guilabel:`...` button next to "
+":guilabel:`Output file`."
+msgstr ""
+"De vuelta en la ventana principal de QGIS, cargue de nuevo el complemento "
+"haciendo clic en el botón :guilabel:`Reload plugin`. Inicie el algoritmo "
+":menuselection:`Guardar Atributos --> Guardar Atributos como CSV`. "
+"Seleccione una capa par la :guilabel:`Capa de entrada`. A continuación, clic"
+" en el botón :guilabel:`...` junto a :guilabel:`Archivo de salida`."
+
+#: ../../source/docs/3/processing_python_plugin.rst:202
+msgid ""
+"Name the output file ``test.csv`` and click :guilabel:`Run`. The algorithm "
+"will run and produce a CSV file at the chosen location."
+msgstr ""
+"Dele el nombre ``test.csv`` a su archivo de salida y clic en "
+":guilabel:`Ejecutar`. El algoritmo se ejecutará y producirá un archivo CSV "
+"en la ubicación elegida."
+
+#: ../../source/docs/3/processing_python_plugin.rst:207
+msgid ""
+"As mentioned earlier, even though this algorithm comes from a plugin, it "
+"integrates very well with the built-in processing tools. To demonstrate "
+"this, let's run this algorithm using the built-in batch processing "
+"interface. Right-click the algorithm and select :guilabel:`Execute as Batch "
+"Process..`."
+msgstr ""
+"Como se mencionó antes, a pesar de que este algoritmo viene como un "
+"complemento, se integra muy bien con las herramientas de procesamiento "
+"incorporadas. Para demostrar esto, ejecutemos este algoritmo usando el "
+"interfaz de procesamiento por lotes incorporado. Clic-derecho en el "
+"algoritmo y seleccione :guilabel:`Ejecutar como Proceso por Lotes..`. "
+
+#: ../../source/docs/3/processing_python_plugin.rst:212
+msgid ""
+"You can select multiple inputs and run this algorithm in a batch to produce "
+"multiple CSV files in a single run. If you are not familiar with the batch "
+"processing interface, see :doc:`batch_processing` for step-by-step "
+"instructions."
+msgstr ""
+"Puede seleccionar múltiples entradas y ejecutar este algoritmo en un lote "
+"para producir múltiples archivos CSV en una sola corrida. Si no está "
+"familiarizado con el interfaz de procesamiento por lotes, vea "
+":doc:`batch_processing` para instrucciones paso a paso."
+
+#: ../../source/docs/3/processing_python_plugin.rst:217
+msgid ""
+"The plugin is ready and you can ship it in the current form. But we can "
+"improve the user experience by making the processing plugin behave like a "
+"regular plugin. Using the hybrid approach outlined below, you can add a menu"
+" item and a toolbar button. This way, you give the users an easier way to "
+"discover and launch the tools that are installed as part of the plugin. We "
+"will need an icon for the plugin. Download `logo.png "
+"<https://www.qgistutorials.com/downloads/logo.png>`_ and copy it to the "
+"plugin directory."
+msgstr ""
+"El complemento está listo y puede enviarlo en su forma actual. Pero podemos "
+"mejorar la experiencia de usuario haciendo que el complemento de "
+"procesamiento se comporte como un complemento regular. Usando el enfoque "
+"híbrido bosquejado abajo, usted puede agregar un elemento de menú y un botón"
+" de barra de herramienta. De esta manera, le da a los usuarios una manera "
+"más fácil para descubrir e iniciar las herramientas que están instaladas "
+"como parte del complemento. Necesitaremos un icono para el complemento. "
+"Descargue `logo.png <https://www.qgistutorials.com/downloads/logo.png>`_ y "
+"cópielo al directorio de complemento."
+
+#: ../../source/docs/3/processing_python_plugin.rst:222
+msgid ""
+"Open the file ``save_attributes_processing.py``. Add the following imports "
+"at top of the file."
+msgstr ""
+"Abra el archivo ``save_attributes_processing.py``. Agregue la siguiente "
+"importación en el tope del archivo."
+
+#: ../../source/docs/3/processing_python_plugin.rst:232
+msgid "Scroll down and modify the ``__init__()`` method to initialize iface."
+msgstr ""
+"Deslice hacia abajo y modifique el método ``__init__()`` para inicializar "
+"iface."
+
+#: ../../source/docs/3/processing_python_plugin.rst:240
+msgid ""
+"Scroll down further and locate the ``initGui`` method. It only contains the "
+"code to initialize the processing provider. We will add the code to add a "
+"toolbar button and a menu item. We will also need to add code to the "
+"``unload`` method, to remove these elements when plugin is removed."
+msgstr ""
+"Deslice más hacia abajo y localice el método ``initGui``. Sólo contiene el "
+"código para inicializar el proveedor de procesamiento. Agregaremos el código"
+" para agregar un botón de barra de herramientas y un elemento de menú. "
+"También necesitaremos agregar código al método ``unload``, para eliminar "
+"estos elementos cuando se quite el complemento."
+
+#: ../../source/docs/3/processing_python_plugin.rst:260
+msgid ""
+"We have connected the button and the menu item to trigger the ``run`` method"
+" when clicked. Add a new method at the bottom that uses the helper method "
+"``execAlgorithmDialog`` to launch the processing algorithm."
+msgstr ""
+"Tenemos conectados el botón y el elemento de menú para gatillar el método "
+"``run`` cuando se haga clic. Agregue un nuevo método en la parte de abajo "
+"que use el método auxiliar ``execAlgorithmDialogo`` para inicia el algoritmo"
+" de procesamiento."
+
+#: ../../source/docs/3/processing_python_plugin.rst:277
+msgid ""
+"Next, we need a minor fix to the ``__init__.py`` file in the plugin "
+"directory. Open the file and add ``iface`` to the return statement, so the "
+"reference to the QGIS interface is passed on to the plugin."
+msgstr ""
+"A continuación, necesitamos una arreglo menor al archivo ``__init__.py`` en "
+"el directorio del complemento. Abra el archivo y agregue ``iface`` a la "
+"instrucción de retorno, de manera que la referencia al interfaz de QGIS sea "
+"pasada al complemento."
+
+#: ../../source/docs/3/processing_python_plugin.rst:282
+msgid ""
+"Back in the main QGIS window, reload the plugin by clicking on the "
+":guilabel:`Reload plugin` button. You will see a new toolbar icon and a menu"
+" item under :menuselection:`Plugins --> SaveAttributes --> Save Attributes "
+"as CSV`. You can click these to launch the ``Save Attributes as CSV`` "
+"algorithm. You will notice that the processing provider and the algorithm in"
+" the toolbar still have the default icons. Let's fix that."
+msgstr ""
+"De vuelta en la ventana principal QGIS, recargue el complemento haciendo "
+"clic en el botón :guilabel:`Recargar complemento`. Verá un nuevo icono de "
+"barra de herramienta y un elemento de menú bajo :menuselection:`Complementos"
+" --> GuardarAtributos --> Guardar Atributos como CSV`. Puede hacer clic en "
+"estos para iniciar el algoritmo ``Guardar Atributos como CSV``. Notará que "
+"el proveedor de procesamiento y el algoritmo en la barra de herramientas "
+"todavía tienen los iconos predeterminados. Arreglemos eso."
+
+#: ../../source/docs/3/processing_python_plugin.rst:287
+msgid ""
+"Open the ``save_attributes_processing_provider.py`` file from the plugin "
+"directory. Add the imports at the top as follows."
+msgstr ""
+"Abra el archivo ``save_attributes_processing_provider.py`` del directorio de"
+" complemento. Agregue las importaciones a la parte superior como está a "
+"continuación."
+
+#: ../../source/docs/3/processing_python_plugin.rst:295
+msgid "Modify the ``icon`` method as follows to add the custom icon."
+msgstr ""
+"Modifique el método ``icon`` como sigue para agregar el icono personalizado."
+
+#: ../../source/docs/3/processing_python_plugin.rst:310
+msgid ""
+"Next, open the ``save_attributes_processing_algorithm.py`` file. Add the "
+"imports at the top as follows."
+msgstr ""
+"A continuación, abra el archivo ``save_attributes_processing_algorithm.py``."
+" Agregue la importación en la parte de arriba como sigue."
+
+#: ../../source/docs/3/processing_python_plugin.rst:318
+msgid "Add a new ``icon`` method with the following code."
+msgstr "Agregue un nuevo método ``icono`` con el siguiente código."
+
+#: ../../source/docs/3/processing_python_plugin.rst:333
+msgid ""
+"Reload the plugin and you will see the provider and algorithm both have our "
+"custom icon."
+msgstr ""
+"Recargue el complemento y verá que tanto el proveedor como el algoritmo "
+"tienen nuestro icono personalizado."
+
+#: ../../source/docs/3/processing_python_plugin.rst:338
+msgid ""
+"You can zip the plugin directory and share it with your users. They can "
+"unzip the contents to their plugin directory and try out your plugin. If "
+"this was a real plugin, you would upload it to the `QGIS Plugin Repository "
+"<https://plugins.qgis.org/>`_ so that all QGIS users will be able to find "
+"and download your plugin."
+msgstr ""
+"Puede comprimir el directorio del complemento y compartirlo con sus "
+"usuarios. Ellos pueden descomprimir el contenido a su directorio de "
+"complemento y probar su complemento. Si éste fuera un complemento real, "
+"usted lo actualizaría al `Repositorio de Complementos QGIS "
+"<https://plugins.qgis.org/>`_ para que todos los usuarios QGIS sean capaces "
+"de encontrar y descargar su complemento."
+
+#: ../../source/docs/3/processing_python_plugin.rst:342
+msgid ""
+"This plugin is for demonstration purpose only. Do not publish this plugin or"
+" upload it to the QGIS plugin repository."
+msgstr ""
+"Este complemento es sólo para fines de demonstración. No publique este "
+"complemento ni lo suba al repositorio de complementos de QGIS."
+
+#: ../../source/docs/3/processing_python_plugin.rst:345
+msgid "Below are the full source file as a reference."
+msgstr "Abajo tiene el archivo fuente completo como referencia."
+
+#: ../../source/docs/3/processing_python_plugin.rst:347
+msgid "``__init__.py``"
+msgstr "``__init__.py``"
+
+#: ../../source/docs/3/processing_python_plugin.rst:351
+msgid "``save_attributes_processing.py``"
+msgstr "``save_attributes_processing.py``"
+
+#: ../../source/docs/3/processing_python_plugin.rst:355
+msgid "``save_attributes_processing_algorithm.py``"
+msgstr "``save_attributes_processing_algorithm.py``"
+
+#: ../../source/docs/3/processing_python_plugin.rst:359
+msgid "``save_attributes_processing_provider.py``"
+msgstr "``save_attributes_processing_provider.py``"

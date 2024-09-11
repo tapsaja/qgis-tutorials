@@ -1,0 +1,343 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Matthias Wachholz <matthias.wachholz@lageso.berlin.de>, 2019
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-28 07:24+0000\n"
+"PO-Revision-Date: 2019-05-23 08:33+0000\n"
+"Last-Translator: Matthias Wachholz <matthias.wachholz@lageso.berlin.de>, 2019\n"
+"Language-Team: German (https://www.transifex.com/spatialthoughts/teams/7952/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:2
+msgid "Running Processing Algorithms via Python (QGIS3)"
+msgstr "Verarbeitungsroutinen mit Python ausführen (QGIS3)"
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:4
+msgid ""
+"The Processing Toolbox in QGIS contain an ever-growing collection of "
+"geoprocessing tools. The toolbox provides an easy batch processing interface"
+" to run any algorithm on a large number of inputs. See "
+":doc:`batch_processing`. But there are cases where you need to incorporate a"
+" little bit of custom logic in your batch processing. As all the processing "
+"algorithms can be run programmatically via the Python API, you can run them "
+"via the Python Console. This tutorial shows how to run a processing "
+"algorithm via the Python Console to perform a custom geoprocessing task in "
+"just a few lines of code. Please review the "
+":doc:`getting_started_with_pyqgis` tutorial to get familiar with the basics "
+"of the Python Scripting environment in QGIS."
+msgstr ""
+"Die QGIS-Verarbeitungswerkzeuge enthalten eine ständig wachsende Sammlung an"
+" Geoverarbeitungswerkzeugen. Die Verarbeitungswerkzeuge besitzen eine "
+"einfache Oberfläche zur Stapelverarbeitung von vielen Eingangsdaten. Siehe "
+":doc:`batch_processing`. Es gibt aber Fälle in denen man die "
+"Stapelverarbeitung durch eigene Anpassungen erweitern möchte. Alle "
+"Verarbeitungsalgorithmen können auch über die Python API gestartet werden. "
+"Diese Anleitung zeigt, wie man einen angepassten Verarbeitungsalgorithmus "
+"mit Hilfe der Python Konsole startet. Dazu sind nur einige wenige Zeilen "
+"Programmiercode erforderlich. Unter :doc:`getting_started_with_pyqgis` kann "
+"man sich mit den Grundlagen der Python Scripting Umgebung in QGIS vertraut "
+"machen."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:7
+msgid "Overview of the Task"
+msgstr "Überblick über die Aufgabe"
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:9
+msgid ""
+"We will use 12 gridded raster layers representing precipitation for each "
+"month of year and calculate average monthly rainfall for all zip codes in "
+"the Seattle area."
+msgstr ""
+"Wie werden 12 Layer mit Rastergittern der Monatsniederschläge verwenden, um "
+"den mittleren monatlichen Niederschlag je Postleitzahlengebiet im Gebiet um "
+"Seattle zu bestimmen."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:12
+msgid "Other skills you will learn"
+msgstr "Weitere Fähigkeiten die wir erlernen"
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:14
+msgid "How to delete a column (i.e. field) from a vector layer."
+msgstr ""
+"Wie man eine Spalte (d.h. ein Attributfeld) eines Vektorlayers löscht."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:17
+msgid "Get the data"
+msgstr "Beschaffung der Daten"
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:19
+msgid ""
+"`The PRISM Climate Group <http://www.prism.oregonstate.edu/>`_ gathers "
+"climate observation and provides historic and current climate data for the "
+"conterminous US. Head over to the `Recent Years "
+"<http://www.prism.oregonstate.edu/recent/>`_ data page and download the "
+"monthly precipitation data for the year 2017 in BIL format."
+msgstr ""
+"`The PRISM Climate Group <http://www.prism.oregonstate.edu/>`_ sammelt "
+"klimatische Daten und stellte historische und aktuelle Daten für die USA und"
+" angrenzende Gebiete bereit. Gehe zum Tab `Recent Years "
+"<http://www.prism.oregonstate.edu/recent/>`_ und lade die monatlichen "
+"Niederschlagsdaten für das Jahr 2017 im Format BIL herunter."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:25
+msgid ""
+"`City of Seattle Open Data portal <https://data.seattle.gov/>`_ provides "
+"free and open data for the city. Search for and download the `Zip Codes "
+"<https://data.seattle.gov/Land-Base/Zip-Codes/n58k-cykw>`_ data in the "
+"shapefile format."
+msgstr ""
+"`City of Seattle Open Data portal <https://data.seattle.gov/>`_ stellt Daten"
+" der Stadt als Opendata zur Verfügung. Suche folgende Datei und lade sie im "
+"shape-Format herunter: `Zip Codes <https://data.seattle.gov/Land-Base/Zip-"
+"Codes/n58k-cykw>`_."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:27
+msgid ""
+"For convenience, you may directly download a copy of both the datasets from "
+"the links below:"
+msgstr ""
+"Der Einfachheit halber können wir beide Datensätze unter folgenden links "
+"herunterladen:"
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:29
+msgid ""
+"`PRISM_ppt_stable_4kmM3_2017_all_bil.zip "
+"<http://www.qgistutorials.com/downloads/PRISM_ppt_stable_4kmM3_2017_all_bil.zip>`_"
+msgstr ""
+"`PRISM_ppt_stable_4kmM3_2017_all_bil.zip "
+"<http://www.qgistutorials.com/downloads/PRISM_ppt_stable_4kmM3_2017_all_bil.zip>`_"
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:31
+msgid ""
+"`Zip_Codes.zip <http://www.qgistutorials.com/downloads/Zip_Codes.zip>`_"
+msgstr ""
+"`Zip_Codes.zip <http://www.qgistutorials.com/downloads/Zip_Codes.zip>`_"
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:33
+msgid "Data Source [PRISM]_ [CITYOFSEATTLE]_"
+msgstr "Datenquelle [PRISM]_ [CITYOFSEATTLE]_"
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:36
+msgid "Procedure"
+msgstr "Arbeitsablauf"
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:38
+msgid ""
+"Unzip the ``PRISM_ppt_stable_4kmM3_2017_all_bil.zip`` file. Locate the "
+"``PRISM_ppt_stable_4kmM3_2017_all_bil`` folder in the QGIS Browser and "
+"expand it. The folder contains 12 individual layers for each month. Hold the"
+" :kbd:`Ctrl` key and select the ``.bil`` files for all 12 months. Once "
+"selected, drag them to the canvas."
+msgstr ""
+"Entpacke die die Datei ``PRISM_ppt_stable_4kmM3_2017_all_bil.zip``. Gehe im "
+"QGIS Browser zum Ordner ``PRISM_ppt_stable_4kmM3_2017_all_bil`` und "
+"erweitere ihn. Der Ordner enthält 12 Layer für jeden Monat. Halte die Taste "
+":kbd:`Ctrl` gedrückt und wähle die 12 Dateien mit der Endung ``.bil`` aus. "
+"Ziehe die Dateien danach in den Arbeitsbereich."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:45
+msgid ""
+"The data is provided in the `BIL format "
+"<http://desktop.arcgis.com/en/arcmap/10.3/manage-data/raster-and-images/bil-"
+"bip-and-bsq-raster-files.htm>`_. Each layer is presented with a set of files"
+" ``.bil`` file containing the actual data, a ``.hdr`` file describing the "
+"data structure and a ``.prj`` file containing the projection information. "
+"QGIS can load the ``.bil`` file and provided the other files exist in the "
+"same directory."
+msgstr ""
+"Die Daten liegen in folgendem Format vor: `BIL format "
+"<http://desktop.arcgis.com/en/arcmap/10.3/manage-data/raster-and-images/bil-"
+"bip-and-bsq-raster-files.htm>`_. Zu jedem Layer gehören mehrere Dateien. Die"
+" Datei mit der Endung ``.bil`` enthält die aktuellen Daten, die Datei mit "
+"der Endung ``.hdr`` beschreibt die Datenstruktur und die Datei mit der "
+"Endung ``.prj`` enthält die Information zur Projektion des "
+"Koordinatensystems."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:47
+msgid ""
+"Next, unzip the ``Zip_Codes.zip`` file and extract the shapefile to a "
+"folder. Locate the ``Zip_Codes`` folder and expand it. Drag the "
+"``Zip_Codes.shp`` file to the canvas."
+msgstr ""
+"Als nächstes entpacken wir die Datei ``Zip_Codes.zip``. Wir suchen den "
+"Ordner ``Zip_Codes`` und ziehen die Datei ``Zip_Codes.shp`` aus dem Ordner "
+"in den Arbeitsbereich."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:52
+msgid ""
+"Right-click the ``Zip_Codes`` layer and select :guilabel:`Zoom to Layer`. "
+"You will see the zip code polygons for the city of seattle and neighboring "
+"areas."
+msgstr ""
+"Wir klicken mit der rechten Maustaste auf den Layer ``Zip_Codes`` und wählen"
+" :guilabel:`Auf den Layer zoomen`. Jetzt sehen wir die Polygone der "
+"Postleitzahlen für die Stadt Seattle und Umgebung."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:57
+msgid "Go to :menuselection:`Processing --> Toolbox`."
+msgstr "Gehe zu :menuselection:`Verarbeitung --> Werkzeugkiste`."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:62
+msgid ""
+"The algorithm to sample a raster layer using vector polygons is known as "
+"``Zonal statistics``. Search for the algorithm in the :guilabel:`Processing "
+"Toolbox`. Select the algorithm and hover your mouse over it. You will see a "
+"tooltip with the text *Algorithm ID: 'qgis:zonalstatistics'*. Note this id "
+"which will be needed  to call this algorithm via the Python API. Double-"
+"click the ``Zonal Statistics`` algorithm to launch it."
+msgstr ""
+"Der Algorithmus, um Rasterlayer auf Basis eines überlagerten Vektorlayers "
+"abzutasten ist als \"Zonenstatistik\" bekannt. Suche nach dem Algorithmus in"
+" den :guilabel:`Verarbeitungswerkzeugen`. Wähle den Algorithmus aus und "
+"bewege den Mauszeiger darüber. Wir sehen einen Hinweis mit dem Text "
+"*Algorithmen Kennung: 'qgis:zonalstatistics'*. Beachte, dass diese Kennung "
+"für den Aufruf des Algorithmus mit der Python API benötigt wird. Klicke "
+"doppelt auf den Algorithmus ``Zonenstatistik``, um ihn zu starten."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:67
+msgid ""
+"We will do a manual test run of the algorithm for a single layer. This is a "
+"useful way to check if the algorithm behaves as expected and also an easy "
+"way to find out how to pass on relevant parameters to the algorithm when "
+"using it via Python. In the :guilabel:`Zonal Statistics` dialog, select "
+"``PRISM_ppt_stable_4kmM3_201701_bil`` as the :guilabel:`Raster Layer` and "
+"``Zip_Codes`` as the :guilabel:`Vector layer containing zones`. Leave other "
+"paramters to default. Click the :guilabel:`...` button next to "
+":guilabel:`Statistics to calculate` and select only ``Mean``. Click "
+":guilabel:`Run`."
+msgstr ""
+"Wir werden zuerst einen manuellen Test mit einem Layer durchführen. Das ist "
+"ein praktischer Weg, um zu sehen, wie sich der Algorithmus verhält und um "
+"herauszufinden, wie man die relevanten Parameter mit Python an den "
+"Algorithmus übergeben kann. Wir geben im Dialogfenster "
+":guilabel:`Zonenstatistik` die Datei ``PRISM_ppt_stable_4kmM3_201701_bil`` "
+"als :guilabel:`Rasterlayer` und ``Zip_Codes`` als "
+":guilabel:`Zonenvektorlayer` an. Die anderen Parameter lassen wir auf den "
+"Voreinstellungen. Klicke auf den Knopf :guilabel:`...` neben :guilabel:`Zu "
+"berechnende Statistik` und wähle nur ``Mittel`` aus. Klicke auf "
+":guilabel:`Starte`."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:72
+msgid ""
+"Once the algorithm finishes, switch to the :guilabel:`Log` tab. Make a note "
+"of the :guilabel:`Input Parameters` that were passed to the algorithm. Click"
+" :guilabel:`Close`."
+msgstr ""
+"Nachdem die Berechnung abgeschlossen wurde, gehen wir zum :guilabel:`Log` "
+"tab. Wir machen uns eine Notiz der :guilabel:`Eingabeparameter` die an den "
+"Algorithmus übergeben wurden und klicken auf :guilabel:`Schließen`."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:77
+msgid ""
+"Let's check the results of the test run. In the main QGIS window, right-"
+"click the ``Zip_Codes`` layer and select :guilabel:`Open Attribute Table`. "
+"This particular algorithm modifies the input zone layer in-place and adds a "
+"new column for every statistic that was selected. As we had selected only "
+"``Mean`` value, a new column named ``_mean`` is added to the table. The "
+"``_`` was the default prefix. When we run the algorithm for layers of each "
+"month, it will be useful to specify a custom prefix with the month number so"
+" we can easily identify the mean values for each month (i.e. 01_mean, "
+"02_mean etc.). Specifying this custom prefix is not possible in the Batch "
+"Processing interface of QGIS and if we ran this command using that "
+"interface, we would have to manually enter the custom prefix for each layer."
+" If you are working with a large number of layers, this can be very "
+"cumbersome. Hence, we can add this custom logic using the Python API and run"
+" the algorithm in a for-loop for each layer."
+msgstr ""
+"Wir sehen uns das Ergebnis der Berechnung an. Im QGIS Hauptfenster klicken "
+"wir mit der rechten Maustaste auf den Layer ``Zip_Codes`` und wählen "
+":guilabel:`Attributtabelle öffnen`. Der verwendete Algorithmus verändert den"
+" Eingabelayer und fügt für jede berechnete Statistik eine neue Spalte hinzu."
+" Da wir nur ``Mittel`` gewählt hatten, wurde eine neue Spalte ``_mean`` zur "
+"Tabelle hinzugefügt. Das Zeichen ``_`` wird als Standard Prefix verwendet. "
+"Wenn wir den Algorithmus für die Layer aller Monate starten, ist es sinnvoll"
+" einen angepassten Prefix wie z.B. die Monatsnummer (01_mean, 02_mean usw.) "
+"zu verwenden. Damit sind die Werte einfach einem Monat zuzuordnen. Die "
+"Verwendung eines angepassten Präfixes ist innerhalb der Stapelverarbeitung "
+"von QGIS nicht möglich. Man müsste hier manuell für jeden Layer den "
+"angepassten Prefix eingeben. Wenn man mit vielen Layern arbeitet, ist das "
+"sehr mühsam. Wir nutzen daher die Python API, um die Anpassung mit Hilfe "
+"einer For-Schleife zu erreichen."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:82
+msgid ""
+"Before we proceed, let's delete the ``_mean`` column that was created during"
+" our test run. Click the :guilabel:`Toggle Editing mode` button, followed by"
+" :guilabel:`Delete field` button. Select the ``_mean`` field and click "
+":guilabel:`OK`."
+msgstr ""
+"Bevor wir fortfahren, löschen wir die Spalte ``_mean``, die während des "
+"Tests erstellt wurde. Klicke auf den Knopf :guilabel:`Bearbeitungsmodus "
+"umschalten` und danach auf den Knopf :guilabel:`Spalte löschen`. Wähle das "
+"Feld ``_mean`` und klicke auf :guilabel:`OK`."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:87
+msgid ""
+"Click the :guilabel:`Toggle Editing mode` button again and :guilabel:`Save` "
+"the changes."
+msgstr ""
+"Klicke noch einmal auf den Knopf :guilabel:`Bearbeitungsmodus umschalten` "
+"und :guilabel:`Speichern`, um die Änderung zu speichern."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:92
+msgid ""
+"Back in the main QGIS window, go to :menuselection:`Plugins --> Python "
+"Console`."
+msgstr ""
+"Zurück im QGIS Hauptfenster gehen wir zu :menuselection:`Erweiterungen --> "
+"Python-Konsole`."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:97
+msgid ""
+"To run the processing algorithm via Python, we need to access names of all "
+"the layers. Enter the following code in the :guilabel:`Python Console` and "
+"hit :kbd:`Enter`. You will see the names of all layers printed in the "
+"console."
+msgstr ""
+"Um den Algorithmus mittels Python zu starten, müssen wir auf alle Layernamen"
+" zugreifen. Wir geben den folgenden Programmkode in der :guilabel:`Python-"
+"Konsole` ein und drücken :kbd:`Enter`. Man sieht nun, wie die Namen aller "
+"Layer in der Konsole angezeigt werden."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:108
+msgid ""
+"For adding a custom prefix, we need to look at the layer name and extract a "
+"substring representing the month number. Enter the following code to iterate"
+" over all raster layers, extract the custom prefix and run the "
+"``qgis:zonalstatistics`` algorithm using it."
+msgstr ""
+"Um einen angepassten Prefix zu vergeben, müssen wir den Layernamen "
+"betrachten und die Teilzeichenkette der Monatsnummer daraus extrahieren. "
+"Gebe nachfolgenden Programmkode ein, um alle Rasterlayer durchzugehen, den "
+"angepassten Prefix zu extrahieren und den ``qgis:zonalstatistics`` "
+"Algorithmus mit diesem Präfix zu starten."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:122
+msgid ""
+"Once the processing finishes, right-click on the ``Zip_Codes`` layer and "
+"select :guilabel:`Open Attribute Table`."
+msgstr ""
+"Nachdem die Berechnung abgeschlossen wurde, klicken wir mit der rechten "
+"Maustaste auf den Layer ``Zip_Codes`` und wählen :guilabel:`Attributtabelle "
+"öffnen`."
+
+#: ../../source/docs/3/processing_algorithms_pyqgis.rst:127
+msgid ""
+"You will see 12 new columns added to the table with custom prefixes and mean"
+" precipitation values extracted from the raster layers."
+msgstr ""
+"Wir sehen 12 neue Spalten mit dem angepassten Prefix, die den mittleren aus "
+"den Rasterlayern extrahierten Niederschlag enthalten."

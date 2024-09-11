@@ -1,0 +1,673 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2021, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# DiGro, 2021
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-04 10:29+0000\n"
+"PO-Revision-Date: 2021-11-24 12:55+0000\n"
+"Last-Translator: DiGro, 2021\n"
+"Language-Team: Dutch (https://www.transifex.com/spatialthoughts/teams/7952/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:2
+msgid "Advanced Raster Analysis (QGIS3)"
+msgstr "Gevorderde rasteranalyses (QGIS3)"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:4
+msgid ""
+"In the previous tutorial :doc:`raster_styling_and_analysis`, you learnt "
+"about performing raster algebra with *Raster Calculator*. This tutorial "
+"builds on these techniques and shows you how to use other raster analysis "
+"tools from the Processing Toolbox. You will learn how to process with Land "
+"Use Land Cover (LULC) rasters in QGIS to extract certain types of landcover "
+"classes and map changes."
+msgstr ""
+"In de vorige handleiding :doc:`raster_styling_and_analysis`, leerde u over "
+"het uitvoeren van algebra voor rasters met *Raster Calculator*. Deze "
+"handleiding bouwt voort op deze technieken en laat zien hoe u andere "
+"gereedschappen voor rasteranalyses uit de Toolbox van Processing gebruikt. U"
+" zult leren over het verwerken van rasters van Land Use Land Cover (LULC) in"
+" QGIS om bepaalde typen klassen van landgebruik en wijzigingen aan de kaart "
+"uit te nemen."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:7
+msgid "Overview of the task"
+msgstr "Overzicht van de taak"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:9
+msgid ""
+"We will use the South African National Land Cover dataset to identify and "
+"extract informal settlements in the City of Johannesburg, South Africa. We "
+"will also use a change assessment dataset to identify urban growth patterns "
+"in the city from 2014 to 2018."
+msgstr ""
+"We zullen de gegevensset South African National Land Cover gebruiken om "
+"informele nederzettingen in Johannesburg, Zuid-Afrika te identificeren en "
+"uit te nemen. We zullen ook een gegevensset voor het bepalen van wijzigingen"
+" gebruiken om de stedelijke groeipatronen in de stad van 2014 tot en met "
+"2018 te identificeren."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:13
+msgid "Other skills you will learn"
+msgstr "Andere vaardigheden die u zult leren"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:14
+msgid "How to reproject raster data to another projection."
+msgstr "Hoe rastergegevens opnieuw te projecteren naar een andere projectie."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:15
+msgid "How to load an excel file in QGIS."
+msgstr "Hoe een bestand van Excel te laden in QGIS."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:16
+msgid "How to adjust the transperancy of a raster layer in QGIS."
+msgstr "Hoe de transparantie van een rasterlaag aan te passen in QGIS."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:19
+msgid "Get the data"
+msgstr "De gegevens ophalen"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:21
+msgid "We will download the following datasets for this tutorial"
+msgstr "We zullen voor deze handleiding de volgende gegevenssets downloaden:"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:23
+msgid ""
+"*The South African National Land Cover 2018 dataset*: The new South African "
+"National Land-Cover 2018 dataset has been generated from 20 meter multi-"
+"seasonal Sentinel 2 satellite imagery and contains 73 landcover classes."
+msgstr ""
+"*De gegevensset South African National Land Cover 2018*: De nieuwe "
+"gegevensset South African National Land-Cover 2018 is gemaakt uit 20 meter "
+"multi-seizoen Sentinel 2 satellietafbeeldingen en bevat 73 klassen voor "
+"landgebruik."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:24
+msgid ""
+"*The South African National Land Cover 2018 Change Assessments*: This "
+"dataset compares the change in 20 landcover classes from 2014 to 2018."
+msgstr ""
+"*De South African National Land Cover 2018 Change Assessments*: Deze "
+"gegevensset vergelijkt de wijzigingen in 20 klassen voor landgebruik van "
+"2014 tot en met 2018."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:25
+msgid ""
+"*COJ Boundary*: A boundary shapefile for the City of Johannesburg, South "
+"Africa."
+msgstr ""
+"*COJ Boundary*: Een shapefile met de grenzen voor Johannesburg, Zuid-Afrika."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:28
+msgid ""
+"The `Environmental Geographical Information Systems (E-GIS) "
+"<https://egis.environment.gov.za/>`_ provides access to environmental "
+"geospatial data for South Africa. We will download the South African "
+"National Land-Cover (SANLC) rasters from this portal."
+msgstr ""
+"De `Environmental Geographical Information Systems (E-GIS) "
+"<https://egis.environment.gov.za/>`_ verschaft toegang tot georuimtelijke "
+"gegevens voor het milieu voor Zuid-Afrika. We zullen de rasters South "
+"African National Land-Cover (SANLC) vanaf dit portaal downloaden."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:30
+msgid ""
+"Visit the `GIS Data Download "
+"<https://egis.environment.gov.za/gis_data_downloads>`_  page. Click "
+":guilabel:`I agree` to accept the *Conditions of Use* and proceed."
+msgstr ""
+"Ga naar de pagina `GIS Data Download "
+"<https://egis.environment.gov.za/gis_data_downloads>`_ . Klik op "
+":guilabel:`I agree` om de *Conditions of Use* te accepteren en ga door."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:35
+msgid ""
+"You will need to create a free account to download the dataset. Click "
+":guilabel:`I want to create an account` and follow the instructions to "
+"create an account."
+msgstr ""
+"U zult een gratis account moeten maken om de gegevensset te kunnen "
+"downloaden. Klik op :guilabel:`I want to create an account` en volg de "
+"instructies om een account te maken."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:40
+msgid ""
+"Once logged in, search for *South African National Land Cover (SANLC) 2018 "
+"Computer Automated Land Cover (CALC)*. This dataset is provided in 2 "
+"different projections. For this tutorial, we will downnload the `ALBERS` "
+"dataset. Click to it to download the `SA_NLC_2018_Albers_CALC_data.zip` "
+"file."
+msgstr ""
+"Eenmaal ingelogd, zoek naar *South African National Land Cover (SANLC) 2018 "
+"Computer Automated Land Cover (CALC)*. Deze gegevensset wordt verschaft in  "
+"2 verschillende projecties. Voor deze handleiding zullen we de gegevensset "
+"`ALBERS` downloaden. Klik erop om het bestand "
+"`SA_NLC_2018_Albers_CALC_data.zip` te downloaden."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:45
+msgid ""
+"Next, search for *New South African National Land Cover (SANLC) 2014 and "
+"2018 Change Assessment Datasets Computer Automated Land Cover (CALC)* and "
+"click on the `SA_NLC_2014_2018_CLASS_CHANGE_CALC (DATASET AND REPORT)` to "
+"download the `SA_NLC_2014_2018_CLASS_CHANGE_ALBERS_CALC.tif.vat.zip` file."
+msgstr ""
+"Zoek vervolgens naar *New South African National Land Cover (SANLC) 2014 and"
+" 2018 Change Assessment Datasets Computer Automated Land Cover (CALC)* en "
+"klik op `SA_NLC_2014_2018_CLASS_CHANGE_CALC (DATASET AND REPORT)` om het "
+"bestand `SA_NLC_2014_2018_CLASS_CHANGE_ALBERS_CALC.tif.vat.zip` te "
+"downloaden."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:50
+msgid ""
+"The `City of Johannesburg <https://www.joburg.org.za/>`_ publishes spatial "
+"datasets as part of the  `Spatial Development Framework 2040 (SDF) for "
+"Johannesburg  "
+"<https://www.joburg.org.za/documents_/Pages/Key%20Documents/policies/Development%20Planning%20%EF%BC%86%20Urban%20Management/Citywide%20Spatial%20Policies/Spatial-"
+"Development-Framework-2040.aspx>`_ data. We will download the boundary "
+"shapefile from this site."
+msgstr ""
+"De `City of Johannesburg <https://www.joburg.org.za/>`_ publiceert "
+"ruimtelijke gegevenssets als deel van de `Spatial Development Framework 2040"
+" (SDF) voor Johannesburg  "
+"<https://www.joburg.org.za/documents_/Pages/Key%20Documents/policies/Development%20Planning%20%EF%BC%86%20Urban%20Management/Citywide%20Spatial%20Policies/Spatial-"
+"Development-Framework-2040.aspx>`_ . We zullen de shapefile met grenzen van "
+"deze site downloaden."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:52
+msgid ""
+"Click the download link `http://bit.ly/joburg-sdf-16 <http://bit.ly/joburg-"
+"sdf-16>`_."
+msgstr ""
+"Klik op de link voor het downloaden `http://bit.ly/joburg-sdf-16 "
+"<http://bit.ly/joburg-sdf-16>`_."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:57
+msgid "Click on the ``SDF Shapefiles`` directory."
+msgstr "Klik op de map ``SDF Shapefiles``."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:62
+msgid "Download the ``SDF Shapefiles.zip`` file, and unzip it to a folder."
+msgstr ""
+"Download het bestand ``SDF Shapefiles.zip`` en pak het uit in een map."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:68
+msgid ""
+"For your convenience, a clipped version of the required layers is available "
+"from the link below:"
+msgstr ""
+"Voor uw gemak is een geclipte versie van de gewenste lagen beschikbaar vanaf"
+" de link hieronder:"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:70
+msgid ""
+"`SA_NLC_2018_ALBERS_CALC.tif  "
+"<https://www.qgistutorials.com/downloads/SA_NLC_2018_ALBERS_CALC.tif>`_"
+msgstr ""
+"`SA_NLC_2018_ALBERS_CALC.tif  "
+"<https://www.qgistutorials.com/downloads/SA_NLC_2018_ALBERS_CALC.tif>`_"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:72
+msgid ""
+"`SA_NLC_2014_2018_CLASS_CHANGE_ALBERS_CALC.tif "
+"<https://www.qgistutorials.com/downloads/SA_NLC_2014_2018_CLASS_CHANGE_ALBERS_CALC.tif>`_"
+msgstr ""
+"`SA_NLC_2014_2018_CLASS_CHANGE_ALBERS_CALC.tif "
+"<https://www.qgistutorials.com/downloads/SA_NLC_2014_2018_CLASS_CHANGE_ALBERS_CALC.tif>`_"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:74
+msgid ""
+"`COJ_Boundary.zip  "
+"<https://www.qgistutorials.com/downloads/COJ_Boundary.zip>`_"
+msgstr ""
+"`COJ_Boundary.zip  "
+"<https://www.qgistutorials.com/downloads/COJ_Boundary.zip>`_"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:76
+msgid "Data Source: [SANLC]_ [COJ]_"
+msgstr "Gegevensbron: [SANLC]_ [COJ]_"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:79
+msgid "Procedure"
+msgstr "Procedure"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:81
+msgid ""
+"Browse to the downloaded and unzipped  folder in the browser. Expand it and "
+"drag and drop the ``SA_NLC_2018_ALBERS_CALC.tif`` in canvas."
+msgstr ""
+"Blader naar de map met gedownloade en bestanden in de Browser. Vergroot de "
+"map en sleep ``SA_NLC_2018_ALBERS_CALC.tif`` naar het kaartvenster en zet "
+"het neer."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:86
+msgid ""
+"Once the layer is loaded, you can notice the CRS will be set as "
+":guilabel:`Unknown CRS` on the bottom right. Double-click on it to open the "
+":guilabel:`Project Properties - CRS` dialog box."
+msgstr ""
+"Als de laag eenmaal is geladen, zult u opmerken dat het CRS zal zijn "
+"ingesteld als :guilabel:`Onbekend CRS` aan de rechteronderkant. Dubbelklik "
+"erop om het dialoogvenster :guilabel:`Projecteigenschappen - CRS` te openen."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:91
+msgid ""
+"At the bottom, you will see a preview of the projection extent. This "
+"*Unknown CRS* is a custom *Lambert Equal-Area Projection* defined for the "
+"country of South Africa. We will later reproject this layer to another "
+"projection. Click :guilabel:`OK`."
+msgstr ""
+"Aan de onderzijde zult u een voorbeeld zien van het bereik van de projectie."
+" Dit *Onbekend CRS* is een aangepaste *Lambert Equal-Area Projection*, "
+"gedefinieerd voor het land Zuid-Afrika. We zullen deze laag later opnieuw "
+"projecteren naar een andere projectie. Klik op :guilabel:`OK`."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:96
+msgid ""
+"Load other two layers ``SA_NLC_2014_2018_CLASS_CHANGE_ALBERS_CALC.tif`` and "
+"``COJ_Boundary``. You will see that the raster layer cover the entire "
+"country. For our analysis, we are only interested in the area covered by the"
+" ``COJ_Boundary`` layer. We will now clip the raster layer to this region. "
+"Go to :menuselection:`Processing --> Toolbox --> GDAL --> Raster extraction "
+"--> Clip raster by mask layer` tool. Double-click to open it."
+msgstr ""
+"Laad de andere twee lagen ``SA_NLC_2014_2018_CLASS_CHANGE_ALBERS_CALC.tif`` "
+"en ``COJ_Boundary``. U zult zien dat de rasterlaag het gehele land bedekt. "
+"Voor onze analyse zijn we alleen geïnteresseerd in het gebied dat wordt "
+"bedekt door de laag ``COJ_Boundary``. We zullen nu de rasterlaag clippen "
+"naar deze regio. Ga naar het gereedschap :menuselection:`Processing --> "
+"Toolbox --> GDAL --> Raster uitnemen --> Raster op maskerlaag clippen`. "
+"Dubbelklik om het te openen."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:101
+msgid ""
+"In the :guilabel:`Clip Raster by Mask Layer`, select "
+"``SA_NLC_2018_ALBERS_CALC``  as the :guilabel:`Input layer`, then "
+"``COJ_Boundary`` as :guilabel:`Mask layer`. We also have an option to "
+"reproject the data to another projection. It is a good practice to keep all "
+"your data layers in the same projection. We will reproject the rasters to "
+"match the CRS to that of the ``COJ_Boundary`` layer. Select ``EPSG:4326 - "
+"WGS 84`` as the :guilabel:`Target CRS`."
+msgstr ""
+"Selecteer, in :guilabel:`Raster op maskerlaag clippen`, "
+"``SA_NLC_2018_ALBERS_CALC``  als de :guilabel:`Invoerlaag`, dan "
+"``COJ_Boundary`` als :guilabel:`Maskerlaag`. We hebben ook een optie om de "
+"gegevens naar een andere projectie te projecteren. Het is goed gebruik om al"
+" uw gegevenslagen in dezelfde projectie te houden. We zullen de rasters "
+"opnieuw projecteren om overeen te komen met het CRS van de laag "
+"``COJ_Boundary``. Selecteer ``EPSG:4326 - WGS 84`` als het :guilabel:`Doel-"
+"CRS`."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:106
+msgid ""
+"The default output data format is GeoTiff. GeoTiff files can get very large "
+"if they are not compressed. A good practice is to always apply a loss-less "
+"compression when creating new raster layers. Expand :guilabel:`Advanced "
+"Parameters` and choose ``High Compression`` as the :guilabel:`Profile`. "
+"Next, click the ``...`` button next to :guilabel:`Clipped (mask)` and select"
+" :guilabel:`Save to file...` to enter layer name as ``SA_NLC_2018_Clipped``."
+" Click :guilabel:`Run`."
+msgstr ""
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:111
+msgid ""
+"Once the algorithm finishes, do not close the window. We will apply the same"
+" operation to the other raster layer. Switch to the :guilabel:`Parameters` "
+"tab and change the :guilabel:`Input layer` to "
+"``SA_NLC_2014_2018_CLASS_CHANGE_ALBERS_CALC``. Keep all other options but "
+"change the output layer name to ``SA_NLC_2014_2018_CLASS_CHANGE_Clipped``. "
+"Click :guilabel:`Run`."
+msgstr ""
+"Als het algoritme is voltooid, sluit dan niet het venster. We zullen "
+"dezelfde bewerking nogmaals toepassen op de andere rasterlaag. Schakel naar "
+"de tab :guilabel:`Parameters` en wijzig de :guilabel:`Invoerlaag` naar "
+"``SA_NLC_2014_2018_CLASS_CHANGE_ALBERS_CALC``. Behoud alle andere opties, "
+"maar wijzig de naam van de uitvoerlaag naar "
+"``SA_NLC_2014_2018_CLASS_CHANGE_Clipped``. Klik op :guilabel:`Uitvoeren`."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:116
+msgid ""
+"Both clipped layers will now be loaded in canvas. Select the original layer "
+"and click :guilabel:`Remove Layer` to remove them."
+msgstr ""
+"Beide geclipte lagen zullen nu zijn geladen in het kaartvenster. Selecteer "
+"de originele laag en klik op :guilabel:`Laag verwijderen` om ze te "
+"verwijderen."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:121
+msgid ""
+"All the three remaining layers are now in the same CRS. We can switch the "
+"project CRS to the CRS of the layers now. Right click on any clipped layer "
+"and choose :menuselection:`Layer CRS --> Set Project CRS from Layer`."
+msgstr ""
+"Alle drie resterende lagen zijn nu in hetzelfde CRS. We kunnen nu het "
+"project-CRS wijzigen naar het CRS van de lagen. Klik met rechts op een "
+"geclipte laag en kies :menuselection:`Laag-CRS --> Project-CRS van laag "
+"overnemen`."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:126
+msgid ""
+"Now the project CRS will be set to ``EPSG:4326``. Bring the "
+":guilabel:`SA_NLC_2018_Clipped` layer to top."
+msgstr ""
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:131
+msgid ""
+"Click on `SA_NLC_2018_Clipped` and use the :guilabel:`identify` tool in the "
+":guilabel:`Attributes Toolbar` to click on the image and inspect the pixel "
+"values. You will see that the pixel values range from 1 to 73. These values "
+"represent a distinct land use/land cover class."
+msgstr ""
+"Klik op `SA_NLC_2018_Clipped` en gebruik het gereedschap :guilabel:`Objecten"
+" identificeren` op de :guilabel:`werkbalk Attributen` om op de afbeelding te"
+" klikken en de pixelwaarden te inspecteren. U zult zien dat het bereik van "
+"de pixelwaarden ligt tussen 1 tot en met 73. Deze waarden geven een bepaalde"
+" klasse voor landgebruik/landbedekking weer."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:136
+msgid ""
+"The dataset classes are described in the ``SANLC 2018 Presentation``, which "
+"can be downloaded from the `EGIS Portal "
+"<https://egis.environment.gov.za/sa_national_land_cover_datasets>`_. For "
+"this exercise, we are interested in the *informal settlements* represented "
+"by class numbers 51 through 54."
+msgstr ""
+"De klassen voor de gegevensset worden beschreven in de ``SANLC 2018 "
+"Presentation``, die kan worden gedownload vanaf het `EGIS Portal "
+"<https://egis.environment.gov.za/sa_national_land_cover_datasets>`_. Voor "
+"deze oefening zijn we geïnteresseerd in de *informal settlements*, "
+"weergegeven door de klassenummers 51 tot en met 54."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:141
+msgid ""
+"Let's extract pixels belonging to these classes. Go to "
+":menuselection:`Processing --> Toolbox --> Raster analysis --> Raster "
+"calculator` tool. Double-click to open it."
+msgstr ""
+"Laten we de pixels uitnemen die behoren tot deze klassen. Ga naar het "
+"gereedschap :menuselection:`Processing --> Toolbox --> Rasteranalyse --> "
+"Raster calculator`. Dubbelklik om het te openen."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:146
+msgid ""
+"The source image has only 1 band. The ``@1`` suffix indicates the band "
+"number. Enter the following expression to select pixels from class 51-54."
+msgstr ""
+"De bronafbeelding heeft slechts 1 band. Het voorvoegsel ``@1`` geeft het "
+"bandnummer aan. Voer de volgende expressie in om pixels van de klassen 51-54"
+" te selecteren."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:156
+msgid ""
+"Scroll down and click the ``...`` button next to :guilabel:`Reference "
+"layer(s)`. Select the ``SA_NLC_2018_Clipped`` layer and click "
+":guilabel:`OK`."
+msgstr ""
+"Scroll naar beneden en klik op de knop ``…`` naast :guilabel:`Reference "
+"layer(s)`. Selecteer de laag ``SA_NLC_2018_Clipped`` en klik op "
+":guilabel:`OK`."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:161
+msgid ""
+"Next, click the ``...`` button next to :guilabel:`Output` and select "
+":guilabel:`Save to File...`."
+msgstr ""
+"Klik vervolgens op de knop ``…`` naast :guilabel:`Output` en selecteer "
+":guilabel:`Opslaan als bestand…`."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:166
+msgid ""
+"Name the output file ``residential_informal.tif`` and click :guilabel:`Run`."
+msgstr ""
+"Noem het uitvoerbestand ``residential_informal.tif`` en klik op "
+":guilabel:`Uitvoeren`."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:171
+msgid ""
+"Once the process finishes, a new layer, ``residential_informal`` will be "
+"added to QGIS. This raster layer has only two-pixel values - ``1`` where our"
+" expression evaluated *true* and ``0`` where it was *false*. The pixels that"
+" appear white are the ones belonging to the informal settlement classes. We "
+"will style this layer better so we can see the informal settlements clearly."
+" Click the :guilabel:`Open the layer styling panel` button."
+msgstr ""
+"Als het proces is voltooid zal een nieuwe laag, ``residential_informal``, "
+"worden toegevoegd aan QGIS. Deze rasterlaag heeft slechts twee pixelwaarden "
+"- ``1`` waar onze expressie evalueerde naar *true* en ``0`` waar het *false*"
+" was. De pixels die als wit verschijnen zijn die welke behoren tot de "
+"klassen van de informal settlements. We zullen deze laag beter opmaken zodat"
+" we de informal settlements duidelijk kunnen zien. Klik op de knop "
+":guilabel:`Paneel Laag opmaken openen`."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:176
+msgid ""
+"Select the ``residential_informal`` layer and change the renderer to be "
+":guilabel:`Paletted/Unique values`. Click the :guilabel:`Add values "
+"manually` (+) button."
+msgstr ""
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:181
+msgid ""
+"Change the :guilabel:`Value` to ``1`` and enter ``Residential Informal`` as "
+":guilabel:`Label`. Select a color of your choice."
+msgstr ""
+"Wijzig de :guilabel:`Waarde` naar ``1`` en voer ``Residential Informal`` in "
+"als :guilabel:`Label`. Selecteer een kleur naar keuze."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:186
+msgid ""
+"We can now see all the informal settlements in the city of Johannesburg. It "
+"would be helpful to see them in context with a base map. We have access to a"
+" variety of base maps from the :guilabel:`QuickMapServices` plugin. Once you"
+" install the plugin, go to :menuselection:`Web --> QuickMapServices --> OSM "
+"--> OSM Standard` to add the OpenStreetMap layer."
+msgstr ""
+"We kunnen nu alle informal settlements in de stad Johannesburg zien. Het zou"
+" nuttig zijn om ze te bekijken in context met een basiskaart. We hebben "
+"toegang tot een variëteit aan basiskaarten vanuit de plug-in "
+":guilabel:`QuickMapServices`. Ga, als de plug-in eenmaal is geïnstalleerd, "
+"naar :menuselection:`Web --> QuickMapServices --> OSM --> OSM Standard` om "
+"de laag OpenStreetMap toe te voegen."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:191
+msgid ""
+"Now you can easily identify and verify whether our analysis correctly "
+"identified the informal settlements. You can select the "
+"``residential_informal`` layer and switch to the :guilabel:`Transparency` "
+"tab in the :guilabel:`Layer styling panel`. You can reduce the "
+":guilabel:`Global Opacity` to see both the extracted pixels and the base-map"
+" together."
+msgstr ""
+"Nu kunt u gemakkelijk identificeren en verifiëren of onze analyse de "
+"informal settlements correct identificeert. U kunt de laag "
+"``residential_informal`` selecteren en schakelen  naar de tab "
+":guilabel:`Transparency` in het :guilabel:`Paneel Laag opmaken`. U kunt de "
+":guilabel:`Globale doorzichtbaarheid` verkleinen om zowel de uitgenomen "
+"pixels en de basiskaart samen te zien."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:197
+msgid ""
+"You have now completed the first part of the tutorial. Now we will use the "
+"``SA_NLC_2014_2018_CHANGE_Clipped`` raster layer to identify regions that "
+"were urbanized between 2014 and 2018. Turn off all layers except "
+"``SA_NLC_2014_2018_CHANGE_Clipped``, then click the :guilabel:`Open the "
+"layer styling panel` button. Switch to the :guilabel:`Transparency` tab and "
+"enter ``0`` in :guilabel:`Additional no data value`. This will set the "
+"pixels with value 0 to transparent."
+msgstr ""
+"U hebt nu het eerste gedeelte van de handleiding voltooid. Nu zullen we de "
+"rasterlaag ``SA_NLC_2014_2018_CHANGE_Clipped`` gebruiken om regio's te "
+"identificeren die zijn verstedellijkt tussen 2014 en 2018. Schakel alle "
+"lagen uit, behalve ``SA_NLC_2014_2018_CHANGE_Clipped``, en klik dan op de "
+"knop :guilabel:`Paneel Laag opmaken openen`. Schakel naar de tab "
+":guilabel:`Transparantie` en voer ``0`` in als :guilabel:`Waarde voor 'geen "
+"data'`. Dit zal de pixels met de waarde 0 als transparant instellen."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:202
+msgid ""
+"Use the :guilabel:`Identify` tool in the :guilabel:`Attributes Toolbar` to "
+"click on the image and inspect the pixel values. You will see that the pixel"
+" values range from 21-420. Each value indicates a transition from one of the"
+" 73 source classes to another class."
+msgstr ""
+"Gebruik het gereedschap :guilabel:`Objecten identificeren` op de "
+":guilabel:`werkbalk Attributen` om op de afbeelding te klikken en de "
+"pixelwaarden te inspecteren. U zult zien dat het bereik van de pixelwaarden "
+"ligt tussen 21-240. Elke waarde geeft een overgang weer van een van de 73 "
+"bronklassen naar een andere klasse."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:207
+msgid ""
+"Your data download comes with a spreadsheet named ``lcccodes.xlsx``. This "
+"sheet has a sheet **03 urban_change_codes** that gives more details about "
+"each pixel value. We are interested in all pixel values where any 2014 class"
+" changed into a 2018 built-up class. In the image below, these are "
+"highlighted in blue."
+msgstr ""
+"Uw download met gegevens bevat ook een werkbladdocument, genaamd "
+"``lcccodes.xlsx``. Dit werkbladdocument heeft een werkblad **03 "
+"urban_change_codes** dat meer details geeft over elke pixelwaarde. We zijn "
+"geïnteresseerd in alle pixelwaarden waarvan een klasse uit 2014 wijzigde "
+"naar een in 2018 opgebouwde klasse. In de afbeelding hieronder zijn die in "
+"blauw geaccentueerd."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:212
+msgid ""
+"Our goal is to map changes in the built-up class. We will apply a "
+"transformation on the ``SA_NLC_2014_2018_CHANGE_Clipped`` layer so all the "
+"pixel values are mapped from their original values to either of the "
+"following values."
+msgstr ""
+"Ons doel is om wijzigingen in de opgebouwde klassen in kaart te brengen. We "
+"zullen een transformatie toepassen op de laag "
+"``SA_NLC_2014_2018_CHANGE_Clipped`` zodat alle pixelwaarden in kaart worden "
+"gebracht vanuit hun originele waarden naar een van de volgende waarden."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:217
+msgid "``1``"
+msgstr "``1``"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:218
+msgid "All pixels which were a built-up class in both 2014 and 2018"
+msgstr "Alle pixels die een opgebouwde klasse waren in zowel 2014 als in 2018"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:219
+msgid "``2``"
+msgstr "``2``"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:220
+msgid ""
+"All pixels which changed from a non built-up class in 2014 to a built-up "
+"class in 2018."
+msgstr ""
+"Alle pixels die wijzigden van een niet-opgebouwde klasse in 2014 naar een "
+"opgebouwde klasse in 2018."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:221
+msgid "``0``"
+msgstr "``0``"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:222
+msgid "All remaining pixels"
+msgstr "Alle resterende pixels"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:224
+msgid ""
+"To do this, we need to create a table specifying these rules. As QGIS is "
+"able to read spreadsheets directly, it is the most convenient method to "
+"create this table. Our spreadsheet should have 3 columns, ``MIN``, ``MAX``, "
+"and ``OUTPUT``. Each row should be the range of input raster values that "
+"should be assigned an output value. Create a spreadsheet as shown below and "
+"save it to your computer as ``reclass.xlsx``. You may also download a ready-"
+"to-use copy from this link - `reclass.xlsx "
+"<https://www.qgistutorials.com/downloads/reclass.xlsx>`_"
+msgstr ""
+"We moeten, om dit te kunnen doen, een tabel maken die deze regels "
+"specificeert. Omdat QGIS in staat is om werkbladen direct te lezen, is het "
+"de meest handige methode om deze tabel te maken. Ons werkblad zou 3 kolommen"
+" moeten hebben, ``MIN``, ``MAX``, en ``OUTPUT``. Elke rij zou het bereik aan"
+" waarden voor het invoerraster moeten zijn dat moet worden toegewezen aan "
+"een uitvoerwaarde. Maak een werkblad zoals hieronder weergegeven en sla het "
+"op uw computer op als ``reclass.xlsx``. U zou ook een direct te gebruiken "
+"kopie kunnen downloaden vanaf deze link - `reclass.xlsx "
+"<https://www.qgistutorials.com/downloads/reclass.xlsx>`_"
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:229
+msgid ""
+"Locate the ``reclass.xlsx`` file in the browser. Drag-and-drop it to the "
+"main window."
+msgstr ""
+"Zoek het bestand ``reclass.xlsx`` op in de Browser. Sleep het en zet het "
+"neer in het hoofdvenster."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:234
+msgid ""
+"A new layer ``Sheet1`` will be added to the :guilabel:`Layers` panel. Right-"
+"click on it and select :guilabel:`Open Attribute Table`. Verify that the "
+"sheet was imported correctly and you have 3 columns named ``MIN``, ``MAX`` "
+"and ``OUTPUT``. Open the :menuselection:`Processing Toolbox --> Reclassify "
+"by layer` tool."
+msgstr ""
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:239
+msgid ""
+"In the :guilabel:`Reclassify by layer` dialog, select "
+"``SA_NLC_2014_2018_CHANGE_Clipped`` as the :guilabel:`Raster layer`. Select "
+"``Sheet1`` as the :guilabel:`Layer containing class breaks`. Select ``MIN``,"
+" ``MAX`` and ``OUTPUT`` fields for their respective fields."
+msgstr ""
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:244
+msgid ""
+"Expand the :guilabel:`Advanced Parameters` section. Change the "
+":guilabel:`Range boundaries` to ``min <= value <= max``. Click the "
+":guilabel:`...` button for :guilabel:`Reclassified raster` and enter the "
+"output file name as ``builtup_change.tif``. Click :guilabel:`Run`."
+msgstr ""
+"Vergroot het gedeelte :guilabel:`Geavanceerde parameters`. Wijzig de "
+":guilabel:`Grenzen bereik` naar ``min <= waarde <= max``. Klik op de knop "
+":guilabel:`…` voor :guilabel:`Opnieuw geclassificeerd raster` en voer de "
+"naam voor het uitvoerbestand in als ``builtup_change.tif``. Klik op "
+":guilabel:`Uitvoeren`."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:249
+msgid ""
+"Once the processing finishes, a new layer ``builtup_change`` with pixel "
+"values ``0-2`` will be added to the canvas. In the :guilabel:`Layer styling "
+"panel`, choose ``Paletted/Unique values``, then click ``Classify``."
+msgstr ""
+"Als de verwerking is voltooid zal een nieuwe laag ``builtup_change`` met "
+"pixelwaarden ``0-2`` worden toegevoegd aan het kaartvenster. Kies, in het "
+":guilabel:`Paneel Laag opmaken`, ``Gepaletteerde/Unieke waarden``, klik dan "
+"op ``Classificeren``."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:254
+msgid ""
+"Choose the color of your choice for each category and label the ``0``, ``1``"
+" , and ``2`` pixel values as ``Non Built-up``, ``Existing Built-up`` and "
+"``New Built-up``."
+msgstr ""
+"Kis de kleur van uw keuze voor elke categorie en label de pixelwaarden "
+"``0``, ``1`` en ``2`` als ``Niet opgebouwd``, ``Bestaande opgebouwde "
+"klasse`` en ``Nieuw opgebouwde klasse``."
+
+#: ../../source/docs/3/advanced_raster_analysis.rst:259
+msgid ""
+"Now in the :guilabel:`Transparency` tab, reduce the :guilabel:`Global "
+"Opacity`, and turn on the ``OSM Standard`` layer to see both the "
+"builtup_change pixels and the base-map together."
+msgstr ""
+"Verklein nu, op de tab :guilabel:`Transparantie`, de :guilabel:`Globale "
+"doorzichtbaarheid`, en schakel de laag ``OSM Standard`` in om zowel de "
+"pixels van builtup_change als de basiskaart samen te zien."

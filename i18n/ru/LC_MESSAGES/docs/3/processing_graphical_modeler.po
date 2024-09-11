@@ -1,0 +1,512 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Kirill Kotelevsky <yixwellet@gmail.com>, 2020
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-01-28 07:24+0000\n"
+"PO-Revision-Date: 2019-02-20 19:19+0000\n"
+"Last-Translator: Kirill Kotelevsky <yixwellet@gmail.com>, 2020\n"
+"Language-Team: Russian (https://www.transifex.com/spatialthoughts/teams/7952/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:2
+msgid "Automating Complex Workflows using Processing Modeler (QGIS3)"
+msgstr "Автоматизация сложных процессов с помощью Processing Modeler (QGIS3)"
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:4
+msgid ""
+"GIS Workflows typically involve many steps - with each step generating "
+"intermediate output that is used by the next step. If you change the input "
+"data or want to tweak a parameter, you will need to run through the entire "
+"process again manually.  Fortunately, QGIS has a graphical modeler built-in "
+"that can help you define your workflow and run it with a single invocation. "
+"You can also run these workflows as a batch over a large number of inputs."
+msgstr ""
+"Как правило рабочий процесс в ГИС состоит из множества шагов, каждый из "
+"которых генерирует некий промежуточный результат, используемый в последующих"
+" шагах. При этом если ваши начальные данные изменятся, либо вы сами измените"
+" значение какого-либо параметра, вам придется вручную проходить весь процесс"
+" снова от начала до конца. К счастью QGIS имеет встроенный инструмент для "
+"графического построения моделей, который поможет вам составить алгоритм "
+"рабочего процесса и запускать его одним нажатием. Помимо этого вы сможете "
+"выполнять пакетную обработку большого количества данных вашим алгоритмом."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:8
+msgid "Overview of the task"
+msgstr "Обзор задачи"
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:10
+msgid ""
+"We will take a point layer of maritime piracy incidents and create a "
+"processing model to produce a density map by aggregating them over a global "
+"hexagonal grid."
+msgstr ""
+"Мы воспользуемся точечным слоем, содержащим места, где зафиксированы случаи "
+"морского пиратства, и создадим алгоритм, который будет генерировать карту "
+"плотности данных точек на гексагональной сетке."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:13
+msgid "Other skills you will learn"
+msgstr "Также в ходе работы вы получите следующие навыки"
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:15
+msgid "Using a global equal area projection and setting the Project CRS."
+msgstr ""
+"Использование равновеликой проекции и настройка системы координат проекта."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:16
+msgid "Applying a Graduated symbology to a polygon layer."
+msgstr "Применение градуированного стиля к полигональному слою."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:19
+msgid "Get the data"
+msgstr "Исходные данные"
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:20
+msgid ""
+"National Geospatial-Intelligence Agency's `Maritime Safety Information "
+"portal <https://msi.nga.mil/NGAPortal/MSI.portal>`_ provides a shapefile of "
+"all incidencts of maritine piracy in the form on `Anti-shipping Activity "
+"Messages <https://msi.nga.mil/Piracy>`_. Download the `Arc Shape file "
+"<https://msi.nga.mil/api/publications/download?key=16920958/SFH00000/ASAM_shp.zip&type=download>`_"
+" version of the database."
+msgstr ""
+"На `Портале морской безопасности "
+"<https://msi.nga.mil/NGAPortal/MSI.portal>`_ Национального агентства "
+"геопространственной разведки опубликованы данные  обо всех случаях морского "
+"пиратства в формате `Anti-shipping Activity Messages "
+"<https://msi.nga.mil/Piracy>`_. Загрузите `базу данных в формате shape "
+"<https://msi.nga.mil/api/publications/download?key=16920958/SFH00000/ASAM_shp.zip&type=download>`_."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:22
+msgid ""
+"`Natural Earth <http://naturalearthdata.com>`_ has several global vector "
+"layers. Download the `10m Physical Vectors - Land "
+"<https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_land.zip>`_"
+" containing Land polygons."
+msgstr ""
+"`Natural Earth <http://naturalearthdata.com>`_ содержит векторные слои "
+"глобального пространственного охвата. Загрузите архив `10m Physical Vectors "
+"- Land "
+"<https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_land.zip>`_,"
+" содержащий полигоны суши."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:25
+msgid ""
+"For convenience, you may directly download a copy of the above layers from "
+"below:"
+msgstr "Также вы можете напрямую скачать необходимые слои по ссылкам ниже:"
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:27
+msgid "`ASAM_shp.zip <http://www.qgistutorials.com/downloads/ASAM_shp.zip>`_"
+msgstr "`ASAM_shp.zip <http://www.qgistutorials.com/downloads/ASAM_shp.zip>`_"
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:29
+msgid ""
+"`ne_10m_land.zip <http://www.qgistutorials.com/downloads/ne_10m_land.zip>`_"
+msgstr ""
+"`ne_10m_land.zip <http://www.qgistutorials.com/downloads/ne_10m_land.zip>`_"
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:31
+msgid "Data Source: [NGA_MSI]_ [NATURALEARTH]_"
+msgstr "Данные получены с сайтов [NGA_MSI]_ и [NATURALEARTH]_"
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:34
+msgid "Procedure"
+msgstr "Порядок действий"
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:36
+msgid ""
+"In the QGIS Browser Panel, locate the directory where you saved your "
+"downloaded data. Expand the ``ne_10m_land.zip`` and select the "
+"``ne_10m_land.shp`` layer. Drag the layer to the canvas. Next, locate the "
+"``ASAM_shp.zip`` file. Expand it and select the "
+"``asam_data_download/ASAM_events.shp`` layer and drag it on to the canvas."
+msgstr ""
+"В панели Браузер перейдите в директорию, куда были сохранены загруженные "
+"файлы. Откройте архив ``ne_10m_land.zip`` и выберите слой "
+"``ne_10m_land.shp``. Перетащите слой в окно карты. Далее откройте архив "
+"``ASAM_shp.zip``, выберите слой ``asam_data_download/ASAM_events.shp`` и так"
+" же перетащите его в окно карты."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:41
+msgid ""
+"The ``ASAM_events.shp`` layer does not have projection information "
+"associated with it, so you will be prompted to select a CRS in the "
+":guilabel:`Coordinate Reference System Selector`. Here, the points are in "
+"the Latitude and Longitude coordinates, so select the ``WGS 84`` CRS and "
+"click :guilabel:`OK`."
+msgstr ""
+"Слой ``ASAM_events.shp`` не содержит информацию о проекции, поэтому "
+"необходимо выбрать ее в окне :guilabel:`Выбор системы координат`. В данном "
+"слое координаты точек имеют вид Широта/Долгота, таким образом выберите "
+"систему координат ``WGS 84`` и нажмите :guilabel:`OK`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:46
+msgid ""
+"Once the layer is loaded, you can see the individual points representing "
+"incidents of piracy locations. Let's start building our Processing model to "
+"process these layers. Go to :menuselection:`Processing --> Graphical "
+"Modeler...`."
+msgstr ""
+"После загрузки слоя вы можете видеть точки, отражающие места, где имели "
+"место случаи пиратства. Начнем построение модели. Выберите пункт меню "
+":menuselection:`Анализ данных --> Graphical Modeler...`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:51
+msgid ""
+"In the :guilabel:`Processing Modeler` dialog, locate the :guilabel:`Model "
+"Properties` panel. Enter ``piracy hexbin`` as the :guilabel:`Name` of the "
+"model and ``projects`` as the :guilabel:`Groups`. Click the :guilabel:`Save`"
+" button."
+msgstr ""
+"В окне :guilabel:`Processing Modeler` найдите панель :guilabel:`Model "
+"Properties`. Введите ``piracy hexbin`` в поле :guilabel:`Имя` и ``projects``"
+" as the :guilabel:`Группа`. Нажмите кнопку :guilabel:`Save`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:56
+msgid "Save the model as ``piracy_hexbin``."
+msgstr "Сохраните модель под именем ``piracy_hexbin``."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:61
+msgid ""
+"Now we can start building a graphical model of our processing pipeline.  The"
+" :guilabel:`Processing modeler` dialog contains a left-hand panel and a main"
+" canvas. On he left-hand panel, locate the :guilabel:`Inputs` panel listing "
+"various types of input data types. Scroll down and select the :guilabel:`+ "
+"Vector Layer` input. Drag it to the canvas."
+msgstr ""
+"Теперь мы построим графическую модель нашего алгоритма. Диалог "
+":guilabel:`Processing modeler` имеет главное окно и панель в левой его "
+"части. На левой панели найдите панель :guilabel:`Inputs`, в которой "
+"перечислены разные возможные типы исходных данных. Выберите пункт "
+":guilabel:`+ Векторный слой` и перетащите его в главное окно."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:66
+msgid ""
+"Enter ``Input Points`` as the :guilabel:`Parameter name` and ``Point`` as "
+"the :guilabel:`Geometry type`. This input represents the piracy incidents "
+"point layer."
+msgstr ""
+"Введите ``Input Points`` в поле \"Имя параметра\" и выберите ``Точка`` из "
+"списка :guilabel:`Тип геометрии`. Этот элемент будет представлять точечный "
+"слой, хранящий случаи пиратства."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:71
+msgid ""
+"Next, drag another :guilabel:`+ Vector Layer` input to the canvas. Enter "
+"``Base Layer`` as the :guilabel:`Parameter name` and ``Polygon`` as the "
+":guilabel:`Geometry type`. This input represents the natural earth global "
+"land layer."
+msgstr ""
+"Перетащите в главное окно еще один элемент :guilabel:`+ Vector Layer`. "
+"Введите ``Base Layer`` в поле :guilabel:`Имя параметра` и выберите "
+"``Полигон`` из списка :guilabel:`Тип геометрии`. Этот элемент будет "
+"представлять слой \"natural earth\" с контурами материков."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:76
+msgid ""
+"As we are generating a global hexagonal grid, we can ask the user to supply "
+"us the grid size as an input instead of hard-coding it as part of our model."
+" This way, the user can quickly experiment with different grid sizes without"
+" changing the model at all. select a :guilabel:`+ Number` input and drag it "
+"to the canvas. Enter ``Grid Size`` as the :guilabel:`Parameter name` and "
+"click :guilabel:`OK`."
+msgstr ""
+"Мы хотим сгенерировать глобальную сетку шестиугольников, при этом размер "
+"ячейки сетки не должен быть запрограммирован в самой модели. Вместо этого "
+"нам необходимо дать пользователю возможность указывать самостоятельно данный"
+" параметр, чтобы он мог экспериментировать с различными размерами ячеек без "
+"изменения всей модели. Выберите элемент :guilabel:`+ Число` и перетащите его"
+" в главное окно. Введите ``Grid Size`` в поле :guilabel:`Имя параметра` и "
+"нажмите :guilabel:`OK`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:81
+msgid ""
+"Now that we have our user inputs defined, we are ready to add processing "
+"steps. All of the processing algorithms are available to you under the "
+":guilabel:`Algorithms` tab. The first step in our pipeline will be to "
+"reproject the base layer to the Project CRS.  Search for ``Reproject layer``"
+" algorithm and drag it to the canvas."
+msgstr ""
+"Теперь, когда определены все входные элементы, мы можем добавить к нашей "
+"модели пошаговые действия. Все доступные инструменты находятся на панели "
+":guilabel:`Algorithms`. Первым шагом необходимо перепроецировать базовый "
+"слой в систему координат проекта. Воспользуйтесь строкой поиска, найдите "
+"инструмент ``Перепроецировать слой`` и перетащите его в главное окно."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:83
+msgid ""
+"The necessity of this reprojection step will become clear shortly. The grid "
+"generation algorithm requires us to specify the extent of the grid in the "
+"unit of the Project CRS. We can supply this reprojected layer to compute "
+"this extent."
+msgstr ""
+"Необходимость этого шага объясняется тем, что алгоритм генерации сетки "
+"требует указания координат границ сетки в системе координат проекта."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:88
+msgid ""
+"In the :guilabel:`Reproject layer` dialog, select ``Base Layer`` as the "
+":guilabel:`Input layer`. Check the :guilabel:`Use project CRS` as the "
+":guilabel:`Target CRS`. Click :guilabel:`OK`."
+msgstr ""
+"В выпадающем списке :guilabel:`Исходный слой` окна "
+":guilabel:`Перепроецировать слой` выберите ``Base Layer``. Отметьте галочкой"
+" пункт :guilabel:`Использовать систему координат проекта`. Нажмите "
+":guilabel:`OK`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:93
+msgid ""
+"In the :guilabel:`Processing Modeler` canvas, you will notice a connection "
+"appear between the :guilabel:`+ Base Layer` input and the "
+":guilabel:`Reproject layer` algorithm. This connection indicates the flow of"
+" our processing pipeline. Next step is to create a hexagonal grid. Search "
+"for the ``Create grid`` algorithm and drag it to the canvas."
+msgstr ""
+"Теперь между элементом :guilabel:`+ Base Layer` и инструментом "
+":guilabel:`Перепроецировать слой` появилась линия связи. Она иллюстрирует "
+"поток выполнения нашего алгоритма. Следующим шагом является создание сетки "
+"шестиугольников. Найдите инструмент ``Create grid`` и перетащите его в "
+"главное окно."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:98
+msgid ""
+"In the :guilabel:`Generate grid` dialog, choose ``Hexagon (polygon)`` as the"
+" :guilabel:`Grid type`. Select ``Extent of 'Reprojected' from algorithm "
+"'Reproject Layer'`` as the :guilabel:`Grid extent`. Click the "
+":guilabel:`123` button under the :guilabel:`Horizonal spacing` label and "
+"choose :guilabel:`Model input`."
+msgstr ""
+"В выпадающем списке :guilabel:`Grid type` диалогового окна "
+":guilabel:`Generate grid` выберите пункт ``Hexagon (polygon)``. В выпадающем"
+" списке :guilabel:`Grid extent` выберите пункт ``Extent of "
+"'Перепроецировано' from algorithm 'Перепроецировать слой'``. Нажмите на "
+"кнопку :guilabel:`123` под ярлыком :guilabel:`Horizonal spacing` и выберите "
+"пункт :guilabel:`Model input`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:103
+msgid ""
+"Select ``Grid Size`` input for :guilabel:`Using model input`. Repeat the "
+"same process for :guilabel:`Vertical Spacing`. Click :guilabel:`OK`."
+msgstr ""
+"В поле :guilabel:`Using model input` выберите ``Grid Size``. Повторите "
+"действия для настройки :guilabel:`Vertical Spacing`. Нажмите :guilabel:`OK`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:108
+msgid ""
+"At this point, we have a global hexagonal grid. The grid spans the full "
+"extent of the base layer, including land areas and places where there are no"
+" points. Let's filter out those grid polygons where there are no input "
+"points. Search for ``Extract by location`` algorithm and drag it to the "
+"canvas."
+msgstr ""
+"Теперь мы имеем глобальную сетку шестиугольников, покрывающую всю площадь "
+"базового слоя включая полигоны материков и места, где нет точек. Далее мы "
+"отфильтруем те полигоны сетки, на которых нет точек исходного слоя. Найдите "
+"инструмент ``Извлечь по пространственному отношению`` и перетащите его в "
+"главное окно."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:113
+msgid ""
+"For :guilabel:`Extract features from`, select ``'Grid' from algorithm "
+"'Generate Grid'``, :guilabel:`Where the features (geometric predicate)` as "
+"``Intersect`` and :guilabel:`By compating to the features from` as ``Input "
+"points``. Click :guilabel:`OK`."
+msgstr ""
+"В выпадающем списке :guilabel:`Извлечь объекты в слое` выберите пункт "
+"``'Сетка' from algorithm 'Create grid'``, в поле :guilabel:`где объект "
+"(геометрический оператор)` выберите ``Пересекает`` и в поле "
+":guilabel:`Объекты из слоя для сравнения` выберите ``Input points``. Нажмите"
+" :guilabel:`OK`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:118
+msgid ""
+"Now we have only those grid polygons that contain some input points. To "
+"aggregate these points, we will use ``Count points in polygon`` algorithm. "
+"Search and drag it to the canvas."
+msgstr ""
+"Теперь у нас остались только те полигоны сетки, на которые попадает хотя бы "
+"одна точка. Чтобы сосчитать точки, используем инструмент ``Count points in "
+"polygon``. Найдите и перетащите его в главное окно."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:123
+msgid ""
+"Select ``'Extracted (location)' from algorithm 'Extract by location'`` as "
+"the value for :guilabel:`Polygons`. The :guilabel:`Points` layer would be "
+"``Input Points``. At the bottom, name the :guilabel:`Count` output layer as "
+"``Aggregated``. Click :guilabel:`OK`."
+msgstr ""
+"В выпадающем списке :guilabel:`Полигоны` выберите пункт ``'Извлечено (по "
+"простр. отношению)' from algorithm 'Извлечь по пространственному "
+"отношению'``. В списке :guilabel:`Точки` выберите ``Input Points``. В поле "
+":guilabel:`Количество` введите ``Aggregated``. Нажмите :guilabel:`OK`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:128
+msgid "The model is now complete. Click the :guilabel:`Save` button."
+msgstr "Модель готова. Нажмите кнопку :guilabel:`Save`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:133
+msgid ""
+"Switch to the main QGIS window. You can find your newly created model in the"
+" :guilabel:`Processing Toolbox` under :menuselection:`Models --> projects "
+"--> piracy_hexbin`. Now it is time to run and test the model. As our goal is"
+" to aggregate the input points over hexagonal grids, it is important that "
+"the grids are generated using a equal-area projection. This will ensure that"
+" regardless of the location of the grid, it will cover exactly the same "
+"area. Our model doesn't explicitely ask for a CRS, but uses whatever CRS is "
+"set as the **Project CRS**. Let's choose a global equal area projection as "
+"the Project CRS. Go to :menuselection:`Project --> Properties`."
+msgstr ""
+"Вернитесь в основное окно QGIS. Созданная вами модель находится в панели "
+":guilabel:`Инструменты анализа` в группе :menuselection:`Модели --> projects"
+" --> piracy_hexbin`. Пришло время запустить и протестировать нашу модель. "
+"Поскольку наша цель - сосчитать количество точек входного слоя в каждой "
+"ячейке сетки, важно, чтобы сама сетка была сгенерирована в равновеликой "
+"проекции. Это гарантирует, что независимо от расположения сетки, площади, "
+"покрываемые ячейками, будут равны. Модель не требует явного указания "
+"проекции, вместо этого она использует проекцию, выбранную в окне **Система "
+"координат проекта**. Давайте выберем укажем для проекта глобальную "
+"равновеликую проекцию. Перейдите в меню :menuselection:`Проект --> "
+"Свойства`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:138
+msgid ""
+"In the :guilabel:`Project Properties` dialog, switch to the :guilabel:`CRS` "
+"tab. We will use a global **Mollweide** projection for this exercise which "
+"is a equal area projection. Search for ``Mollweide`` in the "
+":guilabel:`Filter` box and select ``World_Mollweide EPSG:54009`` as the CRS."
+" Click :guilabel:`OK`."
+msgstr ""
+"В диалоговом окне :guilabel:`Свойства проекта` перейдите на вкладку "
+":guilabel:`Система координат`. Мы воспользуемся проекцией **Мольвейде**. В "
+"поле :guilabel:`Поиск` введите ``Mollweide`` и выберите ``World_Mollweide "
+"EPSG:54009``. Нажмите :guilabel:`OK`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:143
+msgid ""
+"You will see the layers getting reprojected on-the-fly to the selected CRS. "
+"Locate the ``piracy_hexbin`` model in the :guilabel:`Processing Toolbox` and"
+" double-click it."
+msgstr ""
+"Можно увидеть, как слои перепроецировались на лету в выбранную проекцию. В "
+"панели :guilabel:`Инструменты анализа` перейдите к модели ``piracy_hexbin`` "
+"и запустите ее двойным щелчком."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:148
+msgid ""
+"Our :guilabel:`Base Layer` is the ``ne_10m_land`` and the :guilabel:`Input "
+"Points` layer is ``ASAM_events``. The :guilabel:`Grid Size` needs to be "
+"specified in the units of the selected CRS. The World_Mollweide CRS unit is "
+"meters, so we specify ``100000`` m (100 Kms) as the :guilabel:`Grid Size`. "
+"Click :guilabel:`Run` to start the processing pipeline. Once the process "
+"finishes, click :guilabel:`Close`."
+msgstr ""
+"В поле :guilabel:`Base Layer` выберите ``ne_10m_land``, в поле "
+":guilabel:`Input Points` выберите ``ASAM_events``. Размер ячейки сетки "
+"должен быть указан в единицах выбранной проекции. Единицами проекции "
+"Молльвейде являются метры. В поле :guilabel:`Grid Size` введите ``100000`` м"
+" (100 км). Нажмите :guilabel:`Выполнить` чтобы запустить выполнение "
+"алгоритма. Когда процесс будет завершен, нажмите :guilabel:`Закрыть`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:153
+msgid ""
+"You will see a new layer ``Aggregated`` loaded as the result of the model. "
+"As you explore, you will notice the layer contains an attribute called "
+"*NUMPOINTS* containing the number of piracy incidents points contained "
+"within that grid feature. Let's style this layer to display this information"
+" better. Right-click the ``Aggregated`` layer and select "
+":guilabel:`Properties`."
+msgstr ""
+"В результате выполнения алгоритма в списке слоев появится новый  слой "
+"``Aggregated``. Этот слой, как вы можете заметить, имеет поле *NUMPOINTS*, "
+"содержащее количество точек внутри каждой ячейки сетки. Давайте применим к "
+"слою стиль для более наглядного представления информации. Нажмите правой "
+"кнопкой мыши на слое ``Aggregated`` и выберите :guilabel:`Свойства`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:158
+msgid ""
+"Switch to the :guilabel:`Symbology` tab. Select ``Graduated`` symbology and "
+"``NUMPOINTS`` as the :guilabel:`Column`. Click ``Change..`` next to "
+":guilabel:`Symbol` label."
+msgstr ""
+"Во вкладке :guilabel:`Стиль` выберите ``Градуированный знак``, в поле "
+":guilabel:`Value` выберите ``NUMPOINTS``. Нажмите на поле, отображающее "
+"стиль после ярлыка :guilabel:`Значок`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:163
+msgid ""
+"Select :guilabel:`Simple fill` symbol and check the :guilabel:`Transparent "
+"Stroke` button under :guilabel:`Stroke color`. This is to make the hexagon "
+"edges transparent."
+msgstr ""
+"Выберите символ :guilabel:`Простая заливка`, а в списке :guilabel:`Стиль "
+"обводки` выберите :guilabel:`Без обводки`. Это сделает грани шестиугольников"
+" прозрачными. Нажмите :guilabel:`OK`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:168
+msgid ""
+"Click the dropdown next to :guilabel:`Color ramp` and select the ``Viridis``"
+" ramp. Click the dropdown again and select :guilabel:`Invert Color Ramp` to "
+"reverse the order of color."
+msgstr ""
+"В выпадающем списке :guilabel:`Градиент` выберите пункт ``Viridis``. Снова "
+"нажмите на стрелку выпадающего списка и выберите :guilabel:`Инвертировать "
+"градиент`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:173
+msgid ""
+"The Graduated symbology will divide the values in the selected column into "
+"distinct classes and assign a different color to each of the classes. Select"
+" ``Natural Breaks (Jenks)`` as the :guilabel:`Mode` and click "
+":guilabel:`Classify` and click :guilabel:`OK`."
+msgstr ""
+"Градуированный знак делит значения в выбранном поле на классы и присваивает "
+"каждому классу свой цвет. В выпадающем списке :guilabel:`Мода` выберите "
+"``Natural Breaks (Jenks)`` и нажмите :guilabel:`Классифицировать`. Нажмите "
+":guilabel:`OK`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:175
+msgid ""
+"see :doc:`../basic_vector_styling` for a detailed explanation of different "
+"modes."
+msgstr ""
+"Подробнее о режимах классификации вы можете прочитать здесь: "
+":doc:`../basic_vector_styling`."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:180
+msgid ""
+"Back in the main QGIS window, turn off the ``ASAM_events`` layer. You will "
+"see a nice visualization of piracy hotspots across the globe."
+msgstr ""
+"Вернитесь в основное окно QGIS, отключите слой ``ASAM_events``. Вы увидите "
+"прекрасную визуализацию проблемных зон на земном шаре."
+
+#: ../../source/docs/3/processing_graphical_modeler.rst:186
+msgid ""
+"Now that you have encoded the full data pipeline in the model, it is easy to"
+" reproduce your results. A model also allows you to experiment quickly "
+"without manually repeating each intermediate step every time. If your inputs"
+" change over time, say an updated database of piracy is released after a few"
+" months, you can run your model on that input to generate a similar "
+"visualization without having to remember each step."
+msgstr ""
+"Теперь, когда последовательность операций запрограммирована в модели, "
+"нетрудно воспроизвести результат. Также модель позволяет экспериментировать "
+"без повторения промежуточных шагов вручную. Если ваши входные данные со "
+"временем изменятся, например, если через несколько месяцев будет опубликован"
+" обновленный список случаев пиратства, вы можете запустить вашу модель с "
+"новым набором данных и воссоздать аналогичную карту без необходимости "
+"помнить каждый шаг."

@@ -1,5 +1,11 @@
 Working with Projections
 ========================
+
+.. warning:: 
+
+   This tutorial is now obsolete. A new and updated version is available at :doc:`3/working_with_projections`
+
+   
 Map projections - or Coordinate Reference System (CRS) - often cause a lot of
 frustration when working with GIS data.  But proper understanding of the
 concepts and access to the right tools will make it much easier to deal with
@@ -172,7 +178,7 @@ Procedure
 .. image:: /static/working_with_projections/images/15.png
    :align: center
 
-16. Back in the main QGIS window, you will see the nice world map disappear.
+16. Back in the main QGIS window, you will see the nice World map disappear.
     This is because the Project CRS changed to
     ``North_America_Albers_Equal_Area_Conic`` and the coordinates and scale are
     different now. Right-click the ``united_states`` layer and select

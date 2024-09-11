@@ -1,0 +1,391 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2019, Ujaval Gandhi
+# This file is distributed under the same license as the QGIS Tutorials and Tips package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# YoViajo, 2021
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: QGIS Tutorials and Tips v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-04-23 16:40+0000\n"
+"PO-Revision-Date: 2019-04-14 12:26+0000\n"
+"Last-Translator: YoViajo, 2021\n"
+"Language-Team: Spanish (https://www.transifex.com/spatialthoughts/teams/7952/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../../source/docs/3/advanced_georeferencing.rst:2
+msgid "Georeferencing Aerial Imagery (QGIS3)"
+msgstr "Georeferenciar Imágenes Aéreas (QGIS3)"
+
+#: ../../source/docs/3/advanced_georeferencing.rst:3
+msgid ""
+"In the tutorial :doc:`georeferencing_basics` we covered the basic process of"
+" georeferencing in QGIS. That method involved reading the coordinates from "
+"your scanned map and entering them manually as control points. Many times "
+"though you may not have the coordinates printed on your map, or you are "
+"trying to georeference an image. In that case, you can use another "
+"georeferenced data-source as your input. In this tutorial, you will learn "
+"how to use existing open data sources in your georeferencing process."
+msgstr ""
+"En el tutorial :doc:`georeferencing_basics` cubrimos el proceso básico de "
+"georeferenciación en QGIS. Ese método involucra leer las coordenadas del "
+"mapa escaneado e ingresarlas manualmente como puntos de control. Varias "
+"veces sin embargo puede que no tenga las coordenadas impresas en su mapa, o "
+"está intentando georeferenciar una imagen. En ese caso, puede usar otra "
+"fuente de datos georeferenciados como su entrada. En este tutorial, "
+"aprenderá como usar fuentes de datos abiertos existentes en su proceso de "
+"georeferenciación."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:6
+msgid "Overview of the task"
+msgstr "Vista general de la tarea "
+
+#: ../../source/docs/3/advanced_georeferencing.rst:8
+msgid ""
+"We will georeference high resolution balloon-imagery using reference "
+"coordinates from OpenStreetMap."
+msgstr ""
+"Georeferenciaremos imágenes de globo de alta resolución usando coordenadas "
+"de referencia de OpenStreetMap."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:11
+msgid "Other skills you will learn"
+msgstr "Otras habilidades que aprenderá"
+
+#: ../../source/docs/3/advanced_georeferencing.rst:12
+msgid "Downloading super high-resolution public domain imagery."
+msgstr "Descargar imágenes de dominio público de super alta resolución."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:13
+msgid "Using XYZ Tile Layers as basemap."
+msgstr "Usar Capas de Teselas XYZ como mapa base."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:14
+msgid "Using the OSM Place Search plugin in QGIS."
+msgstr "Usar el complemento OSM Place Search (Búsqueda de Lugar OSM) en QGIS."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:15
+msgid "Setting a custom no-data value for a layer."
+msgstr "Establecer un valor personalizado de sin datos para una capa."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:18
+msgid "Get the data"
+msgstr "Obtener los datos"
+
+#: ../../source/docs/3/advanced_georeferencing.rst:20
+msgid ""
+"In this tutorial, we will be using kite and balloon imagery collected by "
+"`The Public Laboratory <http://publiclaboratory.org/archive>`_. They make "
+"the georeferenced versions of the images also available, but we will "
+"download a non-georeferenced JPG image and go through the process of "
+"georeferencing it in QGIS."
+msgstr ""
+"En este tutorial, estaremos usando imágenes de cometa y globo recogidas por "
+"`The Public Laboratory <http://publiclaboratory.org/archive>`_. Ellos "
+"comparten las versiones georeferenciadas de las imágenes, pero descargaremos"
+" una imagen JPG no-georeferenciada y repasaremos el proceso de "
+"georeferenciarla en QGIS."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:22
+msgid ""
+"Download the JPG image of `Washington Square Park, New York <http:// "
+"publiclaboratory.org/map/washington-square-park-new-york-new-"
+"york/2012-10-01>`_. You can right-click the JPG button and choose "
+":guilabel:`Save link as...`."
+msgstr ""
+"Descargue la imagen JPG de `Washington Square Park, Nueva York <http:// "
+"publiclaboratory.org/map/washington-square-park-new-york-new-"
+"york/2012-10-01>`_. Puede hacer clic-derecho al botón JPG y elegir "
+":guilabel:`Guardar enlace como...`."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:24
+msgid ""
+"For convenience, you may directly download a copy of the dataset from the "
+"link below:"
+msgstr ""
+"Para su comodidad, puede descargar directamente una copia del conjunto de "
+"datos del siguiente enlace:"
+
+#: ../../source/docs/3/advanced_georeferencing.rst:26
+msgid ""
+"`newyorkcity-washingtonsquarepark.jpg "
+"<https://www.qgistutorials.com/downloads/newyorkcity-"
+"washingtonsquarepark.jpg>`_"
+msgstr ""
+"`newyorkcity-washingtonsquarepark.jpg "
+"<https://www.qgistutorials.com/downloads/newyorkcity-"
+"washingtonsquarepark.jpg>`_"
+
+#: ../../source/docs/3/advanced_georeferencing.rst:29
+msgid "Procedure"
+msgstr "Procedimiento"
+
+#: ../../source/docs/3/advanced_georeferencing.rst:31
+msgid ""
+"We will use a basemap from OpenStreetMap to capture the coordinates for "
+"georeferencing. QGIS3 comes with  built-in support for tile layers. These "
+"are commonly known as 'XYZ' layers since they are made using individual map "
+"tiles for each zoom level (z) on a x,y coordinate grid. You can find the "
+"``OpenStreetMap`` layer under :guilabel:`XYZ Tiles` in the "
+":guilabel:`Browser Panel`. Drag the layer to the main canvas. Once loaded, "
+"note the Coordinate Reference System (CRS) for this layer in the bottom-"
+"right corder. It is set as ``EPSG 3857 Pseudo Mercator``. This is important "
+"because the coordinates we infer from this layer during georeferencing will "
+"be in this CRS."
+msgstr ""
+"Usaremos un mapa base de OpenStreetMap para capturar las coordenadas para "
+"georeferenciación. QGIS3 viene con un soporte incorporado para las capas "
+"teselas. Éstas son conocidas comúnmente como capas 'XYZ' ya que son hechas "
+"usando teselas individuales de mapa para cada nivel de acercamiento (z) en "
+"una cuadrícula de coordenada x,y. Puede encontrar la capa ``OpenStreetMap`` "
+"bajo :guilabel:`Teselas XYZ` en el :guilabel:`Panel de Explorador`. Arrastre"
+" la capa a la pantalla principal. Una vez cargada, note el Sistema de "
+"Referencia de Coordenadas (SRC) para esta capa en la esquina inferior "
+"derecha. Está definido como ``EPSG 3857 Pseudo Mercator``. Esto es "
+"importante porque las coordenadas que inferimos de esta capa durante la "
+"georeferenciación estáran en este SRC."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:38
+msgid ""
+"See `this page <https://www.spatialbias.com/2018/02/qgis-3.0-xyz-tile-"
+"layers/>`_ for more details on XYZ layers and how to add other basemaps in "
+"QGIS."
+msgstr ""
+"Vea `esta página <https://www.spatialbias.com/2018/02/qgis-3.0-xyz-tile-"
+"layers/>`_ para más detalles sobre capas XYZ y como agregar otros mapas base"
+" en QGIS."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:40
+msgid ""
+"The image we are georeferencing is for ``Washington Square Park, New York``."
+" You can zoom/pan try to locate this park in the map. But that is cumbersome"
+" and may not be practical. An easier way is to use the OpenStreetMap (OSM) "
+"Place Search plugin to search for the exact location. Install the ``OSM "
+"Place Search`` plugin from :menuselection:`Plugins --> Manage and install "
+"plugins --> All`. If you do not see this plugin in the search results, make "
+"sure you have checked :guilabel:`Also show experimental plugins` under "
+":guilabel:`Settings`. See :doc:`../using_plugins` for more information on "
+"using plugins in QGIS."
+msgstr ""
+"La imagen que estamos georeferenciando es para ``Washington Square Park, "
+"Nueva York``. Puede intentar acercar/desplazar para localizar este parque en"
+" el mapa. Pero esto es incómodo y puede no ser práctico. Una manera más "
+"fácil es usar el complemento OpenStreetMap (OSM) Place Search  buscar la "
+"ubicación exacta. Instale el complemento ``OSM Place Search`` desde "
+":menuselection:`Complementos --> Administrar e instalar complementos --> "
+"Todos`. Si no ve el complemento en los resultados de búsqueda, asegúrese que"
+" ha marcado :guilabel:`También mostrar complementos experimentales` bajo "
+":guilabel:`Configuración`. Vea :doc:`../using_plugins` para más información "
+"sobre el uso de complementos en QGIS."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:45
+msgid ""
+"Once the plugin is installed, you will see a new panel called :guilabel:`OSM"
+" Place Search...`. Search for ``Washington Square Park`` in the "
+":guilabel:`Name contains..` box and click :guilabel:`->`. You will see the "
+"matching place names appear in the results panel. Select the correct result "
+"and click the :guilabel:`Zoom` button."
+msgstr ""
+"Una vez que el complemento esté instalado, verá un nuevo panel llamado "
+":guilabel:`OSM Place Search...`. Busque ``Washington Square Park`` en la "
+"caja :guilabel:`Nombre contiene..` y clic en :guilabel:`->`. Verá los "
+"nombres de lugares que coinciden en el panel de resultados. Seleccione el "
+"resultado correcto y clic en el botón :guilabel:`Acercar`."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:50
+msgid ""
+"You will see the map that is familiar and contains the landmarks that we can"
+" identify from the image. You may close the :guilabel:`OSM Place Search` "
+"panel now. If you need it again, you can open it from :menuselection:`View "
+"--> Panels --> OSM Place Search`."
+msgstr ""
+"Verá un mapa familiar y que contiene los puntos de referencia que podemos "
+"identificar de la imagen. Ahora puede cerrar el panel :guilabel:`OSM Place "
+"Search`. Si lo necesitara de nuevo, puede abrirlo desde "
+":menuselection:`Vista --> Paneles --> OSM Place Search`."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:55
+msgid ""
+"Now it is time to start georeferencing. Launch the **Georeferencer** from "
+":menuselection:`Raster --> Georeferencer --> Georeferencer`. If you do not "
+"see that menu item, you will need to enable the :guilabel:`Georeferencer "
+"GDAL` plugin from :menuselection:`Plugins --> Manage and install Plugins -->"
+" Installed`."
+msgstr ""
+"Ahora es tiempo para comenzar a georeferenciar. Inicie el "
+"**Georeferenciador** desde :menuselection:`Ráster --> Georeferenciador --> "
+"Georeferenciador`. Si no ve ese elemento del menú, necesitará habilitar el "
+"complemento :guilabel:`Georeferencer GDAL` desde "
+":menuselection:`Complementos --> Administrar e Instalar Complementos --> "
+"Instalado`."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:60
+msgid ""
+"In the :guilabel:`Georeferencer` window, go to :menuselection:`File --> Open"
+" Raster`. Navigate to the downloaded JPG file and click :guilabel:`Open`."
+msgstr ""
+"En la ventana :guilabel:`Georeferenciador`, vaya a :menuselection:`Archivo "
+"--> Abrir Ráster`. Navegue al archivo JPG descargado y clic en "
+":guilabel:`Abrir`."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:65
+msgid ""
+"In the next screen, you will asked to choose the raster’s coordinate "
+"reference system (CRS). Our source image is a plain JPEG file and doesn't "
+"have any coordinate reference system atached to it, so you can click "
+":guilabel:`Cancel`."
+msgstr ""
+"En la siguiente pantalla, se le pedirá elegir el sistema de referencia de "
+"coordenadas (SRC) del ráster. Nuestra imagen fuente es un archivo JPEG plano"
+" y no tiene sistema de referencia de coordenadas adjunto, por lo que puede "
+"hacer clic en :guilabel:`Cancelar`."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:71
+msgid ""
+"Before we start adding Ground Control Points (GCP), we need to define the "
+"Transformation Settings. Go to :menuselection:`Settings --> Transformation "
+"settings`."
+msgstr ""
+"Antes de que comencemos a agregar Puntos de Control del Terreno (PCT), "
+"necesitaremos definir la Configuración de Transformación. Vaya a "
+":menuselection:`Configuración --> Configuración de Transformación`."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:76
+msgid ""
+"In the :guilabel:`Transformation settings` dialog, choose the "
+":guilabel:`Transformation type` as ``Polynomial 2``. See `QGIS Documentation"
+" "
+"<https://docs.qgis.org/testing/en/docs/user_manual/plugins/plugins_georeferencer.html"
+"#available-transformation-algorithms>`_ to learn about different "
+"transofrmation types and their uses. As noted earlier, our basemap is in "
+"``EPSG 3857 Pseudo Mercator`` CRS, so set that as the :guilabel:`Target "
+"CRS`. You can leave the :guilabel:`Output raster` name to the default and "
+"choose ``LZW`` as the :guilabel:`Compression`. Check the :guilabel:`Use 0 "
+"for transparency when needed`. Make sure the :guilabel:`Load in QGIS when "
+"done` option is checked. CLick :guilabel:`OK`."
+msgstr ""
+"En el diálogo :guilabel:`Configuración de Transformación`, elija para "
+":guilabel:`Tipo de Transformación` ``Polinomial 2``. Vea `QGIS Documentation"
+" "
+"<https://docs.qgis.org/testing/en/docs/user_manual/plugins/plugins_georeferencer.html"
+"#available-transformation-algorithms>`_ para aprender acerca de diferentes "
+"tipos de transformación y sus usos. Como se hizo notar previamente, nuestro "
+"mapa base está en la SRC ``EPSG 3857 Pseudo Mercator``, así que defínalo así"
+" en el :guilabel:`SRC Destino`. Puede dejar el nombre del  :guilabel:`Ráster"
+" de salida` predeterminado y elegir ``LZW`` como la :guilabel:`Compresión`. "
+"Marque guilabel:`Usar 0 para transparencia cuando se necesite`. Asegúrese "
+"que la opción :guilabel:`Cargar en QGIS cuando esté listo` esté marcada. "
+"Clic en :guilabel:`Aceptar`."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:81
+msgid ""
+"Now click on the :guilabel:`Add Point` button on the toolbar and select an "
+"easily identifiable location on the image. Corners, intersections, poles "
+"etc. make good control points."
+msgstr ""
+"Ahora clic en el botón :guilabel:`Agregar Punto` en la barra de herramientas"
+" y seleccione una ubicación fácilmente identificable en la imagen. Esquinas,"
+" intersecciones, postes, etc. proveen buenos puntos de control. "
+
+#: ../../source/docs/3/advanced_georeferencing.rst:86
+msgid ""
+"Once you click on the image at a control point location, you will see a pop-"
+"up asking you to enter map coordinates. Click the button :guilabel:`From map"
+" canvas`."
+msgstr ""
+"Una vez que haga clic en la imagen en una ubicación de punto de control, "
+"verá una ventana emergente pedirle ingresar coordenadas de mapa. Clic al "
+"botón :guilabel:`Desde la pantalla del mapa`."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:91
+msgid ""
+"Find the same location in the reference layer and click at the precise "
+"point. The coordinates are auto-populated from your click on the map canvas."
+" Click Ok. Similarly, choose at least 6 points on the image and add their "
+"coordinates from the reference layer."
+msgstr ""
+"Encuentre la misma ubicación en la capa de referencia y clic en el punto "
+"preciso. Las coordenadas son auto-pobladas a partir de su clic en el lienzo "
+"del mapa. Clic Aceptar. De forma similar, elija por lo menos 6 puntos en la "
+"imagen y agregue sus coordenadas desde la capa de referencia."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:98
+msgid ""
+"Tip: When selecting a GCP on a building, always choose the bottom of the "
+"building. Many aerial and satellite imagery have leaning buildings, so "
+"choosing a point on the rooftop will introduce errors."
+msgstr ""
+"Consejo: Cuando seleccione un PCT sobre un edificio, elija siempre la base "
+"del edificio. Muchas imágenes aéreas y de satélite tienen edificios "
+"inclinados, por lo que elegir un punto sobre el tejado introducirá errores."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:100
+msgid ""
+"Once you have added the minimum number of points required for the transform,"
+" you will notice that the GCPs now have a non-zero ``dX``, ``dY`` and "
+"``Residual`` error values. If a particular GCP has unusually high error "
+"values, that usually means a human-error in entering the coordinate values. "
+"So you can delete that GCP and capture it again."
+msgstr ""
+"Una vez que haya agregado el número mínimo de puntos requeridos para la "
+"transformación, notará que los PCTs tienen ahora valores de error no-cero en"
+" ``dX``, ``dY`` y ``Residual``. Si un PCT particular tuviera valores de "
+"error inusualmente altos, esto usualmente significa un error humano al "
+"ingresar los valores de coordenadas. Puede borrar ese PCT y capturarlo de "
+"nuevo."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:105
+msgid ""
+"Once you are satisfied with the GCPs, go to :menuselection:`File --> Start "
+"georeferencing`. This will start the process of warping the image using the "
+"GCPs and creating the target raster."
+msgstr ""
+"Una vez que esté satisfecho con los PCTs, vaya a :menuselection:`Archivo -->"
+" Iniciar la georeferenciación`. Esto iniciará el proceso de ajuste de la "
+"imagen usando los PCTs y creando el ráster destino."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:111
+msgid ""
+"Once the process finishes, you will see the georeferenced layer loaded in "
+"QGIS. If all went well, you will see it nicely overlay the basemap."
+msgstr ""
+"Una vez que termine el proceso, verá la capa georeferenciada cargada en "
+"QGIS. Si todo salió bien, la verá sobrepuesta sobre el mapa base."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:116
+msgid ""
+"To make the output look nicer, let’s remove the white border. Right-click on"
+" the image layer and choose :guilabel:`Properties`."
+msgstr ""
+"Para hacer que nuestra salida se vea mejor, eliminemos el borde blanco. "
+"Clic-derecho sobre la capa imagen y elija :guilabel:`Propiedades`."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:121
+msgid ""
+"Switch to the :guilabel:`Transparency` tab. Add ``255`` as the "
+":guilabel:`Additional no data value` and click :guilabel:`OK`."
+msgstr ""
+"Cámbiese a la pestaña :guilabel:`Transparencia`. Agregue ``255`` como el "
+":guilabel:`Valor sin datos adicional` y clic en :guilabel:`Aceptar`."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:128
+msgid ""
+"8-bit images have pixel values in the range 0-255. 0 is black and 255 is "
+"white."
+msgstr ""
+"La imágenes de 8-bit tienen valores de píxel en el rango 0-255. 0 es negro y"
+" 255 es blanco."
+
+#: ../../source/docs/3/advanced_georeferencing.rst:130
+msgid ""
+"Now you will see your georeferenced image nicely overlaid on the base layer."
+msgstr ""
+"Ahora verá su imagen georeferenciada bien sobrepuesta sobre la capa base."

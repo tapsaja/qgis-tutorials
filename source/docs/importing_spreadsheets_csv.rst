@@ -1,5 +1,10 @@
 Importing Spreadsheets or CSV files
 ===================================
+
+.. warning:: 
+
+  This tutorial is now obsolete. A new and updated version is available at :doc:`3/importing_spreadsheets_csv`
+   
 Many times the GIS data comes in a table or an Excel spreadsheet. Also, if you have a list lat/long coordinates, you can easily import this data in your GIS project.
 
 Overview of the task
@@ -19,7 +24,7 @@ below:
 
 `signif.txt <http://www.qgistutorials.com/downloads/signif.txt>`_
 
-Data Source [NGDC]_
+Data Source [NCEI]_
 
 Procedure
 ---------
